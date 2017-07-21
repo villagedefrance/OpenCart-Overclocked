@@ -123,7 +123,7 @@
             <span id="remaining"></span></td>
           </tr>
           <tr>
-            <td><?php echo $entry_meta_keyword; ?></td>
+            <td><?php echo $entry_meta_keyword; ?><span class="help"><?php echo $help_meta_keyword; ?></span></td>
             <td><textarea name="config_meta_keyword" cols="40" rows="5"><?php echo isset($config_meta_keyword) ? $config_meta_keyword : ''; ?></textarea></td>
           </tr>
           <tr>
@@ -200,7 +200,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_currency; ?></td>
+            <td><?php echo $entry_currency; ?><span class="help"><?php echo $help_currency; ?></span></td>
             <td><select name="config_currency">
             <?php foreach ($currencies as $currency) { ?>
               <?php if ($currency['code'] == $config_currency) { ?>
@@ -212,7 +212,7 @@
             </select> &nbsp; <a href="<?php echo $configure_currency; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
           <tr>
-            <td><?php echo $entry_currency_auto; ?></td>
+            <td><?php echo $entry_currency_auto; ?><span class="help"><?php echo $help_currency_auto; ?></span></td>
             <td><?php if ($config_currency_auto) { ?>
               <input type="radio" name="config_currency_auto" value="1" id="currency-auto-on" class="radio" checked />
               <label for="currency-auto-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -253,7 +253,7 @@
         <h2><?php echo $text_datetime; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_date_format; ?></td>
+            <td><?php echo $entry_date_format; ?><span class="help"><?php echo $help_date_format; ?></span></td>
             <td><select name="config_date_format">
               <?php foreach ($date_formats as $date_format) { ?>
                 <?php if ($config_date_format == $date_format['format']) { ?>
@@ -265,7 +265,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_time_offset; ?></td>
+            <td><?php echo $entry_time_offset; ?><span class="help"><?php echo $help_time_offset; ?></span></td>
             <td><select name="config_time_offset">
               <?php foreach ($time_offsets as $time_offset) { ?>
                 <?php if ($config_time_offset == $time_offset) { ?>
@@ -280,7 +280,7 @@
         <h2><?php echo $text_location; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_store_address; ?></td>
+            <td><?php echo $entry_store_address; ?><span class="help"><?php echo $help_store_address; ?></span></td>
             <td><?php if ($config_store_address) { ?>
               <input type="radio" name="config_store_address" value="1" id="store-address-on" class="radio" checked />
               <label for="store-address-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -294,15 +294,15 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_store_latitude; ?></td>
+            <td><?php echo $entry_store_latitude; ?><span class="help"><?php echo $help_store_latitude; ?></span></td>
             <td><input id="location_store_latitude" name="config_store_latitude" value="<?php echo isset($config_store_latitude) ? $config_store_latitude : ''; ?>" size="30" /> &deg; N</td>
           </tr>
           <tr>
-            <td><?php echo $entry_store_longitude; ?></td>
+            <td><?php echo $entry_store_longitude; ?><span class="help"><?php echo $help_store_longitude; ?></span></td>
             <td><input id="location_store_longitude" name="config_store_longitude" value="<?php echo isset($config_store_longitude) ? $config_store_longitude : ''; ?>" size="30" /> &deg; E</td>
           </tr>
           <tr>
-            <td><?php echo $entry_store_location; ?></td>
+            <td><?php echo $entry_store_location; ?><span class="help"><?php echo $help_store_location; ?></span></td>
             <td><?php if ($config_store_location) { ?>
               <input type="radio" name="config_store_location" value="1" id="store-location-on" class="radio" checked />
               <label for="store-location-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -316,7 +316,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_map_code; ?></td>
+            <td><?php echo $entry_map_code; ?><span class="help"><?php echo $help_map_code; ?></span></td>
             <td><textarea name="config_map_code" cols="50" rows="7"><?php echo $config_map_code; ?></textarea></td>
           </tr>
           <?php if (!empty($config_map_code)) { ?>
@@ -326,7 +326,7 @@
           </tr>
           <?php } ?>
           <tr>
-            <td><?php echo $entry_map_display; ?></td>
+            <td><?php echo $entry_map_display; ?><span class="help"><?php echo $help_map_display; ?></span></td>
             <td><?php if ($config_map_display) { ?>
               <input type="radio" name="config_map_display" value="1" id="map-display-on" class="radio" checked />
               <label for="map-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -344,7 +344,7 @@
       <div id="tab-checkout">
         <table class="form">
           <tr>
-            <td><?php echo $entry_cart_weight; ?></td>
+            <td><?php echo $entry_cart_weight; ?><span class="help"><?php echo $help_cart_weight; ?></span></td>
             <td><?php if ($config_cart_weight) { ?>
               <input type="radio" name="config_cart_weight" value="1" id="cart-weight-on" class="radio" checked />
               <label for="cart-weight-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -358,7 +358,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_guest_checkout; ?></td>
+            <td><?php echo $entry_guest_checkout; ?><span class="help"><?php echo $help_guest_checkout; ?></span></td>
             <td><?php if ($config_guest_checkout) { ?>
               <input type="radio" name="config_guest_checkout" value="1" id="guest-checkout-on" class="radio" checked />
               <label for="guest-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -372,7 +372,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_checkout; ?></td>
+            <td><?php echo $entry_checkout; ?><span class="help"><?php echo $help_checkout; ?></span></td>
             <td><select name="config_checkout_id">
               <option value="0"><?php echo $text_none; ?></option>
               <?php foreach ($informations as $information) { ?>
@@ -385,11 +385,11 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_invoice_prefix; ?></td>
+            <td><?php echo $entry_invoice_prefix; ?><span class="help"><?php echo $help_invoice_prefix; ?></span></td>
             <td><input type="text" name="config_invoice_prefix" value="<?php echo $config_invoice_prefix; ?>" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_auto_invoice; ?></td>
+            <td><?php echo $entry_auto_invoice; ?><span class="help"><?php echo $help_auto_invoice; ?></span></td>
             <td><?php if ($config_auto_invoice) { ?>
               <input type="radio" name="config_auto_invoice" value="1" id="auto-invoice-on" class="radio" checked />
               <label for="auto-invoice-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -403,11 +403,11 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_order_edit; ?></td>
+            <td><?php echo $entry_order_edit; ?><span class="help"><?php echo $help_order_edit; ?></span></td>
             <td><input type="text" name="config_order_edit" value="<?php echo $config_order_edit; ?>" size="3" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_order_status; ?></td>
+            <td><?php echo $entry_order_status; ?><span class="help"><?php echo $help_order_status; ?></span></td>
             <td><select name="config_order_status_id">
               <?php foreach ($order_statuses as $order_status) { ?>
                 <?php if ($order_status['order_status_id'] == $config_order_status_id) { ?>
@@ -419,7 +419,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_complete_status; ?></td>
+            <td><?php echo $entry_complete_status; ?><span class="help"><?php echo $help_complete_status; ?></span></td>
             <td><select name="config_complete_status_id">
               <?php foreach ($order_statuses as $order_status) { ?>
                 <?php if ($order_status['order_status_id'] == $config_complete_status_id) { ?>
@@ -435,7 +435,7 @@
         <div class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_one_page; ?></div>
         <table class="form">
           <tr>
-            <td><?php echo $entry_one_page_checkout; ?></td>
+            <td><?php echo $entry_one_page_checkout; ?><span class="help"><?php echo $help_one_page_checkout; ?></span></td>
             <td><?php if ($config_one_page_checkout) { ?>
               <input type="radio" name="config_one_page_checkout" value="1" id="one-page-checkout-on" class="radio" checked />
               <label for="one-page-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -522,7 +522,7 @@
         <div class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_express; ?></div>
         <table class="form">
           <tr>
-            <td><?php echo $entry_express_checkout; ?></td>
+            <td><?php echo $entry_express_checkout; ?><span class="help"><?php echo $help_express_checkout; ?></span></td>
             <td><?php if ($config_express_checkout) { ?>
               <input type="radio" name="config_express_checkout" value="1" id="express-checkout-on" class="radio" checked />
               <label for="express-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -541,7 +541,7 @@
         </table>
         <table class="form">
           <tr>
-            <td><?php echo $entry_express_autofill; ?></td>
+            <td><?php echo $entry_express_autofill; ?><span class="help"><?php echo $help_express_autofill; ?></span></td>
             <td><?php if ($config_express_autofill) { ?>
               <input type="radio" name="config_express_autofill" value="1" id="express-autofill-on" class="radio" checked />
               <label for="express-autofill-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -555,7 +555,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_express_password; ?></td>
+            <td><?php echo $entry_express_password; ?><span class="help"><?php echo $help_express_password; ?></span></td>
             <td><select name="config_express_password">
               <?php if (isset($config_express_password)) { $selected = "selected"; ?>
                 <option value="0" <?php if ($config_express_password == '0') { echo $selected; } ?>><?php echo $text_no; ?></option>
@@ -583,7 +583,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_express_billing; ?></td>
+            <td><?php echo $entry_express_billing; ?><span class="help"><?php echo $help_express_billing; ?></span></td>
             <td><?php if ($config_express_billing) { ?>
               <input type="radio" name="config_express_billing" value="1" id="express-billing-on" class="radio" checked />
               <label for="express-billing-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -597,7 +597,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_express_postcode; ?></td>
+            <td><?php echo $entry_express_postcode; ?><span class="help"><?php echo $help_express_postcode; ?></span></td>
             <td><?php if ($config_express_postcode) { ?>
               <input type="radio" name="config_express_postcode" value="1" id="express-postcode-on" class="radio" checked />
               <label for="express-postcode-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -611,7 +611,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_express_comment; ?></td>
+            <td><?php echo $entry_express_comment; ?><span class="help"><?php echo $help_express_comment; ?></span></td>
             <td><?php if ($config_express_comment) { ?>
               <input type="radio" name="config_express_comment" value="1" id="express-comment-on" class="radio" checked />
               <label for="express-comment-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -685,7 +685,7 @@
       <div id="tab-option">
         <table class="form">
           <tr>
-            <td><?php echo $entry_empty_category; ?></td>
+            <td><?php echo $entry_empty_category; ?><span class="help"><?php echo $help_empty_category; ?></span></td>
             <td><?php if ($config_empty_category) { ?>
               <input type="radio" name="config_empty_category" value="1" id="empty-category-on" class="radio" checked />
               <label for="empty-category-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -699,7 +699,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_product_count; ?></td>
+            <td><?php echo $entry_product_count; ?><span class="help"><?php echo $help_product_count; ?></span></td>
             <td><?php if ($config_product_count) { ?>
               <input type="radio" name="config_product_count" value="1" id="product-count-on" class="radio" checked />
               <label for="product-count-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -713,7 +713,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_coupon_special; ?></td>
+            <td><?php echo $entry_coupon_special; ?><span class="help"><?php echo $help_coupon_special; ?></span></td>
             <td><?php if ($config_coupon_special) { ?>
               <input type="radio" name="config_coupon_special" value="1" id="coupon-special-on" class="radio" checked />
               <label for="coupon-special-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -728,7 +728,7 @@
             </td>
           </tr>
           <tr>
-            <td><?php echo $entry_review; ?></td>
+            <td><?php echo $entry_review; ?><span class="help"><?php echo $help_review; ?></span></td>
             <td><?php if ($config_review_status) { ?>
               <input type="radio" name="config_review_status" value="1" id="review-status-on" class="radio" checked />
               <label for="review-status-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -773,7 +773,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_vat; ?></td>
+            <td><?php echo $entry_vat; ?><span class="help"><?php echo $help_vat; ?></span></td>
             <td><?php if ($config_vat) { ?>
               <input type="radio" name="config_vat" value="1" id="vat-on" class="radio" checked />
               <label for="vat-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -787,7 +787,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_tax_default; ?></td>
+            <td><?php echo $entry_tax_default; ?><span class="help"><?php echo $help_tax_default; ?></span></td>
             <td><select name="config_tax_default">
               <option value=""><?php echo $text_none; ?></option>
               <?php if ($config_tax_default == 'shipping') { ?>
@@ -803,7 +803,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_tax_customer; ?></td>
+            <td><?php echo $entry_tax_customer; ?><span class="help"><?php echo $help_tax_customer; ?></span></td>
             <td><select name="config_tax_customer">
               <option value=""><?php echo $text_none; ?></option>
               <?php if ($config_tax_customer == 'shipping') { ?>
@@ -822,7 +822,7 @@
         <h2><?php echo $text_stock; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_stock_display; ?></td>
+            <td><?php echo $entry_stock_display; ?><span class="help"><?php echo $help_stock_display; ?></span></td>
             <td><?php if ($config_stock_display) { ?>
               <input type="radio" name="config_stock_display" value="1" id="stock-display-on" class="radio" checked />
               <label for="stock-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -836,7 +836,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_stock_warning; ?></td>
+            <td><?php echo $entry_stock_warning; ?><span class="help"><?php echo $help_stock_warning; ?></span></td>
             <td><?php if ($config_stock_warning) { ?>
               <input type="radio" name="config_stock_warning" value="1" id="stock-warning-on" class="radio" checked />
               <label for="stock-warning-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -850,7 +850,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_stock_checkout; ?></td>
+            <td><?php echo $entry_stock_checkout; ?><span class="help"><?php echo $help_stock_checkout; ?></span></td>
             <td><?php if ($config_stock_checkout) { ?>
               <input type="radio" name="config_stock_checkout" value="1" id="stock-checkout-on" class="radio" checked />
               <label for="stock-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -864,7 +864,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_stock_status; ?></td>
+            <td><?php echo $entry_stock_status; ?><span class="help"><?php echo $help_stock_status; ?></span></td>
             <td><select name="config_stock_status_id">
               <?php foreach ($stock_statuses as $stock_status) { ?>
                 <?php if ($stock_status['stock_status_id'] == $config_stock_status_id) { ?>
@@ -879,7 +879,7 @@
         <h2><?php echo $text_supplier; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_supplier_group; ?></td>
+            <td><?php echo $entry_supplier_group; ?><span class="help"><?php echo $help_supplier_group; ?></span></td>
             <td><select name="config_supplier_group_id">
               <option value="0"><?php echo $text_none; ?></option>
               <?php foreach ($supplier_groups as $supplier_group) { ?>
@@ -895,7 +895,7 @@
         <h2><?php echo $text_account; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_customer_online; ?></td>
+            <td><?php echo $entry_customer_online; ?><span class="help"><?php echo $help_customer_online; ?></span></td>
             <td><?php if ($config_customer_online) { ?>
               <input type="radio" name="config_customer_online" value="1" id="customer-online-on" class="radio" checked />
               <label for="customer-online-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -909,7 +909,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_customer_group; ?></td>
+            <td><?php echo $entry_customer_group; ?><span class="help"><?php echo $help_customer_group; ?></span></td>
             <td><select name="config_customer_group_id">
             <?php foreach ($customer_groups as $customer_group) { ?>
               <?php if ($customer_group['customer_group_id'] == $config_customer_group_id) { ?>
@@ -921,7 +921,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_customer_group_display; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_customer_group_display; ?><span class="help"><?php echo $help_customer_group_display; ?></span></td>
             <td><div class="scrollbox-store">
               <?php $class = 'odd'; ?>
               <?php foreach ($customer_groups as $customer_group) { ?>
@@ -942,7 +942,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_customer_price; ?></td>
+            <td><?php echo $entry_customer_price; ?><span class="help"><?php echo $help_customer_price; ?></span></td>
             <td><?php if ($config_customer_price) { ?>
               <input type="radio" name="config_customer_price" value="1" id="customer-price-on" class="radio" checked />
               <label for="customer-price-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -956,7 +956,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_customer_redirect; ?></td>
+            <td><?php echo $entry_customer_redirect; ?><span class="help"><?php echo $help_customer_redirect; ?></span></td>
             <td><?php if ($config_customer_redirect) { ?>
               <input type="radio" name="config_customer_redirect" value="1" id="customer-redirect-on" class="radio" checked />
               <label for="customer-redirect-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -998,7 +998,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_customer_dob; ?></td>
+            <td><?php echo $entry_customer_dob; ?><span class="help"><?php echo $help_customer_dob; ?></span></td>
             <td><?php if ($config_customer_dob) { ?>
               <input type="radio" name="config_customer_dob" value="1" id="customer-dob-on" class="radio" checked />
               <label for="customer-dob-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1012,7 +1012,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_picklist_status; ?></td>
+            <td><?php echo $entry_picklist_status; ?><span class="help"><?php echo $help_picklist_status; ?></span></td>
             <td><?php if ($config_picklist_status) { ?>
               <input type="radio" name="config_picklist_status" value="1" id="picklist_status-on" class="radio" checked />
               <label for="picklist_status-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1026,7 +1026,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_account; ?></td>
+            <td><?php echo $entry_account; ?><span class="help"><?php echo $help_account; ?></span></td>
             <td><select name="config_account_id">
               <option value="0"><?php echo $text_none; ?></option>
               <?php foreach ($informations as $information) { ?>
@@ -1042,7 +1042,7 @@
         <h2><?php echo $text_affiliate; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_affiliate_approval; ?></td>
+            <td><?php echo $entry_affiliate_approval; ?><span class="help"><?php echo $help_affiliate_approval; ?></span></td>
             <td><?php if ($config_affiliate_approval) { ?>
               <input type="radio" name="config_affiliate_approval" value="1" id="affiliate-approval-on" class="radio" checked />
               <label for="affiliate-approval-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1056,7 +1056,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_affiliate_auto; ?></td>
+            <td><?php echo $entry_affiliate_auto; ?><span class="help"><?php echo $help_affiliate_auto; ?></span></td>
             <td><?php if ($config_affiliate_auto) { ?>
               <input type="radio" name="config_affiliate_auto" value="1" id="affiliate-auto-on" class="radio" checked />
               <label for="affiliate-auto-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1070,15 +1070,15 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_affiliate_commission; ?></td>
+            <td><?php echo $entry_affiliate_commission; ?><span class="help"><?php echo $help_affiliate_commission; ?></span></td>
             <td><input type="text" name="config_affiliate_commission" value="<?php echo $config_affiliate_commission; ?>" size="3" /></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_login_attempts; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_login_attempts; ?><span class="help"><?php echo $help_login_attempts; ?></span></td>
             <td><input type="text" name="config_login_attempts" value="<?php echo $config_login_attempts; ?>" size="3" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_affiliate; ?></td>
+            <td><?php echo $entry_affiliate; ?><span class="help"><?php echo $help_affiliate; ?></span></td>
             <td><select name="config_affiliate_id">
               <option value="0"><?php echo $text_none; ?></option>
               <?php foreach ($informations as $information) { ?>
@@ -1091,7 +1091,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_affiliate_mail; ?></td>
+            <td><?php echo $entry_affiliate_mail; ?><span class="help"><?php echo $help_affiliate_mail; ?></span></td>
             <td><?php if ($config_affiliate_mail) { ?>
               <input type="radio" name="config_affiliate_mail" value="1" id="affiliate-mail-on" class="radio" checked />
               <label for="affiliate-mail-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1119,7 +1119,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_affiliate_activity; ?></td>
+            <td><?php echo $entry_affiliate_activity; ?><span class="help"><?php echo $help_affiliate_activity; ?></span></td>
             <td><?php if ($config_affiliate_activity) { ?>
               <input type="radio" name="config_affiliate_activity" value="1" id="affiliate-activity-on" class="radio" checked />
               <label for="affiliate-activity-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1133,7 +1133,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_affiliate_disable; ?></td>
+            <td><?php echo $entry_affiliate_disable; ?><span class="help"><?php echo $help_affiliate_disable; ?></span></td>
             <td><?php if ($config_affiliate_disable) { ?>
               <input type="radio" name="config_affiliate_disable" value="1" id="affiliate-disable-on" class="radio" checked />
               <label for="affiliate-disable-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1150,7 +1150,7 @@
         <h2><?php echo $text_return; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_return; ?></td>
+            <td><?php echo $entry_return; ?><span class="help"><?php echo $help_return; ?></span></td>
             <td><select name="config_return_id">
               <option value="0"><?php echo $text_none; ?></option>
               <?php foreach ($informations as $information) { ?>
@@ -1163,7 +1163,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_return_status; ?></td>
+            <td><?php echo $entry_return_status; ?><span class="help"><?php echo $help_return_status; ?></span></td>
             <td><select name="config_return_status_id">
               <?php foreach ($return_statuses as $return_status) { ?>
                 <?php if ($return_status['return_status_id'] == $config_return_status_id) { ?>
@@ -1175,7 +1175,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_return_disable; ?></td>
+            <td><?php echo $entry_return_disable; ?><span class="help"><?php echo $help_return_disable; ?></span></td>
             <td><?php if ($config_return_disable) { ?>
               <input type="radio" name="config_return_disable" value="1" id="return-disable-on" class="radio" checked />
               <label for="return-disable-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1192,7 +1192,7 @@
         <h2><?php echo $text_voucher; ?></h2>
         <table class="form">
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_voucher_min; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_voucher_min; ?><span class="help"><?php echo $help_voucher_min; ?></span></td>
             <td><?php if ($error_voucher_min) { ?>
               <input type="text" name="config_voucher_min" value="<?php echo $config_voucher_min; ?>" class="input-error" />
               <span class="error"><?php echo $error_voucher_min; ?></span>
@@ -1201,7 +1201,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_voucher_max; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_voucher_max; ?><span class="help"><?php echo $help_voucher_max; ?></span></td>
             <td><?php if ($error_voucher_max) { ?>
               <input type="text" name="config_voucher_max" value="<?php echo $config_voucher_max; ?>" class="input-error" />
               <span class="error"><?php echo $error_voucher_max; ?></span>
@@ -1226,7 +1226,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_admin_width_limit; ?></td>
+            <td><?php echo $entry_admin_width_limit; ?><span class="help"><?php echo $help_admin_width_limit; ?></span></td>
             <td><?php if ($config_admin_width_limit) { ?>
               <input type="radio" name="config_admin_width_limit" value="1" id="width-limit-on" class="radio" checked />
               <label for="width-limit-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1254,7 +1254,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_admin_limit; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_admin_limit; ?><span class="help"><?php echo $help_admin_limit; ?></span></td>
             <td><?php if ($error_admin_limit) { ?>
               <input type="text" name="config_admin_limit" value="<?php echo $config_admin_limit; ?>" size="3" class="input-error" />
               <span class="error"><?php echo $error_admin_limit; ?></span>
@@ -1263,7 +1263,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_catalog_limit; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_catalog_limit; ?><span class="help"><?php echo $help_catalog_limit; ?></span></td>
             <td><?php if ($error_catalog_limit) { ?>
               <input type="text" name="config_catalog_limit" value="<?php echo $config_catalog_limit; ?>" size="3" class="input-error" />
               <span class="error"><?php echo $error_catalog_limit; ?></span>
@@ -1275,7 +1275,7 @@
         <h2><?php echo $text_forms; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_pagination_hi; ?></td>
+            <td><?php echo $entry_pagination_hi; ?><span class="help"><?php echo $help_pagination_hi; ?></span></td>
             <td><?php if ($config_pagination_hi) { ?>
               <input type="radio" name="config_pagination_hi" value="1" id="pagination-hi-on" class="radio" checked />
               <label for="pagination-hi-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1293,7 +1293,7 @@
             </td>
           </tr>
           <tr>
-            <td><?php echo $entry_pagination_lo; ?></td>
+            <td><?php echo $entry_pagination_lo; ?><span class="help"><?php echo $help_pagination_lo; ?></span></td>
             <td><?php if ($config_pagination_lo) { ?>
               <input type="radio" name="config_pagination_lo" value="1" id="pagination-lo-on" class="radio" checked />
               <label for="pagination-lo-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1311,7 +1311,7 @@
             </td>
           </tr>
           <tr>
-            <td><?php echo $entry_autocomplete_category; ?></td>
+            <td><?php echo $entry_autocomplete_category; ?><span class="help"><?php echo $help_autocomplete_category; ?></span></td>
             <td><?php if ($config_autocomplete_category) { ?>
               <input type="radio" name="config_autocomplete_category" value="1" id="autocomplete-category-on" class="radio" checked />
               <label for="autocomplete-category-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1325,7 +1325,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_autocomplete_product; ?></td>
+            <td><?php echo $entry_autocomplete_product; ?><span class="help"><?php echo $help_autocomplete_product; ?></span></td>
             <td><?php if ($config_autocomplete_product) { ?>
               <input type="radio" name="config_autocomplete_product" value="1" id="autocomplete-product-on" class="radio" checked />
               <label for="autocomplete-product-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1339,7 +1339,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_autocomplete_offer; ?></td>
+            <td><?php echo $entry_autocomplete_offer; ?><span class="help"><?php echo $help_autocomplete_offer; ?></span></td>
             <td><?php if ($config_autocomplete_offer) { ?>
               <input type="radio" name="config_autocomplete_offer" value="1" id="autocomplete-offer-on" class="radio" checked />
               <label for="autocomplete-offer-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1356,7 +1356,7 @@
         <h2><?php echo $text_product; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_catalog_barcode; ?></td>
+            <td><?php echo $entry_catalog_barcode; ?><span class="help"><?php echo $help_catalog_barcode; ?></span></td>
             <td><?php if ($config_catalog_barcode) { ?>
               <input type="radio" name="config_catalog_barcode" value="1" id="catalog-barcode-on" class="radio" checked />
               <label for="catalog-barcode-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1371,7 +1371,7 @@
             </td>
           </tr>
           <tr>
-            <td><?php echo $entry_admin_barcode; ?></td>
+            <td><?php echo $entry_admin_barcode; ?><span class="help"><?php echo $help_admin_barcode; ?></span></td>
             <td><?php if ($config_admin_barcode) { ?>
               <input type="radio" name="config_admin_barcode" value="1" id="admin-barcode-on" class="radio" checked />
               <label for="admin-barcode-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1398,7 +1398,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_buy_now; ?></td>
+            <td><?php echo $entry_buy_now; ?><span class="help"><?php echo $help_buy_now; ?></span></td>
             <td><?php if ($config_buy_now) { ?>
               <input type="radio" name="config_buy_now" value="1" id="buy-now-on" class="radio" checked />
               <label for="buy-now-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1412,7 +1412,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_lightbox; ?></td>
+            <td><?php echo $entry_lightbox; ?><span class="help"><?php echo $help_lightbox; ?></span></td>
             <td><select name="config_lightbox">
               <?php if (isset($config_lightbox)) { $selected = "selected"; ?>
                 <option value="colorbox" <?php if ($config_lightbox == 'colorbox') { echo $selected; } ?>><?php echo $text_colorbox; ?> <?php echo $text_default; ?></option>
@@ -1430,7 +1430,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_share_addthis; ?></td>
+            <td><?php echo $entry_share_addthis; ?><span class="help"><?php echo $help_share_addthis; ?></span></td>
             <td><?php if ($config_share_addthis) { ?>
               <input type="radio" name="config_share_addthis" value="1" id="share-addthis-on" class="radio" checked />
               <label for="share-addthis-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1444,7 +1444,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_price_free; ?></td>
+            <td><?php echo $entry_price_free; ?><span class="help"><?php echo $help_price_free; ?></span></td>
             <td><?php if ($config_price_free) { ?>
               <input type="radio" name="config_price_free" value="1" id="price-free-on" class="radio" checked />
               <label for="price-free-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1461,7 +1461,7 @@
         <h2><?php echo $text_captcha; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_captcha_font; ?></td>
+            <td><?php echo $entry_captcha_font; ?><span class="help"><?php echo $help_captcha_font; ?></span></td>
             <td><select name="config_captcha_font">
             <?php foreach ($fontnames as $fontname) { ?>
               <?php if ($fontname == $config_captcha_font) { ?>
@@ -1514,7 +1514,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_cookie_privacy; ?></td>
+            <td><?php echo $entry_cookie_privacy; ?><span class="help"><?php echo $help_cookie_privacy; ?></span></td>
             <td><select name="config_cookie_privacy">
               <option value="0"><?php echo $text_none; ?></option>
               <?php foreach ($information_pages as $information) { ?>
@@ -1527,14 +1527,14 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_cookie_age; ?></td>
+            <td><?php echo $entry_cookie_age; ?><span class="help"><?php echo $help_cookie_age; ?></span></td>
             <td><input type="text" name="config_cookie_age" value="<?php echo $config_cookie_age; ?>" size="5" /></td>
           </tr>
         </table>
         <h2><?php echo $text_news; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_news_addthis; ?></td>
+            <td><?php echo $entry_news_addthis; ?><span class="help"><?php echo $help_news_addthis; ?></span></td>
             <td><?php if ($config_news_addthis) { ?>
               <input type="radio" name="config_news_addthis" value="1" id="news-addthis-on" class="radio" checked />
               <label for="news-addthis-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1548,7 +1548,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_news_style; ?></td>
+            <td><?php echo $entry_news_style; ?><span class="help"><?php echo $help_news_style; ?></span></td>
             <td><?php if ($config_news_style) { ?>
               <input type="radio" name="config_news_style" value="1" id="news-style-on" class="radio" checked />
               <label for="news-style-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1562,7 +1562,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_news_chars; ?></td>
+            <td><?php echo $entry_news_chars; ?><span class="help"><?php echo $help_news_chars; ?></span></td>
             <td><input type="text" name="config_news_chars" value="<?php echo $config_news_chars; ?>" size="5" /> <?php echo $text_characters; ?></td>
           </tr>
         </table>
@@ -1577,7 +1577,7 @@
             </div></td>
           </tr>
           <tr>
-            <td><?php echo $entry_icon; ?></td>
+            <td><?php echo $entry_icon; ?><span class="help"><?php echo $help_icon; ?></span></td>
             <td><div class="image"><img src="<?php echo $icon; ?>" alt="" id="thumb-icon" /><br />
               <input type="hidden" name="config_icon" value="<?php echo $config_icon; ?>" id="icon" />
               <a onclick="image_upload('icon', 'thumb-icon');" class="button-browse"></a><a onclick="$('#thumb-icon').attr('src', '<?php echo $no_image; ?>'); $('#icon').attr('value', '');" class="button-recycle"></a>
@@ -1587,7 +1587,7 @@
         <h2><?php echo $text_image_resize; ?></h2>
         <table class="form">
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_image_category; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_image_category; ?><span class="help"><?php echo $help_image_category; ?></span></td>
             <td><?php if ($error_image_category) { ?>
               <input type="text" name="config_image_category_width" value="<?php echo $config_image_category_width; ?>" size="3" class="input-error" /> x
               <input type="text" name="config_image_category_height" value="<?php echo $config_image_category_height; ?>" size="3" class="input-error" /> px
@@ -1598,7 +1598,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_image_thumb; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_image_thumb; ?><span class="help"><?php echo $help_image_thumb; ?></span></td>
             <td><?php if ($error_image_thumb) { ?>
               <input type="text" name="config_image_thumb_width" value="<?php echo $config_image_thumb_width; ?>" size="3" class="input-error" /> x
               <input type="text" name="config_image_thumb_height" value="<?php echo $config_image_thumb_height; ?>" size="3" class="input-error" /> px
@@ -1609,7 +1609,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_image_popup; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_image_popup; ?><span class="help"><?php echo $help_image_popup; ?></span></td>
             <td><?php if ($error_image_popup) { ?>
               <input type="text" name="config_image_popup_width" value="<?php echo $config_image_popup_width; ?>" size="3" class="input-error" /> x
               <input type="text" name="config_image_popup_height" value="<?php echo $config_image_popup_height; ?>" size="3" class="input-error" /> px
@@ -1620,7 +1620,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_image_product; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_image_product; ?><span class="help"><?php echo $help_image_product; ?></span></td>
             <td><?php if ($error_image_product) { ?>
               <input type="text" name="config_image_product_width" value="<?php echo $config_image_product_width; ?>" size="3" class="input-error" /> x
               <input type="text" name="config_image_product_height" value="<?php echo $config_image_product_height; ?>" size="3" class="input-error" /> px
@@ -1631,7 +1631,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_image_additional; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_image_additional; ?><span class="help"><?php echo $help_image_additional; ?></span></td>
             <td><?php if ($error_image_additional) { ?>
               <input type="text" name="config_image_additional_width" value="<?php echo $config_image_additional_width; ?>" size="3" class="input-error" /> x
               <input type="text" name="config_image_additional_height" value="<?php echo $config_image_additional_height; ?>" size="3" class="input-error" /> px
@@ -1642,7 +1642,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_image_brand; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_image_brand; ?><span class="help"><?php echo $help_image_brand; ?></span></td>
             <td><?php if ($error_image_brand) { ?>
               <input type="text" name="config_image_brand_width" value="<?php echo $config_image_brand_width; ?>" size="3" class="input-error" /> x
               <input type="text" name="config_image_brand_height" value="<?php echo $config_image_brand_height; ?>" size="3" class="input-error" /> px
@@ -1653,7 +1653,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_image_related; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_image_related; ?><span class="help"><?php echo $help_image_related; ?></span></td>
             <td><?php if ($error_image_related) { ?>
               <input type="text" name="config_image_related_width" value="<?php echo $config_image_related_width; ?>" size="3" class="input-error" /> x
               <input type="text" name="config_image_related_height" value="<?php echo $config_image_related_height; ?>" size="3" class="input-error" /> px
@@ -1664,7 +1664,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_image_compare; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_image_compare; ?><span class="help"><?php echo $help_image_compare; ?></span></td>
             <td><?php if ($error_image_compare) { ?>
               <input type="text" name="config_image_compare_width" value="<?php echo $config_image_compare_width; ?>" size="3" class="input-error" /> x
               <input type="text" name="config_image_compare_height" value="<?php echo $config_image_compare_height; ?>" size="3" class="input-error" /> px
@@ -1675,7 +1675,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_image_wishlist; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_image_wishlist; ?><span class="help"><?php echo $help_image_wishlist; ?></span></td>
             <td><?php if ($error_image_wishlist) { ?>
               <input type="text" name="config_image_wishlist_width" value="<?php echo $config_image_wishlist_width; ?>" size="3" class="input-error" /> x
               <input type="text" name="config_image_wishlist_height" value="<?php echo $config_image_wishlist_height; ?>" size="3" class="input-error" /> px
@@ -1686,7 +1686,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_image_newsthumb; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_image_newsthumb; ?><span class="help"><?php echo $help_image_newsthumb; ?></span></td>
             <td><?php if ($error_image_newsthumb) { ?>
               <input type="text" name="config_image_newsthumb_width" value="<?php echo $config_image_newsthumb_width; ?>" size="3" class="input-error" /> x
               <input type="text" name="config_image_newsthumb_height" value="<?php echo $config_image_newsthumb_height; ?>" size="3" class="input-error" /> px
@@ -1697,7 +1697,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_image_newspopup; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_image_newspopup; ?><span class="help"><?php echo $help_image_newspopup; ?></span></td>
             <td><?php if ($error_image_newspopup) { ?>
               <input type="text" name="config_image_newspopup_width" value="<?php echo $config_image_newspopup_width; ?>" size="3" class="input-error" /> x
               <input type="text" name="config_image_newspopup_height" value="<?php echo $config_image_newspopup_height; ?>" size="3" class="input-error" /> px
@@ -1708,7 +1708,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_image_cart; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_image_cart; ?><span class="help"><?php echo $help_image_cart; ?></span></td>
             <td><?php if ($error_image_cart) { ?>
               <input type="text" name="config_image_cart_width" value="<?php echo $config_image_cart_width; ?>" size="3" class="input-error" /> x
               <input type="text" name="config_image_cart_height" value="<?php echo $config_image_cart_height; ?>" size="3" class="input-error" /> px
@@ -1722,7 +1722,7 @@
         <h2><?php echo $text_image_labels; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_label_size_ratio; ?></td>
+            <td><?php echo $entry_label_size_ratio; ?><span class="help"><?php echo $help_label_size_ratio; ?></span></td>
             <td><select name="config_label_size_ratio">
               <?php foreach ($label_ratios as $label_ratio) { ?>
                 <?php if ($config_label_size_ratio == $label_ratio['ratio']) { ?>
@@ -1734,21 +1734,21 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_label_stock; ?></td>
+            <td><?php echo $entry_label_stock; ?><span class="help"><?php echo $help_label_stock; ?></span></td>
             <td><div class="image"><img src="<?php echo $label_stock; ?>" alt="" id="thumb-label-stock" /><br />
               <input type="hidden" name="config_label_stock" value="<?php echo $config_label_stock; ?>" id="label-stock" />
               <a onclick="image_upload('label-stock', 'thumb-label-stock');" class="button-browse"></a><a onclick="$('#thumb-label-stock').attr('src', '<?php echo $no_image; ?>'); $('#label-stock').attr('value', '');" class="button-recycle"></a>
             </div></td>
           </tr>
           <tr>
-            <td><?php echo $entry_label_offer; ?></td>
+            <td><?php echo $entry_label_offer; ?><span class="help"><?php echo $help_label_offer; ?></span></td>
             <td><div class="image"><img src="<?php echo $label_offer; ?>" alt="" id="thumb-label-offer" /><br />
               <input type="hidden" name="config_label_offer" value="<?php echo $config_label_offer; ?>" id="label-offer" />
               <a onclick="image_upload('label-offer', 'thumb-label-offer');" class="button-browse"></a><a onclick="$('#thumb-label-offer').attr('src', '<?php echo $no_image; ?>'); $('#label-offer').attr('value', '');" class="button-recycle"></a>
             </div></td>
           </tr>
           <tr>
-            <td><?php echo $entry_label_special; ?></td>
+            <td><?php echo $entry_label_special; ?><span class="help"><?php echo $help_label_special; ?></span></td>
             <td><div class="image"><img src="<?php echo $label_special; ?>" alt="" id="thumb-label-special" /><br />
               <input type="hidden" name="config_label_special" value="<?php echo $config_label_special; ?>" id="label-special" />
               <a onclick="image_upload('label-special', 'thumb-label-special');" class="button-browse"></a><a onclick="$('#thumb-label-special').attr('src', '<?php echo $no_image; ?>'); $('#label-special').attr('value', '');" class="button-recycle"></a>
@@ -1809,7 +1809,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_ftp_root; ?></td>
+            <td><?php echo $entry_ftp_root; ?><span class="help"><?php echo $help_ftp_root; ?></span></td>
             <td><input type="text" name="config_ftp_root" value="<?php echo $config_ftp_root; ?>" /></td>
           </tr>
         </table>
@@ -1818,7 +1818,7 @@
         <table class="form">
           <tbody>
           <tr>
-            <td><?php echo $entry_mail_protocol; ?></td>
+            <td><?php echo $entry_mail_protocol; ?><span class="help"><?php echo $help_mail_protocol; ?></span></td>
             <td><select name="config_mail_protocol">
               <?php if ($config_mail_protocol == 'mail') { ?>
                 <option value="mail" selected="selected"><?php echo $text_mail; ?></option>
@@ -1835,7 +1835,7 @@
           </tbody>
           <tbody id="protocol-mail" class="protocol">
           <tr>
-            <td><?php echo $entry_mail_parameter; ?></td>
+            <td><?php echo $entry_mail_parameter; ?><span class="help"><?php echo $help_mail_parameter; ?></span></td>
             <td><input type="text" name="config_mail_parameter" value="<?php echo $config_mail_parameter; ?>" size="30" /></td>
           </tr>
           </tbody>
@@ -1862,7 +1862,7 @@
           </tr>
           </tbody>
           <tr>
-            <td><?php echo $entry_alert_mail; ?></td>
+            <td><?php echo $entry_alert_mail; ?><span class="help"><?php echo $help_alert_mail; ?></span></td>
             <td><?php if ($config_alert_mail) { ?>
               <input type="radio" name="config_alert_mail" value="1" id="alert-mail-on" class="radio" checked />
               <label for="alert-mail-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1876,7 +1876,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_account_mail; ?></td>
+            <td><?php echo $entry_account_mail; ?><span class="help"><?php echo $help_account_mail; ?></span></td>
             <td><?php if ($config_account_mail) { ?>
               <input type="radio" name="config_account_mail" value="1" id="account-mail-on" class="radio" checked />
               <label for="account-mail-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1890,7 +1890,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_alert_emails; ?></td>
+            <td><?php echo $entry_alert_emails; ?><span class="help"><?php echo $help_alert_emails; ?></span></td>
             <td><textarea name="config_alert_emails" cols="40" rows="5"><?php echo $config_alert_emails; ?></textarea></td>
           </tr>
         </table>
@@ -1922,45 +1922,45 @@
             <td><input name="config_skype" type="text" size="50" value="<?php echo $config_skype; ?>" /></td>
           <tr>
           <tr>
-            <td><?php echo $entry_addthis; ?></td>
+            <td><?php echo $entry_addthis; ?><span class="help"><?php echo $help_addthis; ?></span></td>
             <td>#pubid=<input name="config_addthis" type="text" size="30" value="<?php echo $config_addthis; ?>" /></td>
           <tr>
         </table>
         <h2><?php echo $text_verification; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_meta_google; ?></td>
+            <td><?php echo $entry_meta_google; ?><span class="help"><?php echo $help_meta_google; ?></span></td>
             <td><input type="text" name="config_meta_google" value="<?php echo $config_meta_google; ?>" size="50" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_meta_bing; ?></td>
+            <td><?php echo $entry_meta_bing; ?><span class="help"><?php echo $help_meta_bing; ?></span></td>
             <td><input type="text" name="config_meta_bing" value="<?php echo $config_meta_bing; ?>" size="50" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_meta_yandex; ?></td>
+            <td><?php echo $entry_meta_yandex; ?><span class="help"><?php echo $help_meta_yandex; ?></span></td>
             <td><input type="text" name="config_meta_yandex" value="<?php echo $config_meta_yandex; ?>" size="50" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_meta_baidu; ?></td>
+            <td><?php echo $entry_meta_baidu; ?><span class="help"><?php echo $help_meta_baidu; ?></span></td>
             <td><input type="text" name="config_meta_baidu" value="<?php echo $config_meta_baidu; ?>" size="50" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_meta_alexa; ?></td>
+            <td><?php echo $entry_meta_alexa; ?><span class="help"><?php echo $help_meta_alexa; ?></span></td>
             <td><input type="text" name="config_meta_alexa" value="<?php echo $config_meta_alexa; ?>" size="50" /></td>
           </tr>
         </table>
         <h2><?php echo $text_analytic; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_google_analytics; ?></td>
+            <td><?php echo $entry_google_analytics; ?><span class="help"><?php echo $help_google_analytics; ?></span></td>
             <td><textarea name="config_google_analytics" cols="50" rows="10"><?php echo $config_google_analytics; ?></textarea></td>
           </tr>
           <tr>
-            <td><?php echo $entry_alexa_analytics; ?></td>
+            <td><?php echo $entry_alexa_analytics; ?><span class="help"><?php echo $help_alexa_analytics; ?></span></td>
             <td><textarea name="config_alexa_analytics" cols="50" rows="10"><?php echo $config_alexa_analytics; ?></textarea></td>
           </tr>
           <tr>
-            <td><?php echo $entry_piwik_analytics; ?></td>
+            <td><?php echo $entry_piwik_analytics; ?><span class="help"><?php echo $help_piwik_analytics; ?></span></td>
             <td><textarea name="config_piwik_analytics" cols="50" rows="10"><?php echo $config_piwik_analytics; ?></textarea></td>
           </tr>
         </table>
@@ -1983,7 +1983,7 @@
       <div id="tab-server">
         <table class="form">
           <tr>
-            <td><?php echo $entry_maintenance; ?></td>
+            <td><?php echo $entry_maintenance; ?><span class="help"><?php echo $help_maintenance; ?></span></td>
             <td><?php if ($config_maintenance) { ?>
               <input type="radio" name="config_maintenance" value="1" id="maintenance-on" class="radio" checked />
               <label for="maintenance-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -1997,7 +1997,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_seo_url; ?></td>
+            <td><?php echo $entry_seo_url; ?><span class="help"><?php echo $help_seo_url; ?></span></td>
             <td><?php if ($config_seo_url) { ?>
               <input type="radio" name="config_seo_url" value="1" id="seo-url-on" class="radio" checked />
               <label for="seo-url-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -2011,7 +2011,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_seo_url_cache; ?></td>
+            <td><?php echo $entry_seo_url_cache; ?><span class="help"><?php echo $help_seo_url_cache; ?></span></td>
             <td><?php if ($config_seo_url_cache) { ?>
               <input type="radio" name="config_seo_url_cache" value="1" id="seo-cache-on" class="radio" checked />
               <label for="seo-cache-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -2025,7 +2025,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_encryption; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_encryption; ?><span class="help"><?php echo $help_encryption; ?></span></td>
             <td><?php if ($error_encryption) { ?>
               <input type="text" name="config_encryption" value="<?php echo $config_encryption; ?>" size="42" class="input-error" />
               <span class="error"><?php echo $error_encryption; ?></span>
@@ -2034,7 +2034,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_compression; ?></td>
+            <td><?php echo $entry_compression; ?><span class="help"><?php echo $help_compression; ?></span></td>
             <td><input type="text" name="config_compression" value="<?php echo $config_compression; ?>" size="3" /></td>
           </tr>
           <tr>
@@ -2096,7 +2096,7 @@
         <h2><?php echo $text_security; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_secure; ?></td>
+            <td><?php echo $entry_secure; ?><span class="help"><?php echo $help_secure; ?></span></td>
             <td><?php if ($config_secure) { ?>
               <input type="radio" name="config_secure" value="1" id="secure-on" class="radio" checked />
               <label for="secure-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -2110,7 +2110,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_shared; ?></td>
+            <td><?php echo $entry_shared; ?><span class="help"><?php echo $help_shared; ?></span></td>
             <td><?php if ($config_shared) { ?>
               <input type="radio" name="config_shared" value="1" id="shared-on" class="radio" checked />
               <label for="shared-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -2124,11 +2124,11 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_robots; ?></td>
+            <td><?php echo $entry_robots; ?><span class="help"><?php echo $help_robots; ?></span></td>
             <td><textarea name="config_robots" cols="40" rows="5"><?php echo $config_robots; ?></textarea></td>
           </tr>
           <tr>
-            <td><?php echo $entry_robots_online; ?></td>
+            <td><?php echo $entry_robots_online; ?><span class="help"><?php echo $help_robots_online; ?></span></td>
             <td><?php if ($config_robots_online) { ?>
               <input type="radio" name="config_robots_online" value="1" id="robots-online-on" class="radio" checked />
               <label for="robots-online-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -2142,7 +2142,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_password; ?></td>
+            <td><?php echo $entry_password; ?><span class="help"><?php echo $help_password; ?></span></td>
             <td><?php if ($config_password) { ?>
               <input type="radio" name="config_password" value="1" id="password-on" class="radio" checked />
               <label for="password-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -2156,7 +2156,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_ban_page; ?></td>
+            <td><?php echo $entry_ban_page; ?><span class="help"><?php echo $help_ban_page; ?></span></td>
             <td><select name="config_ban_page">
               <?php if (isset($config_ban_page)) { $selected = "selected"; ?>
                 <option value="search" <?php if ($config_ban_page == 'search') { echo $selected; } ?>><?php echo $text_search_page; ?></option>
@@ -2171,7 +2171,7 @@
         <h2><?php echo $text_upload; ?></h2>
         <table class="form">
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_file_max_size; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_file_max_size; ?><span class="help"><?php echo $help_file_max_size; ?></span></td>
             <td><?php if ($error_file_max_size) { ?>
               <input type="text" name="config_file_max_size" value="<?php echo $config_file_max_size; ?>" class="input-error" /> bytes
               <span class="error"><?php echo $error_file_max_size; ?></span>
@@ -2180,11 +2180,11 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_file_extension_allowed; ?></td>
+            <td><?php echo $entry_file_extension_allowed; ?><span class="help"><?php echo $help_file_extension_allowed; ?></span></td>
             <td><textarea name="config_file_extension_allowed" cols="40" rows="8"><?php echo $config_file_extension_allowed; ?></textarea></td>
           </tr>
           <tr>
-            <td><?php echo $entry_file_mime_allowed; ?></td>
+            <td><?php echo $entry_file_mime_allowed; ?><span class="help"><?php echo $help_file_mime_allowed; ?></span></td>
             <td><textarea name="config_file_mime_allowed" cols="60" rows="8"><?php echo $config_file_mime_allowed; ?></textarea></td>
           </tr>
         </table>

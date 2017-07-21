@@ -517,19 +517,19 @@ ul.menu ul {
 	border-radius: 3px;
 }
 .success {
-	background: rgba(186, 209, 156, 0.8) url('../image/success.png') 10px center no-repeat;
+	background: rgba(186, 209, 156, 0.9) url('../image/success.png') 10px center no-repeat;
 	border: 1px solid #8EAD66;
 }
 .warning {
-	background: rgba(226, 170, 170, 0.8) url('../image/warning.png') 10px center no-repeat;
+	background: rgba(226, 170, 170, 0.9) url('../image/warning.png') 10px center no-repeat;
 	border: 1px solid #D38383;
 }
 .attention {
-	background: rgba(255, 245, 204, 0.8) url('../image/attention.png') 10px center no-repeat;
+	background: rgba(255, 245, 204, 0.9) url('../image/attention.png') 10px center no-repeat;
 	border: 1px solid #F2DD8C;
 }
 .tooltip {
-	background: rgba(145, 174, 188, 0.8) url('../image/tooltip.png') 10px center no-repeat;
+	background: rgba(145, 174, 188, 0.9) url('../image/tooltip.png') 10px center no-repeat;
 	border: 1px solid #4D95BC;
 }
 .close, .success .close, .warning .close, .attention .close, .tooltip .close {
