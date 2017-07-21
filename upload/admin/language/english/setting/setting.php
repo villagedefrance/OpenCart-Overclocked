@@ -261,7 +261,7 @@ $_['help_map_code']                = 'Visit <a onclick="window.open(\'%s\');"><u
 $_['help_map_display']             = 'Show Google Map on Contact page.';
 $_['help_cart_weight']             = 'Show the cart weight on the cart page.';
 $_['help_guest_checkout']          = 'Allow customers to checkout without creating an account. This will not be available when a downloadable product is in the shopping cart.';
-$_['help_checkout']                = 'Forces people to agree to terms before an a customer can checkout.</span>';
+$_['help_checkout']                = 'Forces people to agree to terms before an a customer can checkout.';
 $_['help_invoice_prefix']          = 'Set the invoice prefix (e.g. INV-2017-00). Invoice ID\'s will start at 1 for each unique prefix.';
 $_['help_auto_invoice']            = 'Automatically generate the invoice number when a new order is received.';
 $_['help_order_edit']              = 'Number of days allowed to edit an order. This is required because prices and discounts may change over time, corrupting the order if it is edited.';

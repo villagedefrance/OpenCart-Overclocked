@@ -752,12 +752,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_meta_keyword'] = $this->config->get('config_meta_keyword');
 		}
 
-		if (isset($this->request->post['config_template'])) {
-			$this->data['config_template'] = $this->request->post['config_template'];
-		} else {
-			$this->data['config_template'] = $this->config->get('config_template');
-		}
-
 		$this->data['templates'] = array();
 
 		$directories = glob(DIR_CATALOG . 'view/theme/*', GLOB_ONLYDIR);
@@ -766,17 +760,23 @@ class ControllerSettingSetting extends Controller {
 			$this->data['templates'][] = basename($directory);
 		}
 
+		if (isset($this->request->post['config_template'])) {
+			$this->data['config_template'] = $this->request->post['config_template'];
+		} else {
+			$this->data['config_template'] = $this->config->get('config_template');
+		}
+
 		$this->data['configure_theme'] = $this->url->link('extension/theme', 'token=' . $this->session->data['token'], 'SSL');
+
+		$this->load->model('design/layout');
+
+		$this->data['layouts'] = $this->model_design_layout->getLayouts();
 
 		if (isset($this->request->post['config_layout_id'])) {
 			$this->data['config_layout_id'] = $this->request->post['config_layout_id'];
 		} else {
 			$this->data['config_layout_id'] = $this->config->get('config_layout_id');
 		}
-
-		$this->load->model('design/layout');
-
-		$this->data['layouts'] = $this->model_design_layout->getLayouts();
 
 		$this->data['configure_layout'] = $this->url->link('design/layout', 'token=' . $this->session->data['token'], 'SSL');
 
@@ -815,6 +815,10 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_admin_language'] = $this->config->get('config_admin_language');
 		}
 
+		$this->load->model('localisation/currency');
+
+		$this->data['currencies'] = $this->model_localisation_currency->getCurrencies();
+
 		if (isset($this->request->post['config_currency'])) {
 			$this->data['config_currency'] = $this->request->post['config_currency'];
 		} else {
@@ -829,9 +833,9 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_currency_auto'] = $this->config->get('config_currency_auto');
 		}
 
-		$this->load->model('localisation/currency');
+		$this->load->model('localisation/length_class');
 
-		$this->data['currencies'] = $this->model_localisation_currency->getCurrencies();
+		$this->data['length_classes'] = $this->model_localisation_length_class->getLengthClasses();
 
 		if (isset($this->request->post['config_length_class_id'])) {
 			$this->data['config_length_class_id'] = $this->request->post['config_length_class_id'];
@@ -839,21 +843,17 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_length_class_id'] = $this->config->get('config_length_class_id');
 		}
 
-		$this->load->model('localisation/length_class');
-
-		$this->data['length_classes'] = $this->model_localisation_length_class->getLengthClasses();
-
 		$this->data['configure_length_class'] = $this->url->link('localisation/length_class', 'token=' . $this->session->data['token'], 'SSL');
+
+		$this->load->model('localisation/weight_class');
+
+		$this->data['weight_classes'] = $this->model_localisation_weight_class->getWeightClasses();
 
 		if (isset($this->request->post['config_weight_class_id'])) {
 			$this->data['config_weight_class_id'] = $this->request->post['config_weight_class_id'];
 		} else {
 			$this->data['config_weight_class_id'] = $this->config->get('config_weight_class_id');
 		}
-
-		$this->load->model('localisation/weight_class');
-
-		$this->data['weight_classes'] = $this->model_localisation_weight_class->getWeightClasses();
 
 		$this->data['configure_weight_class'] = $this->url->link('localisation/weight_class', 'token=' . $this->session->data['token'], 'SSL');
 
@@ -961,15 +961,15 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_order_status_id'] = $this->config->get('config_order_status_id');
 		}
 
+		$this->load->model('localisation/order_status');
+
+		$this->data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
+
 		if (isset($this->request->post['config_complete_status_id'])) {
 			$this->data['config_complete_status_id'] = $this->request->post['config_complete_status_id'];
 		} else {
 			$this->data['config_complete_status_id'] = $this->config->get('config_complete_status_id');
 		}
-
-		$this->load->model('localisation/order_status');
-
-		$this->data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
 
 		// One Page Checkout
 		if (isset($this->request->post['config_one_page_checkout'])) {
@@ -1148,15 +1148,19 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_stock_checkout'] = $this->config->get('config_stock_checkout');
 		}
 
+		$this->load->model('localisation/stock_status');
+
+		$this->data['stock_statuses'] = $this->model_localisation_stock_status->getStockStatuses();
+
 		if (isset($this->request->post['config_stock_status_id'])) {
 			$this->data['config_stock_status_id'] = $this->request->post['config_stock_status_id'];
 		} else {
 			$this->data['config_stock_status_id'] = $this->config->get('config_stock_status_id');
 		}
 
-		$this->load->model('localisation/stock_status');
+		$this->load->model('sale/supplier_group');
 
-		$this->data['stock_statuses'] = $this->model_localisation_stock_status->getStockStatuses();
+		$this->data['supplier_groups'] = $this->model_sale_supplier_group->getSupplierGroups();
 
 		if (isset($this->request->post['config_supplier_group_id'])) {
 			$this->data['config_supplier_group_id'] = $this->request->post['config_supplier_group_id'];
@@ -1164,25 +1168,21 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_supplier_group_id'] = $this->config->get('config_supplier_group_id');
 		}
 
-		$this->load->model('sale/supplier_group');
-
-		$this->data['supplier_groups'] = $this->model_sale_supplier_group->getSupplierGroups();
-
 		if (isset($this->request->post['config_customer_online'])) {
 			$this->data['config_customer_online'] = $this->request->post['config_customer_online'];
 		} else {
 			$this->data['config_customer_online'] = $this->config->get('config_customer_online');
 		}
 
+		$this->load->model('sale/customer_group');
+
+		$this->data['customer_groups'] = $this->model_sale_customer_group->getCustomerGroups();
+
 		if (isset($this->request->post['config_customer_group_id'])) {
 			$this->data['config_customer_group_id'] = $this->request->post['config_customer_group_id'];
 		} else {
 			$this->data['config_customer_group_id'] = $this->config->get('config_customer_group_id');
 		}
-
-		$this->load->model('sale/customer_group');
-
-		$this->data['customer_groups'] = $this->model_sale_customer_group->getCustomerGroups();
 
 		if (isset($this->request->post['config_customer_group_display'])) {
 			$this->data['config_customer_group_display'] = $this->request->post['config_customer_group_display'];
@@ -1236,15 +1236,15 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_login_attempts'] = 5;
 		}
 
+		$this->load->model('catalog/information');
+
+		$this->data['informations'] = $this->model_catalog_information->getInformations();
+
 		if (isset($this->request->post['config_account_id'])) {
 			$this->data['config_account_id'] = $this->request->post['config_account_id'];
 		} else {
 			$this->data['config_account_id'] = $this->config->get('config_account_id');
 		}
-
-		$this->load->model('catalog/information');
-
-		$this->data['informations'] = $this->model_catalog_information->getInformations();
 
 		if (isset($this->request->post['config_affiliate_approval'])) {
 			$this->data['config_affiliate_approval'] = $this->request->post['config_affiliate_approval'];
@@ -1306,15 +1306,15 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_return_id'] = $this->config->get('config_return_id');
 		}
 
+		$this->load->model('localisation/return_status');
+
+		$this->data['return_statuses'] = $this->model_localisation_return_status->getReturnStatuses();
+
 		if (isset($this->request->post['config_return_status_id'])) {
 			$this->data['config_return_status_id'] = $this->request->post['config_return_status_id'];
 		} else {
 			$this->data['config_return_status_id'] = $this->config->get('config_return_status_id');
 		}
-
-		$this->load->model('localisation/return_status');
-
-		$this->data['return_statuses'] = $this->model_localisation_return_status->getReturnStatuses();
 
 		if (isset($this->request->post['config_return_disable'])) {
 			$this->data['config_return_disable'] = $this->request->post['config_return_disable'];
@@ -1335,6 +1335,10 @@ class ControllerSettingSetting extends Controller {
 		}
 
 		// Preference
+		$this->load->model('design/administration');
+
+		$this->data['admin_stylesheets'] = $this->model_design_administration->getAdministrations(0);
+
 		if (isset($this->request->post['config_admin_stylesheet'])) {
 			$this->data['config_admin_stylesheet'] = $this->request->post['config_admin_stylesheet'];
 		} elseif ($this->config->get('config_admin_stylesheet')) {
@@ -1342,10 +1346,6 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$this->data['config_admin_stylesheet'] = 'classic';
 		}
-
-		$this->load->model('design/administration');
-
-		$this->data['admin_stylesheets'] = $this->model_design_administration->getAdministrations(0);
 
 		if (isset($this->request->post['config_admin_width_limit'])) {
 			$this->data['config_admin_width_limit'] = $this->request->post['config_admin_width_limit'];
