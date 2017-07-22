@@ -180,6 +180,8 @@ class ControllerUserUser extends Controller {
 		$this->data['insert'] = $this->url->link('user/user/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('user/user/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
+		$this->load->model('tool/image');
+
 		$this->data['users'] = array();
 
 		$data = array(
@@ -207,8 +209,15 @@ class ControllerUserUser extends Controller {
 				$group_name = '';
 			}
 
+			if ($result['image'] && file_exists(DIR_IMAGE . $result['image'])) {
+				$image = $this->model_tool_image->resize($result['image'], 40, 40);
+			} else {
+				$image = $this->model_tool_image->resize('no_avatar.jpg', 40, 40);
+			}
+
 			$this->data['users'][] = array(
 				'user_id'    => $result['user_id'],
+				'image'      => $image,
 				'username'   => $result['username'],
 				'group_name' => $group_name,
 				'email'      => $result['email'],
@@ -226,6 +235,7 @@ class ControllerUserUser extends Controller {
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
 		$this->data['column_user_id'] = $this->language->get('column_user_id');
+		$this->data['column_avatar'] = $this->language->get('column_avatar');
 		$this->data['column_username'] = $this->language->get('column_username');
 		$this->data['column_user_group'] = $this->language->get('column_user_group');
 		$this->data['column_email'] = $this->language->get('column_email');
@@ -305,6 +315,9 @@ class ControllerUserUser extends Controller {
 
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
+		$this->data['text_browse'] = $this->language->get('text_browse');
+		$this->data['text_clear'] = $this->language->get('text_clear');
 
 		$this->data['entry_username'] = $this->language->get('entry_username');
 		$this->data['entry_password'] = $this->language->get('entry_password');
@@ -312,12 +325,15 @@ class ControllerUserUser extends Controller {
 		$this->data['entry_firstname'] = $this->language->get('entry_firstname');
 		$this->data['entry_lastname'] = $this->language->get('entry_lastname');
 		$this->data['entry_email'] = $this->language->get('entry_email');
+		$this->data['entry_image'] = $this->language->get('entry_image');
 		$this->data['entry_user_group'] = $this->language->get('entry_user_group');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
+
+		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -460,6 +476,26 @@ class ControllerUserUser extends Controller {
 			$this->data['email'] = $user_info['email'];
 		} else {
 			$this->data['email'] = '';
+		}
+
+		$this->load->model('tool/image');
+
+		$this->data['no_image'] = $this->model_tool_image->resize('no_avatar.jpg', 100, 100);
+
+		if (isset($this->request->post['image'])) {
+			$this->data['image'] = $this->request->post['image'];
+		} elseif (!empty($user_info)) {
+			$this->data['image'] = $user_info['image'];
+		} else {
+			$this->data['image'] = '';
+		}
+
+		if (isset($this->request->post['image']) && file_exists(DIR_IMAGE . $this->request->post['image'])) {
+			$this->data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
+		} elseif (!empty($user_info) && $user_info['image'] && file_exists(DIR_IMAGE . $user_info['image'])) {
+			$this->data['thumb'] = $this->model_tool_image->resize($user_info['image'], 100, 100);
+		} else {
+			$this->data['thumb'] = $this->model_tool_image->resize('no_avatar.jpg', 100, 100);
 		}
 
 		if (isset($this->request->post['user_group_id'])) {

@@ -55,7 +55,6 @@ $_['text_layout']                      = 'Layouts';
 $_['text_length_class']                = 'Length Classes';
 $_['text_localisation']                = 'Localisation';
 $_['text_location']                    = 'Locations';
-$_['text_logged']                      = 'You are logged in as <span><b>%s</b></span>';
 $_['text_logout']                      = 'Logout';
 $_['text_logs']                        = 'Logs';
 $_['text_manufacturer']                = 'Manufacturers';

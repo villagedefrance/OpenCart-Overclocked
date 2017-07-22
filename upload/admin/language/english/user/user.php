@@ -4,12 +4,16 @@ $_['heading_title']      = 'User';
 
 // Text
 $_['text_success']       = 'Success: You have modified <b>Users</b> !';
+$_['text_image_manager'] = 'File Manager';
+$_['text_browse']        = 'Browse';
+$_['text_clear']         = 'Clear';
 
 // Column
 $_['column_user_id']     = 'ID';
+$_['column_avatar']      = 'Avatar';
 $_['column_username']    = 'Username';
 $_['column_user_group']  = 'Group';
-$_['column_email']       = 'E-mail';
+$_['column_email']       = 'Email';
 $_['column_date_added']  = 'Date Added';
 $_['column_status']      = 'Status';
 $_['column_action']      = 'Action';
@@ -20,7 +24,8 @@ $_['entry_password']     = 'Password:';
 $_['entry_confirm']      = 'Confirm:';
 $_['entry_firstname']    = 'First Name:';
 $_['entry_lastname']     = 'Last Name:';
-$_['entry_email']        = 'E-Mail:';
+$_['entry_email']        = 'Email:';
+$_['entry_image']        = 'Avatar:';
 $_['entry_user_group']   = 'User Group:';
 $_['entry_status']       = 'Status:';
 

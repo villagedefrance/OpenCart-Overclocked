@@ -221,12 +221,35 @@ class ControllerCommonHeader extends Controller {
 
 		// Header
 		if (!$this->user->isLogged() || !isset($this->request->get['token']) || !isset($this->session->data['token']) || ($this->request->get['token'] != $this->session->data['token'])) {
-			$this->data['logged'] = '';
+			$this->data['logged'] = false;
 
 			$this->data['home'] = $this->url->link('common/login', '', 'SSL');
 
 		} else {
-			$this->data['logged'] = sprintf($this->language->get('text_logged'), $this->user->getUserName());
+			$this->data['logged'] = true;
+
+			$this->load->model('user/user');
+			$this->load->model('tool/image');
+
+			$user_info = $this->model_user_user->getUser($this->user->getId());
+
+			if ($user_info) {
+				$this->data['username'] = $user_info['username'];
+				$this->data['user_id'] = $user_info['user_id'];
+	
+				if (is_file(DIR_IMAGE . $user_info['image'])) {
+					$this->data['avatar'] = $this->model_tool_image->resize($user_info['image'], 26, 26);
+				} else {
+					$this->data['avatar'] = $this->model_tool_image->resize('no_avatar.jpg', 26, 26);
+				}
+
+				$this->data['user_profile'] = $this->url->link('user/user/update', 'token=' . $this->session->data['token'] . '&user_id=' . $user_info['user_id'], 'SSL');
+			} else {
+				$this->data['username'] = '';
+				$this->data['user_id'] = '';
+				$this->data['avatar'] = '';
+				$this->data['user_profile'] = '';
+			}
 
 			$this->data['administration'] = $this->url->link('design/administration', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['affiliate'] = $this->url->link('sale/affiliate', 'token=' . $this->session->data['token'], 'SSL');

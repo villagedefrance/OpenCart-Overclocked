@@ -493,7 +493,7 @@
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	$('.toggler').hide().before('<a id="<?php echo 'toggler'; ?>" class="button" style="margin:10px auto;"><i class="fa fa-chevron-down"></i> &nbsp; <?php echo $button_update; ?></a>');
+	$('.toggler').hide().before('<a id="<?php echo 'toggler'; ?>" class="button" style="margin:10px auto;"><i class="fa fa-caret-down"></i> &nbsp; <?php echo $button_update; ?></a>');
 	$('#<?php echo 'toggler'; ?>').click(function() {
 		$('.toggler').slideToggle(600);
 		return false;
@@ -504,7 +504,7 @@ $(document).ready(function() {
 <script type="text/javascript"><!--
 $('#invoice-generate').live('click', function() {
 	$.ajax({
-		url: 'index.php?route=sale/order/createinvoiceno&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
+		url: 'index.php?route=sale/order/createInvoiceNo&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
 		dataType: 'json',
 		beforeSend: function() {
 			$('#invoice').after('<img src="view/image/loading.gif" alt="" class="loading" style="padding-left:5px;" />');
@@ -532,7 +532,7 @@ $('#invoice-generate').live('click', function() {
 
 $('#credit-add').live('click', function() {
 	$.ajax({
-		url: 'index.php?route=sale/order/addcredit&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
+		url: 'index.php?route=sale/order/addCredit&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
 		type: 'post',
 		dataType: 'json',
 		beforeSend: function() {
@@ -560,7 +560,7 @@ $('#credit-add').live('click', function() {
 
 $('#credit-remove').live('click', function() {
 	$.ajax({
-		url: 'index.php?route=sale/order/removecredit&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
+		url: 'index.php?route=sale/order/removeCredit&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
 		type: 'post',
 		dataType: 'json',
 		beforeSend: function() {
@@ -588,7 +588,7 @@ $('#credit-remove').live('click', function() {
 
 $('#reward-add').live('click', function() {
 	$.ajax({
-		url: 'index.php?route=sale/order/addreward&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
+		url: 'index.php?route=sale/order/addReward&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
 		type: 'post',
 		dataType: 'json',
 		beforeSend: function() {
@@ -616,7 +616,7 @@ $('#reward-add').live('click', function() {
 
 $('#reward-remove').live('click', function() {
 	$.ajax({
-		url: 'index.php?route=sale/order/removereward&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
+		url: 'index.php?route=sale/order/removeReward&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
 		type: 'post',
 		dataType: 'json',
 		beforeSend: function() {
@@ -644,7 +644,7 @@ $('#reward-remove').live('click', function() {
 
 $('#commission-add').live('click', function() {
 	$.ajax({
-		url: 'index.php?route=sale/order/addcommission&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
+		url: 'index.php?route=sale/order/addCommission&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
 		type: 'post',
 		dataType: 'json',
 		beforeSend: function() {
@@ -672,7 +672,7 @@ $('#commission-add').live('click', function() {
 
 $('#commission-remove').live('click', function() {
 	$.ajax({
-		url: 'index.php?route=sale/order/removecommission&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
+		url: 'index.php?route=sale/order/removeCommission&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
 		type: 'post',
 		dataType: 'json',
 		beforeSend: function() {

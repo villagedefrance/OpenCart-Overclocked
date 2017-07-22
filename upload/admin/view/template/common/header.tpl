@@ -89,7 +89,7 @@ $(document).ready(function() {
           <?php } ?>
         </div>
         <div class="user-logout"><a href="<?php echo $logout; ?>" title="<?php echo $text_logout; ?>"><img src="view/image/dashboard/logout.png" alt="<?php echo $text_logout; ?>" /></a></div>
-        <div class="user-status"><img src="view/image/theme-<?php echo $admin_css; ?>/lock.png" alt="" />&nbsp;<?php echo $logged; ?></div>
+        <div class="user-status"><a href="<?php echo $user_profile; ?>" title="<?php echo $username; ?>"><img src="<?php echo $avatar; ?>" alt="<?php echo $username; ?>" /></a></div>
       <?php } ?>
     </div>
     <?php if ($logged) { ?>

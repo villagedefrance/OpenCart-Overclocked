@@ -57,6 +57,13 @@
           <?php } ?></td>
         </tr>
         <tr>
+          <td><?php echo $entry_image; ?></td>
+          <td><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />
+            <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
+            <a onclick="image_upload('image', 'thumb');" class="button-browse"></a><a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');" class="button-recycle"></a>
+          </div></td>
+        </tr>
+        <tr>
           <td><?php echo $entry_user_group; ?></td>
           <td><select name="user_group_id">
           <?php foreach ($user_groups as $user_group) { ?>
@@ -103,4 +110,33 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+function image_upload(field, thumb) {
+	$('#dialog').remove();
+
+	$('#content').prepend('<div id="dialog" style="padding:3px 0px 0px 0px;"><iframe src="index.php?route=common/filemanager&token=<?php echo $token; ?>&field=' + encodeURIComponent(field) + '" style="padding:0; margin:0; display:block; width:100%; height:100%;" frameborder="no" scrolling="auto"></iframe></div>');
+
+	$('#dialog').dialog({
+		title: '<?php echo $text_image_manager; ?>',
+		close: function(event, ui) {
+			if ($('#' + field).attr('value')) {
+				$.ajax({
+					url: 'index.php?route=common/filemanager/image&token=<?php echo $token; ?>&image=' + encodeURIComponent($('#' + field).attr('value')),
+					dataType: 'text',
+					success: function(data) {
+						$('#' + thumb).replaceWith('<img src="' + data + '" alt="" id="' + thumb + '" />');
+					}
+				});
+			}
+		},
+		bgiframe: false,
+		width: 760,
+		height: 400,
+		resizable: false,
+		modal: false
+	});
+};
+//--></script>
+
 <?php echo $footer; ?> 

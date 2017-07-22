@@ -42,7 +42,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_customer; ?></td>
+            <td><?php echo $entry_customer; ?><span class="help"><?php echo $help_autocomplete; ?></span></td>
             <td><input type="text" name="customer" value="<?php echo $customer; ?>" />
             <input type="hidden" name="customer_id" value="<?php echo $customer_id; ?>" />
             <input type="hidden" name="customer_group_id" value="<?php echo $customer_group_id; ?>" /></td>
@@ -388,7 +388,7 @@
         </thead>
         <tbody>
           <tr>
-            <td class="left"><?php echo $entry_product; ?></td>
+            <td class="left"><?php echo $entry_product; ?><span class="help"><?php echo $help_autocomplete; ?></span></td>
             <td class="left"><input type="text" name="product" value="" />
             <input type="hidden" name="product_id" value="" /></td>
           </tr>

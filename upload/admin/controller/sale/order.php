@@ -559,6 +559,8 @@ class ControllerSaleOrder extends Controller {
 		$this->data['tab_voucher'] = $this->language->get('tab_voucher');
 		$this->data['tab_total'] = $this->language->get('tab_total');
 
+		$this->data['help_autocomplete'] = $this->language->get('help_autocomplete');
+
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {

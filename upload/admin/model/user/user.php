@@ -8,6 +8,10 @@ class ModelUserUser extends Model {
 
 		// Save and Continue
 		$this->session->data['new_user_id'] = $user_id;
+
+		if (isset($data['image'])) {
+			$this->db->query("UPDATE `" . DB_PREFIX . "user` SET image = '" . $this->db->escape($data['image']) . "' WHERE user_id = '" . (int)$user_id . "'");
+		}
 	}
 
 	public function editUser($user_id, $data) {
@@ -16,14 +20,18 @@ class ModelUserUser extends Model {
 		if ($data['password']) {
 			$this->db->query("UPDATE `" . DB_PREFIX . "user` SET salt = '" . $this->db->escape($salt = substr(hash_rand('md5'), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "' WHERE user_id = '" . (int)$user_id . "'");
 		}
+
+		if (isset($data['image'])) {
+			$this->db->query("UPDATE `" . DB_PREFIX . "user` SET image = '" . $this->db->escape($data['image']) . "' WHERE user_id = '" . (int)$user_id . "'");
+		}
 	}
 
 	public function editPassword($user_id, $password) {
-		$this->db->query("UPDATE `" . DB_PREFIX . "user` SET salt = '" . $this->db->escape($salt = substr(hash_rand('md5'), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($password)))) . "', code = '' WHERE user_id = '" . (int)$user_id . "'");
+		$this->db->query("UPDATE `" . DB_PREFIX . "user` SET salt = '" . $this->db->escape($salt = substr(hash_rand('md5'), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($password)))) . "', `code` = '' WHERE user_id = '" . (int)$user_id . "'");
 	}
 
 	public function editCode($email, $code) {
-		$this->db->query("UPDATE `" . DB_PREFIX . "user` SET code = '" . $this->db->escape($code) . "' WHERE LCASE(email) = '" . $this->db->escape(utf8_strtolower($email)) . "'");
+		$this->db->query("UPDATE `" . DB_PREFIX . "user` SET `code` = '" . $this->db->escape($code) . "' WHERE LCASE(email) = '" . $this->db->escape(utf8_strtolower($email)) . "'");
 	}
 
 	public function deleteUser($user_id) {
@@ -96,7 +104,7 @@ class ModelUserUser extends Model {
 	}
 
 	public function getUserByCode($code) {
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "user` WHERE code = '" . $this->db->escape($code) . "' AND code != ''");
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "user` WHERE `code` = '" . $this->db->escape($code) . "' AND `code` != ''");
 
 		return $query->row;
 	}

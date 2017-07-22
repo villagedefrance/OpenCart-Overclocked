@@ -115,7 +115,7 @@ $_['column_action']              = 'Action';
 
 // Entry
 $_['entry_store']                = 'Store:';
-$_['entry_customer']             = 'Customer:<span class="help">(Autocomplete)</span>';
+$_['entry_customer']             = 'Customer:';
 $_['entry_customer_group']       = 'Customer Group:';
 $_['entry_firstname']            = 'First Name:';
 $_['entry_lastname']             = 'Last Name:';
@@ -133,7 +133,7 @@ $_['entry_postcode']             = 'Postcode:';
 $_['entry_country']              = 'Country:';
 $_['entry_zone']                 = 'Region / State:';
 $_['entry_zone_code']            = 'Region / State Code:';
-$_['entry_product']              = 'Choose Product:<span class="help">(Autocomplete)</span>';
+$_['entry_product']              = 'Choose Product:';
 $_['entry_option']               = 'Choose Option(s):';
 $_['entry_quantity']             = 'Quantity:';
 $_['entry_to_name']              = 'Recipient\'s Name:';
@@ -158,10 +158,13 @@ $_['button_refresh']             = 'Refresh';
 $_['button_pick_list']           = 'Pick List';
 $_['button_shipping_label']      = 'Shipping Label';
 $_['button_delivery_note']       = 'Delivery Note';
-$_['button_update']              = 'Update Status';
+$_['button_update']              = 'Update History';
 
 // Tab
 $_['tab_pick_list']              = 'Pick List';
+
+// Help
+$_['help_autocomplete'] = '(Autocomplete)';
 
 // Error
 $_['error_warning']              = 'Warning: Please check the form carefully for errors!';

@@ -26,6 +26,7 @@
         <tr>
           <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
           <label for="check-all"><span></span></label></td>
+          <td class="center"><?php echo $column_avatar; ?></td>
           <td class="left"><?php if ($sort == 'user_id') { ?>
             <a href="<?php echo $sort_user_id; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_user_id; ?></a>
           <?php } else { ?>
@@ -70,6 +71,7 @@
               <input type="checkbox" name="selected[]" value="<?php echo $user['user_id']; ?>" id="<?php echo $user['user_id']; ?>" class="checkbox" />
               <label for="<?php echo $user['user_id']; ?>"><span></span></label>
             <?php } ?></td>
+            <td class="center"><img src="<?php echo $user['image']; ?>" alt="<?php echo $user['username']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
             <td class="center"><?php echo $user['user_id']; ?></td>
             <td class="left"><?php echo $user['username']; ?></td>
             <td class="left"><?php echo $user['group_name']; ?></td>
@@ -87,7 +89,7 @@
           <?php } ?>
         <?php } else { ?>
           <tr>
-            <td class="center" colspan="8"><?php echo $text_no_results; ?></td>
+            <td class="center" colspan="9"><?php echo $text_no_results; ?></td>
           </tr>
         <?php } ?>
         </tbody>

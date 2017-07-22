@@ -912,7 +912,7 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['barcode'] = '';
 		}
 
-		// Images
+		// Image
 		$this->load->model('tool/image');
 
 		$this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);

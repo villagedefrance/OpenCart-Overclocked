@@ -3904,6 +3904,7 @@ CREATE TABLE `oc_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_group_id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `password` varchar(40) NOT NULL,
   `salt` varchar(9) NOT NULL,
   `firstname` varchar(32) NOT NULL,
