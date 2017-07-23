@@ -40,6 +40,10 @@ class ControllerCommonLogin extends Controller {
 		$this->data['button_login'] = $this->language->get('button_login');
 
 		// Stylesheet
+		$this->load->model('design/administration');
+
+		$this->model_design_administration->checkAdministrations();
+
 		$admin_css = $this->config->get('config_admin_stylesheet');
 
 		if (isset($admin_css)) {
