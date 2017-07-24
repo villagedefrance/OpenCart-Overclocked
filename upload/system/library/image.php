@@ -75,20 +75,33 @@ class Image {
 		$extension = strtolower($info['extension']);
 
 		if (is_resource($this->image)) {
+			$result = '';
+
 			switch($extension) {
 				case 'jpg':
 				case 'jpeg':
-					imagejpeg($this->image, $file, $quality);
+					imageinterlace($this->image, true);
+					$result = imagejpeg($this->image, $file, $quality);
 					break;
 				case 'png':
-					imagepng($this->image, $file);
+					$result = imagepng($this->image, $file);
 					break;
 				case 'gif':
-					imagegif($this->image, $file);
+					$result = imagegif($this->image, $file);
 					break;
 			}
 
 			imagedestroy($this->image);
+
+			if (class_exists('Imagick') && !empty($result)) {
+				$img = new Imagick($file);
+
+				if (!empty($img)) {
+					$img->stripImage();
+					$img->writeImage($file);
+					$img->destroy();
+				}
+			}
 		}
 	}
 
