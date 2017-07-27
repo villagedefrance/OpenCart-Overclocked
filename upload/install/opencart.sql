@@ -2193,7 +2193,7 @@ CREATE TABLE `oc_language` (
 --
 
 INSERT INTO `oc_language` (`language_id`, `name`, `code`, `locale`, `image`, `directory`, `filename`, `sort_order`, `status`) VALUES
-(1, 'English', 'en', 'en_US.UTF-8,en-US,en-gb,english', 'gb.png', 'english', 'english', 1, 1);
+(1, 'English', 'en', 'en_US.UTF-8,en-US,en-gb,english', 'gb.png', 'en-gb', 'en-gb', 1, 1);
 
 -- --------------------------------------------------------
 

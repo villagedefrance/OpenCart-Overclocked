@@ -8,7 +8,7 @@ class ModelUpgrade extends Model {
 
 	public function dataTables($step1) {
 		// Load the sql file
-		$file = DIR_APPLICATION . 'opencart-upgrade.sql';
+		$file = DIR_APPLICATION . 'opencart-clean.sql';
 
 		if (!file_exists($file)) {
 			exit('Could not load sql file: ' . $file);
@@ -148,40 +148,56 @@ class ModelUpgrade extends Model {
 		foreach ($table_query->rows as $table) {
 			if (utf8_substr($table['Tables_in_' . DB_DATABASE], 0, strlen(DB_PREFIX)) == DB_PREFIX) {
 				$field_data = array();
+				$extended_field_data = array();
 
 				$field_query = $this->db->query("SHOW COLUMNS FROM `" . $table['Tables_in_' . DB_DATABASE] . "`");
 
 				foreach ($field_query->rows as $field) {
 					$field_data[] = $field['Field'];
+					$extended_field_data[] = $field;
 				}
 
-				$table_old_data[$table['Tables_in_' . DB_DATABASE]] = $field_data;
+				$table_old_data[$table['Tables_in_' . DB_DATABASE]]['field_list'] = $field_data;
+				$table_old_data[$table['Tables_in_' . DB_DATABASE]]['extended_field_data'] = $extended_field_data;
 			}
 		}
 
 		foreach ($table_new_data as $table) {
-			// If Table is not found create it
+			// If table is not found create it
 			if (!isset($table_old_data[$table['name']])) {
 				$this->db->query($table['sql']);
 			} else {
 				// DB Engine
 				if (isset($table['option']['ENGINE'])) {
-					$this->db->query("ALTER TABLE `" . $table['name'] . "` ENGINE = " . $table['option']['ENGINE'] . "");
+					$this->db->query("ALTER TABLE `" . $table['name'] . "` ENGINE = `" . $table['option']['ENGINE'] . "`");
 				}
 
 				// Charset
 				if (isset($table['option']['CHARSET']) && isset($table['option']['COLLATE'])) {
- 					$this->db->query("ALTER TABLE `" . $table['name'] . "` DEFAULT CHARACTER SET " . $table['option']['CHARSET'] . " COLLATE " . $table['option']['COLLATE'] . "");
+					$this->db->query("ALTER TABLE `" . $table['name'] . "` DEFAULT CHARACTER SET `" . $table['option']['CHARSET'] . "` COLLATE `" . $table['option']['COLLATE'] . "`");
 				}
 
 				set_time_limit(60);
 
+				// Loop through all tables and adjust based on opencart-clean.sql file
 				$i = 0;
 
 				foreach ($table['field'] as $field) {
-					// If Field is not found create it
-					if (!in_array($field['name'], $table_old_data[$table['name']])) {
-						$sql = "ALTER TABLE `" . $table['name'] . "` ADD `" . $field['name'] . "` " . $field['type'] . "";
+					// If field is not found create it
+					if (!in_array($field['name'], $table_old_data[$table['name']]['field_list'])) {
+						$status = true;
+
+						foreach ($table_old_data[$table['name']]['extended_field_data'] as $oldfield) {
+							if ($oldfield['Extra'] == 'auto_increment' && $field['autoincrement']) {
+								$sql = "ALTER TABLE `" . $table['name'] . "` CHANGE `" . $oldfield['Field'] . "` `" . $field['name'] . "` " . strtoupper($field['type']);
+								$status = false;
+								break;
+							}
+						}
+
+						if ($status) {
+							$sql = "ALTER TABLE `" . $table['name'] . "` ADD `" . $field['name'] . "` " . $field['type'];
+						}
 
 						if ($field['size']) {
 							$sql .= "(" . $field['size'] . ")";
@@ -191,11 +207,15 @@ class ModelUpgrade extends Model {
 							$sql .= " " . $field['collation'];
 						}
 
+						if ($field['unsigned']) {
+							$sql .= " " . $field['unsigned'];
+						}
+
 						if ($field['notnull']) {
 							$sql .= " " . $field['notnull'];
 						}
 
-						if ($field['default']) {
+						if ($field['default'] != '') {
 							$sql .= " DEFAULT '" . $field['default'] . "'";
 						}
 
@@ -206,15 +226,10 @@ class ModelUpgrade extends Model {
 						}
 
 						$this->db->query($sql);
-					}
 
-					$i++;
-				}
-
-				foreach ($table['field'] as $field) {
-					// Remove auto-increment from all fields
-					if (in_array($field['name'], $table_old_data[$table['name']])) {
-						$sql = "ALTER TABLE `" . $table['name'] . "` CHANGE `" . $field['name'] . "` `" . $field['name'] . "` " . strtoupper($field['type']) . "";
+					} else {
+						// Remove auto increment from all fields
+						$sql = "ALTER TABLE `" . $table['name'] . "` CHANGE `" . $field['name'] . "` `" . $field['name'] . "` " . strtoupper($field['type']);
 
 						if ($field['size']) {
 							$sql .= "(" . $field['size'] . ")";
@@ -224,11 +239,15 @@ class ModelUpgrade extends Model {
 							$sql .= " " . $field['collation'];
 						}
 
+						if ($field['unsigned']) {
+							$sql .= " " . $field['unsigned'];
+						}
+
 						if ($field['notnull']) {
 							$sql .= " " . $field['notnull'];
 						}
 
-						if ($field['default']) {
+						if ($field['default'] != '') {
 							$sql .= " DEFAULT '" . $field['default'] . "'";
 						}
 
@@ -246,14 +265,20 @@ class ModelUpgrade extends Model {
 
 				$status = false;
 
-				// Drop primary keys and indexes
+				// Drop primary keys and indexes.
 				$query = $this->db->query("SHOW INDEXES FROM `" . $table['name'] . "`");
 
-				foreach ($query->rows as $result) {
-					if ($result['Key_name'] != 'PRIMARY') {
-						$this->db->query("ALTER TABLE `" . $table['name'] . "` DROP INDEX `" . $result['Key_name'] . "`");
-					} else {
-						$status = true;
+				$last_key_name = '';
+
+				if ($query->num_rows) {
+					foreach ($query->rows as $result) {
+						if ($result['Key_name'] != 'PRIMARY' && $result['Key_name'] != $last_key_name) {
+							$last_key_name = $result['Key_name'];
+
+							$this->db->query("ALTER TABLE `" . $table['name'] . "` DROP INDEX `" . $result['Key_name'] . "`");
+						} else {
+							$status = true;
+						}
 					}
 				}
 
@@ -261,7 +286,7 @@ class ModelUpgrade extends Model {
 					$this->db->query("ALTER TABLE `" . $table['name'] . "` DROP PRIMARY KEY");
 				}
 
-				// Add a new primary key
+				// Add a new primary key.
 				$primary_data = array();
 
 				foreach ($table['primary'] as $primary) {
@@ -273,22 +298,22 @@ class ModelUpgrade extends Model {
 				}
 
 				// Add the new indexes
-				foreach ($table['index'] as $index) {
+				foreach ($table['index'] as $name => $index) {
 					$index_data = array();
 
 					foreach ($index as $key) {
-						$index_data[] = "`" . $key . "`";
+						$index_data[] = '`' . $key . '`';
 					}
 
 					if ($index_data) {
-						$this->db->query("ALTER TABLE `" . $table['name'] . "` ADD INDEX (" . implode(',', $index_data) . ")");
+						$this->db->query("ALTER TABLE `" . $table['name'] . "` ADD INDEX `" . $name . "` (" . implode(',', $index_data) . ")");
 					}
 				}
 
-				// Add auto-increment to primary keys again
+				// Add auto increment to primary keys again
 				foreach ($table['field'] as $field) {
 					if ($field['autoincrement']) {
-						$sql = "ALTER TABLE `" . $table['name'] . "` CHANGE `" . $field['name'] . "` `" . $field['name'] . "` " . strtoupper($field['type']) . "";
+						$sql = "ALTER TABLE `" . $table['name'] . "` CHANGE `" . $field['name'] . "` `" . $field['name'] . "` " . strtoupper($field['type']);
 
 						if ($field['size']) {
 							$sql .= "(" . $field['size'] . ")";
@@ -298,11 +323,15 @@ class ModelUpgrade extends Model {
 							$sql .= " " . $field['collation'];
 						}
 
+						if ($field['unsigned']) {
+							$sql .= " " . $field['unsigned'];
+						}
+
 						if ($field['notnull']) {
 							$sql .= " " . $field['notnull'];
 						}
 
-						if ($field['default']) {
+						if ($field['default'] != '') {
 							$sql .= " DEFAULT '" . $field['default'] . "'";
 						}
 
