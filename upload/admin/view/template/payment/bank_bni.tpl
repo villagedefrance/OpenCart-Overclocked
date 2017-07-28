@@ -36,7 +36,7 @@
           </tr>
           <tr>
             <td><label for="input-total-max"><?php echo $entry_total_max; ?><br /><span class="help"><?php echo $help_total_max; ?></span></label></td>
-            <td><input type="text" name="bank_bni_total_max" id="input-total-max" value="<?php echo !empty($bank_bni_total_max) ? $bank_bni_total_max : '0.00'; ?>" /></td>
+            <td><input type="text" name="bank_bni_total_max" id="input-total-max" value="<?php echo !empty($bank_bni_total_max) ? $bank_bni_total_max : ''; ?>" /></td>
           </tr>
           <tr>
             <td><label for="input-order-status"><?php echo $entry_order_status; ?></label></td>
