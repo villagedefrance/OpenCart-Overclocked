@@ -20,30 +20,6 @@ class ControllerModuleLocation extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
-		// Stylesheet override
-		$template = $this->config->get('config_template');
-
-		$stylesheet_mode = $this->config->get($template . '_stylesheet');
-
-		if (!$stylesheet_mode) {
-			$header_color = $this->config->get($this->_name . '_header_color');
-			$header_shape = $this->config->get($this->_name . '_header_shape');
-			$content_color = $this->config->get($this->_name . '_content_color');
-			$content_shape = $this->config->get($this->_name . '_content_shape');
-
-			$this->data['header_color'] = ($header_color) ? $header_color . '-skin' : 'white-skin';
-			$this->data['header_shape'] = ($header_shape) ? $header_shape . '-top' : 'rounded-0';
-			$this->data['content_color'] = ($content_color) ? $content_color . '-skin' : 'white-skin';
-			$this->data['content_shape'] = ($content_shape) ? $content_shape . '-bottom' : 'rounded-0';
-		} else {
-			$this->data['header_color'] = '';
-			$this->data['header_shape'] = '';
-			$this->data['content_color'] = '';
-			$this->data['content_shape'] = '';
-		}
-
-		$this->data['stylesheet_mode'] = $stylesheet_mode;
-
 		$this->load->model('localisation/location');
 		$this->load->model('tool/image');
 
@@ -98,7 +74,7 @@ class ControllerModuleLocation extends Controller {
 		$location_info = $this->model_localisation_location->getLocation($this->request->get['location_id']);
 
 		if ($location_info) {
-			$output  = '<html dir="ltr" lang="en">' . "\n";
+			$output = '<html dir="ltr" lang="en">' . "\n";
 			$output .= '<head>' . "\n";
 			$output .= '  <title>' . $location_info['name'] . '</title>' . "\n";
 			$output .= '  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">' . "\n";

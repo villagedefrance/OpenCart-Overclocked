@@ -84,7 +84,7 @@ $(document).ready(function() {
 <link rel="alternate" type="application/rss+xml" href="<?php echo $rss_href; ?>" />
 <?php } ?>
 </head>
-<body style="background-color:<?php echo $body_color; ?>;">
+<body>
 <div id="container-top">
   <div class="container-top-inner-<?php echo $display_size; ?>">
     <?php echo $currency; ?>
@@ -98,7 +98,7 @@ $(document).ready(function() {
     <a class="top-link" onclick="location='<?php echo $checkout; ?>';" title=""><i class="fa fa-mail-forward"></i><span class="hide-phone"> &nbsp;<?php echo $text_checkout; ?></span></a>
   </div>
 </div>
-<div id="container" style="background-color:<?php echo $container_color; ?>;">
+<div id="container">
 <div class="container-<?php echo $display_size; ?>">
 <div id="header">
   <?php if ($logo) { ?>

@@ -35,64 +35,12 @@
               <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
-        </tbody>
-        <tbody id="header-1" class="module-header">
-          <tr class="highlighted">
+          <tr>
             <td><?php echo $entry_title; ?></td>
             <td><?php foreach ($languages as $language) { ?>
               <input type="text" name="manufacturer_title<?php echo $language['language_id']; ?>" id="manufacturer_title<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'manufacturer_title' . $language['language_id']}; ?>" />
               <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
             <?php } ?></td>
-          </tr>
-          <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr class="highlighted">'; ?>
-            <td><?php echo $entry_header_color; ?></td>
-            <td><select name="manufacturer_header_color">
-              <?php foreach ($skins as $skin) { ?>
-                <?php if ($skin['skin'] == $manufacturer_header_color) { ?>
-                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
-                <?php } else { ?>
-                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
-                <?php } ?>
-              <?php } ?>
-            </select></td>
-          </tr>
-          <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr class="highlighted">'; ?>
-            <td><?php echo $entry_header_shape; ?></td>
-            <td><select name="manufacturer_header_shape">
-              <?php foreach ($shapes as $shape) { ?>
-                <?php if ($shape['shape'] == $manufacturer_header_shape) { ?>
-                  <option value="<?php echo $shape['shape']; ?>" selected="selected"><?php echo $shape['title']; ?></option>
-                <?php } else { ?>
-                  <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>
-                <?php } ?>
-              <?php } ?>
-            </select></td>
-          </tr>
-        </tbody>
-        <tbody>
-          <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>
-            <td><?php echo $entry_content_color; ?></td>
-            <td><select name="manufacturer_content_color">
-              <?php foreach ($skins as $skin) { ?>
-                <?php if ($skin['skin'] == $manufacturer_content_color) { ?>
-                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
-                <?php } else { ?>
-                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
-                <?php } ?>
-              <?php } ?>
-            </select></td>
-          </tr>
-          <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>
-            <td><?php echo $entry_content_shape; ?></td>
-            <td><select name="manufacturer_content_shape">
-              <?php foreach ($shapes as $shape) { ?>
-                <?php if ($shape['shape'] == $manufacturer_content_shape) { ?>
-                  <option value="<?php echo $shape['shape']; ?>" selected="selected"><?php echo $shape['title']; ?></option>
-                <?php } else { ?>
-                  <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>
-                <?php } ?>
-              <?php } ?>
-            </select></td>
           </tr>
         </tbody>
         </table>
@@ -181,15 +129,6 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript"><!--
-$('input[name=\'manufacturer_theme\']').bind('change', function() {
-	$('.module-header').hide();
-	$('#header-' + this.value).show();
-});
-
-$('input[name=\'manufacturer_theme\']:checked').trigger('change');
-//--></script>
 
 <script type="text/javascript"><!--
 var module_row = <?php echo $module_row; ?>;

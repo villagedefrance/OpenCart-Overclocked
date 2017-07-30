@@ -19,30 +19,6 @@ class ControllerModuleHtml extends Controller {
 				$this->data['title' . $i] = $this->data['heading_title'];
 			}
 
-			// Stylesheet override
-			$template = $this->config->get('config_template');
-
-			$stylesheet_mode = $this->config->get($template . '_stylesheet');
-
-			if (!$stylesheet_mode) {
-				$header_color = $this->config->get($this->_name . '_header_color' . $i);
-				$header_shape = $this->config->get($this->_name . '_header_shape' . $i);
-				$content_color = $this->config->get($this->_name . '_content_color' . $i);
-				$content_shape = $this->config->get($this->_name . '_content_shape' . $i);
-
-				$this->data['header_color' . $i] = ($header_color) ? $header_color . '-skin' : 'white-skin';
-				$this->data['header_shape' . $i] = ($header_shape) ? $header_shape . '-top' : 'rounded-0';
-				$this->data['content_color' . $i] = ($content_color) ? $content_color . '-skin' : 'white-skin';
-				$this->data['content_shape' . $i] = ($content_shape) ? $content_shape . '-bottom' : 'rounded-0';
-			} else {
-				$this->data['header_color' . $i] = '';
-				$this->data['header_shape' . $i] = '';
-				$this->data['content_color' . $i] = '';
-				$this->data['content_shape' . $i] = '';
-			}
-
-			$this->data['stylesheet_mode'] = $stylesheet_mode;
-
 			$this->data['code' . $i] = html_entity_decode($this->config->get($this->_name . '_code' . $i), ENT_QUOTES, 'UTF-8');
 
 			$position = $setting['tab_id'];
@@ -50,14 +26,9 @@ class ControllerModuleHtml extends Controller {
 			switch($position) {
 				case "tab" . $i: 
 				$this->data['code'] = $this->data['code' . $i];
-				$this->data['content_shape'] = $this->data['content_shape' . $i];
-				$this->data['content_color'] = $this->data['content_color' . $i];
-				$this->data['header_shape'] = $this->data['header_shape' . $i];
-				$this->data['header_color'] = $this->data['header_color' . $i];
 				$this->data['theme'] = $this->data['theme' . $i];
 				$this->data['title'] = $this->data['title' . $i];
 				break;
-				default: $content_shape = ''; $content_color = ''; $header_shape = ''; $header_color = '';
 			}
 		}
 

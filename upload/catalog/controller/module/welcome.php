@@ -20,30 +20,6 @@ class ControllerModuleWelcome extends Controller {
 
 		$this->data['message'] = html_entity_decode($setting['description'][$this->config->get('config_language_id')], ENT_QUOTES, 'UTF-8');
 
-		// Stylesheet override
-		$template = $this->config->get('config_template');
-
-		$stylesheet_mode = $this->config->get($template . '_stylesheet');
-
-		if (!$stylesheet_mode) {
-			$header_color = $setting['header_color'];
-			$header_shape = $setting['header_shape'];
-			$content_color = $setting['content_color'];
-			$content_shape = $setting['content_shape'];
-
-			$this->data['header_color'] = ($header_color) ? $header_color . '-skin' : 'white-skin';
-			$this->data['header_shape'] = ($header_shape) ? $header_shape . '-top' : 'rounded-0';
-			$this->data['content_color'] = ($content_color) ? $content_color . '-skin' : 'white-skin';
-			$this->data['content_shape'] = ($content_shape) ? $content_shape . '-bottom' : 'rounded-0';
-		} else {
-			$this->data['header_color'] = '';
-			$this->data['header_shape'] = '';
-			$this->data['content_color'] = '';
-			$this->data['content_shape'] = '';
-		}
-
-		$this->data['stylesheet_mode'] = $stylesheet_mode;
-
 		$this->data['module'] = $module++;
 
 		// Template

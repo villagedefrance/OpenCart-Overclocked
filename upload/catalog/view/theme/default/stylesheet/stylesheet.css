@@ -14,6 +14,7 @@ html {
 body {
 	color: #111;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: #FFF;
 	margin: 0px;
 	padding: 0px;
 }
@@ -218,6 +219,7 @@ a.top-link:hover {
 /* Container */
 #container {
 	width: 100%;
+	background-color: #FFF;
 	padding: 0px;
 	border: none;
 }
@@ -928,10 +930,11 @@ a.button-add:hover {
 	margin-bottom: 15px;
 }
 .box .box-heading {
-	font-size: 15px;
+	font-size: 16px;
 	font-weight: normal;
-	line-height: 15px;
-	padding: 8px 10px;
+	line-height: 30px;
+	border-bottom: 1px dotted #555;
+	padding: 8px 10px 6px 10px;
 	margin: 0px;
 }
 .box .box-content {

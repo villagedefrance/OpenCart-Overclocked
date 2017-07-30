@@ -1,8 +1,8 @@
 <?php if (!$logged) { ?>
 <?php if ($theme) { ?>
 <div class="box">
-  <div class="box-heading <?php echo $header_shape; ?> <?php echo $header_color; ?>"><?php echo $title; ?></div>
-  <div class="box-content <?php echo $content_shape; ?> <?php echo $content_color; ?>">
+  <div class="box-heading"><?php echo $title; ?></div>
+  <div class="box-content">
     <div style="text-align:left; padding:10px 5px;">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="module-affiliate">
         <p>
@@ -24,7 +24,7 @@
   </div>
 </div>
 <?php } else { ?>
-<div class="<?php echo $content_shape; ?> <?php echo $content_color; ?>" style="margin-bottom:20px;">
+<div style="margin-bottom:20px;">
   <div>
     <div style="text-align:left; padding:10px 10px;">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="module-affiliate">
@@ -51,8 +51,8 @@
 <?php if ($logged && $mode != 0) { ?>
 <?php if ($theme) { ?>
 <div class="box">
-  <div class="box-heading <?php echo $header_shape; ?> <?php echo $header_color; ?>"><?php echo $title; ?></div>
-  <div class="box-content <?php echo $content_shape; ?> <?php echo $content_color; ?>">
+  <div class="box-heading"><?php echo $title; ?></div>
+  <div class="box-content">
     <?php if ($mode == 2) { ?>
       <div class="box-information">
         <ul>
@@ -77,7 +77,7 @@
   </div>
 </div>
 <?php } else { ?>
-<div class="<?php echo $content_shape; ?> <?php echo $content_color; ?>" style="margin-bottom:20px;">
+<div style="margin-bottom:20px;">
   <div>
     <?php if ($mode == 2) { ?>
       <div class="box-information">

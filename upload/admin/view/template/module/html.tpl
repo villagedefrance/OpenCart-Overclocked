@@ -48,54 +48,6 @@
                 <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
               <?php } ?></td>
             </tr>
-            <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>
-              <td><?php echo $entry_header_color; ?></td>
-              <td><select name="html_header_color<?php echo $i; ?>">
-                <?php foreach ($skins as $skin) { ?>
-                  <?php if ($skin['skin'] == ${'html_header_color' . $i}) { ?>
-                    <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
-                  <?php } else { ?>
-                    <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
-                  <?php } ?>
-                <?php } ?>
-              </select></td>
-            </tr>
-            <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>
-              <td><?php echo $entry_header_shape; ?></td>
-              <td><select name="html_header_shape<?php echo $i; ?>">
-                <?php foreach ($shapes as $shape) { ?>
-                  <?php if ($shape['shape'] == ${'html_header_shape' . $i}) { ?>
-                    <option value="<?php echo $shape['shape']; ?>" selected="selected"><?php echo $shape['title']; ?></option>
-                  <?php } else { ?>
-                    <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>
-                  <?php } ?>
-                <?php } ?>
-              </select></td>
-            </tr>
-            <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>
-              <td><?php echo $entry_content_color; ?></td>
-              <td><select name="html_content_color<?php echo $i; ?>">
-                <?php foreach ($skins as $skin) { ?>
-                  <?php if ($skin['skin'] == ${'html_content_color' . $i}) { ?>
-                    <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
-                  <?php } else { ?>
-                    <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
-                  <?php } ?>
-                <?php } ?>
-              </select></td>
-            </tr>
-            <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>
-              <td><?php echo $entry_content_shape; ?></td>
-              <td><select name="html_content_shape<?php echo $i; ?>">
-                <?php foreach ($shapes as $shape) { ?>
-                  <?php if ($shape['shape'] == ${'html_content_shape' . $i}) { ?>
-                    <option value="<?php echo $shape['shape']; ?>" selected="selected"><?php echo $shape['title']; ?></option>
-                  <?php } else { ?>
-                    <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>
-                  <?php } ?>
-                <?php } ?>
-              </select></td>
-            </tr>
             <tr>
               <td><?php echo $entry_code; ?></td>
               <td><textarea name="html_code<?php echo $i; ?>" cols="40" rows="10"><?php echo isset(${'html_code' . $i}) ? ${'html_code' . $i} : ''; ?></textarea></td>

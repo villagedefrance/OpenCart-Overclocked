@@ -1,6 +1,6 @@
 <?php if ($theme) { ?>
 <div class="box">
-  <div class="box-heading <?php echo $header_shape; ?> <?php echo $header_color; ?>"><?php echo $title; ?></div>
+  <div class="box-heading"><?php echo $title; ?></div>
   <div style="margin:0px; padding:0px; overflow:hidden;">
     <div class="camera_<?php echo $camera_theme; ?> camera_wrap" id="camera_wrap<?php echo $module; ?>">
     <?php foreach ($banners as $banner) { ?>

@@ -174,12 +174,6 @@ class ControllerCommonHeader extends Controller {
 			$this->data['display_size'] = 'normal';
 		}
 
-		$body_color = $this->config->get($template . '_body_color');
-		$container_color = $this->config->get($template . '_container_color');
-
-		$this->data['body_color'] = ($body_color) ? $body_color : '#FFF';
-		$this->data['container_color'] = ($container_color) ? $container_color : '#FFF';
-
 		// Template
 		$this->data['template'] = $this->config->get('config_template');
 

@@ -39,10 +39,6 @@ class ControllerModuleStore extends Controller {
 
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
-		$this->data['entry_header_color'] = $this->language->get('entry_header_color');
-		$this->data['entry_header_shape'] = $this->language->get('entry_header_shape');
-		$this->data['entry_content_color'] = $this->language->get('entry_content_color');
-		$this->data['entry_content_shape'] = $this->language->get('entry_content_shape');
 
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
 		$this->data['entry_permission'] = $this->language->get('entry_permission');

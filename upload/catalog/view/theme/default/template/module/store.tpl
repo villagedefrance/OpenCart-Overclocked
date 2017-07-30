@@ -1,7 +1,7 @@
 <?php if ($theme) { ?>
 <div class="box">
-  <div class="box-heading <?php echo $header_shape; ?> <?php echo $header_color; ?>"><?php echo $title; ?></div>
-  <div class="box-content <?php echo $content_shape; ?> <?php echo $content_color; ?>" style="text-align:center;">
+  <div class="box-heading"><?php echo $title; ?></div>
+  <div class="box-content" style="text-align:center;">
     <div style="padding-bottom:5px;"><?php echo $text_selector; ?></div>
     <select name="store" onchange="location=this.value">
       <?php foreach ($stores as $store) { ?>
@@ -18,7 +18,7 @@
   </div>
 </div>
 <?php } else { ?>
-  <div class="<?php echo $content_shape; ?> <?php echo $content_color; ?>" style="margin-bottom:20px; text-align:center; padding-bottom:12px;">
+  <div style="margin-bottom:20px; text-align:center; padding-bottom:12px;">
     <div style="padding:5px;"><?php echo $text_selector; ?></div>
     <select name="store" onchange="location=this.value">
       <?php foreach ($stores as $store) { ?>

@@ -39,10 +39,6 @@ class ControllerModuleHtml extends Controller {
 
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
-		$this->data['entry_header_color'] = $this->language->get('entry_header_color');
-		$this->data['entry_header_shape'] = $this->language->get('entry_header_shape');
-		$this->data['entry_content_color'] = $this->language->get('entry_content_color');
-		$this->data['entry_content_shape'] = $this->language->get('entry_content_shape');
 		$this->data['entry_code'] = $this->language->get('entry_code');
 
 		$this->data['entry_tab_id'] = $this->language->get('entry_tab_id');
@@ -99,9 +95,6 @@ class ControllerModuleHtml extends Controller {
 		}
 
 		// Module
-		$this->data['skins'] = $this->model_setting_setting->getColors();
-		$this->data['shapes'] = $this->model_setting_setting->getShapes();
-		
 		$this->load->model('localisation/language');
 
 		$languages = $this->model_localisation_language->getLanguages();
@@ -121,30 +114,6 @@ class ControllerModuleHtml extends Controller {
 				} else {
 					$this->data[$this->_name . '_title' . $i . '_' . $language['language_id']] = $this->config->get($this->_name . '_title' . $i . '_' . $language['language_id']);
 				}
-			}
-
-			if (isset($this->request->post[$this->_name . '_header_color' . $i])) {
-				$this->data[$this->_name . '_header_color' . $i] = $this->request->post[$this->_name . '_header_color' . $i];
-			} else {
-				$this->data[$this->_name . '_header_color' . $i] = $this->config->get($this->_name . '_header_color' . $i);
-			}
-
-			if (isset($this->request->post[$this->_name . '_header_shape' . $i])) {
-				$this->data[$this->_name . '_header_shape' . $i] = $this->request->post[$this->_name . '_header_shape' . $i];
-			} else {
-				$this->data[$this->_name . '_header_shape' . $i] = $this->config->get($this->_name . '_header_shape' . $i);
-			}
-
-			if (isset($this->request->post[$this->_name . '_content_color' . $i])) {
-				$this->data[$this->_name . '_content_color' . $i] = $this->request->post[$this->_name . '_content_color' . $i];
-			} else {
-				$this->data[$this->_name . '_content_color' . $i] = $this->config->get($this->_name . '_content_color' . $i);
-			}
-
-			if (isset($this->request->post[$this->_name . '_content_shape' . $i])) {
-				$this->data[$this->_name . '_content_shape' . $i] = $this->request->post[$this->_name . '_content_shape' . $i];
-			} else {
-				$this->data[$this->_name . '_content_shape' . $i] = $this->config->get($this->_name . '_content_shape' . $i);
 			}
 
 			if (isset($this->request->post[$this->_name . '_code' . $i])) {

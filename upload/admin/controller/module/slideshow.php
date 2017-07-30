@@ -39,10 +39,6 @@ class ControllerModuleSlideshow extends Controller {
 
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
-		$this->data['entry_header_color'] = $this->language->get('entry_header_color');
-		$this->data['entry_header_shape'] = $this->language->get('entry_header_shape');
-		$this->data['entry_content_color'] = $this->language->get('entry_content_color');
-		$this->data['entry_content_shape'] = $this->language->get('entry_content_shape');
 		$this->data['entry_skin_color'] = $this->language->get('entry_skin_color');
 		$this->data['entry_playpause'] = $this->language->get('entry_playpause');
 		$this->data['entry_pagination'] = $this->language->get('entry_pagination');
@@ -142,20 +138,6 @@ class ControllerModuleSlideshow extends Controller {
 		}
 
 		$this->data['skins'] = $this->model_setting_setting->getColors();
-
-		if (isset($this->request->post[$this->_name . '_header_color'])) {
-			$this->data[$this->_name . '_header_color'] = $this->request->post[$this->_name . '_header_color'];
-		} else {
-			$this->data[$this->_name . '_header_color'] = $this->config->get($this->_name . '_header_color');
-		}
-
-		$this->data['shapes'] = $this->model_setting_setting->getShapes();
-
-		if (isset($this->request->post[$this->_name . '_header_shape'])) {
-			$this->data[$this->_name . '_header_shape'] = $this->request->post[$this->_name . '_header_shape'];
-		} else {
-			$this->data[$this->_name . '_header_shape'] = $this->config->get($this->_name . '_header_shape');
-		}
 
 		if (isset($this->request->post[$this->_name . '_skin_color'])) {
 			$this->data[$this->_name . '_skin_color'] = $this->request->post[$this->_name . '_skin_color'];

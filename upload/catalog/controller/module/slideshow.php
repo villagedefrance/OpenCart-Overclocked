@@ -22,24 +22,6 @@ class ControllerModuleSlideshow extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
-		// Stylesheet override
-		$template = $this->config->get('config_template');
-
-		$stylesheet_mode = $this->config->get($template . '_stylesheet');
-
-		if (!$stylesheet_mode) {
-			$header_color = $this->config->get($this->_name . '_header_color');
-			$header_shape = $this->config->get($this->_name . '_header_shape');
-
-			$this->data['header_color'] = ($header_color) ? $header_color . '-skin' : 'white-skin';
-			$this->data['header_shape'] = ($header_shape) ? $header_shape . '-top' : 'rounded-0';
-		} else {
-			$this->data['header_color'] = '';
-			$this->data['header_shape'] = '';
-		}
-
-		$this->data['stylesheet_mode'] = $stylesheet_mode;
-
 		$skin_color = $this->config->get($this->_name . '_skin_color');
 
 		$this->data['camera_theme'] = ($skin_color) ? $skin_color . '_skin' : 'charcoal_skin';

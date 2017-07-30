@@ -61,54 +61,6 @@
           </div>
         <?php } ?>
           <table class="form">
-            <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>
-              <td><?php echo $entry_header_color; ?></td>
-              <td><select name="welcome_module[<?php echo $module_row; ?>][header_color]">
-                <?php foreach ($skins as $skin) { ?>
-                  <?php if ($skin['skin'] == $module['header_color']) { ?>
-                    <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
-                  <?php } else { ?>
-                    <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
-                  <?php } ?>
-                <?php } ?>
-              </select></td>
-            </tr>
-            <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>
-              <td><?php echo $entry_header_shape; ?></td>
-              <td><select name="welcome_module[<?php echo $module_row; ?>][header_shape]">
-                <?php foreach ($shapes as $shape) { ?>
-                  <?php if ($shape['shape'] == $module['header_shape']) { ?>
-                    <option value="<?php echo $shape['shape']; ?>" selected="selected"><?php echo $shape['title']; ?></option>
-                  <?php } else { ?>
-                    <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>
-                  <?php } ?>
-                <?php } ?>
-              </select></td>
-            </tr>
-            <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>
-              <td><?php echo $entry_content_color; ?></td>
-              <td><select name="welcome_module[<?php echo $module_row; ?>][content_color]">
-                <?php foreach ($skins as $skin) { ?>
-                  <?php if ($skin['skin'] == $module['content_color']) { ?>
-                    <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
-                  <?php } else { ?>
-                    <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
-                  <?php } ?>
-                <?php } ?>
-              </select></td>
-            </tr>
-            <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>
-              <td><?php echo $entry_content_shape; ?></td>
-              <td><select name="welcome_module[<?php echo $module_row; ?>][content_shape]">
-                <?php foreach ($shapes as $shape) { ?>
-                  <?php if ($shape['shape'] == $module['content_shape']) { ?>
-                    <option value="<?php echo $shape['shape']; ?>" selected="selected"><?php echo $shape['title']; ?></option>
-                  <?php } else { ?>
-                    <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>
-                  <?php } ?>
-                <?php } ?>
-              </select></td>
-            </tr>
             <tr class="highlighted">
               <td><?php echo $entry_layout; ?></td>
               <td><select name="welcome_module[<?php echo $module_row; ?>][layout_id]">
@@ -228,39 +180,7 @@ function addModule() {
 	html += '  </div>';
 	<?php } ?>
 	html += '  <table class="form">';
-	html += '    <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>';
-	html += '      <td><?php echo $entry_header_color; ?></td>';
-	html += '      <td><select name="welcome_module[' + module_row + '][header_color]">';
-	<?php foreach ($skins as $skin) { ?>
-	html += '        <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>';
-	<?php } ?>
-	html += '      </select></td>';
-	html += '    </tr>';
-	html += '    <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>';
-	html += '      <td><?php echo $entry_header_shape; ?></td>';
-	html += '      <td><select name="welcome_module[' + module_row + '][header_shape]">';
-	<?php foreach ($shapes as $shape) { ?>
-	html += '        <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>';
-	<?php } ?>
-	html += '      </select></td>';
-	html += '    </tr>';
-	html += '    <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>';
-	html += '      <td><?php echo $entry_content_color; ?></td>';
-	html += '      <td><select name="welcome_module[' + module_row + '][content_color]">';
-	<?php foreach ($skins as $skin) { ?>
-	html += '        <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>';
-	<?php } ?>
-	html += '      </select></td>';
-	html += '    </tr>';
-	html += '    <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>';
-	html += '      <td><?php echo $entry_content_shape; ?></td>';
-	html += '      <td><select name="welcome_module[' + module_row + '][content_shape]">';
-	<?php foreach ($shapes as $shape) { ?>
-	html += '        <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>';
-	<?php } ?>
-	html += '      </select></td>';
-	html += '    </tr>';
-	html += '    <tr style="background:#FCFCFC;">';
+	html += '    <tr class="highlighted">';
 	html += '      <td><?php echo $entry_layout; ?></td>';
 	html += '      <td><select name="welcome_module[' + module_row + '][layout_id]">';
 	<?php foreach ($layouts as $layout) { ?>
@@ -268,7 +188,7 @@ function addModule() {
 	<?php } ?>
 	html += '      </select></td>';
 	html += '    </tr>';
-	html += '    <tr style="background:#FCFCFC;">';
+	html += '    <tr class="highlighted">';
 	html += '      <td><?php echo $entry_position; ?></td>';
 	html += '      <td><select name="welcome_module[' + module_row + '][position]">';
 	html += '        <option value="content_header"><?php echo $text_content_header; ?></option>';
@@ -279,14 +199,14 @@ function addModule() {
 	html += '        <option value="column_right"><?php echo $text_column_right; ?></option>';
 	html += '      </select></td>';
 	html += '    </tr>';
-	html += '    <tr style="background:#FCFCFC;">';
+	html += '    <tr class="highlighted">';
 	html += '      <td><?php echo $entry_status; ?></td>';
 	html += '      <td><select name="welcome_module[' + module_row + '][status]">';
 	html += '        <option value="1"><?php echo $text_enabled; ?></option>';
 	html += '        <option value="0"><?php echo $text_disabled; ?></option>';
 	html += '      </select></td>';
 	html += '    </tr>';
-	html += '    <tr style="background:#FCFCFC;">';
+	html += '    <tr class="highlighted">';
 	html += '      <td><?php echo $entry_sort_order; ?></td>';
 	html += '      <td><input type="text" name="welcome_module[' + module_row + '][sort_order]" value="" size="3" /></td>';
 	html += '    </tr>';

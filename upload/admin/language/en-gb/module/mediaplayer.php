@@ -22,10 +22,6 @@ $_['text_column_right']    = 'Column Right';
 // Entry
 $_['entry_theme']          = 'Complete Module:<span class="help">Show content with header.</span>';
 $_['entry_title']          = 'Custom Title:<span class="help">Overrides the default module title.</span>';
-$_['entry_header_color']   = 'Select Header Color:';
-$_['entry_header_shape']   = 'Select Header Shape:';
-$_['entry_content_color']  = 'Select Content Color:';
-$_['entry_content_shape']  = 'Select Content Shape:';
 $_['entry_image']          = 'Poster:<span class="help">Image shown before playing a video. Leave empty to display the video\'s first frame.</span>';
 
 $_['entry_media']          = 'Media';

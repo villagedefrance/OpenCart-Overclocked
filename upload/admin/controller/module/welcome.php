@@ -38,10 +38,6 @@ class ControllerModuleWelcome extends Controller {
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_description'] = $this->language->get('entry_description');
-		$this->data['entry_header_color'] = $this->language->get('entry_header_color');
-		$this->data['entry_header_shape'] = $this->language->get('entry_header_shape');
-		$this->data['entry_content_color'] = $this->language->get('entry_content_color');
-		$this->data['entry_content_shape'] = $this->language->get('entry_content_shape');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
 		$this->data['entry_position'] = $this->language->get('entry_position');
 		$this->data['entry_status'] = $this->language->get('entry_status');
