@@ -1,5 +1,5 @@
 // ---------------------------------------
-//  OpenCart v1.9.x - OverClocked Edition
+//  OpenCart v1.10.x - OverClocked Edition
 //  UPGRADE INSTRUCTIONS
 //  https://www.opencart.com
 //  https://villagedefrance.net
@@ -9,9 +9,9 @@
 NOTE: THIS IS FOR UPGRADE ON EXISTING INSTALLS ONLY!
 IF INSTALLING NEW, BE SURE TO READ THE INSTALL.TXT FILE INSTEAD.
 
-##############################################################
-THIS IS FOR UPGRADING EXISTING OPENCART 1.5.x, 1.6.x, 1.7.x, 1.8.x, 1.9.x STORES ONLY!
-##############################################################
+###################################################################
+THIS IS FOR UPGRADING EXISTING OPENCART 1.5.x, 1.6.x, 1.7.x, 1.8.x, 1.9.x, 1.10.x STORES ONLY!
+###################################################################
 
 1. BACKUP YOUR EXISTING STORE FILES AND DATABASE!!
 - Backup your database via your store Admin->System->Backup

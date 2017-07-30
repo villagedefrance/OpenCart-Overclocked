@@ -30,10 +30,12 @@ Requirements:
 - Curl: Curl extensions
 - PHP: PHP 5.4+
 
-COMING SOON in v1.9.5.0!
+COMING SOON in v1.10.X!
 - Admin Dashboard update.
 - Encryption update (PHP 7.1+ support).
 - Product labels automatic resizing.
+- Simplified Modules settings.
+- Updated Language localisation.
 - CKEditor update to v4.7.1.
 - bug fixes.
 - ...
@@ -53,7 +55,7 @@ Full SSL support in Catalog, Direct printing of invoices, Custom Colour & Style 
 Improved Affiliates features, Api Keys management forms, Supplier management forms, Product RSS Feed,
 Product labels system, Cookie Consent code, New Modules & Shipping methods, Admin User Agent detector,
 New and updated Payment methods, Tag cloud, Alexa & Piwik connectors, Customer Group image, Ajax Search,
-Store Google Map, Country & Zone update on upgrade, Invoicing with tax breakdown, Contact E-mail logging,
+Store Google Map, Invoicing with tax breakdown, Contact E-mail logging, Custom Payment labels,
 Ip Range blocker (firewall), Stronger Session & Captcha Classes, Autocomplete for offers, Seo-Urls caching,
 "Save & Continue" for Admin forms, EU taxes for E-medias Law, Customer Order Picklist & Order History,
 Customer Gender & Date of Birth (optional), Import/Export Tool, Product Minimum Age limit, Product Wall page,
@@ -61,7 +63,7 @@ Product Quote system, Profit Margins & Stock Levels reports, Colours for Product
 Improved Search, Better PayPal Express button, Better Install & Upgrade scripts, One Page Checkout (optional),
 Express Checkout (optional), Multi-language Manufacturers, Multi-language Countries, FraudLabs Pro integration,
 Font-awesome library, Admin menu icons, Choice of 5 product image viewers, PHP 7.0+ support, Media Player,
-"Free" for zero prices, Custom Payment labels, All fixes from Community Edition RC1/2 applied, Better Dashboard ...
+"Free" for zero prices, All fixes from Community Edition RC1/2 applied, Better Dashboard ...
 
 
 WANT TO CONTRIBUTE?
