@@ -933,7 +933,7 @@ a.button-add:hover {
 	font-size: 16px;
 	font-weight: normal;
 	line-height: 30px;
-	border-bottom: 1px dotted #555;
+	border-bottom: 1px dotted #5F5F5F;
 	padding: 8px 10px 6px 10px;
 	margin: 0px;
 }

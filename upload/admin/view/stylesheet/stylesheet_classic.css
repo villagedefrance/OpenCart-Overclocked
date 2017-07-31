@@ -24,10 +24,10 @@ input[type='text'], input[type='password'], textarea {
 	border-left: 1px solid #B6B6B6;
 	border-bottom: 1px solid #E1E1E1;
 	border-right: 1px solid #E1E1E1;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	background-color: #FFF;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F5F7), to(#FFF));
 	background-image: -webkit-linear-gradient(top, #F2F5F7, #FFF);
@@ -65,10 +65,10 @@ input.checkbox:not(old) + label > span, input.radio:not(old) + label > span {
 	border-left: 1px solid #B6B6B6;
 	border-bottom: 1px solid #E1E1E1;
 	border-right: 1px solid #E1E1E1;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	background-color: #FFF;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F5F7), to(#FFF));
 	background-image: -webkit-linear-gradient(top, #F2F5F7, #FFF);
@@ -142,10 +142,10 @@ fieldset {
 	border-left: 1px solid #B6B6B6;
 	border-bottom: 1px solid #E1E1E1;
 	border-right: 1px solid #E1E1E1;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	background-color: #FCFCFC;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F5F7), to(#FCFCFC));
 	background-image: -webkit-linear-gradient(top, #F2F5F7, #FCFCFC);
@@ -173,10 +173,10 @@ select {
 	border-left: 1px solid #B6B6B6;
 	border-bottom: 1px solid #E1E1E1;
 	border-right: 1px solid #E1E1E1;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	background-color: #FCFCFC;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F5F7), to(#FCFCFC));
 	background-image: -webkit-linear-gradient(top, #F2F5F7, #FCFCFC);
@@ -246,6 +246,7 @@ body > #container-normal, body > #container-limited {
 	position: relative;
 	top: 14px;
 	float: right;
+	padding-right: 10px;
 }
 #header .user-logout {
 	position: relative;
@@ -302,10 +303,10 @@ body > #container-normal, body > #container-limited {
 	background: #FFF;
 	text-align: center;
 	border: 1px solid #CCC;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	min-width: 150px;
 	z-index: 9;
 }
@@ -351,10 +352,10 @@ body > #container-normal, body > #container-limited {
 	background: #FFF;
 	text-align: center;
 	border: 1px solid #CCC;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	min-width: 150px;
 	z-index: 9;
 }
@@ -400,10 +401,10 @@ body > #container-normal, body > #container-limited {
 	right: 0px;
 	background: #FFF;
 	border: 1px solid #CCC;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	min-width: 150px;
 	height: 60px;
 	overflow: auto;
@@ -554,10 +555,10 @@ ul.menu ul {
 	margin-bottom: 15px;
 	color: #444;
 	text-shadow: 0 0 1px rgba(68, 68, 68, 0.05);
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 }
 .success {
 	background: rgba(234, 247, 217, 0.8) url('../image/success.png') 10px center no-repeat;
@@ -811,10 +812,10 @@ a.button, .list a.button, a.button-save, .list a.button-save, a.button-delete, .
 	line-height: 12px;
 	padding: 6px 15px;
 	margin: 0px 3px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 	-webkit-box-shadow: 0px 1px 2px #DDD;
 	-moz-box-shadow: 0px 1px 2px #DDD;
 	box-shadow: 0px 1px 2px #DDD;
@@ -896,10 +897,10 @@ a.button-form, .list a.button-form, a.button-form-install, .list a.button-form-i
 	line-height: 12px;
 	padding: 6px 13px;
 	margin: 0px 3px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 	-webkit-box-shadow: 0px 1px 2px #DDD;
 	-moz-box-shadow: 0px 1px 2px #DDD;
 	box-shadow: 0px 1px 2px #DDD;
@@ -912,10 +913,10 @@ input.button-form, input.button-form-install, input.button-form-edit, input.butt
 	height: 22px;
 	line-height: 12px;
 	padding: 0px 13px 2px 13px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 	-webkit-box-shadow: 0px 1px 2px #DDD;
 	-moz-box-shadow: 0px 1px 2px #DDD;
 	box-shadow: 0px 1px 2px #DDD;

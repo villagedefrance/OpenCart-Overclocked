@@ -35,8 +35,10 @@ COMING SOON in v1.10.X!
 - Encryption update (PHP 7.1+ support).
 - Product labels automatic resizing.
 - Simplified Modules settings.
-- Updated Language localisation.
-- CKEditor update to v4.7.1.
+- Updated Plyr Media Player to v2.0.12.
+- Updated Slick Carousel to v1.7.1.
+- Updated Language localisation files.
+- Updated CKEditor to v4.7.1.
 - bug fixes.
 - ...
 
@@ -62,7 +64,7 @@ Customer Gender & Date of Birth (optional), Import/Export Tool, Product Minimum 
 Product Quote system, Profit Margins & Stock Levels reports, Colours for Product, VQmod and VQmanager,
 Improved Search, Better PayPal Express button, Better Install & Upgrade scripts, One Page Checkout (optional),
 Express Checkout (optional), Multi-language Manufacturers, Multi-language Countries, FraudLabs Pro integration,
-Font-awesome library, Admin menu icons, Choice of 5 product image viewers, PHP 7.0+ support, Media Player,
+Font-Awesome library, Admin menu icons, Choice of 5 product image viewers, PHP 7.1+ support, Media Player,
 "Free" for zero prices, All fixes from Community Edition RC1/2 applied, Better Dashboard ...
 
 
