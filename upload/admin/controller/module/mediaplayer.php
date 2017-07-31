@@ -3,7 +3,7 @@ class ControllerModuleMediaPlayer extends Controller {
 	private $error = array();
 	private $_name = 'mediaplayer';
 	private $_plugin = 'Plyr';
-	private $_version = 'v2.0.10';
+	private $_version = 'v2.0.12';
 
 	public function index() {
 		$this->language->load('module/' . $this->_name);
