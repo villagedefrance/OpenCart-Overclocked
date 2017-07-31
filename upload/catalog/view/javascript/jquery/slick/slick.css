@@ -26,6 +26,7 @@
 }
 .slick-list .dragging {
 	cursor: pointer;
+	cursor: hand;
 }
 .slick-slider .slick-track, .slick-slider .slick-list {
 	-webkit-transform: translate3d(0, 0, 0);
@@ -39,6 +40,8 @@
 	top: 0;
 	left: 0;
 	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 .slick-track:before, .slick-track:after {
 	display: table;
@@ -75,18 +78,16 @@
 }
 .slick-initialized .slick-slide {
 	display: block;
-	outline: 0;
 }
 .slick-loading .slick-slide {
 	visibility: hidden;
-	display: none;
 }
 .slick-vertical .slick-slide {
 	display: block;
 	height: auto;
 	border: 1px solid transparent;
 }
-.slick-arrow .slick-hidden {
+.slick-arrow.slick-hidden {
 	visibility: hidden;
 	display: none;
 }
