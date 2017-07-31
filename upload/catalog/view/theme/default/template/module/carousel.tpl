@@ -47,6 +47,7 @@ jQuery(document).ready(function() {
 		{ breakpoint: 1280, settings: { slidesToShow: <?php echo $show_1280; ?> } },
 		{ breakpoint: 960, settings: { slidesToShow: <?php echo $show_960; ?> } },
 		{ breakpoint: 640, settings: { slidesToShow: <?php echo $show_640; ?> } },
+		{ breakpoint: 480, settings: { slidesToShow: <?php echo $show_480; ?> } },
 		{ breakpoint: 320, settings: { slidesToShow: <?php echo $show_320; ?> } } ]
 	});
 	$('.carousel-swipe').on('swipe', function(event, slick, direction) {

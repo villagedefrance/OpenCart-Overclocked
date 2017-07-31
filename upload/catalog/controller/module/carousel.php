@@ -27,16 +27,18 @@ class ControllerModuleCarousel extends Controller {
 		$this->data['skin_color'] = ($skin_color) ? $skin_color . '_skin' : 'charcoal_skin';
 
 		// Responsive
-		$show_max = round($setting['show']);
+		$show_max = round($setting['show'], 0);
 
-		$show_1280 = ($show_max > 4) ? ($show_max - 1) : $show_max;
-		$show_960 = ($show_1280 > 3) ? ($show_1280 - 1) : $show_1280;
-		$show_640 = ($show_960 > 2) ? ($show_960 - 1) : $show_960;
-		$show_320 = ($show_640 > 1) ? ($show_640 - 1) : $show_640;
+		$show_1280 = ($show_max > 5) ? ($show_max - 1) : $show_max;
+		$show_960 = ($show_1280 > 4) ? ($show_1280 - 1) : $show_1280;
+		$show_640 = ($show_960 > 3) ? ($show_960 - 1) : $show_960;
+		$show_480 = ($show_640 > 2) ? ($show_640 - 1) : $show_640;
+		$show_320 = ($show_480 > 1) ? ($show_480 - 1) : $show_480;
 
 		$this->data['show_1280'] = $show_1280;
 		$this->data['show_960'] = $show_960;
 		$this->data['show_640'] = $show_640;
+		$this->data['show_480'] = $show_480;
 		$this->data['show_320'] = $show_320;
 
 		// Auto
