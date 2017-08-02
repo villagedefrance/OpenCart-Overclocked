@@ -4884,6 +4884,7 @@ EOT;
             imagecopy($img, $imgtmp, 0, 0, 0, 0, $sx, $sy);
             imagedestroy($imgtmp);
         }
+
         $this->addImagePng($file, $x, $y, $w, $h, $img);
 
         if ($img) {

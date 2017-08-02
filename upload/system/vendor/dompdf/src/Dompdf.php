@@ -148,7 +148,7 @@ class Dompdf {
     private $basePath = "";
 
     /**
-     * Protcol used to request file (file://, http://, etc)
+     * Protocol used to request file (file://, http://, etc)
      *
      * @var string
      */
