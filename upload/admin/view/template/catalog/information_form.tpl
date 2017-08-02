@@ -43,12 +43,12 @@
               <?php } ?></td>
             </tr>
             <tr>
-              <td><?php echo $entry_meta_description; ?></td>
+              <td><?php echo $entry_meta_description; ?><span class="help"><?php echo $help_meta_description; ?></span></td>
               <td><textarea name="information_description[<?php echo $language['language_id']; ?>][meta_description]" id="meta-description<?php echo $language['language_id']; ?>" data-limit="156" cols="40" rows="5"><?php echo isset($information_description[$language['language_id']]) ? $information_description[$language['language_id']]['meta_description'] : ''; ?></textarea>
               <span id="remaining<?php echo $language['language_id']; ?>"></span></td>
             </tr>
             <tr>
-              <td><?php echo $entry_meta_keyword; ?></td>
+              <td><?php echo $entry_meta_keyword; ?><span class="help"><?php echo $help_meta_keyword; ?></span></td>
               <td><textarea name="information_description[<?php echo $language['language_id']; ?>][meta_keyword]" cols="40" rows="5"><?php echo isset($information_description[$language['language_id']]) ? $information_description[$language['language_id']]['meta_keyword'] : ''; ?></textarea></td>
             </tr>
             <tr>
@@ -94,11 +94,11 @@
             </td>
           </tr>
           <tr>
-            <td><?php echo $entry_keyword; ?></td>
+            <td><?php echo $entry_keyword; ?><span class="help"><?php echo $help_keyword; ?></span></td>
             <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="40" /></td>
           </tr>
           <tr style="display:none;">
-            <td><?php echo $entry_bottom; ?></td>
+            <td><?php echo $entry_bottom; ?><span class="help"><?php echo $help_bottom; ?></span></td>
             <td><?php if ($bottom == 1) { ?>
               <input type="checkbox" name="bottom" value="1" id="bottom-on" class="checkbox" checked />
               <label for="bottom-on"><span></span></label>

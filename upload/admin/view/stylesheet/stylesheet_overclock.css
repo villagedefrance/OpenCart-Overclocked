@@ -932,27 +932,27 @@ a.button-select, a.button-unselect, .list a.button-select, .list a.button-unsele
 	margin: 0px;
 }
 a.button-select, .list a.button-select {
-	background: #F8F8F8 url('../image/theme-overclock/select.png') center 0px no-repeat;
-	border: 1px solid #CCC;
+	background: #DDD url('../image/theme-overclock/select.png') center 0px no-repeat;
+	border: 1px solid #222;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
 	-khtml-border-radius: 3px 0px 0px 3px;
 	border-radius: 3px 0px 0px 3px;
 }
 a.button-unselect, .list a.button-unselect {
-	background: #F8F8F8 url('../image/theme-overclock/unselect.png') center 0px no-repeat;
-	border: 1px solid #CCC;
+	background: #DDD url('../image/theme-overclock/unselect.png') center 0px no-repeat;
+	border: 1px solid #222;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
 	-khtml-border-radius: 0px 3px 3px 0px;
 	border-radius: 0px 3px 3px 0px;
 }
 a.button-select:hover, .list a.button-select:hover {
-	background: #F8F8F8 url('../image/theme-overclock/select.png') center -16px no-repeat;
+	background: #DDD url('../image/theme-overclock/select.png') center -16px no-repeat;
 	border: 1px solid #4691D2;
 }
 a.button-unselect:hover, .list a.button-unselect:hover {
-	background: #F8F8F8 url('../image/theme-overclock/unselect.png') center -16px no-repeat;
+	background: #DDD url('../image/theme-overclock/unselect.png') center -16px no-repeat;
 	border: 1px solid #4691D2;
 }
 /* Button Browse/Recycle */
@@ -964,27 +964,27 @@ a.button-browse, a.button-recycle, .list a.button-browse, .list a.button-recycle
 	margin: 0px;
 }
 a.button-browse, .list a.button-browse {
-	background: #F8F8F8 url('../image/theme-overclock/browse.png') center 0px no-repeat;
-	border: 1px solid #CCC;
+	background: #DDD url('../image/theme-overclock/browse.png') center 0px no-repeat;
+	border: 1px solid #222;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
 	-khtml-border-radius: 3px 0px 0px 3px;
 	border-radius: 3px 0px 0px 3px;
 }
 a.button-recycle, .list a.button-recycle {
-	background: #F8F8F8 url('../image/theme-overclock/recycle.png') center 0px no-repeat;
-	border: 1px solid #CCC;
+	background: #DDD url('../image/theme-overclock/recycle.png') center 0px no-repeat;
+	border: 1px solid #222;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
 	-khtml-border-radius: 0px 3px 3px 0px;
 	border-radius: 0px 3px 3px 0px;
 }
 a.button-browse:hover, .list a.button-browse:hover {
-	background: #F8F8F8 url('../image/theme-overclock/browse.png') center -16px no-repeat;
+	background: #DDD url('../image/theme-overclock/browse.png') center -16px no-repeat;
 	border: 1px solid #4691D2;
 }
 a.button-recycle:hover, .list a.button-recycle:hover {
-	background: #F8F8F8 url('../image/theme-overclock/recycle.png') center -16px no-repeat;
+	background: #DDD url('../image/theme-overclock/recycle.png') center -16px no-repeat;
 	border: 1px solid #4691D2;
 }
 /* Button Move Left/Right */
@@ -996,27 +996,27 @@ input.button-move-left, input.button-move-right {
 	margin: 0px;
 }
 input.button-move-left {
-	background: #F8F8F8 url('../image/theme-overclock/move-left.png') center 0px no-repeat;
-	border: 1px solid #CCC;
+	background: #DDD url('../image/theme-overclock/move-left.png') center 0px no-repeat;
+	border: 1px solid #222;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
 	-khtml-border-radius: 3px 0px 0px 3px;
 	border-radius: 3px 0px 0px 3px;
 }
 input.button-move-right {
-	background: #F8F8F8 url('../image/theme-overclock/move-right.png') center 0px no-repeat;
-	border: 1px solid #CCC;
+	background: #DDD url('../image/theme-overclock/move-right.png') center 0px no-repeat;
+	border: 1px solid #222;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
 	-khtml-border-radius: 0px 3px 3px 0px;
 	border-radius: 0px 3px 3px 0px;
 }
 input.button-move-left:hover {
-	background: #F8F8F8 url('../image/theme-overclock/move-left.png') center -16px no-repeat;
+	background: #DDD url('../image/theme-overclock/move-left.png') center -16px no-repeat;
 	border: 1px solid #4691D2;
 }
 input.button-move-right:hover {
-	background: #F8F8F8 url('../image/theme-overclock/move-right.png') center -16px no-repeat;
+	background: #DDD url('../image/theme-overclock/move-right.png') center -16px no-repeat;
 	border: 1px solid #4691D2;
 }
 /* Button Preview/Print */
@@ -1029,31 +1029,31 @@ a.button-preview, a.button-pdf, a.button-print {
 	vertical-align: middle;
 }
 a.button-preview {
-	background: #F8F8F8 url('../image/theme-overclock/preview.png') center 0px no-repeat;
-	border: 1px solid #CCC;
+	background: #DDD url('../image/theme-overclock/preview.png') center 0px no-repeat;
+	border: 1px solid #222;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
 	-khtml-border-radius: 3px 0px 0px 3px;
 	border-radius: 3px 0px 0px 3px;
 }
 a.button-pdf {
-	background: #F8F8F8 url('../image/theme-overclock/pdf.png') center 0px no-repeat;
-	border: 1px solid #CCC;
+	background: #DDD url('../image/theme-overclock/pdf.png') center 0px no-repeat;
+	border: 1px solid #222;
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	-khtml-border-radius: 0px;
 	border-radius: 0px;
 }
 a.button-print {
-	background: #F8F8F8 url('../image/theme-overclock/print.png') center 0px no-repeat;
-	border: 1px solid #CCC;
+	background: #DDD url('../image/theme-overclock/print.png') center 0px no-repeat;
+	border: 1px solid #222;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
 	-khtml-border-radius: 0px 3px 3px 0px;
 	border-radius: 0px 3px 3px 0px;
 }
 a.button-preview:hover {
-	background: #F8F8F8 url('../image/theme-overclock/preview.png') center -24px no-repeat;
+	background: #DDD url('../image/theme-overclock/preview.png') center -24px no-repeat;
 	border: 1px solid #4691D2;
 }
 a.button-pdf:hover {

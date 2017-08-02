@@ -81,7 +81,7 @@
             </td>
           </tr>
           <tr>
-            <td><?php echo $entry_keyword; ?></td>
+            <td><?php echo $entry_keyword; ?><span class="help"><?php echo $help_keyword; ?></span></td>
             <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="40" /></td>
           </tr>
           <tr>

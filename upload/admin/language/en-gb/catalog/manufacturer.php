@@ -20,12 +20,14 @@ $_['column_action']      = 'Action';
 // Entry
 $_['entry_name']         = 'Manufacturer\'s Name:';
 $_['entry_description']  = 'Manufacturer\'s Description:';
-
 $_['entry_store']        = 'Stores:';
-$_['entry_keyword']      = 'SEO Keyword:<span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.</span>';
+$_['entry_keyword']      = 'SEO Keyword:';
 $_['entry_image']        = 'Image:';
 $_['entry_status']       = 'Status:';
 $_['entry_sort_order']   = 'Sort Order:';
+
+// Help
+$_['help_keyword']       = 'Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.';
 
 // Error
 $_['error_permission']   = 'Warning: You do not have permission to modify <b>Manufacturers</b> !';

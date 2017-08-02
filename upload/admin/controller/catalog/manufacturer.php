@@ -351,21 +351,22 @@ class ControllerCatalogManufacturer extends Controller {
 		$this->data['text_select_all'] = $this->language->get('text_select_all');
 		$this->data['text_unselect_all'] = $this->language->get('text_unselect_all');
 
+		$this->data['tab_general'] = $this->language->get('tab_general');
+		$this->data['tab_data'] = $this->language->get('tab_data');
+
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_description'] = $this->language->get('entry_description');
-
 		$this->data['entry_store'] = $this->language->get('entry_store');
 		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
 		$this->data['entry_image'] = $this->language->get('entry_image');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 
+		$this->data['help_keyword'] = $this->language->get('help_keyword');
+
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
-
-		$this->data['tab_general'] = $this->language->get('tab_general');
-		$this->data['tab_data'] = $this->language->get('tab_data');
 
 		$this->data['token'] = $this->session->data['token'];
 

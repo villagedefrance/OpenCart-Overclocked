@@ -15,17 +15,23 @@ $_['column_action']          = 'Action';
 
 // Entry
 $_['entry_title']            = 'Information Title:';
-$_['entry_meta_description'] = 'Meta Tag Description:<span class="help">The optimal number of characters is around 155, including spaces.<br />SEO importance: High.</span>';
-$_['entry_meta_keyword']     = 'Meta Tag Keywords:<span class="help">Usually ignored by search engines.<br />SEO importance: Low.</span>';
+$_['entry_meta_description'] = 'Meta Tag Description:';
+$_['entry_meta_keyword']     = 'Meta Tag Keywords:';
 $_['entry_description']      = 'Description:';
 $_['entry_store']            = 'Stores:';
-$_['entry_keyword']          = 'SEO Keyword:<span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.</span>';
-$_['entry_bottom']           = 'Bottom:<span class="help">Display in the bottom footer.</span>';
+$_['entry_keyword']          = 'SEO Keyword:';
+$_['entry_bottom']           = 'Bottom:';
 $_['entry_status']           = 'Status:';
 $_['entry_sort_order']       = 'Sort Order:';
 $_['entry_layout']           = 'Layout Override:';
 
-// Error 
+// Help
+$_['help_meta_description']  = 'The optimal number of characters is around 155, including spaces.<br />SEO importance: High.';
+$_['help_meta_keyword']      = 'Usually ignored by search engines.<br />SEO importance: Low.';
+$_['help_keyword']           = 'Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.';
+$_['help_bottom']            = 'Display in the bottom footer.';
+
+// Error
 $_['error_permission']       = 'Warning: You do not have permission to modify <b>Information</b> !';
 $_['error_warning']          = 'Warning: Please check the form carefully for errors!';
 $_['error_title']            = 'Information Title must be between 3 and 64 characters!';
