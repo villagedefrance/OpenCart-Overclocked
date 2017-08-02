@@ -37,6 +37,7 @@ COMING SOON in v1.10.X!
 - Simplified Modules settings.
 - Updated Plyr Media Player to v2.0.12.
 - Updated Slick Carousel to v1.7.1.
+- Updated DomPDF to v0.8.0 (PHP 7.1+ support).
 - Updated Language localisation files.
 - Updated CKEditor to v4.7.1.
 - bug fixes.

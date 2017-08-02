@@ -1,12 +1,20 @@
 <?php
+require_once(DIR_SYSTEM . 'vendor/dompdf/src/Dompdf.php');
+
+use Dompdf\Dompdf;
+
 function pdf($data, $type, $number) {
-    $title = $type . ' ' . $number;
+	$doc_type = str_replace(" ", "", $type);
 
-    $pdf = new DOMPDF;
+    $title = $doc_type . '-' . $number;
 
-    $pdf->load_html($data);
+	$dompdf = new Dompdf();
 
-    $pdf->render();
+	$dompdf->loadHtml($data);
 
-    $pdf->stream($title . '.pdf');
+	$dompdf->setPaper('A4', 'portrait');
+
+	$dompdf->render();
+
+	$dompdf->stream($title . '.pdf');
 }

@@ -1,5 +1,6 @@
 <?php
 // warning: this file is encoded in UTF-8!
+
 class HTML5_Data {
     // at some point this should be moved to a .ser file. Another
     // possible optimization is to give UTF-8 bytes, not Unicode
@@ -52,8 +53,11 @@ class HTML5_Data {
      * reference.
      */
     public static function getRealCodepoint($ref) {
-        if (!isset(self::$realCodepointTable[$ref])) return false;
-        else return self::$realCodepointTable[$ref];
+        if (!isset(self::$realCodepointTable[$ref])) {
+			return false;
+        } else {
+			return self::$realCodepointTable[$ref];
+		}
     }
 
     public static function getNamedCharacterReferences() {
@@ -61,6 +65,7 @@ class HTML5_Data {
             self::$namedCharacterReferences = unserialize(
                 file_get_contents(dirname(__FILE__) . '/named-character-references.ser'));
         }
+
         return self::$namedCharacterReferences;
     }
 
@@ -90,7 +95,7 @@ class HTML5_Data {
                $y = (($code & 0x7FF) >> 6) | 0xC0;
             } else {
                 $y = (($code & 0xFC0) >> 6) | 0x80;
-                if ($code < 0x10000) {
+                if($code < 0x10000) {
                     $z = (($code >> 12) & 0x0F) | 0xE0;
                 } else {
                     $z = (($code >> 12) & 0x3F) | 0x80;
@@ -100,9 +105,11 @@ class HTML5_Data {
         }
         // set up the actual character
         $ret = '';
+
         if ($w) $ret .= chr($w);
         if ($z) $ret .= chr($z);
         if ($y) $ret .= chr($y);
+
         $ret .= chr($x);
 
         return $ret;

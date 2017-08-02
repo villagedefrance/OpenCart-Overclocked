@@ -51,9 +51,11 @@ class HTML5_InputStream {
     public $errors = array();
 
     /**
-     * @param $data Data to parse
+     * @param $data | Data to parse
+     * @throws Exception
      */
     public function __construct($data) {
+
         /* Given an encoding, the bytes in the input stream must be
         converted to Unicode characters for the tokeniser, as
         described by the rules for that encoding, except that the
@@ -75,7 +77,7 @@ class HTML5_InputStream {
             $data = @iconv('UTF-8', 'UTF-8//IGNORE', $data);
         } else {
             // we can make a conforming native implementation
-            throw new Exception('Not implemented, please install mbstring or iconv');
+            throw new Exception('Not implemented, please install iconv');
         }
 
         /* One leading U+FEFF BYTE ORDER MARK character must be
@@ -143,29 +145,32 @@ class HTML5_InputStream {
                 $data,
                 $matches
             );
+
             for ($i = 0; $i < $count; $i++) {
                 $this->errors[] = array(
                     'type' => HTML5_Tokenizer::PARSEERROR,
                     'data' => 'invalid-codepoint'
                 );
             }
+
         } else {
             // XXX: Need non-PCRE impl, probably using substr_count
         }
 
         $this->data = $data;
         $this->char = 0;
-        $this->EOF  = strlen($data);
+        $this->EOF = strlen($data);
     }
 
     /**
      * Returns the current line that the tokenizer is at.
+     *
+     * @return int
      */
     public function getCurrentLine() {
         // Check the string isn't empty
         if ($this->EOF) {
-            // Add one to $this->char because we want the number for the next
-            // byte to be processed.
+            // Add one to $this->char because we want the number for the next byte to be processed.
             return substr_count($this->data, "\n", 0, min($this->char, $this->EOF)) + 1;
         } else {
             // If the string is empty, we are on the first line (sorta).
@@ -175,6 +180,8 @@ class HTML5_InputStream {
 
     /**
      * Returns the current column of the current line that the tokenizer is at.
+     *
+     * @return int
      */
     public function getColumnOffset() {
         // strrpos is weird, and the offset needs to be negative for what we
@@ -203,14 +210,15 @@ class HTML5_InputStream {
             $count = count_chars($findLengthOf);
             // 0x80 = 0x7F - 0 + 1 (one added to get inclusive range)
             // 0x33 = 0xF4 - 0x2C + 1 (one added to get inclusive range)
-            return array_sum(array_slice($count, 0, 0x80)) +
-                   array_sum(array_slice($count, 0xC2, 0x33));
+            return array_sum(array_slice($count, 0, 0x80)) + array_sum(array_slice($count, 0xC2, 0x33));
         }
     }
 
     /**
      * Retrieve the currently consume character.
      * @note This performs bounds checking
+     *
+     * @return bool|string
      */
     public function char() {
         return ($this->char++ < $this->EOF) ? $this->data[$this->char - 1] : false;
@@ -219,6 +227,8 @@ class HTML5_InputStream {
     /**
      * Get all characters until EOF.
      * @note This performs bounds checking
+     *
+     * @return string|bool
      */
     public function remainingChars() {
         if ($this->char < $this->EOF) {
@@ -233,7 +243,10 @@ class HTML5_InputStream {
     /**
      * Matches as far as possible until we reach a certain set of bytes
      * and returns the matched substring.
-     * @param $bytes Bytes to match.
+     *
+     * @param $bytes | Bytes to match.
+     * @param null $max
+     * @return bool|string
      */
     public function charsUntil($bytes, $max = null) {
         if ($this->char < $this->EOF) {
@@ -253,7 +266,10 @@ class HTML5_InputStream {
     /**
      * Matches as far as possible with a certain set of bytes
      * and returns the matched substring.
-     * @param $bytes Bytes to match.
+     *
+     * @param $bytes | Bytes to match.
+     * @param null $max
+     * @return bool|string
      */
     public function charsWhile($bytes, $max = null) {
         if ($this->char < $this->EOF) {
