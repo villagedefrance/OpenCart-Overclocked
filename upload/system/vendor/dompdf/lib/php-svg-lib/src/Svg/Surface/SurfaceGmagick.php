@@ -236,6 +236,7 @@ class SurfaceGmagick implements SurfaceInterface {
         }
 
         $opts = array();
+
         if ($style->strokeWidth > 0.000001) {
             $opts[] = "linewidth=$style->strokeWidth";
         }

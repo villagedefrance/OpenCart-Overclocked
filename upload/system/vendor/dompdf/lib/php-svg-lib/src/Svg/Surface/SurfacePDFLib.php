@@ -344,11 +344,13 @@ class SurfacePDFLib implements SurfaceInterface {
         }
         else {
             $fillOpacity = $style->fillOpacity;
+
             if ($fillOpacity !== null && $fillOpacity < 1.0) {
                 $opts[] = "opacityfill=$fillOpacity";
             }
 
             $strokeOpacity = $style->strokeOpacity;
+
             if ($strokeOpacity !== null && $strokeOpacity < 1.0) {
                 $opts[] = "opacitystroke=$strokeOpacity";
             }

@@ -116,6 +116,7 @@ class Document extends AbstractTag {
         );
 
         $fp = fopen($this->filename, "r");
+
         while ($line = fread($fp, 8192)) {
             xml_parse($parser, $line, false);
 
@@ -143,6 +144,7 @@ class Document extends AbstractTag {
 
             if (isset($attributes['viewbox'])) {
                 $viewBox = preg_split('/[\s,]+/is', trim($attributes['viewbox']));
+
                 if (count($viewBox) == 4) {
                     $this->x = $viewBox[0];
                     $this->y = $viewBox[1];
@@ -160,7 +162,6 @@ class Document extends AbstractTag {
         return array(
             0        => $this->width,
             1        => $this->height,
-
             "width"  => $this->width,
             "height" => $this->height,
         );
@@ -211,6 +212,7 @@ class Document extends AbstractTag {
         }
 
         $fp = fopen($this->filename, "r");
+
         while ($line = fread($fp, 8192)) {
             xml_parse($parser, $line, false);
         }

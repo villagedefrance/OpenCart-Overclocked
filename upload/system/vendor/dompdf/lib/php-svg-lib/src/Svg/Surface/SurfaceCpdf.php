@@ -354,6 +354,7 @@ class SurfaceCpdf implements SurfaceInterface {
         }
 
         $opacity = $style->opacity;
+
         if ($opacity !== null && $opacity < 1.0) {
             $canvas->setLineTransparency("Normal", $opacity);
             $canvas->currentLineTransparency = null;
@@ -362,12 +363,14 @@ class SurfaceCpdf implements SurfaceInterface {
             $canvas->currentFillTransparency = null;
         } else {
             $fillOpacity = $style->fillOpacity;
+
             if ($fillOpacity !== null && $fillOpacity < 1.0) {
                 $canvas->setFillTransparency("Normal", $fillOpacity);
                 $canvas->currentFillTransparency = null;
             }
 
             $strokeOpacity = $style->strokeOpacity;
+
             if ($strokeOpacity !== null && $strokeOpacity < 1.0) {
                 $canvas->setLineTransparency("Normal", $strokeOpacity);
                 $canvas->currentLineTransparency = null;
@@ -422,7 +425,7 @@ class SurfaceCpdf implements SurfaceInterface {
         );
 
         $family = strtolower($family);
-        $style  = strtolower($style);
+        $style = strtolower($style);
         $weight = strtolower($weight);
 
         if (isset($map[$family])) {

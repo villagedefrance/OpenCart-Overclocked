@@ -221,7 +221,7 @@ class Dompdf {
     *
     * @var array
     */
-    private $allowedLocalFileExtensions = array("htm", "html");
+    private $allowedLocalFileExtensions = array("htm", "html", "tpl");
 
     /**
      * @var array
@@ -346,7 +346,7 @@ class Dompdf {
 
         $protocol = strtolower($this->protocol);
 
-        if ( !in_array($protocol, $this->allowedProtocols) ) {
+        if (!in_array($protocol, $this->allowedProtocols)) {
             throw new Exception("Permission denied on $file. The communication protocol is not supported.");
         }
 
@@ -377,6 +377,7 @@ class Dompdf {
         }
 
         list($contents, $http_response_header) = Helpers::getFileContent($file, $this->httpContext);
+
         $encoding = 'UTF-8';
 
         // See http://the-stickman.com/web-development/php/getting-http-response-headers-when-using-file_get_contents/
@@ -726,11 +727,7 @@ class Dompdf {
 
         $paperSize = $this->getPaperSize();
 
-        if (
-            $defaultOptionPaperSize[2] !== $paperSize[2] ||
-            $defaultOptionPaperSize[3] !== $paperSize[3] ||
-            $options->getDefaultPaperOrientation() !== $this->paperOrientation
-        ) {
+        if ($defaultOptionPaperSize[2] !== $paperSize[2] || $defaultOptionPaperSize[3] !== $paperSize[3] || $options->getDefaultPaperOrientation() !== $this->paperOrientation) {
             $this->setCanvas(CanvasFactory::get_instance($this, $this->paperSize, $this->paperOrientation));
             $this->fontMetrics->setCanvas($this->getCanvas());
         }
@@ -898,6 +895,7 @@ class Dompdf {
 		);
 
         $out .= ob_get_contents();
+
         ob_clean();
 
         file_put_contents($log_output_file, $out);
@@ -924,7 +922,7 @@ class Dompdf {
      * @param string $filename the name of the streamed file
      * @param array $options header options (see above)
      */
-    public function stream($filename = 'document.pdf', $options = null) {
+    public function stream($filename, $options = null) {
         $this->saveLocale();
 
         $canvas = $this->getCanvas();
@@ -1462,7 +1460,7 @@ class Dompdf {
             case 'version' :
                 return $this->version;
             default:
-                throw new Exception( 'Invalid property: ' . $prop );
+                throw new Exception('Invalid property: ' . $prop);
         }
     }
 }

@@ -401,10 +401,10 @@ class Helpers {
                 $url = mb_substr($url, $i + 7);
             }
 
-            $protocol = ""; // "file://"; ? why doesn't this work... It's because of
-            // network filenames like //COMPU/SHARENAME
+            $protocol = ""; // "file://"; ? why doesn't this work... It's because of network filenames like //COMPU/SHARENAME
 
             $host = ""; // localhost, really
+
             $file = basename($url);
 
             $path = dirname($url);
@@ -415,9 +415,23 @@ class Helpers {
 
             } else {
                 // generate a url to access the file if no real path found.
-                $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+                if ((isset($_SERVER['HTTPS']) && (($_SERVER['HTTPS'] == 'on') || ($_SERVER['HTTPS'] == '1'))) || ($_SERVER['SERVER_PORT'] == '443')) {
+                    $protocol = 'https://';
+                } elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on') {
+                    $protocol = 'https://';
+                } else {
+                    $protocol = 'http://';
+                }
 
-                $host = isset($_SERVER["HTTP_HOST"]) ? $_SERVER["HTTP_HOST"] : php_uname("n");
+                if (isset($_SERVER['HTTP_HOST'])) {
+                    $host = $_SERVER['HTTP_HOST'];
+                } else {
+                    $host = getenv('HTTP_HOST');
+                }
+
+                if (!isset($_SERVER['HTTP_HOST'])) {
+                    $host = php_uname("n");
+                }
 
                 if (substr($arr["path"], 0, 1) === '/') {
                     $path = dirname($arr["path"]);
@@ -431,7 +445,9 @@ class Helpers {
             "protocol" => $protocol,
             "host" => $host,
             "path" => $path,
-            "file" => $file);
+            "file" => $file
+        );
+
         return $ret;
     }
 
@@ -448,6 +464,7 @@ class Helpers {
             $arr = debug_backtrace();
 
             echo basename($arr[0]["file"]) . " (" . $arr[0]["line"] . "): " . $arr[1]["function"] . ": ";
+
             Helpers::pre_r($msg);
         }
     }
@@ -531,10 +548,7 @@ class Helpers {
         if ($g < 0) $g = 0;
         if ($b < 0) $b = 0;
 
-        return array(
-            $r, $g, $b,
-            "r" => $r, "g" => $g, "b" => $b
-        );
+        return array($r, $g, $b, "r" => $r, "g" => $g, "b" => $b);
     }
 
     /**
@@ -553,14 +567,25 @@ class Helpers {
         list($width, $height, $type) = getimagesize($filename);
 
         // Custom types
-        $types = array(
-            IMAGETYPE_JPEG => "jpeg",
-            IMAGETYPE_GIF  => "gif",
-            IMAGETYPE_BMP  => "bmp",
-            IMAGETYPE_PNG  => "png",
-        );
+		$image_mime = image_type_to_mime_type(exif_imagetype($filename));
 
-        $type = isset($types[$type]) ? $types[$type] : null;
+        switch ($image_mime) {
+          case "image/gif":
+            $type = "gif";
+            break;
+          case "image/jpeg":
+            $type = "jpeg";
+            break;
+          case "image/pjpeg":
+            $type = "jpeg";
+            break;
+          case "image/png":
+            $type = "png";
+            break;
+          case "image/x-png":
+            $type = "png";
+            break;
+        }
 
         if ($width == null || $height == null) {
             list($data, $headers) = Helpers::getFileContent($filename, $context);

@@ -207,7 +207,7 @@ class Options {
     /**
      * @var bool
      */
-    private $debugPng = false;
+    private $debugPng = true;
 
     /**
      * @var bool

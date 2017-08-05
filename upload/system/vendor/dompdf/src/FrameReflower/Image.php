@@ -87,6 +87,7 @@ class Image extends AbstractFrameReflower {
             for ($f = $this->_frame->get_parent(); $f; $f = $f->get_parent()) {
                 $f_style = $f->get_style();
                 $t = $f_style->length_in_pt($f_style->width);
+
                 if ($t != 0) {
                     break;
                 }
@@ -106,9 +107,11 @@ class Image extends AbstractFrameReflower {
 
         if (Helpers::is_percent($height)) {
             $t = 0.0;
+
             for ($f = $this->_frame->get_parent(); $f; $f = $f->get_parent()) {
                 $f_style = $f->get_style();
                 $t = $f_style->length_in_pt($f_style->height);
+
                 if ($t != 0) {
                     break;
                 }
@@ -133,13 +136,17 @@ class Image extends AbstractFrameReflower {
             // See also ListBulletImage::__construct
             if ($width == 0 && $height == 0) {
                 $dpi = $this->_frame->get_dompdf()->getOptions()->getDpi();
+
                 $width = (float)($img_width * 72) / $dpi;
                 $height = (float)($img_height * 72) / $dpi;
+
                 $width_forced = false;
                 $height_forced = false;
+
             } elseif ($height == 0 && $width != 0) {
                 $height_forced = false;
                 $height = ($width / $img_width) * $img_height; //keep aspect ratio
+
             } elseif ($width == 0 && $height != 0) {
                 $width_forced = false;
                 $width = ($height / $img_height) * $img_width; //keep aspect ratio

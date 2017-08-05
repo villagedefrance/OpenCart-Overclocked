@@ -11,7 +11,7 @@
 <body>
 <?php foreach ($orders as $order) { ?>
 <div style="page-break-after:always;">
-  <?php if (!empty($logo)) { ?>
+  <?php if ($logo) { ?>
     <img src="<?php echo $logo; ?>" alt="" />
   <?php } ?>
   <h1><?php echo $text_pick_list; ?></h1>

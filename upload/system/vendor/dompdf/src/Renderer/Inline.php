@@ -124,6 +124,7 @@ class Inline extends AbstractRenderer {
 
             if ($DEBUGLAYOUTINLINE) {
                 $this->_debug_layout($child->get_border_box(), "blue");
+
                 if ($this->_dompdf->getOptions()->getDebugLayoutPaddingBox()) {
                     $this->_debug_layout($child->get_padding_box(), "blue", array(0.5, 0.5));
                 }
@@ -181,6 +182,7 @@ class Inline extends AbstractRenderer {
         }
 
         $id = $frame->get_node()->getAttribute("id");
+
         if (strlen($id) > 0)  {
             $this->_canvas->add_named_dest($id);
         }

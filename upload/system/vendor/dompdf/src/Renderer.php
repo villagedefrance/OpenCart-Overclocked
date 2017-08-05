@@ -93,7 +93,6 @@ class Renderer extends AbstractRenderer {
         }
 
         switch ($display) {
-
             case "block":
             case "list-item":
             case "inline-block":
@@ -132,25 +131,19 @@ class Renderer extends AbstractRenderer {
                 $node = $frame->get_node();
 
                 if ($node->nodeName === "script") {
-                    if ($node->getAttribute("type") === "text/php" ||
-                        $node->getAttribute("language") === "php"
-                    ) {
+                    if ($node->getAttribute("type") === "text/php" || $node->getAttribute("language") === "php") {
                         // Evaluate embedded php scripts
                         $this->_render_frame("php", $frame);
-                    } elseif ($node->getAttribute("type") === "text/javascript" ||
-                        $node->getAttribute("language") === "javascript"
-                    ) {
+                    } elseif ($node->getAttribute("type") === "text/javascript" || $node->getAttribute("language") === "javascript") {
                         // Insert JavaScript
                         $this->_render_frame("javascript", $frame);
                     }
                 }
-
                 // Don't render children, so skip to next iter
                 return;
 
             default:
                 break;
-
         }
 
         // Starts the overflow: hidden box

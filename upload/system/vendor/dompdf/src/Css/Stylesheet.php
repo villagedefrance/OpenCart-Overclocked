@@ -391,12 +391,9 @@ class Stylesheet {
 
         $b = min(mb_substr_count($selector, "#"), 255);
 
-        $c = min(mb_substr_count($selector, ".") +
-            mb_substr_count($selector, "["), 255);
+        $c = min(mb_substr_count($selector, ".") + mb_substr_count($selector, "["), 255);
 
-        $d = min(mb_substr_count($selector, " ") +
-            mb_substr_count($selector, ">") +
-            mb_substr_count($selector, "+"), 255);
+        $d = min(mb_substr_count($selector, " ") + mb_substr_count($selector, ">") + mb_substr_count($selector, "+"), 255);
 
         //If a normal element name is at the beginning of the string,
         //a leading whitespace might have been removed on whitespace collapsing and removal
@@ -503,7 +500,6 @@ class Stylesheet {
             }
 
             switch ($s) {
-
                 case " ":
                 case ">":
                     // All elements matching the next token that are direct children of
@@ -786,7 +782,6 @@ class Stylesheet {
                     $value = trim($value, "\"'");
 
                     switch ($op) {
-
                         case "":
                             $query .= "[@$attr]";
                             break;
@@ -924,6 +919,7 @@ class Stylesheet {
         $styles = array();
 
         $xp = new DOMXPath($tree->get_dom());
+
         $DEBUGCSS = $this->_dompdf->getOptions()->getDebugCss();
 
         // Add generated content

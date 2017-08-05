@@ -21,7 +21,7 @@ use Dompdf\Exception\ImageException;
  */
 class Cache {
     /**
-     * Array of downloaded images.  Cached so that identical images are
+     * Array of downloaded images. Cached so that identical images are
      * not needlessly downloaded.
      *
      * @var array
@@ -56,7 +56,7 @@ class Cache {
      */
     static function resolve_url($url, $protocol, $host, $base_path, Dompdf $dompdf) {
         self::$_dompdf = $dompdf;
-        
+
         $protocol = mb_strtolower($protocol);
         $parsed_url = Helpers::explode_url($url);
 
@@ -125,6 +125,32 @@ class Cache {
             else {
                 list($width, $height, $type) = Helpers::dompdf_getimagesize($resolved_url, $dompdf->getHttpContext());
 
+                $image_mime = image_type_to_mime_type(exif_imagetype($resolved_url));
+
+                switch ($image_mime) {
+                  case "image/gif":
+                    $type = "gif";
+                    break;
+                  case "image/jpeg":
+                    $type = "jpeg";
+                    break;
+                  case "image/pjpeg":
+                    $type = "jpeg";
+                    break;
+                  case "image/png":
+                    $type = "png";
+                    break;
+                  case "image/x-png":
+                    $type = "png";
+                    break;
+                  case "image/bmp":
+                    $type = "bmp";
+                    break;
+                  case "image/svg+xml":
+                    $type = "svg";
+                    break;
+                }
+
                 // Known image type
                 if ($width && $height && in_array($type, array("gif", "png", "jpeg", "bmp", "svg"))) {
                     //Don't put replacement image into cache - otherwise it will be deleted on cache cleanup.
@@ -141,7 +167,7 @@ class Cache {
         } catch (ImageException $e) {
             $resolved_url = self::$broken_image;
             $type = "png";
-            $message = "Image not found or type unknown";
+            $message = "";
 
             Helpers::record_warnings($e->getCode(), $e->getMessage() . " \n $url", $e->getFile(), $e->getLine());
         }
@@ -170,6 +196,32 @@ class Cache {
 
     static function detect_type($file, $context = null) {
         list(, , $type) = Helpers::dompdf_getimagesize($file, $context);
+
+        $image_mime = image_type_to_mime_type(exif_imagetype($file));
+
+        switch ($image_mime) {
+          case "image/gif":
+            $type = "gif";
+            break;
+          case "image/jpeg":
+            $type = "jpeg";
+            break;
+          case "image/pjpeg":
+            $type = "jpeg";
+            break;
+          case "image/png":
+            $type = "png";
+            break;
+          case "image/x-png":
+            $type = "png";
+            break;
+          case "image/bmp":
+            $type = "bmp";
+            break;
+          case "image/svg+xml":
+            $type = "svg";
+            break;
+        }
 
         return $type;
     }

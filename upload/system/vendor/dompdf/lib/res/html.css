@@ -27,7 +27,6 @@ html {
 }
 
 /* blocks */
-
 article,
 aside,
 details,
@@ -136,7 +135,6 @@ plaintext, pre, xmp {
 }
 
 /* tables */
-
 table {
   display: table;
   border-spacing: 2px;
@@ -514,8 +512,7 @@ dompdf_generated {
 }
 
 /* hidden elements */
-area, base, basefont, head, meta, script, style, title,
-noembed, param {
+area, base, basefont, head, meta, script, style, title, noembed, param {
   display: none;
   -dompdf-keep: yes;
 }

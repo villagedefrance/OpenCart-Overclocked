@@ -67,7 +67,7 @@ class Image extends Block {
                 $style->border_top_width,
                 $style->border_right_width,
                 $style->border_bottom_width,
-                $style->border_left_width,
+                $style->border_left_width
             );
 
             // we have to get the "inner" radius

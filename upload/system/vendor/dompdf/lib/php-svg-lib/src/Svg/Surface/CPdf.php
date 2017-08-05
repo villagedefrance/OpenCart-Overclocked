@@ -545,10 +545,9 @@ class CPdf {
                     // and pos is either 'before' or 'after', saying where this page will fit.
                     if (isset($options['id']) && isset($options['rid']) && isset($options['pos'])) {
                         $i = array_search($options['rid'], $o['info']['pages']);
-                        if (isset($o['info']['pages'][$i]) && $o['info']['pages'][$i] == $options['rid']) {
 
-                            // then there is a match
-                            // make a space
+                        if (isset($o['info']['pages'][$i]) && $o['info']['pages'][$i] == $options['rid']) {
+                            // then there is a match. make a space
                             switch ($options['pos']) {
                                 case 'before':
                                     $k = $i;
@@ -1354,6 +1353,7 @@ EOT;
                 $this->objects[$id]['info']['contents'][] = $this->numObj;
 
                 $match = ($this->numPages % 2 ? 'odd' : 'even');
+
                 foreach ($this->addLooseObjects as $oId => $target) {
                     if ($target === 'all' || $match === $target) {
                         $this->objects[$id]['info']['contents'][] = $oId;
@@ -1633,8 +1633,7 @@ EOT;
                     }
                 }
 
-                // assign it a place in the named resource dictionary as an external object, according to
-                // the label passed in with it.
+                // assign it a place in the named resource dictionary as an external object, according to the label passed in with it.
                 $this->o_pages($this->currentNode, 'xObject', array('label' => $options['label'], 'objNum' => $id));
 
                 // also make sure that we have the right procset object for it.
@@ -2844,9 +2843,7 @@ EOT;
             $mode = "Normal";
         }
 
-        if ($mode === $this->currentFillTransparency["mode"] &&
-            $opacity == $this->currentFillTransparency["opacity"]
-        ) {
+        if ($mode === $this->currentFillTransparency["mode"] && $opacity == $this->currentFillTransparency["opacity"]) {
             return;
         }
 
@@ -3123,8 +3120,8 @@ EOT;
         $sin_a = sin($a);
 
         $tm = array(
-            $cos_a,                         -$sin_a,
-            $sin_a,                         $cos_a,
+            $cos_a, -$sin_a,
+            $sin_a, $cos_a,
             $x - $sin_a * $y - $cos_a * $x, $y - $cos_a * $y + $sin_a * $x,
         );
 
@@ -3867,11 +3864,11 @@ EOT;
      * @param bool     $mask    true if the image is masked
      */
     function addImagePng($file, $x, $y, $w = 0.0, $h = 0.0, &$img, $is_mask = false, $mask = null) {
-        if (!function_exists("ImagePNG")) {
+        if (!extension_loaded('gd')) {
             throw new Exception("The PHP GD extension is required, but is not installed.");
         }
 
-        //if already cached, need not to read again
+        // if already cached, need not to read again
         if (isset($this->imagelist[$file])) {
             $data = null;
         } else {
@@ -3902,7 +3899,6 @@ EOT;
 
             if ($error) {
                 $this->addMessage('PNG error - (' . $file . ') ' . $errormsg);
-
                 return;
             }
         }  //End isset($this->imagelist[$file]) (png Duplicate removal)
@@ -4070,11 +4066,11 @@ EOT;
      * this should work with remote files
      */
     function addPngFromFile($file, $x, $y, $w = 0, $h = 0) {
-        if (!function_exists("ImageCreateFromPNG")) {
+        if (!extension_loaded('gd')) {
             throw new Exception("The PHP GD extension is required, but is not installed.");
         }
 
-        //if already cached, need not to read again
+        // if already cached, need not to read again
         if (isset($this->imagelist[$file])) {
             $img = null;
         } else {
@@ -4104,6 +4100,7 @@ EOT;
             //Therefore create an empty image with white background and merge the
             //image in with alpha blending.
             $imgtmp = @imagecreatefrompng($file);
+
             if (!$imgtmp) {
                 return;
             }
@@ -4114,6 +4111,7 @@ EOT;
 
             // @todo is it still needed ??
             $ti = imagecolortransparent($imgtmp);
+
             if ($ti >= 0) {
                 $tc = imagecolorsforindex($imgtmp, $ti);
                 $ti = imagecolorallocate($img, $tc['red'], $tc['green'], $tc['blue']);
@@ -4126,6 +4124,7 @@ EOT;
             imagecopy($img, $imgtmp, 0, 0, 0, 0, $sx, $sy);
             imagedestroy($imgtmp);
         }
+
         $this->addImagePng($file, $x, $y, $w, $h, $img);
 
         if ($img) {
@@ -4351,7 +4350,7 @@ EOT;
                             print '[addPngFromFile alpha channel not supported: ' . $info['colorType'] . ' ' . $file . ']';
                         }
 
-                        $errormsg = 'transparancey alpha channel not supported, transparency only supported for palette images.';
+                        $errormsg = 'transparency alpha channel not supported, transparency only supported for palette images.';
                 }
             }
 
@@ -4368,7 +4367,7 @@ EOT;
             $label = "I$im";
             $this->numObj++;
 
-            //  $this->o_image($this->numObj,'new',array('label' => $label,'data' => $idata,'iw' => $w,'ih' => $h,'type' => 'png','ic' => $info['width']));
+            // $this->o_image($this->numObj,'new',array('label' => $label,'data' => $idata,'iw' => $w,'ih' => $h,'type' => 'png','ic' => $info['width']));
             $options = array(
                 'label'            => $label,
                 'data'             => $idata,
