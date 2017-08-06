@@ -54,7 +54,6 @@
 $(document).ready(function() {
 	if ($('#shipping-method :radio').size() == 1) {
 		$('#shipping-method :radio').click();
-		$('#button-shipping-method').click();
 	}
 });
 //--></script> 

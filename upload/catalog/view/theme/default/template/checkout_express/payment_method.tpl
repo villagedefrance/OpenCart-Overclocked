@@ -82,7 +82,6 @@
 $(document).ready(function() {
 	if ($('#payment-method :radio').size() == 1) {
 		$('#payment-method :radio').click();
-		$('#button-payment-method').click();
 	}
 });
 //--></script>
