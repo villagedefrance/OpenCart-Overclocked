@@ -10,7 +10,7 @@ class ModelUserUser extends Model {
 		$this->session->data['new_user_id'] = $user_id;
 
 		if (isset($data['image'])) {
-			$this->db->query("UPDATE `" . DB_PREFIX . "user` SET image = '" . $this->db->escape($data['image']) . "' WHERE user_id = '" . (int)$user_id . "'");
+			$this->db->query("UPDATE `" . DB_PREFIX . "user` SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE user_id = '" . (int)$user_id . "'");
 		}
 	}
 
@@ -22,7 +22,7 @@ class ModelUserUser extends Model {
 		}
 
 		if (isset($data['image'])) {
-			$this->db->query("UPDATE `" . DB_PREFIX . "user` SET image = '" . $this->db->escape($data['image']) . "' WHERE user_id = '" . (int)$user_id . "'");
+			$this->db->query("UPDATE `" . DB_PREFIX . "user` SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE user_id = '" . (int)$user_id . "'");
 		}
 	}
 

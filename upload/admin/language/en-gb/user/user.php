@@ -29,6 +29,9 @@ $_['entry_image']        = 'Avatar:';
 $_['entry_user_group']   = 'User Group:';
 $_['entry_status']       = 'Status:';
 
+// Help
+$_['help_image']         = 'Clearing the image cache may be required before replacing the avatar image.';
+
 // Error
 $_['error_permission']   = 'Warning: You do not have permission to modify <b>Users</b> !';
 $_['error_account']      = 'Warning: You can not delete your own account!';
