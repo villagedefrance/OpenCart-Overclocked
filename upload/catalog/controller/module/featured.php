@@ -60,7 +60,9 @@ class ControllerModuleFeatured extends Controller {
 
 		$this->data['products'] = array();
 
-		$products = explode(',', $this->config->get('featured_product'));
+		$get_products = explode(',', $this->config->get('featured_product'));
+
+		$products = array_reverse($get_products, false);
 
 		foreach ($products as $product_id) {
 			$product_info = $this->model_catalog_product->getProduct($product_id);
