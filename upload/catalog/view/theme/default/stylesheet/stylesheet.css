@@ -2390,7 +2390,7 @@ ul.box-filter > li ul {
 /* Captcha */
 #captcha-wrap {
 	width: 270px;
-	height: 97px;
+	height: 105px;
 	background: #870500;
 	border: 1px solid #870500;
 	-moz-border-radius: 5px;
@@ -2401,7 +2401,7 @@ ul.box-filter > li ul {
 }
 #captcha-wrap .captcha-box {
 	background: #FAFAFA;
-	border: 1px solid #FAFAFA;
+	border: 4px solid #870500;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	-khtml-border-radius: 3px;
@@ -2420,8 +2420,8 @@ ul.box-filter > li ul {
 	margin-right: auto;
 }
 #captcha-wrap .captcha-text {
-	width: 140px;
-	height: 43px;
+	width: 180px;
+	height: 45px;
 	float: left;
 	background: #FFDC73;
 	border: 1px solid #FFDC73;
@@ -2430,24 +2430,26 @@ ul.box-filter > li ul {
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
 	text-align: center;
-	margin: 4px;
+	margin: 3px 4px 4px 4px;
 }
 #captcha-wrap .captcha-text input {
-	width: 120px;
+	width: 160px;
 }
 #captcha-wrap .captcha-text label {
 	color: #111;
-	font-size: 12px;
-	width: 150px;
+	font-size: 13px;
+	width: 200px;
 	padding-top: 3px;
 	padding-bottom: 4px;
 }
 #captcha-wrap .captcha-action {
-	width: 117px;
+	width: 77px;
 	height: 44px;
 	float: right;
-	background: url('../image/logos.jpg') top right no-repeat;
-	margin-top: 3px;
+	color: #FCFCFC;
+	font-size: 34px;
+	text-align: center;
+	margin-top: 5px;
 	margin-right: 1px;
 }
 /* Downloads */
