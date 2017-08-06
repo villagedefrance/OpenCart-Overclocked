@@ -27,23 +27,31 @@ $_['tab_related']             = 'Related';
 
 // Entry
 $_['entry_title']             = 'News Headline:';
-$_['entry_meta_description']  = 'Article Meta Description:<span class="help">The optimal number of characters is around 155, including spaces.<br />SEO importance: High.</span>';
+$_['entry_meta_description']  = 'Article Meta Description:';
 $_['entry_description']       = 'Article Content:';
-$_['entry_image']             = 'Article Image:<span class="help">Select an image (optional).</span>';
-$_['entry_keyword']           = 'News SEO Keyword:<span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.</span>';
+$_['entry_image']             = 'Article Image:';
+$_['entry_keyword']           = 'News SEO Keyword:';
 $_['entry_download']          = 'Downloads:';
-$_['entry_store']             = 'Stores:<span class="help">Select Store(s) where this article is to appear.</span>';
-$_['entry_lightbox']          = 'Image Viewer:<span class="help">Select a preferred image viewer.</span>';
+$_['entry_store']             = 'Stores:';
+$_['entry_lightbox']          = 'Image Viewer:';
 $_['entry_sort_order']        = 'Sort Order:';
 $_['entry_status']            = 'Status:';
 $_['entry_product']           = 'Product:';
 $_['entry_product_search']    = '<span class="help">Product Name:<br />(Autocomplete)</span>';
 $_['entry_category']          = 'Category:';
 $_['entry_manufacturer']      = 'Manufacturer:';
-$_['entry_related_method']    = 'News Related Products:<span class="help">This article can be linked to individual products, categories, or manufacturers.</span>';
+$_['entry_related_method']    = 'News Related Products:';
 $_['entry_product_wise']      = 'Products';
 $_['entry_category_wise']     = 'Categories';
 $_['entry_manufacturer_wise'] = 'Manufacturers';
+
+// Help
+$_['help_meta_description']   = 'The optimal number of characters is around 155, including spaces.<br />SEO importance: High.';
+$_['help_image']              = 'Select an image (optional).';
+$_['help_keyword']            = 'Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.';
+$_['help_store']              = 'Select Store(s) where this article is to appear.';
+$_['help_lightbox']           = 'Select a preferred image viewer.';
+$_['help_related_method']     = 'This article can be linked to individual products, categories, or manufacturers.';
 
 // Button
 $_['button_module']           = 'News Module';

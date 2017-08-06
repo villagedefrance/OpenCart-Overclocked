@@ -409,6 +409,13 @@ class ControllerCatalogNews extends Controller {
 		$this->data['entry_category_wise'] = $this->language->get('entry_category_wise');
 		$this->data['entry_manufacturer_wise'] = $this->language->get('entry_manufacturer_wise');
 
+		$this->data['help_meta_description'] = $this->language->get('help_meta_description');
+		$this->data['help_image'] = $this->language->get('help_image');
+		$this->data['help_keyword'] = $this->language->get('help_keyword');
+		$this->data['help_store'] = $this->language->get('help_store');
+		$this->data['help_lightbox'] = $this->language->get('help_lightbox');
+		$this->data['help_related_method'] = $this->language->get('help_related_method');
+
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');

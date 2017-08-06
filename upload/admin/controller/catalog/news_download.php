@@ -291,6 +291,8 @@ class ControllerCatalogNewsDownload extends Controller {
 		$this->data['entry_filename'] = $this->language->get('entry_filename');
 		$this->data['entry_mask'] = $this->language->get('entry_mask');
 
+		$this->data['help_filename'] = $this->language->get('help_filename');
+
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');

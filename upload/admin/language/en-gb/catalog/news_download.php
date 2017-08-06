@@ -12,8 +12,11 @@ $_['column_action']    = 'Action';
 
 // Entry
 $_['entry_name']       = 'Download Name:';
-$_['entry_filename']   = 'Filename:<span class="help">You can upload via the upload button or use FTP to upload to the download directory and enter the details below.</span>';
+$_['entry_filename']   = 'Filename:';
 $_['entry_mask']       = 'Mask:';
+
+// Help
+$_['help_filename']    = 'You can upload via the upload button or use FTP to upload to the download directory and enter the details below.';
 
 // Button
 $_['button_news']      = 'News';

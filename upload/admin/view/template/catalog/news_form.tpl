@@ -43,7 +43,7 @@
               <?php } ?></td>
             </tr>
             <tr>
-              <td><?php echo $entry_meta_description; ?></td>
+              <td><?php echo $entry_meta_description; ?><span class="help"><?php echo $help_meta_description; ?></span></td>
               <td><textarea name="news_description[<?php echo $language['language_id']; ?>][meta_description]" id="meta-description<?php echo $language['language_id']; ?>" data-limit="156" cols="40" rows="5"><?php echo isset($news_description[$language['language_id']]) ? $news_description[$language['language_id']]['meta_description'] : ''; ?></textarea>
               <span id="remaining<?php echo $language['language_id']; ?>"></span></td>
             </tr>
@@ -62,7 +62,7 @@
       <div id="tab-data">
         <table class="form">
           <tr>
-            <td><?php echo $entry_image; ?></td>
+            <td><?php echo $entry_image; ?><span class="help"><?php echo $help_image; ?></span></td>
             <td><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />
               <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
               <a onclick="image_upload('image', 'thumb');" class="button-browse"></a><a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');" class="button-recycle"></a>
@@ -73,7 +73,7 @@
             </td>
           </tr>
           <tr>
-            <td><?php echo $entry_keyword; ?></td>
+            <td><?php echo $entry_keyword; ?><span class="help"><?php echo $help_keyword; ?></span></td>
             <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="40" /></td>
           </tr>
           <tr>
@@ -101,7 +101,7 @@
             </td>
           </tr>
           <tr>
-            <td><?php echo $entry_store; ?></td>
+            <td><?php echo $entry_store; ?><span class="help"><?php echo $help_store; ?></span></td>
             <td>
               <div id="store_ids" class="scrollbox-store">
                 <?php $class = 'even'; ?>
@@ -131,7 +131,7 @@
             </td>
           </tr>
           <tr>
-            <td><?php echo $entry_lightbox; ?></td>
+            <td><?php echo $entry_lightbox; ?><span class="help"><?php echo $help_lightbox; ?></span></td>
             <td><select name="lightbox">
               <?php if (isset($lightbox)) { $selected = "selected"; ?>
                 <option value="colorbox" <?php if ($lightbox == 'colorbox') { echo $selected; } ?>>ColorBox (<?php echo $text_default; ?>)</option>
@@ -167,7 +167,7 @@
       <div id="tab-related">
         <table class="form">
           <tr>
-            <td><?php echo $entry_related_method; ?></td>
+            <td><?php echo $entry_related_method; ?><span class="help"><?php echo $help_related_method; ?></span></td>
             <td><select name="related" onchange="getRelatedMethod(this.value);">
               <option value="product_wise" <?php if ($related == 'product_wise') { echo "selected='selected'"; } ?>><?php echo $entry_product_wise; ?></option>
               <option value="category_wise" <?php if ($related == 'category_wise') { echo "selected='selected'"; } ?>><?php echo $entry_category_wise; ?></option>
