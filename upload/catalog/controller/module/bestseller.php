@@ -48,6 +48,14 @@ class ControllerModuleBestSeller extends Controller {
 				$label_ratio = 50;
 			}
 
+			if ($result['label']) {
+				$label = $this->model_tool_image->resize($result['label'], round(($setting['image_width'] / 3), 0), round(($setting['image_height'] / 3), 0));
+				$label_style = round(($setting['image_width'] / 3), 0);
+			} else {
+				$label = '';
+				$label_style = '';
+			}
+
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 				if (($result['price'] == '0.0000') && $this->config->get('config_price_free')) {
 					$price = $this->language->get('text_free');
@@ -95,6 +103,8 @@ class ControllerModuleBestSeller extends Controller {
 			$this->data['products'][] = array(
 				'product_id'      => $result['product_id'],
 				'thumb'           => $image,
+				'label'           => $label,
+				'label_style'     => $label_style,
 				'stock_label'     => $stock_label,
 				'offer_label'     => $offer_label,
 				'special_label'   => $special_label,

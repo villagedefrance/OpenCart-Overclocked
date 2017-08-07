@@ -37,6 +37,7 @@ class ModelCatalogProduct extends Model {
 				'tag'              => $query->row['tag'],
 				'model'            => $query->row['model'],
 				'image'            => $query->row['image'],
+				'label'            => $query->row['label'],
 				'price'            => $query->row['discount'] ? $query->row['discount'] : $query->row['price'],
 				'cost'             => $query->row['cost'],
 				'quote'            => $query->row['quote'],

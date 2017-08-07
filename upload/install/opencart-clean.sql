@@ -2627,6 +2627,7 @@ CREATE TABLE `oc_product` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `model` varchar(64) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
+  `label` varchar(255) DEFAULT NULL,
   `price` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `cost` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `quote` tinyint(1) NOT NULL DEFAULT '0',

@@ -61,6 +61,7 @@ $_['entry_tag']               = 'Product Tags:<span class="help">Comma separated
 
 $_['entry_model']             = 'Model:';
 $_['entry_image']             = 'Main Image:<span class="help">The main image will represent this product in both Administration and Catalog.</span>';
+$_['entry_label']             = 'Main Image Label:<span class="help">The main image label will be applied in the top right hand corner of the main image.</span>';
 $_['entry_video_code']        = 'YouTube Video:<span class="help">Enter one or more (comma separated) YouTube video codes. (optional)</span>';
 $_['entry_keyword']           = 'SEO Keyword:<span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.</span>';
 $_['entry_local_tax_rate']    = 'Price Local Tax Rate:<span class="help">Select a local tax rate for this product in order to view the price excluding / including tax below.</span>';

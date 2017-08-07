@@ -644,6 +644,7 @@ class ControllerCatalogProduct extends Controller {
 
 		$this->data['entry_model'] = $this->language->get('entry_model');
 		$this->data['entry_image'] = $this->language->get('entry_image');
+		$this->data['entry_label'] = $this->language->get('entry_label');
 		$this->data['entry_video_code'] = $this->language->get('entry_video_code');
 		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
 		$this->data['entry_local_tax_rate'] = $this->language->get('entry_local_tax_rate');
@@ -790,6 +791,12 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['error_image'] = array();
 		}
 
+		if (isset($this->error['label'])) {
+			$this->data['error_label'] = $this->error['label'];
+		} else {
+			$this->data['error_label'] = array();
+		}
+
 		if (isset($this->error['date_available'])) {
 			$this->data['error_date_available'] = $this->error['date_available'];
 		} else {
@@ -931,6 +938,23 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], 100, 100);
 		} else {
 			$this->data['thumb'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+		}
+
+		// Label
+		if (isset($this->request->post['label'])) {
+			$this->data['label'] = $this->request->post['label'];
+		} elseif (!empty($product_info)) {
+			$this->data['label'] = $product_info['label'];
+		} else {
+			$this->data['label'] = '';
+		}
+
+		if (isset($this->request->post['label']) && file_exists(DIR_IMAGE . $this->request->post['label'])) {
+			$this->data['thumb_label'] = $this->model_tool_image->resize($this->request->post['label'], 100, 100);
+		} elseif (!empty($product_info) && $product_info['label'] && file_exists(DIR_IMAGE . $product_info['label'])) {
+			$this->data['thumb_label'] = $this->model_tool_image->resize($product_info['label'], 100, 100);
+		} else {
+			$this->data['thumb_label'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 		}
 
 		if (isset($this->request->post['video_code'])) {
@@ -2035,6 +2059,14 @@ class ControllerCatalogProduct extends Controller {
 
 			if (!in_array(strtolower($ext), $allowed)) {
 				$this->error['image'] = $this->language->get('error_image_format');
+			}
+		}
+
+		if ($this->request->post['label']) {
+			$ext = utf8_substr(strrchr($this->request->post['label'], '.'), 1);
+
+			if (!in_array(strtolower($ext), $allowed)) {
+				$this->error['label'] = $this->language->get('error_image_format');
 			}
 		}
 

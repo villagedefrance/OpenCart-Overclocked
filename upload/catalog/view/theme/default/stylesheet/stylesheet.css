@@ -1720,7 +1720,7 @@ ul.box-filter > li ul {
 .product-info > .left .image-additional {
 	clear: left;
 	min-height: 80px;
-	max-width: 260px;
+	width: 260px;
 	margin: 0px;
 	padding: 0px;
 	overflow: auto;
@@ -2778,6 +2778,13 @@ table.order-options tr td > div.division {
 	display: block;
 	margin: 0px 0px -30px 0px;
 	padding: 0px;
+	z-index: 9;
+}
+.product-label {
+	position: relative;
+	top: 0;
+	display: block;
+	padding: 2px 0px 0px 0px;
 	z-index: 9;
 }
 /* Banner */

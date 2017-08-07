@@ -103,6 +103,17 @@
             </td>
           </tr>
           <tr>
+            <td><?php echo $entry_label; ?></td>
+            <td><div class="image"><img src="<?php echo $thumb_label; ?>" alt="" id="thumb-label" /><br />
+              <input type="hidden" name="label" value="<?php echo $label; ?>" id="label" />
+              <a onclick="image_upload('label', 'thumb-label');" class="button-browse"></a><a onclick="$('#thumb-label').attr('src', '<?php echo $no_image; ?>'); $('#label').attr('value', '');" class="button-recycle"></a>
+            </div>
+            <?php if ($error_label) { ?>
+              <span class="error"><?php echo $error_label; ?></span>
+            <?php } ?>
+            </td>
+          </tr>
+          <tr>
             <td><?php echo $entry_video_code; ?></td>
             <td>youtube.com/watch?v=<input type="text" name="video_code" value="<?php echo $video_code; ?>" size="30" /> &nbsp; <a onclick="window.open('http://www.youtube.com/');" title="YouTube" class="button-form"><i class="fa fa-youtube"></i> &nbsp; YouTube</a></td>
           </tr>

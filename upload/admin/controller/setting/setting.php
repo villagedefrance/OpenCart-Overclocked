@@ -1520,6 +1520,8 @@ class ControllerSettingSetting extends Controller {
 		// Image
 		$this->load->model('tool/image');
 
+		$this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+
 		if (isset($this->request->post['config_logo'])) {
 			$this->data['config_logo'] = $this->request->post['config_logo'];
 		} else {
@@ -1543,8 +1545,6 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$this->data['icon'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 		}
-
-		$this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 
 		if (isset($this->request->post['config_image_category_width'])) {
 			$this->data['config_image_category_width'] = $this->request->post['config_image_category_width'];

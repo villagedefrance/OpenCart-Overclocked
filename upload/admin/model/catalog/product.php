@@ -25,6 +25,10 @@ class ModelCatalogProduct extends Model {
 			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE product_id = '" . (int)$product_id . "'");
 		}
 
+		if (isset($data['label'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "product SET label = '" . $this->db->escape(html_entity_decode($data['label'], ENT_QUOTES, 'UTF-8')) . "' WHERE product_id = '" . (int)$product_id . "'");
+		}
+
 		if (isset($data['video_code']) && strlen($data['video_code']) > 10) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "product_youtube SET product_id = '" . (int)$product_id . "', video_code = '" . $this->db->escape(trim($data['video_code'])) . "'");
 		}
@@ -194,6 +198,10 @@ class ModelCatalogProduct extends Model {
 
 		if (isset($data['image'])) {
 			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE product_id = '" . (int)$product_id . "'");
+		}
+
+		if (isset($data['label'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "product SET label = '" . $this->db->escape(html_entity_decode($data['label'], ENT_QUOTES, 'UTF-8')) . "' WHERE product_id = '" . (int)$product_id . "'");
 		}
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_youtube WHERE product_id = '" . (int)$product_id . "'");

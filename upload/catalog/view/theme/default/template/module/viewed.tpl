@@ -16,6 +16,10 @@
           <?php if (!$product['stock_label'] && !$product['offer'] && $product['special']) { ?>
             <div class="special-medium"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
           <?php } ?>
+          <?php if ($product['label']) { ?>
+            <div class="product-label" style="left:<?php echo $product['label_style']; ?>px; margin:0px 0px -<?php echo $product['label_style']; ?>px 0px; height:<?php echo $product['label_style']; ?>; width:<?php echo $product['label_style']; ?>;">
+            <img src="<?php echo $product['label']; ?>" alt="" /></div>
+          <?php } ?>
           <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
         <?php } ?>
         <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
@@ -74,6 +78,10 @@
           <?php } ?>
           <?php if (!$product['stock_label'] && !$product['offer'] && $product['special']) { ?>
             <div class="special-medium"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if ($product['label']) { ?>
+            <div class="product-label" style="left:<?php echo $product['label_style']; ?>px; margin:0px 0px -<?php echo $product['label_style']; ?>px 0px; height:<?php echo $product['label_style']; ?>; width:<?php echo $product['label_style']; ?>;">
+            <img src="<?php echo $product['label']; ?>" alt="" /></div>
           <?php } ?>
           <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
         <?php } ?>
