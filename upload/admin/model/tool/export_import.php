@@ -226,14 +226,14 @@ class ModelToolExportImport extends Model {
 
 	// Find all manufacturers already stored in the database
 	protected function getManufacturers() {
-		$language_id = $this->getDefaultLanguageId();
+		$default_language_id = getDefaultLanguageId();
 
 		$manufacturers = array();
 
 		$sql = "SELECT m2s.manufacturer_id, m2s.store_id, md.name AS name FROM " . DB_PREFIX . "manufacturer m";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "manufacturer_to_store m2s ON (m2s.manufacturer_id = m.manufacturer_id)";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "manufacturer_description md ON (md.manufacturer_id = m.manufacturer_id)";
-		$sql .= " WHERE md.language_id = '" . (int)$language_id . "'";
+		$sql .= " WHERE md.language_id = '" . (int)$default_language_id . "'";
 
 		$result = $this->db->query($sql);
 
@@ -263,7 +263,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function storeManufacturerIntoDatabase(&$manufacturers, &$manufacturer_name, &$store_ids, &$available_store_ids) {
-		$language_id = $this->getDefaultLanguageId();
+		$language_ids = $this->getLanguages();
 
 		foreach ($store_ids as $store_id) {
 			if (!in_array($store_id, $available_store_ids)) {
@@ -275,7 +275,9 @@ class ModelToolExportImport extends Model {
 
 				$manufacturer_id = $this->db->getLastId();
 
-				$this->db->query("INSERT INTO " . DB_PREFIX . "manufacturer_description SET manufacturer_id = '" . (int)$manufacturer_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($manufacturer_name) . "', description = '" . $this->db->escape($description) . "'");
+				foreach ($language_ids as $language_id) {
+					$this->db->query("INSERT INTO " . DB_PREFIX . "manufacturer_description SET manufacturer_id = '" . (int)$manufacturer_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($manufacturer_name) . "', description = '" . $this->db->escape($description) . "'");
+				}
 
 				if (!isset($manufacturers[$manufacturer_name])) {
 					$manufacturers[$manufacturer_name] = array();
@@ -331,7 +333,6 @@ class ModelToolExportImport extends Model {
 		if ($result->rows) {
 			foreach ($result->rows as $row) {
 				$length_class_id = $row['length_class_id'];
-
 				$unit = $row['unit'];
 
 				if (!isset($length_class_ids[$unit])) {
@@ -966,7 +967,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars($name);
+				$name = htmlspecialchars_decode($name, ENT_QUOTES);
 				$names[$language_code] = $name;
 			}
 
@@ -985,7 +986,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "description(")) {
 				$language_code = substr($first_row[$j-1], strlen("description("), strlen($first_row[$j-1])-strlen("description(")-1);
 				$description = $this->getCell($data, $i, $j++);
-				$description = htmlspecialchars($description);
+				$description = htmlspecialchars_decode($description, ENT_QUOTES);
 				$descriptions[$language_code] = $description;
 			}
 
@@ -994,7 +995,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "meta_description(")) {
 				$language_code = substr($first_row[$j-1], strlen("meta_description("), strlen($first_row[$j-1])-strlen("meta_description(")-1);
 				$meta_description = $this->getCell($data, $i, $j++);
-				$meta_description = htmlspecialchars($meta_description);
+				$meta_description = htmlspecialchars_decode($meta_description, ENT_QUOTES);
 				$meta_descriptions[$language_code] = $meta_description;
 			}
 
@@ -1003,7 +1004,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "meta_keywords(")) {
 				$language_code = substr($first_row[$j-1], strlen("meta_keywords("), strlen($first_row[$j-1])-strlen("meta_keywords(")-1);
 				$meta_keyword = $this->getCell($data, $i, $j++);
-				$meta_keyword = htmlspecialchars($meta_keyword);
+				$meta_keyword = htmlspecialchars_decode($meta_keyword, ENT_QUOTES);
 				$meta_keywords[$language_code] = $meta_keyword;
 			}
 
@@ -1229,6 +1230,7 @@ class ModelToolExportImport extends Model {
 		$model = $this->db->escape($product['model']);
 		$manufacturer_name = $this->db->escape($product['manufacturer_name']);
 		$image = $this->db->escape($product['image']);
+		$label = $this->db->escape($product['label']);
 		$shipping = $product['shipping'];
 		$shipping = ((strtoupper($shipping) == "YES") || (strtoupper($shipping) == "Y") || (strtoupper($shipping) == "TRUE")) ? 1 : 0;
 		$price = trim($product['price']);
@@ -1296,14 +1298,14 @@ class ModelToolExportImport extends Model {
 		$sql .= in_array('jan', $product_fields) ? "`jan`," : "";
 		$sql .= in_array('isbn', $product_fields) ? "`isbn`," : "";
 		$sql .= in_array('mpn', $product_fields) ? "`mpn`," : "";
-		$sql .= "`location`,`stock_status_id`,`model`,`manufacturer_id`,`image`,`shipping`,`price`,`cost`,`quote`,`age_minimum`,`points`,`date_added`,`date_modified`,`date_available`,`palette_id`,`weight`,`weight_class_id`,`status`,";
+		$sql .= "`location`,`stock_status_id`,`model`,`manufacturer_id`,`image`,`label`,`shipping`,`price`,`cost`,`quote`,`age_minimum`,`points`,`date_added`,`date_modified`,`date_available`,`palette_id`,`weight`,`weight_class_id`,`status`,";
 		$sql .= "`tax_class_id`,`viewed`,`length`,`width`,`height`,`length_class_id`,`sort_order`,`subtract`,`minimum`) VALUES";
 		$sql .= " ( $product_id, $quantity, '$sku', '$upc',";
 		$sql .= in_array('ean', $product_fields) ? " '$ean'," : "";
 		$sql .= in_array('jan', $product_fields) ? " '$jan'," : "";
 		$sql .= in_array('isbn', $product_fields) ? " '$isbn'," : "";
 		$sql .= in_array('mpn', $product_fields) ? " '$mpn'," : "";
-		$sql .= " '$location', $stock_status_id, '$model', $manufacturer_id, '$image', $shipping, $price, $cost, $quote, $age_minimum, $points,";
+		$sql .= " '$location', $stock_status_id, '$model', $manufacturer_id, '$image', '$label', $shipping, $price, $cost, $quote, $age_minimum, $points,";
 		$sql .= ($date_added == 'NOW()') ? " $date_added," : "' $date_added',";
 		$sql .= ($date_modified == 'NOW()') ? " $date_modified," : "' $date_modified',";
 		$sql .= ($date_available == 'NOW()') ? " $date_available," : "' $date_available',";
@@ -1558,7 +1560,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars($name);
+				$name = htmlspecialchars_decode($name, ENT_QUOTES);;
 				$names[$language_code] = $name;
 			}
 
@@ -1582,6 +1584,7 @@ class ModelToolExportImport extends Model {
 			$model = $this->getCell($data, $i, $j++, '   ');
 			$manufacturer_name = $this->getCell($data, $i, $j++);
 			$image_name = $this->getCell($data, $i, $j++);
+			$label_name = $this->getCell($data, $i, $j++);
 			$shipping = $this->getCell($data, $i, $j++, 'Yes');
 			$price = $this->getCell($data, $i, $j++, '0.00');
 			$cost = $this->getCell($data, $i, $j++, '0.00');
@@ -1610,7 +1613,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "description(")) {
 				$language_code = substr($first_row[$j-1], strlen("description("), strlen($first_row[$j-1])-strlen("description(")-1);
 				$description = $this->getCell($data, $i, $j++);
-				$description = htmlspecialchars($description);
+				$description = htmlspecialchars_decode($description, ENT_QUOTES);
 				$descriptions[$language_code] = $description;
 			}
 
@@ -1619,7 +1622,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "meta_description(")) {
 				$language_code = substr($first_row[$j-1], strlen("meta_description("), strlen($first_row[$j-1])-strlen("meta_description(")-1);
 				$meta_description = $this->getCell($data, $i, $j++);
-				$meta_description = htmlspecialchars($meta_description);
+				$meta_description = htmlspecialchars_decode($meta_description, ENT_QUOTES);
 				$meta_descriptions[$language_code] = $meta_description;
 			}
 
@@ -1628,7 +1631,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "meta_keywords(")) {
 				$language_code = substr($first_row[$j-1], strlen("meta_keywords("), strlen($first_row[$j-1])-strlen("meta_keywords(")-1);
 				$meta_keyword = $this->getCell($data, $i, $j++);
-				$meta_keyword = htmlspecialchars($meta_keyword);
+				$meta_keyword = htmlspecialchars_decode($meta_keyword, ENT_QUOTES);
 				$meta_keywords[$language_code] = $meta_keyword;
 			}
 
@@ -1642,7 +1645,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "tags(")) {
 				$language_code = substr($first_row[$j-1], strlen("tags("), strlen($first_row[$j-1])-strlen("tags(")-1);
 				$tag = $this->getCell($data, $i, $j++);
-				$tag = htmlspecialchars($tag);
+				$tag = htmlspecialchars_decode($tag, ENT_QUOTES);
 				$tags[$language_code] = $tag;
 			}
 
@@ -1654,7 +1657,9 @@ class ModelToolExportImport extends Model {
 
 			$product['product_id'] = $product_id;
 			$product['names'] = $names;
+
 			$categories = trim($this->clean($categories, false));
+
 			$product['categories'] = ($categories == "") ? array() : explode(",", $categories);
 			if ($product['categories'] === false) {
 				$product['categories'] = array();
@@ -1663,6 +1668,7 @@ class ModelToolExportImport extends Model {
 			$product['model'] = $model;
 			$product['manufacturer_name'] = $manufacturer_name;
 			$product['image'] = $image_name;
+			$product['label'] = $label_name;
 			$product['shipping'] = $shipping;
 			$product['price'] = $price;
 			$product['cost'] = $cost;
@@ -1761,7 +1767,7 @@ class ModelToolExportImport extends Model {
 	protected function deleteAdditionalImage(&$product_id) {
 		$old_product_image_ids = array();
 
-		$query = $this->db->query("SELECT product_image_id, product_id, image FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'");
+		$query = $this->db->query("SELECT product_image_id, product_id, image FROM `" . DB_PREFIX . "product_image` WHERE product_id = '" . (int)$product_id . "'");
 
 		foreach ($query->rows as $row) {
 			$product_image_id = $row['product_image_id'];
@@ -1772,7 +1778,7 @@ class ModelToolExportImport extends Model {
 		}
 
 		if ($old_product_image_ids) {
-			$this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'");
+			$this->db->query("DELETE FROM `" . DB_PREFIX . "product_image` WHERE product_id = '" . (int)$product_id . "'");
 		}
 
 		return $old_product_image_ids;
@@ -1780,7 +1786,7 @@ class ModelToolExportImport extends Model {
 
 	protected function deleteUnlistedAdditionalImages(&$unlisted_product_ids) {
 		foreach ($unlisted_product_ids as $product_id) {
-			$this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'");
+			$this->db->query("DELETE FROM `" . DB_PREFIX . "product_image` WHERE product_id = '" . (int)$product_id . "'");
 		}
 	}
 
@@ -2284,7 +2290,7 @@ class ModelToolExportImport extends Model {
 
 		foreach ($query->rows as $row) {
 			$option_id = $row['option_id'];
-			$name = htmlspecialchars_decode($row['name']);
+			$name = htmlspecialchars_decode($row['name'], ENT_QUOTES);
 
 			$option_ids[$name] = $option_id;
 		}
@@ -3079,7 +3085,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars($name);
+				$name = htmlspecialchars_decode($name, ENT_QUOTES);
 				$names[$language_code] = $name;
 			}
 
@@ -3207,7 +3213,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars($name);
+				$name = htmlspecialchars_decode($name, ENT_QUOTES);
 				$names[$language_code] = $name;
 			}
 
@@ -3313,7 +3319,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars($name);
+				$name = htmlspecialchars_decode($name, ENT_QUOTES);
 				$names[$language_code] = $name;
 			}
 
@@ -3419,7 +3425,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars($name);
+				$name = htmlspecialchars_decode($name, ENT_QUOTES);
 				$names[$language_code] = $name;
 			}
 
@@ -3519,7 +3525,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars($name);
+				$name = htmlspecialchars_decode($name, ENT_QUOTES);
 				$names[$language_code] = $name;
 			}
 
@@ -3625,7 +3631,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars($name);
+				$name = htmlspecialchars_decode($name, ENT_QUOTES);
 				$names[$language_code] = $name;
 			}
 
@@ -3816,7 +3822,7 @@ class ModelToolExportImport extends Model {
 			$expected_heading[] = "mpn";
 		}
 
-		$expected_heading = array_merge($expected_heading, array("location", "quantity", "model", "manufacturer_name", "image_name", "shipping", "price", "cost", "quote", "age_minimum", "points", "date_added"));
+		$expected_heading = array_merge($expected_heading, array("location", "quantity", "model", "manufacturer_name", "image_name", "label_name", "shipping", "price", "cost", "quote", "age_minimum", "points", "date_added"));
 		$expected_heading = array_merge($expected_heading, array("date_modified", "date_available", "palette_id", "weight", "weight_unit", "length", "width", "height", "length_unit", "status", "tax_class_id", "seo_keyword"));
 		$expected_heading = array_merge($expected_heading, array("description", "meta_description", "meta_keywords", "stock_status_id", "store_ids", "layout", "related_ids", "tags", "sort_order", "subtract", "minimum"));
 
@@ -4268,7 +4274,7 @@ class ModelToolExportImport extends Model {
 					}
 
 				} else {
-					$option_value_name = htmlspecialchars_decode($row['option_value_name']);
+					$option_value_name = htmlspecialchars_decode($row['option_value_name'], ENT_QUOTES);
 
 					if (!is_null($option_value_name)) {
 						$options[$option_id][$option_value_name] = true;
@@ -4276,7 +4282,7 @@ class ModelToolExportImport extends Model {
 				}
 
 			} else {
-				$option_name = htmlspecialchars_decode($row['option_name']);
+				$option_name = htmlspecialchars_decode($row['option_name'], ENT_QUOTES);
 
 				if (!isset($options[$option_name])) {
 					$options[$option_name] = array();
@@ -4290,7 +4296,7 @@ class ModelToolExportImport extends Model {
 					}
 
 				} else {
-					$option_value_name = htmlspecialchars_decode($row['option_value_name']);
+					$option_value_name = htmlspecialchars_decode($row['option_value_name'], ENT_QUOTES);
 
 					if (!is_null($option_value_name)) {
 						$options[$option_name][$option_value_name] = true;
@@ -4617,7 +4623,7 @@ class ModelToolExportImport extends Model {
 					}
 
 				} else {
-					$attribute_name = htmlspecialchars_decode($row['attribute_name']);
+					$attribute_name = htmlspecialchars_decode($row['attribute_name'], ENT_QUOTES);
 
 					if (!is_null($attribute_name)) {
 						$attribute_groups[$attribute_group_id][$attribute_name] = true;
@@ -4625,7 +4631,7 @@ class ModelToolExportImport extends Model {
 				}
 
 			} else {
-				$attribute_group_name = htmlspecialchars_decode($row['attribute_group_name']);
+				$attribute_group_name = htmlspecialchars_decode($row['attribute_group_name'], ENT_QUOTES);
 
 				if (!isset($attribute_groups[$attribute_group_name])) {
 					$attribute_groups[$attribute_group_name] = array();
@@ -4639,7 +4645,7 @@ class ModelToolExportImport extends Model {
 					}
 
 				} else {
-					$attribute_name = htmlspecialchars_decode($row['attribute_name']);
+					$attribute_name = htmlspecialchars_decode($row['attribute_name'], ENT_QUOTES);
 
 					if (!is_null($attribute_name)) {
 						$attribute_groups[$attribute_group_name][$attribute_name] = true;
@@ -4865,7 +4871,7 @@ class ModelToolExportImport extends Model {
 					}
 
 				} else {
-					$filter_name = htmlspecialchars_decode($row['filter_name']);
+					$filter_name = htmlspecialchars_decode($row['filter_name'], ENT_QUOTES);
 
 					if (!is_null($filter_name)) {
 						$filter_groups[$filter_group_id][$filter_name] = true;
@@ -4873,7 +4879,7 @@ class ModelToolExportImport extends Model {
 				}
 
 			} else {
-				$filter_group_name = htmlspecialchars_decode($row['filter_group_name']);
+				$filter_group_name = htmlspecialchars_decode($row['filter_group_name'], ENT_QUOTES);
 
 				if (!isset($filter_groups[$filter_group_name])) {
 					$filter_groups[$filter_group_name] = array();
@@ -4887,7 +4893,7 @@ class ModelToolExportImport extends Model {
 					}
 
 				} else {
-					$filter_name = htmlspecialchars_decode($row['filter_name']);
+					$filter_name = htmlspecialchars_decode($row['filter_name'], ENT_QUOTES);
 
 					if (!is_null($filter_name)) {
 						$filter_groups[$filter_group_name][$filter_name] = true;
@@ -5597,12 +5603,12 @@ class ModelToolExportImport extends Model {
 		$sql = "SELECT * FROM " . DB_PREFIX . "customer c";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "address a ON (a.address_id = c.address_id)";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " WHERE c.customer_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			$sql .= " WHERE c.customer_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 		}
 		$sql .= " GROUP BY c.customer_id";
 		$sql .= " ORDER BY c.lastname, c.firstname";
 		if (isset($offset) && isset($rows)) {
-			$sql .= " ASC LIMIT '" . $offset . "','" . $rows . "'";
+			$sql .= " ASC LIMIT '" . (int)$offset . "','" . (int)$rows . "'";
 		} else {
 			$sql .= " ASC";
 		}
@@ -5811,12 +5817,12 @@ class ModelToolExportImport extends Model {
 			$sql .= " LEFT JOIN " . DB_PREFIX . "category_description cd ON (cd.category_id = c.category_id)";
 			$sql .= " WHERE cd.language_id = '" . (int)$language_id . "'";
 			if (isset($min_id) && isset($max_id)) {
-				$sql .= " AND c.category_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+				$sql .= " AND c.category_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 			}
 			$sql .= " GROUP BY c.category_id";
 			$sql .= " ORDER BY c.category_id";
 			if (isset($offset) && isset($rows)) {
-				$sql .= " ASC LIMIT '" . $offset . "','" . $rows . "'";
+				$sql .= " ASC LIMIT '" . (int)$offset . "','" . (int)$rows . "'";
 			} else {
 				$sql .= " ASC";
 			}
@@ -5838,12 +5844,12 @@ class ModelToolExportImport extends Model {
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "url_alias` ua ON (ua.query = CONCAT('category_id=',c.category_id))";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "category_to_store cs ON (cs.category_id = c.category_id)";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " WHERE c.category_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			$sql .= " WHERE c.category_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 		}
 		$sql .= " GROUP BY c.category_id";
 		$sql .= " ORDER BY c.category_id";
 		if (isset($offset) && isset($rows)) {
-			$sql .= " ASC LIMIT '" . $offset . "','" . $rows . "'";
+			$sql .= " ASC LIMIT '" . (int)$offset . "','" . (int)$rows . "'";
 		} else {
 			$sql .= " ASC";
 		}
@@ -6069,7 +6075,7 @@ class ModelToolExportImport extends Model {
 		$sql .= " INNER JOIN `" . DB_PREFIX . "filter` f ON (f.filter_id = cf.filter_id)";
 		$sql .= " INNER JOIN " . DB_PREFIX . "filter_group fg ON (fg.filter_group_id = f.filter_group_id)";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " WHERE cf.category_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			$sql .= " WHERE cf.category_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 		}
 		$sql .= " ORDER BY cf.category_id ASC, fg.filter_group_id ASC, cf.filter_id ASC";
 
@@ -6180,12 +6186,12 @@ class ModelToolExportImport extends Model {
 		$sql .= " INNER JOIN " . DB_PREFIX . "product p ON (p.manufacturer_id = md.manufacturer_id)";
 		$sql .= " WHERE md.language_id = '" . (int)$language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " AND p.product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			$sql .= " AND p.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 		}
 		$sql .= " GROUP BY p.product_id";
 		$sql .= " ORDER BY p.product_id";
 		if (isset($offset) && isset($rows)) {
-			$sql .= " ASC LIMIT '" . $offset . "','" . $rows . "'";
+			$sql .= " ASC LIMIT '" . (int)$offset . "','" . (int)$rows . "'";
 		} else {
 			$sql .= " ASC";
 		}
@@ -6258,12 +6264,12 @@ class ModelToolExportImport extends Model {
 			$sql = "SELECT product_id, name, description, meta_description, meta_keyword, GROUP_CONCAT(tag SEPARATOR \",\") AS tag";
 			$sql .= " FROM " . DB_PREFIX . "product_description WHERE language_id = '" . (int)$language_id . "'";
 			if (isset($min_id) && isset($max_id)) {
-				$sql .= " AND product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+				$sql .= " AND product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 			}
 			$sql .= " GROUP BY product_id, language_id";
 			$sql .= " ORDER BY product_id";
 			if (isset($offset) && isset($rows)) {
-				$sql .= " ASC LIMIT '" . $offset . "','" . $rows . "'";
+				$sql .= " ASC LIMIT '" . (int)$offset . "','" . (int)$rows . "'";
 			} else {
 				$sql .= " ASC";
 			}
@@ -6301,6 +6307,7 @@ class ModelToolExportImport extends Model {
 		$sql .= " p.model,";
 		$sql .= " md.name AS manufacturer_name,";
 		$sql .= " p.image AS image_name,";
+		$sql .= " p.label AS label_name,";
 		$sql .= " p.shipping,";
 		$sql .= " p.price,";
 		$sql .= " p.cost,";
@@ -6329,17 +6336,17 @@ class ModelToolExportImport extends Model {
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category pc ON (pc.product_id = p.product_id)";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product_to_store ps ON (ps.product_id = p.product_id)";
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "url_alias` ua ON (ua.query=CONCAT('product_id=',p.product_id))";
-		$sql .= " LEFT JOIN " . DB_PREFIX . "manufacturer_description md ON (md.manufacturer_id = p.manufacturer_id) AND md.language_id = '" . $default_language_id . "'";
-		$sql .= " LEFT JOIN " . DB_PREFIX . "weight_class_description wc ON (wc.weight_class_id = p.weight_class_id) AND wc.language_id = '" . $default_language_id . "'";
-		$sql .= " LEFT JOIN " . DB_PREFIX . "length_class_description mc ON (mc.length_class_id = p.length_class_id) AND mc.language_id = '" . $default_language_id . "'";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "manufacturer_description md ON (md.manufacturer_id = p.manufacturer_id) AND md.language_id = '" . (int)$default_language_id . "'";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "weight_class_description wc ON (wc.weight_class_id = p.weight_class_id) AND wc.language_id = '" . (int)$default_language_id . "'";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "length_class_description mc ON (mc.length_class_id = p.length_class_id) AND mc.language_id = '" . (int)$default_language_id . "'";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product_related pr ON (pr.product_id = p.product_id)";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " WHERE p.product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			$sql .= " WHERE p.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 		}
 		$sql .= " GROUP BY p.product_id";
 		$sql .= " ORDER BY p.product_id";
 		if (isset($offset) && isset($rows)) {
-			$sql .= " ASC LIMIT '" . $offset . "','" . $rows . "'";
+			$sql .= " ASC LIMIT '" . (int)$offset . "','" . (int)$rows . "'";
 		} else {
 			$sql .= " ASC";
 		}
@@ -6424,6 +6431,7 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('model'), 16)+1, $text_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('manufacturer_name'), 16)+1, $text_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('image_name')+4, 36)+1, $text_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('label_name')+4, 36)+1, $text_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('shipping'), 5)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('price'), 10)+1, $price_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('cost'), 10)+1, $price_format);
@@ -6506,6 +6514,8 @@ class ModelToolExportImport extends Model {
 		$data[$j++] = 'manufacturer_name';
 		$styles[$j] = $text_format;
 		$data[$j++] = 'image_name';
+		$styles[$j] = $text_format;
+		$data[$j++] = 'label_name';
 		$data[$j++] = 'shipping';
 		$styles[$j] = $price_format;
 		$data[$j++] = 'price';
@@ -6608,6 +6618,7 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['model'];
 			$data[$j++] = $row['manufacturer_name'];
 			$data[$j++] = $row['image_name'];
+			$data[$j++] = $row['label_name'];
 			$data[$j++] = ($row['shipping'] == 0) ? 'no' : 'yes';
 			$data[$j++] = $row['price'];
 			$data[$j++] = $row['cost'];
@@ -6669,7 +6680,7 @@ class ModelToolExportImport extends Model {
 	protected function getAdditionalImages($min_id = null, $max_id = null) {
 		$sql = "SELECT product_id, image, sort_order FROM " . DB_PREFIX . "product_image";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " WHERE product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			$sql .= " WHERE product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 		}
 		$sql .= " ORDER BY product_id, sort_order, image";
 
@@ -6730,7 +6741,7 @@ class ModelToolExportImport extends Model {
 		$sql .= " LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (cgd.customer_group_id = ps.customer_group_id)";
 		$sql .= " WHERE cgd.language_id = '" . $language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " AND ps.product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			$sql .= " AND ps.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 		}
 		$sql .= " ORDER BY ps.product_id, cgd.name, ps.priority";
 
@@ -6803,7 +6814,7 @@ class ModelToolExportImport extends Model {
 		$sql .= " LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (cgd.customer_group_id = pd.customer_group_id)";
 		$sql .= " WHERE cgd.language_id = '" . $language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " AND pd.product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			$sql .= " AND pd.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 		}
 		$sql .= " ORDER BY pd.product_id ASC, cgd.name ASC, pd.quantity ASC";
 
@@ -6879,7 +6890,7 @@ class ModelToolExportImport extends Model {
 		$sql .= " LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (cgd.customer_group_id = pr.customer_group_id)";
 		$sql .= " WHERE cgd.language_id = '" . $language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " AND pr.product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			$sql .= " AND pr.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 		}
 		$sql .= " ORDER BY pr.product_id, name";
 
@@ -6950,7 +6961,7 @@ class ModelToolExportImport extends Model {
 		}
 		$sql .= " (SELECT product_id FROM " . DB_PREFIX . "product";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " WHERE product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			$sql .= " WHERE product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 		}
 		$sql .= " ORDER BY product_id ASC) AS p";
 		$sql .= " INNER JOIN " . DB_PREFIX . "product_option po ON (po.product_id = p.product_id)";
@@ -7031,7 +7042,7 @@ class ModelToolExportImport extends Model {
 		$sql .= " pov.price, pov.price_prefix, pov.points, pov.points_prefix, pov.weight, pov.weight_prefix";
 		$sql .= " FROM (SELECT product_id FROM " . DB_PREFIX . "product";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " WHERE product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			$sql .= " WHERE product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 		}
 		$sql .= " ORDER BY product_id ASC) AS p";
 		$sql .= " INNER JOIN " . DB_PREFIX . "product_option_value pov ON (pov.product_id = p.product_id)";
@@ -7186,7 +7197,7 @@ class ModelToolExportImport extends Model {
 		$sql .= " INNER JOIN " . DB_PREFIX . "attribute a ON (a.attribute_id = pa.attribute_id)";
 		$sql .= " INNER JOIN " . DB_PREFIX . "attribute_group ag ON (ag.attribute_group_id = a.attribute_group_id)";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " WHERE pa.product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			$sql .= " WHERE pa.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 		}
 		$sql .= " ORDER BY pa.product_id ASC, ag.attribute_group_id ASC, pa.attribute_id ASC";
 
@@ -7330,7 +7341,7 @@ class ModelToolExportImport extends Model {
 		$sql .= " INNER JOIN `" . DB_PREFIX . "filter` f ON (f.filter_id = pf.filter_id)";
 		$sql .= " INNER JOIN " . DB_PREFIX . "filter_group fg ON (fg.filter_group_id = f.filter_group_id)";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " WHERE pf.product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			$sql .= " WHERE pf.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 		}
 		$sql .= " ORDER BY pf.product_id ASC, fg.filter_group_id ASC, pf.filter_id ASC";
 
