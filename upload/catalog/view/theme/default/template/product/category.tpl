@@ -84,6 +84,10 @@
           <?php if (!$product['stock_label'] && !$product['offer'] && $product['special']) { ?>
             <div class="special-medium"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
           <?php } ?>
+          <?php if ($product['label']) { ?>
+            <div class="product-list-label">
+            <img src="<?php echo $product['label']; ?>" alt="" height:<?php echo $product['label_style']; ?> width:<?php echo $product['label_style']; ?> /></div>
+          <?php } ?>
           <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
         <?php } ?>
         <div class="manufacturer"><?php echo $this->config->get($template . '_manufacturer_name') ? $product['manufacturer'] : ""; ?></div>
@@ -155,7 +159,7 @@ function display(view) {
 		$('.product-grid').attr('class', 'product-list');
 
 		$('.product-list > div').each(function(index, element) {
-			html  = '<div class="right">';
+			html = '<div class="right">';
 			html += '  <div class="addons">' + $(element).find('.addons').html() + '</div>';
 			html += '  <div class="cart">' + $(element).find('.cart').html() + '</div>';
 			html += '</div>';
