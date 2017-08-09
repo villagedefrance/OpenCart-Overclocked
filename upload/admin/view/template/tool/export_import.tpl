@@ -105,7 +105,7 @@
               </td>
             </tr>
             <tr>
-              <td class="buttons"><a onclick="downloadData();" class="button-filter"><?php echo $button_export; ?></a></td>
+              <td class="buttons"><a onclick="downloadData();" class="button-filter"><i class="fa fa-download"></i> &nbsp;&nbsp; <?php echo $button_export; ?></a></td>
             </tr>
           </table>
         </form>
@@ -138,7 +138,7 @@
               <td><input type="file" name="upload" id="upload" class="custom-input-class" /></td>
             </tr>
             <tr>
-              <td class="buttons"><a onclick="uploadData();" class="button-filter"><?php echo $button_import; ?></a></td>
+              <td class="buttons"><a onclick="uploadData();" class="button-filter"><i class="fa fa-upload"></i> &nbsp;&nbsp; <?php echo $button_import; ?></a></td>
             </tr>
           </table>
         </form>
@@ -281,7 +281,7 @@
               </td>
             </tr>
             <tr>
-              <td class="buttons"><a onclick="updateSettings();" class="button-filter"><?php echo $button_settings; ?></a></td>
+              <td class="buttons"><a onclick="updateSettings();" class="button-filter"><i class="fa fa-gears"></i> &nbsp;&nbsp; <?php echo $button_settings; ?></a></td>
             </tr>
           </table>
         </form>

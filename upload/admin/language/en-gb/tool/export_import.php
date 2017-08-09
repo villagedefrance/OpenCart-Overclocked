@@ -44,7 +44,7 @@ $_['entry_settings_use_attribute_group_id']             = 'Use <b>attribute_grou
 $_['entry_settings_use_attribute_id']                   = 'Use <b>attribute_id</b> instead of <b>attribute name</b> in worksheet \'ProductAttributes\'';
 $_['entry_settings_use_filter_group_id']                = 'Use <b>filter_group_id</b> instead of <b>filter_group name</b> in worksheets \'ProductFilters\' and \'CategoryFilters\'';
 $_['entry_settings_use_filter_id']                      = 'Use <b>filter_id</b> instead of <b>filter name</b> in worksheets \'ProductFilters\' and \'CategoryFilters\'';
-$_['entry_settings_use_export_tags']                    = 'Use <b>html tags</b> when exporting Html content. Note: this generates duplicates when Html can not be converted, but preserves the formatting.';
+$_['entry_settings_use_export_tags']                    = 'Use <b>html tags</b> when exporting Html content (Recommended).<br />Note: this may generate duplicates when Html can not be converted, but does preserve the formatting.';
 $_['entry_settings_use_export_pclzip']                  = 'Use Export and Import with <b>PclZip</b>. (Beta)';
 $_['entry_settings_use_export_cache']                   = 'Use phpTemp cache for large Exports (will be slightly slower)';
 $_['entry_settings_use_import_cache']                   = 'Use phpTemp cache for large Imports (will be slightly slower)';
@@ -199,7 +199,7 @@ $_['text_phpexcel_license']                             = 'PHPExcel License:';
 
 // Version
 $_['export_import_description']                         = '<b>Export / Import</b> is a spreadsheet importer-exporter for Opencart Overclocked Edition, based on the original <b>Export/Import Tool</b> by JNeuhoff, and integrating the latest <b>PHPExcel</b> Core Files!';
-$_['export_import_version']                             = '1.9.5 - Overclocked Edition';
+$_['export_import_version']                             = '1.10.0 - Overclocked Edition';
 $_['export_import_author']                              = 'Villagedefrance';
 $_['export_import_support']                             = 'contact@villagedefrance.net';
 $_['export_import_license']                             = 'GPLv3 (GNU General Public License)';

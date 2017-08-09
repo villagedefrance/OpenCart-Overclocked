@@ -226,7 +226,7 @@ class ModelToolExportImport extends Model {
 
 	// Find all manufacturers already stored in the database
 	protected function getManufacturers() {
-		$default_language_id = getDefaultLanguageId();
+		$default_language_id = $this->getDefaultLanguageId();
 
 		$manufacturers = array();
 
