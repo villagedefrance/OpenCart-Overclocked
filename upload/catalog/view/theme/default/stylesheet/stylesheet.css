@@ -1536,6 +1536,13 @@ ul.box-filter > li ul {
 	border-top: 1px solid #E7E7E7;
 	padding-top: 16px;
 }
+.product-list .product-label {
+	position: relative;
+	top: 0;
+	display: block;
+	padding: 0px;
+	z-index: 9;
+}
 .product-list .image {
 	float: left;
 	margin-right: 10px;
@@ -1625,6 +1632,13 @@ ul.box-filter > li ul {
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
+}
+.product-grid .product-label {
+	position: relative;
+	top: 0;
+	display: block;
+	padding: 0px;
+	z-index: 9;
 }
 .product-grid .image {
 	display: block;
@@ -2034,6 +2048,13 @@ ul.box-filter > li ul {
 	border-top: 1px solid #E7E7E7;
 	padding-top: 16px;
 }
+.review-list .product-label {
+	position: relative;
+	top: 0;
+	display: block;
+	padding: 0px;
+	z-index: 9;
+}
 .review-list .image {
 	float: left;
 	margin-right: 10px;
@@ -2097,6 +2118,13 @@ ul.box-filter > li ul {
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
+}
+.review-grid .product-label {
+	position: relative;
+	top: 0;
+	display: block;
+	padding: 0px;
+	z-index: 9;
 }
 .review-grid .image {
 	display: block;

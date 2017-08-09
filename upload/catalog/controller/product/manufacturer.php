@@ -233,8 +233,18 @@ class ControllerProductManufacturer extends Controller {
 			foreach ($results as $result) {
 				if ($result['image']) {
 					$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+					$label_ratio = round((($this->config->get('config_image_product_width') * $this->config->get('config_label_size_ratio')) / 100), 0);
 				} else {
 					$image = false;
+					$label_ratio = 50;
+				}
+
+				if ($result['label']) {
+					$label = $this->model_tool_image->resize($result['label'], round(($this->config->get('config_image_product_width') / 3), 0), round(($this->config->get('config_image_product_height') / 3), 0));
+					$label_style = round(($this->config->get('config_image_product_width') / 3), 0);
+				} else {
+					$label = '';
+					$label_style = '';
 				}
 
 				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
@@ -248,7 +258,7 @@ class ControllerProductManufacturer extends Controller {
 				}
 
 				if ((float)$result['special']) {
-					$special_label = $this->model_tool_image->resize($this->config->get('config_label_special'), 50, 50);
+					$special_label = $this->model_tool_image->resize($this->config->get('config_label_special'), $label_ratio, $label_ratio);
 					$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
 				} else {
 					$special_label = false;
@@ -268,13 +278,13 @@ class ControllerProductManufacturer extends Controller {
 				}
 
 				if ($result['quantity'] <= 0) {
-					$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), 50, 50);
+					$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), $label_ratio, $label_ratio);
 				} else {
 					$stock_label = false;
 				}
 
 				if (in_array($result['product_id'], $offers, true)) {
-					$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), 50, 50);
+					$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), $label_ratio, $label_ratio);
 					$offer = true;
 				} else {
 					$offer_label = false;
@@ -309,6 +319,8 @@ class ControllerProductManufacturer extends Controller {
 				$this->data['products'][] = array(
 					'product_id'      => $result['product_id'],
 					'thumb'           => $image,
+					'label'           => $label,
+					'label_style'     => $label_style,
 					'stock_label'     => $stock_label,
 					'offer_label'     => $offer_label,
 					'special_label'   => $special_label,

@@ -50,6 +50,11 @@
             <?php if (!$review['stock_label'] && !$review['offer'] && $review['special']) { ?>
               <div class="special-medium"><img src="<?php echo $review['special_label']; ?>" alt="" /></div>
             <?php } ?>
+            <?php if ($review['label']) { ?>
+              <div class="product-label">
+                <img src="<?php echo $review['label']; ?>" alt="" height="<?php echo $review['label_style']; ?>" width="<?php echo $review['label_style']; ?>" style="margin:0px 0px -<?php echo $review['label_style']; ?>px <?php echo ($review['label_style'] * 2); ?>px;" />
+              </div>
+            <?php } ?>
             <div class="image"><a href="<?php echo $review['href']; ?>"><img src="<?php echo $review['thumb']; ?>" alt="<?php echo $review['name']; ?>" /></a></div>
           <?php } ?>
           <div class="name">
@@ -127,19 +132,25 @@ function display(view) {
 				var stock = $(element).find('.stock-medium').html();
 
 				if (stock != null) {
-					html += '<div class="stock-medium">' + $(element).find('.stock-medium').html() + '</div>';
+					html += '<div class="stock-medium">' + stock + '</div>';
 				}
 
 				var offer = $(element).find('.offer-medium').html();
 
 				if (offer != null) {
-					html += '<div class="offer-medium">' + $(element).find('.offer-medium').html() + '</div>';
+					html += '<div class="offer-medium">' + offer + '</div>';
 				}
 
 				var special = $(element).find('.special-medium').html();
 
 				if (special != null) {
-					html += '<div class="special-medium">' + $(element).find('.special-medium').html() + '</div>';
+					html += '<div class="special-medium">' + special + '</div>';
+				}
+
+				var label = $(element).find('.product-label').html();
+
+				if (label != null) {
+					html += '<div class="product-label">' + label + '</div>';
 				}
 
 				html += '<div class="image">' + image + '</div>';
@@ -190,19 +201,25 @@ function display(view) {
 				var stock = $(element).find('.stock-medium').html();
 
 				if (stock != null) {
-					html += '<div class="stock-medium">' + $(element).find('.stock-medium').html() + '</div>';
+					html += '<div class="stock-medium">' + stock + '</div>';
 				}
 
 				var offer = $(element).find('.offer-medium').html();
 
 				if (offer != null) {
-					html += '<div class="offer-medium">' + $(element).find('.offer-medium').html() + '</div>';
+					html += '<div class="offer-medium">' + offer + '</div>';
 				}
 
 				var special = $(element).find('.special-medium').html();
 
 				if (special != null) {
-					html += '<div class="special-medium">' + $(element).find('.special-medium').html() + '</div>';
+					html += '<div class="special-medium">' + special + '</div>';
+				}
+
+				var label = $(element).find('.product-label').html();
+
+				if (label != null) {
+					html += '<div class="product-label">' + label + '</div>';
 				}
 
 				html += '<div class="image">' + image + '</div>';

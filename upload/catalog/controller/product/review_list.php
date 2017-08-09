@@ -156,6 +156,14 @@ class ControllerProductReviewList extends Controller {
 					$label_ratio = 50;
 				}
 
+				if ($result['label']) {
+					$label = $this->model_tool_image->resize($result['label'], round(($this->config->get('config_image_product_width') / 3), 0), round(($this->config->get('config_image_product_height') / 3), 0));
+					$label_style = round(($this->config->get('config_image_product_width') / 3), 0);
+				} else {
+					$label = '';
+					$label_style = '';
+				}
+
 				if ((float)$result['special']) {
 					$special_label = $this->model_tool_image->resize($this->config->get('config_label_special'), $label_ratio, $label_ratio);
 					$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
@@ -214,6 +222,8 @@ class ControllerProductReviewList extends Controller {
 				$this->data['reviews'][] = array(
 					'product_id'      => $result['product_id'],
 					'thumb'           => $image,
+					'label'           => $label,
+					'label_style'     => $label_style,
 					'stock_label'     => $stock_label,
 					'offer_label'     => $offer_label,
 					'special_label'   => $special_label,

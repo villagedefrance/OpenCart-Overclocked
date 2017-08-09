@@ -34,7 +34,7 @@
           <?php } ?>
           <?php if ($label) { ?>
             <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0px 0px -<?php echo $label_style; ?>px 0px;">
-            <img src="<?php echo $label; ?>" alt="" height:<?php echo $label_style; ?> width:<?php echo $label_style; ?> /></div>
+            <img src="<?php echo $label; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
             <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
@@ -61,7 +61,7 @@
           <?php } ?>
           <?php if ($label) { ?>
             <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0px 0px -<?php echo $label_style; ?>px 0px;">
-            <img src="<?php echo $label; ?>" alt="" height:<?php echo $label_style; ?> width:<?php echo $label_style; ?> /></div>
+            <img src="<?php echo $label; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
             <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="fancybox" rel="gallery"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
@@ -88,7 +88,7 @@
           <?php } ?>
           <?php if ($label) { ?>
             <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0px 0px -<?php echo $label_style; ?>px 0px;">
-            <img src="<?php echo $label; ?>" alt="" height:<?php echo $label_style; ?> width:<?php echo $label_style; ?> /></div>
+            <img src="<?php echo $label; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
             <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="magnific"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
@@ -115,7 +115,7 @@
           <?php } ?>
           <?php if ($label) { ?>
             <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0px 0px -<?php echo $label_style; ?>px 0px;">
-            <img src="<?php echo $label; ?>" alt="" height:<?php echo $label_style; ?> width:<?php echo $label_style; ?> /></div>
+            <img src="<?php echo $label; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
             <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="swipebox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
@@ -142,7 +142,7 @@
           <?php } ?>
           <?php if ($label) { ?>
             <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0px 0px -<?php echo $label_style; ?>px 0px;">
-            <img src="<?php echo $label; ?>" alt="" height:<?php echo $label_style; ?> width:<?php echo $label_style; ?> /></div>
+            <img src="<?php echo $label; ?>" alt="" /></div>
           <?php } ?>
           <div class="simpleLens-gallery-container" id="zoom">
             <div class="simpleLens-container">
@@ -571,7 +571,7 @@
             <?php } ?>
             <?php if ($product['label']) { ?>
               <div class="product-label" style="left:<?php echo $product['label_style']; ?>px; margin:0px 0px -<?php echo $product['label_style']; ?>px 0px;">
-              <img src="<?php echo $product['label']; ?>" alt="" height:<?php echo $product['label_style']; ?> width:<?php echo $product['label_style']; ?> /></div>
+              <img src="<?php echo $product['label']; ?>" alt="" height="<?php echo $product['label_style']; ?>" width="<?php echo $product['label_style']; ?>" /></div>
             <?php } ?>
             <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
           <?php } ?>

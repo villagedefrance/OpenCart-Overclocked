@@ -85,8 +85,9 @@
             <div class="special-medium"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($product['label']) { ?>
-            <div class="product-list-label">
-            <img src="<?php echo $product['label']; ?>" alt="" height:<?php echo $product['label_style']; ?> width:<?php echo $product['label_style']; ?> /></div>
+            <div class="product-label">
+              <img src="<?php echo $product['label']; ?>" alt="" height="<?php echo $product['label_style']; ?>" width="<?php echo $product['label_style']; ?>" style="margin:0px 0px -<?php echo $product['label_style']; ?>px <?php echo ($product['label_style'] * 2); ?>px;" />
+            </div>
           <?php } ?>
           <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
         <?php } ?>
@@ -172,19 +173,25 @@ function display(view) {
 				var stock = $(element).find('.stock-medium').html();
 
 				if (stock != null) {
-					html += '<div class="stock-medium">' + $(element).find('.stock-medium').html() + '</div>';
+					html += '<div class="stock-medium">' + stock + '</div>';
 				}
 
 				var offer = $(element).find('.offer-medium').html();
 
 				if (offer != null) {
-					html += '<div class="offer-medium">' + $(element).find('.offer-medium').html() + '</div>';
+					html += '<div class="offer-medium">' + offer + '</div>';
 				}
 
 				var special = $(element).find('.special-medium').html();
 
 				if (special != null) {
-					html += '<div class="special-medium">' + $(element).find('.special-medium').html() + '</div>';
+					html += '<div class="special-medium">' + special + '</div>';
+				}
+
+				var label = $(element).find('.product-label').html();
+
+				if (label != null) {
+					html += '<div class="product-label">' + label + '</div>';
 				}
 
 				html += '<div class="image">' + image + '</div>';
@@ -233,19 +240,25 @@ function display(view) {
 				var stock = $(element).find('.stock-medium').html();
 
 				if (stock != null) {
-					html += '<div class="stock-medium">' + $(element).find('.stock-medium').html() + '</div>';
+					html += '<div class="stock-medium">' + stock + '</div>';
 				}
 
 				var offer = $(element).find('.offer-medium').html();
 
 				if (offer != null) {
-					html += '<div class="offer-medium">' + $(element).find('.offer-medium').html() + '</div>';
+					html += '<div class="offer-medium">' + offer + '</div>';
 				}
 
 				var special = $(element).find('.special-medium').html();
 
 				if (special != null) {
-					html += '<div class="special-medium">' + $(element).find('.special-medium').html() + '</div>';
+					html += '<div class="special-medium">' + special + '</div>';
+				}
+
+				var label = $(element).find('.product-label').html();
+
+				if (label != null) {
+					html += '<div class="product-label">' + label + '</div>';
 				}
 
 				html += '<div class="image">' + image + '</div>';
