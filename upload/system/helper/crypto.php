@@ -77,7 +77,7 @@ function hash_rand($algo = 'md5', $len = 12) {
 	 * to finish so we only use this function with PHP 5.3.7 and above.
 	 * @see https://bugs.php.net/bug.php?id=55169
 	 */
-	if (function_exists('mcrypt_create_iv') && (version_compare(PHP_VERSION, '5.3.7') >= 0 || substr(PHP_OS, 0, 3) !== 'WIN')) {
+	if (function_exists('mcrypt_create_iv') && (version_compare(PHP_VERSION, '5.3.7') >= 0 && phpversion() < '7.1' || substr(PHP_OS, 0, 3) !== 'WIN')) {
 		$str = mcrypt_create_iv($len, MCRYPT_DEV_URANDOM);
 
 		if ($str !== false) {
