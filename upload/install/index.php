@@ -48,7 +48,7 @@ $registry->set('response', $response);
 
 // Language
 $language = new Language('english');
-$language->load('en-gb');
+$language->load('english');
 $registry->set('language', $language);
 
 // Document
