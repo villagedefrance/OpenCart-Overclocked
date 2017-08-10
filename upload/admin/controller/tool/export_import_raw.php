@@ -50,7 +50,6 @@ class ControllerToolExportImportRaw extends Controller {
 
 		$this->data['help_function'] = $this->language->get('help_function');
 		$this->data['help_caution'] = $this->language->get('help_caution');
-		$this->data['help_warning'] = $this->language->get('help_warning');
 
 		$this->data['button_import'] = $this->language->get('button_import');
 		$this->data['button_export'] = $this->language->get('button_export');

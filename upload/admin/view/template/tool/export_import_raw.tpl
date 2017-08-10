@@ -15,7 +15,7 @@
     <div class="heading">
       <h1><img src="view/image/backup.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $refresh; ?>';" class="button"><?php echo $button_refresh; ?></a>
+        <a onclick="location = '<?php echo $refresh; ?>';" class="button"><i class="fa fa-refresh"></i> &nbsp; <?php echo $button_refresh; ?></a>
         <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>
@@ -30,7 +30,7 @@
           </tr>
           <tr>
             <td width="20%"></td>
-            <td><a onclick="$('#import-raw').submit();" class="button-filter"><?php echo $button_import; ?></a></td>
+            <td><a onclick="$('#import-raw').submit();" class="button-filter"><i class="fa fa-upload"></i> &nbsp;&nbsp; <?php echo $button_import; ?></a></td>
           </tr>
         </table>
       </form>
@@ -47,7 +47,7 @@
           </tr>
           <tr>
             <td width="20%"></td>
-            <td><a onclick="$('#export-raw').submit();" class="button-filter"><?php echo $button_export; ?></a></td>
+            <td><a onclick="$('#export-raw').submit();" class="button-filter"><i class="fa fa-download"></i> &nbsp;&nbsp; <?php echo $button_export; ?></a></td>
           </tr>
         </table>
         <h2><?php echo $heading_parameter; ?></h2>
@@ -78,7 +78,6 @@
         </table>
       </form>
       <div class="attention" style="margin:35px 0px 5px 0px;"><?php echo $help_caution; ?></div>
-      <div class="warning" style="margin:15px 0px 5px 0px;"><?php echo $help_warning; ?></div>
     </div>
   </div>
 </div>
