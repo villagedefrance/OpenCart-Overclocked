@@ -1,8 +1,8 @@
 <?php
 // Version
-define('VERSION', '1.10.0 Beta');
-define('REVISION', 20170730);
-define('RELEASED', '2017-07-30');
+define('VERSION', '1.10.0 RC1');
+define('REVISION', 20170810);
+define('RELEASED', '2017-08-10');
 
 // Configuration
 if (file_exists('config.php')) {
@@ -40,7 +40,7 @@ $db = new DB(DB_DRIVER, DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE, DB_P
 $registry->set('db', $db);
 
 // Settings
-$query = $db->query("SELECT * FROM " . DB_PREFIX . "setting WHERE store_id = '0'");
+$query = $db->query("SELECT * FROM `" . DB_PREFIX . "setting` WHERE store_id = '0'");
 
 foreach ($query->rows as $setting) {
 	if (!$setting['serialized']) {
