@@ -257,7 +257,7 @@ class Cart {
 					$profile_name = '';
 
 					if ($profile_id) {
-						$profile_info = $this->db->query("SELECT * FROM " . DB_PREFIX . "profile p JOIN " . DB_PREFIX . "product_profile pp ON (pp.profile_id = p.profile_id) AND pp.product_id = " . (int)$product_query->row['product_id'] . " JOIN " . DB_PREFIX . "profile_description pd ON (pd.profile_id = p.profile_id) AND pd.language_id = " . (int)$this->config->get('config_language_id') . " WHERE pp.profile_id = " . (int)$profile_id . " AND status = 1 AND pp.customer_group_id = " . (int)$customer_group_id)->row;
+						$profile_info = $this->db->query("SELECT * FROM `" . DB_PREFIX . "profile` p JOIN " . DB_PREFIX . "product_profile pp ON (pp.profile_id = p.profile_id) AND pp.product_id = " . (int)$product_query->row['product_id'] . " JOIN " . DB_PREFIX . "profile_description pd ON (pd.profile_id = p.profile_id) AND pd.language_id = " . (int)$this->config->get('config_language_id') . " WHERE pp.profile_id = " . (int)$profile_id . " AND status = 1 AND pp.customer_group_id = " . (int)$customer_group_id)->row;
 
 						if ($profile_info) {
 							$profile_name = $profile_info['name'];

@@ -133,37 +133,7 @@
         <?php if ($order_status) { ?>
         <tr>
           <td><?php echo $text_order_status; ?></td>
-          <td id="order-status"><?php echo $order_status; ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <div class="toggler">
-              <table class="form-slim">
-                <tr class="highlighted">
-                  <td><?php echo $entry_order_status; ?></td>
-                  <td>
-                    <input type="hidden" name="old_order_status_id" value="<?php echo $order_status_id; ?>" id="old_order_status_id" />
-                    <select name="order_status_id"><?php foreach ($order_statuses as $order_statuses) { ?>
-                    <?php if ($order_statuses['order_status_id'] == $order_status_id) { ?>
-                      <option value="<?php echo $order_statuses['order_status_id']; ?>" selected="selected"><?php echo $order_statuses['name']; ?></option>
-                    <?php } else { ?>
-                      <option value="<?php echo $order_statuses['order_status_id']; ?>"><?php echo $order_statuses['name']; ?></option>
-                    <?php } ?>
-                    <?php } ?></select>
-                  </td>
-                </tr>
-                <tr class="highlighted">
-                  <td><?php echo $entry_notify; ?></td>
-                  <td><input type="checkbox" name="notify" value="1" id="notify" class="checkbox" />
-                    <label for="notify"><span></span></label>
-                  </td>
-                </tr>
-                <tr class="highlighted">
-                  <td><?php echo $entry_comment; ?></td>
-                  <td><textarea name="comment" cols="20" rows="5" style="width:99%;"></textarea>
-                    <div style="margin-top:10px;"><a id="button-history" class="button"><?php echo $button_add_history; ?></a></div>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </td>
+          <td id="order-status"><?php echo $order_status; ?></td>
         </tr>
         <?php } ?>
         <?php if ($comment) { ?>
@@ -483,6 +453,36 @@
     <?php } ?>
     <div id="tab-history" class="vtabs-content">
       <div id="history"></div>
+      <table class="form">
+        <tr>
+          <td><?php echo $entry_order_status; ?></td>
+          <td>
+            <input type="hidden" name="old_order_status_id" value="<?php echo $order_status_id; ?>" id="old_order_status_id" />
+            <select name="order_status_id">
+            <?php foreach ($order_statuses as $order_statuses) { ?>
+              <?php if ($order_statuses['order_status_id'] == $order_status_id) { ?>
+                <option value="<?php echo $order_statuses['order_status_id']; ?>" selected="selected"><?php echo $order_statuses['name']; ?></option>
+              <?php } else { ?>
+                <option value="<?php echo $order_statuses['order_status_id']; ?>"><?php echo $order_statuses['name']; ?></option>
+              <?php } ?>
+            <?php } ?>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><?php echo $entry_notify; ?></td>
+          <td>
+            <input type="checkbox" name="notify" value="1" id="notify" class="checkbox" />
+            <label for="notify"><span></span></label>
+          </td>
+        </tr>
+        <tr>
+          <td><?php echo $entry_comment; ?></td>
+          <td><textarea name="comment" cols="40" rows="8" style="width:99%;"></textarea>
+            <div style="margin-top:10px; text-align:center;"><a id="button-history" class="button"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; <?php echo $button_add_history; ?></a></div>
+          </td>
+        </tr>
+      </table>
     </div>
     <?php foreach ($tabs as $tab) { ?>
       <div id="tab-<?php echo $tab['code']; ?>" class="vtabs-content"><?php echo $tab['content']; ?></div>
@@ -490,16 +490,6 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript"><!--
-$(document).ready(function() {
-	$('.toggler').hide().before('<a id="<?php echo 'toggler'; ?>" class="button" style="margin:10px auto;"><i class="fa fa-caret-down"></i> &nbsp; <?php echo $button_update; ?></a>');
-	$('#<?php echo 'toggler'; ?>').click(function() {
-		$('.toggler').slideToggle(600);
-		return false;
-	});
-});
-//--></script>
 
 <script type="text/javascript"><!--
 $('#invoice-generate').live('click', function() {
@@ -606,7 +596,7 @@ $('#reward-add').live('click', function() {
 			}
 
 			if (json['success']) {
-                $('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
+				$('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
 				$('.success').fadeIn('slow');
 				$('#reward').html('<a id="reward-remove" class="button-form"><?php echo $text_reward_remove; ?></a>');
 			}
@@ -634,7 +624,7 @@ $('#reward-remove').live('click', function() {
 			}
 
 			if (json['success']) {
-                $('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
+				$('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
 				$('.success').fadeIn('slow');
 				$('#reward').html('<a id="reward-add" class="button-form"><?php echo $text_reward_add; ?></a>');
 			}
@@ -690,7 +680,7 @@ $('#commission-remove').live('click', function() {
 			}
 
 			if (json['success']) {
-                $('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
+				$('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
 				$('.success').fadeIn('slow');
 				$('#commission').html('<a id="commission-add" class="button-form"><?php echo $text_commission_add; ?></a>');
 			}
