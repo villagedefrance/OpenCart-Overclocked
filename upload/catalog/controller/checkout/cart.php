@@ -290,6 +290,14 @@ class ControllerCheckoutCart extends Controller {
 					$label_ratio = 30;
 				}
 
+				if ($product['label']) {
+					$label = $this->model_tool_image->resize($product['label'], round(($this->config->get('config_image_cart_width') / 3), 0), round(($this->config->get('config_image_cart_height') / 3), 0));
+					$label_style = round(($this->config->get('config_image_cart_width') / 3), 0);
+				} else {
+					$label = '';
+					$label_style = '';
+				}
+
 				if ((float)$product['special']) {
 					$special_label = $this->model_tool_image->resize($this->config->get('config_label_special'), $label_ratio, $label_ratio);
 					$special = true;
@@ -402,6 +410,8 @@ class ControllerCheckoutCart extends Controller {
 					'product_id'          => $product['product_id'],
 					'key'                 => $product['key'],
 					'thumb'               => $image,
+					'label'               => $label,
+					'label_style'         => $label_style,
 					'stock_label'         => $stock_label,
 					'offer_label'         => $offer_label,
 					'special_label'       => $special_label,

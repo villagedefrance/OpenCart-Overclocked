@@ -5,13 +5,9 @@ class ModelTotalReward extends Model {
 		if (isset($this->session->data['reward'])) {
 			$this->language->load('total/reward');
 
-			$points = $this->customer->getRewardPoints();
+			$available_points = $this->customer->getRewardPoints();
 
-			if (!empty($this->session->data['current_reward'])) {
-				$points += $this->session->data['current_reward'];
-			}
-
-			if ($this->session->data['reward'] <= $points) {
+			if ($this->session->data['reward'] <= $available_points) {
 				$points = $this->session->data['reward'];
 
 				$discount_total = 0;
@@ -23,13 +19,21 @@ class ModelTotalReward extends Model {
 					}
 				}
 
-				$points = min($points, $points_total);
+				$max_points = min($points, $points_total);
+
+				$sub_total = $this->cart->getSubTotal();
+
+				if ($points && $max_points > $sub_total) {
+					$reward_points = $sub_total;
+				} else {
+					$reward_points = $max_points;
+				}
 
 				foreach ($this->cart->getProducts() as $product) {
 					$discount = 0;
 
 					if ($product['points']) {
-						$discount = $product['total'] * ($points / $points_total);
+						$discount = $reward_points;
 
 						if ($product['tax_class_id']) {
 							$tax_rates = $this->tax->getRates($discount, $product['tax_class_id']);
@@ -47,7 +51,7 @@ class ModelTotalReward extends Model {
 
 				$total_data[] = array(
 					'code'       => 'reward',
-					'title'      => sprintf($this->language->get('text_reward'), $points),
+					'title'      => sprintf($this->language->get('text_reward'), $reward_points),
 					'text'       => $this->currency->format(-$discount_total),
 					'value'      => -$discount_total,
 					'sort_order' => $this->config->get('reward_sort_order')

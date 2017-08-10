@@ -282,6 +282,7 @@ class Cart {
 						'model'                     => $product_query->row['model'],
 						'shipping'                  => $product_query->row['shipping'],
 						'image'                     => $product_query->row['image'],
+						'label'                     => $product_query->row['label'],
 						'option'                    => $option_data,
 						'download'                  => $download_data,
 						'quantity'                  => $quantity,

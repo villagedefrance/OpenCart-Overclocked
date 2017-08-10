@@ -197,7 +197,11 @@ class ControllerCheckoutExpressCheckout extends Controller {
 			$reward_points = $max_points;
 		}
 
-		$this->data['reward_point'] = ($points && $points_total && $this->config->get('reward_status'));
+		if ($points && $points_total && $this->config->get('reward_status')) {
+			$this->data['reward_point'] = true;
+		} else {
+			$this->data['reward_point'] = false;
+		}
 
 		if ($this->config->get('config_express_point') == 2) {
 			$this->data['show_point'] = false;
