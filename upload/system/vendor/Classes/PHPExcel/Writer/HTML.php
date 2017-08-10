@@ -363,7 +363,7 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 		}
 
 		// Ensure that Spans have been calculated?
-		if (!$this->_spansAreCalculated) {
+		if ($this->_sheetIndex !== null || !$this->_spansAreCalculated) {
 			$this->_calculateSpans();
 		}
 

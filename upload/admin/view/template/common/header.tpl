@@ -222,8 +222,8 @@ $(document).ready(function() {
         <ul>
           <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-compress"></i>' : ''; ?><?php echo $text_export_import; ?></a>
             <ul>
-              <li><a href="<?php echo $export_import_raw; ?>"><?php echo ($icons) ? '<i class="fa fa-file-code-o"></i>' : ''; ?><?php echo $text_export_import_raw; ?></a></li>
               <li><a href="<?php echo $export_import_tool; ?>"><?php echo ($icons) ? '<i class="fa fa-file-excel-o"></i>' : ''; ?><?php echo $text_export_import_tool; ?></a></li>
+              <li><a href="<?php echo $export_import_raw; ?>"><?php echo ($icons) ? '<i class="fa fa-file-code-o"></i>' : ''; ?><?php echo $text_export_import_raw; ?></a></li>
             </ul>
           </li>
           <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-files-o"></i>' : ''; ?><?php echo $text_cache_manager; ?></a>

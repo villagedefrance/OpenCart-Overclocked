@@ -122,7 +122,7 @@
               <td class="left"><?php echo $product['barcode']; ?><?php echo $product['model']; ?></td>
               <td class="right"><?php if ($product['special']) { ?>
                 <span style="text-decoration:line-through;"><?php echo $product['price']; ?></span><br />
-                <span style="color:#B00;"><?php echo $product['special']; ?></span><br />
+                <span style="color:#FF0000;"><?php echo $product['special']; ?></span><br />
                 <?php if ($product['discount']) { ?>
                   <?php foreach ($product['discount'] as $discount) { ?>
                     <span style="color:#558899; font-size:10px;"><?php echo $discount['price']; ?>(<?php echo $discount['quantity']; ?>)</span>&nbsp;
@@ -141,7 +141,7 @@
               <?php } elseif ($product['quantity'] <= 5) { ?>
                 <span style="color:#FFA500;"><?php echo $product['quantity']; ?></span>
               <?php } else { ?>
-                <span style="color:#008000;"><?php echo $product['quantity']; ?></span>
+                <span style="color:#5DC15E;"><?php echo $product['quantity']; ?></span>
               <?php } ?></td>
               <td class="center"><?php echo $product['date_added']; ?></td>
               <td class="center"><?php echo $product['date_modified']; ?></td>
