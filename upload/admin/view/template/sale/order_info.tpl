@@ -478,9 +478,11 @@
         </tr>
         <tr>
           <td><?php echo $entry_comment; ?></td>
-          <td><textarea name="comment" cols="40" rows="8" style="width:99%;"></textarea>
-            <div style="margin-top:10px; text-align:center;"><a id="button-history" class="button"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; <?php echo $button_add_history; ?></a></div>
-          </td>
+          <td><textarea name="comment" cols="40" rows="8" style="width:99%;"></textarea></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><div style="margin-top:10px;"><a id="button-history" class="button"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; <?php echo $button_add_history; ?></a></div></td>
         </tr>
       </table>
     </div>

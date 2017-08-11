@@ -1371,6 +1371,10 @@ table.tool tr td {
 	border-top: 1px solid #CFCFCF;
 	border-left: 1px solid #CFCFCF;
 	border-bottom: 1px solid #CFCFCF;
+	-webkit-border-radius: 2px 0px 0px 2px;
+	-moz-border-radius: 2px 0px 0px 2px;
+	-khtml-border-radius: 2px 0px 0px 2px;
+	border-radius: 2px 0px 0px 2px;
 	background-color: #FCFCFC;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#E7E7E7), to(#FFF));
 	background-image: -webkit-linear-gradient(top, #E7E7E7, #FFF);
