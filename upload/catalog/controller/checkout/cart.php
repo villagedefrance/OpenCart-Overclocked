@@ -121,6 +121,8 @@ class ControllerCheckoutCart extends Controller {
 			$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
 
 			// Reward
+			$points_rate = $this->config->get('config_reward_rate');
+
 			$points = $this->customer->getRewardPoints();
 
 			$points_total = 0;
@@ -131,7 +133,7 @@ class ControllerCheckoutCart extends Controller {
 				}
 			}
 
-			$max_points = min($points, $points_total);
+			$max_points = min($points / $points_rate, $points_total);
 
 			$sub_total = $this->cart->getSubTotal();
 
@@ -142,9 +144,9 @@ class ControllerCheckoutCart extends Controller {
 			}
 
 			if ($points && isset($this->session->data['reward'])) {
-				$available_points = $reward_points - $this->session->data['reward'];
+				$available_points = ($reward_points * $points_rate) - $this->session->data['reward'];
 			} else {
-				$available_points = $reward_points;
+				$available_points = ($reward_points * $points_rate);
 			}
 
 			// Gift Wrapping
@@ -188,7 +190,7 @@ class ControllerCheckoutCart extends Controller {
 
 			$this->data['entry_coupon'] = $this->language->get('entry_coupon');
 			$this->data['entry_voucher'] = $this->language->get('entry_voucher');
-			$this->data['entry_reward'] = sprintf($this->language->get('entry_reward'), $reward_points);
+			$this->data['entry_reward'] = sprintf($this->language->get('entry_reward'), $available_points);
 			$this->data['entry_country'] = $this->language->get('entry_country');
 			$this->data['entry_zone'] = $this->language->get('entry_zone');
 			$this->data['entry_postcode'] = $this->language->get('entry_postcode');
@@ -680,6 +682,8 @@ class ControllerCheckoutCart extends Controller {
 	}
 
 	protected function validateReward() {
+		$points_rate = $this->config->get('config_reward_rate');
+
 		$points = $this->customer->getRewardPoints();
 
 		$points_total = 0;
@@ -690,7 +694,7 @@ class ControllerCheckoutCart extends Controller {
 			}
 		}
 
-		$max_points = min($points, $points_total);
+		$max_points = min($points / $points_rate, $points_total);
 
 		$sub_total = $this->cart->getSubTotal();
 
@@ -708,8 +712,8 @@ class ControllerCheckoutCart extends Controller {
 			$this->error['warning'] = sprintf($this->language->get('error_points'), $this->request->post['reward']);
 		}
 
-		if ($this->request->post['reward'] > $reward_points) {
-			$this->error['warning'] = sprintf($this->language->get('error_maximum'), $reward_points);
+		if ($this->request->post['reward'] > ($reward_points * $points_rate)) {
+			$this->error['warning'] = sprintf($this->language->get('error_maximum'), $reward_points * $points_rate);
 		}
 
 		return empty($this->error);

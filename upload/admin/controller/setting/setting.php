@@ -51,12 +51,15 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_preview'] = $this->language->get('text_preview');
 		$this->data['text_tax'] = $this->language->get('text_tax');
 		$this->data['text_account'] = $this->language->get('text_account');
+		$this->data['text_standard'] = $this->language->get('text_standard');
 		$this->data['text_one_page'] = $this->language->get('text_one_page');
 		$this->data['text_express'] = $this->language->get('text_express');
 		$this->data['text_stock'] = $this->language->get('text_stock');
 		$this->data['text_supplier'] = $this->language->get('text_supplier');
 		$this->data['text_affiliate'] = $this->language->get('text_affiliate');
 		$this->data['text_return'] = $this->language->get('text_return');
+		$this->data['text_reward'] = $this->language->get('text_reward');
+		$this->data['text_coupon'] = $this->language->get('text_coupon');
 		$this->data['text_voucher'] = $this->language->get('text_voucher');
 		$this->data['text_forms'] = $this->language->get('text_forms');
 		$this->data['text_colorbox'] = $this->language->get('text_colorbox');
@@ -135,14 +138,14 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_store_location'] = $this->language->get('entry_store_location');
 		$this->data['entry_map_code'] = sprintf($this->language->get('entry_map_code'), html_entity_decode($google_api_link, ENT_QUOTES, 'UTF-8'));
 		$this->data['entry_map_display'] = $this->language->get('entry_map_display');
-		$this->data['entry_cart_weight'] = $this->language->get('entry_cart_weight');
-		$this->data['entry_guest_checkout'] = $this->language->get('entry_guest_checkout');
 		$this->data['entry_checkout'] = $this->language->get('entry_checkout');
 		$this->data['entry_invoice_prefix'] = $this->language->get('entry_invoice_prefix');
 		$this->data['entry_auto_invoice'] = $this->language->get('entry_auto_invoice');
+		$this->data['entry_cart_weight'] = $this->language->get('entry_cart_weight');
 		$this->data['entry_order_edit'] = $this->language->get('entry_order_edit');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_complete_status'] = $this->language->get('entry_complete_status');
+		$this->data['entry_guest_checkout'] = $this->language->get('entry_guest_checkout');
 		$this->data['entry_one_page_checkout'] = $this->language->get('entry_one_page_checkout');
 		$this->data['entry_one_page_phone'] = $this->language->get('entry_one_page_phone');
 		$this->data['entry_one_page_newsletter'] = $this->language->get('entry_one_page_newsletter');
@@ -162,7 +165,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_express_point'] = $this->language->get('entry_express_point');
 		$this->data['entry_empty_category'] = $this->language->get('entry_empty_category');
 		$this->data['entry_product_count'] = $this->language->get('entry_product_count');
-		$this->data['entry_coupon_special'] = $this->language->get('entry_coupon_special');
 		$this->data['entry_review'] = $this->language->get('entry_review');
 		$this->data['entry_download'] = $this->language->get('entry_download');
 		$this->data['entry_tax'] = $this->language->get('entry_tax');
@@ -196,6 +198,9 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_return'] = $this->language->get('entry_return');
 		$this->data['entry_return_status'] = $this->language->get('entry_return_status');
 		$this->data['entry_return_disable'] = $this->language->get('entry_return_disable');
+		$this->data['entry_reward_rate'] = $this->language->get('entry_reward_rate');
+		$this->data['entry_reward_display'] = $this->language->get('entry_reward_display');
+		$this->data['entry_coupon_special'] = $this->language->get('entry_coupon_special');
 		$this->data['entry_voucher_min'] = $this->language->get('entry_voucher_min');
 		$this->data['entry_voucher_max'] = $this->language->get('entry_voucher_max');
 		$this->data['entry_admin_stylesheet'] = $this->language->get('entry_admin_stylesheet');
@@ -309,11 +314,11 @@ class ControllerSettingSetting extends Controller {
 		$this->data['help_store_location'] = $this->language->get('help_store_location');
 		$this->data['help_map_code'] = $this->language->get('help_map_code');
 		$this->data['help_map_display'] = $this->language->get('help_map_display');
-		$this->data['help_cart_weight'] = $this->language->get('help_cart_weight');
 		$this->data['help_guest_checkout'] = $this->language->get('help_guest_checkout');
 		$this->data['help_checkout'] = $this->language->get('help_checkout');
 		$this->data['help_invoice_prefix'] = $this->language->get('help_invoice_prefix');
 		$this->data['help_auto_invoice'] = $this->language->get('help_auto_invoice');
+		$this->data['help_cart_weight'] = $this->language->get('help_cart_weight');
 		$this->data['help_order_edit'] = $this->language->get('help_order_edit');
 		$this->data['help_order_status'] = $this->language->get('help_order_status');
 		$this->data['help_complete_status'] = $this->language->get('help_complete_status');
@@ -326,7 +331,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['help_express_comment'] = $this->language->get('help_express_comment');
 		$this->data['help_empty_category'] = $this->language->get('help_empty_category');
 		$this->data['help_product_count'] = $this->language->get('help_product_count');
-		$this->data['help_coupon_special'] = $this->language->get('help_coupon_special');
 		$this->data['help_review'] = $this->language->get('help_review');
 		$this->data['help_vat'] = $this->language->get('help_vat');
 		$this->data['help_tax_default'] = $this->language->get('help_tax_default');
@@ -355,6 +359,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['help_return'] = $this->language->get('help_return');
 		$this->data['help_return_status'] = $this->language->get('help_return_status');
 		$this->data['help_return_disable'] = $this->language->get('help_return_disable');
+		$this->data['help_reward_rate'] = $this->language->get('help_reward_rate');
+		$this->data['help_coupon_special'] = $this->language->get('help_coupon_special');
 		$this->data['help_voucher_min'] = $this->language->get('help_voucher_min');
 		$this->data['help_voucher_max'] = $this->language->get('help_voucher_max');
 		$this->data['help_admin_width_limit'] = $this->language->get('help_admin_width_limit');
@@ -490,6 +496,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['error_login_attempts'] = $this->error['login_attempts'];
 		} else {
 			$this->data['error_login_attempts'] = '';
+		}
+
+		if (isset($this->error['reward_rate'])) {
+			$this->data['error_reward_rate'] = $this->error['reward_rate'];
+		} else {
+			$this->data['error_reward_rate'] = '';
 		}
 
 		if (isset($this->error['voucher_min'])) {
@@ -915,18 +927,6 @@ class ControllerSettingSetting extends Controller {
 		}
 
 		// Checkout
-		if (isset($this->request->post['config_cart_weight'])) {
-			$this->data['config_cart_weight'] = $this->request->post['config_cart_weight'];
-		} else {
-			$this->data['config_cart_weight'] = $this->config->get('config_cart_weight');
-		}
-
-		if (isset($this->request->post['config_guest_checkout'])) {
-			$this->data['config_guest_checkout'] = $this->request->post['config_guest_checkout'];
-		} else {
-			$this->data['config_guest_checkout'] = $this->config->get('config_guest_checkout');
-		}
-
 		if (isset($this->request->post['config_checkout_id'])) {
 			$this->data['config_checkout_id'] = $this->request->post['config_checkout_id'];
 		} else {
@@ -945,6 +945,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_auto_invoice'] = $this->request->post['config_auto_invoice'];
 		} else {
 			$this->data['config_auto_invoice'] = $this->config->get('config_auto_invoice');
+		}
+
+		if (isset($this->request->post['config_cart_weight'])) {
+			$this->data['config_cart_weight'] = $this->request->post['config_cart_weight'];
+		} else {
+			$this->data['config_cart_weight'] = $this->config->get('config_cart_weight');
 		}
 
 		if (isset($this->request->post['config_order_edit'])) {
@@ -969,6 +975,13 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_complete_status_id'] = $this->request->post['config_complete_status_id'];
 		} else {
 			$this->data['config_complete_status_id'] = $this->config->get('config_complete_status_id');
+		}
+
+		// Standard Checkout
+		if (isset($this->request->post['config_guest_checkout'])) {
+			$this->data['config_guest_checkout'] = $this->request->post['config_guest_checkout'];
+		} else {
+			$this->data['config_guest_checkout'] = $this->config->get('config_guest_checkout');
 		}
 
 		// One Page Checkout
@@ -1086,12 +1099,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_product_count'] = $this->request->post['config_product_count'];
 		} else {
 			$this->data['config_product_count'] = $this->config->get('config_product_count');
-		}
-
-		if (isset($this->request->post['config_coupon_special'])) {
-			$this->data['config_coupon_special'] = $this->request->post['config_coupon_special'];
-		} else {
-			$this->data['config_coupon_special'] = $this->config->get('config_coupon_special');
 		}
 
 		if (isset($this->request->post['config_review_status'])) {
@@ -1314,6 +1321,26 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_return_status_id'] = $this->request->post['config_return_status_id'];
 		} else {
 			$this->data['config_return_status_id'] = $this->config->get('config_return_status_id');
+		}
+
+		if (isset($this->request->post['config_reward_rate'])) {
+			$this->data['config_reward_rate'] = $this->request->post['config_reward_rate'];
+		} elseif ($this->config->get('config_reward_rate')) {
+			$this->data['config_reward_rate'] = $this->config->get('config_reward_rate');
+		} else {
+			$this->data['config_reward_rate'] = 100;
+		}
+
+		if (isset($this->request->post['config_reward_display'])) {
+			$this->data['config_reward_display'] = $this->request->post['config_reward_display'];
+		} else {
+			$this->data['config_reward_display'] = $this->config->get('config_reward_display');
+		}
+
+		if (isset($this->request->post['config_coupon_special'])) {
+			$this->data['config_coupon_special'] = $this->request->post['config_coupon_special'];
+		} else {
+			$this->data['config_coupon_special'] = $this->config->get('config_coupon_special');
 		}
 
 		if (isset($this->request->post['config_return_disable'])) {
@@ -2128,6 +2155,10 @@ class ControllerSettingSetting extends Controller {
 
 		if ($this->request->post['config_login_attempts'] < 1) {
 			$this->error['login_attempts'] = $this->language->get('error_login_attempts');
+		}
+
+		if (((int)$this->request->post['config_reward_rate'] != $this->request->post['config_reward_rate']) || $this->request->post['config_reward_rate'] < 1) {
+			$this->error['reward_rate'] = $this->language->get('error_reward_rate');
 		}
 
 		if (!$this->request->post['config_voucher_min']) {

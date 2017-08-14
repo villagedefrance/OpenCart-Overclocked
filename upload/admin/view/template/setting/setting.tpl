@@ -344,34 +344,6 @@
       <div id="tab-checkout">
         <table class="form">
           <tr>
-            <td><?php echo $entry_cart_weight; ?><span class="help"><?php echo $help_cart_weight; ?></span></td>
-            <td><?php if ($config_cart_weight) { ?>
-              <input type="radio" name="config_cart_weight" value="1" id="cart-weight-on" class="radio" checked />
-              <label for="cart-weight-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_cart_weight" value="0" id="cart-weight-off" class="radio" />
-              <label for="cart-weight-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } else { ?>
-              <input type="radio" name="config_cart_weight" value="1" id="cart-weight-on" class="radio" />
-              <label for="cart-weight-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_cart_weight" value="0" id="cart-weight-off" class="radio" checked />
-              <label for="cart-weight-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_guest_checkout; ?><span class="help"><?php echo $help_guest_checkout; ?></span></td>
-            <td><?php if ($config_guest_checkout) { ?>
-              <input type="radio" name="config_guest_checkout" value="1" id="guest-checkout-on" class="radio" checked />
-              <label for="guest-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_guest_checkout" value="0" id="guest-checkout-off" class="radio" />
-              <label for="guest-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } else { ?>
-              <input type="radio" name="config_guest_checkout" value="1" id="guest-checkout-on" class="radio" />
-              <label for="guest-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_guest_checkout" value="0" id="guest-checkout-off" class="radio" checked />
-              <label for="guest-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } ?></td>
-          </tr>
-          <tr>
             <td><?php echo $entry_checkout; ?><span class="help"><?php echo $help_checkout; ?></span></td>
             <td><select name="config_checkout_id">
               <option value="0"><?php echo $text_none; ?></option>
@@ -403,6 +375,20 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_cart_weight; ?><span class="help"><?php echo $help_cart_weight; ?></span></td>
+            <td><?php if ($config_cart_weight) { ?>
+              <input type="radio" name="config_cart_weight" value="1" id="cart-weight-on" class="radio" checked />
+              <label for="cart-weight-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_cart_weight" value="0" id="cart-weight-off" class="radio" />
+              <label for="cart-weight-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_cart_weight" value="1" id="cart-weight-on" class="radio" />
+              <label for="cart-weight-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_cart_weight" value="0" id="cart-weight-off" class="radio" checked />
+              <label for="cart-weight-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_order_edit; ?><span class="help"><?php echo $help_order_edit; ?></span></td>
             <td><input type="text" name="config_order_edit" value="<?php echo $config_order_edit; ?>" size="3" /></td>
           </tr>
@@ -431,9 +417,26 @@
             </select></td>
           </tr>
         </table>
-        <h2><?php echo $text_one_page; ?></h2>
-        <div class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_one_page; ?></div>
+        <h2><?php echo $text_standard; ?></h2>
         <table class="form">
+          <tr>
+            <td><?php echo $entry_guest_checkout; ?><span class="help"><?php echo $help_guest_checkout; ?></span></td>
+            <td><?php if ($config_guest_checkout) { ?>
+              <input type="radio" name="config_guest_checkout" value="1" id="guest-checkout-on" class="radio" checked />
+              <label for="guest-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_guest_checkout" value="0" id="guest-checkout-off" class="radio" />
+              <label for="guest-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_guest_checkout" value="1" id="guest-checkout-on" class="radio" />
+              <label for="guest-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_guest_checkout" value="0" id="guest-checkout-off" class="radio" checked />
+              <label for="guest-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+        </table>
+        <h2><?php echo $text_one_page; ?></h2>
+        <table class="form">
+          <tr><td colspan="2"><b><?php echo $info_one_page; ?></b></td></tr>
           <tr>
             <td><?php echo $entry_one_page_checkout; ?><span class="help"><?php echo $help_one_page_checkout; ?></span></td>
             <td><?php if ($config_one_page_checkout) { ?>
@@ -519,8 +522,8 @@
           </tr>
         </table>
         <h2><?php echo $text_express; ?></h2>
-        <div class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_express; ?></div>
         <table class="form">
+          <tr><td colspan="2"><b><?php echo $info_express; ?></b></td></tr>
           <tr>
             <td><?php echo $entry_express_checkout; ?><span class="help"><?php echo $help_express_checkout; ?></span></td>
             <td><?php if ($config_express_checkout) { ?>
@@ -711,21 +714,6 @@
               <input type="radio" name="config_product_count" value="0" id="product-count-off" class="radio" checked />
               <label for="product-count-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_coupon_special; ?><span class="help"><?php echo $help_coupon_special; ?></span></td>
-            <td><?php if ($config_coupon_special) { ?>
-              <input type="radio" name="config_coupon_special" value="1" id="coupon-special-on" class="radio" checked />
-              <label for="coupon-special-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_coupon_special" value="0" id="coupon-special-off" class="radio" />
-              <label for="coupon-special-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } else { ?>
-              <input type="radio" name="config_coupon_special" value="1" id="coupon-special-on" class="radio" />
-              <label for="coupon-special-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_coupon_special" value="0" id="coupon-special-off" class="radio" checked />
-              <label for="coupon-special-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } ?>
-            </td>
           </tr>
           <tr>
             <td><?php echo $entry_review; ?><span class="help"><?php echo $help_review; ?></span></td>
@@ -1187,6 +1175,51 @@
               <input type="radio" name="config_return_disable" value="0" id="return-disable-off" class="radio" checked />
               <label for="return-disable-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
+          </tr>
+        </table>
+        <h2><?php echo $text_reward; ?></h2>
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_reward_rate; ?><span class="help"><?php echo $help_reward_rate; ?></span></td>
+            <td><?php if ($error_reward_rate) { ?>
+              <input type="text" name="config_reward_rate" value="<?php echo $config_reward_rate; ?>" class="input-error" /> = 1.00
+              <span class="error"><?php echo $error_reward_rate; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_reward_rate" value="<?php echo $config_reward_rate; ?>" /> = 1.00
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_reward_display; ?></td>
+            <td><?php if ($config_reward_display) { ?>
+              <input type="radio" name="config_reward_display" value="1" id="reward-display-on" class="radio" checked />
+              <label for="reward-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_reward_display" value="0" id="reward-display-off" class="radio" />
+              <label for="reward-display-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_reward_display" value="1" id="reward-display-on" class="radio" />
+              <label for="reward-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_reward_display" value="0" id="reward-display-off" class="radio" checked />
+              <label for="reward-display-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?>
+            </td>
+          </tr>
+        </table>
+        <h2><?php echo $text_coupon ?></h2>
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_coupon_special; ?><span class="help"><?php echo $help_coupon_special; ?></span></td>
+            <td><?php if ($config_coupon_special) { ?>
+              <input type="radio" name="config_coupon_special" value="1" id="coupon-special-on" class="radio" checked />
+              <label for="coupon-special-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_coupon_special" value="0" id="coupon-special-off" class="radio" />
+              <label for="coupon-special-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_coupon_special" value="1" id="coupon-special-on" class="radio" />
+              <label for="coupon-special-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_coupon_special" value="0" id="coupon-special-off" class="radio" checked />
+              <label for="coupon-special-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?>
+            </td>
           </tr>
         </table>
         <h2><?php echo $text_voucher; ?></h2>

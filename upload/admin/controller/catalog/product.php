@@ -1585,6 +1585,8 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['product_specials'] = array();
 		}
 
+		$this->data['reward_rate'] = sprintf($this->language->get('text_reward_rate'), $this->config->get('config_reward_rate'));
+
 		if (isset($this->request->post['points'])) {
 			$this->data['points'] = $this->request->post['points'];
 		} elseif (!empty($product_info)) {

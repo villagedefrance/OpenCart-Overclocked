@@ -11,7 +11,9 @@
 <div id="content"><?php echo $content_top; ?>
   <h1><?php echo $heading_title; ?></h1>
   <p><?php echo $text_total; ?><b> <?php echo $total; ?></b>.</p>
-  <p><i><?php echo ($reward_display) ? $reward_rate : ''; ?></i></p>
+  <?php if ($reward_display) { ?>
+    <p><i><?php echo $reward_rate; ?></i></p>
+  <?php } ?>
   <table class="list">
     <thead>
       <tr>

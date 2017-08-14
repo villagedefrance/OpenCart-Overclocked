@@ -53,6 +53,9 @@ class ControllerAccountReward extends Controller {
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
+		$this->data['reward_display'] = $this->config->get('config_reward_display');
+		$this->data['reward_rate'] = sprintf($this->language->get('text_reward_rate'), $this->config->get('config_reward_rate'));
+
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
 		} else {

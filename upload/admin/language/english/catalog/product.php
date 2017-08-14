@@ -19,6 +19,7 @@ $_['text_amount']             = 'Fixed Amount';
 $_['text_exc_vat']            = 'Excluding Tax';
 $_['text_inc_vat']            = 'Including Tax';
 $_['text_autocomplete']       = '<span class="help">(Autocomplete)</span>';
+$_['text_reward_rate']        = '[ %s Reward Points = 1.00 ]';
 
 // Column Form
 $_['column_attribute']        = 'Attribute';

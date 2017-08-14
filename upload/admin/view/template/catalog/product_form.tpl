@@ -1029,7 +1029,7 @@
         <table class="form">
           <tr>
             <td><?php echo $entry_points; ?></td>
-            <td><input type="text" name="points" value="<?php echo $points; ?>" /></td>
+            <td><input type="text" name="points" value="<?php echo $points; ?>" /> &nbsp;&nbsp;&nbsp; <?php echo $reward_rate; ?></td>
           </tr>
         </table>
         <table class="list">

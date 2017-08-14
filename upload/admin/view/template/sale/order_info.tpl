@@ -123,7 +123,7 @@
           <td><?php echo $text_reward; ?></td>
           <td><?php echo $reward; ?>
             <?php if (!$reward_total) { ?>
-              <span id="reward" style="margin-left:25px;"><a id="reward-add" class="button-delete"><?php echo $text_reward_add; ?></a></span>
+              <span id="reward" style="margin-left:25px;"><a id="reward-add" class="button"><?php echo $text_reward_add; ?></a></span>
             <?php } else { ?>
               <span id="reward" style="margin-left:25px;"><a id="reward-remove" class="button-repair"><?php echo $text_reward_remove; ?></a></span>
             <?php } ?>
@@ -151,7 +151,7 @@
           <td><?php echo $text_commission; ?></td>
           <td><?php echo $commission; ?>
             <?php if (!$commission_total) { ?>
-              <span id="commission" style="margin-left:25px;"><a id="commission-add" class="button-delete"><?php echo $text_commission_add; ?></a></span>
+              <span id="commission" style="margin-left:25px;"><a id="commission-add" class="button"><?php echo $text_commission_add; ?></a></span>
             <?php } else { ?>
               <span id="commission" style="margin-left:25px;"><a id="commission-remove" class="button-repair"><?php echo $text_commission_remove; ?></a></span>
             <?php } ?>
@@ -482,7 +482,7 @@
         </tr>
         <tr>
           <td></td>
-          <td><div style="margin-top:10px;"><a id="button-history" class="button"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; <?php echo $button_add_history; ?></a></div></td>
+          <td><div style="margin-top:10px;"><a id="button-history" class="button-save"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; <?php echo $button_add_history; ?></a></div></td>
         </tr>
       </table>
     </div>
@@ -544,7 +544,7 @@ $('#credit-add').live('click', function() {
 			if (json['success']) {
 				$('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
 				$('.success').fadeIn('slow');
-				$('#credit').html('<a id="credit-remove" class="button-form"><?php echo $text_credit_remove; ?></a>');
+				$('#credit').html('<a id="credit-remove" class="button-repair"><?php echo $text_credit_remove; ?></a>');
 			}
 		}
 	});
@@ -572,7 +572,7 @@ $('#credit-remove').live('click', function() {
 			if (json['success']) {
 				$('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
 				$('.success').fadeIn('slow');
-				$('#credit').html('<a id="credit-add" class="button-form"><?php echo $text_credit_add; ?></a>');
+				$('#credit').html('<a id="credit-add" class="button-delete"><?php echo $text_credit_add; ?></a>');
 			}
 		}
 	});
@@ -600,7 +600,7 @@ $('#reward-add').live('click', function() {
 			if (json['success']) {
 				$('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
 				$('.success').fadeIn('slow');
-				$('#reward').html('<a id="reward-remove" class="button-form"><?php echo $text_reward_remove; ?></a>');
+				$('#reward').html('<a id="reward-remove" class="button-repair"><?php echo $text_reward_remove; ?></a>');
 			}
 		}
 	});
@@ -628,7 +628,7 @@ $('#reward-remove').live('click', function() {
 			if (json['success']) {
 				$('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
 				$('.success').fadeIn('slow');
-				$('#reward').html('<a id="reward-add" class="button-form"><?php echo $text_reward_add; ?></a>');
+				$('#reward').html('<a id="reward-add" class="button"><?php echo $text_reward_add; ?></a>');
 			}
 		}
 	});
@@ -656,7 +656,7 @@ $('#commission-add').live('click', function() {
 			if (json['success']) {
 				$('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
 				$('.success').fadeIn('slow');
-				$('#commission').html('<a id="commission-remove" class="button-form"><?php echo $text_commission_remove; ?></a>');
+				$('#commission').html('<a id="commission-remove" class="button-repair"><?php echo $text_commission_remove; ?></a>');
 			}
 		}
 	});
@@ -684,7 +684,7 @@ $('#commission-remove').live('click', function() {
 			if (json['success']) {
 				$('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
 				$('.success').fadeIn('slow');
-				$('#commission').html('<a id="commission-add" class="button-form"><?php echo $text_commission_add; ?></a>');
+				$('#commission').html('<a id="commission-add" class="button"><?php echo $text_commission_add; ?></a>');
 			}
 		}
 	});
