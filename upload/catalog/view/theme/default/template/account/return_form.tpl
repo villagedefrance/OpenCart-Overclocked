@@ -148,7 +148,7 @@
   </div>
   <?php if ($text_agree) { ?>
     <div class="buttons">
-      <div class="left"><a href="<?php echo $back; ?>" class="button"><?php echo $button_back; ?></a></div>
+      <div class="left"><a href="<?php echo $back; ?>" class="button"><i class="fa fa-arrow-left"></i> &nbsp; <?php echo $button_back; ?></a></div>
       <div class="right"><?php echo $text_agree; ?>
         <?php if ($agree) { ?>
           <input type="checkbox" name="agree" value="1" checked="checked" />
@@ -160,7 +160,7 @@
     </div>
   <?php } else { ?>
     <div class="buttons">
-      <div class="left"><a href="<?php echo $back; ?>" class="button"><?php echo $button_back; ?></a></div>
+      <div class="left"><a href="<?php echo $back; ?>" class="button"><i class="fa fa-arrow-left"></i> &nbsp; <?php echo $button_back; ?></a></div>
       <div class="right">
         <input type="submit" value="<?php echo $button_continue; ?>" class="button" />
       </div>

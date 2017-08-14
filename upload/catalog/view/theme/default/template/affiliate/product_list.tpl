@@ -38,7 +38,7 @@
     </table>
   </div>
   <div class="buttons">
-    <div class="left"><a href="<?php echo $back; ?>" class="button"><?php echo $button_back; ?></a></div>
+    <div class="left"><a href="<?php echo $back; ?>" class="button"><i class="fa fa-arrow-left"></i> &nbsp; <?php echo $button_back; ?></a></div>
     <div class="right"><a href="<?php echo $insert; ?>" class="button"><?php echo $button_new_product; ?></a></div>
   </div>
   <?php echo $content_bottom; ?>
