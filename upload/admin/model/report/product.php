@@ -160,7 +160,7 @@ class ModelReportProduct extends Model {
 	}
 
 	public function getProducts($data = array()) {
-		$sql = "SELECT p.product_id, p.cost, p.price, pd.name AS name FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.price > '0'";
+		$sql = "SELECT p.product_id, p.image, p.label, p.cost, p.price, pd.name AS name FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.price > '0'";
 
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";

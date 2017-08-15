@@ -16,13 +16,11 @@
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
-      <div id="show-tooltip" style="display:block;">
-        <div id="tooltip" class="tooltip" style="margin:0px 0px 10px 0px;"><?php echo $text_free_products; ?></div>
-      </div>
       <table class="list">
         <thead>
           <tr>
             <td class="left"><?php echo $column_product_id; ?></td>
+            <td class="left"><?php echo $column_image; ?></td>
             <td class="left"><?php if ($sort == 'pd.name') { ?>
               <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
             <?php } else { ?>
@@ -38,15 +36,14 @@
             <?php } else { ?>
               <a href="<?php echo $sort_cost; ?>"><?php echo $column_cost; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
-            <td class="left"><?php echo $column_ratio; ?></td>
-            <td class="left"><?php echo $column_graph; ?></td>
+            <td class="left"><?php echo $column_label; ?></td>
           </tr>
         </thead>
         <tbody>
           <tr class="filter">
             <td></td>
-            <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" /></td>
             <td></td>
+            <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" /></td>
             <td></td>
             <td></td>
             <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
@@ -55,23 +52,16 @@
             <?php foreach ($products as $product) { ?>
               <tr>
                 <td class="center"><?php echo $product['product_id']; ?></td>
+                <td class="center"><img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
                 <td class="left"><a href="<?php echo $product['product_href']; ?>" title=""><?php echo $product['name']; ?></a></td>
-                <td class="right"><?php if ($product['has_special']) { ?>
-                  <span style="color:#B00;"><?php echo $product['price_formatted']; ?></span>
+                <td class="right"><?php if ($product['special']) { ?>
+                  <span style="text-decoration:line-through;"><?php echo $product['price']; ?></span><br />
+                  <span style="color:#FF0000;"><?php echo $product['special']; ?></span><br />
                 <?php } else { ?>
-                  <?php echo $product['price_formatted']; ?>
+                  <?php echo $product['price']; ?>
                 <?php } ?></td>
-                <td class="right"><?php echo $product['cost_formatted']; ?></td>
-                <td class="right"><?php if ($product['graph_type'] > 0) { ?>
-                  <span style="color:#B00;">-<?php echo $product['ratio']; ?>%</span>
-                <?php } else { ?>
-                  <?php echo $product['ratio']; ?>%
-                <?php } ?></td>
-                <td class="left"><?php if ($product['graph_type'] > 0) { ?>
-                  <div class="progress-bar-red" style="width:<?php echo $product['graph']; ?>px;"></div>
-                <?php } else { ?>
-                  <div class="progress-bar-blue" style="width:<?php echo $product['graph']; ?>px;"></div>
-                <?php } ?></td>
+                <td class="right"><?php echo $product['cost']; ?></td>
+                <td class="center"><img src="<?php echo $product['label']; ?>" alt="<?php echo $product['name']; ?>" style="padding:1px;" /></td>
               </tr>
             <?php } ?>
           <?php } else { ?>
@@ -90,7 +80,7 @@
 
 <script type="text/javascript"><!--
 function filter() {
-	url = 'index.php?route=report/product_markup&token=<?php echo $token; ?>';
+	url = 'index.php?route=report/product_label&token=<?php echo $token; ?>';
 
 	var filter_name = $('input[name=\'filter_name\']').attr('value');
 
@@ -113,7 +103,7 @@ $('input[name=\'filter_name\']').autocomplete({
 	delay: 10,
 	source: function(request, response) {
 		$.ajax({
-			url: 'index.php?route=report/product_markup/autocomplete&token=<?php echo $token; ?>&filter_name=' + encodeURIComponent(request.term),
+			url: 'index.php?route=report/product_label/autocomplete&token=<?php echo $token; ?>&filter_name=' + encodeURIComponent(request.term),
 			dataType: 'json',
 			success: function(json) {
 				response($.map(json, function(item) {

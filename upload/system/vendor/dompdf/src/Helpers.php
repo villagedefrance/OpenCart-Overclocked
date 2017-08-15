@@ -56,8 +56,8 @@ class Helpers {
         $protocol = mb_strtolower($protocol);
 
         if (strlen($url) == 0) {
-            //return $protocol . $host . rtrim($base_path, "/\\") . "/";
-            return $protocol . $host . $base_path;
+            return $protocol . $host . rtrim($base_path, "/\\") . "/";
+            //return $protocol . $host . $base_path;
         }
 
         // Is the url already fully qualified, a Data URI, or a reference to a named anchor?
@@ -73,7 +73,7 @@ class Helpers {
             //not known in php app code, treat as abs path
             //($url[1] !== ':' || ($url[2]!=='\\' && $url[2]!=='/'))
             if ($url[0] !== '/' && (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN' || (mb_strlen($url) > 1 && $url[0] !== '\\' && $url[1] !== ':'))) {
-                // For rel path and local acess we ignore the host, and run the path through realpath()
+                // For real path and local access we ignore the host, and run the path through realpath()
                 $ret .= realpath($base_path) . '/';
             }
             $ret .= $url;
@@ -90,7 +90,7 @@ class Helpers {
             $ret .= $host . $url;
         } else {
             // Relative path
-            //$base_path = $base_path !== "" ? rtrim($base_path, "/\\") . "/" : "";
+            $base_path = ($base_path !== "") ? rtrim($base_path, "/\\") . "/" : "";
             $ret .= $host . $base_path . $url;
         }
 

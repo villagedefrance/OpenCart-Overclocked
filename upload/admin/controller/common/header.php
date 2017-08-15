@@ -156,6 +156,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_report_sale_return'] = $this->language->get('text_report_sale_return');
 		$this->data['text_report_sale_coupon'] = $this->language->get('text_report_sale_coupon');
 		$this->data['text_report_sale_profit'] = $this->language->get('text_report_sale_profit');
+		$this->data['text_report_product_label'] = $this->language->get('text_report_product_label');
 		$this->data['text_report_product_markup'] = $this->language->get('text_report_product_markup');
 		$this->data['text_report_product_viewed'] = $this->language->get('text_report_product_viewed');
 		$this->data['text_report_product_quantity'] = $this->language->get('text_report_product_quantity');
@@ -318,6 +319,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['report_sale_return'] = $this->url->link('report/sale_return', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_sale_coupon'] = $this->url->link('report/sale_coupon', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_sale_profit'] = $this->url->link('report/sale_profit', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['report_product_label'] = $this->url->link('report/product_label', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_product_markup'] = $this->url->link('report/product_markup', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_product_viewed'] = $this->url->link('report/product_viewed', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_product_quantity'] = $this->url->link('report/product_quantity', 'token=' . $this->session->data['token'], 'SSL');

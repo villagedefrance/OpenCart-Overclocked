@@ -1,8 +1,8 @@
 <?php
-class ControllerReportProductMarkup extends Controller {
+class ControllerReportProductLabel extends Controller {
 
 	public function index() {
-		$this->language->load('report/product_markup');
+		$this->language->load('report/product_label');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -58,7 +58,7 @@ class ControllerReportProductMarkup extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('report/product_markup', 'token=' . $this->session->data['token'], 'SSL'),
+			'href'      => $this->url->link('report/product_label', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -66,6 +66,7 @@ class ControllerReportProductMarkup extends Controller {
 		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
 		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
 
+		$this->load->model('tool/image');
 		$this->load->model('report/product');
 		$this->load->model('catalog/product');
 
@@ -85,12 +86,19 @@ class ControllerReportProductMarkup extends Controller {
 		$products = $this->model_report_product->getProducts($data);
 
 		foreach ($products as $product) {
-			$has_special = false;
+			if ($product['image'] && file_exists(DIR_IMAGE . $product['image'])) {
+				$image = $this->model_tool_image->resize($product['image'], 40, 40);
+			} else {
+				$image = $this->model_tool_image->resize('no_image.jpg', 40, 40);
+			}
+
+			if ($product['label']) {
+				$label = $this->model_tool_image->resize($product['label'], 40, 40);
+			} else {
+				$label = $this->model_tool_image->resize('no_file.jpg', 40, 40);
+			}
+
 			$special = false;
-			$price = false;
-			$cost = false;
-			$ratio = false;
-			$graph = false;
 
 			$product_specials = $this->model_catalog_product->getProductSpecials($product['product_id']);
 
@@ -101,57 +109,28 @@ class ControllerReportProductMarkup extends Controller {
 				}
 			}
 
-			if ($special && $special > 0) {
-				$has_special = true;
-				$price = $special;
-			} elseif ($product['price'] > 0) {
-				$price = $product['price'];
-			} else {
-				$price = 1; // prevents division by zero
-			}
-
-			if ($product['cost'] > 0) {
-				$cost = $product['cost'];
-			} else {
-				$cost = 0;
-			}
-
-			if ($price >= $cost) {
-				$ratio = number_format((($price - $cost) / $price) * 100, 2);
-				$graph = (($price - $cost) / $price) * 300;
-				$graph_type = 0;
-			} else {
-				$ratio = number_format((($cost - $price) / $cost) * 100, 2);
-				$graph = (($cost - $price) / $cost) * 300;
-				$graph_type = 1;
-			}
-
 			$this->data['products'][] = array(
-				'product_id'      => $product['product_id'],
-				'product_href'    => $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], 'SSL'),
-				'name'            => $product['name'],
-				'price_formatted' => $this->currency->format($price, $this->config->get('config_currency')),
-				'cost_formatted'  => $this->currency->format($cost, $this->config->get('config_currency')),
-				'ratio'           => $ratio,
-				'graph'           => $graph,
-				'graph_type'      => (int)$graph_type,
-				'has_special'     => $has_special,
-				'price'           => $price,
-				'cost'            => $cost
+				'product_id'   => $product['product_id'],
+				'image'        => $image,
+				'label'        => $label,
+				'name'         => $product['name'],
+				'price'        => $this->currency->format($product['price'], $this->config->get('config_currency')),
+				'cost'         => $this->currency->format($product['cost'], $this->config->get('config_currency')),
+				'special'      => $special,
+				'product_href' => $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], 'SSL')
 			);
 		}
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
-		$this->data['text_free_products'] = $this->language->get('text_free_products');
 
 		$this->data['column_product_id'] = $this->language->get('column_product_id');
+		$this->data['column_image'] = $this->language->get('column_image');
+		$this->data['column_label'] = $this->language->get('column_label');
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_price'] = $this->language->get('column_price');
 		$this->data['column_cost'] = $this->language->get('column_cost');
-		$this->data['column_ratio'] = $this->language->get('column_ratio');
-		$this->data['column_graph'] = $this->language->get('column_graph');
 
 		$this->data['button_close'] = $this->language->get('button_close');
 		$this->data['button_filter'] = $this->language->get('button_filter');
@@ -176,9 +155,9 @@ class ControllerReportProductMarkup extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$this->data['sort_name'] = $this->url->link('report/product_markup', 'token=' . $this->session->data['token'] . '&sort=pd.name' . $url, 'SSL');
-		$this->data['sort_price'] = $this->url->link('report/product_markup', 'token=' . $this->session->data['token'] . '&sort=p.price' . $url, 'SSL');
-		$this->data['sort_cost'] = $this->url->link('report/product_markup', 'token=' . $this->session->data['token'] . '&sort=p.cost' . $url, 'SSL');
+		$this->data['sort_name'] = $this->url->link('report/product_label', 'token=' . $this->session->data['token'] . '&sort=pd.name' . $url, 'SSL');
+		$this->data['sort_price'] = $this->url->link('report/product_label', 'token=' . $this->session->data['token'] . '&sort=p.price' . $url, 'SSL');
+		$this->data['sort_cost'] = $this->url->link('report/product_label', 'token=' . $this->session->data['token'] . '&sort=p.cost' . $url, 'SSL');
 
 		$url = '';
 
@@ -199,7 +178,7 @@ class ControllerReportProductMarkup extends Controller {
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_admin_limit');
 		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = $this->url->link('report/product_markup', 'token=' . $this->session->data['token'] . '&page={page}', 'SSL');
+		$pagination->url = $this->url->link('report/product_label', 'token=' . $this->session->data['token'] . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
 
@@ -208,7 +187,7 @@ class ControllerReportProductMarkup extends Controller {
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
 
-		$this->template = 'report/product_markup.tpl';
+		$this->template = 'report/product_label.tpl';
 		$this->children = array(
 			'common/header',
 			'common/footer'

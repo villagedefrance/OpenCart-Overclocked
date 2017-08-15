@@ -329,6 +329,7 @@ $(document).ready(function() {
           <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-cube"></i>' : ''; ?><?php echo $text_product; ?></a>
             <ul>
               <li><a href="<?php echo $report_product_viewed; ?>"><?php echo ($icons) ? '<i class="fa fa-eye"></i>' : ''; ?><?php echo $text_report_product_viewed; ?></a></li>
+              <li><a href="<?php echo $report_product_label; ?>"><?php echo ($icons) ? '<i class="fa fa-leaf"></i>' : ''; ?><?php echo $text_report_product_label; ?></a></li>
               <li><a href="<?php echo $report_product_quantity; ?>"><?php echo ($icons) ? '<i class="fa fa-cubes"></i>' : ''; ?><?php echo $text_report_product_quantity; ?></a></li>
               <li><a href="<?php echo $report_product_markup; ?>"><?php echo ($icons) ? '<i class="fa fa-bar-chart"></i>' : ''; ?><?php echo $text_report_product_markup; ?></a></li>
               <li><a href="<?php echo $report_product_purchased; ?>"><?php echo ($icons) ? '<i class="fa fa-dollar"></i>' : ''; ?><?php echo $text_report_product_purchased; ?></a></li>
