@@ -67,6 +67,7 @@ class ControllerReportProductPurchased extends Controller {
 		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
 
 		$this->load->model('report/product');
+		$this->load->model('catalog/product');
 
 		$this->data['products'] = array();
 
@@ -83,9 +84,23 @@ class ControllerReportProductPurchased extends Controller {
 		$results = $this->model_report_product->getPurchased($data);
 
 		foreach ($results as $result) {
+			$special = false;
+
+			$product_specials = $this->model_catalog_product->getProductSpecials($result['product_id']);
+
+			foreach ($product_specials as $product_special) {
+				if (($product_special['date_start'] == '0000-00-00' || $product_special['date_start'] <= date('Y-m-d')) && ($product_special['date_end'] == '0000-00-00' || $product_special['date_end'] > date('Y-m-d'))) {
+					$special = $product_special['price'];
+					break;
+				}
+			}
+
 			$this->data['products'][] = array(
 				'name'     => $result['name'],
 				'model'    => $result['model'],
+				'price'    => $this->currency->format($result['price'], $this->config->get('config_currency')),
+				'cost'     => $this->currency->format($result['cost'], $this->config->get('config_currency')),
+				'special'  => $special,
 				'quantity' => $result['quantity'],
 				'total'    => $this->currency->format($result['total'], $this->config->get('config_currency'))
 			);
@@ -98,6 +113,8 @@ class ControllerReportProductPurchased extends Controller {
 
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_model'] = $this->language->get('column_model');
+		$this->data['column_price'] = $this->language->get('column_price');
+		$this->data['column_cost'] = $this->language->get('column_cost');
 		$this->data['column_quantity'] = $this->language->get('column_quantity');
 		$this->data['column_total'] = $this->language->get('column_total');
 

@@ -17,7 +17,7 @@
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
       <div class="report">
-        <div class="left"><img src="view/image/filter.png" alt="" /></div>
+        <div class="left"><i class="fa fa-search" style="font-size:19px;"></i></div>
         <div class="left"><?php echo $entry_date_start; ?> <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" id="date-start" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
         <div class="left"><?php echo $entry_date_end; ?> <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="date-end" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
         <div class="left"><?php echo $entry_status; ?> <select name="filter_order_status_id">
@@ -37,6 +37,8 @@
           <tr>
             <td class="left"><?php echo $column_name; ?></td>
             <td class="left"><?php echo $column_model; ?></td>
+            <td class="right"><?php echo $column_price; ?></td>
+            <td class="right"><?php echo $column_cost; ?></td>
             <td class="right"><?php echo $column_quantity; ?></td>
             <td class="right"><?php echo $column_total; ?></td>
           </tr>
@@ -47,13 +49,20 @@
             <tr>
               <td class="left"><?php echo $product['name']; ?></td>
               <td class="left"><?php echo $product['model']; ?></td>
-              <td class="right"><?php echo $product['quantity']; ?></td>
-              <td class="right"><?php echo $product['total']; ?></td>
+              <td class="right"><?php if ($product['special']) { ?>
+                <span style="text-decoration:line-through;"><?php echo $product['price']; ?></span><br />
+                <span style="color:#FF0000;"><?php echo $product['special']; ?></span><br />
+              <?php } else { ?>
+                <?php echo $product['price']; ?>
+              <?php } ?></td>
+              <td class="right"><?php echo $product['cost']; ?></td>
+              <td class="right"><b><?php echo $product['quantity']; ?></b></td>
+              <td class="right"><b><?php echo $product['total']; ?></b></td>
             </tr>
           <?php } ?>
         <?php } else { ?>
           <tr>
-            <td class="center" colspan="4"><?php echo $text_no_results; ?></td>
+            <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
           </tr>
         <?php } ?>
       </tbody>
