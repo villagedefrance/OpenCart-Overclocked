@@ -33,10 +33,10 @@
 				$rep.find("p").html(title + ": " + val);
 				$rep.find("i").css({background: fill});
 
-				$chart.find("."+$leg.attr("class")).append($rep);
+				$chart.find("." + $leg.attr("class")).append($rep);
 
 				for (var k in attrs) {
-					$el.attr(k,attrs[k]).attr("data-val", val).attr("data-title",title).attr("id","path" + i).attr("class","path");
+					$el.attr(k,attrs[k]).attr("data-val", val).attr("data-title", title).attr("id","path" + i).attr("class","path");
 					$g.append($el).attr("id","pathCont"+i).attr("class","pathCont");
 				}
 				return $g[0];
@@ -150,7 +150,7 @@
 							var $targetId = $target.attr("id");
 
 							if ($lastId !== $targetId) {
-								$chart.find("#"+$target.attr("id")).parent().remove();
+								$chart.find("#" + $target.attr("id")).parent().remove();
 								$chart.find(".svg").append($parent);
 							}
 						})();
@@ -159,7 +159,7 @@
 
 				$chart.mouseleave(function(e) {
 					// Remove tooltip
-					$body.find("."+$tooltip.attr("class")).remove();
+					$body.find("." + $tooltip.attr("class")).remove();
 				});
 			})();
 		},
@@ -220,7 +220,7 @@
 			};
 
 			var prependNodes = function(data) {
-				$.each(data, function(i, _node) {$chart.prepend(_node());});
+				$.each(data, function(i, _node) { $chart.prepend(_node()); });
 			};
 
 			// IF LESS THAN 50%
