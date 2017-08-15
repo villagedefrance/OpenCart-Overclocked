@@ -6,13 +6,13 @@
  * (c)2015 Sultan Tarimo - sultantarimo@me.com
  * Released under the MIT license
  * 
- * Overclocked Edition © 2016 | Villagedefrance
+ * Overclocked Edition © 2017 | Villagedefrance
  */
-(function($) {
+;(function($) {
 	$.fn.extend({
 		cssCharts: function(opts) {
 			var defs = {};
-			opts =  $.extend(defs, opts);
+			opts = $.extend(defs, opts);
 			return this.each(function() {
 				if (opts.type == "bar") {thychart.bar(this);}
 				else if (opts.type == "line") {thychart.line(this);}
@@ -99,7 +99,6 @@
 				}
 			};
 
-
 			var $chart = $(node);
 			var dataSet = $(node).attr("data-set");
 			var colorSet = $(node).attr("data-colors");
@@ -146,7 +145,7 @@
 
 						if (color) { $(e.target).attr("stroke", color); }
 
-						(function setOrder(){
+						(function setOrder() {
 							var $lastId = $last.attr("id");
 							var $targetId = $target.attr("id");
 
@@ -219,6 +218,7 @@
 				},
 				values: {spinner: val, mask: c, selector: "" }
 			};
+
 			var prependNodes = function(data) {
 				$.each(data, function(i, _node) {$chart.prepend(_node());});
 			};
@@ -327,161 +327,166 @@
 
 		line: function(node) {
 			var setPoint = function(cord, node) {
-			var $node = $(node).clone();
-			$node.find("a").attr("data-x", cord.x).attr("data-y", cord.y);
-			return $node;
-		};
+				var $node = $(node).clone();
+				$node.find("a").attr("data-x", cord.x).attr("data-y", cord.y);
 
-		var setPosition = function(data, cord) {
-			var x = (( cord.x / dim.maxX ) * 100) + "%";
-			var y = (( cord.y / height ) * 100) + "%";
-
-			cord.x = cord.x + "px";
-			cord.y = cord.y + "px";
-
-			$("ul").find(data).css("left", x);
-			$("ul").find(data).css("bottom", y);
-		};
-
-		var setContainerDimensions = function($chart,val) {
-			var height = [];
-			var width = [];
-
-			$.each(val, function(index) {
-				$.each(val[index][1], function(index, value) {height.push(value);});
-				$.each(val[index][0], function(index, value) {width.push(value);});
-			});
-
-			var maxY = Math.max.apply(Math, height) + 20;
-			var maxX = Math.max.apply(Math, width) + 20;
-
-			height = maxY;
-			width = $chart.parent().width();
-
-			$chart.parent().css({width: width, height: height});
-			$chart.parent().addClass("line");
-
-			return {width:width,height:height, maxX: maxX,maxY: maxY};
-		};
-
-		var convertToArrayOfObjects = function(val) {
-			var dataClone = val.slice(0),
-			keys = dataClone.shift(),
-			i = 0,
-			k = 0,
-			obj = null,
-			output = [];
-
-			for (i = 0; i < dataClone.length; i++) {
-				obj = {};
-
-				for (k = 0; k < keys.length; k++) {
-					var x = keys[k];
-					var y = dim.height-dataClone[i][k];
-
-					x = (x/dim.maxX) * dim.width;
-					y = (y/dim.maxY) * dim.height;
-
-					obj[k] = {
-						x: x,
-						y: y
-					};
-				}
-				output.push(obj);
-			}
-			return output[0];
-		};
-
-		var drawSVG = function(type, val, height, index) {
-			var $svg = ".svgCont";
-
-			if (type) {
-				$svg = $('<div class="svgCont"><svg class="svg" viewBox="0 0 ' + width + ' ' + height + '"><path class="path" d=""></path></svg></div>');
-
-				$svg.addClass(".p" + index);
-
-				if (type == 2) { $svg.addClass("fill"); }
-					$chart.parent().append($svg);
-				}
-
-				var points = convertToArrayOfObjects(val, height);
-				var counter = 0;
-
-				var addPoint = function(points, counter, isFirst) {
-				var new_point;
-
-				if (isFirst == "last") {
-					var last = Object.keys(points).length-1;
-					new_point = " L" + points[last].x + "," + points[last].x + " L" + 0 + "," + points[last].x + " Z";
-				} else {
-					var x = Math.floor(points[counter].x);
-					var y = Math.floor(points[counter].y);
-
-					new_point = (isFirst? "M" : " ") + x + "," + y;
-				}
-
-				$chart.parent().find($svg).find("path").attr("d", $chart.parent().find($svg).find("path").attr("d") + "" + new_point);
-				counter++;
-
-				if (counter < Object.keys(points).length) {
-					addPoint(points, counter, false);
-				}
-
-				if (counter == Object.keys(points).length && type == 2) {
-					addPoint(points, counter, "last");
-				}
+				return $node;
 			};
-			addPoint(points, counter, true);
-		};
 
-		var $chart = $(node);
-		$chart.parent().find(".svgCont, .grid").remove();
-		$chart.parent().find(".line-chart").empty();
+			var setPosition = function(data, cord) {
+				var x = (( cord.x / dim.maxX ) * 100) + "%";
+				var y = (( cord.y / height ) * 100) + "%";
 
-		var fill = $chart.attr("data-fill");
-		var grid = $("<div class='grid'></div>");
-		$chart.parent().append(grid);
+				cord.x = cord.x + "px";
+				cord.y = cord.y + "px";
 
-		var oneDim = "[" + $chart.attr("data-cord") + "]";
-		var cord = $chart.attr("data-cord");
-		cord = JSON.parse("[" + cord + "]");
+				$("ul").find(data).css("left", x);
+				$("ul").find(data).css("bottom", y);
+			};
 
-		if (cord[0].length !== 2) {
-			cord = JSON.parse("[" + oneDim + "]");
-		}
+			var setContainerDimensions = function($chart,val) {
+				var height = [];
+				var width = [];
 
-		var dim = setContainerDimensions($chart, cord);
-		var height = dim.height;
-		var width = dim.width;
+				$.each(val, function(index) {
+					$.each(val[index][1], function(index, value) {height.push(value);});
+					$.each(val[index][0], function(index, value) {width.push(value);});
+				});
 
-		var loopCord = function(index, val, height) {
-			for (var i = 0; i < val[index].length; i++) {
-				cord = {
-					x: val[0][i],
-					y: val[1][i]
+				var maxY = Math.max.apply(Math, height) + 20;
+				var maxX = Math.max.apply(Math, width) + 20;
+
+				height = maxY;
+				width = $chart.parent().width();
+
+				$chart.parent().css({width: width, height: height});
+				$chart.parent().addClass("line");
+
+				return {width:width,height:height, maxX: maxX,maxY: maxY};
+			};
+
+			var convertToArrayOfObjects = function(val) {
+				var dataClone = val.slice(0),
+				keys = dataClone.shift(),
+				i = 0,
+				k = 0,
+				obj = null,
+				output = [];
+
+				for (i = 0; i < dataClone.length; i++) {
+					obj = {};
+
+					for (k = 0; k < keys.length; k++) {
+						var x = keys[k];
+						var y = dim.height-dataClone[i][k];
+
+						x = (x/dim.maxX) * dim.width;
+						y = (y/dim.maxY) * dim.height;
+
+						obj[k] = {
+							x: x,
+							y: y
+						};
+					}
+
+					output.push(obj);
+				}
+
+				return output[0];
+			};
+
+			var drawSVG = function(type, val, height, index) {
+				var $svg = ".svgCont";
+
+				if (type) {
+					$svg = $('<div class="svgCont"><svg class="svg" viewBox="0 0 ' + width + ' ' + height + '"><path class="path" d=""></path></svg></div>');
+
+					$svg.addClass(".p" + index);
+
+					if (type == 2) { $svg.addClass("fill"); }
+						$chart.parent().append($svg);
+					}
+
+					var points = convertToArrayOfObjects(val, height);
+					var counter = 0;
+
+					var addPoint = function(points, counter, isFirst) {
+					var new_point;
+
+					if (isFirst == "last") {
+						var last = Object.keys(points).length-1;
+						new_point = " L" + points[last].x + "," + points[last].x + " L" + 0 + "," + points[last].x + " Z";
+					} else {
+						var x = Math.floor(points[counter].x);
+						var y = Math.floor(points[counter].y);
+
+						new_point = (isFirst? "M" : " ") + x + "," + y;
+					}
+
+					$chart.parent().find($svg).find("path").attr("d", $chart.parent().find($svg).find("path").attr("d") + "" + new_point);
+					counter++;
+
+					if (counter < Object.keys(points).length) {
+						addPoint(points, counter, false);
+					}
+
+					if (counter == Object.keys(points).length && type == 2) {
+						addPoint(points, counter, "last");
+					}
 				};
 
-				var point = setPoint(cord, $("<li><span></span><a></a></li>"));
+				addPoint(points, counter, true);
+			};
 
-				$chart.append(point);
-				setPosition(point, cord);
+			var $chart = $(node);
+			$chart.parent().find(".svgCont, .grid").remove();
+			$chart.parent().find(".line-chart").empty();
 
-				if (i % 2 === 0) {
-					var gridSpace = height / 10;
-					var line = $("<hr/>").css({bottom: i*gridSpace}).attr("data-y", i*gridSpace);
-					$chart.parent().find(".grid").append(line);
+			var fill = $chart.attr("data-fill");
+			var grid = $("<div class='grid'></div>");
+			$chart.parent().append(grid);
+
+			var oneDim = "[" + $chart.attr("data-cord") + "]";
+			var cord = $chart.attr("data-cord");
+			cord = JSON.parse("[" + cord + "]");
+
+			if (cord[0].length !== 2) {
+				cord = JSON.parse("[" + oneDim + "]");
+			}
+
+			var dim = setContainerDimensions($chart, cord);
+			var height = dim.height;
+			var width = dim.width;
+
+			var loopCord = function(index, val, height) {
+				for (var i = 0; i < val[index].length; i++) {
+					cord = {
+						x: val[0][i],
+						y: val[1][i]
+					};
+
+					var point = setPoint(cord, $("<li><span></span><a></a></li>"));
+
+					$chart.append(point);
+					setPosition(point, cord);
+
+					if (i % 2 === 0) {
+						var gridSpace = height / 10;
+						var line = $("<hr/>").css({bottom: i*gridSpace}).attr("data-y", i*gridSpace);
+						$chart.parent().find(".grid").append(line);
+					}
 				}
-			}
-			drawSVG(1, val, height, index);
 
-			if (fill) {
-				drawSVG(2, val, height, index);
-			}
-		};
+				drawSVG(1, val, height, index);
 
-		$.each(cord, function(i, val) {
-			loopCord(i, val, height);
-		});
-	}
-};
+				if (fill) {
+					drawSVG(2, val, height, index);
+				}
+			};
+
+			$.each(cord, function(i, val) {
+				loopCord(i, val, height);
+			});
+		}
+	};
 })(jQuery);

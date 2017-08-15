@@ -19,7 +19,7 @@
 	width: auto;
 	display: block;
 	position: relative;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	margin: 0 auto;
 }
@@ -34,6 +34,7 @@
 	position: relative;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
+	-khtml-border-radius: 50%;
 	border-radius: 50%;
 }
 .donut-chart.fill {
@@ -52,6 +53,7 @@
 	pointer-events: none;
 	-webkit-border-radius: 100%;
 	-moz-border-radius: 100%;
+	-khtml-border-radius: 100%;
 	border-radius: 100%;
 	-webkit-transform: translateX(-50%) translateY(-50%);
 	-moz-transform: translateX(-50%) translateY(-50%);
@@ -82,6 +84,7 @@
 	border-right: none;
 	-webkit-border-radius: 100% 0 0 100% / 50% 0 0 50%;
 	-moz-border-radius: 100% 0 0 100% / 50% 0 0 50%;
+	-khtml-border-radius: 100% 0 0 100% / 50% 0 0 50%;
 	border-radius: 100% 0 0 100% / 50% 0 0 50%;
 	-webkit-transform: rotate(0deg);
 	-moz-transform: rotate(0deg);
@@ -89,9 +92,9 @@
 	-webkit-animation: rotateDonut 0.3s ease-in-out;
 	-moz-animation: rotateDonut 0.3s ease-in-out;
 	animation: rotateDonut 0.3s ease-in-out;
-	-webkit-transition: all 160ms ease-in-out;
-	-moz-transition: all 160ms ease-in-out;
-	transition: all 160ms ease-in-out;
+	-webkit-transition: all 180ms ease-in-out;
+	-moz-transition: all 180ms ease-in-out;
+	transition: all 180ms ease-in-out;
 }
 .spinner ~ .pie {
 	pointer-events: none;
@@ -104,6 +107,7 @@
 
 @-webkit-keyframes rotateDonut {0% {transform: rotate(0deg);}}
 @-moz-keyframes rotateDonut {0% {transform: rotate(0deg);}}
+@-o-keyframes rotateDonut {0% {transform: rotate(0deg);}}
 @keyframes rotateDonut {0% {transform: rotate(0deg);}}
 
 .donut-chart .spinner.temp {
