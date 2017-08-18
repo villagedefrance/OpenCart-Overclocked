@@ -95,6 +95,8 @@ class ControllerReportProductPurchased extends Controller {
 				}
 			}
 
+			$subtotal = $result['price'] * $result['quantity'];
+
 			$this->data['products'][] = array(
 				'name'     => $result['name'],
 				'model'    => $result['model'],
@@ -102,6 +104,7 @@ class ControllerReportProductPurchased extends Controller {
 				'cost'     => $this->currency->format($result['cost'], $this->config->get('config_currency')),
 				'special'  => $special,
 				'quantity' => $result['quantity'],
+				'subtotal' => $this->currency->format($subtotal, $this->config->get('config_currency')),
 				'total'    => $this->currency->format($result['total'], $this->config->get('config_currency'))
 			);
 		}
@@ -116,6 +119,7 @@ class ControllerReportProductPurchased extends Controller {
 		$this->data['column_price'] = $this->language->get('column_price');
 		$this->data['column_cost'] = $this->language->get('column_cost');
 		$this->data['column_quantity'] = $this->language->get('column_quantity');
+		$this->data['column_subtotal'] = $this->language->get('column_subtotal');
 		$this->data['column_total'] = $this->language->get('column_total');
 
 		$this->data['entry_date_start'] = $this->language->get('entry_date_start');

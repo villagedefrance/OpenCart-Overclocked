@@ -602,7 +602,7 @@ ul.menu ul {
 /* Image */
 .image {
 	display: inline-block;
-	border: 1px solid #555;
+	border: 1px solid #777;
 	padding: 10px;
 }
 .image img {

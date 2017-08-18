@@ -38,7 +38,7 @@
 	border-radius: 50%;
 }
 .donut-chart.fill {
-	background: #9FD5F1;
+	background: #83AFC4;
 }
 .donut-chart:after {
 	content: "";
@@ -100,9 +100,9 @@
 	pointer-events: none;
 }
 .donut-chart.fill .pie, .pie-chart .pie {
-	-webkit-box-shadow: 0 0 0 4px #0072C4;
-	-moz-box-shadow: 0 0 0 4px #0072C4;
-	box-shadow: 0 0 0 4px #0072C4;
+	-webkit-box-shadow: 0 0 0 3px #0072C4;
+	-moz-box-shadow: 0 0 0 3px #0072C4;
+	box-shadow: 0 0 0 3px #0072C4;
 }
 
 @-webkit-keyframes rotateDonut {0% {transform: rotate(0deg);}}

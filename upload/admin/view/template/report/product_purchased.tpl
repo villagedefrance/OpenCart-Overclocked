@@ -40,6 +40,7 @@
             <td class="right"><?php echo $column_price; ?></td>
             <td class="right"><?php echo $column_cost; ?></td>
             <td class="right"><?php echo $column_quantity; ?></td>
+            <td class="right"><?php echo $column_subtotal; ?></td>
             <td class="right"><?php echo $column_total; ?></td>
           </tr>
         </thead>
@@ -57,12 +58,13 @@
               <?php } ?></td>
               <td class="right"><?php echo $product['cost']; ?></td>
               <td class="right"><b><?php echo $product['quantity']; ?></b></td>
+              <td class="right"><?php echo $product['subtotal']; ?></td>
               <td class="right"><b><?php echo $product['total']; ?></b></td>
             </tr>
           <?php } ?>
         <?php } else { ?>
           <tr>
-            <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
+            <td class="center" colspan="7"><?php echo $text_no_results; ?></td>
           </tr>
         <?php } ?>
       </tbody>
