@@ -23,11 +23,13 @@
 .menu-ltr #menu > ul > li > a .home-icon {
 	background: url('../image/menu/home_icon_dark.png') center center no-repeat;
 }
-.menu-ltr #menu > ul > li > div {
-	border-top: 1px solid #45494B;
+.menu-ltr #menu > ul > li > div { }
+.menu-ltr #menu > ul > li:hover > div {
+	display: block;
 }
-.menu-ltr #menu > ul > li:hover > div { }
-.menu-ltr #menu > ul > li > div > ul { }
+.menu-ltr #menu > ul > li > div > ul {
+	border-top: 1px solid transparent;
+}
 .menu-ltr #menu > ul > li ul + ul { }
 .menu-ltr #menu > ul > li ul > li > a {
 	background: url('../image/menu/sep_vertical_dark.png') bottom left repeat-x;
