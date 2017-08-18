@@ -30,7 +30,7 @@ Requirements:
 - Curl: Curl extensions
 - PHP: PHP 5.4+
 
-COMING SOON in v1.10.X!
+NEW in v1.10.X (Current Release)!
 - Admin Dashboard update.
 - Encryption update (PHP 7.1+ support).
 - Added Product custom labels system.
@@ -43,29 +43,23 @@ COMING SOON in v1.10.X!
 - bug fixes.
 - ...
 
-NEW in v1.9.4.0 (Current Release)!
-- Custom Admin theme manager.
-- CKEditor update to v4.7.0.
-- bug fixes.
-- ...
-
 Overclocked Edition main features, compared with official OpenCart v1.5.6.x:
 
-Custom Menu System, Custom Footer System, Responsive Default Theme, Template Control System,
-Touch/Swipe enabled, Full Page Image Manager with multi-uploads, Cache Managers for Files and Images,
-SEO Keywords Manager, Integrated News (Blog), DomPDF library for PDF order downloads, StoreYa Feed,
-Full SSL support in Catalog, Direct printing of invoices, Custom Colour & Style for all modules and footer,
-Improved Affiliates features, Api Keys management forms, Supplier management forms, Product RSS Feed,
-Product labels system, Cookie Consent code, New Modules & Shipping methods, Admin User Agent detector,
-New and updated Payment methods, Tag cloud, Alexa & Piwik connectors, Customer Group image, Ajax Search,
-Store Google Map, Invoicing with tax breakdown, Contact E-mail logging, Custom Payment labels,
-Ip Range blocker (firewall), Stronger Session & Captcha Classes, Autocomplete for offers, Seo-Urls caching,
-"Save & Continue" for Admin forms, EU taxes for E-medias Law, Customer Order Picklist & Order History,
-Customer Gender & Date of Birth (optional), Import/Export Tool, Product Minimum Age limit, Product Wall page,
-Product Quote system, Profit Margins & Stock Levels reports, Colours for Product, VQmod and VQmanager,
-Improved Search, Better PayPal Express button, Better Install & Upgrade scripts, One Page Checkout (optional),
-Express Checkout (optional), Multi-language Manufacturers, Multi-language Countries, FraudLabs Pro integration,
-Font-Awesome library, Admin menu icons, Choice of 5 product image viewers, PHP 7.1+ support, Media Player,
+Custom Admin theme manager, Custom Menu System, Custom Footer System, Responsive Default Theme, 
+Template Control System, Full Page Image Manager with multi-uploads, Cache Managers for Files and Images, 
+SEO Keywords Manager, Integrated News (Blog), DomPDF library for PDF order downloads, StoreYa Feed, 
+Full SSL support in Catalog, Direct printing of invoices, Custom Colour & Style for footer, Touch/Swipe enabled, 
+Improved Affiliates features, Api Keys management forms, Supplier management forms, Product RSS Feed, 
+Product labels system, Cookie Consent code, New Modules & Shipping methods, Admin User Agent detector, 
+New and updated Payment methods, Tag cloud, Alexa & Piwik connectors, Customer Group image, Ajax Search, 
+Store Google Map, Invoicing with tax breakdown, Contact E-mail logging, Custom Payment labels, 
+Ip Range blocker (firewall), Stronger Session & Captcha Classes, Autocomplete for offers, Seo-Urls caching, 
+"Save & Continue" for Admin forms, EU taxes for E-medias Law, Customer Order Picklist & Order History, 
+Customer Gender & Date of Birth (optional), Import/Export Tool, Product Minimum Age limit, Product Wall page, 
+Product Quote system, Profit Margins & Stock Levels reports, Colours for Product, VQmod and VQmanager, 
+Improved Search, Better PayPal Express button, Better Install & Upgrade scripts, One Page Checkout (optional), 
+Express Checkout (optional), Multi-language Manufacturers, Multi-language Countries, FraudLabs Pro integration, 
+Font-Awesome library, Admin menu icons, Choice of 5 product image viewers, PHP 7.1+ support, Media Player, 
 "Free" for zero prices, All fixes from Community Edition RC1/2 applied, Better Dashboard ...
 
 
