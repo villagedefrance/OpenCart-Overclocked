@@ -312,9 +312,9 @@ class ControllerProductProduct extends Controller {
 
 				if ($product_info['image']) {
 					$this->data['zoom'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_popup_width') * 2, $this->config->get('config_image_popup_height') * 2);
-					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], 230, 230);
-					$this->data['label'] = $this->model_tool_image->resize($product_info['label'], 55, 55);
-					$this->data['label_style'] = 175;
+					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], 232, 232);
+					$this->data['label'] = $this->model_tool_image->resize($product_info['label'], 58, 58);
+					$this->data['label_style'] = 176;
 					$this->data['gallery_thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'));
 				} else {
 					$this->data['zoom'] = '';
