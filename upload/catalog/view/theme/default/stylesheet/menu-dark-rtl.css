@@ -160,17 +160,8 @@
 #menu-trigger, #menu-phone {
 	display: none;
 }
-/* Desktop - Small */
-@media only screen and (min-width: 801px) and (max-width: 1281px) {
-	.menu-dark #menu {
-		display: block;
-	}
-	#menu-trigger, #menu-phone {
-		display: none;
-	}
-}
-/* Tablets */
-@media only screen and (min-width: 641px) and (max-width: 801px) {
+/* Laptops */
+@media only screen and (min-width: 961px) and (max-width: 1281px) {
 	.menu-dark #menu {
 		display: block;
 	}
@@ -179,6 +170,86 @@
 	}
 	#menu-trigger, #menu-phone {
 		display: none;
+	}
+}
+/* Tablets */
+@media only screen and (min-width: 641px) and (max-width: 961px) {
+	.menu-dark #menu {
+		display: none;
+	}
+	#menu-trigger {
+		display: block;
+		position: relative;
+		background-color: #4D4F50;
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#4D4F50), to(#323435));
+		background-image: -webkit-linear-gradient(top, #4D4F50, #323435);
+		background-image: -moz-linear-gradient(top, #4D4F50, #323435);
+		background-image: -ms-linear-gradient(top, #4D4F50, #323435);
+		background-image: -o-linear-gradient(top, #4D4F50, #323435);
+		background-image: linear-gradient(to bottom, #4D4F50, #323435);
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+		-khtml-border-radius: 3px;
+		border-radius: 3px;
+		height: 40px;
+		width: auto;
+	}
+	#menu-phone {
+		width: 600px;
+		position: relative;
+		top: 10px;
+		background: rgba(255,255,255,1);
+		box-shadow: none;
+		display: none;
+		z-index: 550;
+	}
+	.box-phone > ul {
+		display: block;
+		list-style: none;
+		margin: 0px 0px 25px 0px;
+		padding: 0;
+	}
+	.box-phone > ul > li {
+		padding: 10px 1px 10px 9px;
+	}
+	.box-phone > ul > li + li {
+		border-top: 1px solid #CCC;
+	}
+	.box-phone > ul > li a {
+		font-size: 15px;
+		text-decoration: none;
+		outline: none;
+		color: #222;
+	}
+	.box-phone > ul > li a:hover {
+		color: #36AAD8;
+	}
+	.box-phone > ul > li > ul {
+		margin-top: 5px;
+		list-style: none;
+		display: none;
+	}
+	.box-phone > ul > li a.active {
+		font-weight: bold;
+	}
+	.box-phone > ul > li a.active + ul {
+		padding-left: 15px;
+		display: block;
+	}
+	.box-phone > ul > li > ul > li {
+		padding: 8px 1px 8px 1px;
+		display: block;
+	}
+	.box-phone > ul > li > ul > li a {
+		font-size: 14px;
+		text-decoration: none;
+		outline: none;
+	}
+	.box-phone > ul > li > ul > li a.active {
+		font-weight: bold;
+	}
+	.box-phone > ul > li > ul > li a.active span.inactive {
+		font-weight: normal;
 	}
 }
 /* Phones */
@@ -204,7 +275,7 @@
 		width: auto;
 	}
 	#menu-phone {
-		width: 310px;
+		width: 300px;
 		position: relative;
 		top: 10px;
 		background: rgba(255,255,255,1);
