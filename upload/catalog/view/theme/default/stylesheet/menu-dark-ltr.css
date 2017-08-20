@@ -155,12 +155,26 @@
 #menu-trigger, #menu-phone {
 	display: none;
 }
-/* Laptops */
-@media only screen and (min-width: 961px) and (max-width: 1281px) {
+/* Desktops */
+@media only screen and (min-width: 1161px) and (max-width: 1281px) {
 	.menu-dark #menu {
 		display: block;
 	}
 	.menu-dark #menu > ul > li > a {
+		padding: 0px 12px 0px 12px;
+		font-size: 14px;
+	}
+	#menu-trigger, #menu-phone {
+		display: none;
+	}
+}
+/* Laptops */
+@media only screen and (min-width: 981px) and (max-width: 1161px) {
+	.menu-dark #menu {
+		display: block;
+	}
+	.menu-dark #menu > ul > li > a {
+		padding: 0px 8px 0px 8px;
 		font-size: 13px;
 	}
 	#menu-trigger, #menu-phone {
@@ -168,7 +182,7 @@
 	}
 }
 /* Tablets */
-@media only screen and (min-width: 641px) and (max-width: 961px) {
+@media only screen and (min-width: 641px) and (max-width: 981px) {
 	.menu-dark #menu {
 		display: none;
 	}
@@ -218,6 +232,7 @@
 	}
 	.box-phone > ul > li a:hover {
 		color: #36AAD8;
+		font-weight: bold;
 	}
 	.box-phone > ul > li > ul {
 		margin-top: 5px;
@@ -298,6 +313,7 @@
 	}
 	.box-phone > ul > li a:hover {
 		color: #36AAD8;
+		font-weight: bold;
 	}
 	.box-phone > ul > li > ul {
 		margin-top: 5px;
