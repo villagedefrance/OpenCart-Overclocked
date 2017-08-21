@@ -30,16 +30,9 @@ Requirements:
 - Curl: Curl extensions
 - PHP: PHP 5.4+
 
-NEW in v1.10.X (Current Release)!
-- Admin Dashboard update.
-- Encryption update (PHP 7.1+ support).
-- Added Product custom labels system.
-- Product status labels automatic resizing.
-- Simplified Modules settings.
-- Updated Plyr Media Player to v2.0.12.
-- Updated Slick Carousel to v1.7.1.
-- Updated DomPDF to v0.8.0 (PHP 7.1+ support).
-- Updated CKEditor to v4.7.1.
+NEW in v1.10.1 (Current Release)!
+- Updated CKEditor to v4.7.2.
+- Updated SwipeBox to v1.4.4.
 - bug fixes.
 - ...
 
