@@ -7,6 +7,8 @@ $_['text_success']         = 'Success: You have modified <b>Administration</b> !
 $_['text_administration']  = 'A valid CSS file <b>must</b> be manually uploaded in the "stylesheet" folder under the Administration for the stylesheet to become active. The name of the CSS file <b>must</b> match exactly the name entered in the form.';
 $_['text_present']         = 'Present';
 $_['text_missing']         = 'Missing';
+$_['text_light']           = 'Light';
+$_['text_dark']            = 'Dark';
 
 // Column
 $_['column_name']          = 'Stylesheet\'s Name';
@@ -17,6 +19,13 @@ $_['column_action']        = 'Action';
 
 // Entry
 $_['entry_name']           = 'Stylesheet\'s Name:';
+$_['entry_contrast']       = 'Theme Contrast:';
+
+// Help
+$_['help_contrast']        = 'Select a contrast value for the secondary styles and scripts.';
+
+// Button
+$_['button_settings']      = 'Settings';
 
 // Error
 $_['error_permission']     = 'Warning: You do not have permission to modify <b>Administration</b> !';

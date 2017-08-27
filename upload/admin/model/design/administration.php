@@ -2,7 +2,7 @@
 class ModelDesignAdministration extends Model {
 
 	public function addAdministration($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "administration SET name = '" . $this->db->escape($data['name']) . "', date_added = NOW(), date_modified = NOW()");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "administration SET name = '" . $this->db->escape($data['name']) . "', contrast = '" . $this->db->escape($data['contrast']) . "', date_added = NOW(), date_modified = NOW()");
 
 		$administration_id = $this->db->getLastId();
 
@@ -13,7 +13,7 @@ class ModelDesignAdministration extends Model {
 	}
 
 	public function editAdministration($administration_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "administration SET name = '" . $this->db->escape($data['name']) . "', date_modified = NOW() WHERE administration_id = '" . (int)$administration_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "administration SET name = '" . $this->db->escape($data['name']) . "', contrast = '" . $this->db->escape($data['contrast']) . "', date_modified = NOW() WHERE administration_id = '" . (int)$administration_id . "'");
 
 		$this->cache->delete('administration');
 	}
@@ -73,6 +73,12 @@ class ModelDesignAdministration extends Model {
 		}
 	}
 
+	public function getAdministrationContrastByName($name) {
+		$query = $this->db->query("SELECT LCASE(contrast) AS contrast FROM " . DB_PREFIX . "administration WHERE `name` LIKE '%" . $this->db->escape($name) . "%'");
+
+		return $query->row['contrast'];
+	}
+
 	public function getTotalAdministrations() {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "administration");
 
@@ -87,7 +93,7 @@ class ModelDesignAdministration extends Model {
 			$stylesheets = array('classic','overclock');
 
 			foreach ($stylesheets as $stylesheet) {
-				$this->db->query("INSERT INTO `" . DB_PREFIX . "administration` SET name = '" . $this->db->escape($stylesheet) . "', date_added = NOW(), date_modified = NOW()");
+				$this->db->query("INSERT INTO `" . DB_PREFIX . "administration` SET name = '" . $this->db->escape($stylesheet) . "', contrast = 'light', date_added = NOW(), date_modified = NOW()");
 			}
 		}
 	}

@@ -179,7 +179,10 @@ class ControllerDesignAdministration extends Controller {
 			'separator' => ' :: '
 		);
 
+		$this->data['settings'] = $this->url->link('setting/store', 'token=' . $this->session->data['token'], 'SSL');
+
 		$this->data['insert'] = $this->url->link('design/administration/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
+
 		$this->data['delete'] = $this->url->link('design/administration/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
 		// Pagination
@@ -230,6 +233,7 @@ class ControllerDesignAdministration extends Controller {
 		$this->data['column_date_modified'] = $this->language->get('column_date_modified');
 		$this->data['column_action'] = $this->language->get('column_action');
 
+		$this->data['button_settings'] = $this->language->get('button_settings');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
 
@@ -296,8 +300,13 @@ class ControllerDesignAdministration extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_administration'] = $this->language->get('text_administration');
+		$this->data['text_light'] = $this->language->get('text_light');
+		$this->data['text_dark'] = $this->language->get('text_dark');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
+		$this->data['entry_contrast'] = $this->language->get('entry_contrast');
+
+		$this->data['help_contrast'] = $this->language->get('help_contrast');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
@@ -361,6 +370,14 @@ class ControllerDesignAdministration extends Controller {
 			$this->data['name'] = $administration_info['name'];
 		} else {
 			$this->data['name'] = '';
+		}
+
+		if (isset($this->request->post['contrast'])) {
+			$this->data['contrast'] = $this->request->post['contrast'];
+		} elseif (!empty($administration_info)) {
+			$this->data['contrast'] = $administration_info['contrast'];
+		} else {
+			$this->data['contrast'] = 'light';
 		}
 
 		$this->template = 'design/administration_form.tpl';

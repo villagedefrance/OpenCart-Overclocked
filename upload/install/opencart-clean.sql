@@ -41,6 +41,7 @@ DROP TABLE IF EXISTS `oc_administration`;
 CREATE TABLE `oc_administration` (
   `administration_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
+  `contrast` varchar(32) NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`administration_id`)

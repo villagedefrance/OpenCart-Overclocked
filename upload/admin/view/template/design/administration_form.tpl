@@ -30,6 +30,18 @@
             stylesheet_<input type="text" name="name" value="<?php echo $name; ?>" size="20" />.css
           <?php } ?></td>
         </tr>
+        <tr>
+          <td><?php echo $entry_contrast; ?><span class="help"><?php echo $help_contrast; ?></span></td>
+          <td><select name="contrast">
+            <?php if (isset($contrast)) { $selected = "selected"; ?>
+              <option value="light" <?php if ($contrast == 'light') { echo $selected; } ?>><?php echo $text_light; ?></option>
+              <option value="dark" <?php if ($contrast == 'dark') { echo $selected; } ?>><?php echo $text_dark; ?></option>
+            <?php } else { ?>
+              <option value="light"><?php echo $text_light; ?></option>
+              <option value="dark"><?php echo $text_dark; ?></option>
+            <?php } ?>
+          </select></td>
+          </tr>
       </table>
     </form>
     </div>
