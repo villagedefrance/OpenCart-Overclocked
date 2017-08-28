@@ -14,7 +14,7 @@ class ModelCatalogTagCloud extends Model {
 			foreach ($query->rows as $row) {
 				$tagcount = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_tag WHERE tag= '" . $row['tag'] . "' AND language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
-				$names[] = $row['tag'];
+				$names[] = trim(str_replace(',', ' ', (string)$row['tag']));
 				$totals[] = $tagcount->num_rows;
 			}
 
