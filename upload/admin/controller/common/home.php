@@ -263,11 +263,11 @@ class ControllerCommonHome extends Controller {
 
 		$contrast = $this->model_design_administration->getAdministrationContrastByName($admin_css);
 
-		if ($admin_css == 'overclock' || $contrast == 'dark') {
+		if ($contrast == 'dark') {
 			$this->data['chart_background'] = '#6D7582';
 			$this->data['chart_border'] = '#999999';
 			$this->data['chart_colour'] = '#E5E5E5';
-		} elseif ($admin_css == 'classic' || $contrast == 'light') {
+		} elseif ($contrast == 'light') {
 			$this->data['chart_background'] = '#FFFFFF';
 			$this->data['chart_border'] = '#AAAAAA';
 			$this->data['chart_colour'] = '#333333';

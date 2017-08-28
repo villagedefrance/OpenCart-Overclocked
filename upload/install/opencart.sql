@@ -51,9 +51,9 @@ CREATE TABLE `oc_administration` (
 -- Dumping data for table `oc_administration`
 --
 
-INSERT INTO `oc_administration` (`administration_id`, `name`, `date_added`, `date_modified`) VALUES
-(1, 'classic', '2017-06-05 10:06:48', '2017-06-05 14:02:42'),
-(2, 'overclock', '2017-06-05 10:06:48', '2017-06-05 14:02:42');
+INSERT INTO `oc_administration` (`administration_id`, `name`, `contrast`, `date_added`, `date_modified`) VALUES
+(1, 'classic', 'light', '2017-06-05 10:06:48', '2017-06-05 14:02:42'),
+(2, 'overclock', 'dark', '2017-06-05 10:06:48', '2017-06-05 14:02:42');
 
 -- --------------------------------------------------------
 
