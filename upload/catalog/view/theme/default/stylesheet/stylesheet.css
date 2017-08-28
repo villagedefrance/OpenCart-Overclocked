@@ -1456,6 +1456,7 @@ ul.box-filter > li ul {
 }
 .manufacturer-heading {
 	background: #F8F8F8;
+	text-shadow: 0px 1px 0px #FFF;
 	font-size: 15px;
 	font-weight: bold;
 	padding: 5px 8px;
@@ -2017,7 +2018,7 @@ ul.box-filter > li ul {
 	padding: 10px;
 }
 .review-box .author {
-	margin-bottom: 5px;
+	margin-bottom: 8px;
 }
 .review-box .rating {
 	display: block;
@@ -2026,7 +2027,7 @@ ul.box-filter > li ul {
 .review-box .text {
 	clear: both;
 	color: #444;
-	font-size: 13px;
+	font-size: 14px;
 	font-style: italic;
 }
 /* Review List */
@@ -2812,7 +2813,7 @@ table.order-options tr td > div.division {
 	position: relative;
 	top: 0;
 	display: block;
-	padding: 2px 0px 0px 0px;
+	padding: 0px;
 	z-index: 9;
 }
 /* Banner */

@@ -19,7 +19,7 @@ $_['column_action']        = 'Action';
 
 // Entry
 $_['entry_name']           = 'Stylesheet\'s Name:';
-$_['entry_contrast']       = 'Theme Contrast:';
+$_['entry_contrast']       = 'Theme\'s Contrast:';
 
 // Help
 $_['help_contrast']        = 'Select a contrast value for the secondary styles and scripts.';
