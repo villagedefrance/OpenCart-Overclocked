@@ -31,7 +31,7 @@
 jQuery(document).ready(function() {
 	$('#camera_wrap<?php echo $module; ?>').camera({
 		height: '<?php echo $ratio; ?>%',
-		fx: 'random',
+		fx: '<?php echo $camera_transition; ?>',
 		playPause: <?php echo $camera_playpause; ?>,
 		pagination: <?php echo $camera_pagination; ?>,
 		thumbnails: <?php echo $camera_thumbnails; ?>,

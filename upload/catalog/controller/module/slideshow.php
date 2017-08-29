@@ -26,6 +26,10 @@ class ControllerModuleSlideshow extends Controller {
 
 		$this->data['camera_theme'] = ($skin_color) ? $skin_color . '_skin' : 'charcoal_skin';
 
+		$camera_transition = $this->config->get($this->_name . '_transition');
+
+		$this->data['camera_transition'] = ($camera_transition == 'scrollBoth') ? 'scrollRight, scrollBottom' : $camera_transition;
+
 		$option_playpause = $this->config->get($this->_name . '_playpause');
 		$option_pagination = $this->config->get($this->_name . '_pagination');
 		$option_thumbnails = $this->config->get($this->_name . '_thumbnails');

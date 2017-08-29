@@ -40,6 +40,7 @@ class ControllerModuleSlideshow extends Controller {
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_skin_color'] = $this->language->get('entry_skin_color');
+		$this->data['entry_transition'] = $this->language->get('entry_transition');
 		$this->data['entry_playpause'] = $this->language->get('entry_playpause');
 		$this->data['entry_pagination'] = $this->language->get('entry_pagination');
 		$this->data['entry_thumbnails'] = $this->language->get('entry_thumbnails');
@@ -143,6 +144,12 @@ class ControllerModuleSlideshow extends Controller {
 			$this->data[$this->_name . '_skin_color'] = $this->request->post[$this->_name . '_skin_color'];
 		} else {
 			$this->data[$this->_name . '_skin_color'] = $this->config->get($this->_name . '_skin_color');
+		}
+
+		if (isset($this->request->post[$this->_name . '_transition'])) {
+			$this->data[$this->_name . '_transition'] = $this->request->post[$this->_name . '_transition'];
+		} else {
+			$this->data[$this->_name . '_transition'] = $this->config->get($this->_name . '_transition');
 		}
 
 		if (isset($this->request->post[$this->_name . '_playpause'])) {

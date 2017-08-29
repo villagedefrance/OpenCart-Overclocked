@@ -58,6 +58,24 @@
             </select></td>
           </tr>
           <tr>
+            <td><?php echo $entry_transition; ?></td>
+            <td><select name="slideshow_transition">
+              <?php if (isset($slideshow_transition)) { $selected = "selected"; ?>
+                <option value="random" <?php if ($slideshow_transition == 'random') { echo $selected; } ?>>Random</option>
+                <option value="simpleFade" <?php if ($slideshow_transition == 'simpleFade') { echo $selected; } ?>>simple Fade</option>
+                <option value="scrollRight" <?php if ($slideshow_transition == 'scrollRight') { echo $selected; } ?>>Scroll Horizontal</option>
+                <option value="scrollBottom" <?php if ($slideshow_transition == 'scrollBottom') { echo $selected; } ?>>Scroll Vertical</option>
+                <option value="scrollBoth" <?php if ($slideshow_transition == 'scrollBoth') { echo $selected; } ?>>Scroll Both</option>
+              <?php } else { ?>
+                <option value="random">Random</option>
+                <option value="simpleFade">simple Fade</option>
+                <option value="scrollRight">Scroll Horizontal</option>
+                <option value="scrollBottom">Scroll Vertical</option>
+                <option value="scrollBoth">Scroll Both</option>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_playpause; ?></td>
             <td><?php if ($slideshow_playpause) { ?>
               <input type="radio" name="slideshow_playpause" value="1" id="playpause-on" class="radio" checked />
