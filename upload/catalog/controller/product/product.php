@@ -722,7 +722,11 @@ class ControllerProductProduct extends Controller {
 			$this->data['rating'] = (int)$product_info['rating'];
 			$this->data['captcha'] = ''; // Captcha required
 			$this->data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
-			$this->data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
+
+			// Attributes
+			$attribute_groups = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
+
+			$this->data['attribute_groups'] = array_reverse($attribute_groups, true);
 
 			// Related
 			$related_offers = $this->model_catalog_offer->getListProductOffers(0);

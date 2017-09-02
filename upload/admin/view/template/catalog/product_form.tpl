@@ -685,8 +685,8 @@
             </td>
             <td class="left">
               <?php foreach ($languages as $language) { ?>
-                <textarea name="product_attribute[<?php echo $attribute_row; ?>][product_attribute_description][<?php echo $language['language_id']; ?>][text]" class="mark-it-up"><?php echo isset($product_attribute['product_attribute_description'][$language['language_id']]) ? $product_attribute['product_attribute_description'][$language['language_id']]['text'] : ''; ?></textarea>
-                <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" /><br />
+                <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" />
+                <textarea name="product_attribute[<?php echo $attribute_row; ?>][product_attribute_description][<?php echo $language['language_id']; ?>][text]" id="attribute<?php echo $attribute_row; ?><?php echo $language['language_id']; ?>"><?php echo isset($product_attribute['product_attribute_description'][$language['language_id']]) ? $product_attribute['product_attribute_description'][$language['language_id']]['text'] : ''; ?></textarea><br />
               <?php } ?>
             </td>
             <td class="center"><a onclick="$('#attribute-row<?php echo $attribute_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
@@ -1162,6 +1162,16 @@ CKEDITOR.replace('description<?php echo $language['language_id']; ?>', {
 	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
 });
 
+<?php $attribute_row = 0; ?>
+<?php foreach ($product_attributes as $product_attribute) { ?>
+CKEDITOR.replace('attribute<?php echo $attribute_row; ?><?php echo $language['language_id']; ?>', {
+	filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
+});
+<?php $attribute_row++; ?>
+<?php } ?>
+
 $(document).ready(function() {
 	$('#meta-description<?php echo $language['language_id']; ?>').on('load propertychange keyup input paste', function() {
 		var limit = $(this).data("limit");
@@ -1585,16 +1595,6 @@ $('#fields tbody').each(function(index, element) {
 //--></script>
 <?php } ?>
 
-<script type="text/javascript" src="view/javascript/jquery/markitup/jquery.markitup.min.js"></script>
-<script type="text/javascript" src="view/javascript/jquery/markitup/sets/default/set.js"></script>
-
-<link rel="stylesheet" type="text/css" href="view/javascript/jquery/markitup/skins/overclocked/style.css" />
-<link rel="stylesheet" type="text/css" href="view/javascript/jquery/markitup/sets/default/style.css" />
-
-<script type="text/javascript"><!--
-$('.mark-it-up').markItUp(mySettings);
-//--></script>
-
 <script type="text/javascript"><!--
 var attribute_row = <?php echo $attribute_row; ?>;
 
@@ -1608,8 +1608,8 @@ function addAttribute() {
 	html += '    </td>';
 	html += '    <td class="left">';
 	<?php foreach ($languages as $language) { ?>
-	html += '      <textarea name="product_attribute[' + attribute_row + '][product_attribute_description][<?php echo $language['language_id']; ?>][text]" class="mark-it-up"></textarea>';
-	html += '      <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" /><br />';
+	html += '      <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" />';
+	html += '      <textarea name="product_attribute[' + attribute_row + '][product_attribute_description][<?php echo $language['language_id']; ?>][text]" id="attribute[' + attribute_row + '][<?php echo $language['language_id']; ?>]"></textarea><br />';
 	<?php } ?>
 	html += '    </td>';
 	html += '    <td class="center"><a onclick="$(\'#attribute-row' + attribute_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
@@ -1618,10 +1618,15 @@ function addAttribute() {
 
 	$('#attribute tfoot').before(html);
 
-	$('.mark-it-up').markItUpRemove();
-	$('.mark-it-up').markItUp(mySettings);
-
 	attributeAutocomplete(attribute_row);
+
+<?php foreach ($languages as $language) { ?>
+CKEDITOR.replace('attribute[' + attribute_row + '][<?php echo $language['language_id']; ?>]', {
+	filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
+});
+<?php } ?>
 
 	attribute_row++;
 }

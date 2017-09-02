@@ -2181,6 +2181,7 @@ ul.box-filter > li ul {
 }
 .attribute .attribute-list {
 	color: #111;
+	font-size: 13px;
 	font-weight: bold;
 	border-bottom: 1px solid #F7F7F7;
 	margin-bottom: 10px;
