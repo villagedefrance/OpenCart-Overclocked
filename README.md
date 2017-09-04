@@ -30,9 +30,13 @@ Requirements:
 - Curl: Curl extensions
 - PHP: PHP 5.4+
 
+
 Coming soon in v1.10.2!
 - Updated Camera slideshow module.
 - Updated Admin Theme manager.
+- Updated News collapsible styles.
+- Added CKEditor for Product Attributes.
+- Removed MarkItUp script.
 - bug fixes.
 
 NEW in v1.10.1 (Current Release)!
@@ -40,6 +44,7 @@ NEW in v1.10.1 (Current Release)!
 - Updated SwipeBox to v1.4.4.
 - bug fixes.
 - ...
+
 
 Overclocked Edition main features, compared with official OpenCart v1.5.6.x:
 
@@ -52,7 +57,7 @@ Product labels system, Cookie Consent code, New Modules & Shipping methods, Admi
 New and updated Payment methods, Tag cloud, Alexa & Piwik connectors, Customer Group image, Ajax Search, 
 Store Google Map, Invoicing with tax breakdown, Contact E-mail logging, Custom Payment labels, 
 Ip Range blocker (firewall), Stronger Session & Captcha Classes, Autocomplete for offers, Seo-Urls caching, 
-"Save & Continue" for Admin forms, EU taxes for E-medias Law, Customer Order Picklist & Order History, 
+"Save & Continue" for all Admin forms, EU taxes for E-medias Law, Customer Order Picklist & Order History, 
 Customer Gender & Date of Birth (optional), Import/Export Tool, Product Minimum Age limit, Product Wall page, 
 Product Quote system, Profit Margins & Stock Levels reports, Colours for Product, VQmod and VQmanager, 
 Improved Search, Better PayPal Express button, Better Install & Upgrade scripts, One Page Checkout (optional), 

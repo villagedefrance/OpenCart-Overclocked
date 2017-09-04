@@ -1343,6 +1343,49 @@ ul.box-filter > li ul {
 .news-grid .description {
 	display: none;
 }
+/* News Panel */
+.panel, .panel-collapsed {
+	width: 100%;
+	background: #F8F8F8;
+	border: 1px solid #DBDEE1;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	margin: 0px 0px 10px 0px;
+	padding: 0px 0px 5px 0px;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+.panel h2, .panel-collapsed h2 {
+	color: #333;
+	font-size: 15px;
+	font-weight: normal;
+	margin: 0px;
+	padding: 4px 5px 4px 10px;
+	border-bottom: 1px solid #DBDEE1;
+	outline: none;
+}
+.panel h2 {
+	background: #EEE url('../image/arrow-close.gif') center right no-repeat;
+	cursor: pointer;
+}
+.panel-collapsed h2 {
+	background: #EEE url('../image/arrow-open.gif') center right no-repeat;
+	cursor: pointer;
+}
+.panel h2:hover, .panel-collapsed h2:hover {
+	background-color: #D8D8D8;
+}
+.panel-content {
+	background: #FBFBFB;
+	padding: 8px;
+	overflow: hidden;
+}
+.panel-collapsed .panel-content {
+	display: none;
+}
 /* Content */
 #content .content {
 	padding: 10px;

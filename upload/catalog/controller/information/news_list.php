@@ -67,7 +67,6 @@ class ControllerInformationNewsList extends Controller {
 		$news_style = $this->config->get('config_news_style');
 
 		if ($news_style) {
-			$this->document->addStyle('catalog/view/javascript/jquery/panels/panels.css');
 			$this->document->addScript('catalog/view/javascript/jquery/panels/panels.min.js');
 
 			$this->data['news_collapsible'] = true;
@@ -104,7 +103,7 @@ class ControllerInformationNewsList extends Controller {
 			}
 
 			if ($result['image']) {
-				$image = $this->model_tool_image->resize($result['image'], 80, 80);
+				$image = $this->model_tool_image->resize($result['image'], 90, 90);
 			} else {
 				$image = false;
 			}
