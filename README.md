@@ -31,17 +31,12 @@ Requirements:
 - PHP: PHP 5.4+
 
 
-Coming soon in v1.10.2!
+NEW in v1.10.2 (Current Release)!
 - Updated Camera slideshow module.
 - Updated Admin Theme manager.
 - Updated News collapsible styles.
 - Added CKEditor for Product Attributes.
 - Removed MarkItUp script.
-- bug fixes.
-
-NEW in v1.10.1 (Current Release)!
-- Updated CKEditor to v4.7.2.
-- Updated SwipeBox to v1.4.4.
 - bug fixes.
 - ...
 
