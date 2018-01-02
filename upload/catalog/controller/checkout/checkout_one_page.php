@@ -201,7 +201,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 		}
 
 		// Reward
-		$points_rate = $this->config->get('config_reward_rate');
+		$points_rate = $this->config->get('config_reward_rate') ? $this->config->get('config_reward_rate') : 1;
 
 		$points = $this->customer->getRewardPoints();
 

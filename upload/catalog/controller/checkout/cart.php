@@ -121,7 +121,7 @@ class ControllerCheckoutCart extends Controller {
 			$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
 
 			// Reward
-			$points_rate = $this->config->get('config_reward_rate');
+			$points_rate = $this->config->get('config_reward_rate') ? $this->config->get('config_reward_rate') : 1;
 
 			$points = $this->customer->getRewardPoints();
 
