@@ -1075,9 +1075,11 @@ class ControllerPaymentPPExpress extends Controller {
 			}
 
 			$data['language_id'] = $this->config->get('config_language_id');
+
 			$data['currency_id'] = $this->currency->getId($this->currency->getCode());
 			$data['currency_code'] = $this->currency->getCode();
 			$data['currency_value'] = $this->currency->getValue($this->currency->getCode());
+
 			$data['ip'] = $this->request->server['REMOTE_ADDR'];
 
 			if (!empty($this->request->server['HTTP_X_FORWARDED_FOR'])) {

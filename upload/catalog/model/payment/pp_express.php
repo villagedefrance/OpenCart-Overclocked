@@ -100,7 +100,7 @@ class ModelPaymentPPExpress extends Model {
 			$item_total += number_format($item_price * $item['quantity'], 2, '.', '');
 
 			$data['L_PAYMENTREQUEST_0_QTY' . $i] = $item['quantity'];
-			$data['L_PAYMENTREQUEST_0_ITEMURL' . $i] = $this->url->link('product/product', 'product_id=' . $item['product_id']);
+			$data['L_PAYMENTREQUEST_0_ITEMURL' . $i] = $this->url->link('product/product', 'product_id=' . $item['product_id'], 'SSL');
 
 			if ($this->config->get('config_cart_weight')) {
 				$weight = $this->weight->convert($item['weight'], $item['weight_class_id'], $this->config->get('config_weight_class_id'));
@@ -274,58 +274,43 @@ class ModelPaymentPPExpress extends Model {
 			$api_signature = $this->config->get('pp_express_signature');
 		}
 
-		$default_parameters = array(
+		$settings = array(
 			'USER'         => $api_user,
 			'PWD'          => $api_password,
 			'SIGNATURE'    => $api_signature,
 			'VERSION'      => '109.0',
-			'BUTTONSOURCE' => 'OpenCart_Cart_EC'
+			'BUTTONSOURCE' => 'OpenCart_2.0_EC'
 		);
 
-		$call_parameters = array_merge($data, $default_parameters);
+		$this->log($data, 'Call data');
 
-		$this->log($call_parameters, 'Call data');
-
-		$options = array(
-			CURLOPT_POST           => true,
-			CURLOPT_HEADER         => false,
+		$defaults = array(
+			CURLOPT_POST           => 1,
+			CURLOPT_HEADER         => 0,
 			CURLOPT_URL            => $api_url,
 			CURLOPT_USERAGENT      => "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1",
-			CURLOPT_FRESH_CONNECT  => true,
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_FORBID_REUSE   => true,
+			CURLOPT_FRESH_CONNECT  => 1,
+			CURLOPT_RETURNTRANSFER => 1,
+			CURLOPT_FORBID_REUSE   => 1,
 			CURLOPT_TIMEOUT        => 0,
-			CURLOPT_SSL_VERIFYPEER => false,
-			CURLOPT_SSL_VERIFYHOST => false,
-// TLS 1.2 is the new security protocol used by Paypal from June 2016 onwards, you need PHP 5.5.19+ and curl 7.29+
-// Normally, you dont have to explicitely declare the following option:
-// CURLOPT_SSLVERSION     => CURL_SSLVERSION_TLSv1_2,
-			CURLOPT_POSTFIELDS     => http_build_query($call_parameters, '', '&')
+			CURLOPT_SSL_VERIFYPEER => 0,
+			CURLOPT_SSL_VERIFYHOST => 0,
+			CURLOPT_POSTFIELDS     => http_build_query(array_merge($data, $settings), '', "&")
 		);
 
-		$ch = curl_init();
+		$curl = curl_init();
 
-		curl_setopt_array($ch, $options);
+		curl_setopt_array($curl, $defaults);
 
-		$response = curl_exec($ch);
-
-		if (curl_errno($ch) != CURLE_OK) {
-			$log_data = array(
-				'curl_errno' => curl_errno($ch),
-				'curl_error' => curl_error($ch)
-			);
-
-			$this->log($log_data, 'CURL failed');
-			return false;
+		if (!$curl_response = curl_exec($curl)) {
+			$this->log(array('error' => curl_error($curl), 'errno' => curl_errno($curl)), 'cURL failed');
 		}
 
-		curl_close($ch);
+		$this->log($curl_response, 'Result');
 
-		$response = $this->cleanReturn($response);
+		curl_close($curl);
 
-		$this->log($response, 'Response');
-
-		return $response;
+		return $this->cleanReturn($curl_response);
 	}
 
 	public function recurringPayments() {
@@ -343,7 +328,7 @@ class ModelPaymentPPExpress extends Model {
 		mt_srand((double)microtime() * 1000000);
 
 		while (strlen($activate_code) < $len + 1) {
-			$activate_code.= $base{ mt_rand(0, $max) };
+			$activate_code .= $base{mt_rand(0, $max)};
 		}
 
 		return $activate_code;
