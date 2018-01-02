@@ -20,7 +20,7 @@ $_['entry_keyword']         = 'SEO Keyword:<span class="help">Do not use spaces 
 $_['link_seo_category']     = 'Categories';
 $_['link_seo_product']      = 'Products';
 $_['link_seo_manufacturer'] = 'Manufacturers';
-$_['link_seo_information']  = 'Informations';
+$_['link_seo_information']  = 'Information';
 $_['link_seo_news']         = 'News';
 
 // Success
