@@ -54,18 +54,11 @@ $_['entry_captcha']                           = 'Enter the two words';
 // Tabs
 $_['tab_description']                         = 'Description';
 $_['tab_attribute']                           = 'Specification';
-$_['tab_offer']                               = 'Offers';
 $_['tab_review']                              = 'Reviews (%s)';
 $_['tab_related']                             = 'Related Products';
 
 // Button
 $_['button_buy_it_now']                       = 'Buy it Now!';
-
-// Offer
-$_['text_G241']                               = 'Buy 1 Get 1 %s!';
-$_['text_G241D']                              = 'Buy 1 %s and Get 1 %s for %s!';
-$_['text_G242D']                              = 'Buy 1 %s and Get 1 %s for %s!';
-$_['text_G142D']                              = '%s %s when you buy 1 %s!';
 
 // Error
 $_['error_name']                              = 'Warning: Review Name must be between 3 and 25 characters!';

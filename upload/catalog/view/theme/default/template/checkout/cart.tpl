@@ -60,10 +60,7 @@
                   <?php if ($product['stock_label']) { ?>
                     <div class="stock-small"><img src="<?php echo $product['stock_label']; ?>" alt="" /></div>
                   <?php } ?>
-                  <?php if (!$product['stock_label'] && $product['offer']) { ?>
-                    <div class="offer-small"><img src="<?php echo $product['offer_label']; ?>" alt="" /></div>
-                  <?php } ?>
-                  <?php if (!$product['stock_label'] && !$product['offer'] && $product['special']) { ?>
+                  <?php if (!$product['stock_label'] && $product['special']) { ?>
                     <div class="special-small"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
                   <?php } ?>
                   <?php if ($product['label']) { ?>

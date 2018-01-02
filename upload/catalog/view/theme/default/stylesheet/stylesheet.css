@@ -1023,14 +1023,6 @@ a.button-add:hover {
 	text-decoration: none;
 	margin-bottom: 4px;
 }
-.box-product .offer a {
-	display: block;
-	color: #444;
-	font-weight: bold;
-	text-decoration: none;
-	margin-bottom: 2px;
-	padding: 5px;
-}
 .box-product > div .box-product-bottom {
 	position: relative;
 	bottom: 0px;
@@ -2820,7 +2812,7 @@ table.order-options tr td > div.division {
 	margin: 2px 0px;
 }
 /* Labels */
-.stock-large, .offer-large, .special-large {
+.stock-large, .special-large {
 	position: relative;
 	top: 0;
 	left: 0;
@@ -2831,7 +2823,7 @@ table.order-options tr td > div.division {
 	padding: 0px;
 	z-index: 9;
 }
-.stock-medium, .offer-medium, .special-medium {
+.stock-medium, .special-medium {
 	position: relative;
 	top: 0;
 	left: 0;
@@ -2842,7 +2834,7 @@ table.order-options tr td > div.division {
 	padding: 0px;
 	z-index: 9;
 }
-.stock-small, .offer-small, .special-small {
+.stock-small, .special-small {
 	position: relative;
 	top: 0;
 	left: 0;

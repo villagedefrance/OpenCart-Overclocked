@@ -131,12 +131,6 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_modification'] = $this->language->get('text_modification');
 		$this->data['text_module'] = $this->language->get('text_module');
 		$this->data['text_news'] = $this->language->get('text_news');
-		$this->data['text_offer'] = $this->language->get('text_offer');
-		$this->data['text_offer_dashboard'] = $this->language->get('text_offer_dashboard');
-		$this->data['text_offer_product_product'] = $this->language->get('text_offer_product_product');
-		$this->data['text_offer_product_category'] = $this->language->get('text_offer_product_category');
-		$this->data['text_offer_category_product'] = $this->language->get('text_offer_category_product');
-		$this->data['text_offer_category_category'] = $this->language->get('text_offer_category_category');
 		$this->data['text_option'] = $this->language->get('text_option');
 		$this->data['text_order'] = $this->language->get('text_order');
 		$this->data['text_order_status'] = $this->language->get('text_order_status');
@@ -298,11 +292,6 @@ class ControllerCommonHeader extends Controller {
 			$this->data['modification'] = $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['module'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['news'] = $this->url->link('catalog/news', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['offer'] = $this->url->link('sale/offer', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['offer_product_product'] = $this->url->link('sale/offer_product_product', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['offer_product_category'] = $this->url->link('sale/offer_product_category', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['offer_category_product'] = $this->url->link('sale/offer_category_product', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['offer_category_category'] = $this->url->link('sale/offer_category_category', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['option'] = $this->url->link('catalog/option', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['order'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['order_status'] = $this->url->link('localisation/order_status', 'token=' . $this->session->data['token'], 'SSL');

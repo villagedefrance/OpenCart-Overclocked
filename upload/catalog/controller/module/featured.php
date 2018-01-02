@@ -40,10 +40,7 @@ class ControllerModuleFeatured extends Controller {
 
 		$this->load->model('catalog/manufacturer');
 		$this->load->model('catalog/product');
-		$this->load->model('catalog/offer');
 		$this->load->model('tool/image');
-
-		$offers = $this->model_catalog_offer->getListProductOffers(0);
 
 		$this->data['manufacturers'] = array();
 
@@ -138,14 +135,6 @@ class ControllerModuleFeatured extends Controller {
 					$stock_label = false;
 				}
 
-				if (in_array($product_info['product_id'], $offers, true)) {
-					$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), $label_ratio, $label_ratio);
-					$offer = true;
-				} else {
-					$offer_label = false;
-					$offer = false;
-				}
-
 				if ($product_info['quote']) {
 					$quote = $this->url->link('information/quote', '', 'SSL');
 				} else {
@@ -158,9 +147,7 @@ class ControllerModuleFeatured extends Controller {
 					'label'           => $label,
 					'label_style'     => $label_style,
 					'stock_label'     => $stock_label,
-					'offer_label'     => $offer_label,
 					'special_label'   => $special_label,
-					'offer'           => $offer,
 					'name'            => $product_info['name'],
 					'manufacturer'    => $manufacturer,
 					'model'           => $model,

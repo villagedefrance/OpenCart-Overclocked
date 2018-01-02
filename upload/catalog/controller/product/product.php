@@ -245,7 +245,6 @@ class ControllerProductProduct extends Controller {
 			$this->data['heading_title'] = $product_info['name'];
 
 			$this->data['text_select'] = $this->language->get('text_select');
-			$this->data['text_offer'] = $this->language->get('text_offer');
 			$this->data['text_manufacturer'] = $this->language->get('text_manufacturer');
 			$this->data['text_model'] = $this->language->get('text_model');
 			$this->data['text_reward'] = $this->language->get('text_reward');
@@ -286,7 +285,6 @@ class ControllerProductProduct extends Controller {
 
 			$this->data['tab_description'] = $this->language->get('tab_description');
 			$this->data['tab_attribute'] = $this->language->get('tab_attribute');
-			$this->data['tab_offer'] = $this->language->get('tab_offer');
 			$this->data['tab_review'] = sprintf($this->language->get('tab_review'), $product_info['reviews']);
 			$this->data['tab_related'] = $this->language->get('tab_related');
 
@@ -643,80 +641,6 @@ class ControllerProductProduct extends Controller {
 
 			$this->data['share_addthis'] = $this->config->get('config_share_addthis');
 
-			$this->load->model('catalog/offer');
-
-			$this->data['offers'] = array();
-
-			$product_offers = $this->model_catalog_offer->getOfferProducts($this->request->get['product_id']);
-
-			if ($product_offers) {
-				$this->data['offer_label_large'] = $this->model_tool_image->resize($this->config->get('config_label_offer'), $label_ratio, $label_ratio);
-
-				$label_ratio_medium = round((($this->config->get('config_image_related_width') * $this->config->get('config_label_size_ratio')) / 100), 0);
-
-				$this->data['offer_label_medium'] = $this->model_tool_image->resize($this->config->get('config_label_offer'), $label_ratio_medium, $label_ratio_medium);
-
-				foreach ($product_offers as $product_offer) {
-					if ($product_offer['one'] == $this->request->get['product_id']) {
-						$product_offer_image = $this->model_catalog_offer->getOfferProductImage($product_offer['two']);
-
-						if ($product_offer_image) {
-							$offer_image = $this->model_tool_image->resize($product_offer_image, $this->config->get('config_image_related_width'), $this->config->get('config_image_related_height'));
-						} else {
-							$offer_image = false;
-						}
-
-						$offer_name = $this->model_catalog_offer->getOfferProductName($product_offer['two']);
-						$offer_mirror_name = $this->model_catalog_offer->getOfferProductName($product_offer['one']);
-
-						$offer_product = $product_offer['two'];
-
-					} elseif ($product_offer['two'] == $this->request->get['product_id']) {
-						$product_offer_image = $this->model_catalog_offer->getOfferProductImage($product_offer['one']);
-
-						if ($product_offer_image) {
-							$offer_image = $this->model_tool_image->resize($product_offer_image, $this->config->get('config_image_related_width'), $this->config->get('config_image_related_height'));
-						} else {
-							$offer_image = false;
-						}
-
-						$offer_name = $this->model_catalog_offer->getOfferProductName($product_offer['one']);
-						$offer_mirror_name = $this->model_catalog_offer->getOfferProductName($product_offer['two']);
-
-						$offer_product = $product_offer['one'];
-
-					} else {
-						$offer_image = false;
-						$offer_name = '';
-						$offer_mirror_name = '';
-						$offer_product = '';
-					}
-
-					if ($product_offer['group'] == 'G241') {
-						$offer_label = sprintf($this->language->get('text_G241'), $product_offer['type']);
-					} elseif ($product_offer['group'] == 'G241D') {
-						$offer_label = sprintf($this->language->get('text_G241D'), $offer_mirror_name, $offer_name, $product_offer['type']);
-					} elseif ($product_offer['group'] == 'G242D') {
-						$offer_label = sprintf($this->language->get('text_G242D'), $offer_mirror_name, $offer_name, $product_offer['type']);
-					} elseif ($product_offer['group'] == 'G142D') {
-						$offer_label = sprintf($this->language->get('text_G142D'), $product_offer['type'], $offer_mirror_name, $offer_name);
-					} else {
-						$offer_label = '';
-					}
-
-					$this->data['offers'][] = array(
-						'thumb' => $offer_image,
-						'name'  => $offer_name,
-						'href'  => $this->url->link('product/product', 'product_id=' . $offer_product, 'SSL'),
-						'group' => $offer_label
-					);
-				}
-
-			} else {
-				$this->data['offer_label_large'] = '';
-				$this->data['offer_label_medium'] = '';
-			}
-
 			$this->data['review_status'] = $this->config->get('config_review_status');
 			$this->data['reviews'] = sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']);
 			$this->data['rating'] = (int)$product_info['rating'];
@@ -729,8 +653,6 @@ class ControllerProductProduct extends Controller {
 			$this->data['attribute_groups'] = array_reverse($attribute_groups, true);
 
 			// Related
-			$related_offers = $this->model_catalog_offer->getListProductOffers(0);
-
 			$this->data['products'] = array();
 
 			$results = $this->model_catalog_product->getProductRelated($this->request->get['product_id']);
@@ -782,14 +704,6 @@ class ControllerProductProduct extends Controller {
 					$stock_label = false;
 				}
 
-				if (in_array($result['product_id'], $related_offers, true)) {
-					$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), $label_ratio, $label_ratio);
-					$offer = true;
-				} else {
-					$offer_label = false;
-					$offer = false;
-				}
-
 				if ($result['quote']) {
 					$quote = $this->url->link('information/quote', '', 'SSL');
 				} else {
@@ -802,9 +716,7 @@ class ControllerProductProduct extends Controller {
 					'label'           => $label,
 					'label_style'     => $label_style,
 					'stock_label'     => $stock_label,
-					'offer_label'     => $offer_label,
 					'special_label'   => $special_label,
-					'offer'           => $offer,
 					'name'            => $result['name'],
 					'stock_status'    => $result['stock_status'],
 					'stock_quantity'  => $result['quantity'],

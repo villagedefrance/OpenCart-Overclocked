@@ -35,10 +35,7 @@
                 <?php if ($products[$product['product_id']]['stock_label']) { ?>
                   <div class="stock-medium"><img src="<?php echo $products[$product['product_id']]['stock_label']; ?>" alt="" /></div>
                 <?php } ?>
-                <?php if (!$products[$product['product_id']]['stock_label'] && $products[$product['product_id']]['offer']) { ?>
-                  <div class="offer-medium"><img src="<?php echo $products[$product['product_id']]['offer_label']; ?>" alt="" /></div>
-                <?php } ?>
-                <?php if (!$products[$product['product_id']]['stock_label'] && !$products[$product['product_id']]['offer'] && $products[$product['product_id']]['special']) { ?>
+                <?php if (!$products[$product['product_id']]['stock_label'] && $products[$product['product_id']]['special']) { ?>
                   <div class="special-medium"><img src="<?php echo $products[$product['product_id']]['special_label']; ?>" alt="" /></div>
                 <?php } ?>
                 <?php if ($products[$product['product_id']]['label']) { ?>
@@ -83,16 +80,6 @@
               <div style="color:#CC2626; font-weight:bold;"><?php echo $products[$product['product_id']]['stock_remaining']; ?></div>
             <?php } ?>
             </td>
-          <?php } ?>
-        </tr>
-        <tr>
-          <td><?php echo $text_offer; ?></td>
-          <?php foreach ($products as $product) { ?>
-            <?php if ($products[$product['product_id']]['offer']) { ?>
-              <td><a href="<?php echo $products[$product['product_id']]['offer_href']; ?>" style="text-decoration:none;"><?php echo $products[$product['product_id']]['offer_description']; ?></a></td>
-            <?php } else { ?>
-              <td><?php echo $text_no_offer; ?></td>
-            <?php } ?>
           <?php } ?>
         </tr>
         <?php if ($review_status) { ?>

@@ -60,10 +60,7 @@ class ControllerModuleCart extends Controller {
 
 		$this->data['lang'] = $this->language->get('code');
 
-		$this->load->model('catalog/offer');
 		$this->load->model('tool/image');
-
-		$offers = $this->model_catalog_offer->getListProductOffers(0);
 
 		$this->data['products'] = array();
 
@@ -88,14 +85,6 @@ class ControllerModuleCart extends Controller {
 				$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), $label_ratio, $label_ratio);
 			} else {
 				$stock_label = false;
-			}
-
-			if (in_array($product['product_id'], $offers, true)) {
-				$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), $label_ratio, $label_ratio);
-				$offer = true;
-			} else {
-				$offer_label = false;
-				$offer = false;
 			}
 
 			$option_data = array();
@@ -134,9 +123,7 @@ class ControllerModuleCart extends Controller {
 				'key'           => $product['key'],
 				'thumb'         => $image,
 				'stock_label'   => $stock_label,
-				'offer_label'   => $offer_label,
 				'special_label' => $special_label,
-				'offer'         => $offer,
 				'name'          => $product['name'],
 				'model'         => $product['model'],
 				'option'        => $option_data,
