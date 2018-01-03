@@ -1774,6 +1774,13 @@
             </div></td>
           </tr>
           <tr>
+            <td><?php echo $entry_label_offer; ?><span class="help"><?php echo $help_label_offer; ?></span></td>
+            <td><div class="image"><img src="<?php echo $label_offer; ?>" alt="" id="thumb-label-offer" /><br />
+              <input type="hidden" name="config_label_offer" value="<?php echo $config_label_offer; ?>" id="label-offer" />
+              <a onclick="image_upload('label-offer', 'thumb-label-offer');" class="button-browse"></a><a onclick="$('#thumb-label-offer').attr('src', '<?php echo $no_image; ?>'); $('#label-offer').attr('value', '');" class="button-recycle"></a>
+            </div></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_label_special; ?><span class="help"><?php echo $help_label_special; ?></span></td>
             <td><div class="image"><img src="<?php echo $label_special; ?>" alt="" id="thumb-label-special" /><br />
               <input type="hidden" name="config_label_special" value="<?php echo $config_label_special; ?>" id="label-special" />

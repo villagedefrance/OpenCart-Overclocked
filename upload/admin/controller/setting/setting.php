@@ -1750,6 +1750,18 @@ class ControllerSettingSetting extends Controller {
 			$this->data['label_stock'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 		}
 
+		if (isset($this->request->post['config_label_offer'])) {
+			$this->data['config_label_offer'] = $this->request->post['config_label_offer'];
+		} else {
+			$this->data['config_label_offer'] = $this->config->get('config_label_offer');
+		}
+
+		if ($this->config->get('config_label_offer') && file_exists(DIR_IMAGE . $this->config->get('config_label_offer')) && is_file(DIR_IMAGE . $this->config->get('config_label_offer'))) {
+			$this->data['label_offer'] = $this->model_tool_image->resize($this->config->get('config_label_offer'), 100, 100);
+		} else {
+			$this->data['label_offer'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+		}
+
 		if (isset($this->request->post['config_label_special'])) {
 			$this->data['config_label_special'] = $this->request->post['config_label_special'];
 		} else {
