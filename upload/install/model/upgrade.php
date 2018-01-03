@@ -453,12 +453,6 @@ class ModelUpgrade extends Model {
 		// Delete unused order_fraud table
 		$this->db->query("DROP TABLE IF EXISTS " . DB_PREFIX . "order_fraud");
 
-		// Delete obsolete Offer tables
-		$this->db->query("DROP TABLE IF EXISTS " . DB_PREFIX . "offer_category_category");
-		$this->db->query("DROP TABLE IF EXISTS " . DB_PREFIX . "offer_category_product");
-		$this->db->query("DROP TABLE IF EXISTS " . DB_PREFIX . "offer_product_category");
-		$this->db->query("DROP TABLE IF EXISTS " . DB_PREFIX . "offer_product_product");
-
 		clearstatcache();
 
 		flush();

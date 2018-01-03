@@ -18,6 +18,7 @@ $_['text_select']           = ' --- Please Select --- ';
 $_['text_all_zones']        = 'All Zones';
 $_['text_pagination']       = 'Showing {start}-{end} of {total} Results ({pages} Pages)';
 $_['text_separator']        = ' &gt; ';
+$_['text_offer']            = 'Offer!';
 $_['text_free']             = 'Free';
 $_['text_remaining']        = 'Only %s left!';
 $_['text_wait']             = 'Please wait!';

@@ -193,6 +193,15 @@ $(document).ready(function() {
           <li><a href="<?php echo $affiliate; ?>"><?php echo ($icons) ? '<i class="fa fa-street-view"></i>' : ''; ?><?php echo $text_affiliate; ?></a></li>
           <?php } ?>
           <li><a href="<?php echo $coupon; ?>"><?php echo ($icons) ? '<i class="fa fa-tags"></i>' : ''; ?><?php echo $text_coupon; ?></a></li>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-percent"></i>' : ''; ?><?php echo $text_offer; ?></a>
+            <ul>
+              <li><a href="<?php echo $offer; ?>"><?php echo ($icons) ? '<i class="fa fa-percent"></i>' : ''; ?><?php echo $text_offer_dashboard; ?></a></li>
+              <li><a href="<?php echo $offer_product_product; ?>"><?php echo ($icons) ? '<i class="fa fa-dot-circle-o"></i>' : ''; ?><?php echo $text_offer_product_product; ?></a></li>
+              <li><a href="<?php echo $offer_product_category; ?>"><?php echo ($icons) ? '<i class="fa fa-dot-circle-o"></i>' : ''; ?><?php echo $text_offer_product_category; ?></a></li>
+              <li><a href="<?php echo $offer_category_product; ?>"><?php echo ($icons) ? '<i class="fa fa-dot-circle-o"></i>' : ''; ?><?php echo $text_offer_category_product; ?></a></li>
+              <li><a href="<?php echo $offer_category_category; ?>"><?php echo ($icons) ? '<i class="fa fa-dot-circle-o"></i>' : ''; ?><?php echo $text_offer_category_category; ?></a></li>
+            </ul>
+          </li>
           <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-ticket"></i>' : ''; ?><?php echo $text_voucher; ?></a>
             <ul>
               <li><a href="<?php echo $voucher; ?>"><?php echo ($icons) ? '<i class="fa fa-ticket"></i>' : ''; ?><?php echo $text_voucher; ?></a></li>

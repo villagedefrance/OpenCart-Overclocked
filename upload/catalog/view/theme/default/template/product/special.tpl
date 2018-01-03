@@ -44,7 +44,10 @@
             <?php if ($product['stock_label']) { ?>
               <div class="stock-medium"><img src="<?php echo $product['stock_label']; ?>" alt="" /></div>
             <?php } ?>
-            <?php if (!$product['stock_label'] && $product['special']) { ?>
+            <?php if (!$product['stock_label'] && $product['offer']) { ?>
+              <div class="offer-medium"><img src="<?php echo $product['offer_label']; ?>" alt="" /></div>
+            <?php } ?>
+            <?php if (!$product['stock_label'] && !$product['offer'] && $product['special']) { ?>
               <div class="special-medium"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
             <?php } ?>
             <?php if ($product['label']) { ?>
@@ -135,6 +138,12 @@ function display(view) {
 					html += '<div class="stock-medium">' + stock + '</div>';
 				}
 
+				var offer = $(element).find('.offer-medium').html();
+
+				if (offer != null) {
+					html += '<div class="offer-medium">' + offer + '</div>';
+				}
+
 				var special = $(element).find('.special-medium').html();
 
 				if (special != null) {
@@ -194,6 +203,12 @@ function display(view) {
 
 				if (stock != null) {
 					html += '<div class="stock-medium">' + stock + '</div>';
+				}
+
+				var offer = $(element).find('.offer-medium').html();
+
+				if (offer != null) {
+					html += '<div class="offer-medium">' + offer + '</div>';
 				}
 
 				var special = $(element).find('.special-medium').html();

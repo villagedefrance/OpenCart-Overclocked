@@ -44,7 +44,10 @@
             <?php if ($review['stock_label']) { ?>
               <div class="stock-medium"><img src="<?php echo $review['stock_label']; ?>" alt="" /></div>
             <?php } ?>
-            <?php if (!$review['stock_label'] && $review['special']) { ?>
+            <?php if (!$review['stock_label'] && $review['offer']) { ?>
+              <div class="offer-medium"><img src="<?php echo $review['offer_label']; ?>" alt="" /></div>
+            <?php } ?>
+            <?php if (!$review['stock_label'] && !$review['offer'] && $review['special']) { ?>
               <div class="special-medium"><img src="<?php echo $review['special_label']; ?>" alt="" /></div>
             <?php } ?>
             <?php if ($review['label']) { ?>
@@ -132,6 +135,12 @@ function display(view) {
 					html += '<div class="stock-medium">' + stock + '</div>';
 				}
 
+				var offer = $(element).find('.offer-medium').html();
+
+				if (offer != null) {
+					html += '<div class="offer-medium">' + offer + '</div>';
+				}
+
 				var special = $(element).find('.special-medium').html();
 
 				if (special != null) {
@@ -193,6 +202,12 @@ function display(view) {
 
 				if (stock != null) {
 					html += '<div class="stock-medium">' + stock + '</div>';
+				}
+
+				var offer = $(element).find('.offer-medium').html();
+
+				if (offer != null) {
+					html += '<div class="offer-medium">' + offer + '</div>';
 				}
 
 				var special = $(element).find('.special-medium').html();

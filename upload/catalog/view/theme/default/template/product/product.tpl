@@ -26,7 +26,10 @@
           <?php if ($stock_label_large) { ?>
             <div class="stock-large"><img src="<?php echo $stock_label_large; ?>" alt="" /></div>
           <?php } ?>
-          <?php if (!$stock_label_large && $special_label_large) { ?>
+          <?php if (!$stock_label_large && $offers && $offer_label_large) { ?>
+            <div class="offer-large"><img src="<?php echo $offer_label_large; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$stock_label_large && !$offers && $special_label_large) { ?>
             <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($label) { ?>
@@ -50,7 +53,10 @@
           <?php if ($stock_label_large) { ?>
             <div class="stock-large"><img src="<?php echo $stock_label_large; ?>" alt="" /></div>
           <?php } ?>
-          <?php if (!$stock_label_large && $special_label_large) { ?>
+          <?php if (!$stock_label_large && $offers && $offer_label_large) { ?>
+            <div class="offer-large"><img src="<?php echo $offer_label_large; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$stock_label_large && !$offers && $special_label_large) { ?>
             <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($label) { ?>
@@ -74,7 +80,10 @@
           <?php if ($stock_label_large) { ?>
             <div class="stock-large"><img src="<?php echo $stock_label_large; ?>" alt="" /></div>
           <?php } ?>
-          <?php if (!$stock_label_large && $special_label_large) { ?>
+          <?php if (!$stock_label_large && $offers && $offer_label_large) { ?>
+            <div class="offer-large"><img src="<?php echo $offer_label_large; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$stock_label_large && !$offers && $special_label_large) { ?>
             <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($label) { ?>
@@ -98,7 +107,10 @@
           <?php if ($stock_label_large) { ?>
             <div class="stock-large"><img src="<?php echo $stock_label_large; ?>" alt="" /></div>
           <?php } ?>
-          <?php if (!$stock_label_large && $special_label_large) { ?>
+          <?php if (!$stock_label_large && $offers && $offer_label_large) { ?>
+            <div class="offer-large"><img src="<?php echo $offer_label_large; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$stock_label_large && !$offers && $special_label_large) { ?>
             <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($label) { ?>
@@ -122,7 +134,10 @@
           <?php if ($stock_label_large) { ?>
             <div class="stock-large"><img src="<?php echo $stock_label_large; ?>" alt="" /></div>
           <?php } ?>
-          <?php if (!$stock_label_large && $special_label_large) { ?>
+          <?php if (!$stock_label_large && $offers && $offer_label_large) { ?>
+            <div class="offer-large"><img src="<?php echo $offer_label_large; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$stock_label_large && !$offers && $special_label_large) { ?>
             <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($label) { ?>
@@ -452,6 +467,9 @@
     <?php if ($attribute_groups) { ?>
       <a href="#tab-attribute"><?php echo $tab_attribute; ?></a>
     <?php } ?>
+    <?php if ($offers) { ?>
+      <a href="#tab-offer"><?php echo $tab_offer; ?> (<?php echo count($offers); ?>)</a>
+    <?php } ?>
     <?php if ($review_status) { ?>
       <a href="#tab-review"><?php echo $tab_review; ?></a>
     <?php } ?>
@@ -476,6 +494,24 @@
             <?php } ?>
           </div>
         <?php } ?>
+      </div>
+    </div>
+  <?php } ?>
+  <?php if ($offers) { ?>
+    <div id="tab-offer" class="tab-content">
+      <div class="box-product">
+      <?php foreach ($offers as $offer) { ?>
+        <div>
+          <?php if ($offer_label_medium) { ?>
+            <div class="offer-medium"><img src="<?php echo $offer_label_medium; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if ($offer['thumb']) { ?>
+            <div class="image"><a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['thumb']; ?>" alt="<?php echo $offer['name']; ?>" /></a></div>
+          <?php } ?>
+          <div class="name"><a href="<?php echo $offer['href']; ?>"><?php echo $offer['name']; ?></a></div>
+          <div class="offer"><a href="<?php echo $offer['href']; ?>"><?php echo $offer['group']; ?></a></div>
+        </div>
+      <?php } ?>
       </div>
     </div>
   <?php } ?>
@@ -527,7 +563,10 @@
             <?php if ($product['stock_label']) { ?>
               <div class="stock-medium"><img src="<?php echo $product['stock_label']; ?>" alt="" /></div>
             <?php } ?>
-            <?php if (!$product['stock_label'] && $product['special']) { ?>
+            <?php if (!$product['stock_label'] && $product['offer']) { ?>
+              <div class="offer-medium"><img src="<?php echo $product['offer_label']; ?>" alt="" /></div>
+            <?php } ?>
+            <?php if (!$product['stock_label'] && !$product['offer'] && $product['special']) { ?>
               <div class="special-medium"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
             <?php } ?>
             <?php if ($product['label']) { ?>

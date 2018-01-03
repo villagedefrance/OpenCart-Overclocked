@@ -30,7 +30,10 @@ class ControllerModulePopular extends Controller {
 		$this->data['addproduct'] = $this->config->get($this->_name . '_addproduct');
 
 		$this->load->model('catalog/product');
+		$this->load->model('catalog/offer');
 		$this->load->model('tool/image');
+
+		$offers = $this->model_catalog_offer->getListProductOffers(0);
 
 		$this->data['products'] = array();
 
@@ -83,6 +86,14 @@ class ControllerModulePopular extends Controller {
 				$stock_label = false;
 			}
 
+			if (in_array($result['product_id'], $offers, true)) {
+				$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), $label_ratio, $label_ratio);
+				$offer = true;
+			} else {
+				$offer_label = false;
+				$offer = false;
+			}
+
 			if ($result['quote']) {
 				$quote = $this->url->link('information/quote', '', 'SSL');
 			} else {
@@ -95,7 +106,9 @@ class ControllerModulePopular extends Controller {
 				'label'           => $label,
 				'label_style'     => $label_style,
 				'stock_label'     => $stock_label,
+				'offer_label'     => $offer_label,
 				'special_label'   => $special_label,
+				'offer'           => $offer,
 				'name'            => $result['name'],
 				'stock_status'    => $result['stock_status'],
 				'stock_quantity'  => $result['quantity'],

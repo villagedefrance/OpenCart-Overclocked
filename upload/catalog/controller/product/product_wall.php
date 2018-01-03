@@ -118,7 +118,10 @@ class ControllerProductProductWall extends Controller {
 
 			$this->data['dob'] = $this->config->get('config_customer_dob');
 
+			$this->load->model('catalog/offer');
 			$this->load->model('account/customer');
+
+			$offers = $this->model_catalog_offer->getListProductOffers(0);
 
 			$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
 
@@ -181,6 +184,14 @@ class ControllerProductProductWall extends Controller {
 					$stock_label = false;
 				}
 
+				if (in_array($result['product_id'], $offers, true)) {
+					$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), $label_ratio, $label_ratio);
+					$offer = true;
+				} else {
+					$offer_label = false;
+					$offer = false;
+				}
+
 				$age_logged = false;
 				$age_checked = false;
 
@@ -212,7 +223,9 @@ class ControllerProductProductWall extends Controller {
 					'label'           => $label,
 					'label_style'     => $label_style,
 					'stock_label'     => $stock_label,
+					'offer_label'     => $offer_label,
 					'special_label'   => $special_label,
+					'offer'           => $offer,
 					'manufacturer'    => $manufacturer,
 					'name'            => $result['name'],
 					'description'     => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',

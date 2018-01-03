@@ -168,6 +168,7 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
 			$this->data['text_select'] = $this->language->get('text_select');
 			$this->data['text_none'] = $this->language->get('text_none');
+			$this->data['text_offer'] = $this->language->get('text_offer');
 			$this->data['text_until_cancelled'] = $this->language->get('text_until_cancelled');
 			$this->data['text_freq_day'] = $this->language->get('text_freq_day');
 			$this->data['text_freq_week'] = $this->language->get('text_freq_week');
@@ -258,6 +259,11 @@ class ControllerCheckoutCart extends Controller {
 				$this->data['weight'] = '';
 			}
 
+			// Get offers
+			$this->load->model('catalog/offer');
+
+			$offers = $this->model_catalog_offer->getListProductOffers(0);
+
 			// Get Products
 			$this->load->model('tool/image');
 
@@ -306,6 +312,14 @@ class ControllerCheckoutCart extends Controller {
 					$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), $label_ratio, $label_ratio);
 				} else {
 					$stock_label = false;
+				}
+
+				if (in_array($product['product_id'], $offers, true)) {
+					$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), $label_ratio, $label_ratio);
+					$offer = true;
+				} else {
+					$offer_label = false;
+					$offer = false;
 				}
 
 				$option_data = array();
@@ -401,7 +415,9 @@ class ControllerCheckoutCart extends Controller {
 					'label'               => $label,
 					'label_style'         => $label_style,
 					'stock_label'         => $stock_label,
+					'offer_label'         => $offer_label,
 					'special_label'       => $special_label,
+					'offer'               => $offer,
 					'name'                => $product['name'],
 					'model'               => $product['model'],
 					'option'              => $option_data,
