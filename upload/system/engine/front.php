@@ -29,7 +29,7 @@ final class Front {
 		}
 	}
 
-	private function execute($action) {
+	private function execute(Action $action) {
 		if (file_exists($action->getFile())) {
 			require_once($action->getFile());
 
@@ -38,7 +38,24 @@ final class Front {
 			$controller = new $class($this->registry);
 
 			if (is_callable(array($controller, $action->getMethod())) && substr($action->getMethod(), 0, 2) != '__') {
+
+				$route = $action->getRoute();
+				
+				// Trigger the pre events
+				$result = $this->registry->get('event')->trigger('controller/' . $route . '/before', array($action));
+
+				if (!is_null($result)) {
+					return $result;
+				}
+
 				$action = call_user_func_array(array($controller, $action->getMethod()), $action->getArgs());
+
+				// Trigger the post events
+				$result = $this->registry->get('event')->trigger('controller/' . $route . '/after', array(&$action));
+
+				if (!is_null($result)) {
+					return $result;
+				}
 			} else {
 				$action = $this->error;
 				$this->error = '';
