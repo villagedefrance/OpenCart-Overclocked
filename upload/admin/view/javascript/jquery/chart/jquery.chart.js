@@ -3,10 +3,10 @@
  * jquery plugin to create donut and bar charts with css
  * https://github.com/sultantarimo
  *
- * (c)2015 Sultan Tarimo - sultantarimo@me.com
+ * Sultan Tarimo © 2015 - sultantarimo@me.com
  * Released under the MIT license
  * 
- * Overclocked Edition © 2017 | Villagedefrance
+ * Overclocked Edition © 2018 | Villagedefrance
  */
 ;(function($) {
 	$.fn.extend({

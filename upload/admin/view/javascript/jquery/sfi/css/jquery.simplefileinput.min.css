@@ -1,0 +1,12 @@
+/*
+ * SimpleFileInput 0.1 - A jQuery plugin to customise your file inputs
+ * http://github.com/s43/Simple-file-input/
+ * Requirements : jQuery 1.7+
+ * 
+ * :: Copyright (c) 2014 SAID ASSEMLAL
+ *
+ * Dual licensed under the MIT and GPL licenses.
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
+ */
+.sfi-js .sfi-wrapper{position:relative;display:inline-block;background:0 0;font-size:14px;width:100%;color:#999;border:none;outline:0;overflow:hidden}.sfi-js .sfi-wrapper .sfi-filename{position:relative;float:left;display:block;width:240px;height:40px;padding:0 30px 0 10px;font-size:14px;line-height:38px;color:#797979;text-align:left;background-color:#FFF;background-image:-webkit-gradient(linear,left top,left bottom,from(#F2F5F7),to(#FFF));background-image:-webkit-linear-gradient(top,#F2F5F7,#FFF);background-image:-moz-linear-gradient(top,#F2F5F7,#FFF);background-image:-ms-linear-gradient(top,#F2F5F7,#FFF);background-image:-o-linear-gradient(top,#F2F5F7,#FFF);background-image:linear-gradient(to bottom,#F2F5F7,#FFF);border-top:1px solid #B6B6B6;border-left:1px solid #B6B6B6;border-bottom:1px solid #E1E1E1;border-right:none;-webkit-border-radius:3px 0 0 3px;-moz-border-radius:3px 0 0 3px;-khtml-border-radius:3px 0 0 3px;border-radius:3px 0 0 3px;z-index:1;overflow:hidden}.sfi-js .sfi-wrapper .sfi-trigger{background:url(../img/icon.png) center no-repeat #EEE;position:relative;display:block;width:40px;height:40px;text-indent:-9999px;margin-left:240px;border:1px solid #B6B6B6;-webkit-border-radius:0 3px 3px 0;-moz-border-radius:0 3px 3px 0;-khtml-border-radius:0 3px 3px 0;border-radius:0 3px 3px 0;cursor:pointer;z-index:2}.sfi-js .sfi-wrapper.sfi-error .sfi-filename,.sfi-js .sfi-wrapper.sfi-error .sfi-trigger{border-color:#DE5954}.sfi-js .sfi-wrapper.sfi-error .sfi-filename{color:#DE5954}.sfi-js .sfi-wrapper.sfi-valid .sfi-filename,.sfi-js .sfi-wrapper.sfi-valid .sfi-trigger{border-color:#5DC15E}.sfi-js .sfi-wrapper.sfi-valid .sfi-filename{color:#5DC15E}.sfi-js .sfi-wrapper.sfi-disabled .sfi-filename,.sfi-js .sfi-wrapper.sfi-disabled .sfi-trigger{border-color:#CCC}.sfi-js .sfi-wrapper.sfi-disabled .sfi-filename{color:#CCC}

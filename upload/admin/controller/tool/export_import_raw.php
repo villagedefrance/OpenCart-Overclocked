@@ -7,7 +7,7 @@ class ControllerToolExportImportRaw extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->document->addStyle('view/javascript/jquery/sfi/css/jquery.simplefileinput.css');
+		$this->document->addStyle('view/javascript/jquery/sfi/css/jquery.simplefileinput.min.css');
 
 		$this->load->model('tool/export_import_raw');
 

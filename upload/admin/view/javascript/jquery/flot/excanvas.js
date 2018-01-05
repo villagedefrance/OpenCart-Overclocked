@@ -36,7 +36,6 @@
 if (!document.createElement('canvas').getContext) {
 
 (function() {
-
   // alias some functions to make (compiled) code shorter
   var m = Math;
   var mr = m.round;
@@ -57,8 +56,7 @@ if (!document.createElement('canvas').getContext) {
    * @return {CanvasRenderingContext2D_}
    */
   function getContext() {
-    return this.context_ ||
-        (this.context_ = new CanvasRenderingContext2D_(this));
+    return this.context_ || (this.context_ = new CanvasRenderingContext2D_(this));
   }
 
   var slice = Array.prototype.slice;

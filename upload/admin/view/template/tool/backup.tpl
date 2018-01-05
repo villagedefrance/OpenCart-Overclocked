@@ -15,8 +15,6 @@
     <div class="heading">
       <h1><img src="view/image/backup.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#restore').submit();" class="button"><?php echo $button_restore; ?></a>
-        <a onclick="$('#backup').submit();" class="button"><?php echo $button_backup; ?></a>
         <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>
@@ -27,6 +25,10 @@
           <tr>
             <td width="20%"><?php echo $entry_restore; ?></td>
             <td><input type="file" name="import" class="custom-input-class" /></td>
+          </tr>
+          <tr>
+            <td width="20%"></td>
+            <td><a onclick="$('#restore').submit();" class="button-filter"><i class="fa fa-upload"></i> &nbsp;&nbsp; <?php echo $button_restore; ?></a></td>
           </tr>
         </table>
       </form>
@@ -45,6 +47,10 @@
               <?php } ?>
             </div>
             <a onclick="$(this).parent().find(':checkbox').attr('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').attr('checked', false);" class="button-unselect"></a></td>
+          </tr>
+          <tr>
+            <td width="20%"></td>
+            <td><a onclick="$('#backup').submit();" class="button-filter"><i class="fa fa-download"></i> &nbsp;&nbsp; <?php echo $button_backup; ?></a></td>
           </tr>
         </table>
       </form>

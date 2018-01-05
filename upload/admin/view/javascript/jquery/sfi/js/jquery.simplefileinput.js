@@ -1,14 +1,16 @@
 /**
-* SimpleFileInput 0.1 - A jQuery plugin to customise your file inputs
-* http://github.com/s43/Simple-file-input/
-* Requirements : jQuery 1.7+
-* 
-* :: Copyright (c) 2014 SAID ASSEMLAL
-*
-* Dual licensed under the MIT and GPL licenses.
-*/
+ * SimpleFileInput 0.1 - A jQuery plugin to customise your file inputs
+ * http://github.com/s43/Simple-file-input/
+ * Requirements : jQuery 1.7+
+ * 
+ * :: Copyright (c) 2014 SAID ASSEMLAL
+ *
+ * Dual licensed under the MIT and GPL licenses.
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
+ */
 
-(function($) {
+;(function($) {
     $.fn.simpleFileInput = function(options) {
         $('html').addClass('sfi-js');
 
@@ -121,4 +123,5 @@
             }
         });
     };
+
 })(jQuery);

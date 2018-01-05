@@ -17,7 +17,7 @@ class ControllerToolExportImport extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->document->addStyle('view/javascript/jquery/sfi/css/jquery.simplefileinput.css');
+		$this->document->addStyle('view/javascript/jquery/sfi/css/jquery.simplefileinput.min.css');
 
 		$this->load->model('tool/export_import');
 
@@ -176,7 +176,7 @@ class ControllerToolExportImport extends Controller {
 	protected function getForm() {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->document->addStyle('view/javascript/jquery/sfi/css/jquery.simplefileinput.css');
+		$this->document->addStyle('view/javascript/jquery/sfi/css/jquery.simplefileinput.min.css');
 
 		$this->load->model('tool/export_import');
 
