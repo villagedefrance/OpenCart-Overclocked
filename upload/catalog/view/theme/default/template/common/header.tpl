@@ -45,7 +45,7 @@
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
 <?php } ?>
 <!--[if lt IE 9]>
-<script type="text/javascript" src="catalog/view/javascript/html5shiv.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/html5shiv.min.js"></script>
 <![endif]-->
 <?php if ($stores) { ?>
 <script type="text/javascript"><!--

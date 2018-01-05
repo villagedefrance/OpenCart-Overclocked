@@ -33,7 +33,7 @@
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
 <?php } ?>
 <!--[if lt IE 9]>
-<script type="text/javascript" src="view/javascript/html5shiv.js"></script>
+<script type="text/javascript" src="view/javascript/html5shiv.min.js"></script>
 <![endif]-->
 <script type="text/javascript"><!--
 $(document).ready(function() {
