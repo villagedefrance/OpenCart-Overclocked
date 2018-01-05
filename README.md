@@ -31,6 +31,11 @@ Requirements:
 - PHP: PHP 5.4+
 
 
+COMING SOON in v1.11.0!
+- Upgraded to latest jQuery 3.2.1.
+- ...
+
+
 NEW in v1.10.2 (Current Release)!
 - Updated Camera slideshow module.
 - Updated Admin Theme manager.
