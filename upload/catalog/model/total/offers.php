@@ -38,6 +38,7 @@ class Offer {
 
 class ModelTotalOffers {
 	private $registry;
+	private $sort_prices;
 
 	public function __construct($registry) {
 		$this->registry = $registry;
@@ -111,10 +112,11 @@ class ModelTotalOffers {
 
 	public function getTotal(&$total_data, &$total, &$taxes) {
 		$products = $this->cart->getProducts();
+		$sort_prices = $this->sortPrices();
 
 		reset($products);
 
-		usort($products, "sortPrices");
+		usort($products, $sort_prices);
 
 		$discountable_products = array();
 
@@ -294,7 +296,7 @@ class ModelTotalOffers {
 		}
 	}
 
-	protected function sortPrices($a, $b) {
+	private function sortPrices($a, $b) {
 		if ($a['price'] == $b['price']) {
 			return 0;
 		} elseif ($a['price'] < $b['price']) {
