@@ -2,17 +2,16 @@
  * jsTree 0.9.9a
  * http://jstree.com/
  *
- * Copyright (c) 2009 Ivan Bozhanov (vakata.com)
+ * Copyright © 2009 Ivan Bozhanov (vakata.com)
  *
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
  *
- * Date: 2009-10-06
- *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
 
-(function($) {
+;(function($) {
 	// jQuery plugin
 	$.tree = {
 		datastores : { },
@@ -1191,8 +1190,8 @@
 				return rb;
 			},
 			moved : function(what, where, how, is_new, is_copy, rb) {
-				var what	= $(what);
-				var $parent	= $(what).parents("ul:eq(0)");
+				var what = $(what);
+				var $parent = $(what).parents("ul:eq(0)");
 				var $where	= $(where);
 				if ($where.is("ins")) $where = $where.parent();
 
@@ -1321,7 +1320,7 @@
 						if ($where.parent().hasClass("closed")) { this.open_branch($where); }
 						break;
 					default:
-						break;
+					break;
 				}
 				// CLEANUP OLD PARENT
 				if ($parent.find("li").size() == 0) {
@@ -1394,6 +1393,7 @@
 				} else if ((typeof position).toLowerCase() == "undefined" || position == "inside") {
 					position = (this.settings.rules.createat == "top") ? 0 : obj.children("ul:eq(0)").children("li").size();
 				}
+
 				if (!root && obj.size() == 0) { root = true; obj = this.container; }
 
 				if (tree_component.cut_copy.copy_nodes && tree_component.cut_copy.copy_nodes.size()) {
@@ -1416,6 +1416,7 @@
 					}
 					tree_component.cut_copy.copy_nodes = false;
 				}
+
 				if (tree_component.cut_copy.cut_nodes && tree_component.cut_copy.cut_nodes.size()) {
 					var ok = true;
 					obj.parents().andSelf().each(function() {
@@ -1790,13 +1791,13 @@
 			if (document.createStyleSheet) {
 				try { document.createStyleSheet(opts.url); } catch (e) { };
 			} else {
-				var newSS	= document.createElement('link');
-				newSS.rel	= 'stylesheet';
-				newSS.type	= 'text/css';
-				newSS.media	= "all";
+				var newSS = document.createElement('link');
+				newSS.rel = 'stylesheet';
+				newSS.type = 'text/css';
+				newSS.media = "all";
 				newSS.href	= opts.url;
-				// var styles	= "@import url(' " + url + " ');";
-				// newSS.href	='data:text/css,'+escape(styles);
+				// var styles = "@import url(' " + url + " ');";
+				// newSS.href = 'data:text/css,'+escape(styles);
 				document.getElementsByTagName("head")[0].appendChild(newSS);
 				return newSS.styleSheet;
 			}
@@ -1806,20 +1807,20 @@
 	$(function() {
 		var u = navigator.userAgent.toLowerCase();
 		var v = (u.match( /.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/ ) || [0,'0'])[1];
-		var css = '/* TREE LAYOUT */ .tree ul { margin:0 0 0 5px; padding:0 0 0 0; list-style-type:none; } .tree li { display:block; min-height:18px; line-height:18px; padding:0 0 0 15px; margin:0 0 0 0; /* Background fix */ clear:both; } .tree li ul { display:none; } .tree li a, .tree li span { display:inline-block;line-height:16px;height:16px;color:black;white-space:nowrap;text-decoration:none;padding:1px 4px 1px 4px;margin:0; } .tree li a:focus { outline: none; } .tree li a input, .tree li span input { margin:0;padding:0 0;display:inline-block;height:12px !important;border:1px solid white;background:white;font-size:10px;font-family:Verdana; } .tree li a input:not([class="xxx"]), .tree li span input:not([class="xxx"]) { padding:1px 0; } /* FOR DOTS */ .tree .ltr li.last { float:left; } .tree > ul li.last { overflow:visible; } /* OPEN OR CLOSE */ .tree li.open ul { display:block; } .tree li.closed ul { display:none !important; } /* FOR DRAGGING */ #jstree-dragged { position:absolute; top:-10px; left:-10px; margin:0; padding:0; } #jstree-dragged ul ul ul { display:none; } #jstree-marker { padding:0; margin:0; line-height:5px; font-size:1px; overflow:hidden; height:5px; position:absolute; left:-45px; top:-30px; z-index:1000; background-color:transparent; background-repeat:no-repeat; display:none; } #jstree-marker.marker { width:45px; background-position:-32px top; } #jstree-marker.marker_plus { width:5px; background-position:right top; } /* BACKGROUND DOTS */ .tree li li { overflow:hidden; } .tree > .ltr > li { display:table; } /* ICONS */ .tree ul ins { display:inline-block; text-decoration:none; width:16px; height:16px; } .tree .ltr ins { margin:0 4px 0 0px; } ';
+		var css = '/* TREE LAYOUT */ .tree ul { margin:0 0 0 7px; padding:0 0 0 0; list-style-type:none; } .tree li { display:block; min-height:20px; line-height:20px; padding:0 0 0 12px; margin:0 0 0 0; /* Background fix */ clear:both; } .tree li ul { display:none; } .tree li a, .tree li span { display:inline-block;line-height:18px;height:18px;color:#000;white-space:nowrap;text-decoration:none;padding:1px 4px 1px 4px;margin:0; } .tree li a:focus { outline:none; } .tree li a input, .tree li span input { margin:0;padding:0;display:inline-block;height:14px;border:1px solid #FFF;background:#FFF;font-size:12px;font-family:Verdana; } .tree li a input:not([class="xxx"]), .tree li span input:not([class="xxx"]) { padding:1px 0px; } /* FOR DOTS */ .tree .ltr li.last { float:left; } .tree > ul li.last { overflow:visible; } /* OPEN OR CLOSE */ .tree li.open ul { display:block; } .tree li.closed ul { display:none !important; } /* FOR DRAGGING */ #jstree-dragged { position:absolute;top:-10px;left:-10px;margin:0;padding:0; } #jstree-dragged ul ul ul { display:none; } #jstree-marker { padding:0;margin:0;line-height:5px;font-size:1px;overflow:hidden;height:5px;position:absolute;left:-45px;top:-30px;z-index:1000;background-color:transparent;background-repeat:no-repeat;display:none; } #jstree-marker.marker { width:45px;background-position:-32px top; } #jstree-marker.marker_plus { width:5px;background-position:right top; } /* BACKGROUND DOTS */ .tree li li { overflow:hidden; } .tree > .ltr > li { display:table; } /* ICONS */ .tree ul ins { display:inline-block;text-decoration:none;width:16px; height:16px; } .tree .ltr ins { margin:0px 4px 0px 0px; } ';
 		if (/msie/.test(u) && !/opera/.test(u)) { 
-			if (parseInt(v) == 6) css += '.tree li { height:18px; zoom:1; } .tree li li { overflow:visible; } .tree .ltr li.last { margin-top: expression( (this.previousSibling && /open/.test(this.previousSibling.className) ) ? "-2px" : "0"); } .marker { width:45px; background-position:-32px top; } .marker_plus { width:5px; background-position:right top; }';
+			if (parseInt(v) == 6) css += '.tree li { height:20px; zoom:1; } .tree li li { overflow:visible; } .tree .ltr li.last { margin-top: expression( (this.previousSibling && /open/.test(this.previousSibling.className) ) ? "-2px" : "0"); } .marker { width:45px;background-position:-32px top; } .marker_plus { width:5px;background-position:right top; }';
 			if (parseInt(v) == 7) css += '.tree li li { overflow:visible; } .tree .ltr li.last { margin-top: expression( (this.previousSibling && /open/.test(this.previousSibling.className) ) ? "-2px" : "0"); }';
 		}
-		if (/opera/.test(u)) css += '.tree > ul > li.last:after { content:"."; display: block; height:1px; clear:both; visibility:hidden; }';
-		if (/mozilla/.test(u) && !/(compatible|webkit)/.test(u) && v.indexOf("1.8") == 0) css += '.tree .ltr li a { display:inline; float:left; } .tree li ul { clear:both; }';
+		if (/opera/.test(u)) css += '.tree > ul > li.last:after { content:".";display: block;height:1px;clear:both;visibility:hidden; }';
+		if (/mozilla/.test(u) && !/(compatible|webkit)/.test(u) && v.indexOf("1.8") == 0) css += '.tree .ltr li a { display:inline;float:left; } .tree li ul { clear:both; }';
 		tree_component.css = tree_component.add_sheet({ str : css });
 	});
 })(jQuery);
 
 // Datastores
 // HTML and JSON are included here by default
-(function($) {
+;(function($) {
 	$.extend($.tree.datastores, {
 		"html" : function() {
 			return {
@@ -1834,8 +1835,8 @@
 					if (opts.url) {
 						$.ajax({
 							'type' : opts.method,
-							'url' : opts.url, 
-							'data' : data, 
+							'url' : opts.url,
+							'data' : data,
 							'dataType' : "html",
 							'success' : function(d, textStatus) {
 								callback.call(null, d);

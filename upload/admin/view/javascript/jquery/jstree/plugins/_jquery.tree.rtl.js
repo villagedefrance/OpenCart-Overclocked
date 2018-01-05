@@ -1,4 +1,4 @@
-(function($) {
+;(function($) {
 	$.extend($.tree.plugins, {
 		"rtl" : {
 			defaults : {
@@ -27,6 +27,6 @@
 // in mousemove: 
 //  tmp.drag_help.css({ "left" : (event.pageX - (tmp.origin_tree.settings.ui.rtl ? tmp.w : -5 ) ), "top" : (event.pageY + 15) });
 //  if (cnt.children("ul:eq(0)").hasClass("rtl")) goTo.x += et.width() - 28;
-//  if (cnt.children("ul:eq(0)").hasClass("rtl"))	{ tree_component.drag_drop.marker.attr("class","marker_rtl"); }
+//  if (cnt.children("ul:eq(0)").hasClass("rtl")) { tree_component.drag_drop.marker.attr("class","marker_rtl"); }
 //  if (cnt.children("ul:eq(0)").hasClass("rtl")) goTo.x += 36;
 //  tree_component.drag_drop.marker.css({ "left" : et_off.left + ( cnt.children("ul:eq(0)").hasClass("rtl") ? (cnt.width() - 10) : 10 ) , "top" : et_off.top + 15 }).show();

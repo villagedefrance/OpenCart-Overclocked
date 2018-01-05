@@ -1,4 +1,4 @@
-(function($) {
+;(function($) {
 	$.extend($.tree.plugins, {
 		"contextmenu" : {
 			object : $("<ul id='jstree-contextmenu' class='tree-context' />"),
@@ -7,7 +7,6 @@
 				a : false,
 				r : false
 			},
-
 			defaults : {
 				class_name : "hover",
 				items : {
@@ -78,7 +77,6 @@
 				var opts = $.extend(true, {}, $.tree.plugins.contextmenu.defaults, $.tree.plugins.contextmenu.data.t.settings.plugins.contextmenu);
 				try { opts.items[cmd].action.apply(null, [$.tree.plugins.contextmenu.data.a, $.tree.plugins.contextmenu.data.t]); } catch(e) { };
 			},
-
 			callbacks : {
 				oninit : function() {
 					if (!$.tree.plugins.contextmenu.css) {
@@ -112,6 +110,7 @@
 			}
 		}
 	});
+
 	$(function() {
 		$.tree.plugins.contextmenu.object.hide().appendTo("body");
 		$("#jstree-contextmenu a")

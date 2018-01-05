@@ -1,4 +1,4 @@
-(function($) {
+;(function($) {
 	if (typeof Sarissa == "undefined") throw "jsTree xml_flat: Sarissa is not included.";
 
 	$.extend($.tree.datastores, {
@@ -83,7 +83,6 @@
 					str += '><![CDATA[' + t.get_text(obj,lang) + ']]></name>';
 					return str;
 				},
-
 				parse : function(data, t, opts, callback) {
 					var processor = new XSLTProcessor();
 					processor.importStylesheet($.tree.datastores.xml_flat.xsl);

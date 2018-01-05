@@ -1,4 +1,4 @@
-(function($) {
+;(function($) {
 	$.extend($.tree.plugins, {
 		"checkbox" : {
 			defaults : {
@@ -16,7 +16,6 @@
 				if (!t) t = $.tree.focused();
 				return t.container.find("a:not(.checked, .undetermined)").parent();
 			},
-
 			check : function(n) {
 				if (!n) return false;
 				var t = $.tree.reference(n);
@@ -64,7 +63,6 @@
 				if (n.children("a").hasClass("checked")) $.tree.plugins.checkbox.uncheck(n);
 				else $.tree.plugins.checkbox.check(n);
 			},
-
 			callbacks : {
 				onchange : function(n, t) {
 					$.tree.plugins.checkbox.toggle(n);

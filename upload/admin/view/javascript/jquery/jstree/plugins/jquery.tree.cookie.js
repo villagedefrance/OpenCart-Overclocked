@@ -1,4 +1,4 @@
-(function($) {
+;(function($) {
 	if (typeof $.cookie == "undefined") throw "jsTree cookie: jQuery cookie plugin not included.";
 
 	$.extend($.tree.plugins, {
