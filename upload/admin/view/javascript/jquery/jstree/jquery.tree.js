@@ -1192,7 +1192,7 @@
 			moved : function(what, where, how, is_new, is_copy, rb) {
 				var what = $(what);
 				var $parent = $(what).parents("ul:eq(0)");
-				var $where	= $(where);
+				var $where = $(where);
 				if ($where.is("ins")) $where = $where.parent();
 
 				// Rollback
@@ -1795,9 +1795,9 @@
 				newSS.rel = 'stylesheet';
 				newSS.type = 'text/css';
 				newSS.media = "all";
-				newSS.href	= opts.url;
+				newSS.href = opts.url;
 				// var styles = "@import url(' " + url + " ');";
-				// newSS.href = 'data:text/css,'+escape(styles);
+				// newSS.href = 'data:text/css,' + escape(styles);
 				document.getElementsByTagName("head")[0].appendChild(newSS);
 				return newSS.styleSheet;
 			}

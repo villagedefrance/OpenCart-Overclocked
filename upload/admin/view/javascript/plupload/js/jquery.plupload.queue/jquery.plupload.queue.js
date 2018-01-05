@@ -6,6 +6,8 @@
  *
  * License: http://www.plupload.com/license
  * Contributing: http://www.plupload.com/contributing
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
 
 /* global jQuery:true, alert:true */
@@ -61,10 +63,10 @@ used as it is.
 	@param {Boolean} [settings.prevent_duplicates=false] Do not let duplicates into the queue. Dispatches `plupload.FILE_DUPLICATE_ERROR`.
 	@param {String|Object} [settings.required_features] Either comma-separated list or hash of required features that chosen runtime should absolutely possess.
 	@param {Object} [settings.resize] Enable resizng of images on client-side. Applies to `image/jpeg` and `image/png` only. `e.g. {width : 200, height : 200, quality : 90, crop: true}`
-		@param {Number} [settings.resize.width] If image is bigger, it will be resized.
-		@param {Number} [settings.resize.height] If image is bigger, it will be resized.
-		@param {Number} [settings.resize.quality=90] Compression quality for jpegs (1-100).
-		@param {Boolean} [settings.resize.crop=false] Whether to crop images to exact dimensions. By default they will be resized proportionally.
+	@param {Number} [settings.resize.width] If image is bigger, it will be resized.
+	@param {Number} [settings.resize.height] If image is bigger, it will be resized.
+	@param {Number} [settings.resize.quality=90] Compression quality for jpegs (1-100).
+	@param {Boolean} [settings.resize.crop=false] Whether to crop images to exact dimensions. By default they will be resized proportionally.
 	@param {String} [settings.runtimes="html5,flash,silverlight,html4"] Comma separated list of runtimes, that Plupload will try in turn, moving to the next if previous fails.
 	@param {String} [settings.silverlight_xap_url] URL of the Silverlight xap.
 	@param {Boolean} [settings.unique_names=false] If true will generate unique filenames for uploaded files.
@@ -279,6 +281,11 @@ used as it is.
 					if (!settings.unique_names && settings.rename) {
 						target.on('click', '#' + id + '_filelist div.plupload_file_name span', function(e) {
 							var targetSpan = $(e.target), file, parts, name, ext = "";
+							var fileContainer = targetSpan.closest('li');
+
+							if (!fileContainer.hasClass('plupload_delete')) {
+								return;
+							}
 
 							// Get file name and split out name and extension
 							file = up.getFile(targetSpan.parents('li')[0].id);
@@ -426,4 +433,3 @@ used as it is.
 		}
 	};
 })(jQuery, plupload);
-

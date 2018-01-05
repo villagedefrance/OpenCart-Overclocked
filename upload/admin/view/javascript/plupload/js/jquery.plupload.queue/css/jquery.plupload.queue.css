@@ -1,6 +1,8 @@
 /* 
-   Plupload
-------------------------------------------------------------------- */
+ * Plupload Queue v2.3.6
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
+ */
 
 .plupload_wrapper * {
 	box-sizing: content-box;
@@ -16,7 +18,6 @@
 	margin-right: 4px;
     background: #f3f3f3 url('../img/buttons.png') no-repeat 0 center;
 	outline: 0;
-
     /* Optional rounded corners for browsers that support it */
     -moz-border-radius: 3px;
     -khtml-border-radius: 3px;

@@ -1,6 +1,8 @@
 /*
-   Plupload
-------------------------------------------------------------------- */
+ * Plupload v2.3.6
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
+ */
 
 .plupload_wrapper * {
 	box-sizing: content-box;
@@ -23,7 +25,7 @@
 .plupload_filelist_footer {border-width: 1px 0 0 0}
 .plupload_file {border-width: 0 0 1px 0}
 .plupload_container .plupload_header {border-width: 0 0 1px 0; position: relative;}
-.plupload_delete .ui-icon, 
+.plupload_delete .ui-icon,
 .plupload_done .ui-icon,
 .plupload_failed .ui-icon {
 	cursor:pointer;
@@ -120,7 +122,7 @@
 	left: 0;
 	right: 0;
 }
-.plupload_buttons { 
+.plupload_buttons {
 	position: relative;
 }
 
@@ -135,7 +137,7 @@
 	_float: left;
 	_clear: left;
 }
-.plupload_view_list div.plupload_file_size, 
+.plupload_view_list div.plupload_file_size,
 .plupload_view_list div.plupload_file_status,
 .plupload_view_list div.plupload_file_action {
 	padding: 8px 6px;
@@ -157,11 +159,11 @@
 .plupload_view_list .plupload_file_rename {
 	margin-left: -2px;
 }
-.plupload_view_list .plupload_file_size, 
+.plupload_view_list .plupload_file_size,
 .plupload_view_list .plupload_file_status,
-.plupload_filelist_footer .plupload_file_size, 
+.plupload_filelist_footer .plupload_file_size,
 .plupload_filelist_footer .plupload_file_status {
-	text-align: right; 
+	text-align: right;
 	width: 52px;
 }
 .plupload_view_list .plupload_file_thumb {
@@ -220,7 +222,7 @@
 	font-weight: normal;
 }
 .plupload_view_thumbs div.plupload_file_status {
-	position: relative;	
+	position: relative;
 	height: 3px;
 	overflow: hidden;
 	text-indent: -999px;
@@ -232,7 +234,7 @@
 }
 .plupload .ui-sortable-helper,
 .plupload .ui-sortable .plupload_file {
-	cursor:move;	
+	cursor:move;
 }
 .plupload_file_action {width: 16px;}
 .plupload_file_name {
@@ -278,11 +280,14 @@
 .plupload_dropbox .plupload_droptext {
 	display: block;
 }
+.plupload_files_queued .plupload_droptext {
+	display: none;
+}
 .plupload_buttons, .plupload_upload_status {float: left}
 .plupload_message {
 	position: absolute;
 	top: -1px;
-	left: -1px;	
+	left: -1px;
 	height: 100%;
 	width: 100%;
 }
@@ -291,24 +296,24 @@
 	margin:0;
 }
 .plupload_message strong {
-	font-weight: bold;	
+	font-weight: bold;
 }
 .plupload_message i {
-	font-style: italic;	
+	font-style: italic;
 }
 .plupload_message p span.ui-icon {
 	float: left;
-	margin-right: 0.3em;	
+	margin-right: 0.3em;
 }
 .plupload_header_content .ui-state-error,
 .plupload_header_content .ui-state-highlight {
-	border:none;	
+	border:none;
 }
 .plupload_message_close {
 	position:absolute;
 	top:5px;
 	right:5px;
-	cursor:pointer;	
+	cursor:pointer;
 }
 .plupload .ui-sortable-placeholder {
 	height:35px;

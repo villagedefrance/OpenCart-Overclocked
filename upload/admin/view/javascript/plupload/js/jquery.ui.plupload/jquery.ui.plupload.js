@@ -15,6 +15,8 @@
  *
  * Optionally:
  *	jquery.ui.sortable.js
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
 
  /* global jQuery:true */
@@ -22,8 +24,7 @@
 /**
 jQuery UI based implementation of the Plupload API - multi-runtime file uploading API.
 
-To use the widget you must include _jQuery_ and _jQuery UI_ bundle (including `ui.core`, `ui.widget`, `ui.button`,
-`ui.progressbar` and `ui.sortable`).
+To use the widget you must include _jQuery_ and _jQuery UI_ bundle (including `ui.core`, `ui.widget`, `ui.button`, `ui.progressbar` and `ui.sortable`).
 
 In general the widget is designed the way that you do not usually need to do anything to it after you instantiate it.
 But! You still can intervenue, to some extent, in case you need to. Although, due to the fact that widget is based on
@@ -76,10 +77,10 @@ _jQuery UI_ widget factory, there are some specifics. See examples below for mor
 	@param {Number|String} [settings.chunk_size=0] Chunk size in bytes to slice the file into. Shorcuts with b, kb, mb, gb, tb suffixes also supported. `e.g. 204800 or "204800b" or "200kb"`. By default - disabled.
 	@param {String} [settings.file_data_name="file"] Name for the file field in Multipart formated message.
 	@param {Object} [settings.filters={}] Set of file type filters.
-		@param {Array} [settings.filters.mime_types=[]] List of file types to accept, each one defined by title and list of extensions. `e.g. {title : "Image files", extensions : "jpg,jpeg,gif,png"}`. Dispatches `plupload.FILE_EXTENSION_ERROR`
-		@param {String|Number} [settings.filters.max_file_size=0] Maximum file size that the user can pick, in bytes. Optionally supports b, kb, mb, gb, tb suffixes. `e.g. "10mb" or "1gb"`. By default - not set. Dispatches `plupload.FILE_SIZE_ERROR`.
-		@param {Boolean} [settings.filters.prevent_duplicates=false] Do not let duplicates into the queue. Dispatches `plupload.FILE_DUPLICATE_ERROR`.
-		@param {Number} [settings.filters.max_file_count=0] Limit the number of files that can reside in the queue at the same time (default is 0 - no limit).
+	@param {Array} [settings.filters.mime_types=[]] List of file types to accept, each one defined by title and list of extensions. `e.g. {title : "Image files", extensions : "jpg,jpeg,gif,png"}`. Dispatches `plupload.FILE_EXTENSION_ERROR`
+	@param {String|Number} [settings.filters.max_file_size=0] Maximum file size that the user can pick, in bytes. Optionally supports b, kb, mb, gb, tb suffixes. `e.g. "10mb" or "1gb"`. By default - not set. Dispatches `plupload.FILE_SIZE_ERROR`.
+	@param {Boolean} [settings.filters.prevent_duplicates=false] Do not let duplicates into the queue. Dispatches `plupload.FILE_DUPLICATE_ERROR`.
+	@param {Number} [settings.filters.max_file_count=0] Limit the number of files that can reside in the queue at the same time (default is 0 - no limit).
 	@param {String} [settings.flash_swf_url] URL of the Flash swf.
 	@param {Object} [settings.headers] Custom headers to send with the upload. Hash of name/value pairs.
 	@param {Number|String} [settings.max_file_size] Maximum file size that the user can pick, in bytes. Optionally supports b, kb, mb, gb, tb suffixes. `e.g. "10mb" or "1gb"`. By default - not set. Dispatches `plupload.FILE_SIZE_ERROR`.
@@ -90,10 +91,10 @@ _jQuery UI_ widget factory, there are some specifics. See examples below for mor
 	@param {Boolean} [settings.prevent_duplicates=false] Do not let duplicates into the queue. Dispatches `plupload.FILE_DUPLICATE_ERROR`.
 	@param {String|Object} [settings.required_features] Either comma-separated list or hash of required features that chosen runtime should absolutely possess.
 	@param {Object} [settings.resize] Enable resizng of images on client-side. Applies to `image/jpeg` and `image/png` only. `e.g. {width : 200, height : 200, quality : 90, crop: true}`
-		@param {Number} [settings.resize.width] If image is bigger, it will be resized.
-		@param {Number} [settings.resize.height] If image is bigger, it will be resized.
-		@param {Number} [settings.resize.quality=90] Compression quality for jpegs (1-100).
-		@param {Boolean} [settings.resize.crop=false] Whether to crop images to exact dimensions. By default they will be resized proportionally.
+	@param {Number} [settings.resize.width] If image is bigger, it will be resized.
+	@param {Number} [settings.resize.height] If image is bigger, it will be resized.
+	@param {Number} [settings.resize.quality=90] Compression quality for jpegs (1-100).
+	@param {Boolean} [settings.resize.crop=false] Whether to crop images to exact dimensions. By default they will be resized proportionally.
 	@param {String} [settings.runtimes="html5,flash,silverlight,html4"] Comma separated list of runtimes, that Plupload will try in turn, moving to the next if previous fails.
 	@param {String} [settings.silverlight_xap_url] URL of the Silverlight xap.
 	@param {Boolean} [settings.unique_names=false] If true will generate unique filenames for uploaded files.
@@ -103,14 +104,14 @@ _jQuery UI_ widget factory, there are some specifics. See examples below for mor
 	@param {Boolean} [settings.rename=false] Enable ability to rename files in the queue.
 	@param {Boolean} [settings.sortable=false] Enable ability to sort files in the queue, changing their uploading priority.
 	@param {Object} [settings.buttons] Control the visibility of functional buttons.
-		@param {Boolean} [settings.buttons.browse=true] Display browse button.
-		@param {Boolean} [settings.buttons.start=true] Display start button.
-		@param {Boolean} [settings.buttons.stop=true] Display stop button.
+	@param {Boolean} [settings.buttons.browse=true] Display browse button.
+	@param {Boolean} [settings.buttons.start=true] Display start button.
+	@param {Boolean} [settings.buttons.stop=true] Display stop button.
 	@param {Object} [settings.views] Control various views of the file queue.
-		@param {Boolean} [settings.views.list=true] Enable list view.
-		@param {Boolean} [settings.views.thumbs=false] Enable thumbs view.
-		@param {String} [settings.views.default='list'] Default view.
-		@param {Boolean} [settings.views.remember=true] Whether to remember the current view (requires jQuery Cookie plugin).
+	@param {Boolean} [settings.views.list=true] Enable list view.
+	@param {Boolean} [settings.views.thumbs=false] Enable thumbs view.
+	@param {String} [settings.views.default='list'] Default view.
+	@param {Boolean} [settings.views.remember=true] Whether to remember the current view (requires jQuery Cookie plugin).
 	@param {Boolean} [settings.multiple_queues=true] Re-activate the widget after each upload procedure.
 */
 ;(function(window, document, plupload, o, $) {
@@ -268,17 +269,12 @@ function renderUI(obj) {
 	);
 }
 
-
 $.widget("ui.plupload", {
-
 	widgetEventPrefix: '',
-
 	contents_bak: '',
-
 	options: {
 		browse_button_hover: 'ui-state-hover',
 		browse_button_active: 'ui-state-active',
-
 		filters: {},
 
 		// widget specific
@@ -338,7 +334,6 @@ $.widget("ui.plupload", {
 				unselectable: 'on'
 			});
 
-
 		// buttons
 		this.browse_button = $('.plupload_add', this.container).attr('id', id + '_browse');
 		this.start_button = $('.plupload_start', this.container).attr('id', id + '_start');
@@ -397,8 +392,7 @@ $.widget("ui.plupload", {
 		, options = {
 			container: id + '_buttons',
 			browse_button: id + '_browse'
-		}
-		;
+		};
 
 		$('.plupload_buttons', this.element).attr('id', id + '_buttons');
 
@@ -408,9 +402,13 @@ $.widget("ui.plupload", {
 		}
 
 		this.filelist.on('click', function(e) {
-			if ($(e.target).hasClass('plupload_action_icon')) {
-				self.removeFile($(e.target).closest('.plupload_file').attr('id'));
-				e.preventDefault();
+			var me = $(e.target), fileContainer;
+			if (me.hasClass('plupload_action_icon')) {
+				fileContainer = me.closest('.plupload_file');
+				if (fileContainer.hasClass('plupload_delete')) {
+					self.removeFile(fileContainer.attr('id'));
+					e.preventDefault();
+				}
 			}
 		});
 
@@ -445,7 +443,6 @@ $.widget("ui.plupload", {
 				cb(true);
 			}
 		});
-
 
 		uploader.bind('Error', function(up, err) {
 			var message, details = "";
@@ -500,7 +497,6 @@ $.widget("ui.plupload", {
 				self.notify('error', message);
 			}
 		});
-
 
 		uploader.bind('PostInit', function(up) {
 			// all buttons are optional, so they can be disabled and hidden
@@ -626,7 +622,6 @@ $.widget("ui.plupload", {
 		});
 	},
 
-
 	_setOption: function(key, value) {
 		var self = this;
 
@@ -657,7 +652,6 @@ $.widget("ui.plupload", {
 		self.uploader.setOption(key, value);
 	},
 
-
 	/**
 	Start upload. Triggers `start` event.
 
@@ -667,7 +661,6 @@ $.widget("ui.plupload", {
 		this.uploader.start();
 	},
 
-
 	/**
 	Stop upload. Triggers `stop` event.
 
@@ -676,7 +669,6 @@ $.widget("ui.plupload", {
 	stop: function() {
 		this.uploader.stop();
 	},
-
 
 	/**
 	Enable browse button.
@@ -688,7 +680,6 @@ $.widget("ui.plupload", {
 		this.uploader.disableBrowse(false);
 	},
 
-
 	/**
 	Disable browse button.
 
@@ -698,7 +689,6 @@ $.widget("ui.plupload", {
 		this.browse_button.button('disable');
 		this.uploader.disableBrowse(true);
 	},
-
 
 	/**
 	Retrieve file by its unique id.
@@ -728,7 +718,6 @@ $.widget("ui.plupload", {
 		return this.uploader.files;
 	},
 
-
 	/**
 	Remove the file from the queue.
 
@@ -742,7 +731,6 @@ $.widget("ui.plupload", {
 		this.uploader.removeFile(file);
 	},
 
-
 	/**
 	Clear the file queue.
 
@@ -751,7 +739,6 @@ $.widget("ui.plupload", {
 	clearQueue: function() {
 		this.uploader.splice();
 	},
-
 
 	/**
 	Retrieve internal plupload.Uploader object (usually not required).
@@ -762,7 +749,6 @@ $.widget("ui.plupload", {
 	getUploader: function() {
 		return this.uploader;
 	},
-
 
 	/**
 	Trigger refresh procedure, specifically browse_button re-measure and re-position operations.
@@ -775,7 +761,6 @@ $.widget("ui.plupload", {
 	refresh: function() {
 		this.uploader.refresh();
 	},
-
 
 	/**
 	Display a message in notification area.
@@ -805,7 +790,6 @@ $.widget("ui.plupload", {
 
 		$('.plupload_header', this.container).append(popup);
 	},
-
 
 	/**
 	Destroy the widget, the uploader, free associated resources and bring back original html.
@@ -844,12 +828,10 @@ $.widget("ui.plupload", {
 		$.Widget.prototype.destroy.apply(this);
 	},
 
-
 	_handleState: function() {
-		var up = this.uploader
-		, filesPending = up.files.length - (up.total.uploaded + up.total.failed)
-		, maxCount = up.getOption('filters').max_file_count || 0
-		;
+		var up = this.uploader,
+		filesPending = up.files.length - (up.total.uploaded + up.total.failed),
+		maxCount = up.getOption('filters').max_file_count || 0;
 
 		if (plupload.STARTED === up.state) {
 			$([])
@@ -898,9 +880,11 @@ $.widget("ui.plupload", {
 			$('.ui-button-text', this.browse_button).html(plupload.sprintf(_('%d files queued'), up.total.queued));
 		}
 
+		// have a helper class on a container expressing whether it has files queued or not
+		this.container.toggleClass('plupload_files_queued', up.files.length);
+
 		up.refresh();
 	},
-
 
 	_handleFileStatus: function(file) {
 		var $file = $('#' + file.id), actionClass, iconClass;
@@ -961,7 +945,6 @@ $.widget("ui.plupload", {
 				.attr('class', iconClass);
 	},
 
-
 	_updateTotalProgress: function() {
 		var up = this.uploader;
 
@@ -981,7 +964,6 @@ $.widget("ui.plupload", {
 				.html(plupload.sprintf(_('Uploaded %d/%d files'), up.total.uploaded, up.files.length));
 	},
 
-
 	_displayThumbs: function() {
 		var self = this
 		, tw, th // thumb width/height
@@ -995,7 +977,6 @@ $.widget("ui.plupload", {
 			return;
 		}
 
-
 		function onLast(el, eventName, cb) {
 			var timer;
 
@@ -1007,7 +988,6 @@ $.widget("ui.plupload", {
 				}, 300);
 			});
 		}
-
 
 		// calculate number of simultaneously visible thumbs
 		function measure() {
@@ -1022,7 +1002,6 @@ $.widget("ui.plupload", {
 			num =  cols * (Math.ceil(ah / th) + 1);
 		}
 
-
 		function pickThumbsToLoad() {
 			// calculate index of virst visible thumb
 			var startIdx = Math.floor(self.content.scrollTop() / th) * cols;
@@ -1032,7 +1011,6 @@ $.widget("ui.plupload", {
 				.filter('.plupload_thumb_toload')
 				.get();
 		}
-
 
 		function init() {
 			function mpl() { // measure, pick, load
@@ -1056,7 +1034,6 @@ $.widget("ui.plupload", {
 			mpl();
 		}
 
-
 		function preloadThumb(file, cb) {
 			var img = new o.image.Image();
 			var resolveUrl = o.core.utils.Url.resolveUrl;
@@ -1067,6 +1044,7 @@ $.widget("ui.plupload", {
 					width: self.options.thumb_width,
 					height: self.options.thumb_height,
 					crop: true,
+					fit: true,
 					preserveHeaders: false,
 					swf_url: resolveUrl(self.options.flash_swf_url),
 					xap_url: resolveUrl(self.options.silverlight_xap_url)
@@ -1090,7 +1068,6 @@ $.widget("ui.plupload", {
 				;
 			img.load(file.getSource());
 		}
-
 
 		function lazyLoad() {
 			if (self.view_mode !== 'thumbs' || loading) {
@@ -1116,7 +1093,6 @@ $.widget("ui.plupload", {
 			init();
 		});
 	},
-
 
 	_addFiles: function(files) {
 		var self = this, file_html, html = '';
@@ -1167,7 +1143,6 @@ $.widget("ui.plupload", {
 		self.filelist.append(html);
 	},
 
-
 	_addFormFields: function() {
 		var self = this;
 
@@ -1191,7 +1166,6 @@ $.widget("ui.plupload", {
 		this.counter.val(this.uploader.files.length);
 	},
 
-
 	_viewChanged: function(view) {
 		// update or write a new cookie
 		if (this.options.views.remember && $.cookie) {
@@ -1207,7 +1181,6 @@ $.widget("ui.plupload", {
 		this.view_mode = view;
 		this._trigger('viewchanged', null, { view: view });
 	},
-
 
 	_enableViewSwitcher: function() {
 		var self = this
@@ -1266,19 +1239,24 @@ $.widget("ui.plupload", {
 		}
 	},
 
-
 	_enableRenaming: function() {
 		var self = this;
 
 		this.filelist.dblclick(function(e) {
-			var nameSpan = $(e.target), nameInput, file, parts, name, ext = "";
+			var nameInput, fileContainer, file, parts, name, ext = "";
+			var nameSpan = $(e.target);
 
 			if (!nameSpan.hasClass('plupload_file_name_wrapper')) {
 				return;
 			}
 
+			fileContainer = nameSpan.closest('.plupload_file');
+			if (!fileContainer.hasClass('plupload_delete')) {
+				return;
+			}
+
 			// Get file name and split out name and extension
-			file = self.uploader.getFile(nameSpan.closest('.plupload_file')[0].id);
+			file = self.uploader.getFile(fileContainer[0].id);
 			name = file.name;
 			parts = /^(.+)(\.[^.]+)$/.exec(name);
 			if (parts) {
@@ -1306,7 +1284,6 @@ $.widget("ui.plupload", {
 			})[0].focus();
 		});
 	},
-
 
 	_enableSortingList: function() {
 		var self = this;
