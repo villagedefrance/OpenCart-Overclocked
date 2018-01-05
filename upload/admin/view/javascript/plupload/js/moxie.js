@@ -1504,7 +1504,6 @@ define("moxie/core/utils/Env", [
 
 		Env.log = function() {
 			function logObj(data) {
-				// TODO: this should recursively print out the object in a pretty way
 				console.appendChild(document.createTextNode(data + "\n"));
 			}
 
@@ -3584,8 +3583,7 @@ define('moxie/file/FileInput', [
 		@param {Object} event
 		*/
 		'change',
-
-		'cancel', // TODO: might be useful
+		'cancel',
 
 		/**
 		Dispatched when mouse cursor enters file-picker area. Can be used to style element
