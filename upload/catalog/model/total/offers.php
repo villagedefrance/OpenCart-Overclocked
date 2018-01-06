@@ -38,7 +38,6 @@ class Offer {
 
 class ModelTotalOffers {
 	private $registry;
-	private $sort_prices;
 
 	public function __construct($registry) {
 		$this->registry = $registry;
