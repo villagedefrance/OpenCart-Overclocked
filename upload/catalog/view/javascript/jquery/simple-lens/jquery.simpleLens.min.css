@@ -1,0 +1,8 @@
+/*!
+ * jQuery Simple Lens Plugin
+ * Copyright (c) 2014 Pietro Simone Di Chiara
+ * Version: 1.0.1 (05-APR-2013)
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/mit-license.php
+ */
+.simpleLens-container{display:table;position:relative}.simpleLens-big-image-container{float:left;border:1px solid #E7E7E7;text-align:center;margin-bottom:20px;padding:9px;height:250px;width:250px}.simpleLens-big-image{max-width:100%}.simpleLens-lens-image{float:none;position:relative;display:inline-block;height:auto;width:230px;vertical-align:middle;text-align:center;margin:0}.simpleLens-mouse-cursor{position:absolute;top:0;left:0;background-color:#3BB2D6;opacity:.2;filter:alpha(opacity=20);zoom:1;cursor:none;z-index:10}.simpleLens-lens-element{position:absolute;top:0;left:103%;width:450px;height:350px;background-color:#FFF;border:1px solid #E7E7E7;text-align:center;overflow:hidden;z-index:10}.simpleLens-lens-element img{position:relative;top:0;left:0;width:auto;max-width:none}.product-info .simpleLens-thumbnails-container{width:260px;margin:0;padding:0;overflow:hidden;clear:both}.product-info .simpleLens-thumbnails-container a{float:left;display:block;margin:0 10px 10px 0;padding:0}.product-info .simpleLens-thumbnails-container img{border:1px solid #E7E7E7;padding:2px}

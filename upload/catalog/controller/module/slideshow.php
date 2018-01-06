@@ -9,7 +9,7 @@ class ControllerModuleSlideshow extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->document->addStyle('catalog/view/javascript/jquery/camera/css/camera.css');
+		$this->document->addStyle('catalog/view/javascript/jquery/camera/css/camera.min.css');
 
 		$this->document->addScript('catalog/view/javascript/jquery/camera/camera.min.js');
 		$this->document->addScript('catalog/view/javascript/jquery/jquery.easing.min.js');
