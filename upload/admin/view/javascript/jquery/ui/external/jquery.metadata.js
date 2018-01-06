@@ -18,17 +18,16 @@
  * There are three supported types of metadata storage:
  *
  *   attr:  Inside an attribute. The name parameter indicates *which* attribute.
- *          
+ *
  *   class: Inside the class attribute, wrapped in curly braces: { }
- *   
- *   elem:  Inside a child element (e.g. a script tag). The
- *          name parameter indicates *which* element.
- *          
+ *
+ *   elem:  Inside a child element (e.g. a script tag). The name parameter indicates *which* element.
+ *
  * The metadata for an element is loaded the first time the element is accessed via jQuery.
  *
  * As a result, you can define the metadata type, use $(expr) to load the metadata into the elements
  * matched by expr, then redefine the metadata type and run another $(expr) for other elements.
- * 
+ *
  * @name $.metadata.setType
  *
  * @example <p id="one" class="some_class {item_id: 1, item_label: 'Label'}">This is a p</p>
@@ -54,30 +53,30 @@
  * @see metadata()
  */
 
-(function($){ 
+;(function($){ 
 
 $.extend({
 	metadata : {
 		defaults : {
-			type	: 'class',
-			name	: 'metadata',
-			cre		: /({.*})/,
-			single	: 'metadata'
+			type : 'class',
+			name : 'metadata',
+			cre : /({.*})/,
+			single	  'metadata'
 		},
-		setType: function (type, name){ 
+		setType: function (type, name) { 
 			this.defaults.type = type; 
 			this.defaults.name = name; 
 		},
-		get: function (elem, opts){ 
+		get: function (elem, opts) { 
 			var settings = $.extend({}, this.defaults,opts); 
 			// check for empty string in single property
-			if ( ! settings.single.length) settings.single = 'metadata'; 
+			if ( ! settings.single.length) settings.single = 'metadata';
 
 			var data = $.data(elem, settings.single); 
 			// returned cached data if it already exists
-			if (data) return data; 
+			if (data) return data;
 
-			data = "{}"; 
+			data = "{}";
 
 			if (settings.type == "class") { 
 				var m = settings.cre.exec(elem.className); 
@@ -113,7 +112,7 @@ $.extend({
  * @type jQuery
  * @cat Plugins/Metadata
  */
-$.fn.metadata = function (opts){ 
+$.fn.metadata = function (opts) { 
 	return $.metadata.get( this[0], opts ); 
 }; 
-})(jQuery); 
+})(jQuery);

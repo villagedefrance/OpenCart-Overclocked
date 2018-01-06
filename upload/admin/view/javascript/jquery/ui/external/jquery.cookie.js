@@ -1,5 +1,3 @@
-/*jslint browser: true */ /*global jQuery: true */
-
 /**
  * jQuery Cookie plugin
  *
@@ -55,10 +53,10 @@
  * @cat Plugins/Cookie
  * @author Klaus Hartl/klaus.hartl@stilbuero.de
  */
- 
+
 jQuery.cookie = function(key, value, options) { 
 	if (arguments.length > 1 && (value === null || typeof value !== "object")) { 
-		options = jQuery.extend({}, options); 
+		options = jQuery.extend({}, options);
 
 		if (value === null) { 
 			options.expires = -1; 
