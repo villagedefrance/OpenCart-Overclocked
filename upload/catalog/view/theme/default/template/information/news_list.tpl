@@ -14,7 +14,7 @@
     <?php if ($news_collapsible) { ?>
       <?php foreach ($news_data as $news) { ?>
         <div class="panel-collapsed">
-          <h2><?php echo $news['title']; ?></h2>
+          <h3><?php echo $news['title']; ?><i class="fa"></i></h3>
           <div class="panel-content">
             <?php echo $news['description']; ?><br /><br />
             <i class="fa fa-calendar"></i> &nbsp; <?php echo $news['date_added']; ?> - <?php echo $news['viewed']; ?> <?php echo $text_views; ?><br /><br />

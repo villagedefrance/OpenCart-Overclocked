@@ -811,7 +811,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 
 		// Customer options
 		if ($this->customer->isLogged() && $this->customer->isSecure()) {
-			$customer_address = $this->model_account_address->getAddress($this->customer->getAddressId());	
+			$customer_address = $this->model_account_address->getAddress($this->customer->getAddressId());
 		}
 
 		if (isset($this->session->data['order_id'])) {

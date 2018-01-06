@@ -462,25 +462,15 @@
       <?php } ?>
     </div>
   </div>
-  <div id="tabs" class="htabs">
-    <a href="#tab-description"><?php echo $tab_description; ?></a>
-    <?php if ($attribute_groups) { ?>
-      <a href="#tab-attribute"><?php echo $tab_attribute; ?></a>
-    <?php } ?>
-    <?php if ($offers) { ?>
-      <a href="#tab-offer"><?php echo $tab_offer; ?> (<?php echo count($offers); ?>)</a>
-    <?php } ?>
-    <?php if ($review_status) { ?>
-      <a href="#tab-review"><?php echo $tab_review; ?></a>
-    <?php } ?>
-    <?php if ($products) { ?>
-      <a href="#tab-related"><?php echo $tab_related; ?> (<?php echo count($products); ?>)</a>
-    <?php } ?>
+  <div class="panel-collapsed">
+    <h3><?php echo $tab_description; ?><i class="fa"></i></h3>
+    <div class="panel-content"><?php echo $description; ?></div>
   </div>
-  <div id="tab-description" class="tab-content"><?php echo $description; ?></div>
   <?php if ($attribute_groups) { ?>
-    <div id="tab-attribute" class="tab-content">
-      <div class="attribute">
+    <div class="panel-collapsed">
+      <h3><?php echo $tab_attribute; ?><i class="fa"></i></h3>
+      <div class="panel-content">
+        <div class="attribute">
         <?php foreach ($attribute_groups as $attribute_group) { ?>
           <div class="attribute-group">
             <?php echo $attribute_group['name']; ?>
@@ -494,119 +484,130 @@
             <?php } ?>
           </div>
         <?php } ?>
+        </div>
       </div>
     </div>
   <?php } ?>
   <?php if ($offers) { ?>
-    <div id="tab-offer" class="tab-content">
-      <div class="box-product">
-      <?php foreach ($offers as $offer) { ?>
-        <div>
-          <?php if ($offer_label_medium) { ?>
-            <div class="offer-medium"><img src="<?php echo $offer_label_medium; ?>" alt="" /></div>
+    <div class="panel-collapsed">
+      <h3><?php echo $tab_offer; ?><i class="fa"></i></h3>
+      <div class="panel-content">
+        <div class="box-product">
+          <?php foreach ($offers as $offer) { ?>
+            <div>
+            <?php if ($offer_label_medium) { ?>
+              <div class="offer-medium"><img src="<?php echo $offer_label_medium; ?>" alt="" /></div>
+            <?php } ?>
+            <?php if ($offer['thumb']) { ?>
+              <div class="image"><a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['thumb']; ?>" alt="<?php echo $offer['name']; ?>" /></a></div>
+            <?php } ?>
+            <div class="name"><a href="<?php echo $offer['href']; ?>"><?php echo $offer['name']; ?></a></div>
+            <div class="offer"><a href="<?php echo $offer['href']; ?>"><?php echo $offer['group']; ?></a></div>
+            </div>
           <?php } ?>
-          <?php if ($offer['thumb']) { ?>
-            <div class="image"><a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['thumb']; ?>" alt="<?php echo $offer['name']; ?>" /></a></div>
-          <?php } ?>
-          <div class="name"><a href="<?php echo $offer['href']; ?>"><?php echo $offer['name']; ?></a></div>
-          <div class="offer"><a href="<?php echo $offer['href']; ?>"><?php echo $offer['group']; ?></a></div>
         </div>
-      <?php } ?>
       </div>
     </div>
   <?php } ?>
+  <div id="reviews"></div>
   <?php if ($review_status) { ?>
-    <div id="tab-review" class="tab-content">
-      <div id="review"></div>
-      <div id="add-review">
-        <h2 id="review-title"><?php echo $text_write; ?></h2>
-        <div class="review-element">
-          <input type="text" name="name" placeholder="<?php echo $entry_name; ?>" value="" size="30" />
-        </div>
-        <div class="review-element">
-          <textarea name="text" cols="40" rows="3" placeholder="<?php echo $entry_review; ?>"></textarea>
-          <br /><?php echo $text_note; ?>
-        </div>
-        <div class="review-rating">
-          <b><?php echo $entry_rating; ?></b>&nbsp;
-          <img src="catalog/view/theme/<?php echo $template; ?>/image/thumbs-down.png" alt="<?php echo $entry_bad; ?>" title="<?php echo $entry_bad; ?>" />&nbsp;
-          <input type="radio" name="rating" value="1" />&nbsp;
-          <input type="radio" name="rating" value="2" />&nbsp;
-          <input type="radio" name="rating" value="3" />&nbsp;
-          <input type="radio" name="rating" value="4" />&nbsp;
-          <input type="radio" name="rating" value="5" />&nbsp;
-          <img src="catalog/view/theme/<?php echo $template; ?>/image/thumbs-up.png" alt="<?php echo $entry_good; ?>" title="<?php echo $entry_good; ?>" />
-        </div>
-        <div id="captcha-wrap">
-          <div class="captcha-box">
-            <div class="captcha-view">
-              <img src="index.php?route=product/product/captcha" alt="" id="captcha-image" />
+    <div class="panel-collapsed">
+      <h3><?php echo $tab_review; ?><i class="fa"></i></h3>
+      <div class="panel-content">
+        <div id="review"></div>
+        <div id="add-review">
+          <h2 id="review-title"><?php echo $text_write; ?></h2>
+          <div class="review-element">
+            <input type="text" name="name" placeholder="<?php echo $entry_name; ?>" value="" size="30" />
+          </div>
+          <div class="review-element">
+            <textarea name="text" cols="40" rows="3" placeholder="<?php echo $entry_review; ?>"></textarea>
+            <br /><?php echo $text_note; ?>
+          </div>
+          <div class="review-rating">
+            <b><?php echo $entry_rating; ?></b>&nbsp;
+            <img src="catalog/view/theme/<?php echo $template; ?>/image/thumbs-down.png" alt="<?php echo $entry_bad; ?>" title="<?php echo $entry_bad; ?>" />&nbsp;
+            <input type="radio" name="rating" value="1" />&nbsp;
+            <input type="radio" name="rating" value="2" />&nbsp;
+            <input type="radio" name="rating" value="3" />&nbsp;
+            <input type="radio" name="rating" value="4" />&nbsp;
+            <input type="radio" name="rating" value="5" />&nbsp;
+            <img src="catalog/view/theme/<?php echo $template; ?>/image/thumbs-up.png" alt="<?php echo $entry_good; ?>" title="<?php echo $entry_good; ?>" />
+          </div>
+          <div id="captcha-wrap">
+            <div class="captcha-box">
+              <div class="captcha-view">
+                <img src="index.php?route=product/product/captcha" alt="" id="captcha-image" />
+              </div>
             </div>
+            <div class="captcha-text">
+              <label><?php echo $entry_captcha; ?></label>
+              <input type="text" name="captcha" id="captcha" value="<?php echo $captcha; ?>" autocomplete="off" />
+            </div>
+            <div class="captcha-action"><i class="fa fa-repeat"></i></div>
           </div>
-          <div class="captcha-text">
-            <label><?php echo $entry_captcha; ?></label>
-            <input type="text" name="captcha" id="captcha" value="<?php echo $captcha; ?>" autocomplete="off" />
-          </div>
-          <div class="captcha-action"><i class="fa fa-repeat"></i></div>
+          <br />
+          <div><a id="button-review" class="button"><?php echo $button_continue; ?></a></div>
         </div>
-        <br />
-        <div><a id="button-review" class="button"><?php echo $button_continue; ?></a></div>
       </div>
     </div>
   <?php } ?>
   <?php if ($products) { ?>
-    <div id="tab-related" class="tab-content">
-      <div class="box-product">
-      <?php foreach ($products as $product) { ?>
-        <div>
-          <?php if ($product['thumb']) { ?>
-            <?php if ($product['stock_label']) { ?>
-              <div class="stock-medium"><img src="<?php echo $product['stock_label']; ?>" alt="" /></div>
-            <?php } ?>
-            <?php if (!$product['stock_label'] && $product['offer']) { ?>
-              <div class="offer-medium"><img src="<?php echo $product['offer_label']; ?>" alt="" /></div>
-            <?php } ?>
-            <?php if (!$product['stock_label'] && !$product['offer'] && $product['special']) { ?>
-              <div class="special-medium"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
-            <?php } ?>
-            <?php if ($product['label']) { ?>
-              <div class="product-label" style="left:<?php echo $product['label_style']; ?>px; margin:0px 0px -<?php echo $product['label_style']; ?>px 0px;">
-              <img src="<?php echo $product['label']; ?>" alt="" height="<?php echo $product['label_style']; ?>" width="<?php echo $product['label_style']; ?>" /></div>
-            <?php } ?>
-            <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
-          <?php } ?>
-          <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
-          <?php if ($product['price']) { ?>
-            <div class="price">
-              <?php if ($product['price_option']) { ?>
-                <span class="from"><?php echo $text_from; ?></span><br />
+    <div class="panel-collapsed">
+      <h3><?php echo $tab_related; ?><i class="fa"></i></h3>
+      <div class="panel-content">
+        <div class="box-product">
+        <?php foreach ($products as $product) { ?>
+          <div>
+            <?php if ($product['thumb']) { ?>
+              <?php if ($product['stock_label']) { ?>
+                <div class="stock-medium"><img src="<?php echo $product['stock_label']; ?>" alt="" /></div>
               <?php } ?>
-              <?php if (!$product['special']) { ?>
-                <?php echo $product['price']; ?>
+              <?php if (!$product['stock_label'] && $product['offer']) { ?>
+                <div class="offer-medium"><img src="<?php echo $product['offer_label']; ?>" alt="" /></div>
+              <?php } ?>
+              <?php if (!$product['stock_label'] && !$product['offer'] && $product['special']) { ?>
+                <div class="special-medium"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
+              <?php } ?>
+              <?php if ($product['label']) { ?>
+                <div class="product-label" style="left:<?php echo $product['label_style']; ?>px; margin:0px 0px -<?php echo $product['label_style']; ?>px 0px;">
+                <img src="<?php echo $product['label']; ?>" alt="" height="<?php echo $product['label_style']; ?>" width="<?php echo $product['label_style']; ?>" /></div>
+              <?php } ?>
+              <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+            <?php } ?>
+            <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+            <?php if ($product['price']) { ?>
+              <div class="price">
+                <?php if ($product['price_option']) { ?>
+                  <span class="from"><?php echo $text_from; ?></span><br />
+                <?php } ?>
+                <?php if (!$product['special']) { ?>
+                  <?php echo $product['price']; ?>
+                <?php } else { ?>
+                  <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+                <?php } ?>
+              </div>
+            <?php } ?>
+            <?php if ($product['rating']) { ?>
+              <div class="rating"><img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
+            <?php } ?>
+            <?php if ($product['stock_remaining'] && $this->config->get($template . '_product_stock_low') && ($product['stock_quantity'] > 0) && ($product['stock_quantity'] <= $this->config->get($template . '_product_stock_limit'))) { ?>
+              <div class="remaining"><?php echo $product['stock_remaining']; ?></div>
+            <?php } ?>
+            <div class="box-product-bottom">
+              <?php if ($product['quote']) { ?>
+                <div><a href="<?php echo $product['quote']; ?>" title=""><i class="fa fa-quote"></i></a></div>
+              <?php } elseif (!$product['quote'] && $product['stock_quantity'] <= 0) { ?>
+                <div class="stock-status"><a title="<?php echo $product['stock_status']; ?>"><i class="fa fa-warning"></i></a></div>
               <?php } else { ?>
-                <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+                <div><a onclick="addToCart('<?php echo $product['product_id']; ?>');"><i class="fa fa-shopping-cart"></i></a></div>
               <?php } ?>
+              <div><a onclick="addToWishList('<?php echo $product['product_id']; ?>');"><i class="fa fa-heart"></i></a></div>
+              <div><a href="<?php echo $product['href']; ?>"><i class="fa fa-search"></i></a></div>
             </div>
-          <?php } ?>
-          <?php if ($product['rating']) { ?>
-            <div class="rating"><img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
-          <?php } ?>
-          <?php if ($product['stock_remaining'] && $this->config->get($template . '_product_stock_low') && ($product['stock_quantity'] > 0) && ($product['stock_quantity'] <= $this->config->get($template . '_product_stock_limit'))) { ?>
-            <div class="remaining"><?php echo $product['stock_remaining']; ?></div>
-          <?php } ?>
-          <div class="box-product-bottom">
-            <?php if ($product['quote']) { ?>
-              <div><a href="<?php echo $product['quote']; ?>" title=""><i class="fa fa-quote"></i></a></div>
-            <?php } elseif (!$product['quote'] && $product['stock_quantity'] <= 0) { ?>
-              <div class="stock-status"><a title="<?php echo $product['stock_status']; ?>"><i class="fa fa-warning"></i></a></div>
-            <?php } else { ?>
-              <div><a onclick="addToCart('<?php echo $product['product_id']; ?>');"><i class="fa fa-shopping-cart"></i></a></div>
-            <?php } ?>
-            <div><a onclick="addToWishList('<?php echo $product['product_id']; ?>');"><i class="fa fa-heart"></i></a></div>
-            <div><a href="<?php echo $product['href']; ?>"><i class="fa fa-search"></i></a></div>
           </div>
+        <?php } ?>
         </div>
-      <?php } ?>
       </div>
     </div>
   <?php } ?>
@@ -917,12 +918,6 @@ $('.review-rating input:radio').wrap('<span></span>').parent()
 			'background': 'transparent'
 		});
 	});
-});
-//--></script>
-
-<script type="text/javascript"><!--
-$(document).ready(function() {
-	$('#tabs a').tabs();
 });
 //--></script>
 

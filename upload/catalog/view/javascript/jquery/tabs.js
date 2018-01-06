@@ -4,6 +4,7 @@
  Tabs.js file for development. Use minified version for production.
  ---------------------------------------------------------------------------
 */
+;(function($) {
 $.fn.tabs = function() {
 	var selector = this;
 	this.each(function() {
@@ -22,3 +23,4 @@ $.fn.tabs = function() {
 	$(this).show();
 	$(this).first().click();
 };
+})(jQuery);

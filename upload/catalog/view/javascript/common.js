@@ -122,7 +122,7 @@ function subProductCount() {
 function goToReviews(product_id) {
 	$('a[href=\'#tab-review\']').trigger('click');
 	$('html, body').animate({
-		scrollTop: $('#tabs').position().top -= 30
+		scrollTop: $('#reviews').position().top -= 30
 	}, 'slow');
 	return false;
 }

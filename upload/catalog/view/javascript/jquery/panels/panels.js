@@ -6,11 +6,11 @@
 */
 var PANEL_NORMAL_CLASS = "panel";
 var PANEL_COLLAPSED_CLASS = "panel-collapsed";
-var PANEL_HEADING_TAG = "h2";
+var PANEL_HEADING_TAG = "h3";
 var PANEL_CONTENT_CLASS = "panel-content";
 var PANEL_COOKIE_NAME = "panels";
-var PANEL_ANIMATION_DELAY = 30;
-var PANEL_ANIMATION_STEPS = 10;
+var PANEL_ANIMATION_DELAY = 24;
+var PANEL_ANIMATION_STEPS = 6;
 
 function setUpPanels() {
 	loadSettings();
@@ -39,7 +39,7 @@ function setUpPanels() {
 			panelsStatus[name] = (el.parentNode.className == PANEL_NORMAL_CLASS) ? "true" : "false";
 		}
 
-		// add the click behavor to headings
+		// add the click behaviour to headings
 		el.onclick = function() {
 			var target = this.parentNode;
 			var name = this.firstChild.nodeValue;
@@ -76,7 +76,7 @@ function animateTogglePanel(panel, expanding) {
 	}
 
 	var stepHeight = contentHeight / PANEL_ANIMATION_STEPS;
-	var direction = (!expanding ? -1 : 1);
+	var direction = (!expanding) ? -1 : 1;
 
 	setTimeout(function() {animateStep(panelContent,1,stepHeight,direction)}, PANEL_ANIMATION_DELAY);
 }
@@ -88,7 +88,7 @@ function animateTogglePanel(panel, expanding) {
  * @param direction: 1 for expanding, -1 for collapsing
  */
 function animateStep(panelContent, iteration, stepHeight, direction) {
-	if (iteration<PANEL_ANIMATION_STEPS) {
+	if (iteration < PANEL_ANIMATION_STEPS) {
 		panelContent.style.height = Math.round(((direction > 0) ? iteration : 10 - iteration) * stepHeight) + "px";
 		iteration++;
 		setTimeout(function() {animateStep(panelContent,iteration,stepHeight,direction)}, PANEL_ANIMATION_DELAY);
