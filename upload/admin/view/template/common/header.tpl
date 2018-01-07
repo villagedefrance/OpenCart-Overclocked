@@ -61,7 +61,10 @@ $(document).ready(function() {
   <div id="header">
     <div class="static">
       <div class="image"><img src="view/image/theme-<?php echo $admin_css; ?>/logo.png" alt="" title="<?php echo $heading_title; ?>" onclick="location = '<?php echo $home; ?>'" /></div>
-      <div id="user-device"><img src="view/image/dashboard/<?php echo $device; ?>.png" alt="" />
+      <?php if ($logged) { ?>
+        <div class="user-logout"><a href="<?php echo $logout; ?>" title="<?php echo $text_logout; ?>"><i class="fa fa-power-off"></i></a></div>
+      <?php } ?>
+      <div id="user-device"><a title=""><i class="<?php echo $device; ?>"></i></a>
         <div id="show-device" style="display:none;">
           <div class="device">
             <?php echo $agent_platform; ?><br />
@@ -70,7 +73,7 @@ $(document).ready(function() {
           </div>
         </div>
       </div>
-      <div id="date-time"><img src="view/image/dashboard/calendar.png" alt="" />
+      <div id="date-time"><a title=""><i class="fa fa-calendar-check-o"></i></a>
         <div id="show-time" style="display:none;">
           <div class="sysdate"><?php echo $date_format; ?></div><br />
           <div class="systime"><span id="hour"></span> : <span id="minute"></span> : <span id="second"></span></div>
@@ -78,7 +81,7 @@ $(document).ready(function() {
       </div>
       <?php if ($logged) { ?>
         <div id="store-selector">
-          <a onclick="window.open('<?php echo $store; ?>');" title="<?php echo $text_front; ?>"><img src="view/image/dashboard/store.png" alt="<?php echo $text_front; ?>" /></a>
+          <a onclick="window.open('<?php echo $store; ?>');" title="<?php echo $text_front; ?>"><i class="fa fa-shopping-bag"></i></a>
           <?php if ($stores) { ?>
             <div id="show-store" style="display:none;">
               <a onclick="window.open('<?php echo $store; ?>');" title=""><?php echo $text_front; ?></a>
@@ -89,7 +92,6 @@ $(document).ready(function() {
             </div>
           <?php } ?>
         </div>
-        <div class="user-logout"><a href="<?php echo $logout; ?>" title="<?php echo $text_logout; ?>"><img src="view/image/dashboard/logout.png" alt="<?php echo $text_logout; ?>" /></a></div>
         <div class="user-status"><a href="<?php echo $user_profile; ?>" title="<?php echo $username; ?>"><img src="<?php echo $avatar; ?>" alt="<?php echo $username; ?>" /></a></div>
       <?php } ?>
     </div>

@@ -135,25 +135,25 @@
         <div class="tile">
           <div class="tile-red">
             <p><span><?php echo $total_order_today; ?></span>
-            <a href="<?php echo $view_orders; ?>" title=""><img src="view/image/dashboard/order.png" alt="" /><br /><?php echo $text_order_today; ?></a></p>
+            <a href="<?php echo $view_orders; ?>" title=""><i class="fa fa-shopping-cart"></i><br /><?php echo $text_order_today; ?></a></p>
           </div>
         </div>
         <div class="tile">
           <div class="tile-blue">
             <p><span><?php echo $total_customer_today; ?></span>
-            <a href="<?php echo $view_customers; ?>" title=""><img src="view/image/dashboard/customer.png" alt="" /><br /><?php echo $text_customer_today; ?></a></p>
+            <a href="<?php echo $view_customers; ?>" title=""><i class="fa fa-users"></i><br /><?php echo $text_customer_today; ?></a></p>
           </div>
         </div>
         <div class="tile">
           <div class="tile-yellow">
             <p><span><?php echo $total_sale_today; ?></span>
-            <a href="<?php echo $view_sales; ?>" title=""><img src="view/image/dashboard/sale.png" alt="" /><br /><?php echo $text_sale_today; ?></a></p>
+            <a href="<?php echo $view_sales; ?>" title=""><i class="fa fa-line-chart"></i><br /><?php echo $text_sale_today; ?></a></p>
           </div>
         </div>
         <div class="tile">
           <div class="tile-green">
             <p><span><?php echo $total_online; ?></span>
-            <a href="<?php echo $view_online; ?>" title=""><img src="view/image/dashboard/online.png" alt="" /><br /><?php echo $text_online; ?></a></p>
+            <a href="<?php echo $view_online; ?>" title=""><i class="fa fa-feed"></i><br /><?php echo $text_online; ?></a></p>
           </div>
         </div>
       </div>

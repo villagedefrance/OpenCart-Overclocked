@@ -242,22 +242,14 @@ body > #container-normal, body > #container-limited {
 	float: left;
 	cursor: pointer;
 }
+/* Header Status */
 #header .user-status {
 	position: relative;
 	top: 14px;
 	float: right;
 	padding-right: 10px;
 }
-#header .user-logout {
-	position: relative;
-	top: 11px;
-	float: right;
-	padding-left: 20px;
-	cursor: pointer;
-	outline: 0;
-	z-index: 7;
-}
-#header .user-status img, #header .user-logout img {
+#header .user-status img {
 	position: relative;
 	top: 0px;
 	border: 0px;
@@ -268,31 +260,54 @@ body > #container-normal, body > #container-limited {
 	opacity: 0.9;
 	filter: alpha(opacity=90);
 }
-#header .user-status img:hover, #header .user-logout img:hover {
+#header .user-status img:hover {
+	opacity: 1.0;
+	filter: alpha(opacity=100);
+}
+/* Header Logout */
+#header .user-logout {
+	position: relative;
+	top: 13px;
+	float: right;
+	padding: 0px 30px 0px 16px;
+	cursor: pointer;
+	outline: 0;
+	z-index: 7;
+}
+#header .user-logout a i {
+	font-size: 28px;
+	color: #F8F8F8;
+	border: 0px;
+	opacity: 0.9;
+	filter: alpha(opacity=90);
+}
+#header .user-logout a i:hover {
 	opacity: 1.0;
 	filter: alpha(opacity=100);
 }
 /* Header Device */
 #user-device {
 	position: relative;
-	top: 11px;
+	top: 13px;
 	float: right;
 	color: #FFF;
 	text-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
 	font-size: 12px;
 	line-height: 20px;
 	text-decoration: none;
-	padding: 0px 30px 0px 10px;
+	padding: 0px 11px 0px 11px;
 	cursor: pointer;
 	outline: 0;
 	z-index: 7;
 }
-#user-device img {
+#user-device a i {
+	font-size: 28px;
+	color: #F8F8F8;
 	border: 0px;
 	opacity: 0.9;
 	filter: alpha(opacity=90);
 }
-#user-device img:hover {
+#user-device a i:hover {
 	opacity: 1.0;
 	filter: alpha(opacity=100);
 }
@@ -300,8 +315,8 @@ body > #container-normal, body > #container-limited {
 	position: absolute;
 	top: 34px;
 	right: 20px;
-	background: #FFF;
 	text-align: center;
+	background: #FFF;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
@@ -324,24 +339,26 @@ body > #container-normal, body > #container-limited {
 /* Header Date & Time */
 #date-time {
 	position: relative;
-	top: 11px;
+	top: 13px;
 	float: right;
 	color: #FFF;
 	text-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
 	font-size: 12px;
 	line-height: 20px;
 	text-decoration: none;
-	padding: 0px 10px 0px 10px;
+	padding: 0px 12px 0px 12px;
 	cursor: pointer;
 	outline: 0;
 	z-index: 7;
 }
-#date-time img {
+#date-time a i {
+	font-size: 25px;
+	color: #F8F8F8;
 	border: 0px;
 	opacity: 0.9;
 	filter: alpha(opacity=90);
 }
-#date-time img:hover {
+#date-time a i:hover {
 	opacity: 1.0;
 	filter: alpha(opacity=100);
 }
@@ -349,8 +366,8 @@ body > #container-normal, body > #container-limited {
 	position: absolute;
 	top: 34px;
 	right: 0px;
-	background: #FFF;
 	text-align: center;
+	background: #FFF;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
@@ -375,23 +392,25 @@ body > #container-normal, body > #container-limited {
 /* Header Store */
 #store-selector {
 	position: relative;
-	top: 11px;
+	top: 13px;
 	float: right;
 	color: #FFF;
 	font-size: 12px;
 	line-height: 20px;
 	text-decoration: none;
-	padding: 0px 10px 0px 20px;
+	padding: 0px 13px 0px 16px;
 	cursor: pointer;
 	outline: 0;
 	z-index: 7;
 }
-#store-selector img {
+#store-selector a i {
+	font-size: 25px;
+	color: #F8F8F8;
 	border: 0px;
 	opacity: 0.9;
 	filter: alpha(opacity=90);
 }
-#store-selector img:hover {
+#store-selector a i:hover {
 	opacity: 1.0;
 	filter: alpha(opacity=100);
 }
@@ -1678,16 +1697,18 @@ table.tool tr td {
 	font-weight: bold;
 	text-shadow: 0 1px 1px #444;
 }
-.tiles .tile .tile-red img, .tiles .tile .tile-blue img, .tiles .tile .tile-yellow img, .tiles .tile .tile-green img {
-	text-align: left;
-	padding: 0;
-	margin: 0;
-}
 .tiles .tile .tile-red a, .tiles .tile .tile-blue a, .tiles .tile .tile-yellow a, .tiles .tile .tile-green a {
 	color: #FFF;
 	font-size: 18px;
 	font-weight: bold;
 	text-shadow: 0 1px 1px #444;
+}
+.tiles .tile .tile-red a i, .tiles .tile .tile-blue a i, .tiles .tile .tile-yellow a i, .tiles .tile .tile-green a i {
+	font-size: 26px;
+	font-weight: normal;
+	text-align: left;
+	padding: 0;
+	margin: 0;
 }
 /* Overview */
 .overview {
