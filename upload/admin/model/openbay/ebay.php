@@ -54,8 +54,8 @@ class ModelOpenbayEbay extends Model {
 				`BestOfferEnabled` tinyint(1) NOT NULL,
 				`AutoPayEnabled` tinyint(1) NOT NULL,
 				PRIMARY KEY (`ebay_category_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_category_history` (
@@ -64,8 +64,8 @@ class ModelOpenbayEbay extends Model {
 				`breadcrumb` varchar(255) NOT NULL,
 				`used` int(6) NOT NULL,
 				PRIMARY KEY (`ebay_category_history_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_listing` (
@@ -76,8 +76,8 @@ class ModelOpenbayEbay extends Model {
 				`status` SMALLINT(3) NOT NULL DEFAULT '1',
 				PRIMARY KEY (`ebay_listing_id`),
   				KEY `product_id` (`product_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_listing_pending` (
@@ -88,8 +88,8 @@ class ModelOpenbayEbay extends Model {
 				`variant` int(11) NOT NULL,
 				PRIMARY KEY (`ebay_listing_pending_id`),
   				KEY `product_id` (`product_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_shipping` (
@@ -105,8 +105,8 @@ class ModelOpenbayEbay extends Model {
 				`ShippingTimeMax` int(11) NOT NULL,
 				`site` int(11) NOT NULL,
 				PRIMARY KEY (`ebay_shipping_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_shipping_location` (
@@ -116,8 +116,8 @@ class ModelOpenbayEbay extends Model {
 				`shipping_location` varchar(100) NOT NULL,
 				`update_time` varchar(100) NOT NULL,
 				PRIMARY KEY (`ebay_shipping_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_payment_method` (
@@ -125,8 +125,8 @@ class ModelOpenbayEbay extends Model {
 				`ebay_name` char(50) NOT NULL,
 				`local_name` char(50) NOT NULL,
 				PRIMARY KEY (`ebay_payment_method_id`)
-			) DEFAULT COLLATE=utf8_general_ci AUTO_INCREMENT=5;
-		");
+			) DEFAULT COLLATE=utf8_general_ci AUTO_INCREMENT=5;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_transaction` (
@@ -146,8 +146,8 @@ class ModelOpenbayEbay extends Model {
 				KEY `product_id` (`product_id`),
 				KEY `order_id` (`order_id`),
 				KEY `smp_id` (`smp_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_order` (
@@ -161,8 +161,8 @@ class ModelOpenbayEbay extends Model {
 				KEY `order_id` (`order_id`),
 				KEY `smp_id` (`smp_id`),
 				KEY `parent_ebay_order_id` (`parent_ebay_order_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_profile` (
@@ -173,8 +173,8 @@ class ModelOpenbayEbay extends Model {
 				`default` TINYINT(1) NOT NULL,
 				`data` text NOT NULL,
 				PRIMARY KEY (`ebay_profile_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_setting_option` (
@@ -183,8 +183,8 @@ class ModelOpenbayEbay extends Model {
 				`last_updated` DATETIME NOT NULL,
 				`data` TEXT NOT NULL,
 				PRIMARY KEY (`ebay_setting_option_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_image_import` (
@@ -195,8 +195,8 @@ class ModelOpenbayEbay extends Model {
 				`product_id` int(11) NOT NULL,
 				`imgcount` int(11) NOT NULL,
 				PRIMARY KEY (`id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_shipping_location_exclude` (
@@ -205,8 +205,8 @@ class ModelOpenbayEbay extends Model {
 				`location` varchar(100) NOT NULL,
 				`region` varchar(100) NOT NULL,
 				PRIMARY KEY (`ebay_shipping_exclude_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_stock_reserve` (
@@ -217,15 +217,15 @@ class ModelOpenbayEbay extends Model {
 				`reserve` int(11) NOT NULL,
 				PRIMARY KEY (`id`),
 				KEY `product_id` (`product_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_order_lock` (
 				`smp_id` int(11) NOT NULL,
 				PRIMARY KEY (`smp_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_template` (
@@ -233,8 +233,8 @@ class ModelOpenbayEbay extends Model {
 				`name` VARCHAR(100) NOT NULL,
 				`html` MEDIUMTEXT NOT NULL,
 				PRIMARY KEY (`template_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 	}
 
 	public function uninstall() {

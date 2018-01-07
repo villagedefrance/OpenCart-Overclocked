@@ -10,16 +10,16 @@ class ModelOpenbayAmazonus extends Model {
 				`courier_other` tinyint(1) NOT NULL,
 				`tracking_no` varchar(255) NOT NULL,
 				PRIMARY KEY (`order_id`, `amazonus_order_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "amazonus_order_product` (
 				`order_product_id` int(11) NOT NULL,
 				`amazonus_order_item_id` varchar(255) NOT NULL,
 				PRIMARY KEY(`order_product_id`, `amazonus_order_item_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "amazonus_product_unshipped` (
@@ -27,8 +27,8 @@ class ModelOpenbayAmazonus extends Model {
 				`product_id` int(11) NOT NULL,
 				`quantity` int(11) NOT NULL DEFAULT '0',
 				PRIMARY KEY (`order_id`,`product_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "amazonus_product` (
@@ -44,8 +44,8 @@ class ModelOpenbayAmazonus extends Model {
 				`marketplaces` text NOT NULL,
 				`messages` text NOT NULL,
 				PRIMARY KEY (`product_id`, `var`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "amazonus_product_error` (
@@ -55,8 +55,8 @@ class ModelOpenbayAmazonus extends Model {
 				`error_code` int(11) NOT NULL,
 				`message` text NOT NULL,
 				PRIMARY KEY (`error_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "amazonus_product_link` (
@@ -65,8 +65,8 @@ class ModelOpenbayAmazonus extends Model {
 				`var` char(100) NOT NULL DEFAULT '',
 				`product_id` int(11) NOT NULL,
 				PRIMARY KEY (`id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "amazonus_product_search` (
@@ -75,8 +75,8 @@ class ModelOpenbayAmazonus extends Model {
 				`matches` int(11) DEFAULT NULL,
 				`data` text,
 				PRIMARY KEY (`product_id`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS`" . DB_PREFIX . "amazonus_listing_report` (
@@ -85,8 +85,8 @@ class ModelOpenbayAmazonus extends Model {
 				`asin` varchar(255) NOT NULL,
 				`price` decimal(10,4) NOT NULL,
 				PRIMARY KEY (`sku`)
-			) DEFAULT COLLATE=utf8_general_ci;
-		");
+			) DEFAULT COLLATE=utf8_general_ci;"
+		);
 	}
 
 	public function uninstall(){
@@ -117,7 +117,8 @@ class ModelOpenbayAmazonus extends Model {
 					`matches` int(11) DEFAULT NULL,
 					`data` text,
 					PRIMARY KEY (`product_id`)
-				) DEFAULT COLLATE=utf8_general_ci;");
+				) DEFAULT COLLATE=utf8_general_ci;"
+			);
 
 			$this->db->query("
 				CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "amazonus_listing_report` (
@@ -126,8 +127,8 @@ class ModelOpenbayAmazonus extends Model {
 					`asin` varchar(255) NOT NULL,
 					`price` decimal(10,4) NOT NULL,
 					PRIMARY KEY (`sku`)
-				) DEFAULT COLLATE=utf8_general_ci;
-			");
+				) DEFAULT COLLATE=utf8_general_ci;"
+			);
 		}
 
 		return true;

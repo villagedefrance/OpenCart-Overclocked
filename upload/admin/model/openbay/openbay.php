@@ -131,7 +131,9 @@ class ModelOpenbayOpenbay extends Model {
 		);
 
 		$ch = curl_init();
+
 		curl_setopt_array($ch, $defaults);
+
 		curl_exec($ch);
 
 		$curl_error = curl_error ($ch);
@@ -546,15 +548,19 @@ class ModelOpenbayOpenbay extends Model {
 				}
 
 				$updatelog .= "Update complete\n\n\n";
+
 				$output = ob_get_contents();
+
 				ob_end_clean();
 
 				$this->writeUpdateLog($updatelog . "\n\n\nErrors:\n" . $output);
 
 				return array('connection' => true, 'msg' => sprintf($this->language->get('update_success'), $filesUpdate['version']), 'version' => $filesUpdate['version']);
+
 			} else {
 				return array('connection' => false, 'msg' => $this->language->get('update_failed_user'));
 			}
+
 		} else {
 			return array('connection' => false, 'msg' => $this->language->get('update_failed_connect'));
 		}
@@ -723,9 +729,11 @@ class ModelOpenbayOpenbay extends Model {
 		$file = DIR_LOGS . 'openbay_update_' . date('Y_m_d_G_i_s') . '.log';
 
 		$handle = fopen($file, 'w+');
+
 		fwrite($handle, "** Update started: " . date('Y-m-d G:i:s') . " **" . "\n");
 
 		fwrite($handle, $data);
+
 		fclose($handle);
 	}
 

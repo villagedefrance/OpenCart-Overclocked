@@ -14,7 +14,8 @@ class ModelOpenbayAmazonusPatch extends Model {
 					`matches` int(11) DEFAULT NULL,
 					`data` text,
 					PRIMARY KEY (`product_id`)
-				) DEFAULT COLLATE=utf8_general_ci;");
+				) DEFAULT COLLATE=utf8_general_ci;"
+			);
 
 			$this->db->query("
 				CREATE TABLE IF NOT EXISTS`" . DB_PREFIX . "amazonus_listing_report` (
@@ -23,8 +24,8 @@ class ModelOpenbayAmazonusPatch extends Model {
 					`asin` varchar(255) NOT NULL,
 					`price` decimal(10,4) NOT NULL,
 					PRIMARY KEY (`sku`)
-				) DEFAULT COLLATE=utf8_general_ci;
-			");
+				) DEFAULT COLLATE=utf8_general_ci;"
+			);
 		}
 
 		return true;

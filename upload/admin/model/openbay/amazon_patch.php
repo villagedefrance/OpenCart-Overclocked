@@ -15,7 +15,8 @@ class ModelOpenbayAmazonPatch extends Model {
 					`matches` int(11) DEFAULT NULL,
 					`data` text,
 					PRIMARY KEY (`product_id`,`marketplace`)
-				) DEFAULT COLLATE=utf8_general_ci;");
+				) DEFAULT COLLATE=utf8_general_ci;"
+			);
 
 			$this->db->query("
 				CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "amazon_listing_report` (
@@ -25,7 +26,8 @@ class ModelOpenbayAmazonPatch extends Model {
 					`asin` varchar(255) NOT NULL,
 					`price` decimal(10,4) NOT NULL,
 					PRIMARY KEY (`marketplace`,`sku`)
-				) DEFAULT COLLATE=utf8_general_ci;");
+				) DEFAULT COLLATE=utf8_general_ci;"
+			);
 
 			if (!$this->config->get('openbay_amazon_processing_listing_reports')) {
 				$settings['openbay_amazon_processing_listing_reports'] = array();
