@@ -571,7 +571,7 @@ if (extension_loaded('mbstring')) {
 
 			if ($unicode[$i] >= 2048 && $unicode[$i] <= 65535) {
 				$string .= chr(($unicode[$i] / 4096) + 224) . chr(128 + (($unicode[$i] / 64) % 64)) . chr(($unicode[$i] % 64) + 128);
-			} 
+			}
 
 			if ($unicode[$i] >= 65536 && $unicode[$i] <= 2097151) {
 				$string .= chr(($unicode[$i] / 262144) + 240) . chr((($unicode[$i] / 4096) % 64) + 128) . chr((($unicode[$i] / 64) % 64) + 128) . chr(($unicode[$i] % 64) + 128);

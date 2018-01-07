@@ -172,7 +172,7 @@ class ModelOpenbayAmazonus extends Model {
 			$price = $dataArray['fields']['price'];
 		} elseif (isset($dataArray['fields']['StandardPrice'])) {
 			$price = $dataArray['fields']['StandardPrice'];
-		}   else {
+		} else {
 			$price = 0;
 		}
 

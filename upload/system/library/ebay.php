@@ -391,13 +391,17 @@ final class Ebay {
 	}
 
 	public function encrypt($msg, $k, $base64 = false) {
-		if (!$td = mcrypt_module_open('rijndael-256', '', 'ctr', '')) { return false; }
+		if (!$td = mcrypt_module_open('rijndael-256', '', 'ctr', '')) {
+			return false;
+		}
 
 		$msg = serialize($msg);
 
 		$iv = mcrypt_create_iv(32, MCRYPT_RAND);
 
-		if (mcrypt_generic_init($td, $k, $iv) !== 0) { return false; }
+		if (mcrypt_generic_init($td, $k, $iv) !== 0) {
+			return false;
+		}
 
 		$msg = mcrypt_generic($td, $msg);
 		$msg = $iv . $msg;
@@ -407,13 +411,17 @@ final class Ebay {
 		mcrypt_generic_deinit($td);
 		mcrypt_module_close($td);
 
-		if ($base64) { $msg = base64_encode($msg); }
+		if ($base64) {
+			$msg = base64_encode($msg);
+		}
 
 		return $msg;
 	}
 
 	public function decrypt($msg, $k, $base64 = false) {
-		if ($base64) { $msg = base64_decode($msg); }
+		if ($base64) {
+			$msg = base64_decode($msg);
+		}
 
 		if (!$td = mcrypt_module_open('rijndael-256', '', 'ctr', '')) {
 			$this->log('decrypt() - Failed to open cipher');
@@ -946,7 +954,10 @@ final class Ebay {
 					$varData['opt'][$v]['qty'] = $option['stock'];
 					$varData['opt'][$v]['active'] = 0;
 
-					if ($option['active'] == 1) {  $varData['opt'][$v]['active'] = 1; }
+					if ($option['active'] == 1) {
+						$varData['opt'][$v]['active'] = 1;
+					}
+
 					$v++;
 				}
 
@@ -1271,7 +1282,7 @@ final class Ebay {
 	public function deleteReserve($product_id, $item_id, $sku = '') {
 		$this->log('deleteReserve()');
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "ebay_stock_reserve WHERE product_id = '" . (int)$product_id . "' AND `variant_id` = '" . $this->db->escape($sku) . "' AND item_id = '" . $this->db->escape($item_id) . "'  LIMIT 0,1");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "ebay_stock_reserve WHERE product_id = '" . (int)$product_id . "' AND `variant_id` = '" . $this->db->escape($sku) . "' AND item_id = '" . $this->db->escape($item_id) . "' LIMIT 0,1");
 	}
 
 	public function getCarriers() {
@@ -1309,8 +1320,17 @@ final class Ebay {
 
 			if (!empty($cat_array)) {
 				foreach ($cat_array as $cat) {
-					if ($cat['BestOfferEnabled'] == true) { $cat['BestOfferEnabled'] = 1; } else { $cat['BestOfferEnabled'] = 0; }
-					if ($cat['AutoPayEnabled'] == true) { $cat['AutoPayEnabled'] = 1; } else { $cat['AutoPayEnabled'] = 0; }
+					if ($cat['BestOfferEnabled'] == true) {
+						$cat['BestOfferEnabled'] = 1;
+					} else {
+						$cat['BestOfferEnabled'] = 0;
+					}
+
+					if ($cat['AutoPayEnabled'] == true) {
+						$cat['AutoPayEnabled'] = 1;
+					} else {
+						$cat['AutoPayEnabled'] = 0;
+					}
 
 					$this->db->query("
 						INSERT INTO `" . DB_PREFIX . "ebay_category` SET `CategoryID` = '" . (int)$cat['CategoryID'] . "', `CategoryParentID` = '" . (int)$cat['CategoryParentID'] . "', `CategoryLevel` = '" . (int)$cat['CategoryLevel'] . "', `BestOfferEnabled` = '" . (int)$cat['BestOfferEnabled'] . "', `AutoPayEnabled` = '" . (int)$cat['AutoPayEnabled'] . "', `CategoryName` = '" . $this->db->escape((string)$cat['CategoryName']) . "'

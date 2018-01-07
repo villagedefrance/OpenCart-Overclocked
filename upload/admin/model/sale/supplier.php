@@ -259,7 +259,7 @@ class ModelSaleSupplier extends Model {
 	// History
 	public function addHistory($supplier_id, $comment) {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "supplier_history SET supplier_id = '" . (int)$supplier_id . "', `comment` = '" . $this->db->escape(strip_tags($comment)) . "', date_added = NOW()");
-	} 
+	}
 
 	public function getHistories($supplier_id, $start = 0, $limit = 10) {
 		if ($start < 0) {

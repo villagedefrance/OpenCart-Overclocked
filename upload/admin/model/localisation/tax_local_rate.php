@@ -2,7 +2,7 @@
 class ModelLocalisationTaxLocalRate extends Model {
 
 	public function addTaxLocalRate($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "tax_local_rate SET name = '" . $this->db->escape($data['name']) . "', rate = '" . (float)$data['rate'] . "', status = '" . (int)$data['status'] . "'"); 
+		$this->db->query("INSERT INTO " . DB_PREFIX . "tax_local_rate SET name = '" . $this->db->escape($data['name']) . "', rate = '" . (float)$data['rate'] . "', status = '" . (int)$data['status'] . "'");
 
 		$tax_local_rate_id = $this->db->getLastId();
 

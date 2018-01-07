@@ -24,7 +24,7 @@ class ModelToolExportImportRaw extends Model {
 		$output = '';
 
 		// Header
-	 	$output .= '"' . $table . '.' . stripslashes(implode('"' . $csv_delimiter . '"' . $table . '.', $columns)) . "\"\n"; 
+	 	$output .= '"' . $table . '.' . stripslashes(implode('"' . $csv_delimiter . '"' . $table . '.', $columns)) . "\"\n";
 
 		// Data
 		foreach ($result->rows as $row) {

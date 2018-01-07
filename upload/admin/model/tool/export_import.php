@@ -1745,7 +1745,7 @@ class ModelToolExportImport extends Model {
 		if (isset($old_product_image_ids[$product_id][$image_name])) {
 			$product_image_id = $old_product_image_ids[$product_id][$image_name];
 
-			$sql = "INSERT INTO `" . DB_PREFIX . "product_image` (`product_image_id`,`product_id`,`image`,`sort_order`) VALUES"; 
+			$sql = "INSERT INTO `" . DB_PREFIX . "product_image` (`product_image_id`,`product_id`,`image`,`sort_order`) VALUES";
 			$sql .= " ( $product_image_id, $product_id, '" . $this->db->escape($image_name) . "', $sort_order);";
 
 			$this->db->query($sql);
@@ -1753,7 +1753,7 @@ class ModelToolExportImport extends Model {
 			unset($old_product_image_ids[$product_id][$image_name]);
 
 		} else {
-			$sql = "INSERT INTO `" . DB_PREFIX . "product_image` (`product_id`,`image`,`sort_order`) VALUES"; 
+			$sql = "INSERT INTO `" . DB_PREFIX . "product_image` (`product_id`,`image`,`sort_order`) VALUES";
 			$sql .= " ( $product_id, '" . $this->db->escape($image_name) . "', $sort_order);";
 
 			$this->db->query($sql);
@@ -1872,7 +1872,7 @@ class ModelToolExportImport extends Model {
 		if (isset($old_product_special_ids[$product_id][$customer_group_id])) {
 			$product_special_id = $old_product_special_ids[$product_id][$customer_group_id];
 
-			$sql = "INSERT INTO `" . DB_PREFIX . "product_special` (`product_special_id`,`product_id`,`customer_group_id`,`priority`,`price`,`date_start`,`date_end`) VALUES"; 
+			$sql = "INSERT INTO `" . DB_PREFIX . "product_special` (`product_special_id`,`product_id`,`customer_group_id`,`priority`,`price`,`date_start`,`date_end`) VALUES";
 			$sql .= " ( $product_special_id, $product_id, $customer_group_id, $priority, $price, '$date_start', '$date_end');";
 
 			$this->db->query($sql);
@@ -1880,7 +1880,7 @@ class ModelToolExportImport extends Model {
 			unset($old_product_special_ids[$product_id][$customer_group_id]);
 
 		} else {
-			$sql = "INSERT INTO `" . DB_PREFIX . "product_special` (`product_id`,`customer_group_id`,`priority`,`price`,`date_start`,`date_end`) VALUES"; 
+			$sql = "INSERT INTO `" . DB_PREFIX . "product_special` (`product_id`,`customer_group_id`,`priority`,`price`,`date_start`,`date_end`) VALUES";
 			$sql .= " ( $product_id, $customer_group_id, $priority, $price, '$date_start', '$date_end');";
 
 			$this->db->query($sql);
@@ -2014,7 +2014,7 @@ class ModelToolExportImport extends Model {
 		if (isset($old_product_discount_ids[$product_id][$customer_group_id][$quantity])) {
 			$product_discount_id = $old_product_discount_ids[$product_id][$customer_group_id][$quantity];
 
-			$sql = "INSERT INTO `" . DB_PREFIX . "product_discount` (`product_discount_id`,`product_id`,`customer_group_id`,`quantity`,`priority`,`price`,`date_start`,`date_end`) VALUES"; 
+			$sql = "INSERT INTO `" . DB_PREFIX . "product_discount` (`product_discount_id`,`product_id`,`customer_group_id`,`quantity`,`priority`,`price`,`date_start`,`date_end`) VALUES";
 			$sql .= " ( $product_discount_id, $product_id, $customer_group_id, $quantity, $priority, $price, '$date_start', '$date_end');";
 
 			$this->db->query($sql);
@@ -2022,7 +2022,7 @@ class ModelToolExportImport extends Model {
 			unset($old_product_discount_ids[$product_id][$customer_group_id][$quantity]);
 
 		} else {
-			$sql = "INSERT INTO `" . DB_PREFIX . "product_discount` (`product_id`,`customer_group_id`,`quantity`,`priority`,`price`,`date_start`,`date_end`) VALUES"; 
+			$sql = "INSERT INTO `" . DB_PREFIX . "product_discount` (`product_id`,`customer_group_id`,`quantity`,`priority`,`price`,`date_start`,`date_end`) VALUES";
 			$sql .= " ( $product_id, $customer_group_id, $quantity, $priority, $price, '$date_start', '$date_end');";
 
 			$this->db->query($sql);
@@ -2158,7 +2158,7 @@ class ModelToolExportImport extends Model {
 		if (isset($old_product_reward_ids[$product_id][$customer_group_id])) {
 			$product_reward_id = $old_product_reward_ids[$product_id][$customer_group_id];
 
-			$sql = "INSERT INTO `" . DB_PREFIX . "product_reward` (`product_reward_id`,`product_id`,`customer_group_id`,`points`) VALUES"; 
+			$sql = "INSERT INTO `" . DB_PREFIX . "product_reward` (`product_reward_id`,`product_id`,`customer_group_id`,`points`) VALUES";
 			$sql .= " ( $product_reward_id, $product_id, $customer_group_id, $points);";
 
 			$this->db->query($sql);
@@ -2166,7 +2166,7 @@ class ModelToolExportImport extends Model {
 			unset($old_product_reward_ids[$product_id][$customer_group_id]);
 
 		} else {
-			$sql = "INSERT INTO `" . DB_PREFIX . "product_reward` (`product_id`,`customer_group_id`,`points`) VALUES"; 
+			$sql = "INSERT INTO `" . DB_PREFIX . "product_reward` (`product_id`,`customer_group_id`,`points`) VALUES";
 			$sql .= " ( $product_id, $customer_group_id, $points);";
 
 			$this->db->query($sql);
@@ -2309,7 +2309,7 @@ class ModelToolExportImport extends Model {
 		if (isset($old_product_option_ids[$product_id][$option_id])) {
 			$product_option_id = $old_product_option_ids[$product_id][$option_id];
 
-			$sql = "INSERT INTO `" . DB_PREFIX . "product_option` (`product_option_id`,`product_id`,`option_id`,`option_value`,`required`) VALUES"; 
+			$sql = "INSERT INTO `" . DB_PREFIX . "product_option` (`product_option_id`,`product_id`,`option_id`,`option_value`,`required`) VALUES";
 			$sql .= " ( $product_option_id, $product_id, $option_id, '" . $this->db->escape($option_value) . "', $required);";
 
 			$this->db->query($sql);
@@ -2317,7 +2317,7 @@ class ModelToolExportImport extends Model {
 			unset($old_product_option_ids[$product_id][$option_id]);
 
 		} else {
-			$sql = "INSERT INTO `" . DB_PREFIX . "product_option` (`product_id`,`option_id`,`option_value`,`required`) VALUES"; 
+			$sql = "INSERT INTO `" . DB_PREFIX . "product_option` (`product_id`,`option_id`,`option_value`,`required`) VALUES";
 			$sql .= " ( $product_id, $option_id, '" . $this->db->escape($option_value) . "', $required);";
 
 			$this->db->query($sql);
@@ -2493,7 +2493,7 @@ class ModelToolExportImport extends Model {
 			$product_option_value_id = $old_product_option_value_ids[$product_id][$option_id][$option_value_id];
 
 			$sql = "INSERT INTO `" . DB_PREFIX . "product_option_value`";
-			$sql .= " (`product_option_value_id`,`product_option_id`,`product_id`,`option_id`,`option_value_id`,`quantity`,`subtract`,`price`,`price_prefix`,`points`,`points_prefix`,`weight`,`weight_prefix`) VALUES"; 
+			$sql .= " (`product_option_value_id`,`product_option_id`,`product_id`,`option_id`,`option_value_id`,`quantity`,`subtract`,`price`,`price_prefix`,`points`,`points_prefix`,`weight`,`weight_prefix`) VALUES";
 			$sql .= " ( $product_option_value_id, $product_option_id, $product_id, $option_id, $option_value_id, $quantity, $subtract, $price, '$price_prefix', $points, '$points_prefix', $weight, '$weight_prefix');";
 
 			$this->db->query($sql);
@@ -2502,7 +2502,7 @@ class ModelToolExportImport extends Model {
 
 		} else {
 			$sql = "INSERT INTO `" . DB_PREFIX . "product_option_value`";
-			$sql .= " (`product_option_id`,`product_id`,`option_id`,`option_value_id`,`quantity`,`subtract`,`price`,`price_prefix`,`points`,`points_prefix`,`weight`,`weight_prefix`) VALUES"; 
+			$sql .= " (`product_option_id`,`product_id`,`option_id`,`option_value_id`,`quantity`,`subtract`,`price`,`price_prefix`,`points`,`points_prefix`,`weight`,`weight_prefix`) VALUES";
 			$sql .= " ( $product_option_id, $product_id, $option_id, $option_value_id, $quantity, $subtract, $price, '$price_prefix', $points, '$points_prefix', $weight, '$weight_prefix');";
 
 			$this->db->query($sql);

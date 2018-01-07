@@ -14,7 +14,7 @@ class ModelOpenbayAmazonProduct extends Model {
 	}
 
 	public function linkItems(array $data) {
-		foreach($data as $amazonSku => $product_id) {
+		foreach ($data as $amazonSku => $product_id) {
 			$varRow = $this->db->query("SELECT `var` FROM `" . DB_PREFIX . "amazon_product` WHERE `sku` = '" . $amazonSku . "' AND `product_id` = '" . (int)$product_id . "'")->row;
 
 			$var = isset($varRow['var']) ? $varRow['var'] : '';

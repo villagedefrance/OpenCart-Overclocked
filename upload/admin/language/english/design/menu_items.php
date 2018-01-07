@@ -39,7 +39,7 @@ $_['info_title']             = 'List of internal links';
 // Button
 $_['button_back']            = 'Menus';
 
-// Error 
+// Error
 $_['error_permission']       = 'Warning: You do not have permission to modify <b>Menu Items</b> !';
 $_['error_warning']          = 'Warning: Please check the form carefully for errors !';
 $_['error_name']             = 'Menu Item Name must be between 1 and 32 characters !';

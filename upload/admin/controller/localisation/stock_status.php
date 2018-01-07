@@ -244,7 +244,7 @@ class ControllerLocalisationStockStatus extends Controller {
 			$url .= '&order=DESC';
 		} else {
 			$url .= '&order=ASC';
-		} 
+		}
 
 		if (isset($this->request->get['page'])) {
 			$url .= '&page=' . $this->request->get['page'];

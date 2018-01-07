@@ -140,7 +140,7 @@ class ModelCatalogNews extends Model {
 
 				$product_list = $this->getProductManufacturerWise($data['manufacturer_wise']);
 
-				foreach($product_list as $product_id) {
+				foreach ($product_list as $product_id) {
 					$this->db->query("INSERT INTO `" . DB_PREFIX . "news_product_related` SET news_id = '" . (int)$news_id . "', product_id = '" . (int)$product_id . "'");
 				}
 

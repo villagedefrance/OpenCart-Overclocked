@@ -28,7 +28,7 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 
 		$this->load->model('setting/extension');
 
-		$sort_order = array(); 
+		$sort_order = array();
 
 		$results = $this->model_setting_extension->getExtensions('total');
 
@@ -63,7 +63,7 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 		if ($data['store_id']) {
 			$data['store_url'] = $this->config->get('config_url');
 		} else {
-			$data['store_url'] = HTTP_SERVER;	
+			$data['store_url'] = HTTP_SERVER;
 		}
 
 		if (isset($this->session->data['payment_method']['title'])) {
@@ -146,7 +146,7 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 					'amount'           => $voucher['amount']
 				);
 			}
-		}  
+		}
 
 		$data['products'] = $product_data;
 		$data['vouchers'] = $voucher_data;
@@ -168,8 +168,8 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 			$subtotal = $this->cart->getSubTotal();
 
 			if ($affiliate_info) {
-				$data['affiliate_id'] = $affiliate_info['affiliate_id']; 
-				$data['commission'] = ($subtotal / 100) * $affiliate_info['commission']; 
+				$data['affiliate_id'] = $affiliate_info['affiliate_id'];
+				$data['commission'] = ($subtotal / 100) * $affiliate_info['commission'];
 			} else {
 				$data['affiliate_id'] = 0;
 				$data['commission'] = 0;
@@ -189,21 +189,21 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 		$data['ip'] = $this->request->server['REMOTE_ADDR'];
 
 		if (!empty($this->request->server['HTTP_X_FORWARDED_FOR'])) {
-			$data['forwarded_ip'] = $this->request->server['HTTP_X_FORWARDED_FOR'];	
+			$data['forwarded_ip'] = $this->request->server['HTTP_X_FORWARDED_FOR'];
 		} elseif (!empty($this->request->server['HTTP_CLIENT_IP'])) {
-			$data['forwarded_ip'] = $this->request->server['HTTP_CLIENT_IP'];	
+			$data['forwarded_ip'] = $this->request->server['HTTP_CLIENT_IP'];
 		} else {
 			$data['forwarded_ip'] = '';
 		}
 
 		if (isset($this->request->server['HTTP_USER_AGENT'])) {
-			$data['user_agent'] = $this->request->server['HTTP_USER_AGENT'];	
+			$data['user_agent'] = $this->request->server['HTTP_USER_AGENT'];
 		} else {
 			$data['user_agent'] = '';
 		}
 
 		if (isset($this->request->server['HTTP_ACCEPT_LANGUAGE'])) {
-			$data['accept_language'] = $this->request->server['HTTP_ACCEPT_LANGUAGE'];	
+			$data['accept_language'] = $this->request->server['HTTP_ACCEPT_LANGUAGE'];
 		} else {
 			$data['accept_language'] = '';
 		}
@@ -364,6 +364,6 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 			$this->template = 'default/template/checkout/checkout_one_cart.tpl';
 		}
 
-		$this->response->setOutput($this->render());	
+		$this->response->setOutput($this->render());
 	}
 }

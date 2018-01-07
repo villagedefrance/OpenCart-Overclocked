@@ -24,7 +24,7 @@ class ControllerModuleManufacturer extends Controller {
 		} else {
 			$this->data['manufacturer_id'] = 0;
 		}
-        
+
 		$this->load->model('catalog/manufacturer');
 
 		$this->data['manufacturers'] = array();

@@ -1280,7 +1280,9 @@ class ControllerOpenbayOpenbay extends Controller {
 
 			$this->data['product'] = $product_info;
 
-			if ($reserve == false) { $reserve = 0; }
+			if ($reserve == false) {
+				$reserve = 0;
+			}
 
 			$data = array(
 				'listing'   => $listings,
@@ -1338,7 +1340,7 @@ class ControllerOpenbayOpenbay extends Controller {
 				$this->document->addScript('view/javascript/openbay/faq.js');
 
 				$this->template = 'openbay/ebay_new.tpl';
-				$this->children = array('common/header','common/footer');
+				$this->children = array('common/header', 'common/footer');
 
 				$this->data['action'] = $this->url->link('openbay/openbay/create', 'token=' . $this->session->data['token'], 'SSL');
 				$this->data['cancel'] = $this->url->link('extension/openbay/itemList', 'token=' . $this->session->data['token'], 'SSL');
@@ -2011,7 +2013,7 @@ class ControllerOpenbayOpenbay extends Controller {
 				$data['feat'] = !empty($post['feat']) ? $post['feat'] : array();
 				$data['featother'] = !empty($post['featother']) ? $post['featother'] : array();
 
-				if (!empty($product_info['sku'])){
+				if (!empty($product_info['sku'])) {
 					$data['sku'] = $product_info['sku'];
 				}
 
@@ -2060,6 +2062,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 				if (isset($profile_template['data']['ebay_template_id'])) {
 					$template = $this->model_openbay_ebay_template->get($profile_template['data']['ebay_template_id']);
+
 					$data['template_html'] = (isset($template['html']) ? base64_encode($template['html']) : '');
 					$data['template'] = $profile_template['data']['ebay_template_id'];
 				} else {
@@ -2143,7 +2146,7 @@ class ControllerOpenbayOpenbay extends Controller {
 			}
 
 		} else {
-			$this->redirect($this->url->link('extension/openbay/itemList&token=' . $this->session->data['token']));
+			$this->redirect($this->url->link('extension/openbay/itemList&token=' . $this->session->data['token']), 'SSL');
 		}
 	}
 

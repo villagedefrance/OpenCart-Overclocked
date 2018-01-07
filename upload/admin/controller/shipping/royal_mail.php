@@ -94,7 +94,7 @@ class ControllerShippingRoyalMail extends Controller {
 
 		$this->data['action'] = $this->url->link('shipping/royal_mail', 'token=' . $this->session->data['token'], 'SSL');
 
-		$this->data['cancel'] = $this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL'); 
+		$this->data['cancel'] = $this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL');
 
 		// Special Delivery < 500
 		if (isset($this->request->post['royal_mail_special_delivery_500_rate'])) {

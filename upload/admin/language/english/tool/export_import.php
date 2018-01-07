@@ -141,7 +141,7 @@ $_['error_missing_attribute_group_name']                = 'Export/Import: Missin
 $_['error_missing_attribute_id']                        = 'Export/Import: Missing attribute_ids in worksheet \'%1\'!';
 $_['error_invalid_attribute_group_id_attribute_id']     = 'Export/Import: Undefined attribute_id \'%3\' for attribute_group_id \'%2\' used in worksheet \'%1\'!';
 $_['error_missing_attribute_name']                      = 'Export/Import: Missing attribute_names in worksheet \'%1\'!';
-$_['error_invalid_attribute_group_id_attribute_name']   = 'Export/Import: Undefined attribute_name \'%3\' for option_id \'%2\' used in worksheet \'%1\'!'; 
+$_['error_invalid_attribute_group_id_attribute_name']   = 'Export/Import: Undefined attribute_name \'%3\' for option_id \'%2\' used in worksheet \'%1\'!';
 $_['error_invalid_attribute_group_name']                = 'Export/Import: Undefined attribute_group_name \'%2\' used in worksheet \'%1\'!';
 $_['error_invalid_attribute_group_name_attribute_id']   = 'Export/Import: Undefined attribute_id \'%3\' for attribute_group_name \'%2\' used in worksheet \'%1\'!';
 $_['error_invalid_attribute_group_name_attribute_name'] = 'Export/Import: Undefined attribute_name \'%3\' for attribute_group_name \'%2\' used in worksheet \'%1\'!';
@@ -151,7 +151,7 @@ $_['error_missing_filter_group_name']                   = 'Export/Import: Missin
 $_['error_missing_filter_id']                           = 'Export/Import: Missing filter_ids in worksheet \'%1\'!';
 $_['error_invalid_filter_group_id_filter_id']           = 'Export/Import: Undefined filter_id \'%3\' for filter_group_id \'%2\' used in worksheet \'%1\'!';
 $_['error_missing_filter_name']                         = 'Export/Import: Missing filter_names in worksheet \'%1\'!';
-$_['error_invalid_filter_group_id_filter_name']         = 'Export/Import: Undefined filter_name \'%3\' for option_id \'%2\' used in worksheet \'%1\'!'; 
+$_['error_invalid_filter_group_id_filter_name']         = 'Export/Import: Undefined filter_name \'%3\' for option_id \'%2\' used in worksheet \'%1\'!';
 $_['error_invalid_filter_group_name']                   = 'Export/Import: Undefined filter_group_name \'%2\' used in worksheet \'%1\'!';
 $_['error_invalid_filter_group_name_filter_id']         = 'Export/Import: Undefined filter_id \'%3\' for filter_group_name \'%2\' used in worksheet \'%1\'!';
 $_['error_invalid_filter_group_name_filter_name']       = 'Export/Import: Undefined filter_name \'%3\' for filter_group_name \'%2\' used in worksheet \'%1\'!';
@@ -199,7 +199,7 @@ $_['text_phpexcel_license']                             = 'PHPExcel License:';
 
 // Version
 $_['export_import_description']                         = '<b>Export / Import</b> is a spreadsheet importer-exporter for Opencart Overclocked Edition, based on the original <b>Export/Import Tool</b> by JNeuhoff, and integrating the latest <b>PHPExcel</b> Core Files!';
-$_['export_import_version']                             = '1.10.2 - Overclocked Edition';
+$_['export_import_version']                             = '1.11.0 - Overclocked Edition';
 $_['export_import_author']                              = 'Villagedefrance';
 $_['export_import_support']                             = 'contact@villagedefrance.net';
 $_['export_import_license']                             = 'GPLv3 (GNU General Public License)';

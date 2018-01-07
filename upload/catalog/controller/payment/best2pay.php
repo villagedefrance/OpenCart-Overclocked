@@ -10,7 +10,7 @@ class ControllerPaymentBest2pay extends Controller {
 
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
-		if (!$this->config->get('best2pay_test')){
+		if (!$this->config->get('best2pay_test')) {
 			$this->data['action'] = 'https://pay.best2pay.net/webapi/';
 		} else {
 			$this->data['action'] = 'https://test.best2pay.net/webapi/';

@@ -451,7 +451,7 @@ class ControllerDesignMenuItems extends Controller {
 
 		if (!isset($this->request->get['menu_item_id'])) {
 			$this->data['action'] = $this->url->link('design/menu_items/insert', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url, 'SSL');
-		} else { 
+		} else {
 			$this->data['action'] = $this->url->link('design/menu_items/update', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . '&menu_item_id=' . $this->request->get['menu_item_id'] . $url, 'SSL');
 		}
 

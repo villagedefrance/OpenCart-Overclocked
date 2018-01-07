@@ -49,7 +49,7 @@ class RapidAPI {
 	* @param string $password your eWAY API Password
 	* @param string $params set $params['sandbox'] to true to use the sandbox for testing
 	*/
-	function __construct($username, $password, $params = array()) {
+	public function __construct($username, $password, $params = array()) {
 		if (strlen($username) === 0 || strlen($password) === 0) {
 			die("Username and Password are required");
 		}
@@ -177,12 +177,15 @@ class RapidAPI {
 				if (isset($LineItem->Quantity)) {
 					$LineItem->Quantity = strval($LineItem->Quantity);
 				}
+
 				if (isset($LineItem->UnitCost)) {
 					$LineItem->UnitCost = strval($LineItem->UnitCost);
 				}
+
 				if (isset($LineItem->Tax)) {
 					$LineItem->Tax = strval($LineItem->Tax);
 				}
+
 				if (isset($LineItem->Total)) {
 					$LineItem->Total = strval($LineItem->Total);
 				}
@@ -218,7 +221,7 @@ class RapidAPI {
 
 		$ch = curl_init($url);
 
-		curl_setopt($ch, CURLOPT_HTTPHEADER, Array("Content-Type: application/json"));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
 		curl_setopt($ch, CURLOPT_USERPWD, $this->username . ":" . $this->password);
 
 		if ($IsPost) {
@@ -501,7 +504,7 @@ class CreateAccessCodeRequest {
 	public $CustomerIP;
 	public $DeviceID;
 
-	function __construct() {
+	public function __construct() {
 		$this->Customer = new Customer();
 		$this->ShippingAddress = new ShippingAddress();
 		$this->Payment = new Payment();
@@ -534,7 +537,7 @@ class CreateDirectPaymentRequest {
 	public $TransactionType;
 	public $PartnerID;
 
-	function __construct() {
+	public function __construct() {
 		$this->Customer = new CardCustomer();
 		$this->ShippingAddress = new ShippingAddress();
 		$this->Payment = new Payment();
@@ -556,7 +559,7 @@ class CreateRefundRequest {
 	public $DeviceID;
 	public $PartnerID;
 
-	function __construct() {
+	public function __construct() {
 		$this->Refund = new Payment();
 		$this->Customer = new CardCustomer();
 		$this->ShippingAddress = new ShippingAddress();
@@ -592,7 +595,7 @@ class Customer {
  * Contains details of a Customer with card details
  */
 class CardCustomer extends Customer {
-	function __construct() {
+	public function __construct() {
 		$this->CardDetails = new CardDetails();
 	}
 }

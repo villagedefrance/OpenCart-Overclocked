@@ -1,6 +1,6 @@
 <?php
 class ControllerFeedStoreya extends Controller {
-	private $error = array(); 
+	private $error = array();
 	private $_name = 'storeya';
 
 	public function index() {
@@ -120,7 +120,7 @@ class ControllerFeedStoreya extends Controller {
 		);
 
 		$this->response->setOutput($this->render());
-	} 
+	}
 
 	protected function validate() {
 		if (!$this->user->hasPermission('modify', 'feed/storeya')) {

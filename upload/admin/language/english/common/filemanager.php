@@ -2,7 +2,7 @@
 // Heading
 $_['heading_title']       = 'File Manager';
 $_['heading_info']        = 'About File Manager';
- 
+
 // Text
 $_['text_uploaded']       = 'Success: Your file has been uploaded!';
 $_['text_file_delete']    = 'File has been deleted!';

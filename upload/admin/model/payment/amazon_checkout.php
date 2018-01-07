@@ -9,16 +9,16 @@ class ModelPaymentAmazonCheckout extends Model {
 			`free_shipping` tinyint(1) NOT NULL DEFAULT 0,
 			KEY `amazon_order_id` (`amazon_order_id`),
 			PRIMARY KEY `order_id` (`order_id`)
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-		");
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE `" . DB_PREFIX . "order_amazon_product` (
 			`order_product_id` int(11) NOT NULL ,
 			`amazon_order_item_code` varchar(255) NOT NULL,
 			PRIMARY KEY (`order_product_id`)
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-		");
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE `" . DB_PREFIX . "order_amazon_report` (
@@ -28,8 +28,8 @@ class ModelPaymentAmazonCheckout extends Model {
 			`text` text NOT NULL,
 			PRIMARY KEY (`submission_id`),
 			INDEX (`order_id`)
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-		");
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;"
+		);
 
 		$this->db->query("
 			CREATE TABLE `" . DB_PREFIX . "order_total_tax` (
@@ -37,8 +37,8 @@ class ModelPaymentAmazonCheckout extends Model {
 			`code` varchar(255),
 			`tax` decimal(10, 4) NOT NULL,
 			PRIMARY KEY (`order_total_id`)
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-		");
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;"
+		);
 	}
 
 	public function uninstall() {
@@ -73,7 +73,7 @@ class ModelPaymentAmazonCheckout extends Model {
 	}
 
 	public function getReportSubmissions($order_id) {
-		return $this->db->query("SELECT `submission_id`, `status`, `text` FROM `" . DB_PREFIX . "order_amazon_report` WHERE `order_id` = " . (int)$order_id)->rows;
+		return $this->db->query("SELECT `submission_id`, `status`, `text` FROM `" . DB_PREFIX . "order_amazon_report` WHERE order_id = " . (int)$order_id)->rows;
 	}
 
 	public function getOrder($order_id) {
@@ -88,7 +88,7 @@ class ModelPaymentAmazonCheckout extends Model {
 
 			$results = $this->db->query("SELECT oap.order_product_id, amazon_order_item_code, op.quantity FROM " . DB_PREFIX . "order_amazon_product oap JOIN " . DB_PREFIX . "order_product op USING(order_product_id) WHERE order_id = " . (int)$order_id . "")->rows;
 
-			foreach ($results as $result) { 
+			foreach ($results as $result) {
 				$order['products'][$result['order_product_id']] = array(
 					'amazon_order_item_code' => $result['amazon_order_item_code'],
 					'quantity'               => $result['quantity']
