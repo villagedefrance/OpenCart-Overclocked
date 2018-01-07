@@ -1,5 +1,6 @@
 <?php
 final class Action {
+	protected $route;
 	protected $file;
 	protected $class;
 	protected $method;
@@ -8,7 +9,9 @@ final class Action {
 	public function __construct($route, $args = array()) {
 		$path = '';
 
-		$parts = explode('/', str_replace('../', '', (string)$route));
+		$this->route = str_replace('../', '', (string) $route);
+
+		$parts = explode('/', $this->route);
 
 		foreach ($parts as $part) {
 			$path .= $part;
@@ -40,6 +43,10 @@ final class Action {
 		} else {
 			$this->method = 'index';
 		}
+	}
+
+	public function getRoute() {
+		return $this->route;
 	}
 
 	public function getFile() {

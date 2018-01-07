@@ -2,7 +2,7 @@
 class ModelLocalisationTaxRate extends Model {
 
 	public function addTaxRate($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "tax_rate SET geo_zone_id = '" . (int)$data['geo_zone_id'] . "', name = '" . $this->db->escape($data['name']) . "', rate = '" . (float)$data['rate'] . "', `type` = '" . $this->db->escape($data['type']) . "', date_added = NOW(), date_modified = NOW()"); 
+		$this->db->query("INSERT INTO " . DB_PREFIX . "tax_rate SET geo_zone_id = '" . (int)$data['geo_zone_id'] . "', name = '" . $this->db->escape($data['name']) . "', rate = '" . (float)$data['rate'] . "', `type` = '" . $this->db->escape($data['type']) . "', date_added = NOW(), date_modified = NOW()");
 
 		$tax_rate_id = $this->db->getLastId();
 

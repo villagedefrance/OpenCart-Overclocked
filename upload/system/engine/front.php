@@ -29,7 +29,7 @@ final class Front {
 		}
 	}
 
-	private function execute($action) {
+	private function execute(Action $action) {
 		if (file_exists($action->getFile())) {
 			require_once($action->getFile());
 

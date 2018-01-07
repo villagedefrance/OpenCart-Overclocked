@@ -45,7 +45,7 @@ class UGRSR {
 	 * @param string $path
 	 * @return null
 	 */
-	function __construct($path = '') {
+	public function __construct($path = '') {
 		// Use current working directory if none given as a parameter
 		if (empty($path)) {
 			$path = getcwd();

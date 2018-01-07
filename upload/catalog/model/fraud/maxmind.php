@@ -7,7 +7,7 @@ class ModelFraudMaxMind extends Model {
 		$order_id = $data['order_id'];
 
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "maxmind WHERE order_id = '" . (int)$order_id . "'");
-		
+
 		if ($query->num_rows) {
 			$risk_score = $query->row['risk_score'];
 		} else {

@@ -366,7 +366,7 @@ class ControllerSettingStore extends Controller {
 			$this->data['error_title'] = $this->error['title'];
 		} else {
 			$this->data['error_title'] = '';
-		} 
+		}
 
 		if (isset($this->error['multiple_checkout'])) {
 			$this->data['error_multiple_checkout'] = $this->error['multiple_checkout'];

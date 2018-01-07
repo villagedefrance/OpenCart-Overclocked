@@ -25,7 +25,7 @@ class Image {
 			$this->bits = isset($info['bits']) ? $info['bits'] : '';
 			$this->mime = isset($info['mime']) ? $info['mime'] : '';
 
-			switch($this->mime) {
+			switch ($this->mime) {
 				case 'image/jpeg':
 				case 'image/pjpeg':
 					$this->image = imagecreatefromjpeg($file);
@@ -77,7 +77,7 @@ class Image {
 		if (is_resource($this->image)) {
 			$result = '';
 
-			switch($extension) {
+			switch ($extension) {
 				case 'jpg':
 				case 'jpeg':
 					imageinterlace($this->image, true);
@@ -119,7 +119,7 @@ class Image {
 
 		if ($default == 'w') {
 			$scale = $scale_w;
-		} elseif ($default == 'h') {
+		} else if ($default == 'h') {
 			$scale = $scale_h;
 		} else {
 			$scale = min($scale_w, $scale_h);
@@ -159,7 +159,7 @@ class Image {
 	}
 
 	public function watermark(Image $watermark, $position = 'bottomright') {
-		switch($position) {
+		switch ($position) {
 			case 'topleft':
 				$watermark_pos_x = 0;
 				$watermark_pos_y = 0;

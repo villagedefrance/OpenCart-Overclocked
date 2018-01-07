@@ -2,7 +2,7 @@
 // Heading
 $_['heading_title']    = 'Request a Quote';
 
-// Text 
+// Text
 $_['text_quote']       = 'Quotation Form';
 $_['text_message']     = '<p>Your request for a quote has been successfully sent to the store owner!</p>';
 $_['text_location']    = 'Our Location';

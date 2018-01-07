@@ -361,7 +361,7 @@ class ModelSaleCustomer extends Model {
 	// History
 	public function addHistory($customer_id, $comment) {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "customer_history SET customer_id = '" . (int)$customer_id . "', `comment` = '" . $this->db->escape(strip_tags($comment)) . "', date_added = NOW()");
-	} 
+	}
 
 	public function getHistories($customer_id, $start = 0, $limit = 10) {
 		if ($start < 0) {
@@ -653,7 +653,7 @@ class ModelSaleCustomer extends Model {
 	}
 
 	public function getOrdersCustomersGroup($customer_id) {
-		$query = $this->db->query("SELECT *, cgd.name AS customer_group FROM " . DB_PREFIX . "customer c LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (c.customer_group_id = cgd.customer_group_id) WHERE cgd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND customer_id = '" . (int)$customer_id . "'"); 
+		$query = $this->db->query("SELECT *, cgd.name AS customer_group FROM " . DB_PREFIX . "customer c LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (c.customer_group_id = cgd.customer_group_id) WHERE cgd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND customer_id = '" . (int)$customer_id . "'");
 
 		if (isset($query->row['customer_group'])) {
 			return $query->row['customer_group'];

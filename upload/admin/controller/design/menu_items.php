@@ -2,7 +2,7 @@
 class ControllerDesignMenuItems extends Controller {
 	private $error = array();
 	private $_name = 'menu_items';
- 
+
 	public function index() {
 		$this->language->load('design/' . $this->_name);
 
@@ -269,7 +269,7 @@ class ControllerDesignMenuItems extends Controller {
 			$action[] = array(
 				'text' => $this->language->get('text_edit'),
 				'href' => $this->url->link('design/menu_items/update', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . '&menu_item_id=' . $result['menu_item_id'] . $url, 'SSL')
-			); 
+			);
 
 			$this->data['menu_items'][] = array(
 				'menu_item_id' => $result['menu_item_id'],
@@ -453,7 +453,7 @@ class ControllerDesignMenuItems extends Controller {
 			$this->data['action'] = $this->url->link('design/menu_items/insert', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url, 'SSL');
 		} else { 
 			$this->data['action'] = $this->url->link('design/menu_items/update', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . '&menu_item_id=' . $this->request->get['menu_item_id'] . $url, 'SSL');
-		} 
+		}
 
 		$this->data['cancel'] = $this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url, 'SSL');
 

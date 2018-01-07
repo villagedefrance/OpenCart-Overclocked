@@ -5,7 +5,7 @@ $_['heading_title']           = 'News';
 // Text
 $_['text_module']             = 'Module';
 $_['text_success']            = 'Success: You have modified <b>News</b> !';
-$_['text_yes']                = 'Yes'; 
+$_['text_yes']                = 'Yes';
 $_['text_no']                 = 'No';
 $_['text_default']            = 'Default';
 $_['text_image_manager']      = 'File Manager';
