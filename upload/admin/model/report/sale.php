@@ -26,7 +26,7 @@ class ModelReportSale extends Model {
 			$group = 'week';
 		}
 
-		switch($group) {
+		switch ($group) {
 			case 'day':
 				$sql .= " GROUP BY DAY(tmp.date_added)";
 				break;
@@ -68,7 +68,7 @@ class ModelReportSale extends Model {
 			$group = 'week';
 		}
 
-		switch($group) {
+		switch ($group) {
 			case 'day':
 				$sql = "SELECT COUNT(DISTINCT DAY(date_added)) AS total FROM `" . DB_PREFIX . "order`";
 				break;
@@ -162,7 +162,7 @@ class ModelReportSale extends Model {
 			$group = 'week';
 		}
 
-		switch($group) {
+		switch ($group) {
 			case 'day':
 				$sql .= " GROUP BY ot.title, DAY(o.date_added)";
 				break;
@@ -218,7 +218,7 @@ class ModelReportSale extends Model {
 			$group = 'week';
 		}
 
-		switch($group) {
+		switch ($group) {
 			case 'day':
 				$sql .= " GROUP BY DAY(o.date_added), ot.title";
 				break;
@@ -264,7 +264,7 @@ class ModelReportSale extends Model {
 			$group = 'week';
 		}
 
-		switch($group) {
+		switch ($group) {
 			case 'day':
 				$sql .= " GROUP BY ot.title, DAY(o.date_added)";
 				break;
@@ -320,7 +320,7 @@ class ModelReportSale extends Model {
 			$group = 'week';
 		}
 
-		switch($group) {
+		switch ($group) {
 			case 'day':
 				$sql .= " GROUP BY DAY(o.date_added), ot.title";
 				break;

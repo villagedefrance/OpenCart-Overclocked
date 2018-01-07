@@ -13,7 +13,7 @@ class ControllerToolDatabase extends Controller {
 		if ($this->request->server['REQUEST_METHOD'] == 'POST' && $this->validate()) {
 			$button = $this->request->post['buttonForm'];
 
-			switch($button) {
+			switch ($button) {
 				case "optimize":
 				$this->data['database'] = $this->redirect($this->url->link('tool/' . $this->_name . '/optimize', 'token=' . $this->session->data['token'], 'SSL')); break;
 				case "repair":

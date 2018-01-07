@@ -1252,7 +1252,6 @@ class ControllerOpenbayOpenbay extends Controller {
 					$options[] = array('ebay' => $ebay_listing, 'local' => $option, 'var' => $option['var']);
 				}
 
-
 				// unset variants that dont appear on eBay
 				$notlive = array();
 
@@ -1353,11 +1352,15 @@ class ControllerOpenbayOpenbay extends Controller {
 
 				$setting['dispatch_times'] = $this->openbay->ebay->getSetting('dispatch_time_max');
 
-				if (is_array($setting['dispatch_times'])) { ksort($setting['dispatch_times']); }
+				if (is_array($setting['dispatch_times'])) {
+					ksort($setting['dispatch_times']);
+				}
 
 				$setting['countries'] = $this->openbay->ebay->getSetting('countries');
 
-				if (is_array($setting['countries'])) { ksort($setting['countries']); }
+				if (is_array($setting['countries'])) {
+					ksort($setting['countries']);
+				}
 
 				$setting['returns'] = $this->openbay->ebay->getSetting('returns');
 
@@ -1574,21 +1577,27 @@ class ControllerOpenbayOpenbay extends Controller {
 
 							if (!isset($setting['product_details']['product_identifier_unavailable_text'])) {
 								$this->session->data['warning'] = $this->language->get('lang_error_missing_settings');
+
 								$this->redirect($this->url->link('openbay/openbay/viewSync&token=' . $this->session->data['token'], 'SSL'));
 							}
 
 							$setting['dispatch_times'] = $this->openbay->ebay->getSetting('dispatch_time_max');
 
-							if (is_array($setting['dispatch_times'])) { ksort($setting['dispatch_times']); }
+							if (is_array($setting['dispatch_times'])) {
+								ksort($setting['dispatch_times']);
+							}
 
 							$setting['countries'] = $this->openbay->ebay->getSetting('countries');
 
-							if (is_array($setting['countries'])) { ksort($setting['countries']); }
+							if (is_array($setting['countries'])) {
+								ksort($setting['countries']);
+							}
 
 							$setting['returns'] = $this->openbay->ebay->getSetting('returns');
 
 							if (empty($setting['dispatch_times']) || empty($setting['countries']) || empty($setting['returns'])) {
 								$this->session->data['warning'] = $this->language->get('lang_error_missing_settings');
+
 								$this->redirect($this->url->link('openbay/openbay/viewSync&token=' . $this->session->data['token'], 'SSL'));
 							}
 

@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ControllerToolMailLog extends Controller {
 
 	public function index() {

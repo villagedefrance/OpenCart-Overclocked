@@ -1,7 +1,7 @@
 <?php
 class ModelShippingGeoZone extends Model {
 
-	function getQuote($address) {
+	public function getQuote($address) {
 		$this->language->load('shipping/geozone');
 
 		$quote_data = array();
@@ -63,7 +63,7 @@ class ModelShippingGeoZone extends Model {
 
 						$quote_data['geozone_' . $result['geo_zone_id']] = array(
 							'code'         => 'geozone.geozone_' . $result['geo_zone_id'],
-							'title'        => $result['name'] . '  (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')',
+							'title'        => $result['name'] . ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')',
 							'cost'         => $cost,
 							'tax_class_id' => $this->config->get('geozone_tax_class_id'),
 							'text'         => $this->currency->format($this->tax->calculate($cost, $this->config->get('geozone_tax_class_id'), $this->config->get('config_tax')))
@@ -79,7 +79,7 @@ class ModelShippingGeoZone extends Model {
 
 				$quote_data['geozone_' . $result['geo_zone_id']] = array(
 					'code'         => 'geozone.geozone_' . $result['geo_zone_id'],
-					'title'        => $result['name'] . '  (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')',
+					'title'        => $result['name'] . ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')',
 					'cost'         => $cost,
 					'tax_class_id' => $this->config->get('geozone_tax_class_id'),
 					'text'         => $this->currency->format($this->tax->calculate($cost, $this->config->get('geozone_tax_class_id'), $this->config->get('config_tax')))

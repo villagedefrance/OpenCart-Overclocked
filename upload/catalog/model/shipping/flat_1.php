@@ -1,7 +1,7 @@
 <?php
 class ModelShippingFlat1 extends Model {
 
-	function getQuote($address) {
+	public function getQuote($address) {
 		$this->language->load('shipping/flat');
 
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$this->config->get('flat_1_geo_zone_id') . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')");

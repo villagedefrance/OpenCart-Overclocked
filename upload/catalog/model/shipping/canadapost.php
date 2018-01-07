@@ -1,7 +1,7 @@
 <?php
 class ModelShippingCanadaPost extends Model {
 
-	function getQuote($address) {
+	public function getQuote($address) {
 		$this->language->load('shipping/canadapost');
 
 		if ($this->config->get('canadapost_status')) {

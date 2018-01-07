@@ -412,9 +412,9 @@ class ModelShippingRoyalMail extends Model {
 
 			// International Tracked
 			$tracked = array(
-				'AD', 'AU', 'AT', 'BE', 'BR', 'CA', 'XC', 'HR', 
-				'DK', 'EE', 'FI', 'FR', 'DE', 'HK', 'HU', 'IS', 
-				'IN', 'IE', 'LV', 'LI', 'LT', 'LU', 'MY', 'MT', 'NL', 
+				'AD', 'AU', 'AT', 'BE', 'BR', 'CA', 'XC', 'HR',
+				'DK', 'EE', 'FI', 'FR', 'DE', 'HK', 'HU', 'IS',
+				'IN', 'IE', 'LV', 'LI', 'LT', 'LU', 'MY', 'MT', 'NL',
 				'NZ', 'PL', 'PT', 'SG', 'ES', 'SE', 'CH', 'US'
 			);
 
@@ -473,20 +473,20 @@ class ModelShippingRoyalMail extends Model {
 
 			// International Signed
 			$signed = array(
-				'AF', 'NA', 'AL', 'DZ', 'AO', 'AI', 'AG', 'AM', 'AW', 'XA', 'AU', 'AZ', 
-				'BS', 'BH', 'BD', 'BB', 'BZ', 'BJ', 'BM', 'BT', 'BO', 'BX', 'BA', 'BW', 'BR', 
-				'IO', 'VG', 'BN', 'BF', 'BI', 'KH', 'CM', 'XC', 'CV', 'CF', 'CE', 'TD', 'CL', 
-				'CN', 'CX', 'CX', 'CO', 'KM', 'CD', 'CG', 'CK', 'CR', 'CU', 'CB', 'CY', 'DJ', 
-				'DM', 'DO', 'EG', 'SV', 'GQ', 'ER', 'EE', 'ET', 'FK', 'FO', 'FJ', 'GF', 'PF', 'TF', 
-				'GA', 'GM', 'GE', 'GH', 'GL', 'GD', 'GP', 'GT', 'GN', 'GW', 'GY', 'HT', 'HN', 
-				'IN', 'ID', 'IR', 'IQ', 'IL', 'CI', 'JM', 'JO', 'KZ', 'KE', 'KI', 'KV', 'KW', 'KG', 
-				'LA', 'LV', 'LB', 'LS', 'LR', 'LY', 'MO', 'MK', 'MG', 'YT', 'MW', 'MY', 'MV', 
-				'ML', 'MQ', 'MR', 'MU', 'XL', 'MX', 'MD', 'MN', 'CS', 'MS', 'MA', 'MZ', 
-				'MM', 'NA', 'NR', 'NP', 'NC', 'NI', 'NE', 'NG', 'NU', 'KP', 'NO', 'OM', 
-				'PK', 'PW', 'PA', 'PG', 'PY', 'PE', 'PH', 'PN', 'PR', 'QA', 'RE', 'RU', 'RW', 
-				'ST', 'SA', 'SN', 'CS', 'SC', 'SL', 'SB', 'SO', 'ZA', 'SD', 'ES', 'LK', 'SX', 
-				'SH', 'KN', 'LC', 'SF', 'VC', 'SD', 'SR', 'SZ', 'SY', 'TW', 'TJ', 'TZ', 'TP', 
-				'TG', 'TK', 'TO', 'XT', 'TN', 'TR', 'CP', 'TM', 'TC', 'TV', 'UG', 'UA', 'AE', 
+				'AF', 'NA', 'AL', 'DZ', 'AO', 'AI', 'AG', 'AM', 'AW', 'XA', 'AU', 'AZ',
+				'BS', 'BH', 'BD', 'BB', 'BZ', 'BJ', 'BM', 'BT', 'BO', 'BX', 'BA', 'BW', 'BR',
+				'IO', 'VG', 'BN', 'BF', 'BI', 'KH', 'CM', 'XC', 'CV', 'CF', 'CE', 'TD', 'CL',
+				'CN', 'CX', 'CX', 'CO', 'KM', 'CD', 'CG', 'CK', 'CR', 'CU', 'CB', 'CY', 'DJ',
+				'DM', 'DO', 'EG', 'SV', 'GQ', 'ER', 'EE', 'ET', 'FK', 'FO', 'FJ', 'GF', 'PF', 'TF',
+				'GA', 'GM', 'GE', 'GH', 'GL', 'GD', 'GP', 'GT', 'GN', 'GW', 'GY', 'HT', 'HN',
+				'IN', 'ID', 'IR', 'IQ', 'IL', 'CI', 'JM', 'JO', 'KZ', 'KE', 'KI', 'KV', 'KW', 'KG',
+				'LA', 'LV', 'LB', 'LS', 'LR', 'LY', 'MO', 'MK', 'MG', 'YT', 'MW', 'MY', 'MV',
+				'ML', 'MQ', 'MR', 'MU', 'XL', 'MX', 'MD', 'MN', 'CS', 'MS', 'MA', 'MZ',
+				'MM', 'NA', 'NR', 'NP', 'NC', 'NI', 'NE', 'NG', 'NU', 'KP', 'NO', 'OM',
+				'PK', 'PW', 'PA', 'PG', 'PY', 'PE', 'PH', 'PN', 'PR', 'QA', 'RE', 'RU', 'RW',
+				'ST', 'SA', 'SN', 'CS', 'SC', 'SL', 'SB', 'SO', 'ZA', 'SD', 'ES', 'LK', 'SX',
+				'SH', 'KN', 'LC', 'SF', 'VC', 'SD', 'SR', 'SZ', 'SY', 'TW', 'TJ', 'TZ', 'TP',
+				'TG', 'TK', 'TO', 'XT', 'TN', 'TR', 'CP', 'TM', 'TC', 'TV', 'UG', 'UA', 'AE',
 				'UY', 'UZ', 'VU', 'VE', 'VN', 'WF', 'EH', 'WS', 'YE', 'ZM', 'ZW'
 			);
 

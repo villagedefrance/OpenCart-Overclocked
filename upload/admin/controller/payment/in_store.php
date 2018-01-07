@@ -71,7 +71,7 @@ class ControllerPaymentInStore extends Controller {
 		if (isset($this->request->post['in_store_total'])) {
 			$this->data['in_store_total'] = $this->request->post['in_store_total'];
 		} else {
-			$this->data['in_store_total'] = $this->config->get('in_store_total'); 
+			$this->data['in_store_total'] = $this->config->get('in_store_total');
 		}
 
 		if (isset($this->request->post['in_store_total_max'])) {
@@ -83,8 +83,8 @@ class ControllerPaymentInStore extends Controller {
 		if (isset($this->request->post['in_store_order_status_id'])) {
 			$this->data['in_store_order_status_id'] = $this->request->post['in_store_order_status_id'];
 		} else {
-			$this->data['in_store_order_status_id'] = $this->config->get('in_store_order_status_id'); 
-		} 
+			$this->data['in_store_order_status_id'] = $this->config->get('in_store_order_status_id');
+		}
 
 		$this->load->model('localisation/order_status');
 
@@ -93,8 +93,8 @@ class ControllerPaymentInStore extends Controller {
 		if (isset($this->request->post['in_store_geo_zone_id'])) {
 			$this->data['in_store_geo_zone_id'] = $this->request->post['in_store_geo_zone_id'];
 		} else {
-			$this->data['in_store_geo_zone_id'] = $this->config->get('in_store_geo_zone_id'); 
-		} 
+			$this->data['in_store_geo_zone_id'] = $this->config->get('in_store_geo_zone_id');
+		}
 
 		$this->load->model('localisation/geo_zone');
 

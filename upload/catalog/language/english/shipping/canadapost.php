@@ -1,10 +1,10 @@
 <?php
 $_['language_file']           = 'en';
 
-// Text 
+// Text
 $_['text_title']              = 'Canada Post';
 $_['text_express']            = 'Canada Post Xpresspost';
-$_['text_standard']           = 'Canada Post Standard'; 
+$_['text_standard']           = 'Canada Post Standard';
 $_['text_estimated']          = 'Est. Delivery';
 
 // Error

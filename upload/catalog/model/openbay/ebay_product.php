@@ -23,8 +23,8 @@ class ModelOpenbayEbayProduct extends Model {
 				  `product_id` int(11) NOT NULL,
 				  `imgcount` int(11) NOT NULL,
 				  PRIMARY KEY (`id`)
-				) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-			");
+				) ENGINE=MyISAM DEFAULT CHARSET=utf8;"
+			);
 		}
 
 		if ($this->openbay->addonLoad('openstock')) {
@@ -565,7 +565,10 @@ class ModelOpenbayEbayProduct extends Model {
 			$varData['opt'][$v]['price'] = number_format($option['price'], 2, '.', '');
 
 			$varData['opt'][$v]['active'] = 0;
-			if ($option['active'] == 1) { $varData['opt'][$v]['active'] = 1; }
+
+			if ($option['active'] == 1) {
+				$varData['opt'][$v]['active'] = 1;
+			}
 
 			$v++;
 		}
@@ -587,6 +590,7 @@ class ModelOpenbayEbayProduct extends Model {
 			$this->openbay->ebay->log('Group exists');
 
 			return $qry->row['attribute_group_id'];
+
 		} else {
 			$this->openbay->ebay->log('New group');
 
@@ -617,6 +621,7 @@ class ModelOpenbayEbayProduct extends Model {
 			$this->openbay->ebay->log('Attribute exists');
 
 			return $qry->row['attribute_id'];
+
 		} else {
 			$this->openbay->ebay->log('New attribute');
 			$qry2 = $this->db->query("SELECT `sort_order` FROM  `" . DB_PREFIX . "attribute` ORDER BY `sort_order` DESC LIMIT 0,1");
@@ -754,7 +759,7 @@ class ModelOpenbayEbayProduct extends Model {
 				}
 			}
 
-			list($width_orig, $height_orig) = getimagesize($filename);
+			list ($width_orig, $height_orig) = getimagesize($filename);
 
 			if ($width_orig != $width || $height_orig != $height) {
 				$image = new Image($old_image);

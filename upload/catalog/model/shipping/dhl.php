@@ -1,7 +1,7 @@
 <?php
 class ModelShippingDhl extends Model {
 
-	function getQuote($address) {
+	public function getQuote($address) {
 		$this->language->load('shipping/dhl');
 
 		$quote_data = array();
@@ -41,7 +41,7 @@ class ModelShippingDhl extends Model {
 				if ((string)$cost != '') {
 					$quote_data['dhl_' . $result['geo_zone_id']] = array(
 						'code'         => 'dhl.dhl_' . $result['geo_zone_id'],
-						'title'        => 'DHL - ' . $result['name'] . '  (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')',
+						'title'        => 'DHL - ' . $result['name'] . ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('config_weight_class_id')) . ')',
 						'cost'         => $cost,
 						'tax_class_id' => $this->config->get('dhl_tax_class_id'),
 						'text'         => $this->currency->format($this->tax->calculate($cost, $this->config->get('dhl_tax_class_id'), $this->config->get('config_tax')))

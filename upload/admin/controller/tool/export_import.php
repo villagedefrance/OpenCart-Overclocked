@@ -41,7 +41,7 @@ class ControllerToolExportImport extends Controller {
 		$this->getForm();
 	}
 
-	protected function return_bytes($val) {
+	protected function returnBytes($val) {
 		$val = trim($val);
 
 		switch (strtolower(substr($val, -1))) {
@@ -288,7 +288,7 @@ class ControllerToolExportImport extends Controller {
 			$this->data['error_warning'] = $this->error['warning'];
 
 			if (!empty($this->session->data['export_import_nochange'])) {
-				$this->data['error_warning'] .= "<br />\n".$this->language->get( 'text_nochange' );
+				$this->data['error_warning'] .= "<br />\n" . $this->language->get('text_nochange');
 			}
 
 		} else {
@@ -327,8 +327,8 @@ class ControllerToolExportImport extends Controller {
 		$this->data['export'] = $this->url->link('tool/export_import/download', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['settings'] = $this->url->link('tool/export_import/settings', 'token=' . $this->session->data['token'], 'SSL');
 
-		$this->data['post_max_size'] = $this->return_bytes(ini_get('post_max_size'));
-		$this->data['upload_max_filesize'] = $this->return_bytes(ini_get('upload_max_filesize'));
+		$this->data['post_max_size'] = $this->returnBytes(ini_get('post_max_size'));
+		$this->data['upload_max_filesize'] = $this->returnBytes(ini_get('upload_max_filesize'));
 
 		if (isset($this->request->post['export_type'])) {
 			$this->data['export_type'] = $this->request->post['export_type'];

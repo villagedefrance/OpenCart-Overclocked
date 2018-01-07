@@ -95,7 +95,7 @@ class ControllerPaymentSkrill extends Controller {
 			}
 
 			if ($verified) {
-				switch($this->request->post['status']) {
+				switch ($this->request->post['status']) {
 					case '2':
 						$this->model_checkout_order->update($order_id, $this->config->get('skrill_order_status_id'), '', true);
 						break;

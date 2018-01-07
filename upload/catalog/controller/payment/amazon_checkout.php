@@ -207,7 +207,7 @@ class ControllerPaymentAmazonCheckout extends Controller {
 			}
 
 			$sort_order[$key] = $this->config->get($code . '_sort_order');
-		} 
+		}
 
 		array_multisort($sort_order, SORT_ASC, $results);
 

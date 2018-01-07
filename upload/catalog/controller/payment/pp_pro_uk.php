@@ -21,7 +21,7 @@ class ControllerPaymentPPProUK extends Controller {
 		$this->data['cards'] = array();
 
 		$this->data['cards'][] = array(
-			'text' => 'Visa', 
+			'text' => 'Visa',
 			'value' => 'VISA'
 		);
 

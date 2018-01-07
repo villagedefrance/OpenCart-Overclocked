@@ -166,7 +166,7 @@ class ModelTotalOffers {
 							$tax_rates = $this->tax->getRates($product['total'], $product['tax_class_id']);
 
 							foreach ($tax_rates as $tax_rate) {
-								if (in_array($item_discountable, $cart_products)) { 
+								if (in_array($item_discountable, $cart_products)) {
 									$taxes[$tax_rate['tax_rate_id']] -= $tax_rate['amount'];
 								}
 							}
