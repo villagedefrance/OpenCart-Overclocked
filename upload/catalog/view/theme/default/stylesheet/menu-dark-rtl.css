@@ -1,6 +1,6 @@
 /* -----------------------------------
 * Overclocked Edition - Menu Dark RTL
-* Copyright © 2017 - Villagedefrance
+* Copyright © 2018 - Villagedefrance
 * ------------------------------------
 */
 #menu-holder, #menu-holder .menu-dark {
@@ -17,10 +17,10 @@
 	background-image: linear-gradient(to bottom, #4D4F50, #323435);
 	margin: 0;
 	padding: 0px 5px 0px 0px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 }
 .menu-dark #menu a {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -86,10 +86,10 @@
 	right: 0;
 	z-index: 520;
 	padding: 0px 0px 10px 0px;
-	-moz-border-radius: 0 0 4px 4px;
-	-webkit-border-radius: 0 0 4px 4px;
-	-khtml-border-radius: 0 0 4px 4px;
-	border-radius: 0 0 4px 4px;
+	-moz-border-radius: 0 0 3px 3px;
+	-webkit-border-radius: 0 0 3px 3px;
+	-khtml-border-radius: 0 0 3px 3px;
+	border-radius: 0 0 3px 3px;
 	-webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.12);
 	-moz-box-shadow: 1px 1px 3px rgba(0,0,0,0.12);
 	box-shadow: 1px 1px 3px rgba(0,0,0,0.12);
@@ -201,10 +201,10 @@
 		background-image: -ms-linear-gradient(top, #4D4F50, #323435);
 		background-image: -o-linear-gradient(top, #4D4F50, #323435);
 		background-image: linear-gradient(to bottom, #4D4F50, #323435);
-		-moz-border-radius: 3px;
-		-webkit-border-radius: 3px;
-		-khtml-border-radius: 3px;
-		border-radius: 3px;
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		-khtml-border-radius: 2px;
+		border-radius: 2px;
 		height: 40px;
 		width: auto;
 	}
@@ -282,10 +282,10 @@
 		background-image: -ms-linear-gradient(top, #4D4F50, #323435);
 		background-image: -o-linear-gradient(top, #4D4F50, #323435);
 		background-image: linear-gradient(to bottom, #4D4F50, #323435);
-		-moz-border-radius: 3px;
-		-webkit-border-radius: 3px;
-		-khtml-border-radius: 3px;
-		border-radius: 3px;
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		-khtml-border-radius: 2px;
+		border-radius: 2px;
 		height: 40px;
 		width: auto;
 	}

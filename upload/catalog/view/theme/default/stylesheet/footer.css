@@ -1,6 +1,6 @@
 /* -----------------------------------
 * Overclocked Edition - Footer
-* Copyright © 2017 - Villagedefrance
+* Copyright © 2018 - Villagedefrance
 * ------------------------------------
 */
 #footer-holder .footer-light, #footer-holder .footer-dark {
@@ -19,10 +19,10 @@
 	background-image: -ms-linear-gradient(top, #F6F6F6, #E7E7E7);
 	background-image: -o-linear-gradient(top, #F6F6F6, #E7E7E7);
 	background-image: linear-gradient(to bottom, #F6F6F6, #E7E7E7);
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	margin-top: 15px;
 	padding: 20px 0px;
 	overflow: auto;
@@ -87,10 +87,10 @@
 	background-image: -ms-linear-gradient(top, #4D4F50, #323435);
 	background-image: -o-linear-gradient(top, #4D4F50, #323435);
 	background-image: linear-gradient(to bottom, #4D4F50, #323435);
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	margin-top: 15px;
 	padding: 20px 0px;
 	overflow: auto;
