@@ -35,7 +35,7 @@ class ControllerModuleStore extends Controller {
 				$this->data['username'] = '';
 			}
 
-			if ($this->user) { 
+			if ($this->user) {
 				$this->data['userid'] = $this->user->getId();
 			} else {
 				$this->data['userid'] = '';

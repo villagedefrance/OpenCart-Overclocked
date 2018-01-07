@@ -346,7 +346,7 @@ class ControllerStep3 extends Controller {
 		if ($this->request->post['db_driver'] == 'mpdo') {
 			try {
 				new \PDO("mysql:host=" . $this->request->post['db_hostname'] . ";port=" . $this->request->post['db_port'] . ";dbname=" . $this->request->post['db_database'], $this->request->post['db_username'], $this->request->post['db_password'], array(\PDO::ATTR_PERSISTENT => true));
-			} catch(Exception $e) {
+			} catch (Exception $e) {
 				$this->error['warning'] = $e->getMessage();
 			}
 		}

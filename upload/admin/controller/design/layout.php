@@ -405,7 +405,7 @@ class ControllerDesignLayout extends Controller {
 		foreach ($this->request->post['selected'] as $layout_id) {
 			if ($this->config->get('config_layout_id') == $layout_id) {
 				$this->error['warning'] = $this->language->get('error_default');
-			} 
+			}
 
 			$store_total = $this->model_setting_store->getTotalStoresByLayoutId($layout_id);
 

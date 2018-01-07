@@ -581,7 +581,7 @@ class ControllerCommonHome extends Controller {
 		);
 
 		$return_results = $this->model_sale_return->getReturns($data);
- 
+
     	foreach ($return_results as $return_result) {
 			$action = array();
 

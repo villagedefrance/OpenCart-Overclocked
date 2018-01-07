@@ -472,7 +472,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 
 			$this->load->model('setting/extension');
 
-			$sort_order = array(); 
+			$sort_order = array();
 
 			$results = $this->model_setting_extension->getExtensions('total');
 
@@ -554,7 +554,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 						'amount'           => $voucher['amount']
 					);
 				}
-			}  
+			}
 
 			$data['products'] = $product_data;
 			$data['vouchers'] = $voucher_data;
@@ -570,8 +570,8 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 				$subtotal = $this->cart->getSubTotal();
 
 				if ($affiliate_info) {
-					$data['affiliate_id'] = $affiliate_info['affiliate_id']; 
-					$data['commission'] = ($subtotal / 100) * $affiliate_info['commission']; 
+					$data['affiliate_id'] = $affiliate_info['affiliate_id'];
+					$data['commission'] = ($subtotal / 100) * $affiliate_info['commission'];
 				} else {
 					$data['affiliate_id'] = 0;
 					$data['commission'] = 0;
@@ -589,7 +589,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			if ($data['store_id']) {
 				$data['store_url'] = $this->config->get('config_url');
 			} else {
-				$data['store_url'] = HTTP_SERVER;	
+				$data['store_url'] = HTTP_SERVER;
 			}
 
 			$data['language_id'] = $this->config->get('config_language_id');
@@ -820,7 +820,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 
 		if (isset($this->request->post['firstname'])) {
 			$this->data['firstname'] = $this->request->post['firstname'];
-		} elseif ($this->customer->isLogged()) { 
+		} elseif ($this->customer->isLogged()) {
 			$this->data['firstname'] = $this->customer->getFirstName();
 		} else {
 			$this->data['firstname'] = '';
@@ -950,7 +950,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 		if (isset($this->request->post['city'])) {
 			$this->data['city'] = $this->request->post['city'];
 		} elseif (isset($customer_address) && $customer_address['city']) {
-			$this->data['city'] = $customer_address['city'];	
+			$this->data['city'] = $customer_address['city'];
 		} else {
 			$this->data['city'] = '';
 		}
@@ -993,7 +993,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 
 		if ($zone_name_array) {
 			$this->data['zone_name'] = $zone_name_array['name'];
-		}else {
+		} else {
 			$this->data['zone_name'] = '';
 		}
 
@@ -1001,7 +1001,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 		if (isset($this->request->post['shipping_firstname'])) {
 			$this->data['shipping_firstname'] = $this->request->post['shipping_firstname'];
 		} elseif (isset($order_info) && $order_info['shipping_firstname']) {
-			$this->data['shipping_firstname'] = $order_info['shipping_firstname'];	
+			$this->data['shipping_firstname'] = $order_info['shipping_firstname'];
 		} else {
 			$this->data['shipping_firstname'] = '';
 		}
@@ -1113,7 +1113,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			$this->data['text_agree'] = '';
 		}
 
-		if (isset($this->request->post['agree']) && $this->config->get('config_checkout_id')) { 
+		if (isset($this->request->post['agree']) && $this->config->get('config_checkout_id')) {
 			$this->data['agree'] = $this->request->post['agree'];
 		} else {
 			$this->data['agree'] = '';
@@ -1190,12 +1190,12 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			if ($this->config->get($result['code'] . '_status')) {
 				$this->load->model('shipping/' . $result['code']);
 
-				$quote = $this->{'model_shipping_' . $result['code']}->getQuote($shipping_address); 
+				$quote = $this->{'model_shipping_' . $result['code']}->getQuote($shipping_address);
 
 				if ($quote) {
-					$quote_data[$result['code']] = array( 
+					$quote_data[$result['code']] = array(
 						'title'      => $quote['title'],
-						'quote'      => $quote['quote'], 
+						'quote'      => $quote['quote'],
 						'sort_order' => $quote['sort_order'],
 						'error'      => $quote['error']
 					);
@@ -1273,7 +1273,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 				}
 			}
 
-			$sort_order = array(); 
+			$sort_order = array();
 
 			foreach ($method_data as $key => $value) {
 				$sort_order[$key] = $value['sort_order'];
@@ -1281,7 +1281,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 
 			array_multisort($sort_order, SORT_ASC, $method_data);
 
-			$this->data['payment_methods'] = $method_data;	
+			$this->data['payment_methods'] = $method_data;
 
 			$this->session->data['payment_methods'] = $this->data['payment_methods'];
 		}

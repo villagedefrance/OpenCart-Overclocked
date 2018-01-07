@@ -174,7 +174,7 @@ class ControllerCheckoutExpressPaymentMethod extends Controller {
 		}
 
 		if (isset($this->session->data['payment_methods'])) {
-			$this->data['payment_methods'] = $this->session->data['payment_methods']; 
+			$this->data['payment_methods'] = $this->session->data['payment_methods'];
 		} else {
 			$this->data['payment_methods'] = array();
 		}
@@ -206,7 +206,7 @@ class ControllerCheckoutExpressPaymentMethod extends Controller {
 			$this->data['text_agree'] = '';
 		}
 
-		if (isset($this->session->data['agree'])) { 
+		if (isset($this->session->data['agree'])) {
 			$this->data['agree'] = $this->session->data['agree'];
 		} else {
 			$this->data['agree'] = '';

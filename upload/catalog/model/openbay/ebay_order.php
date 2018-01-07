@@ -110,7 +110,7 @@ class ModelOpenbayEbayOrder extends Model {
 	}
 
 	public function removeOrderLines($canceling) {
-		foreach($canceling as $cancel) {
+		foreach ($canceling as $cancel) {
 			$line = $this->getOrderLine($cancel['txn'], $cancel['id']);
 
 			if ($line === false) {
@@ -145,7 +145,7 @@ class ModelOpenbayEbayOrder extends Model {
 	}
 
 	public function find($smp_id) {
-		$this->openbay->ebay->log('find() - Finding SMP: '.$smp_id);
+		$this->openbay->ebay->log('find() - Finding SMP: ' . $smp_id);
 
 		$order_id = $this->orderLinkGet($smp_id);
 
@@ -156,7 +156,7 @@ class ModelOpenbayEbayOrder extends Model {
 			$query = $this->db->query("SELECT `order_id` FROM `" . DB_PREFIX . "order_history` WHERE `comment` = '[eBay Import:" . $this->db->escape($smp_id) . "]' LIMIT 0,1");
 
 			if ($query->num_rows > 0) {
-				$this->openbay->ebay->log('find() (depreciated) - Found: '.$query->row['order_id']);
+				$this->openbay->ebay->log('find() (depreciated) - Found: ' . $query->row['order_id']);
 				return (int)$query->row['order_id'];
 			} else {
 				$this->openbay->ebay->log('find() (depreciated) - Nothing found');
@@ -164,13 +164,13 @@ class ModelOpenbayEbayOrder extends Model {
 			}
 
 		} else {
-			$this->openbay->ebay->log('find() - Found: '.$order_id);
+			$this->openbay->ebay->log('find() - Found: ' . $order_id);
 			return $order_id;
 		}
 	}
 
 	public function getHistory($order_id) {
-		$this->openbay->ebay->log('Getting order history for ID: '.$order_id);
+		$this->openbay->ebay->log('Getting order history for ID: ' . $order_id);
 
 		$query = $this->db->query("SELECT `order_status_id` FROM `" . DB_PREFIX . "order_history` WHERE `order_id` = '" . (int)$order_id . "'");
 

@@ -45,7 +45,7 @@ class ControllerLocalisationWeightClass extends Controller {
 					unset($this->session->data['new_weight_class_id']);
 
 					$this->redirect($this->url->link('localisation/weight_class/update', 'token=' . $this->session->data['token'] . '&weight_class_id=' . $weight_class_id . $url, 'SSL'));
-				} 
+				}
 
 			} else {
 				$this->redirect($this->url->link('localisation/weight_class', 'token=' . $this->session->data['token'] . $url, 'SSL'));
@@ -337,7 +337,7 @@ class ControllerLocalisationWeightClass extends Controller {
 			'text'      => $this->language->get('text_home'),
 			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
-		); 
+		);
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('heading_title'),

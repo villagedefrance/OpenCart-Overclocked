@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']       = 'Menu Horizontal'; 
+$_['heading_title']       = 'Menu Horizontal';
 
 // Text
 $_['text_module']         = 'Modules';

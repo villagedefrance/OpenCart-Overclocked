@@ -119,7 +119,7 @@ class Image {
 
 		if ($default == 'w') {
 			$scale = $scale_w;
-		} else if ($default == 'h') {
+		} elseif ($default == 'h') {
 			$scale = $scale_h;
 		} else {
 			$scale = min($scale_w, $scale_h);

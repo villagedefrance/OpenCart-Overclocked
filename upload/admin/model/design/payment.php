@@ -2,7 +2,7 @@
 class ModelDesignPayment extends Model {
 
 	public function addPaymentImage($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "payment_image SET name = '" . $this->db->escape($data['name']) . "', payment = '" . $this->db->escape($data['payment']) . "', image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "', status = '" . (int)$data['status'] . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "payment_image SET `name` = '" . $this->db->escape($data['name']) . "', payment = '" . $this->db->escape($data['payment']) . "', image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "', status = '" . (int)$data['status'] . "'");
 
 		$payment_image_id = $this->db->getLastId();
 
@@ -13,7 +13,7 @@ class ModelDesignPayment extends Model {
 	}
 
 	public function editPaymentImage($payment_image_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "payment_image SET name = '" . $this->db->escape($data['name']) . "', payment = '" . $this->db->escape($data['payment']) . "', image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "', status = '" . (int)$data['status'] . "' WHERE payment_image_id = '" . (int)$payment_image_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "payment_image SET `name` = '" . $this->db->escape($data['name']) . "', payment = '" . $this->db->escape($data['payment']) . "', image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "', status = '" . (int)$data['status'] . "' WHERE payment_image_id = '" . (int)$payment_image_id . "'");
 	}
 
 	public function deletePaymentImage($payment_image_id) {
@@ -78,7 +78,7 @@ class ModelDesignPayment extends Model {
 		return $query->row['total'];
 	}
 
-	function getExtensions($type) {
+	public function getExtensions($type) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "extension WHERE `type` = '" . $this->db->escape($type) . "' ORDER BY code");
 
 		return $query->rows;

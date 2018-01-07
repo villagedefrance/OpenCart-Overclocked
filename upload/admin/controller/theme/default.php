@@ -274,13 +274,13 @@ class ControllerThemeDefault extends Controller {
 
 		// Options
 		if (isset($this->request->post[$this->_name . '_livesearch'])) {
-			$this->data[$this->_name . '_livesearch'] = $this->request->post[$this->_name . '_livesearch']; 
+			$this->data[$this->_name . '_livesearch'] = $this->request->post[$this->_name . '_livesearch'];
 		} else {
 			$this->data[$this->_name . '_livesearch'] = $this->config->get($this->_name . '_livesearch');
 		}
 
 		if (isset($this->request->post[$this->_name . '_livesearch_limit'])) {
-			$this->data[$this->_name . '_livesearch_limit'] = $this->request->post[$this->_name . '_livesearch_limit']; 
+			$this->data[$this->_name . '_livesearch_limit'] = $this->request->post[$this->_name . '_livesearch_limit'];
 		} else {
 			$this->data[$this->_name . '_livesearch_limit'] = $this->config->get($this->_name . '_livesearch_limit');
 		}

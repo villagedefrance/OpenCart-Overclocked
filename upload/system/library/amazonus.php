@@ -41,7 +41,7 @@ class Amazonus {
 				$logger->write(print_r($osProducts, true));
 
 				$quantityData = array();
-	
+
 				foreach ($osProducts as $osProduct) {
 					$amazonusSkuRows = $this->getLinkedSkus($osProduct['pid'], $osProduct['var']);
 
