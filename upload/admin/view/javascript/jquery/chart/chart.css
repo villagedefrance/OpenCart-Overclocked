@@ -60,6 +60,7 @@
 	animation: drawBar 0.3s ease-in-out;
 	-webkit-transition: all 100ms ease-in-out;
 	-moz-transition: all 100ms ease-in-out;
+	-o-transition: all 100ms ease-in-out;
 	transition: all 100ms ease-in-out;
 }
 .bar-chart li:hover span{
@@ -169,6 +170,7 @@
 	animation: rotateDonut 0.3s ease-in-out;
 	-webkit-transition: all 160ms ease-in-out;
 	-moz-transition: all 160ms ease-in-out;
+	-o-transition: all 160ms ease-in-out;
 	transition: all 160ms ease-in-out;
 }
 .spinner ~ .pie {
@@ -419,6 +421,7 @@
 	transform: scale(1.3);
 	-webkit-transition: all 200ms ease-in-out;
 	-moz-transition: all 200ms ease-in-out;
+	-o-transition: all 200ms ease-in-out;
 	transition: all 200ms ease-in-out;
 }
 .line-chart li span:before, .line-chart li span:after {

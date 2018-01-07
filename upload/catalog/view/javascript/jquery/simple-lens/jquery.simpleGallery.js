@@ -60,4 +60,4 @@
         loading_image: 'catalog/view/javascript/jquery/simple-lens/images/loading.gif',
         show_event: 'click'
     };
-})( jQuery );
+})(jQuery);

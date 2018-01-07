@@ -1,4 +1,4 @@
-;(function($) {
+(function($) {
 	if (typeof Sarissa == "undefined") throw "jsTree xml_flat: Sarissa is not included.";
 
 	$.extend($.tree.datastores, {

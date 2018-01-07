@@ -1,4 +1,14 @@
 <?php
+function sortPrices($a, $b) {
+	if ($a['price'] == $b['price']) {
+		return 0;
+	} elseif ($a['price'] < $b['price']) {
+		return 1;
+	} else {
+		return -1;
+	}
+}
+
 define('PRO_TO_PRO', '1');
 define('PRO_TO_CAT', '2');
 define('CAT_TO_CAT', '3');
@@ -39,7 +49,7 @@ class Offer {
 class ModelTotalOffers {
 	private $registry;
 
-	public function __construct($registry) {
+	public function __construct(Registry $registry) {
 		$this->registry = $registry;
 		$this->discount_list = array();
 		$this->offers();
@@ -111,11 +121,10 @@ class ModelTotalOffers {
 
 	public function getTotal(&$total_data, &$total, &$taxes) {
 		$products = $this->cart->getProducts();
-		$sort_prices = $this->sortPrices();
 
 		reset($products);
 
-		usort($products, $sort_prices);
+		usort($products, "sortPrices");
 
 		$discountable_products = array();
 
@@ -292,16 +301,6 @@ class ModelTotalOffers {
 
 				$this->addCatToCat($result['one'], $result['two'], $type, $result['disc']);
 			}
-		}
-	}
-
-	private function sortPrices($a, $b) {
-		if ($a['price'] == $b['price']) {
-			return 0;
-		} elseif ($a['price'] < $b['price']) {
-			return 1;
-		} else {
-			return -1;
 		}
 	}
 }

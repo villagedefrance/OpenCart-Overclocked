@@ -1,4 +1,4 @@
-;(function($) {
+(function($) {
 	$.extend($.tree.plugins, {
 		"contextmenu" : {
 			object : $("<ul id='jstree-contextmenu' class='tree-context' />"),

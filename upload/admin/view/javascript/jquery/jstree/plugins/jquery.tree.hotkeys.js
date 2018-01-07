@@ -1,4 +1,4 @@
-;(function($) { 
+(function($) { 
 	if (typeof window.hotkeys == "undefined") throw "jsTree hotkeys: jQuery hotkeys plugin not included.";
 
 	$.extend($.tree.plugins, {

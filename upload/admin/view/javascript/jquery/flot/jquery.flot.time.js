@@ -64,7 +64,6 @@ API.txt for details.
 		}
 
 		for (var i = 0; i < fmt.length; ++i) {
-
 			var c = fmt.charAt(i);
 
 			if (escape) {
@@ -91,6 +90,7 @@ API.txt for details.
 				}
 				r.push(c);
 				escape = false;
+
 			} else {
 				if (c == "%") {
 					escape = true;
@@ -109,7 +109,6 @@ API.txt for details.
 	// versions of the accessor methods.
 
 	function makeUtcWrapper(d) {
-
 		function addProxyMethod(sourceObj, sourceMethod, targetObj, targetMethod) {
 			sourceObj[sourceMethod] = function() {
 				return targetObj[targetMethod].apply(targetObj, arguments);
@@ -197,7 +196,6 @@ API.txt for details.
 	function init(plot) {
 		plot.hooks.processOptions.push(function (plot, options) {
 			$.each(plot.getAxes(), function(axisName, axis) {
-
 				var opts = axis.options;
 
 				if (opts.mode == "time") {

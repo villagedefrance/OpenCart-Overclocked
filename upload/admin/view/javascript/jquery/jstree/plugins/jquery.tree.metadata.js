@@ -1,4 +1,4 @@
-;(function($) {
+(function($) {
 	if (typeof $.metadata == "undefined") throw "jsTree metadata: jQuery metadata plugin not included.";
 
 	$.extend($.tree.plugins, {

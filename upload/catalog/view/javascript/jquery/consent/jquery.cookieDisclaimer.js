@@ -10,7 +10,7 @@
  *  BugReport/Assistence: https://github.com/Gix075/jqueryCookieDisclaimer/issues
  */
 
-;(function($, window, document, undefined) {
+(function($, window, document, undefined) {
 	"use strict";
 
 	var pluginName = "cookieDisclaimer",
@@ -207,4 +207,4 @@
 		});
 	};
 
-})( jQuery, window, document );
+})(jQuery, window, document);

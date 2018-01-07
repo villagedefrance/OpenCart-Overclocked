@@ -10,7 +10,7 @@
  *
  * Date: 2017-11-03
  */
-;(function (global, factory) {
+(function (global, factory) {
 	var extract = function() {
 		var ctx = {};
 		factory.apply(ctx, arguments);
@@ -35,7 +35,7 @@
  * Contributing: http://www.plupload.com/contributing
  */
 
-;(function(exports, o, undef) {
+(function(exports, o, undef) {
 
 var delay = window.setTimeout;
 var fileFilters = {};

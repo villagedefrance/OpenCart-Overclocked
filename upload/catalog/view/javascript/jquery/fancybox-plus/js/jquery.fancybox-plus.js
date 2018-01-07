@@ -10,8 +10,7 @@
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
  */
 
-;
-(function ($) {
+(function($) {
     var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right,
         selectedIndex = 0, selectedOpts = {}, selectedArray = [], currentIndex = 0, currentOpts = {}, currentArray = [],
         ajaxLoader = null, imgPreloader = new Image(), imgRegExp = /\.(jpg|gif|png|bmp|jpeg)(.*)?$/i, swfRegExp = /[^\.]\.(swf)\s*$/i,
@@ -175,11 +174,11 @@
                     busy = false;
                     $.fancyboxPlus.showActivity();
                     imgPreloader = new Image();
-                    imgPreloader.onerror = function () {
+                    imgPreloader.onerror = function() {
                         _error();
                     };
 
-                    imgPreloader.onload = function () {
+                    imgPreloader.onload = function() {
                         busy = true;
                         imgPreloader.onerror = imgPreloader.onload = null;
                         _process_image();
@@ -522,7 +521,7 @@
                 nav_right.show();
             }
         },
-        _finish = function () {
+        _finish = function() {
             if (!$.support.opacity) {
                 $('#fancybox-content').css('filter', 0);
                 $('#fancybox-wrap').css('filter', 0);
@@ -821,7 +820,7 @@
         return $.fancyboxPlus.pos(currentIndex - 1);
     };
 
-    $.fancyboxPlus.pos = function (pos) {
+    $.fancyboxPlus.pos = function(pos) {
         if (busy) {
             return;
         }
@@ -1082,8 +1081,9 @@
         onError: function() { }
     };
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         $.fancyboxPlus.init();
     });
 
 })(jQuery);
+

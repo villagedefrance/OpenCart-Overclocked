@@ -15,7 +15,7 @@
 
  */
 /* global window, document, define, jQuery, setInterval, clearInterval */
-;(function(factory) {
+(function(factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
         define(['jquery'], factory);
@@ -176,14 +176,12 @@
             // Extracted from jQuery v1.11 source
             _.htmlExpr = /^(?:\s*(<[\w\W]+>)[^>]*)$/;
 
-
             _.registerBreakpoints();
             _.init(true);
 
         }
 
         return Slick;
-
     }());
 
     Slick.prototype.activateADA = function() {
@@ -558,12 +556,10 @@
             }
 
             _.$slider.empty().append(newSlides);
-            _.$slider.children().children().children()
-                .css({
-                    'width':(100 / _.options.slidesPerRow) + '%',
-                    'display': 'inline-block'
-                });
-
+            _.$slider.children().children().children().css({
+                'width': (100 / _.options.slidesPerRow) + '%',
+                'display': 'inline-block'
+            });
         }
 
     };

@@ -4,7 +4,7 @@
 * Copyright (c) 2013 Dmitry Semenov
 */
 
-;(function($) {
+(function($) {
 /*  Magnific Popup Core JS file */
 
 /* Private static constants */

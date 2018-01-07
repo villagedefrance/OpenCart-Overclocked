@@ -114,7 +114,7 @@ _jQuery UI_ widget factory, there are some specifics. See examples below for mor
 	@param {Boolean} [settings.views.remember=true] Whether to remember the current view (requires jQuery Cookie plugin).
 	@param {Boolean} [settings.multiple_queues=true] Re-activate the widget after each upload procedure.
 */
-;(function(window, document, plupload, o, $) {
+(function(window, document, plupload, o, $) {
 
 /**
 Dispatched when the widget is initialized and ready.

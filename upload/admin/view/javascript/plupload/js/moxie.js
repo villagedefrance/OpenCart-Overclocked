@@ -1,4 +1,4 @@
-;var MXI_DEBUG = true;
+var MXI_DEBUG = true;
 /**
  * mOxie - multi-runtime File API & XMLHttpRequest L2 Polyfill
  * v1.5.7
@@ -11,7 +11,7 @@
  *
  * Date: 2017-11-03
  */
-;(function (global, factory) {
+(function (global, factory) {
 	var extract = function() {
 		var ctx = {};
 		factory.apply(ctx, arguments);

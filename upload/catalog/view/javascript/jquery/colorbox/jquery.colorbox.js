@@ -3,7 +3,7 @@
 	license: MIT
 	http://www.jacklmoore.com/colorbox
 */
-;(function ($, document, window) {
+(function ($, document, window) {
 	var
 	// Default settings object.
 	// See http://jacklmoore.com/colorbox for details.

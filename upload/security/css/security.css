@@ -117,10 +117,7 @@ body > #container-firewall, body > #container-search {
 	text-align: center;
 }
 .firewall p {
-	margin-top: 60px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 30px;
+	margin: 60px auto 30px auto;
 }
 .firewall .context {
 	margin: 30px auto;

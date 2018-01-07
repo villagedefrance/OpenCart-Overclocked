@@ -75,7 +75,7 @@ used as it is.
 	@param {Boolean} [settings.rename=false] Enable ability to rename files in the queue.
 	@param {Boolean} [settings.multiple_queues=true] Re-activate the widget after each upload procedure.
 */
-;(function($, plupload) {
+(function($, plupload) {
 	var uploaders = {};
 
 	function _(str) {
