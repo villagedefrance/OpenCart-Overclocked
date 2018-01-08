@@ -16,10 +16,10 @@ body, td, th, input, select, textarea, fieldset, option, optgroup {
 	text-shadow: 0 0 1px rgba(5, 5, 5, 0.05);
 }
 input[type='text'], input[type='password'], textarea {
-	padding: 3px 0px 3px 4px;
+	padding: 3px 0 3px 4px;
 	min-height: 16px;
-	margin-left: 0px;
-	margin-right: 0px;
+	margin-left: 0;
+	margin-right: 0;
 	border-top: 1px solid #191919;
 	border-left: 1px solid #191919;
 	border-bottom: 1px solid #444;
@@ -50,7 +50,7 @@ input.checkbox:not(old), input.radio:not(old) {
 }
 input.checkbox:not(old) + label, input.radio:not(old) + label {
 	display: inline-block;
-	margin-left: 0px;
+	margin-left: 0;
 	line-height: 16px;
 }
 input.checkbox:not(old) + label > span, input.radio:not(old) + label > span {
@@ -116,7 +116,7 @@ input.radio:not(old):checked + label > span > span {
 textarea.log {
 	width: 99%;
 	min-height: 360px;
-	padding: 5px 0px 5px 5px;
+	padding: 5px 0 5px 5px;
 	border-top: 1px solid #191919;
 	border-left: 1px solid #191919;
 	border-bottom: 1px solid #444;
@@ -144,11 +144,11 @@ fieldset {
 	background-image: -ms-linear-gradient(top, #CCC, #E1E1E1);
 	background-image: -o-linear-gradient(top, #CCC, #E1E1E1);
 	background-image: linear-gradient(to bottom, #CCC, #E1E1E1);
-	margin: 10px 0px;
+	margin: 10px 0;
 }
 fieldset p.field {
 	display: inline-block;
-	margin: 0px;
+	margin: 0;
 	padding: 3px 5px;
 	width: 23%;
 }
@@ -195,12 +195,12 @@ samp, small {
 }
 /* Container */
 #container-normal {
-	margin: 0px;
+	margin: 0;
 	height: 100%;
 }
 #container-limited {
 	width: 1440px;
-	margin: 0px auto;
+	margin: 0 auto;
 	height: 100%;
 }
 body > #container-normal, body > #container-limited {
@@ -236,8 +236,8 @@ body > #container-normal, body > #container-limited {
 }
 #header .user-status img {
 	position: relative;
-	top: 0px;
-	border: 0px;
+	top: 0;
+	border: 0;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	-khtml-border-radius: 2px;
@@ -254,7 +254,7 @@ body > #container-normal, body > #container-limited {
 	position: relative;
 	top: 13px;
 	float: right;
-	padding: 0px 30px 0px 16px;
+	padding: 0 30px 0px 16px;
 	cursor: pointer;
 	outline: 0;
 	z-index: 7;
@@ -262,7 +262,7 @@ body > #container-normal, body > #container-limited {
 #header .user-logout a i {
 	font-size: 28px;
 	color: #F8F8F8;
-	border: 0px;
+	border: 0;
 	opacity: 0.9;
 	filter: alpha(opacity=90);
 }
@@ -280,7 +280,7 @@ body > #container-normal, body > #container-limited {
 	font-size: 12px;
 	line-height: 20px;
 	text-decoration: none;
-	padding: 0px 11px 0px 11px;
+	padding: 0 11px;
 	cursor: pointer;
 	outline: 0;
 	z-index: 7;
@@ -317,7 +317,7 @@ body > #container-normal, body > #container-limited {
 	font-size: 12px;
 	text-decoration: none;
 	white-space: nowrap;
-	padding: 0px 6px;
+	padding: 0 6px;
 }
 #show-device span#screen-width, #show-device span#screen-height {
 	font-size: 11px;
@@ -332,7 +332,7 @@ body > #container-normal, body > #container-limited {
 	font-size: 12px;
 	line-height: 20px;
 	text-decoration: none;
-	padding: 0px 12px 0px 12px;
+	padding: 0 12px;
 	cursor: pointer;
 	outline: 0;
 	z-index: 7;
@@ -340,7 +340,7 @@ body > #container-normal, body > #container-limited {
 #date-time a i {
 	font-size: 25px;
 	color: #F8F8F8;
-	border: 0px;
+	border: 0;
 	opacity: 0.9;
 	filter: alpha(opacity=90);
 }
@@ -351,7 +351,7 @@ body > #container-normal, body > #container-limited {
 #show-time {
 	position: absolute;
 	top: 34px;
-	right: 0px;
+	right: 0;
 	text-align: center;
 	background: #FCFCFC;
 	border: 1px solid #BBB;
@@ -369,11 +369,11 @@ body > #container-normal, body > #container-limited {
 	font-size: 12px;
 	text-decoration: none;
 	white-space: nowrap;
-	padding: 0px 6px;
+	padding: 0 6px;
 }
 #show-time .systime span {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 /* Header Store */
 #store-selector {
@@ -385,7 +385,7 @@ body > #container-normal, body > #container-limited {
 	font-size: 12px;
 	line-height: 20px;
 	text-decoration: none;
-	padding: 0px 13px 0px 16px;
+	padding: 0 13px 0 16px;
 	cursor: pointer;
 	outline: 0;
 	z-index: 7;
@@ -393,7 +393,7 @@ body > #container-normal, body > #container-limited {
 #store-selector a i {
 	font-size: 25px;
 	color: #F8F8F8;
-	border: 0px;
+	border: 0;
 	opacity: 0.9;
 	filter: alpha(opacity=90);
 }
@@ -404,7 +404,7 @@ body > #container-normal, body > #container-limited {
 #show-store {
 	position: absolute;
 	top: 34px;
-	right: 0px;
+	right: 0;
 	background: #FCFCFC;
 	border: 1px solid #BBB;
 	-webkit-border-radius: 2px;
@@ -423,7 +423,7 @@ body > #container-normal, body > #container-limited {
 	font-size: 12px;
 	text-decoration: none;
 	white-space: nowrap;
-	padding: 0px 6px;
+	padding: 0 6px;
 	cursor: pointer;
 }
 #show-store a:hover {
@@ -439,8 +439,8 @@ body > #container-normal, body > #container-limited {
 	background: url('../image/theme-overclock/menu.png') repeat-x;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	list-style: none;
-	padding: 0px;
-	margin: 0px;
+	padding: 0;
+	margin: 0;
 	z-index: 4;
 }
 .menu li {
@@ -449,7 +449,6 @@ body > #container-normal, body > #container-limited {
 	height: 34px;
 	padding: 0;
 }
-.menu li:hover, .menu li.onhover { }
 .menu li a.top {
 	background: url('../image/theme-overclock/split.png') center left no-repeat;
 }
@@ -461,10 +460,9 @@ ul.menu a {
 	text-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
 	text-decoration: none;
 	line-height: 34px;
-	padding: 0px 25px;
+	padding: 0 25px;
 	outline: 0;
 }
-.menu a:hover { }
 .menu a.arrow {
 	background: url('../image/theme-overclock/arrow-right.png') no-repeat right center;
 }
@@ -474,7 +472,7 @@ ul.menu a {
 /* Menu - Top-level item to the right */
 .menu .right {
 	float: right;
-	margin-right: 0px;
+	margin-right: 0;
 }
 /* Menu - Sub level */
 ul.menu ul {
@@ -484,23 +482,23 @@ ul.menu ul {
 	background: #202427;
 	text-align: left;
 	list-style: none;
-	margin: 0px;
+	margin: 0;
 	padding: 1px;
 }
 .menu li li {
 	float: none;
 	white-space: nowrap;
-	margin: 0px;
+	margin: 0;
 	border: 1px solid transparent;
 	height: 28px;
 }
 .menu li li:hover, .menu li li.onhover {
-	margin: 0px;
+	margin: 0;
 	border: 1px solid #36AAD8;
 	background: #106393;
 }
 .menu ul a {
-	padding: 0px 15px 0px 10px;
+	padding: 0 15px 0 10px;
 	line-height: 26px;
 	font-size: 13px;
 	font-weight: normal;
@@ -508,7 +506,6 @@ ul.menu ul {
 	text-shadow: 0 0 1px rgba(52, 52, 52, 0.05);
 	text-align: left;
 }
-.menu ul a:hover { }
 .menu li:hover ul, .menu li.onhover ul {
 	left: -1px;
 	top: auto;
@@ -518,7 +515,6 @@ ul.menu ul {
 	right: -1px;
 	top: auto;
 }
-.menu ul ul { }
 .menu li:hover ul ul, .menu li:hover ul ul ul, .menu li:hover ul ul ul ul,
 .menu li.onhover ul ul, .menu li.onhover ul ul ul, .menu li.onhover ul ul ul ul {
 	left: -9999px;
@@ -542,8 +538,8 @@ ul.menu ul {
 .breadcrumb {
 	display: inline-block;
 	width: 100%;
-	padding: 0px 3px;
-	margin: 0px 0px 10px 0px;
+	padding: 0 3px;
+	margin: 0 0 10px 0;
 	z-index: 25;
 }
 .breadcrumb, .breadcrumb a {
@@ -649,8 +645,8 @@ ul.menu ul {
 	border-radius: 3px;
 }
 .box > .heading h1 {
-	margin: 0px;
-	padding: 9px 0px 0px 0px;
+	margin: 0;
+	padding: 9px 0 0 0;
 	color: #E5E5E5;
 	text-shadow: 0 0 1px rgba(12, 12, 12, 0.05);
 	font-size: 16px;
@@ -677,10 +673,10 @@ ul.menu ul {
 .box > .content {
 	min-height: 300px;
 	background: #30353A;
-	-moz-border-radius: 0px 0px 3px 3px;
-	-webkit-border-radius: 0px 0px 3px 3px;
-	-khtml-border-radius: 0px 0px 3px 3px;
-	border-radius: 0px 0px 3px 3px;
+	-moz-border-radius: 0 0 3px 3px;
+	-webkit-border-radius: 0 0 3px 3px;
+	-khtml-border-radius: 0 0 3px 3px;
+	border-radius: 0 0 3px 3px;
 	padding-bottom: 20px;
 	padding-top: 10px;
 	overflow: auto;
@@ -698,7 +694,7 @@ ul.menu ul {
 	text-transform: uppercase;
 	text-shadow: 0 0 1px rgba(54, 170, 216, 0.05);
 	border-bottom: 1px dotted #555;
-	padding: 0px 0px 5px 5px;
+	padding: 0 0 5px 5px;
 }
 .box > .content h3, .box > .content-body h3 {
 	color: #E5E5E5;
@@ -707,7 +703,7 @@ ul.menu ul {
 	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 	line-height: 25px;
 	border-bottom: 1px dotted #444;
-	padding: 0px 0px 5px 10px;
+	padding: 0 0 5px 10px;
 }
 /* Box Report */
 .box > .content .report, .box > .content-body .report {
@@ -731,17 +727,17 @@ ul.menu ul {
 }
 .box > .content .report .right, .box > .content-body .report .right {
 	float: right;
-	margin: 0px 10px 0px 25px;
+	margin: 0 10px 0 25px;
 	text-align: right;
 }
 .box > .content .report .center, .box > .content-body .report .center {
 	float: left;
-	margin: 0px 25px 0px 10px;
+	margin: 0 25px 0 10px;
 	text-align: center;
 }
 .box > .content .report .left, .box > .content-body .report .left {
 	float: left;
-	margin: 0px 25px 0px 10px;
+	margin: 0 25px 0 10px;
 	text-align: left;
 }
 .box > .content .report .left img, .box > .content-body .report .left img {
@@ -749,15 +745,15 @@ ul.menu ul {
 	top: -1px;
 	left: 4px;
 	vertical-align: middle;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 /* Box Login */
 .box-login {
 	width: 360px;
 	min-height: 300px;
 	margin: 50px auto;
-	padding: 0px;
+	padding: 0;
 }
 .box-login > .content-login {
 	color: #E5E5E5;
@@ -777,7 +773,7 @@ ul.menu ul {
 	overflow: hidden;
 }
 .box-login > .content-login h1 {
-	margin: 0px 0px 10px 0px;
+	margin: 0 0 10px 0px;
 	padding: 10px 8px;
 	color: #E5E5E5;
 	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
@@ -808,14 +804,14 @@ ul.menu ul {
 .box-login > .content-login > form .validate {
 	clear: both;
 	float: right;
-	margin: 10px 20px 15px 0px;
+	margin: 10px 20px 15px 0;
 }
 /* Button */
 a.button, .list a.button, a.button-save, .list a.button-save, a.button-delete, .list a.button-delete, a.button-repair, .list a.button-repair, a.button-cancel, .list a.button-cancel {
 	display: inline-block;
 	line-height: 12px;
 	padding: 6px 15px;
-	margin: 0px 3px;
+	margin: 0 3px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
@@ -865,7 +861,7 @@ a.button-filter, .list a.button-filter {
 	display: inline-block;
 	line-height: 12px;
 	padding: 6px 13px;
-	margin: 0px 4px;
+	margin: 0 4px;
 	color: #FCFCFC;
 	font-weight: bold;
 	text-decoration: none;
@@ -898,7 +894,7 @@ a.button-form, .list a.button-form, a.button-form-install, .list a.button-form-i
 	display: inline-block;
 	line-height: 12px;
 	padding: 6px 13px;
-	margin: 0px 3px;
+	margin: 0 3px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
@@ -911,7 +907,7 @@ a.button-form, .list a.button-form, a.button-form-install, .list a.button-form-i
 input.button-form, input.button-form-install, input.button-form-edit, input.button-form-uninstall {
 	height: 22px;
 	line-height: 12px;
-	padding: 0px 13px 2px 13px;
+	padding: 0 13px 2px 13px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
@@ -953,18 +949,18 @@ a.button-select, a.button-unselect, .list a.button-select, .list a.button-unsele
 a.button-select, .list a.button-select {
 	background: #DDD url('../image/theme-overclock/select.png') center 0 no-repeat;
 	border: 1px solid #222;
-	-webkit-border-radius: 3px 0px 0px 3px;
-	-moz-border-radius: 3px 0px 0px 3px;
-	-khtml-border-radius: 3px 0px 0px 3px;
-	border-radius: 3px 0px 0px 3px;
+	-webkit-border-radius: 3px 0 0 3px;
+	-moz-border-radius: 3px 0 0 3px;
+	-khtml-border-radius: 3px 0 0 3px;
+	border-radius: 3px 0 0 3px;
 }
 a.button-unselect, .list a.button-unselect {
 	background: #DDD url('../image/theme-overclock/unselect.png') center 0 no-repeat;
 	border: 1px solid #222;
-	-webkit-border-radius: 0px 3px 3px 0px;
-	-moz-border-radius: 0px 3px 3px 0px;
-	-khtml-border-radius: 0px 3px 3px 0px;
-	border-radius: 0px 3px 3px 0px;
+	-webkit-border-radius: 0 3px 3px 0;
+	-moz-border-radius: 0 3px 3px 0;
+	-khtml-border-radius: 0 3px 3px 0;
+	border-radius: 0 3px 3px 0;
 }
 a.button-select:hover, .list a.button-select:hover {
 	background: #DDD url('../image/theme-overclock/select.png') center -16px no-repeat;
@@ -985,18 +981,18 @@ a.button-browse, a.button-recycle, .list a.button-browse, .list a.button-recycle
 a.button-browse, .list a.button-browse {
 	background: #DDD url('../image/theme-overclock/browse.png') center 0 no-repeat;
 	border: 1px solid #222;
-	-webkit-border-radius: 3px 0px 0px 3px;
-	-moz-border-radius: 3px 0px 0px 3px;
-	-khtml-border-radius: 3px 0px 0px 3px;
-	border-radius: 3px 0px 0px 3px;
+	-webkit-border-radius: 3px 0 0 3px;
+	-moz-border-radius: 3px 0 0 3px;
+	-khtml-border-radius: 3px 0 0 3px;
+	border-radius: 3px 0 0 3px;
 }
 a.button-recycle, .list a.button-recycle {
 	background: #DDD url('../image/theme-overclock/recycle.png') center 0 no-repeat;
 	border: 1px solid #222;
-	-webkit-border-radius: 0px 3px 3px 0px;
-	-moz-border-radius: 0px 3px 3px 0px;
-	-khtml-border-radius: 0px 3px 3px 0px;
-	border-radius: 0px 3px 3px 0px;
+	-webkit-border-radius: 0 3px 3px 0;
+	-moz-border-radius: 0 3px 3px 0;
+	-khtml-border-radius: 0 3px 3px 0;
+	border-radius: 0 3px 3px 0;
 }
 a.button-browse:hover, .list a.button-browse:hover {
 	background: #DDD url('../image/theme-overclock/browse.png') center -16px no-repeat;
@@ -1017,18 +1013,18 @@ input.button-move-left, input.button-move-right {
 input.button-move-left {
 	background: #DDD url('../image/theme-overclock/move-left.png') center 0 no-repeat;
 	border: 1px solid #222;
-	-webkit-border-radius: 3px 0px 0px 3px;
-	-moz-border-radius: 3px 0px 0px 3px;
-	-khtml-border-radius: 3px 0px 0px 3px;
-	border-radius: 3px 0px 0px 3px;
+	-webkit-border-radius: 3px 0 0 3px;
+	-moz-border-radius: 3px 0 0 3px;
+	-khtml-border-radius: 3px 0 0 3px;
+	border-radius: 3px 0 0 3px;
 }
 input.button-move-right {
 	background: #DDD url('../image/theme-overclock/move-right.png') center 0 no-repeat;
 	border: 1px solid #222;
-	-webkit-border-radius: 0px 3px 3px 0px;
-	-moz-border-radius: 0px 3px 3px 0px;
-	-khtml-border-radius: 0px 3px 3px 0px;
-	border-radius: 0px 3px 3px 0px;
+	-webkit-border-radius: 0 3px 3px 0;
+	-moz-border-radius: 0 3px 3px 0;
+	-khtml-border-radius: 0 3px 3px 0;
+	border-radius: 0 3px 3px 0;
 }
 input.button-move-left:hover {
 	background: #DDD url('../image/theme-overclock/move-left.png') center -16px no-repeat;
@@ -1050,10 +1046,10 @@ a.button-preview, a.button-pdf, a.button-print {
 a.button-preview {
 	background: #DDD url('../image/theme-overclock/preview.png') center 0 no-repeat;
 	border: 1px solid #222;
-	-webkit-border-radius: 3px 0px 0px 3px;
-	-moz-border-radius: 3px 0px 0px 3px;
-	-khtml-border-radius: 3px 0px 0px 3px;
-	border-radius: 3px 0px 0px 3px;
+	-webkit-border-radius: 3px 0 0 3px;
+	-moz-border-radius: 3px 0 0 3px;
+	-khtml-border-radius: 3px 0 0 3px;
+	border-radius: 3px 0 0 3px;
 }
 a.button-pdf {
 	background: #DDD url('../image/theme-overclock/pdf.png') center 0 no-repeat;
@@ -1066,10 +1062,10 @@ a.button-pdf {
 a.button-print {
 	background: #DDD url('../image/theme-overclock/print.png') center 0 no-repeat;
 	border: 1px solid #222;
-	-webkit-border-radius: 0px 3px 3px 0px;
-	-moz-border-radius: 0px 3px 3px 0px;
-	-khtml-border-radius: 0px 3px 3px 0px;
-	border-radius: 0px 3px 3px 0px;
+	-webkit-border-radius: 0 3px 3px 0;
+	-moz-border-radius: 0 3px 3px 0;
+	-khtml-border-radius: 0 3px 3px 0;
+	border-radius: 0 3px 3px 0;
 }
 a.button-preview:hover {
 	background: #DDD url('../image/theme-overclock/preview.png') center -24px no-repeat;
@@ -1144,9 +1140,9 @@ a.button-print:hover {
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
-	-moz-box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
-	box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
 	color: #777;
 	font-size: 14px;
 	font-weight: bold;
@@ -1303,9 +1299,9 @@ table.tool tr td {
 .toolbox {
 	background: #4B515A;
 	background: rgba(75, 81, 90, 1);
-	-moz-box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
-	box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
 	border: 1px solid #070707;
 	margin-bottom: 15px;
 	padding: 10px;
@@ -1331,10 +1327,10 @@ table.tool tr td {
 	border-left: 1px solid #4B515A;
 	border-right: 1px solid #4B515A;
 	border-bottom: 1px solid #36AAD8;
-	-webkit-border-radius: 5px 5px 0px 0px;
-	-moz-border-radius: 5px 5px 0px 0px;
-	-khtml-border-radius: 5px 5px 0px 0px;
-	border-radius: 5px 5px 0px 0px;
+	-webkit-border-radius: 5px 5px 0 0;
+	-moz-border-radius: 5px 5px 0 0;
+	-khtml-border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
 	background-color: #30353A;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#30353A), to(#191919));
 	background-image: -webkit-linear-gradient(top, #30353A, #191919);
@@ -1353,10 +1349,10 @@ table.tool tr td {
 	border-left: 1px solid #36AAD8;
 	border-right: 1px solid #36AAD8;
 	border-bottom: 1px solid #30353A;
-	-webkit-border-radius: 5px 5px 0px 0px;
-	-moz-border-radius: 5px 5px 0px 0px;
-	-khtml-border-radius: 5px 5px 0px 0px;
-	border-radius: 5px 5px 0px 0px;
+	-webkit-border-radius: 5px 5px 0 0;
+	-moz-border-radius: 5px 5px 0 0;
+	-khtml-border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
 	outline: 0;
 }
 .htabs-content {}
@@ -1392,10 +1388,10 @@ table.tool tr td {
 	border-top: 1px solid #4B515A;
 	border-left: 1px solid #4B515A;
 	border-bottom: 1px solid #4B515A;
-	-webkit-border-radius: 2px 0px 0px 2px;
-	-moz-border-radius: 2px 0px 0px 2px;
-	-khtml-border-radius: 2px 0px 0px 2px;
-	border-radius: 2px 0px 0px 2px;
+	-webkit-border-radius: 2px 0 0 2px;
+	-moz-border-radius: 2px 0 0 2px;
+	-khtml-border-radius: 2px 0 0 2px;
+	border-radius: 2px 0 0 2px;
 	background: transparent;
 	padding: 6px 14px 7px 15px;
 	margin-bottom: 5px;
@@ -1463,7 +1459,7 @@ table.tool tr td {
 	padding: 3px;
 }
 .scrollbox div input, .scrollbox-store div input {
-	margin: 0px 3px 0px 0px;
+	margin: 0 3px 0 0;
 	padding: 0px;
 }
 .scrollbox div.even, .scrollbox-store div.even {
@@ -1580,27 +1576,27 @@ table.tool tr td {
 	border-bottom: 1px solid #232323;
 	border-left: 1px solid #070707;
 	border-right: 1px solid #070707;
-	-webkit-border-radius: 3px 3px 0px 0px;
-	-moz-border-radius: 3px 3px 0px 0px;
-	-khtml-border-radius: 3px 3px 0px 0px;
-	border-radius: 3px 3px 0px 0px;
-	padding: 6px 0px 6px 10px;
+	-webkit-border-radius: 3px 3px 0 0;
+	-moz-border-radius: 3px 3px 0 0;
+	-khtml-border-radius: 3px 3px 0 0;
+	border-radius: 3px 3px 0 0;
+	padding: 6px 0 6px 10px;
 }
 .dashboard-content {
 	background: #30353A;
 	background: rgba(48, 53, 58, 1);
-	-moz-box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
-	box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
 	min-height: 240px;
 	border-top: none;
 	border-bottom: 1px solid #070707;
 	border-left: 1px solid #070707;
 	border-right: 1px solid #070707;
-	-webkit-border-radius: 0px 0px 3px 3px;
-	-moz-border-radius: 0px 0px 3px 3px;
-	-khtml-border-radius: 0px 0px 3px 3px;
-	border-radius: 0px 0px 3px 3px;
+	-webkit-border-radius: 0 0 3px 3px;
+	-moz-border-radius: 0 0 3px 3px;
+	-khtml-border-radius: 0 0 3px 3px;
+	border-radius: 0 0 3px 3px;
 	margin-bottom: 10px;
 	padding: 10px;
 }
@@ -1622,17 +1618,17 @@ table.tool tr td {
 .tops .tiers .dashboard-content-left, .tops .tiers .dashboard-content-middle, .tops .tiers .dashboard-content-right {
 	background: #30353A;
 	background: rgba(48, 53, 58, 1);
-	-moz-box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
-	box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
 	border-top: none;
 	border-bottom: 1px solid #070707;
 	border-left: 1px solid #070707;
 	border-right: 1px solid #070707;
-	-webkit-border-radius: 0px 0px 3px 3px;
-	-moz-border-radius: 0px 0px 3px 3px;
-	-khtml-border-radius: 0px 0px 3px 3px;
-	border-radius: 0px 0px 3px 3px;
+	-webkit-border-radius: 0 0 3px 3px;
+	-moz-border-radius: 0 0 3px 3px;
+	-khtml-border-radius: 0 0 3px 3px;
+	border-radius: 0 0 3px 3px;
 	min-height: 200px;
 	padding: 10px;
 }
@@ -1651,7 +1647,7 @@ table.tool tr td {
 	width: 100%;
 	display: inline-block;
 	margin-bottom: 5px;
-	padding: 0px;
+	padding: 0;
 	border: none;
 }
 .tiles .tile {
@@ -1667,9 +1663,9 @@ table.tool tr td {
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
 	margin-right: 10px;
-	-moz-box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
-	box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
 }
 .tiles .tile .tile-blue {
 	background: #4691D2;
@@ -1679,9 +1675,9 @@ table.tool tr td {
 	border-radius: 3px;
 	margin-right: 10px;
 	margin-left: 10px;
-	-moz-box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
-	box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
 }
 .tiles .tile .tile-yellow {
 	background: #F2B155;
@@ -1691,9 +1687,9 @@ table.tool tr td {
 	border-radius: 3px;
 	margin-right: 10px;
 	margin-left: 10px;
-	-moz-box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
-	box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
 }
 .tiles .tile .tile-green {
 	background: #5DC15E;
@@ -1702,9 +1698,9 @@ table.tool tr td {
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
 	margin-left: 10px;
-	-moz-box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
-	box-shadow: 0px 1px 0px rgba(48, 53, 58, 1), inset 0px 4px 4px -3px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
 }
 .tiles .tile .tile-red p, .tiles .tile .tile-blue p, .tiles .tile .tile-yellow p, .tiles .tile .tile-green p {
 	padding: 10px 12px;
@@ -1717,14 +1713,14 @@ table.tool tr td {
 	text-shadow: 0 0 1px rgba(252, 252, 252, 0.05);
 	font-size: 32px;
 	font-weight: bold;
-	text-shadow: 0px 1px 1px #222;
+	text-shadow: 0 1px 1px #222;
 }
 .tiles .tile .tile-red a, .tiles .tile .tile-blue a, .tiles .tile .tile-yellow a, .tiles .tile .tile-green a {
 	color: #FCFCFC;
 	text-shadow: 0 0 1px rgba(252, 252, 252, 0.05);
 	font-size: 18px;
 	font-weight: bold;
-	text-shadow: 0px 1px 1px #222;
+	text-shadow: 0 1px 1px #222;
 }
 .tiles .tile .tile-red a i, .tiles .tile .tile-blue a i, .tiles .tile .tile-yellow a i, .tiles .tile .tile-green a i {
 	font-size: 26px;
