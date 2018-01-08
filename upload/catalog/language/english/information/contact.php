@@ -2,7 +2,7 @@
 // Heading
 $_['heading_title']    = 'Contact Us';
 
-// Text 
+// Text
 $_['text_contact']     = 'Contact Form';
 $_['text_message']     = '<p>Your enquiry has been successfully sent to the store owner!</p>';
 $_['text_location']    = 'Our Location';

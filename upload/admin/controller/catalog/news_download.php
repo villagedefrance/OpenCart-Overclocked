@@ -167,7 +167,7 @@ class ControllerCatalogNewsDownload extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),       		
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
@@ -380,7 +380,7 @@ class ControllerCatalogNewsDownload extends Controller {
 			$this->data['news_download_description'] = $this->model_catalog_news_download->getDownloadDescriptions($this->request->get['news_download_id']);
 		} else {
 			$this->data['news_download_description'] = array();
-		}   
+		}
 
 		if (isset($this->request->post['filename'])) {
 			$this->data['filename'] = $this->request->post['filename'];
@@ -407,7 +407,7 @@ class ControllerCatalogNewsDownload extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	protected function validateForm() { 
+	protected function validateForm() {
 		if (!$this->user->hasPermission('modify', 'catalog/news_download')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}

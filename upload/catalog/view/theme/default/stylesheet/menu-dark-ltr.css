@@ -93,7 +93,7 @@
 	background: #4F5152;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#58595A), to(#414344));
 	background-image: -webkit-linear-gradient(top, #58595A, #414344);
-	background-image: -moz-linear-gradient(#top, #58595A, #414344);
+	background-image: -moz-linear-gradient(top, #58595A, #414344);
 	background-image: -ms-linear-gradient(top, #58595A, #414344);
 	background-image: -o-linear-gradient(top, #58595A, #414344);
 	background-image: linear-gradient(to bottom, #58595A, #414344);

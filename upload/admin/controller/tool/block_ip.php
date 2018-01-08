@@ -95,7 +95,7 @@ class ControllerToolBlockIp extends Controller {
 
 		$this->getForm();
 	}
- 
+
 	public function delete() {
 		$this->language->load('tool/block_ip');
 
@@ -415,7 +415,7 @@ class ControllerToolBlockIp extends Controller {
 		return empty($this->error);
 	}
 
-	protected function validateDelete() { 
+	protected function validateDelete() {
 		if (!$this->user->hasPermission('modify', 'tool/block_ip')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}

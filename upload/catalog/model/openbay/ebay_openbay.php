@@ -9,7 +9,9 @@ class ModelOpenbayEbayOpenbay extends Model {
 
 		$this->default_part_refunded_id = $this->config->get('EBAY_DEF_PARTIAL_REFUND_ID');
 
-		if ($this->default_part_refunded_id == null) { $this->default_part_refunded_id = $this->default_paid_id; }
+		if ($this->default_part_refunded_id == null) {
+			$this->default_part_refunded_id = $this->default_paid_id;
+		}
 
 		$this->tax = ($this->config->get('tax') == '' ? '1' : ($this->config->get('tax') /100) + 1);
 		$this->tax_type = $this->config->get('ebay_tax_listing');
@@ -51,13 +53,17 @@ class ModelOpenbayEbayOpenbay extends Model {
 		}
 
 		/* Force array type */
-		if (!is_array($order->txn)) { $order->txn = array($order->txn); }
+		if (!is_array($order->txn)) {
+			$order->txn = array($order->txn);
+		}
 
 		$order_id = $this->model_openbay_ebay_order->find($order->smpId);
 
 		$created_hours = (int)$this->config->get('openbaypro_created_hours');
 
-		if ($created_hours == 0 || $created_hours == '') { $created_hours = 24; } // This is a fallback value.
+		if ($created_hours == 0 || $created_hours == '') {
+			$created_hours = 24;
+		} // This is a fallback value.
 
 		$from = date("Y-m-d H:i:00", mktime(date("H")-(int)$created_hours, date("i"), date("s"), date("m"), date("d"), date("y")));
 
@@ -157,10 +163,10 @@ class ModelOpenbayEbayOpenbay extends Model {
 				$this->model_openbay_ebay_order->orderLinkCreate((int)$order_id, (int)$order->smpId);
 
 				/* check user details to see if we have now been passed the user info, if we have these details then we have the rest of the delivery info */
-				if (!empty($order->address->name) && !empty($order->address->street1)){
+				if (!empty($order->address->name) && !empty($order->address->street1)) {
 					$this->openbay->ebay->log('User info found.');
 
-					if ($this->model_openbay_ebay_order->hasUser($order_id) == false){
+					if ($this->model_openbay_ebay_order->hasUser($order_id) == false) {
 						$user = $this->handleUserAccount($order);
 
 						/* update if the user details have not been assigned to the order */

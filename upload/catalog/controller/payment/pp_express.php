@@ -1129,7 +1129,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 			} elseif (is_array($response) && isset($response['ACK']) && ($response['ACK'] == 'Success')) {
 				//handle order status
-				switch($response['PAYMENTINFO_0_PAYMENTSTATUS']) {
+				switch ($response['PAYMENTINFO_0_PAYMENTSTATUS']) {
 					case 'Canceled_Reversal':
 						$order_status_id = $this->config->get('pp_express_canceled_reversal_status_id');
 						break;
@@ -1209,7 +1209,7 @@ class ControllerPaymentPPExpress extends Controller {
 						'year'       => 'Year'
 					);
 
-					foreach($recurring_products as $item) {
+					foreach ($recurring_products as $item) {
 						$data = array(
 							'METHOD'             => 'CreateRecurringPaymentsProfile',
 							'TOKEN'              => $this->session->data['paypal']['token'],
@@ -1439,7 +1439,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 			} elseif (is_array($response) && isset($response['ACK']) && ($response['ACK'] == 'Success')) {
 				// Handle order status
-				switch($response['PAYMENTINFO_0_PAYMENTSTATUS']) {
+				switch ($response['PAYMENTINFO_0_PAYMENTSTATUS']) {
 					case 'Canceled_Reversal':
 						$order_status_id = $this->config->get('pp_express_canceled_reversal_status_id');
 						break;

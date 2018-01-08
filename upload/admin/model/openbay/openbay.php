@@ -27,7 +27,7 @@ class ModelOpenbayOpenbay extends Model {
 		if (!is_dir($web_root . '/system/cache/tmp')) {
 			try {
 				@mkdir($web_root . '/system/cache/tmp');
-			} catch(ErrorException $ex) {
+			} catch (ErrorException $ex) {
 				$this->error[] = $ex->getMessage();
 			}
 		}
@@ -47,7 +47,7 @@ class ModelOpenbayOpenbay extends Model {
 
 			fwrite($tmp_file, $output);
 			fclose($tmp_file);
-		} catch(ErrorException $ex) {
+		} catch (ErrorException $ex) {
 			$this->error[] = $ex->getMessage();
 		}
 
@@ -56,14 +56,14 @@ class ModelOpenbayOpenbay extends Model {
 		// remove tmp file
 		try {
 			unlink($web_root . '/system/cache/tmp/test_file.php');
-		} catch(ErrorException $ex) {
+		} catch (ErrorException $ex) {
 			$this->error[] = $ex->getMessage();
 		}
 
 		// delete tmp folder
 		try {
 			@rmdir($web_root . '/system/cache/tmp');
-		} catch(ErrorException $ex) {
+		} catch (ErrorException $ex) {
 			$this->error[] = $ex->getMessage();
 		}
 
@@ -210,7 +210,7 @@ class ModelOpenbayOpenbay extends Model {
 				if (file_exists($filename)) {
 					try {
 						unlink($filename);
-					} catch(ErrorException $ex) {
+					} catch (ErrorException $ex) {
 						$this->openbay->log('Unable to remove file: ' . $filename . ', ' . $ex->getMessage());
 						$this->error[] = $filename;
 					}
@@ -227,7 +227,7 @@ class ModelOpenbayOpenbay extends Model {
 			$response_error = '<p>' . $this->language->get('error_file_delete') . '</p>';
 			$response_error .= '<ul>';
 
-			foreach($this->error as $error_file) {
+			foreach ($this->error as $error_file) {
 				$response_error .= '<li>' . $error_file . '</li>';
 			}
 

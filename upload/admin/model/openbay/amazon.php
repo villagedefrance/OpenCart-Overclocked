@@ -307,7 +307,7 @@ class ModelOpenbayAmazon extends Model {
 
 		if ($rowsTotal === 0 && $links > 0) {
 			return 'linked';
-		} else if($rowsTotal == 0) {
+		} elseif ($rowsTotal == 0) {
 			return false;
 		}
 

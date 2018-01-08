@@ -203,7 +203,7 @@ class ControllerCheckoutExpressPaymentAddress extends Controller {
 					unset($this->session->data['payment_method']);
 					unset($this->session->data['payment_methods']);
 				}
-			} 
+			}
 
 			if (isset($this->request->post['firstname'])) {
 				$this->data['firstname'] = $this->request->post['firstname'];

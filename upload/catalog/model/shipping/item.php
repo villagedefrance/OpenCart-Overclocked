@@ -20,7 +20,9 @@ class ModelShippingItem extends Model {
 			$items = 0;
 
 			foreach ($this->cart->getProducts() as $product) {
-				if ($product['shipping']) $items += $product['quantity'];
+				if ($product['shipping']) {
+					$items += $product['quantity'];
+				}
 			}
 
 			$quote_data = array();

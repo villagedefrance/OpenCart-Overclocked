@@ -23,8 +23,8 @@ class ControllerModuleHtml extends Controller {
 
 			$position = $setting['tab_id'];
 
-			switch($position) {
-				case "tab" . $i: 
+			switch ($position) {
+				case "tab" . $i:
 				$this->data['code'] = $this->data['code' . $i];
 				$this->data['theme'] = $this->data['theme' . $i];
 				$this->data['title'] = $this->data['title' . $i];

@@ -8,7 +8,7 @@
 // Usage:
 //
 //   cd install
-//   php cli_install.php install 
+//   php cli_install.php install
 //		--db_hostname localhost \
 //		--db_username root \
 //		--db_password pass \

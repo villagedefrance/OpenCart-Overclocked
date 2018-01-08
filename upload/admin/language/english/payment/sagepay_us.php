@@ -5,7 +5,7 @@ $_['heading_title']      = 'Sage Payment Solutions (US)';
 // Link
 $_['text_sagepay_us']    = '<a onclick="window.open(\'http://www.sagepay.co.uk/\');"><img src="view/image/payment/sagepay.png" alt="SagePay" title="SagePay" style="border:1px solid #EEEEEE;" /></a>';
 
-// Text 
+// Text
 $_['text_payment']       = 'Payment';
 $_['text_success']       = 'Success: You have modified <b>Payment SagePay US</b> account details !';
 

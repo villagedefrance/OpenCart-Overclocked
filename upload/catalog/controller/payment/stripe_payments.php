@@ -33,7 +33,7 @@ class ControllerPaymentStripePayments extends Controller {
 		for ($i = $today['year']; $i < $today['year'] + 11; $i++) {
 			$this->data['year_expire'][] = array(
 				'text'  => strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
-				'value' => strftime('%Y', mktime(0, 0, 0, 1, 1, $i)) 
+				'value' => strftime('%Y', mktime(0, 0, 0, 1, 1, $i))
 			);
 		}
 
@@ -85,7 +85,7 @@ class ControllerPaymentStripePayments extends Controller {
 				),
 				'description'  => 'Order ID# '. $this->session->data['order_id']
 			));
-		} catch(Stripe_CardError $e) {
+		} catch (Stripe_CardError $e) {
 			// Error card processing
 			$error = $e->jsonBody['error'];
 		}

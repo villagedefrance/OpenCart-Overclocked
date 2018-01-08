@@ -47,7 +47,9 @@ class ControllerToolCacheFiles extends Controller {
 
 				$suffix = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
 
-				while (($size / 1024) > 1) { $size = $size / 1024; $i++; }
+				while (($size / 1024) > 1) {
+					$size = $size / 1024; $i++;
+				}
 			}
 
 			$data = explode('/', $file);

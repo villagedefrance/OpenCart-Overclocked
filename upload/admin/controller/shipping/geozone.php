@@ -3,7 +3,7 @@ class ControllerShippingGeoZone extends Controller {
 	private $error = array();
 	private $_name = 'geozone';
 
-	public function index() {  
+	public function index() {
 		$this->language->load('shipping/' . $this->_name);
 
 		$this->document->setTitle($this->language->get('heading_title'));

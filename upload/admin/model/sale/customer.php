@@ -248,7 +248,7 @@ class ModelSaleCustomer extends Model {
 				'zone'           => $zone,
 				'zone_code'      => $zone_code,
 				'country_id'     => $address_query->row['country_id'],
-				'country'        => $country,	
+				'country'        => $country,
 				'iso_code_2'     => $iso_code_2,
 				'iso_code_3'     => $iso_code_3,
 				'address_format' => $address_format
@@ -525,7 +525,7 @@ class ModelSaleCustomer extends Model {
 			$mail->password = $this->config->get('config_smtp_password');
 			$mail->port = $this->config->get('config_smtp_port');
 			$mail->timeout = $this->config->get('config_smtp_timeout');
-			
+
 			$mail->setTo($customer_info['email']);
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender(html_entity_decode($store_name, ENT_QUOTES, 'UTF-8'));

@@ -48,11 +48,11 @@ class ModelToolImage extends Model {
 
 	public function hex2rgba($color, $opacity) {
 		$default = 'rgb(0,0,0)';
- 
+
 		if (empty($color)) {
 			return $default;
 		}
- 
+
 		if ($color[0] == '#') {
 			$color = substr($color, 1);
 		}
