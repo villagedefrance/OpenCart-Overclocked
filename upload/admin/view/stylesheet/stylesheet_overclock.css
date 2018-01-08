@@ -948,10 +948,10 @@ a.button-select, a.button-unselect, .list a.button-select, .list a.button-unsele
 	width: 16px;
 	height: 16px;
 	padding: 1px 15px;
-	margin: 0px;
+	margin: 0;
 }
 a.button-select, .list a.button-select {
-	background: #DDD url('../image/theme-overclock/select.png') center 0px no-repeat;
+	background: #DDD url('../image/theme-overclock/select.png') center 0 no-repeat;
 	border: 1px solid #222;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
@@ -959,7 +959,7 @@ a.button-select, .list a.button-select {
 	border-radius: 3px 0px 0px 3px;
 }
 a.button-unselect, .list a.button-unselect {
-	background: #DDD url('../image/theme-overclock/unselect.png') center 0px no-repeat;
+	background: #DDD url('../image/theme-overclock/unselect.png') center 0 no-repeat;
 	border: 1px solid #222;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
@@ -980,10 +980,10 @@ a.button-browse, a.button-recycle, .list a.button-browse, .list a.button-recycle
 	width: 16px;
 	height: 16px;
 	padding: 1px 15px;
-	margin: 0px;
+	margin: 0;
 }
 a.button-browse, .list a.button-browse {
-	background: #DDD url('../image/theme-overclock/browse.png') center 0px no-repeat;
+	background: #DDD url('../image/theme-overclock/browse.png') center 0 no-repeat;
 	border: 1px solid #222;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
@@ -991,7 +991,7 @@ a.button-browse, .list a.button-browse {
 	border-radius: 3px 0px 0px 3px;
 }
 a.button-recycle, .list a.button-recycle {
-	background: #DDD url('../image/theme-overclock/recycle.png') center 0px no-repeat;
+	background: #DDD url('../image/theme-overclock/recycle.png') center 0 no-repeat;
 	border: 1px solid #222;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
@@ -1012,10 +1012,10 @@ input.button-move-left, input.button-move-right {
 	width: 16px;
 	height: 20px;
 	padding: 1px 15px 4px 15px;
-	margin: 0px;
+	margin: 0;
 }
 input.button-move-left {
-	background: #DDD url('../image/theme-overclock/move-left.png') center 0px no-repeat;
+	background: #DDD url('../image/theme-overclock/move-left.png') center 0 no-repeat;
 	border: 1px solid #222;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
@@ -1023,7 +1023,7 @@ input.button-move-left {
 	border-radius: 3px 0px 0px 3px;
 }
 input.button-move-right {
-	background: #DDD url('../image/theme-overclock/move-right.png') center 0px no-repeat;
+	background: #DDD url('../image/theme-overclock/move-right.png') center 0 no-repeat;
 	border: 1px solid #222;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
@@ -1044,11 +1044,11 @@ a.button-preview, a.button-pdf, a.button-print {
 	width: 24px;
 	height: 24px;
 	padding: 1px 9px;
-	margin: 0px;
+	margin: 0;
 	vertical-align: middle;
 }
 a.button-preview {
-	background: #DDD url('../image/theme-overclock/preview.png') center 0px no-repeat;
+	background: #DDD url('../image/theme-overclock/preview.png') center 0 no-repeat;
 	border: 1px solid #222;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
@@ -1056,15 +1056,15 @@ a.button-preview {
 	border-radius: 3px 0px 0px 3px;
 }
 a.button-pdf {
-	background: #DDD url('../image/theme-overclock/pdf.png') center 0px no-repeat;
+	background: #DDD url('../image/theme-overclock/pdf.png') center 0 no-repeat;
 	border: 1px solid #222;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
-	-khtml-border-radius: 0px;
-	border-radius: 0px;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-khtml-border-radius: 0;
+	border-radius: 0;
 }
 a.button-print {
-	background: #DDD url('../image/theme-overclock/print.png') center 0px no-repeat;
+	background: #DDD url('../image/theme-overclock/print.png') center 0 no-repeat;
 	border: 1px solid #222;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
@@ -1106,7 +1106,7 @@ a.button-print:hover {
 	background-image: -ms-linear-gradient(top, #3C4044, #171C19);
 	background-image: -o-linear-gradient(top, #3C4044, #171C19);
 	background-image: linear-gradient(to bottom, #3C4044, #171C19);
-	padding: 0px 5px;
+	padding: 0 5px;
 }
 .list thead td a, .list thead td {
 	font-weight: bold;
@@ -1120,7 +1120,7 @@ a.button-print:hover {
 .list tbody td {
 	vertical-align: middle;
 	background: #4B515A;
-	padding: 0px 5px;
+	padding: 0 5px;
 }
 .list tbody tr:hover td {
 	background-color: #5A6468;
@@ -1131,15 +1131,15 @@ a.button-print:hover {
 	left: 5px;
 	line-height: 22px;
 	vertical-align: middle;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 .list tbody tr td span.color {
 	display: block;
 	float: right;
 	height: 22px;
 	width: 22px;
-	border: 0px;
+	border: 0;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
@@ -1160,7 +1160,7 @@ a.button-print:hover {
 	padding: 2px 12px;
 	color: #E5E5E5;
 	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
-	border: 0px;
+	border: 0;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	-khtml-border-radius: 2px;
@@ -1171,7 +1171,7 @@ a.button-print:hover {
 	padding: 2px 12px;
 	color: #E5E5E5;
 	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
-	border: 0px;
+	border: 0;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	-khtml-border-radius: 2px;
@@ -1182,7 +1182,7 @@ a.button-print:hover {
 	padding: 2px 12px;
 	color: #E5E5E5;
 	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
-	border: 0px;
+	border: 0;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	-khtml-border-radius: 2px;
@@ -1226,17 +1226,17 @@ a.button-print:hover {
 }
 .list tr td.picked {
 	background: url('../image/success.png') center no-repeat;
-	margin: 0px auto;
+	margin: 0 auto;
 	width: 22px;
 }
 .list tr td.delayed {
 	background: url('../image/attention.png') center no-repeat;
-	margin: 0px auto;
+	margin: 0 auto;
 	width: 22px;
 }
 .list tr td.staged {
 	background: url('../image/warning.png') center no-repeat;
-	margin: 0px auto;
+	margin: 0 auto;
 	width: 22px;
 }
 /* Table Form */
@@ -1269,8 +1269,8 @@ table.form > tbody > tr > td span.form-icon {
 	left: 5px;
 	line-height: 22px;
 	vertical-align: middle;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 /* Table Image */
 table.form tr td div.image, .list tbody tr td div.image {
@@ -1370,7 +1370,7 @@ table.tool tr td {
 	float: left;
 	display: block;
 	width: 190px;
-	padding: 10px 0px;
+	padding: 10px 0;
 	min-height: 300px;
 	border-right: 1px solid #36AAD8;
 	clear: left;

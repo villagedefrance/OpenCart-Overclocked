@@ -1,7 +1,7 @@
 <?php
 // Heading
 $_['heading_title']         = 'Product List';
- 
+
 // Text
 $_['text_error']            = 'Product not found!';
 $_['text_empty']            = 'There are no products to list.';

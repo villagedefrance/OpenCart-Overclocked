@@ -6,7 +6,9 @@ class ModelOpenbayEbayOrder extends Model {
 
 		$createdHours = (int)$this->config->get('openbaypro_created_hours');
 
-		if ($createdHours == 0 || $createdHours == '') { $createdHours = 24; } //This is a fallback value.
+		if ($createdHours == 0 || $createdHours == '') {
+			$createdHours = 24;
+		} //This is a fallback value.
 
 		$from = date("Y-m-d H:i:00", mktime(date("H")-$createdHours, date("i"), date("s"), date("m"), date("d"), date("y")));
 
@@ -150,7 +152,7 @@ class ModelOpenbayEbayOrder extends Model {
 		$order_id = $this->orderLinkGet($smp_id);
 
 		/**
-		 * This is a depreciated method of getting order Id's and will be removed in the future.
+		 * This is a deprecated method of getting order Id's and will be removed in the future.
 		 */
 		if ($order_id == 0) {
 			$query = $this->db->query("SELECT `order_id` FROM `" . DB_PREFIX . "order_history` WHERE `comment` = '[eBay Import:" . $this->db->escape($smp_id) . "]' LIMIT 0,1");
@@ -258,11 +260,12 @@ class ModelOpenbayEbayOrder extends Model {
 
 	public function confirm($order_id, $order_status_id, $comment = '') {
 		$order_info = $this->model_checkout_order->getOrder($order_id);
+
 		$notify = $this->config->get('openbaypro_confirm_notify');
 
 		if ($order_info && !$order_info['order_status_id']) {
 			$this->db->query("UPDATE `" . DB_PREFIX . "order` SET order_status_id = '" . (int)$order_status_id . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");
-			$this->db->query("INSERT INTO " . DB_PREFIX . "order_history SET order_id = '" . (int)$order_id . "', order_status_id = '" . (int)$order_status_id . "', notify = '".(int)$notify."', `comment` = '" . $this->db->escape($comment) . "', date_added = NOW()");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "order_history SET order_id = '" . (int)$order_id . "', order_status_id = '" . (int)$order_status_id . "', notify = '" . (int)$notify . "', `comment` = '" . $this->db->escape($comment) . "', date_added = NOW()");
 
 			if (isset($order_info['email']) && !empty($order_info['email'])) {
 				$order_product_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_product` WHERE `order_id` = '" . (int)$order_id . "'");

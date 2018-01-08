@@ -242,7 +242,7 @@ class ControllerSaleOrder extends Controller {
 
 		if (isset($this->request->get['filter_order_id'])) {
 			$url .= '&filter_order_id=' . $this->request->get['filter_order_id'];
-		} 
+		}
 
 		if (isset($this->request->get['filter_customer'])) {
 			$url .= '&filter_customer=' . urlencode(html_entity_decode($this->request->get['filter_customer'], ENT_QUOTES, 'UTF-8'));
@@ -1717,7 +1717,7 @@ class ControllerSaleOrder extends Controller {
 					'href_picked'      => $this->url->link('sale/order/picked', 'token=' . $this->session->data['token'] . '&order_product_id=' . $product['order_product_id'], 'SSL'),
 					'href_backordered' => $this->url->link('sale/order/backordered', 'token=' . $this->session->data['token'] . '&order_product_id=' . $product['order_product_id'], 'SSL'),
 					'href'             => $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], 'SSL')
-				); 
+				);
 			} 
 
 			$this->data['vouchers'] = array();

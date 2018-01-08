@@ -169,7 +169,7 @@ class ControllerPaymentPPStandard extends Controller {
 
 				switch ($this->request->post['payment_status']) {
 					case 'Canceled_Reversal':
-						$order_status_id = $this->config->get('pp_standard_canceled_reversal_status_id'); 
+						$order_status_id = $this->config->get('pp_standard_canceled_reversal_status_id');
 						break;
 					case 'Completed':
 						$receiver_match = (strtolower($this->request->post['receiver_email']) == strtolower($this->config->get('pp_standard_email')));

@@ -77,6 +77,7 @@ class ControllerPaymentBest2pay extends Controller {
 
 		if ($order_id) {
 			$this->data['action'] .= 'Purchase';
+
 			$this->data['sector'] = $register_data['sector'];
 			$this->data['id'] = $order_id;
 			$this->data['signature'] = base64_encode(md5($register_data['sector'] . $order_id . $this->config->get('best2pay_password')));
@@ -140,7 +141,7 @@ class ControllerPaymentBest2pay extends Controller {
 
 		if (isset($this->request->get['operation']) && $this->request->get['operation'] && isset($this->request->get['id']) && $this->request->get['id']) {
 			// OPERATION
-			if (!$this->config->get('best2pay_test')){
+			if (!$this->config->get('best2pay_test')) {
 				$action = 'https://pay.best2pay.net/webapi/';
 			} else {
 				$action = 'https://test.best2pay.net/webapi/';

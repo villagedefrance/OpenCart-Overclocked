@@ -187,7 +187,7 @@ class ModelOpenbayEbayOpenbay extends Model {
 				$order_status_id = $this->default_pending_id;
 
 				// order has been paid
-				if ($order->payment->status == 'Paid'){
+				if ($order->payment->status == 'Paid') {
 					$this->model_openbay_ebay_order->update($order_id, $this->default_paid_id);
 
 					$this->openbay->ebay->log('Order ID: ' . $order_id . ' -> Paid');
@@ -340,7 +340,7 @@ class ModelOpenbayEbayOpenbay extends Model {
 				$this->openbay->ebay->log('create() - Total net price: ' . $total_net);
 
 				$tax = number_format((double)$txn->item->tax->item, 4, '.', '');
-				$this->openbay->ebay->log('create() - Tax: '.$tax);
+				$this->openbay->ebay->log('create() - Tax: ' . $tax);
 			} else {
 				// use the store pre-set tax-rate for everything
 				$this->openbay->ebay->log('create() - Using tax rates from store');
@@ -386,7 +386,7 @@ class ModelOpenbayEbayOpenbay extends Model {
 
 						$p_options = array();
 
-						foreach($skuParts as $part){
+						foreach ($skuParts as $part){
 							$sql = "SELECT
 								`pv`.`product_option_id`,
 								`pv`.`product_option_value_id`,
@@ -465,8 +465,7 @@ class ModelOpenbayEbayOpenbay extends Model {
 		}
 
 		$this->db->query("
-			UPDATE `" . DB_PREFIX . "order`
-			SET
+			UPDATE `" . DB_PREFIX . "order` SET
 			   `customer_id` = '" . (int)$user['id'] . "',
 			   `customer_group_id` = '" . (int)$this->config->get('openbay_def_customer_grp') . "',
 			   `firstname` = '" . $this->db->escape($user['fname']) . "',
@@ -500,7 +499,7 @@ class ModelOpenbayEbayOpenbay extends Model {
 			   `payment_address_format` = '" . $address_format . "',
 			   `total` = '" . (double)$order->order->total . "',
 			   `date_modified` = NOW()
-		   WHERE `order_id` = '" . $this->db->escape($order_id) . "'
+			   WHERE `order_id` = '" . $this->db->escape($order_id) . "'
 		   ");
 
 		$total_tax = 0;

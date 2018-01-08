@@ -1188,7 +1188,7 @@ class ControllerSettingStore extends Controller {
 			$image = $server . 'image/templates/' . basename($this->request->get['template']) . '.png';
 		} else {
 			$image = $server . 'image/no_image.jpg';
-		} 
+		}
 
 		$this->response->setOutput('<img src="' . $image . '" alt="" title="" style="border:1px solid #EEE;" />');
 	}

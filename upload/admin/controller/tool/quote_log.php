@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ControllerToolQuoteLog extends Controller {
 
 	public function index() {

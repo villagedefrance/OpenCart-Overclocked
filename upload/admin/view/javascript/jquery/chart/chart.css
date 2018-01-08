@@ -35,7 +35,7 @@
 	margin: 0 auto;
 	z-index: 20;
 	position: absolute;
-	left: 0px;
+	left: 0;
 }
 .bar-chart ul {
 	margin-left: 34px;
@@ -291,8 +291,8 @@
 	content: "";
 	display: block;
 	position: absolute;
-	left: 0px;
-	bottom: 0px;
+	left: 0;
+	bottom: 0;
 	height: 1px;
 	width: 100%;
 	background: rgb(238,238,238);
@@ -302,13 +302,13 @@
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	left: 0px;
-	bottom: 0px;
+	left: 0;
+	bottom: 0;
 }
 .chart hr {
 	position: absolute;
-	left: 0px;
-	bottom: 0px;
+	left: 0;
+	bottom: 0;
 	width: 100%;
 	height: 1px;
 	outline: none;
@@ -385,8 +385,8 @@
 	cursor: pointer;
 	width: 40px;
 	height: 40px;
-	left: 0px;
-	top: 0px;
+	left: 0;
+	top: 0;
 	z-index: 30;
 	-webkit-transform: translateX(-50%) translateY(-50%);
 	-moz-transform: translateX(-50%) translateY(-50%);
@@ -436,8 +436,8 @@
 	height: 100%;
 	width: 100%;
 	position: absolute;
-	bottom: 0px;
-	left: 0px;
+	bottom: 0;
+	left: 0;
 	opacity: 1;
 	-webkit-animation: drawLine .3s ease-in-out;
 	-moz-animation: drawLine .3s ease-in-out;

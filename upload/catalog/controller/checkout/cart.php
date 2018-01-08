@@ -743,7 +743,7 @@ class ControllerCheckoutCart extends Controller {
 			$product_id = $this->request->post['product_id'];
 		} else {
 			$product_id = 0;
-		} 
+		}
 
 		$this->load->model('catalog/product');
 
@@ -782,7 +782,7 @@ class ControllerCheckoutCart extends Controller {
 				}
 			}
 
-			$profiles = $this->model_catalog_product->getProfiles($product_info['product_id']); 
+			$profiles = $this->model_catalog_product->getProfiles($product_info['product_id']);
 
 			if ($profiles) {
 				$profile_ids = array();

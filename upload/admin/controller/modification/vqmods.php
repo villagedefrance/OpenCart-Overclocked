@@ -463,7 +463,7 @@ class ControllerModificationVQmods extends Controller {
 			$file_name = $this->request->files['vqmod_file']['name'];
 
 			if ($this->request->files['vqmod_file']['error'] > 0) {
-				switch($this->request->files['vqmod_file']['error']) {
+				switch ($this->request->files['vqmod_file']['error']) {
 					case 1: $this->session->data['error'] = $this->language->get('error_ini_max_file_size'); break;
 					case 2: $this->session->data['error'] = $this->language->get('error_form_max_file_size'); break;
 					case 3: $this->session->data['error'] = $this->language->get('error_partial_upload'); break;

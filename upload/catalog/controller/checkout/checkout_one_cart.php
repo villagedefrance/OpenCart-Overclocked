@@ -46,7 +46,7 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 			}
 		}
 
-		$sort_order = array(); 
+		$sort_order = array();
 
 		foreach ($total_data as $key => $value) {
 			$sort_order[$key] = $value['sort_order'];
@@ -126,7 +126,7 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 				'total'      => $product['total'],
 				'tax'        => $this->tax->getTax($product['price'], $product['tax_class_id']),
 				'reward'     => $product['reward']
-			); 
+			);
 		}
 
 		// Gift Voucher

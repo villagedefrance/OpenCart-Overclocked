@@ -29,7 +29,7 @@ $_['entry_status']        = 'Status:';
 $_['button_vertical']     = 'Menu Vertical';
 $_['button_horizontal']   = 'Menu Horizontal';
 
-// Error 
+// Error
 $_['error_permission']    = 'Warning: You do not have permission to modify <b>Menus</b> !';
 $_['error_warning']       = 'Warning: Please check the form carefully for errors !';
 $_['error_title']         = 'Menu Title must be between 2 and 32 characters !';

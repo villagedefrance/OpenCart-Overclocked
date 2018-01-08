@@ -342,7 +342,6 @@ class ControllerDesignBanner extends Controller {
 			$this->data['error_image'] = array();
 		}
 
-
 		$this->document->addScript('view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('view/javascript/jquery/colorbox/colorbox.css');
 

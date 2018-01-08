@@ -18,7 +18,7 @@ class ModelPaymentStripePayments extends Model {
 
 		$method_data = array();
 
-		if ($status) {  
+		if ($status) {
 			$method_data = array(
 				'code'       => 'stripe_payments',
 				'title'      => $this->language->get('text_title'),

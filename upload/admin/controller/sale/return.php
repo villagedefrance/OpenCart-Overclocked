@@ -172,7 +172,7 @@ class ControllerSaleReturn extends Controller {
 				$this->model_sale_return->deleteReturn($return_id);
 			}
 
-			$this->session->data['success'] = $this->language->get('text_success'); 
+			$this->session->data['success'] = $this->language->get('text_success');
 
 			$url = '';
 
@@ -957,15 +957,15 @@ class ControllerSaleReturn extends Controller {
 			}
 
 			if (isset($this->request->get['filter_return_status_id'])) {
-				$url .= '&filter_return_status_id=' . $this->request->get['filter_return_status_id']; 
+				$url .= '&filter_return_status_id=' . $this->request->get['filter_return_status_id'];
 			}
 
 			if (isset($this->request->get['filter_date_added'])) {
-				$url .= '&filter_date_added=' . $this->request->get['filter_date_added']; 
+				$url .= '&filter_date_added=' . $this->request->get['filter_date_added'];
 			}
 
 			if (isset($this->request->get['filter_date_modified'])) {
-				$url .= '&filter_date_modified=' . $this->request->get['filter_date_modified']; 
+				$url .= '&filter_date_modified=' . $this->request->get['filter_date_modified'];
 			}
 
 			if (isset($this->request->get['sort'])) {
@@ -994,7 +994,7 @@ class ControllerSaleReturn extends Controller {
 				'separator' => ' :: '
 			);
 
-			$this->data['cancel'] = $this->url->link('sale/return', 'token=' . $this->session->data['token'] . $url, 'SSL'); 
+			$this->data['cancel'] = $this->url->link('sale/return', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
 			$this->load->model('sale/order');
 

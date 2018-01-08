@@ -1,8 +1,8 @@
 <?php
 // Heading
 $_['heading_title']                   = 'Affiliates';
-                                      
-// Text                               
+
+// Text
 $_['text_success']                    = 'Success: You have modified <b>Affiliates</b> !';
 $_['text_approved']                   = 'You have approved %s accounts!';
 $_['text_affiliate_detail']           = 'Affiliate Details';
@@ -29,8 +29,8 @@ $_['column_amount']                   = 'Amount';
 $_['column_product_id']               = 'Product Id';
 $_['column_product']                  = 'Product Name';
 $_['column_action']                   = 'Action';
-                                      
-// Entry                              
+
+// Entry
 $_['entry_firstname']                 = 'First Name';
 $_['entry_lastname']                  = 'Last Name';
 $_['entry_email']                     = 'E-Mail';
@@ -63,8 +63,8 @@ $_['entry_amount']                    = 'Amount';
 $_['entry_name']                      = 'Affiliate Name';
 $_['entry_approved']                  = 'Approved';
 $_['entry_date_added']                = 'Date Added';
-                                      
-// Help                               
+
+// Help
 $_['help_code']                       = 'The tracking code that will be used to track referrals.';
 $_['help_commission']                 = 'Percentage the affiliate receives on each order.';
 $_['help_amount']                     = 'Enter an amount without the currency symbol.';

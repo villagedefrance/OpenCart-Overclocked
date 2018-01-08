@@ -29,7 +29,7 @@ class ControllerPaymentAmazonCheckout extends Controller {
 		if (isset($this->request->get['contract_id'])) {
 			$this->session->data['cba']['contract_id'] = $this->request->get['contract_id'];
 		} elseif (!isset($this->session->data['cba']['contract_id']) || empty($this->session->data['cba']['contract_id'])) {
-			$this->redirect($this->url->link('common/home', '', 'SSL')); 
+			$this->redirect($this->url->link('common/home', '', 'SSL'));
 		}
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
@@ -192,7 +192,6 @@ class ControllerPaymentAmazonCheckout extends Controller {
 
 		$old_taxes = $taxes;
 		$cba_tax = array();
-
 		$sort_order = array();
 
 		$this->session->data['shipping_method'] = $this->session->data['cba']['shipping_method'];

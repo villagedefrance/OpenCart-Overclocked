@@ -516,7 +516,7 @@ class Amazonus {
 						if (empty($qtyLeftRow)) {
 							$qtyLeftRow['stock'] = 0;
 						}
-	
+
 						$passArray[] = array('pid' => $order_product['product_id'], 'qty_left' => $qtyLeftRow['stock'], 'var' => $var);
 					}
 

@@ -82,18 +82,53 @@ class ModelDesignMedia extends Model {
 
 		$ext = utf8_substr(strrchr($filename, '.'), 1);
 
-		if (strtolower($ext) == 'mp3') { $image = 'mp3.png'; }
-		if (strtolower($ext) == 'mp4') { $image = 'mp4.png'; }
-		if (strtolower($ext) == 'oga') { $image = 'oga.png'; }
-		if (strtolower($ext) == 'ogv') { $image = 'ogv.png'; }
-		if (strtolower($ext) == 'ogg') { $image = 'ogg.png'; }
-		if (strtolower($ext) == 'webm') { $image = 'webm.png'; }
-		if (strtolower($ext) == 'm4a') { $image = 'm4a.png'; }
-		if (strtolower($ext) == 'm4v') { $image = 'm4v.png'; }
-		if (strtolower($ext) == 'wav') { $image = 'wav.png'; }
-		if (strtolower($ext) == 'wmv') { $image = 'wmv.png'; }
-		if (strtolower($ext) == 'wma') { $image = 'wma.png'; }
-		if (strtolower($ext) == 'flv') { $image = 'flv.png'; }
+		if (strtolower($ext) == 'mp3') {
+			$image = 'mp3.png';
+		}
+
+		if (strtolower($ext) == 'mp4') {
+			$image = 'mp4.png';
+		}
+
+		if (strtolower($ext) == 'oga') {
+			$image = 'oga.png';
+		}
+
+		if (strtolower($ext) == 'ogv') {
+			$image = 'ogv.png';
+		}
+
+		if (strtolower($ext) == 'ogg') {
+			$image = 'ogg.png';
+		}
+
+		if (strtolower($ext) == 'webm') {
+			$image = 'webm.png';
+		}
+
+		if (strtolower($ext) == 'm4a') {
+			$image = 'm4a.png';
+		}
+
+		if (strtolower($ext) == 'm4v') {
+			$image = 'm4v.png';
+		}
+
+		if (strtolower($ext) == 'wav') {
+			$image = 'wav.png';
+		}
+
+		if (strtolower($ext) == 'wmv') {
+			$image = 'wmv.png';
+		}
+
+		if (strtolower($ext) == 'wma') {
+			$image = 'wma.png';
+		}
+
+		if (strtolower($ext) == 'flv') {
+			$image = 'flv.png';
+		}
 
 		return $image;
 	}

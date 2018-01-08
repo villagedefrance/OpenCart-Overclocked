@@ -1,30 +1,30 @@
 <?php
 /**
  * UGRSR
- * 
+ *
  * @package Universal Global RegEx Search/Replace
  * @author Qphoria - http://theqdomain.com/ & Jay Gilford - http://jaygilford.com/
  * @copyright Qphoria & Jay Gilford 2011
  * @version 0.2
  * @access public
- * 
+ *
  * @information
  * This class will perform mass search and replace actions
  * based on regex pattern matching. It recursively grabs all files
  * below it's given path and applies the specified change(s)
- * 
+ *
  * @license
  * Permission is hereby granted, free of charge, to any person to
  * use, copy, modify, distribute, sublicense, and/or sell copies
  * of the Software, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software
- * 
+ *
  * @warning
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESSED OR IMPLIED.
- *  
+ *
  */
 class UGRSR {
 	public $debug = false;				// Show debug messages switch
@@ -41,7 +41,7 @@ class UGRSR {
 
 	/**
 	 * UGRSR::__construct()
-	 * 
+	 *
 	 * @param string $path
 	 * @return null
 	 */
@@ -65,7 +65,7 @@ class UGRSR {
 
 	/**
 	 * UGRSR::addPattern()
-	 * 
+	 *
 	 * @param string $pattern
 	 * @param string $replace
 	 * @return bool
@@ -88,7 +88,7 @@ class UGRSR {
 
 	/**
 	 * UGRSR::mergePatterns()
-	 * 
+	 *
 	 * @param array $pattern_array
 	 * @return bool
 	 */
@@ -99,8 +99,8 @@ class UGRSR {
 			return false;
 		}
 
-		//Loop through pattern array
-		foreach($pattern_array as $data) {
+		// Loop through pattern array
+		foreach ($pattern_array as $data) {
 			// If pattern or replace keys not set throw error and continue loop
 			if (!isset($data['pattern']) || !isset($data['replace'])) {
 				$this->_dbg('ARRAY KEYS NOT SET');
@@ -116,7 +116,7 @@ class UGRSR {
 
 	/**
 	 * UGRSR::clearPatterns()
-	 * 
+	 *
 	 * @return null
 	 */
 	public function clearPatterns() {
@@ -126,9 +126,9 @@ class UGRSR {
 
 	/**
 	 * UGRSR::addFile()
-	 * 
+	 *
 	 * @param string $filename
-	 * @param bool 
+	 * @param bool
 	 * @return bool
 	 */
 	public function addFile($filename, $omit_path = false) {
@@ -157,29 +157,25 @@ class UGRSR {
 
 		// Add filename to file list
 		$this->_dbg('FILE [' . $real_filename . '] ADDED TO FILE LIST');
-
 		$this->_files[] = $real_filename;
-
 		return true;
 	}
 
 	/**
 	 * UGRSR::resetFileList()
-	 * 
+	 *
 	 * @return true
 	 */
 	public function resetFileList() {
 		// Clear file list
 		$this->_files = array();
-
 		$this->_dbg('FILE LIST RESET');
-
 		return true;
 	}
 
 	/**
 	 * UGRSR::addProtected()
-	 * 
+	 *
 	 * @param string $filename
 	 * @return bool
 	 */
@@ -202,32 +198,28 @@ class UGRSR {
 		// Add filename to protected list
 		$this->_dbg('FILE [' . $filename . '] ADDED TO PROTECTED LIST');
 		$this->_protected[] = $real_filename;
-
 		return true;
 	}
 
 	/**
 	 * UGRSR::resetProtected()
-	 * 
+	 *
 	 * @return true
 	 */
 	public function resetProtected() {
 		// Clear protected list
 		$this->_protected = array();
-
 		$this->_dbg('PROTECTED FILES RESET');
 		//Add this class to protected list
 		$this->_protected[] = realpath(__FILE__);
-
 		// Add script that called the class to protected list
 		$this->_protected[] = realpath($_SERVER['SCRIPT_FILENAME']);
-
 		return true;
 	}
 
 	/**
 	 * UGRSR::setPath()
-	 * 
+	 *
 	 * @param string $path
 	 * @return bool
 	 */
@@ -246,9 +238,7 @@ class UGRSR {
 
 		// Set path to new value
 		$this->_dbg('NEW PATH SET [' . $realpath . ']');
-
 		$this->_path = $realpath;
-
 		return true;
 	}
 
@@ -294,7 +284,7 @@ class UGRSR {
 		// Var for total regex matches throughout files
 		$global_change_count = 0;
 
-		// Var to hold 
+		// Var to hold
 		$global_write_count = 0;
 
 		// Var to hold number of bytes saved
@@ -311,14 +301,12 @@ class UGRSR {
 			// If content couldn't be loaded throw error
 			if ($content === false) {
 				$this->_dbg('COULD NOT OPEN [' . $filename . ']');
-
 				continue;
 			}
 
 			// If file length is 0 throw error
 			if (strlen($content) == 0) {
 				$this->_dbg('EMPTY FILE SKIPPED [' . $filename . ']');
-
 				continue;
 			}
 
@@ -390,9 +378,9 @@ class UGRSR {
 
 	/**
 	 * UGRSR::_dbg()
-	 * 
+	 *
 	 * @param string $message
-	 * @return NULL;
+	 * @return NULL
 	 */
 	private function _dbg($message = '') {
 		// If in debug mode show output
@@ -411,7 +399,7 @@ class UGRSR {
 
 	/**
 	 * UGRSR::_rglob()
-	 * 
+	 *
 	 * @param string $path
 	 * @return array
 	 */

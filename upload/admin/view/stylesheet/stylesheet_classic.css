@@ -971,10 +971,10 @@ a.button-select, a.button-unselect, .list a.button-select, .list a.button-unsele
 	width: 16px;
 	height: 16px;
 	padding: 1px 15px;
-	margin: 0px;
+	margin: 0;
 }
 a.button-select, .list a.button-select {
-	background: #F8F8F8 url('../image/theme-classic/select.png') center 0px no-repeat;
+	background: #F8F8F8 url('../image/theme-classic/select.png') center 0 no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
@@ -982,7 +982,7 @@ a.button-select, .list a.button-select {
 	border-radius: 3px 0px 0px 3px;
 }
 a.button-unselect, .list a.button-unselect {
-	background: #F8F8F8 url('../image/theme-classic/unselect.png') center 0px no-repeat;
+	background: #F8F8F8 url('../image/theme-classic/unselect.png') center 0 no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
@@ -1003,10 +1003,10 @@ a.button-browse, a.button-recycle, .list a.button-browse, .list a.button-recycle
 	width: 16px;
 	height: 16px;
 	padding: 1px 15px;
-	margin: 0px;
+	margin: 0;
 }
 a.button-browse, .list a.button-browse {
-	background: #F8F8F8 url('../image/theme-classic/browse.png') center 0px no-repeat;
+	background: #F8F8F8 url('../image/theme-classic/browse.png') center 0 no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
@@ -1014,7 +1014,7 @@ a.button-browse, .list a.button-browse {
 	border-radius: 3px 0px 0px 3px;
 }
 a.button-recycle, .list a.button-recycle {
-	background: #F8F8F8 url('../image/theme-classic/recycle.png') center 0px no-repeat;
+	background: #F8F8F8 url('../image/theme-classic/recycle.png') center 0 no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
@@ -1035,10 +1035,10 @@ input.button-move-left, input.button-move-right {
 	width: 16px;
 	height: 20px;
 	padding: 1px 15px 4px 15px;
-	margin: 0px;
+	margin: 0;
 }
 input.button-move-left {
-	background: #F8F8F8 url('../image/theme-classic/move-left.png') center 0px no-repeat;
+	background: #F8F8F8 url('../image/theme-classic/move-left.png') center 0 no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
@@ -1046,7 +1046,7 @@ input.button-move-left {
 	border-radius: 3px 0px 0px 3px;
 }
 input.button-move-right {
-	background: #F8F8F8 url('../image/theme-classic/move-right.png') center 0px no-repeat;
+	background: #F8F8F8 url('../image/theme-classic/move-right.png') center 0 no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
@@ -1067,11 +1067,11 @@ a.button-preview, a.button-pdf, a.button-print {
 	width: 24px;
 	height: 24px;
 	padding: 1px 9px;
-	margin: 0px;
+	margin: 0;
 	vertical-align: middle;
 }
 a.button-preview {
-	background: #F8F8F8 url('../image/theme-classic/preview.png') center 0px no-repeat;
+	background: #F8F8F8 url('../image/theme-classic/preview.png') center 0 no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
@@ -1079,15 +1079,15 @@ a.button-preview {
 	border-radius: 3px 0px 0px 3px;
 }
 a.button-pdf {
-	background: #F8F8F8 url('../image/theme-classic/pdf.png') center 0px no-repeat;
+	background: #F8F8F8 url('../image/theme-classic/pdf.png') center 0 no-repeat;
 	border: 1px solid #CCC;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
-	-khtml-border-radius: 0px;
-	border-radius: 0px;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-khtml-border-radius: 0;
+	border-radius: 0;
 }
 a.button-print {
-	background: #F8F8F8 url('../image/theme-classic/print.png') center 0px no-repeat;
+	background: #F8F8F8 url('../image/theme-classic/print.png') center 0 no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
@@ -1128,7 +1128,7 @@ a.button-print:hover {
 	background-image: -ms-linear-gradient(top, #FCFCFC, #EEE);
 	background-image: -o-linear-gradient(top, #FCFCFC, #EEE);
 	background-image: linear-gradient(to bottom, #FCFCFC, #EEE);
-	padding: 0px 5px;
+	padding: 0 5px;
 }
 .list thead td a, .list thead td {
 	font-weight: bold;
@@ -1142,7 +1142,7 @@ a.button-print:hover {
 .list tbody td {
 	vertical-align: middle;
 	background: #FFF;
-	padding: 0px 5px;
+	padding: 0 5px;
 }
 .list tbody tr:hover td {
 	background-color: #FFFFCB;
@@ -1153,15 +1153,15 @@ a.button-print:hover {
 	left: 5px;
 	line-height: 22px;
 	vertical-align: middle;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 .list tbody tr td span.color {
 	display: block;
 	float: right;
 	height: 22px;
 	width: 22px;
-	border: 0px;
+	border: 0;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
@@ -1182,7 +1182,7 @@ a.button-print:hover {
 	padding: 2px 12px;
 	color: #FFF;
 	text-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
-	border: 0px;
+	border: 0;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	-khtml-border-radius: 2px;
@@ -1193,7 +1193,7 @@ a.button-print:hover {
 	padding: 2px 12px;
 	color: #FFF;
 	text-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
-	border: 0px;
+	border: 0;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	-khtml-border-radius: 2px;
@@ -1204,7 +1204,7 @@ a.button-print:hover {
 	padding: 2px 12px;
 	color: #FFF;
 	text-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
-	border: 0px;
+	border: 0;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	-khtml-border-radius: 2px;
@@ -1241,17 +1241,17 @@ a.button-print:hover {
 }
 .list tr td.picked {
 	background: url('../image/success.png') center no-repeat;
-	margin: 0px auto;
+	margin: 0 auto;
 	width: 22px;
 }
 .list tr td.delayed {
 	background: url('../image/attention.png') center no-repeat;
-	margin: 0px auto;
+	margin: 0 auto;
 	width: 22px;
 }
 .list tr td.staged {
 	background: url('../image/warning.png') center no-repeat;
-	margin: 0px auto;
+	margin: 0 auto;
 	width: 22px;
 }
 /* Table Form */
@@ -1283,8 +1283,8 @@ table.form > tbody > tr > td span.form-icon {
 	left: 5px;
 	line-height: 22px;
 	vertical-align: middle;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 /* Table Image */
 table.form tr td div.image, .list tbody tr td div.image {
@@ -1368,7 +1368,7 @@ table.tool tr td {
 	float: left;
 	display: block;
 	width: 190px;
-	padding: 10px 0px;
+	padding: 10px 0;
 	min-height: 300px;
 	border-right: 1px solid #CFCFCF;
 	clear: left;

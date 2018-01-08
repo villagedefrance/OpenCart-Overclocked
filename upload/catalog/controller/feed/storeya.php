@@ -5,7 +5,7 @@ class ControllerFeedStoreya extends Controller {
 		$output = '<?xml version="1.0" encoding="UTF-8" ?>' . "\n";
 		$output .= '<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">' . "\n";
 		$output .= '<channel>'. "\n";
-		$output .= '<title>' . $this->config->get('config_name') . '</title>' . "\n"; 
+		$output .= '<title>' . $this->config->get('config_name') . '</title>' . "\n";
 		$output .= '<description>' . $this->config->get('config_meta_description') . '</description>' . "\n";
 		$output .= '<link>' . HTTP_SERVER . '</link>' . "\n";
 		$output .= '<storeya_plugin_version> 2.2 </storeya_plugin_version>' . "\n";
@@ -17,7 +17,7 @@ class ControllerFeedStoreya extends Controller {
 
 		$data = array();
 
-		if ($this->config->get('fromcount')) { 
+		if ($this->config->get('fromcount')) {
 			$data['start']=$this->config->get('fromcount');
 		}
 
@@ -104,7 +104,7 @@ class ControllerFeedStoreya extends Controller {
 				}
 
 				$output .= '<g:quantity>' . $product['quantity'] . '</g:quantity>' . "\n";
-				$output .= '<g:upc>' . $product['upc'] . '</g:upc>'. "\n"; 
+				$output .= '<g:upc>' . $product['upc'] . '</g:upc>'. "\n";
 				$output .= '<g:weight>' . $this->weight->format($product['weight'], $product['weight_class_id']) . '</g:weight>' . "\n";
 				$output .= '<g:availability>' . ($product['quantity'] ? 'in stock' : 'out of stock') . '</g:availability>' . "\n";
 				$output .= '</item>' . "\n";

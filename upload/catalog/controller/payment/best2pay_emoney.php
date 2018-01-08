@@ -10,7 +10,7 @@ class ControllerPaymentBest2payEmoney extends Controller {
 
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
-		if (!$this->config->get('best2pay_test')){
+		if (!$this->config->get('best2pay_test')) {
 			$this->data['action'] = 'https://pay.best2pay.net/webapi/';
 		} else {
 			$this->data['action'] = 'https://test.best2pay.net/webapi/';
@@ -61,7 +61,7 @@ class ControllerPaymentBest2payEmoney extends Controller {
 			'http' => array(
 				 'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
 				 'method'  => 'POST',
-				 'content' => http_build_query($register_data),
+				 'content' => http_build_query($register_data)
 			),
 		);
 
@@ -77,6 +77,7 @@ class ControllerPaymentBest2payEmoney extends Controller {
 
 		if ($order_id) {
 			$this->data['action'] .= 'Epayment';
+
 			$this->data['sector'] = $register_data['sector'];
 			$this->data['id'] = $order_id;
 			$this->data['firstname'] = $order_info['payment_firstname'];
@@ -129,7 +130,7 @@ class ControllerPaymentBest2payEmoney extends Controller {
 
 		if (isset($this->request->get['operation']) && $this->request->get['operation'] && isset($this->request->get['id']) && $this->request->get['id']) {
 			// OPERATION
-			if (!$this->config->get('best2pay_test')){
+			if (!$this->config->get('best2pay_test')) {
 				$action = 'https://pay.best2pay.net/webapi/';
 			} else {
 				$action = 'https://test.best2pay.net/webapi/';
@@ -138,7 +139,7 @@ class ControllerPaymentBest2payEmoney extends Controller {
 			$operation_data['sector'] = $this->config->get('best2pay_sector');
 			$operation_data['id'] = $this->request->get['id'];
 			$operation_data['operation'] = $this->request->get['operation'];
-			$operation_data['signature'] = base64_encode(md5($operation_data['sector'] . $operation_data['id'] . $operation_data['operation'] . $this->config->get('best2pay_password')));;
+			$operation_data['signature'] = base64_encode(md5($operation_data['sector'] . $operation_data['id'] . $operation_data['operation'] . $this->config->get('best2pay_password')));
 
 			$options = array(
 				'http' => array(

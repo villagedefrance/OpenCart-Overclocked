@@ -48,8 +48,9 @@ class ModelToolSitemap extends Model {
 		// Generating GZIP sitemap (from XML)
 		if ($fp_out = gzopen('../sitemap.xml.gz','wb9')) {
 			if ($fp_in = fopen('../sitemap.xml','rb')) {
-				while (!feof($fp_in))
-				gzwrite ($fp_out, fread($fp_in,10000));
+				while (!feof($fp_in)) {
+					gzwrite ($fp_out, fread($fp_in,10000));
+				}
 				fclose($fp_in);
 			}
 

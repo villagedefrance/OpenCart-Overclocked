@@ -2,7 +2,7 @@
 class ModelSaleSupplierProduct extends Model {
 
 	public function addSupplierProduct($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "supplier_product SET supplier_id = '" . $this->db->escape($data['supplier_id']) . "', name = '" . $this->db->escape($data['name']) . "', manufacturer_id = '" . (int)$data['manufacturer_id'] . "', model = '" . $this->db->escape($data['model']) . "', price = '" . (float)$data['price'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', unit = '" . $this->db->escape($data['unit']) . "', color = '" . $this->db->escape($data['color']) . "', `size` = '" . $this->db->escape($data['size']) . "', quantity = '" . (int)$data['quantity'] . "', `length` = '" . (float)$data['length'] . "', width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "', length_class_id = '" . (int)$data['length_class_id'] . "', weight = '" . (float)$data['weight'] . "', weight_class_id = '" . (int)$data['weight_class_id'] . "', status = '" . (int)$data['status'] . "', date_added = NOW(), date_modified = NOW()");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "supplier_product SET supplier_id = '" . $this->db->escape($data['supplier_id']) . "', `name` = '" . $this->db->escape($data['name']) . "', manufacturer_id = '" . (int)$data['manufacturer_id'] . "', model = '" . $this->db->escape($data['model']) . "', price = '" . (float)$data['price'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', unit = '" . $this->db->escape($data['unit']) . "', color = '" . $this->db->escape($data['color']) . "', `size` = '" . $this->db->escape($data['size']) . "', quantity = '" . (int)$data['quantity'] . "', `length` = '" . (float)$data['length'] . "', width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "', length_class_id = '" . (int)$data['length_class_id'] . "', weight = '" . (float)$data['weight'] . "', weight_class_id = '" . (int)$data['weight_class_id'] . "', status = '" . (int)$data['status'] . "', date_added = NOW(), date_modified = NOW()");
 
 		$supplier_product_id = $this->db->getLastId();
 
@@ -15,7 +15,7 @@ class ModelSaleSupplierProduct extends Model {
 	}
 
 	public function editSupplierProduct($supplier_product_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "supplier_product SET supplier_id = '" . $this->db->escape($data['supplier_id']) . "', name = '" . $this->db->escape($data['name']) . "', manufacturer_id = '" . (int)$data['manufacturer_id'] . "', model = '" . $this->db->escape($data['model']) . "', price = '" . (float)$data['price'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', unit = '" . $this->db->escape($data['unit']) . "', color = '" . $this->db->escape($data['color']) . "', `size` = '" . $this->db->escape($data['size']) . "', quantity = '" . (int)$data['quantity'] . "', `length` = '" . (float)$data['length'] . "', width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "', length_class_id = '" . (int)$data['length_class_id'] . "', weight = '" . (float)$data['weight'] . "', weight_class_id = '" . (int)$data['weight_class_id'] . "', status = '" . (int)$data['status'] . "', date_modified = NOW() WHERE supplier_product_id = '" . (int)$supplier_product_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "supplier_product SET supplier_id = '" . $this->db->escape($data['supplier_id']) . "', `name` = '" . $this->db->escape($data['name']) . "', manufacturer_id = '" . (int)$data['manufacturer_id'] . "', model = '" . $this->db->escape($data['model']) . "', price = '" . (float)$data['price'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', unit = '" . $this->db->escape($data['unit']) . "', color = '" . $this->db->escape($data['color']) . "', `size` = '" . $this->db->escape($data['size']) . "', quantity = '" . (int)$data['quantity'] . "', `length` = '" . (float)$data['length'] . "', width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "', length_class_id = '" . (int)$data['length_class_id'] . "', weight = '" . (float)$data['weight'] . "', weight_class_id = '" . (int)$data['weight_class_id'] . "', status = '" . (int)$data['status'] . "', date_modified = NOW() WHERE supplier_product_id = '" . (int)$supplier_product_id . "'");
 
 		if (isset($data['image'])) {
 			$this->db->query("UPDATE " . DB_PREFIX . "supplier_product SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE supplier_product_id = '" . (int)$supplier_product_id . "'");
@@ -23,8 +23,8 @@ class ModelSaleSupplierProduct extends Model {
 	}
 
 	public function editSupplierProductStatus($supplier_product_id, $status) {
-        $this->db->query("UPDATE " . DB_PREFIX . "product SET status = '" . (int)$status . "', date_modified = NOW() WHERE supplier_product_id = '" . (int)$supplier_product_id . "'");
-    }
+		$this->db->query("UPDATE " . DB_PREFIX . "product SET status = '" . (int)$status . "', date_modified = NOW() WHERE supplier_product_id = '" . (int)$supplier_product_id . "'");
+	}
 
 	public function copySupplierProduct($supplier_product_id) {
 		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "supplier_product WHERE supplier_product_id = '" . (int)$supplier_product_id . "'");
@@ -211,7 +211,7 @@ class ModelSaleSupplierProduct extends Model {
 	}
 
 	public function getTotalSupplierProductsByLengthClassId($length_class_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "supplier_product WHERE length_class_id = '" . (int)$length_class_id . "'"); 
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "supplier_product WHERE length_class_id = '" . (int)$length_class_id . "'");
 
 		return $query->row['total'];
 	}

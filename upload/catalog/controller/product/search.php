@@ -614,7 +614,7 @@ class ControllerProductSearch extends Controller {
 				$sql .= ' LEFT JOIN ' . DB_PREFIX . 'product_to_store p2s ON (p.product_id = p2s.product_id)';
 				$sql .= ' WHERE ' . $add . ' AND p.status = 1';
 				$sql .= ' AND pd.language_id = ' . (int)$this->config->get('config_language_id');
-				$sql .= ' AND p2s.store_id = ' . (int)$this->config->get('config_store_id'); 
+				$sql .= ' AND p2s.store_id = ' . (int)$this->config->get('config_store_id');
 				$sql .= ' GROUP BY p.product_id';
 				$sql .= ' ORDER BY LOWER(pd.name) ASC, LOWER(md.name) ASC, LOWER(pd.tag) ASC, LOWER(p.model) ASC';
 				$sql .= ' LIMIT 0,' . (int)$limit;

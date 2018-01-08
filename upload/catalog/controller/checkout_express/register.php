@@ -315,7 +315,7 @@ class ControllerCheckoutExpressRegister extends Controller {
 
 			$customer_group = $this->model_account_customer_group->getCustomerGroup($customer_group_id);
 
-			if (!isset($customer_group)) { 
+			if (!isset($customer_group)) {
 				$customer_group = 0;
 			}
 
@@ -333,7 +333,6 @@ class ControllerCheckoutExpressRegister extends Controller {
 				$this->session->data['payment_country_id'] = $this->request->post['country_id'];
 				$this->session->data['payment_zone_id'] = $this->request->post['zone_id'];
 				$this->session->data['payment_postcode'] = $this->request->post['postcode'];
-
 
 				if (!empty($this->request->post['shipping_address'])) {
 					$this->session->data['shipping_firstname'] = $this->request->post['firstname'];
