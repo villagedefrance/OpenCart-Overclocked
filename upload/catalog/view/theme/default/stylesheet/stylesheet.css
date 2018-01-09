@@ -189,9 +189,14 @@ span.from {
 #language img {
 	cursor: pointer;
 	margin-left: 10px;
-	transition: all .2s ease-in-out;
+	-webkit-transition: all 200ms ease-in-out;
+	-moz-transition: all 200ms ease-in-out;
+	-o-transition: all 200ms ease-in-out;
+	transition: all 200ms ease-in-out;
 }
 #language img:hover {
+	-webkit-transform: scale(1.2);
+	-moz-transform: scale(1.2);
 	transform: scale(1.2);
 }
 #language img:first-child {
@@ -387,9 +392,9 @@ a.top-link:hover {
 	text-align: right;
 }
 .mini-cart-total table {
-	border-collapse: collapse;
 	display: inline-block;
 	margin-bottom: 5px;
+	border-collapse: collapse;
 }
 .mini-cart-total td {
 	color: #444;
@@ -442,9 +447,10 @@ a.top-link:hover {
 	width: 200px;
 	height: 15px;
 	border: none;
-	transition: all 0.3s;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	transition: all 0.3s ease-in-out;
 	box-shadow: none;
 }
 #header #search .search-inside input:focus {

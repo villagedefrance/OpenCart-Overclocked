@@ -18,7 +18,7 @@ img {
 	border: 0;
 }
 #container {
-	padding: 0px 10px;
+	padding: 0 10px;
 	height: 355px;
 	overflow: hidden;
 }
@@ -102,10 +102,10 @@ img {
 	padding: 5px;
 	border: 1px solid #CCC;
 	background: #5C9CCC;
-	background-position: 0px -50px;
+	background-position: 0 -50px;
 }
 #updateImage a:hover {
-	background-position: 0px 0px;
+	background-position: 0 0;
 	background-color: #EFEFEF;
 }
 /* Filter */
@@ -116,7 +116,7 @@ img {
     width: 26%;
 	background: #FAFAFA;
     border: 1px solid #CCC;
-	margin: 3px 0px 0px 0px;
+	margin: 3px 0 0 0;
 }
 .filter > input {
 	margin: 0;
@@ -158,5 +158,5 @@ img {
 	color: #1571B0;
 	font-size: 14px;
 	font-weight: bold;
-	margin: 30px 0px 0px 50px;
+	margin: 30px 0 0 50px;
 }

@@ -16,7 +16,7 @@
 	background-image: -o-linear-gradient(top, #F6F6F6, #E7E7E7);
 	background-image: linear-gradient(to bottom, #F6F6F6, #E7E7E7);
 	margin: 0;
-	padding: 0px 5px 0px 0px;
+	padding: 0 5px 0 0;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	-khtml-border-radius: 2px;
@@ -36,7 +36,7 @@
 	background: url('../image/menu/sep_light.png') right top no-repeat;
 	position: relative;
 	float: right;
-	padding: 0px 0px 0px 2px;
+	padding: 0 0 0 2px;
 	background-position: left top;
 	z-index: 515;
 }
@@ -47,14 +47,14 @@
 	position: relative;
 	line-height: 40px;
 	text-decoration: none;
-	padding: 0px 14px 0px 14px;
+	padding: 0 14px;
 	transition: all 0.2s;
 	-webkit-transition: all 0.2s;
 	-moz-transition: all 0.2s;
 	z-index: 516;
 	color: #222;
 	background-color: inherit;
-	text-shadow: 0px 1px 0px #FFF;
+	text-shadow: 0 1px 0 #FFF;
 	outline: none;
 	cursor: pointer;
 }
@@ -69,7 +69,7 @@
 }
 .menu-light #menu > ul > li > a > span {
 	background: url('../image/menu/arrow_down_dark.png') right center no-repeat;
-	padding: 0px 14px 0px 0px;
+	padding: 0 14px 0 0;
 	background-position: right center;
 }
 .menu-light #menu > ul > li > a .home-icon {
@@ -85,7 +85,7 @@
 	left: auto;
 	right: 0;
 	z-index: 520;
-	padding: 0px 0px 10px 0px;
+	padding: 0 0 10px 0;
 	-moz-border-radius: 0 0 3px 3px;
 	-webkit-border-radius: 0 0 3px 3px;
 	-khtml-border-radius: 0 0 3px 3px;
@@ -110,7 +110,7 @@
 }
 .menu-light #menu > ul > li > div > ul {
 	display: table-cell;
-	padding: 7px 0px 0px 2px;
+	padding: 7px 0 0 2px;
 	border-top: 3px solid #E9E9E9;
 }
 .menu-light #menu > ul > li ul + ul {
@@ -121,7 +121,7 @@
 	display: block;
 	text-align: right;
 	min-width: 160px;
-	padding: 7px 0px 9px 0px;
+	padding: 7px 0 9px 0;
 	margin: 0 14px;
 	color: #222;
 	font-size: 13px;
@@ -141,7 +141,7 @@
 	-moz-transition: all 0.3s;
 }
 .menu-light #menu > ul > li ul > li > a.last-submenu-item {
-	padding: 7px 0px 7px;
+	padding: 7px 0;
 	background: none;
 	text-decoration: none;
 }
@@ -166,7 +166,7 @@
 		display: block;
 	}
 	.menu-light #menu > ul > li > a {
-		padding: 0px 12px 0px 12px;
+		padding: 0 12px;
 		font-size: 14px;
 	}
 	#menu-trigger, #menu-phone {
@@ -179,7 +179,7 @@
 		display: block;
 	}
 	.menu-light #menu > ul > li > a {
-		padding: 0px 8px 0px 8px;
+		padding: 0 8px;
 		font-size: 13px;
 	}
 	#menu-trigger, #menu-phone {
@@ -220,7 +220,7 @@
 	.box-phone > ul {
 		display: block;
 		list-style: none;
-		margin: 0px 0px 25px 0px;
+		margin: 0 0 25px 0;
 		padding: 0;
 	}
 	.box-phone > ul > li {
@@ -252,7 +252,7 @@
 		display: block;
 	}
 	.box-phone > ul > li > ul > li {
-		padding: 8px 1px 8px 1px;
+		padding: 8px 1px;
 		display: block;
 	}
 	.box-phone > ul > li > ul > li a {
@@ -301,7 +301,7 @@
 	.box-phone > ul {
 		display: block;
 		list-style: none;
-		margin: 0px 0px 25px 0px;
+		margin: 0 0 25px 0;
 		padding: 0;
 	}
 	.box-phone > ul > li {
@@ -333,7 +333,7 @@
 		display: block;
 	}
 	.box-phone > ul > li > ul > li {
-		padding: 8px 1px 8px 1px;
+		padding: 8px 1px;
 		display: block;
 	}
 	.box-phone > ul > li > ul > li a {

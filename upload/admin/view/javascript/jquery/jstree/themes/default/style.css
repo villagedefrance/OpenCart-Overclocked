@@ -12,11 +12,11 @@
 #jstree-marker { background-image:url("icons.png"); }
 /* DEFAULT, HOVER, CLICKED, LOADING STATES */
 .tree-default li a, .tree-default li span { border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px; }
-.tree-default li a:hover, .tree-default li a.hover, .tree-default li span { background: #e7f4f9; border:1px solid #d8f0fa; padding:0px 3px 0px 3px; }
-.tree-default li a.clicked, .tree-default li a.clicked:hover, .tree-default li span.clicked { background: #beebff; border:1px solid #99defd; padding:0px 3px 0px 3px; }
+.tree-default li a:hover, .tree-default li a.hover, .tree-default li span { background: #e7f4f9; border:1px solid #d8f0fa; padding:0 3px 0 3px; }
+.tree-default li a.clicked, .tree-default li a.clicked:hover, .tree-default li span.clicked { background: #beebff; border:1px solid #99defd; padding:0 3px 0 3px; }
 /* ICONS */
 .tree-default ins { background-image:url("icons.png"); background-position:0 0; background-repeat:no-repeat; }
-.tree-default ul li a.loading ins { background-image:url("throbber.gif") !important; background-position:0 0 !important; } /* UL is added to make selector stronger */
+.tree-default ul li a.loading ins { background-image:url("throbber.gif"); background-position:0 0; }
 .tree-default li a ins.forbidden { background-position:-16px -16px; }
 .tree-default .locked li a ins { background-position:0 -48px; }
 .tree-default li span ins { background-position:-16px 0; }
@@ -26,5 +26,5 @@
 /* CONTEXT MENU */
 .tree-default-context a ins { background-image:url("icons.png"); background-repeat:no-repeat; background-position:-64px -64px; }
 .tree-default-context a ins.create { background-position:0 -16px; }
-.tree-default-context a ins.rename { background-position:-16px 0px; }
+.tree-default-context a ins.rename { background-position:-16px 0; }
 .tree-default-context a ins.remove { background-position:0 -32px; }

@@ -20,7 +20,7 @@
 .tree-opencart li a.clicked, .tree-opencart li a.clicked:hover, .tree-opencart li span.clicked { color: #1373AF; font-weight: bold; }
 /* ICONS */
 .tree-opencart ins { background-image: url('icons.png'); background-position: 0 0; background-repeat: no-repeat; }
-.tree-opencart ul li a.loading ins { background-image: url('throbber.gif') !important; background-position: 0 0 !important; }
+.tree-opencart ul li a.loading ins { background-image: url('throbber.gif'); background-position: 0 0; }
 .tree-opencart li a ins.forbidden { background-position: -16px -16px; }
 .tree-opencart .locked li a ins { background-position: 0 -48px; }
 .tree-opencart li span ins { background-position: -16px 0; }

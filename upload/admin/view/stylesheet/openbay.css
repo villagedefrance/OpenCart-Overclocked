@@ -16,9 +16,9 @@
 .openbayPod,a > .openbayPod{width:120px;height:150px;margin-right:20px;margin-bottom:20px;border:1px solid #CCC;cursor:pointer;float:left;padding:10px;color:#036;-moz-border-radius:10px;border-radius:10px}
 .openbayPod img{float:left;width:70px;height:70px;margin:25px}
 .openbayPod h3{line-height:30px;width:120px;text-align:center;font-weight:700;font-size:13px;padding:0;margin:0;float:left}
-.overviewPod{float:left!important;width:90px!important;height:120px!important}
-.overviewPod img{width:70px!important;height:70px!important;margin:10px!important}
-.overviewPod h3{width:90px!important}
+.overviewPod{float:left;width:90px;height:120px}
+.overviewPod img{width:70px;height:70px;margin:10px}
+.overviewPod h3{width:90px}
 #faqPopupContainer{display:none;position:absolute;top:1em;right:1em;min-height:50px;width:300px;background-color:#EAF7D9;border:1px solid #BBDF8D;z-index:999;padding:10px;color:#555;-webkit-border-radius:7px;-moz-border-radius:7px;-khtml-border-radius:7px;border-radius:7px}
 #faqClose{position:absolute;top:5px;right:5px;font-weight:700;cursor:pointer}
 #faqPopupContainer > h4{margin:0 0 10px;padding:0}

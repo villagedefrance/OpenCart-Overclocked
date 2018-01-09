@@ -19,10 +19,10 @@
 	background-image: -o-linear-gradient(top, #5A5A5A, #444);
 	background-image: linear-gradient(to bottom, #5A5A5A, #444);
 	border-bottom: 1px solid #444;
-	-webkit-border-radius: 3px 3px 0px 0px;
-	-moz-border-radius: 3px 3px 0px 0px;
-	-khtml-border-radius: 3px 3px 0px 0px;
-	border-radius: 3px 3px 0px 0px;
+	-webkit-border-radius: 2px 2px 0 0;
+	-moz-border-radius: 2px 2px 0 0;
+	-khtml-border-radius: 2px 2px 0 0;
+	border-radius: 2px 2px 0 0;
 	padding-left: 10px;
 }
 #files-menu a {
@@ -33,23 +33,23 @@
 /* Workspace */
 .workspace {
 	background: rgba(119, 119, 119, 0.2);
-	padding: 0px 0px 55px 0px;
-	margin: 0px;
+	padding: 0 0 55px 0px;
+	margin: 0;
 	border: none;
-	-webkit-border-radius: 0px 0px 3px 3px;
-	-moz-border-radius: 0px 0px 3px 3px;
-	-khtml-border-radius: 0px 0px 3px 3px;
-	border-radius: 0px 0px 3px 3px;
+	-webkit-border-radius: 0 0 2px 2px;
+	-moz-border-radius: 0 0 2px 2px;
+	-khtml-border-radius: 0 0 2px 2px;
+	border-radius: 0 0 2px 2px;
 }
 /* Columns */
 #column-left {
 	background: #FAFAFA;
 	border: 1px solid #CCC;
 	border-top: none;
-	-webkit-border-radius: 0px 0px 0px 3px;
-	-moz-border-radius: 0px 0px 0px 3px;
-	-khtml-border-radius: 0px 0px 0px 3px;
-	border-radius: 0px 0px 0px 3px;
+	-webkit-border-radius: 0 0 0 2px;
+	-moz-border-radius: 0 0 0 2px;
+	-khtml-border-radius: 0 0 0 2px;
+	border-radius: 0 0 0 2px;
 	float: left;
 	width: 24%;
 	height: 367px;
@@ -62,10 +62,10 @@
 	background: #FAFAFA;
 	border: 1px solid #CCC;
 	border-top: none;
-	-webkit-border-radius: 0px 0px 3px 0px;
-	-moz-border-radius: 0px 0px 3px 0px;
-	-khtml-border-radius: 0px 0px 3px 0px;
-	border-radius: 0px 0px 3px 0px;
+	-webkit-border-radius: 0 0 2px 0;
+	-moz-border-radius: 0 0 2px 0;
+	-khtml-border-radius: 0 0 2px 0;
+	border-radius: 0 0 2px 0;
 	float: right;
 	width: 74%;
 	height: 400px;
@@ -142,10 +142,10 @@
 	padding: 5px;
 	border: 1px solid #CCC;
 	background: #5C9CCC;
-	background-position: 0px -50px;
+	background-position: 0 -50px;
 }
 #updateImage a:hover {
-	background-position: 0px 0px;
+	background-position: 0 0;
 	background-color: #EFEFEF;
 }
 /* Filter */
@@ -156,11 +156,11 @@
     width: 24%;
 	background: #FAFAFA;
     border: 1px solid #CCC;
-	margin: 0px 0px 15px 5px;
+	margin: 0 0 15px 5px;
 }
 .filter > input {
 	margin: 0;
-	padding: 1px 0px 1px 2px;
+	padding: 1px 0 1px 2px;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
@@ -202,5 +202,5 @@
 	color: #1571B0;
 	font-size: 14px;
 	font-weight: bold;
-	margin: 30px 0px 0px 50px;
+	margin: 30px 0 0 50px;
 }

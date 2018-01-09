@@ -14,6 +14,7 @@
 	display: none;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
 	border-radius: 3px;
 	background: #292929;
 	color: #FCFCFC;
@@ -30,6 +31,7 @@
 	left: 10px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
 	border-radius: 3px;
 	background: #4A4A4A;
 	padding: 3px;

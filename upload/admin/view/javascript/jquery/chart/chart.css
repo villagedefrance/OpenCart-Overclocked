@@ -6,11 +6,12 @@
  * (c)2015 Sultan Tarimo - sultantarimo@me.com
  * Released under the MIT license
  * 
- * Overclocked Edition © 2017 | Villagedefrance
+ * Overclocked Edition © 2018 | Villagedefrance
  */
+
 .chart *, .chart {
-	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
@@ -19,7 +20,7 @@
 	width: auto;
 	display: block;
 	position: relative;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	margin: 0 auto;
 }
@@ -63,7 +64,7 @@
 	-o-transition: all 100ms ease-in-out;
 	transition: all 100ms ease-in-out;
 }
-.bar-chart li:hover span{
+.bar-chart li:hover span {
 	box-shadow: 0 0 0 4px rgb(98,167,224);
 	cursor: pointer;
 }
@@ -71,12 +72,12 @@
 	box-shadow: 0 0 0 4px #0072C4;
 }
 .bar-chart li:nth-child(2n+1) span { background-color: #0072C4; }
-.bar-chart ul:last-of-type li:last-child span { margin-right: 0px; }
-.bar-chart ul:first-of-type li:first-child span { margin-left: 0px; }
-.bar-chart ul:last-of-type { margin-right: 0px; }
-.bar-chart ul:first-of-type { margin-left: 0px; }
-.bar-chart.left-bar ul:last-of-type { margin-right: 0px; }
-.bar-chart.left-bar ul { margin-right: 34px; float: left; margin-left: 0px; }
+.bar-chart ul:last-of-type li:last-child span { margin-right: 0; }
+.bar-chart ul:first-of-type li:first-child span { margin-left: 0; }
+.bar-chart ul:last-of-type { margin-right: 0; }
+.bar-chart ul:first-of-type { margin-left: 0; }
+.bar-chart.left-bar ul:last-of-type { margin-right: 0; }
+.bar-chart.left-bar ul { margin-right: 34px; float: left; margin-left: 0; }
 .bar-chart span:before {
 	position: absolute;
 	bottom: 100%;
@@ -95,6 +96,7 @@
 .bar-chart li span:before {
 	-webkit-transition: all 100ms ease-in-out;
 	-moz-transition: all 100ms ease-in-out;
+	-o-transition: all 100ms ease-in-out;
 	transition: all 100ms ease-in-out;
 }
 
@@ -113,6 +115,7 @@
 	position: relative;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
+	-khtml-border-radius: 50%;
 	border-radius: 50%;
 }
 .donut-chart.fill {
@@ -131,6 +134,7 @@
 	pointer-events: none;
 	-webkit-border-radius: 100%;
 	-moz-border-radius: 100%;
+	-khtml-border-radius: 100%;
 	border-radius: 100%;
 	-webkit-transform: translateX(-50%) translateY(-50%);
 	-moz-transform: translateX(-50%) translateY(-50%);
@@ -161,6 +165,7 @@
 	border-right: none;
 	-webkit-border-radius: 100% 0 0 100% / 50% 0 0 50%;
 	-moz-border-radius: 100% 0 0 100% / 50% 0 0 50%;
+	-khtml-border-radius: 100% 0 0 100% / 50% 0 0 50%;
 	border-radius: 100% 0 0 100% / 50% 0 0 50%;
 	-webkit-transform: rotate(0deg);
 	-moz-transform: rotate(0deg);
@@ -247,6 +252,8 @@
 	top: 50%;
 	right: 0;
 	margin-right: -30px;
+	-webkit-transform: translateX(100%) translateY(-50%);
+	-moz-transform: translateX(100%) translateY(-50%);
 	transform: translateX(100%) translateY(-50%);
 }
 .chart.pie .pie-legend li {
@@ -361,6 +368,7 @@
 	transform: translateX(-50%);
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
 	border-radius: 3px;
 }
 .line-chart li a:after {
@@ -411,8 +419,9 @@
 	width: 6px;
 	height: 6px;
 	display: block;
-	-webkt-border-radius: 50%;
+	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
+	-khtml-border-radius: 50%;
 	border-radius: 50%;
 }
 .line-chart li:hover span:before {

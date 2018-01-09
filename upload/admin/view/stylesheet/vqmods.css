@@ -41,7 +41,7 @@ input[type='submit'] {
 	display: inline-block;
 	line-height: 12px;
 	padding: 5px 15px;
-	margin: 0px 4px;
+	margin: 0 4px;
 	background-color: #FCFCFC;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#DEDEDE));
 	background-image: -webkit-linear-gradient(top, #FCFCFC, #DEDEDE);
@@ -65,7 +65,7 @@ input[type='submit']:hover {
 /* Description */
 .description {
 	font-size: 12px;
-	margin: 3px 0px;
+	margin: 3px 0;
 }
 .help {
 	color: #555;
@@ -100,7 +100,7 @@ input[type='submit']:hover {
 	background-image: -ms-linear-gradient(top, #FCFCFC, #EEE);
 	background-image: -o-linear-gradient(top, #FCFCFC, #EEE);
 	background-image: linear-gradient(to bottom, #FCFCFC, #EEE);
-	padding: 0px 5px;
+	padding: 0 5px;
 	color: #222;
 	font-weight: bold;
 	text-decoration: none;
@@ -109,7 +109,7 @@ input[type='submit']:hover {
 }
 .vqm-list tbody td {
 	vertical-align: middle;
-	padding: 0px 5px;
+	padding: 0 5px;
 }
 .vqm-list td {
 	border-right: 1px solid #DDD;

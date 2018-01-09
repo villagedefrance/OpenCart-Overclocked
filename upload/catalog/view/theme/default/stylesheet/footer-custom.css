@@ -13,13 +13,13 @@
 	width: 100%;
 	height: 100%;
 	margin-top: 15px;
-	padding: 20px 0px;
+	padding: 20px 0;
 	overflow: auto;
 }
 .footer-light #footer h3 {
 	color: #EFEFEF;
 	font-size: 15px;
-	margin: 0px 0px 0px 18px;
+	margin: 0 0 0 18px;
 }
 .footer-light #footer > .column-one, .footer-light #footer > .column-two, .footer-light #footer > .column-three, .footer-light #footer > .column-four {
 	float: left;
@@ -60,13 +60,13 @@
 	width: 100%;
 	height: 100%;
 	margin-top: 15px;
-	padding: 20px 0px;
+	padding: 20px 0;
 	overflow: auto;
 }
 .footer-dark #footer h3 {
 	color: #444;
 	font-size: 15px;
-	margin: 0px 0px 0px 18px;
+	margin: 0 0 0 18px;
 }
 .footer-dark #footer > .column-one, .footer-dark #footer > .column-two, .footer-dark #footer > .column-three, .footer-dark #footer > .column-four {
 	float: left;
@@ -231,7 +231,7 @@ a.icon-skype:hover {
 	.footer-light #footer > .big-column, .footer-dark #footer > .big-column {
 		clear: left;
 		float: left;
-		margin: 10px 0px 0px 15px;
+		margin: 10px 0 0 15px;
 	}
 }
 /* Phones - Large */
@@ -239,12 +239,12 @@ a.icon-skype:hover {
 	.footer-light #footer > .big-column, .footer-dark #footer > .big-column {
 		clear: left;
 		float: left;
-		margin: 10px 0px 0px 15px;
+		margin: 10px 0 0 15px;
 	}
 	.footer-light #footer > .column-three, .footer-dark #footer > .column-three {
 		clear: left;
 		float: left;
-		margin: 10px 0px 0px 0px;
+		margin: 10px 0 0 0;
 	}
 }
 /* Phones - Small */
@@ -252,12 +252,12 @@ a.icon-skype:hover {
 	.footer-light #footer > .big-column, .footer-dark #footer > .big-column {
 		clear: left;
 		float: left;
-		margin: 10px 0px 0px 15px;
+		margin: 10px 0 0 15px;
 	}
 	.footer-light #footer > .column-one, .footer-light #footer > .column-two, .footer-light #footer > .column-three, .footer-light #footer > .column-four,
 	.footer-dark #footer > .column-one, .footer-dark #footer > .column-two, .footer-dark #footer > .column-three, .footer-dark #footer > .column-four {
 		clear: left;
 		float: left;
-		margin: 10px 0px 0px 0px;
+		margin: 10px 0 0 0;
 	}
 }

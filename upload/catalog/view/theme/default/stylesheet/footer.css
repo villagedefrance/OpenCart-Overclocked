@@ -24,14 +24,14 @@
 	-khtml-border-radius: 2px;
 	border-radius: 2px;
 	margin-top: 15px;
-	padding: 20px 0px;
+	padding: 20px 0;
 	overflow: auto;
 }
 .footer-light #footer h3 {
 	color: #444;
 	font-size: 15px;
-	margin: 0px 0px 0px 18px;
-	text-shadow: 0px 1px 0px #FFF;
+	margin: 0 0 0 18px;
+	text-shadow: 0 1px 0 #FFF;
 }
 .footer-light #footer > .column-one, .footer-light #footer > .column-two, .footer-light #footer > .column-three, .footer-light #footer > .column-four {
 	float: left;
@@ -53,7 +53,7 @@
 	text-decoration: none;
 	color: #444;
 	font-size: 13px;
-	text-shadow: 0px 1px 0px #FFF;
+	text-shadow: 0 1px 0 #FFF;
 }
 .footer-light #footer > .column-one a:hover, .footer-light #footer > .column-two a:hover, .footer-light #footer > .column-three a:hover, .footer-light #footer > .column-four a:hover {
 	color: #36AAD8;
@@ -67,7 +67,7 @@
 }
 .footer-light #footer > .big-column p {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	text-shadow: 0px 1px 0px #FFF;
+	text-shadow: 0 1px 0 #FFF;
 	color: #444;
 	display: block;
 }
@@ -92,14 +92,14 @@
 	-khtml-border-radius: 2px;
 	border-radius: 2px;
 	margin-top: 15px;
-	padding: 20px 0px;
+	padding: 20px 0;
 	overflow: auto;
 }
 .footer-dark #footer h3 {
 	color: #EFEFEF;
 	font-size: 15px;
-	margin: 0px 0px 0px 18px;
-	text-shadow: 0px -1px 0px #111;
+	margin: 0 0 0 18px;
+	text-shadow: 0 -1px 0 #111;
 }
 .footer-dark #footer > .column-one, .footer-dark #footer > .column-two, .footer-dark #footer > .column-three, .footer-dark #footer > .column-four {
 	float: left;
@@ -121,7 +121,7 @@
 	text-decoration: none;
 	color: #EFEFEF;
 	font-size: 13px;
-	text-shadow: 0px -1px 0px #111;
+	text-shadow: 0 -1px 0 #111;
 }
 .footer-dark #footer > .column-one a:hover, .footer-dark #footer > .column-two a:hover, .footer-dark #footer > .column-three a:hover, .footer-dark #footer > .column-four a:hover {
 	color: #36AAD8;
@@ -135,7 +135,7 @@
 }
 .footer-dark #footer > .big-column p {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	text-shadow: 0px -1px 0px #111;
+	text-shadow: 0 -1px 0 #111;
 	color: #EEE;
 	display: block;
 }
@@ -147,7 +147,7 @@ p.icon-location-footer-light, p.icon-location-footer-dark {
 	font-size: 13px;
 	line-height: 24px;
 	padding: 0 0 0 32px;
-	text-shadow: 0px 1px 0px #FCFCFC;
+	text-shadow: 0 1px 0 #FCFCFC;
 	margin-bottom: 6px;
 }
 p.icon-location-footer-light {
@@ -160,7 +160,7 @@ p.icon-phone-footer-light, p.icon-phone-footer-dark {
 	font-size: 13px;
 	line-height: 24px;
 	padding: 0 0 0 32px;
-	text-shadow: 0px 1px 0px #FCFCFC;
+	text-shadow: 0 1px 0 #FCFCFC;
 	margin-bottom: 6px;
 }
 p.icon-phone-footer-light {
@@ -173,7 +173,7 @@ p.icon-mail-footer-light, p.icon-mail-footer-dark {
 	font-size: 13px;
 	line-height: 24px;
 	padding: 0 0 0 32px;
-	text-shadow: 0px 1px 0px #FCFCFC;
+	text-shadow: 0 1px 0 #FCFCFC;
 	margin-bottom: 6px;
 }
 p.icon-mail-footer-light {
@@ -277,7 +277,7 @@ a.icon-skype:hover {
 	.footer-light #footer > .big-column, .footer-dark #footer > .big-column {
 		clear: left;
 		float: left;
-		margin: 10px 0px 0px 15px;
+		margin: 10px 0 0 15px;
 	}
 }
 /* Phones - Large */
@@ -285,12 +285,12 @@ a.icon-skype:hover {
 	.footer-light #footer > .big-column, .footer-dark #footer > .big-column {
 		clear: left;
 		float: left;
-		margin: 10px 0px 0px 15px;
+		margin: 10px 0 0 15px;
 	}
 	.footer-light #footer > .column-three, .footer-dark #footer > .column-three {
 		clear: left;
 		float: left;
-		margin: 10px 0px 0px 0px;
+		margin: 10px 0 0 0;
 	}
 }
 /* Phones - Small */
@@ -298,12 +298,12 @@ a.icon-skype:hover {
 	.footer-light #footer > .big-column, .footer-dark #footer > .big-column {
 		clear: left;
 		float: left;
-		margin: 10px 0px 0px 15px;
+		margin: 10px 0 0 15px;
 	}
 	.footer-light #footer > .column-one, .footer-light #footer > .column-two, .footer-light #footer > .column-three, .footer-light #footer > .column-four,
 	.footer-dark #footer > .column-one, .footer-dark #footer > .column-two, .footer-dark #footer > .column-three, .footer-dark #footer > .column-four {
 		clear: left;
 		float: left;
-		margin: 10px 0px 0px 0px;
+		margin: 10px 0 0 0;
 	}
 }

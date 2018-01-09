@@ -6,8 +6,9 @@
  * (c)2015 Sultan Tarimo - sultantarimo@me.com
  * Released under the MIT license
  * 
- * Overclocked Edition © 2017 | Villagedefrance
+ * Overclocked Edition © 2018 | Villagedefrance
  */
+
 .chart *, .chart {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -94,6 +95,7 @@
 	animation: rotateDonut 0.3s ease-in-out;
 	-webkit-transition: all 180ms ease-in-out;
 	-moz-transition: all 180ms ease-in-out;
+	-o-transition: all 180ms ease-in-out;
 	transition: all 180ms ease-in-out;
 }
 .spinner ~ .pie {

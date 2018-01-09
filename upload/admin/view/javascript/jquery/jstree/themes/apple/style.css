@@ -29,19 +29,19 @@
 #jstree-marker { background-image:url('icons.png'); }
 /* DEFAULT, HOVER, CLICKED, LOADING STATES */
 .tree-apple li a, .tree-apple li span { font-size:14px; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px; }
-.tree-apple li a:hover, .tree-apple li a.hover, .tree-apple li span { background:#D0DEF4; border:1px solid #EEE; padding:0px 3px 0px 3px; }
-.tree-apple li a.clicked, .tree-apple li a.clicked:hover, .tree-apple li span.clicked { background:#D0DEF4; border:1px solid #EEE; padding:0px 3px 0px 3px; }
+.tree-apple li a:hover, .tree-apple li a.hover, .tree-apple li span { background:#D0DEF4; border:1px solid #EEE; padding:0 3px 0 3px; }
+.tree-apple li a.clicked, .tree-apple li a.clicked:hover, .tree-apple li span.clicked { background:#D0DEF4; border:1px solid #EEE; padding:0 3px 0 3px; }
 /* ICONS */
-.tree-apple ins { background-image:url('icons.png'); background-position:0px 0px; background-repeat:no-repeat; }
-.tree-apple ul li a.loading ins { background-image:url('throbber.gif'); background-position:0px 0px; }
-.tree-apple li a.clicked ins { background-image:url('icons.png'); background-position:0px -16px; background-repeat:no-repeat; }
+.tree-apple ins { background-image:url('icons.png'); background-position:0 0; background-repeat:no-repeat; }
+.tree-apple ul li a.loading ins { background-image:url('throbber.gif'); background-position:0 0; }
+.tree-apple li a.clicked ins { background-image:url('icons.png'); background-position:0 -16px; background-repeat:no-repeat; }
 .tree-apple li a ins.forbidden { background-image:url('icons.png'); background-position:-16px -16px; background-repeat:no-repeat; }
-.tree-apple .locked li a ins { background-image:url('icons.png'); background-position:0px -48px; background-repeat:no-repeat; }
-.tree-apple li span ins { background-image:url('icons.png'); background-position:-16px 0px; background-repeat:no-repeat; }
+.tree-apple .locked li a ins { background-image:url('icons.png'); background-position:0 -48px; background-repeat:no-repeat; }
+.tree-apple li span ins { background-image:url('icons.png'); background-position:-16px 0; background-repeat:no-repeat; }
 #jstree-dragged.tree-apple ins { background:url('icons.png') -16px -32px no-repeat; }
 #jstree-dragged.tree-apple ins.forbidden { background:url('icons.png') -16px -16px no-repeat; }
 /* CONTEXT MENU */
 .tree-apple-context a ins { background-image:url('icons.png'); background-repeat:no-repeat; background-position:-64px -64px; }
-.tree-apple-context a ins.create { background-position:0px -16px; }
-.tree-apple-context a ins.rename { background-position:-16px 0px; }
-.tree-apple-context a ins.remove { background-position:0px -32px; }
+.tree-apple-context a ins.create { background-position:0 -16px; }
+.tree-apple-context a ins.rename { background-position:-16px 0; }
+.tree-apple-context a ins.remove { background-position:0 -32px; }
