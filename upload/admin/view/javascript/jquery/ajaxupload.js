@@ -9,16 +9,6 @@
 
 (function() {
 	/**
-	* Wrapper for FireBug's console.log
-	*/
-	function log() {
-		if (typeof(console) != 'undefined' && typeof(console.log) == 'function') {
-			Array.prototype.unshift.call(arguments, '[Ajax Upload]');
-			console.log( Array.prototype.join.call(arguments, ' '));
-		}
-	}
-
-	/**
 	* Attaches event to a dom element.
 	* @param {Element} el
 	* @param type event name
@@ -479,7 +469,7 @@
 						}
 
 						if (response) {
-							response = eval("(" + response + ")");
+							response = obj[response];
 						} else {
 							response = {};
 						}

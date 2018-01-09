@@ -883,7 +883,7 @@ $.magnificPopup.registerModule(INLINE_NS, {
 /* >> image */
 var _imgInterval,
     _getTitle = function(item) {
-        if (item.data && item.data.title !== undefined) {
+        if (item.data && item.data.title) {
             return item.data.title;
 		}
 

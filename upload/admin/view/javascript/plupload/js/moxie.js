@@ -840,44 +840,44 @@ define("moxie/core/utils/Env", [
 	 * Dual licensed under GPLv2 & MIT
 	 */
 	var UAParser = (function (undefined) {
-	    //////////////
-	    // Constants
-	    /////////////
+		//////////////
+		// Constants
+		/////////////
 
-	    var EMPTY       = '',
-	        UNKNOWN     = '?',
-	        FUNC_TYPE   = 'function',
-	        UNDEF_TYPE  = 'undefined',
-	        OBJ_TYPE    = 'object',
-	        MAJOR       = 'major',
-	        MODEL       = 'model',
-	        NAME        = 'name',
-	        TYPE        = 'type',
-	        VENDOR      = 'vendor',
-	        VERSION     = 'version',
-	        ARCHITECTURE= 'architecture',
-	        CONSOLE     = 'console',
-	        MOBILE      = 'mobile',
-	        TABLET      = 'tablet';
+		var EMPTY       = '',
+			UNKNOWN     = '?',
+			FUNC_TYPE   = 'function',
+			UNDEF_TYPE  = 'undefined',
+			OBJ_TYPE    = 'object',
+			MAJOR       = 'major',
+			MODEL       = 'model',
+			NAME        = 'name',
+			TYPE        = 'type',
+			VENDOR      = 'vendor',
+			VERSION     = 'version',
+			ARCHITECTURE= 'architecture',
+			CONSOLE     = 'console',
+			MOBILE      = 'mobile',
+			TABLET      = 'tablet';
 
-	    ///////////
-	    // Helper
-	    //////////
+		///////////
+		// Helper
+		//////////
 
-	    var util = {
-	        has : function (str1, str2) {
-	            return str2.toLowerCase().indexOf(str1.toLowerCase()) !== -1;
-	        },
-	        lowerize : function (str) {
-	            return str.toLowerCase();
-	        }
-	    };
+		var util = {
+			has : function (str1, str2) {
+				return str2.toLowerCase().indexOf(str1.toLowerCase()) !== -1;
+			},
+			lowerize : function (str) {
+				return str.toLowerCase();
+			}
+		};
 
-	    ///////////////
-	    // Map helper
-	    //////////////
+		///////////////
+		// Map helper
+		//////////////
 
-	    var mapper = {
+		var mapper = {
 	        rgx : function () {
 
 	            // loop through all regexes maps

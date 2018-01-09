@@ -10,7 +10,7 @@
  * Overclocked Edition © 2018 | Villagedefrance
  */
 
-;(function($) {
+(function($) {
     $.fn.simpleFileInput = function(options) {
         $('html').addClass('sfi-js');
 
@@ -108,7 +108,7 @@
 
             /* _checkAllowedExtensions() : Check for the allowed extensions if there is, and return a valid or non-valid response. */
             function _checkAllowedExtensions(_filename) {
-                var _filename = ( _filename === undefined ) ? '' : _filename;
+                var _filename = ( _filename ) ? _filename : '';
                 var _allowed = _options.allowedExts, _ext = _filename.split('.').pop();
 
                 if (_ext == '' || _allowed == false) {

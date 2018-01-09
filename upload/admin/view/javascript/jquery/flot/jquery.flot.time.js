@@ -105,7 +105,7 @@ API.txt for details.
 
 	// To have a consistent view of time-based data independent of which time
 	// zone the client happens to be in we need a date-like object independent
-	// of time zones.  This is done through a wrapper that only calls the UTC
+	// of time zones. This is done through a wrapper that only calls the UTC
 	// versions of the accessor methods.
 
 	function makeUtcWrapper(d) {
@@ -113,7 +113,7 @@ API.txt for details.
 			sourceObj[sourceMethod] = function() {
 				return targetObj[targetMethod].apply(targetObj, arguments);
 			};
-		};
+		}
 
 		var utc = {
 			date: d
@@ -121,7 +121,7 @@ API.txt for details.
 
 		// support strftime, if found
 
-		if (d.strftime != undefined) {
+		if (d.strftime) {
 			addProxyMethod(utc, "strftime", d, "strftime");
 		}
 
@@ -222,9 +222,7 @@ API.txt for details.
 						}
 
 						for (var i = 0; i < spec.length - 1; ++i) {
-							if (axis.delta < (spec[i][0] * timeUnitSize[spec[i][1]]
-											  + spec[i + 1][0] * timeUnitSize[spec[i + 1][1]]) / 2
-								&& spec[i][0] * timeUnitSize[spec[i][1]] >= minSize) {
+							if (axis.delta < (spec[i][0] * timeUnitSize[spec[i][1]] + spec[i + 1][0] * timeUnitSize[spec[i + 1][1]]) / 2 && spec[i][0] * timeUnitSize[spec[i][1]] >= minSize) {
 								break;
 							}
 						}

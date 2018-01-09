@@ -4,7 +4,7 @@ OpenCart-Overclocked
 Opencart Overclocked - Community Edition
 -----------------------------------------
 
-[![build status](https://gitlab.com/villagedefrance/OpenCart-Overclocked/badges/master/build.svg)](https://gitlab.com/villagedefrance/OpenCart-Overclocked/commits/master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7a4fa40a6efd45a7aa37c6c0a6f25465)](https://www.codacy.com/app/villagedefrance/OpenCart-Overclocked?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=villagedefrance/OpenCart-Overclocked&amp;utm_campaign=Badge_Grade) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/89962cba-03ba-48e7-b107-eb00742a6fc0/mini.png)](https://insight.sensiolabs.com/projects/89962cba-03ba-48e7-b107-eb00742a6fc0)
+[![build status](https://gitlab.com/villagedefrance/OpenCart-Overclocked/badges/master/build.svg)](https://gitlab.com/villagedefrance/OpenCart-Overclocked/commits/master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7a4fa40a6efd45a7aa37c6c0a6f25465)](https://www.codacy.com/app/villagedefrance/OpenCart-Overclocked?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=villagedefrance/OpenCart-Overclocked&amp;utm_campaign=Badge_Grade)
 
 
 For a Demo of the current release, click <a href="https://villagedefrance.net/demonstration" title="Demo">HERE</a>.

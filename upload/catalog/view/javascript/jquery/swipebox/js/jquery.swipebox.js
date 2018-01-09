@@ -222,7 +222,7 @@
 			},
 
 			/**
-			 * Reset dimensions on window resize envent
+			 * Reset dimensions on window resize event
 			 */
 			resize : function() {
 				var $this = this;
@@ -239,7 +239,7 @@
 				var prefixes = 'transition WebkitTransition MozTransition OTransition msTransition KhtmlTransition'.split( ' ' ), i;
 
 				for ( i = 0; i < prefixes.length; i++ ) {
-					if ( document.createElement( 'div' ).style[ prefixes[i] ] !== undefined ) {
+					if ( document.createElement( 'div' ).style[ prefixes[i] ]) {
 						return prefixes[i];
 					}
 				}
@@ -248,7 +248,7 @@
 			},
 
 			/**
-			 * Check if CSS transitions are allowed (options + devicesupport)
+			 * Check if CSS transitions are allowed (options + device support)
 			 */
 			doCssTrans : function() {
 				if ( plugin.settings.useCSS && this.supportTransition() ) {
@@ -790,29 +790,20 @@
 			 * Load image
 			 */
 			loadMedia : function( src, callback ) {
-                // Inline content
-                if ( src.trim().indexOf('#') === 0 ) {
-                    callback.call(
-                    	$('<div>', {
-                    		'class' : 'swipebox-inline-container'
-                    	})
-                    	.append(
-                    		$(src)
-	                    	.clone()
-	                    	.toggleClass( plugin.settings.toggleClassOnLoad )
-	                    )
-                    );
-                }
-                // Everything else
-                else {
-    				if ( ! this.isVideo( src ) ) {
-    					var img = $( '<img>' ).on( 'load', function() {
-    						callback.call( img );
-    					} );
+				// Inline content
+				if ( src.trim().indexOf('#') === 0 ) {
+					callback.call(
+						$('<div>', { 'class':'swipebox-inline-container' }).append( $(src).clone().toggleClass( plugin.settings.toggleClassOnLoad ))
+					);
+				} else { // Everything else
+					if ( ! this.isVideo( src ) ) {
+						var img = $( '<img>' ).on( 'load', function() {
+							callback.call( img );
+						} );
 
-    					img.attr( 'src', src );
-    				}
-                }
+						img.attr( 'src', src );
+					}
+				}
 			},
 
 			/**

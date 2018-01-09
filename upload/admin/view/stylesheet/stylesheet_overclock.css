@@ -773,7 +773,7 @@ ul.menu ul {
 	overflow: hidden;
 }
 .box-login > .content-login h1 {
-	margin: 0 0 10px 0px;
+	margin: 0 0 10px 0;
 	padding: 10px 8px;
 	color: #E5E5E5;
 	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
