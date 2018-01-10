@@ -106,7 +106,7 @@ class ModelShippingCanadaPost extends Model {
 			'title'      => $this->language->get('text_title'),
 			'quote'      => $quote_data,
 			'sort_order' => $this->config->get('canadapost_sort_order'),
-			'error'      => $return_error 
+			'error'      => $return_error
 		);
 
 		return $method_data;
@@ -150,7 +150,7 @@ class ModelShippingCanadaPost extends Model {
 
 			fclose($fp);
 		} else {
-			$buf = '<?xml version="1.0" ?><eparcel><error><statusMessage>Cannot reach Canada Post Server. You may refresh this page (Press F5) to try again.</statusMessage></error></eparcel>'; 
+			$buf = '<?xml version="1.0" ?><eparcel><error><statusMessage>Cannot reach Canada Post Server. You may refresh this page (Press F5) to try again.</statusMessage></error></eparcel>';
 		}
 
 		return $buf;

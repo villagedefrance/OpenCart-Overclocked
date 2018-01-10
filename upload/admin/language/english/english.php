@@ -133,7 +133,7 @@ $_['tab_voucher_history']           = 'Voucher History';
 $_['tab_price']                     = 'Price';
 
 // Compatibility 1.5.x & 1.6.x
-$_['tab_fraud']                     = 'Fraud'; 
+$_['tab_fraud']                     = 'Fraud';
 
 // Error
 $_['error_upload_1']                = 'Warning: The uploaded file exceeds the UPLOAD_MAX_FILESIZE directive in php.ini!';

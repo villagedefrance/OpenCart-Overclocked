@@ -3,7 +3,7 @@
 $_['heading_title']           = 'Supplier Products';
 $_['heading_dimension']       = 'Dimensions';
 
-// Text  
+// Text
 $_['text_success']            = 'Success: You have modified <b>Supplier Products</b> !';
 $_['text_default']            = 'Default';
 $_['text_image_manager']      = 'File Manager';

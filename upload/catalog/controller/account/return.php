@@ -91,7 +91,7 @@ class ControllerAccountReturn extends Controller {
 		$pagination->text = $this->language->get('text_pagination');
 		$pagination->url = $this->url->link('account/return', 'page={page}', 'SSL');
 
-		$this->data['pagination'] = $pagination->render(); 
+		$this->data['pagination'] = $pagination->render();
 
 		$this->data['continue'] = $this->url->link('account/account', '', 'SSL');
 
@@ -180,7 +180,7 @@ class ControllerAccountReturn extends Controller {
 				'separator' => $this->language->get('text_separator')
 			);
 
-			$this->data['heading_title'] = $this->language->get('text_return'); 
+			$this->data['heading_title'] = $this->language->get('text_return');
 
 			$this->data['text_return_detail'] = $this->language->get('text_return_detail');
 			$this->data['text_return_id'] = $this->language->get('text_return_id');
@@ -422,7 +422,7 @@ class ControllerAccountReturn extends Controller {
 			$this->data['error_email'] = $this->error['email'];
 		} else {
 			$this->data['error_email'] = '';
-		} 
+		}
 
 		if (isset($this->error['telephone'])) {
 			$this->data['error_telephone'] = $this->error['telephone'];

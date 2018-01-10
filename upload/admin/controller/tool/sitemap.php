@@ -95,7 +95,7 @@ class ControllerToolSitemap extends Controller {
 		if ($this->request->server['REQUEST_METHOD'] == 'POST' && $this->validate()) {
 			$button = $this->request->post['buttonForm'];
 
-			switch($button) {
+			switch ($button) {
 				case "gentext": $this->data['sitemap'] = $this->redirect($this->url->link('tool/' . $this->_name . '/generateText', 'token=' . $this->session->data['token'], 'SSL')); break;
 				case "genxml": $this->data['sitemap'] = $this->redirect($this->url->link('tool/' . $this->_name . '/generateXml', 'token=' . $this->session->data['token'], 'SSL')); break;
 				case "gengzip": $this->data['sitemap'] = $this->redirect($this->url->link('tool/' . $this->_name . '/generateGzip', 'token=' . $this->session->data['token'], 'SSL')); break;
@@ -135,7 +135,10 @@ class ControllerToolSitemap extends Controller {
 
 			$suffix = array('B','KB','MB','GB','TB','PB','EB','ZB','YB');
 
-			while (($size / 1024) > 1) { $size = $size / 1024; $i++; }
+			while (($size / 1024) > 1) {
+				$size = $size / 1024;
+				$i++;
+			}
 
 			$this->data['text_text'] = $this->language->get('text_text');
 			$this->data['text_nametext'] = $this->language->get('text_nametext');
@@ -162,7 +165,10 @@ class ControllerToolSitemap extends Controller {
 
 			$suffix = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
 
-			while (($size / 1024) > 1) { $size = $size / 1024; $i++; }
+			while (($size / 1024) > 1) {
+				$size = $size / 1024;
+				$i++;
+			}
 
 			$this->data['text_xml'] = $this->language->get('text_xml');
 			$this->data['text_namexml'] = $this->language->get('text_namexml');
@@ -190,7 +196,10 @@ class ControllerToolSitemap extends Controller {
 
 			$suffix = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
 
-			while (($size / 1024) > 1) { $size = $size / 1024; $i++; }
+			while (($size / 1024) > 1) {
+				$size = $size / 1024;
+				$i++;
+			}
 
 			$this->data['text_gzip'] = $this->language->get('text_gzip');
 			$this->data['text_namegzip'] = $this->language->get('text_namegzip');

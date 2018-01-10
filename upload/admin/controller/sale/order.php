@@ -1718,7 +1718,7 @@ class ControllerSaleOrder extends Controller {
 					'href_backordered' => $this->url->link('sale/order/backordered', 'token=' . $this->session->data['token'] . '&order_product_id=' . $product['order_product_id'], 'SSL'),
 					'href'             => $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], 'SSL')
 				);
-			} 
+			}
 
 			$this->data['vouchers'] = array();
 

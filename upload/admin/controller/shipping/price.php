@@ -66,7 +66,7 @@ class ControllerShippingPrice extends Controller {
 
 		$this->data['action'] = $this->url->link('shipping/price', 'token=' . $this->session->data['token'], 'SSL');
 
-		$this->data['cancel'] = $this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL'); 
+		$this->data['cancel'] = $this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->load->model('localisation/geo_zone');
 
@@ -108,7 +108,7 @@ class ControllerShippingPrice extends Controller {
 			$this->data['price_sort_order'] = $this->request->post['price_sort_order'];
 		} else {
 			$this->data['price_sort_order'] = $this->config->get('price_sort_order');
-		}	
+		}
 
 		$this->template = 'shipping/price.tpl';
 		$this->children = array(

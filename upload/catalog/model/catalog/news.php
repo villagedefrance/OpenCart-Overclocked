@@ -1,7 +1,7 @@
 <?php
 class ModelCatalogNews extends Model {
 
-	public function updateViewed($news_id) { 
+	public function updateViewed($news_id) {
 		$this->db->query("UPDATE `" . DB_PREFIX . "news` SET viewed = (viewed + 1) WHERE news_id = '" . (int)$news_id . "'");
 	}
 

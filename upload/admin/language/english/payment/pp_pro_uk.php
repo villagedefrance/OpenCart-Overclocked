@@ -5,7 +5,7 @@ $_['heading_title']      = 'PayPal Payments Pro (UK)';
 // Link
 $_['text_pp_pro_uk']     = '<a onclick="window.open(\'https://www.paypal.com/uk/\');"><img src="view/image/payment/paypal.png" alt="PayPal Payments Pro (UK)" title="PayPal Payments Pro (UK)" style="border:1px solid #EEEEEE;" /></a>';
 
-// Text 
+// Text
 $_['text_payment']       = 'Payment';
 $_['text_success']       = 'Success: You have modified <b>PayPal Payments Pro Payflow (UK)</b> account details !';
 $_['text_authorization'] = 'Authorization';
