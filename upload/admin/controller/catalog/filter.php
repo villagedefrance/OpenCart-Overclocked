@@ -243,7 +243,7 @@ class ControllerCatalogFilter extends Controller {
 
 		if ($order == 'ASC') {
 			$url .= '&order=DESC';
-		} else { 
+		} else {
 			$url .= '&order=ASC';
 		}
 

@@ -46,6 +46,7 @@ final class DBMySQL {
 				} else {
 					return true;
 				}
+
 			} else {
 				$trace = debug_backtrace();
 

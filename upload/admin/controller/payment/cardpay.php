@@ -129,7 +129,7 @@ class ControllerPaymentCardPay extends Controller {
 
 		$this->template = 'payment/cardpay.tpl';
 		$this->children = array(
-			'common/header',	
+			'common/header',
 			'common/footer'
 		);
 

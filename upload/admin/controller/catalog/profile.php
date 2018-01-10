@@ -114,7 +114,7 @@ class ControllerCatalogProfile extends Controller {
 
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
-			} 
+			}
 
 			if (isset($this->request->get['order'])) {
 				$url .= '&order=' . $this->request->get['order'];
@@ -469,7 +469,7 @@ class ControllerCatalogProfile extends Controller {
 			$this->data['trial_cycle'] = $profile_info['trial_cycle'];
 		} else {
 			$this->data['trial_cycle'] = '1';
-		} 
+		}
 
 		$this->template = 'catalog/profile_form.tpl';
 		$this->children = array(

@@ -150,8 +150,13 @@ class ControllerOpenbayEbayProfile extends Controller {
 			$this->redirect($this->url->link('openbay/openbay/viewSync&token=' . $this->session->data['token'], 'SSL'));
 		}
 
-		if (is_array($setting['dispatch_times'])){ ksort($setting['dispatch_times']); }
-		if (is_array($setting['countries'])){ ksort($setting['countries']); }
+		if (is_array($setting['dispatch_times'])) {
+			ksort($setting['dispatch_times']);
+		}
+
+		if (is_array($setting['countries'])) {
+			ksort($setting['countries']);
+		}
 
 		$this->data['setting'] = $setting;
 
@@ -382,13 +387,17 @@ class ControllerOpenbayEbayProfile extends Controller {
 				$tmp .= '<div style="border:1px solid #000; background-color:#F5F5F5; width:100%; min-height:40px; margin-bottom:10px; display:inline-block;" class="shipping_international_' . $key . '">';
 				$tmp .= '<div style="display:inline; float:left; padding:10px 6px;line-height:20px; height:20px;">';
 				$tmp .= '<input type="checkbox" name="shipto_international[' . $key . '][]" value="Worldwide" ';
-				if (in_array('Worldwide', $service['shipto'])) { $tmp .= ' checked="checked"'; }
+				if (in_array('Worldwide', $service['shipto'])) {
+					$tmp .= ' checked="checked"';
+				}
 				$tmp .= '/> ' . $this->language->get('lang_shipping_worldwide') . '</div>';
 
 				foreach ($zones as $zone) {
 					$tmp .= '<div style="display:inline; float:left; padding:10px 6px;line-height:20px; height:20px;">';
 					$tmp .= '<input type="checkbox" name="shipto_international[' . $key . '][]" value="' . $zone['shipping_location'] . '"';
-					if (in_array($zone['shipping_location'], $service['shipto'])) { $tmp .= ' checked="checked"'; }
+					if (in_array($zone['shipping_location'], $service['shipto'])) {
+						$tmp .= ' checked="checked"';
+					}
 					$tmp .= '/> ' . $zone['description'] . '</div>';
 				}
 

@@ -26,7 +26,6 @@ final class MSSQL {
 
 				while ($result = mssql_fetch_assoc($resource)) {
 					$data[$i] = $result;
-
 					$i++;
 				}
 

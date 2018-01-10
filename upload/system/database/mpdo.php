@@ -72,9 +72,9 @@ final class DBmPDO {
 				if ($this->rowCount > 0) {
 					try {
 						$data = $this->statement->fetchAll(\PDO::FETCH_ASSOC);
+					} catch (\PDOException $ex) {
+						throw new \Exception('Error: ' . $ex->getMessage() . ' Error Code : ' . $ex->getCode());
 					}
-
-					catch (\Exception $ex) {}
 				}
 
 				// free up resources

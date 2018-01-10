@@ -244,7 +244,7 @@ class UGRSR {
 
 	/**
 	 * UGRSR::run()
-	 * 
+	 *
 	 * @return bool
 	 */
 	public function run() {
@@ -455,7 +455,6 @@ class UGRSR {
 			}
 		}
 
-		// Pass file array back
 		return $files;
 	}
 }

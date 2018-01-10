@@ -16,7 +16,7 @@ class Template {
 
 		} else {
 			trigger_error('Error: Could not load template ' . $file . '!');
-			exit(); 
+			exit();
 		}
 	}
 }

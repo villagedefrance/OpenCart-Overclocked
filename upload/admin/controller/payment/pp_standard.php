@@ -211,7 +211,7 @@ class ControllerPaymentPPStandard extends Controller {
 
 		$this->load->model('localisation/geo_zone');
 
-		$this->data['geo_zones'] = $this->model_localisation_geo_zone->getGeoZones(); 
+		$this->data['geo_zones'] = $this->model_localisation_geo_zone->getGeoZones();
 
 		if (isset($this->request->post['pp_standard_status'])) {
 			$this->data['pp_standard_status'] = $this->request->post['pp_standard_status'];

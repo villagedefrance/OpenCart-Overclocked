@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 
 // Check Version
 if (version_compare(phpversion(), '5.4.0', '<') == true) {
-	exit('PHP 5.4+ Required'); 
+	exit('PHP 5.4+ Required');
 }
 
 if (!ini_get('date.timezone')) {

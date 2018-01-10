@@ -114,7 +114,10 @@ class ControllerPaymentPPProIframe extends Controller {
 			}
 
 			$request = 'cmd=_notify-validate';
-			if (!empty($this->request->post)) $request .= '&' . http_build_query($this->request->post, '', '&');
+
+			if (!empty($this->request->post)) {
+				$request .= '&' . http_build_query($this->request->post, '', '&');
+			}
 
 			$options = array(
 				CURLOPT_POST            => true,
@@ -142,7 +145,7 @@ class ControllerPaymentPPProIframe extends Controller {
 
 			} else {
 				$log_data = array(
-					'IPN REQUEST' => $request,
+					'IPN REQUEST'  => $request,
 					'IPN RESPONSE' => $response
 				);
 

@@ -146,7 +146,7 @@ class ControllerOpenbayAmazonProduct extends Controller {
 
 		$errors = $this->model_openbay_amazon->getProductErrors($product_id);
 
-		foreach($errors as $error) {
+		foreach ($errors as $error) {
 			$error['message'] =  'Error for SKU: "' . $error['sku'] . '" - ' . $this->formatUrlsInText($error['message']);
 
 			$this->data['errors'][] = $error;
@@ -342,7 +342,7 @@ class ControllerOpenbayAmazonProduct extends Controller {
 
 			$result['status'] = 'error';
 			$result['error_message'] = 'No saved listings. Nothing to upload. Aborting.';
-	
+
 			return $result;
 		}
 

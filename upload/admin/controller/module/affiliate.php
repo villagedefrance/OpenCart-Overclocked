@@ -1,5 +1,5 @@
 <?php
-class ControllerModuleAffiliate extends Controller { 
+class ControllerModuleAffiliate extends Controller {
 	private $error = array();
 	private $_name = 'affiliate';
 

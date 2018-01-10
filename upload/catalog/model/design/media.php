@@ -42,18 +42,53 @@ class ModelDesignMedia extends Model {
 
 		$ext = utf8_substr(strrchr($filename, '.'), 1);
 
-		if (strtolower($ext) == 'mp3') { $mime_type = 'audio/mp3'; }
-		if (strtolower($ext) == 'mp4') { $mime_type = 'video/mp4'; }
-		if (strtolower($ext) == 'oga') { $mime_type = 'audio/ogg'; }
-		if (strtolower($ext) == 'ogv') { $mime_type = 'video/ogg'; }
-		if (strtolower($ext) == 'ogg') { $mime_type = 'video/ogg'; }
-		if (strtolower($ext) == 'webm') { $mime_type = 'video/webm'; }
-		if (strtolower($ext) == 'm4a') { $mime_type = 'audio/m4a'; }
-		if (strtolower($ext) == 'm4v') { $mime_type = 'video/m4v'; }
-		if (strtolower($ext) == 'wav') { $mime_type = 'audio/wav'; }
-		if (strtolower($ext) == 'wmv') { $mime_type = 'video/x-ms-wmv'; }
-		if (strtolower($ext) == 'wma') { $mime_type = 'audio/x-ms-wma'; }
-		if (strtolower($ext) == 'flv') { $mime_type = 'application/x-shockwave-flash'; }
+		if (strtolower($ext) == 'mp3') {
+			$mime_type = 'audio/mp3';
+		}
+
+		if (strtolower($ext) == 'mp4') {
+			$mime_type = 'video/mp4';
+		}
+
+		if (strtolower($ext) == 'oga') {
+			$mime_type = 'audio/ogg';
+		}
+
+		if (strtolower($ext) == 'ogv') {
+			$mime_type = 'video/ogg';
+		}
+
+		if (strtolower($ext) == 'ogg') {
+			$mime_type = 'video/ogg';
+		}
+
+		if (strtolower($ext) == 'webm') {
+			$mime_type = 'video/webm';
+		}
+
+		if (strtolower($ext) == 'm4a') {
+			$mime_type = 'audio/m4a';
+		}
+
+		if (strtolower($ext) == 'm4v') {
+			$mime_type = 'video/m4v';
+		}
+
+		if (strtolower($ext) == 'wav') {
+			$mime_type = 'audio/wav';
+		}
+
+		if (strtolower($ext) == 'wmv') {
+			$mime_type = 'video/x-ms-wmv';
+		}
+
+		if (strtolower($ext) == 'wma') {
+			$mime_type = 'audio/x-ms-wma';
+		}
+
+		if (strtolower($ext) == 'flv') {
+			$mime_type = 'application/x-shockwave-flash';
+		}
 
 		return $mime_type;
 	}
