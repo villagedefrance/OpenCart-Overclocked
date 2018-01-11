@@ -122,6 +122,7 @@ button.mfp-close, button.mfp-arrow {
 	background: transparent;
 	border: 0;
 	-webkit-appearance: none;
+	-moz-appearance: none;
 	display: block;
 	outline: none;
 	padding: 0;

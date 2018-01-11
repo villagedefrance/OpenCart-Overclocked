@@ -66,7 +66,7 @@ class ControllerPaymentStripePayments extends Controller {
 
 		Stripe::setApiKey($stripe['secret_key']);
 
-		$token = $_POST['stripeToken'];
+		$token = $this->session->data['stripeToken'];
 
 		$error = null;
 
@@ -85,6 +85,7 @@ class ControllerPaymentStripePayments extends Controller {
 				),
 				'description'  => 'Order ID# '. $this->session->data['order_id']
 			));
+
 		} catch (Stripe_CardError $e) {
 			// Error card processing
 			$error = $e->jsonBody['error'];

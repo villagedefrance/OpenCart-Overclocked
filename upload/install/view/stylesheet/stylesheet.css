@@ -74,7 +74,7 @@ fieldset table.form tr td.text-center {
 	text-align: center;
 }
 input[type='text'], input[type='password'], textarea {
-	padding: 3px 0px 3px 4px;
+	padding: 3px 0 3px 4px;
 	min-height: 16px;
 	margin-left: 0;
 	margin-right: 0;

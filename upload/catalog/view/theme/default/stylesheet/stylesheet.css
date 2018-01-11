@@ -3024,7 +3024,10 @@ table.order-options tr td > div.division {
 }
 /* Tablets - Small */
 @media only screen and (min-width: 481px) and (max-width: 641px) {
-	html {-webkit-text-size-adjust: none;}
+	html {
+		-webkit-text-size-adjust: none;
+		-ms-text-size-adjust: none;
+	}
 	body {padding: 0;}
 	#container-top .container-top-inner-normal,
 	#container-top .container-top-inner-wide,
@@ -3165,7 +3168,10 @@ table.order-options tr td > div.division {
 }
 /* Phones - Large */
 @media only screen and (min-width: 320px) and (max-width: 481px) {
-	html {-webkit-text-size-adjust: none;}
+	html {
+		-webkit-text-size-adjust: none;
+		-ms-text-size-adjust: none;
+	}
 	body {padding: 0;}
 	#container-top .container-top-inner-normal,
 	#container-top .container-top-inner-wide,
