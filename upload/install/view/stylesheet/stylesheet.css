@@ -5,8 +5,8 @@ html {
 }
 body {
 	background: #F6F6F6 url('../image/background.png');
-	padding: 0px;
-	margin: 0px;
+	padding: 0;
+	margin: 0;
 }
 body, p, td, th, input, textarea, select {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -27,12 +27,12 @@ option {
 	text-transform: uppercase;
 	color: #FFF;
 	padding: 26px 27px;
-	margin-top: 0px;
+	margin-top: 0;
 	margin-bottom: 25px;
 	vertical-align: middle;
 }
 p {
-	margin-top: 0px;
+	margin-top: 0;
 	margin-bottom: 20px;
 }
 p, ul, ol, li, td {
@@ -76,8 +76,8 @@ fieldset table.form tr td.text-center {
 input[type='text'], input[type='password'], textarea {
 	padding: 3px 0px 3px 4px;
 	min-height: 16px;
-	margin-left: 0px;
-	margin-right: 0px;
+	margin-left: 0;
+	margin-right: 0;
 	border-top: 1px solid #B6B6B6;
 	border-left: 1px solid #B6B6B6;
 	border-bottom: 1px solid #E1E1E1;
@@ -177,8 +177,8 @@ label {
 #column-right ul li {
 	display: block;
 	border-bottom: 1px solid #DBDBDB;
-	background: url('../image/bullet-arrow.png') 0px 5px no-repeat;
-	padding: 0px 8px 8px 22px;
+	background: url('../image/bullet-arrow.png') 0 5px no-repeat;
+	padding: 0 8px 8px 22px;
 	margin-bottom: 8px;
 }
 #content {
@@ -236,9 +236,9 @@ a.button, input.button {
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
-	-webkit-box-shadow: 0px 2px 2px #DDD;
-	-moz-box-shadow: 0px 2px 2px #DDD;
-	box-shadow: 0px 2px 2px #DDD;
+	-webkit-box-shadow: 0 2px 2px #DDD;
+	-moz-box-shadow: 0 2px 2px #DDD;
+	box-shadow: 0 2px 2px #DDD;
 	cursor: pointer;
 }
 a.button {
@@ -252,7 +252,7 @@ a.button {
 input.button {
 	border: 0;
 	height: 24px;
-	padding: 0px 12px 0px 12px;
+	padding: 0 12px;
 	font-size: 12px;
 	font-weight: bold;
 	line-height: 12px;
@@ -298,7 +298,7 @@ a.button:hover, input.button:hover {
 	background: #FFF;
 	height: 360px;
 	border: 1px solid #DBDBDB;
-	margin: 3px 0px 10px 0px;
+	margin: 3px 0 10px 0;
 	padding: 6px;
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
@@ -310,7 +310,7 @@ a.button:hover, input.button:hover {
 .finalize {
 	background: transparent;
 	margin-bottom: 15px;
-	padding: 20px 0px;
+	padding: 20px 0;
 	overflow: auto;
 }
 .finalize div {
@@ -336,5 +336,5 @@ a.button:hover, input.button:hover {
 }
 #footer a {
 	line-height: 28px;
-	margin: 0px 5px;
+	margin: 0 5px;
 }

@@ -83,6 +83,7 @@ html, body, div, span {
 .mfp-close, .mfp-arrow, .mfp-preloader, .mfp-counter {
 	-webkit-user-select: none;
 	-moz-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
 }
 .mfp-loading.mfp-figure {
@@ -345,10 +346,16 @@ img.mfp-img {
 	}
 	.mfp-arrow-left {
 		-webkit-transform-origin: 0;
+		-moz-transform-origin: 0;
+		-ms-transform-origin: 0;
+		-o-transform-origin: 0;
 		transform-origin: 0;
 	}
 	.mfp-arrow-right {
 		-webkit-transform-origin: 100%;
+		-moz-transform-origin: 100%;
+		-ms-transform-origin: 100%;
+		-o-transform-origin: 100%;
 		transform-origin: 100%;
 	}
 	.mfp-container {
@@ -367,10 +374,16 @@ img.mfp-img {
 	}
 	.mfp-arrow-left {
 		-webkit-transform-origin: 0;
+		-moz-transform-origin: 0;
+		-ms-transform-origin: 0;
+		-o-transform-origin: 0;
 		transform-origin: 0;
 	}
 	.mfp-arrow-right {
 		-webkit-transform-origin: 100%;
+		-moz-transform-origin: 100%;
+		-ms-transform-origin: 100%;
+		-o-transform-origin: 100%;
 		transform-origin: 100%;
 	}
 	.mfp-container {

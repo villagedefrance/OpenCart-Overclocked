@@ -202,7 +202,7 @@ class ControllerLocalisationCountry extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$url = ''; 
+			$url = '';
 
 			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));

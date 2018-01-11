@@ -22,7 +22,7 @@ $_['entry_sort_order']       = 'Sort Order:';
 // Button
 $_['button_info']            = 'Information';
 
-// Error 
+// Error
 $_['error_permission']       = 'Warning: You do not have permission to modify <b>Fields</b> !';
 $_['error_warning']          = 'Warning: Please check the form carefully for errors!';
 $_['error_title']            = 'Information Title must be between 3 and 64 characters!';

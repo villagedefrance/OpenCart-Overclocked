@@ -2911,10 +2911,10 @@ table.order-options tr td > div.division {
 	width: 35px;
 }
 #backtotop a:hover span {
-	background-position: 0% -34px;
+	background-position: 0 -34px;
 }
 #backtotop span {
-	background: url('../image/up-arrow.png') 0% 0px no-repeat transparent;
+	background: url('../image/up-arrow.png') 0% 0 no-repeat transparent;
 	display: block;
 	height: 20px;
 	width: 35px;
