@@ -1446,10 +1446,10 @@ table.tool tr td {
 	border-left: 1px solid #191919;
 	border-bottom: 1px solid #444;
 	border-right: 1px solid #444;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	overflow-y: scroll;
 }
 .scrollbox-store {
@@ -1465,10 +1465,10 @@ table.tool tr td {
 	border-left: 1px solid #191919;
 	border-bottom: 1px solid #444;
 	border-right: 1px solid #444;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	overflow-y: scroll;
 }
 .scrollbox img {
@@ -1480,7 +1480,7 @@ table.tool tr td {
 }
 .scrollbox div input, .scrollbox-store div input {
 	margin: 0 3px 0 0;
-	padding: 0px;
+	padding: 0;
 }
 .scrollbox div.even, .scrollbox-store div.even {
 	background: #DCDCDC;

@@ -1440,10 +1440,10 @@ table.tool tr td {
 	height: 100px;
 	background: #FFF;
 	border: 1px solid #CCC;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	overflow-y: scroll;
 }
 .scrollbox-store {
@@ -1452,10 +1452,10 @@ table.tool tr td {
 	margin-bottom: 5px;
 	background: #FFF;
 	border: 1px solid #CCC;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	overflow-y: scroll;
 }
 .scrollbox img {

@@ -3311,7 +3311,7 @@ table.order-options tr td > div.division {
 	}
 	.contact-info .info-left, .contact-info .info-right {
 		width: 100%;
-		margin: 0px;
+		margin: 0;
 	}
 	/* checkout */
 	.checkout-content .left {
@@ -3336,7 +3336,10 @@ table.order-options tr td > div.division {
 }
 /* Phones - Small */
 @media only screen and (max-width: 320px) {
-	html {-webkit-text-size-adjust: none;}
+	html {
+		-webkit-text-size-adjust: none;
+		-ms-text-size-adjust: none;
+	}
 	body {padding: 0;}
 	#container-top .container-top-inner-normal,
 	#container-top .container-top-inner-wide,
