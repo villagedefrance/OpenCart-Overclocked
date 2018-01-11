@@ -1,4 +1,5 @@
 /*! Swipebox v1.4.4 | Constantin Saguin csag.co | MIT License | github.com/brutaldesign/swipebox */
+/* Overclocked Edition © 2018 | Villagedefrance */
 html.swipebox-html.swipebox-touch {
 	overflow: hidden;
 }
@@ -15,6 +16,7 @@ html.swipebox-html.swipebox-touch {
 	overflow: hidden;
 	-webkit-user-select: none;
 	-moz-user-select: none;
+	-khtml-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
 }
@@ -70,6 +72,7 @@ html.swipebox-html.swipebox-touch {
 	width: 100%;
 	padding: 5%;
 	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 #swipebox-slider .slide .swipebox-video-container .swipebox-video {
@@ -161,19 +164,19 @@ html.swipebox-html.swipebox-touch {
 }
 #swipebox-prev.disabled, #swipebox-next.disabled {
 	filter: alpha(opacity=30);
-	-khtml-opacity: 0.3;
-	-moz-opacity: 0.3;
-	opacity: 0.3;
+	-khtml-opacity: .3;
+	-moz-opacity: .3;
+	opacity: .3;
 }
 .swipebox-no-touch #swipebox-overlay.rightSpring #swipebox-slider {
-	-webkit-animation: rightSpring 0.3s;
-	-moz-animation: rightSpring 0.3s;
-	animation: rightSpring 0.3s;
+	-webkit-animation: rightSpring .3s;
+	-moz-animation: rightSpring .3s;
+	animation: rightSpring .3s;
 }
 .swipebox-no-touch #swipebox-overlay.leftSpring #swipebox-slider {
-	-webkit-animation: leftSpring 0.3s;
-	-moz-animation: leftSpring 0.3s;
-	animation: leftSpring 0.3s;
+	-webkit-animation: leftSpring .3s;
+	-moz-animation: leftSpring .3s;
+	animation: leftSpring .3s;
 }
 .swipebox-touch #swipebox-container:before, .swipebox-touch #swipebox-container:after {
 	-webkit-backface-visibility: hidden;
@@ -292,10 +295,8 @@ html.swipebox-html.swipebox-touch {
 #swipebox-bottom-bar, #swipebox-top-bar {
 	text-shadow: 1px 1px 1px #111;
 	background: #111;
-	filter: alpha(opacity=95);
-	-khtml-opacity: 0.95;
-	-moz-opacity: 0.95;
-	opacity: 0.95;
+	filter:alpha(opacity=95);-khtml-opacity: .95;-moz-opacity: .95;
+	opacity: .95;
 }
 #swipebox-top-bar {
 	color: #FFF;
