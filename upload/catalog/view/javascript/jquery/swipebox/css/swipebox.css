@@ -1,9 +1,9 @@
 /*! Swipebox v1.4.4 | Constantin Saguin csag.co | MIT License | github.com/brutaldesign/swipebox */
 html.swipebox-html.swipebox-touch {
-	overflow: hidden !important;
+	overflow: hidden;
 }
 #swipebox-overlay img {
-	border: none !important;
+	border: none;
 }
 #swipebox-overlay {
 	width: 100%;
@@ -11,7 +11,7 @@ html.swipebox-html.swipebox-touch {
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: 99999 !important;
+	z-index: 99999;
 	overflow: hidden;
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -25,6 +25,8 @@ html.swipebox-html.swipebox-touch {
 }
 #swipebox-slider {
 	-webkit-transition: -webkit-transform 0.4s ease;
+	-moz-transition: -webkit-transform 0.4s ease;
+	-o-transition: -webkit-transform 0.4s ease;
 	transition: transform 0.4s ease;
 	height: 100%;
 	left: 0;
@@ -78,8 +80,8 @@ html.swipebox-html.swipebox-touch {
 	position: relative;
 }
 #swipebox-slider .slide .swipebox-video-container .swipebox-video iframe {
-  width: 100% !important;
-  height: 100% !important;
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -89,6 +91,8 @@ html.swipebox-html.swipebox-touch {
 }
 #swipebox-bottom-bar, #swipebox-top-bar {
 	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-o-transition: 0.5s;
 	transition: 0.5s;
 	position: absolute;
 	left: 0;
@@ -101,6 +105,7 @@ html.swipebox-html.swipebox-touch {
 }
 #swipebox-bottom-bar.visible-bars {
 	-webkit-transform: translate3d(0, -50px, 0);
+	-moz-transform: translate3d(0, -50px, 0);
 	transform: translate3d(0, -50px, 0);
 }
 #swipebox-top-bar {
@@ -108,6 +113,7 @@ html.swipebox-html.swipebox-touch {
 }
 #swipebox-top-bar.visible-bars {
 	-webkit-transform: translate3d(0, 50px, 0);
+	-moz-transform: translate3d(0, -50px, 0);
 	transform: translate3d(0, 50px, 0);
 }
 #swipebox-title {
@@ -118,8 +124,8 @@ html.swipebox-html.swipebox-touch {
 #swipebox-prev, #swipebox-next, #swipebox-close {
 	background-image: url(../img/icons.png);
 	background-repeat: no-repeat;
-	border: none !important;
-	text-decoration: none !important;
+	border: none;
+	text-decoration: none;
 	cursor: pointer;
 	width: 50px;
 	height: 50px;
@@ -154,17 +160,20 @@ html.swipebox-html.swipebox-touch {
 }
 .swipebox-no-touch #swipebox-overlay.rightSpring #swipebox-slider {
 	-webkit-animation: rightSpring 0.3s;
+	-moz-animation: rightSpring 0.3s;
 	animation: rightSpring 0.3s;
 }
 .swipebox-no-touch #swipebox-overlay.leftSpring #swipebox-slider {
 	-webkit-animation: leftSpring 0.3s;
+	-moz-animation: leftSpring 0.3s;
 	animation: leftSpring 0.3s;
 }
-
 .swipebox-touch #swipebox-container:before, .swipebox-touch #swipebox-container:after {
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-o-transition: all .3s ease;
 	transition: all .3s ease;
 	content: ' ';
 	position: absolute;
@@ -176,13 +185,15 @@ html.swipebox-html.swipebox-touch {
 }
 .swipebox-touch #swipebox-container:before {
 	left: 0;
-	-webkit-box-shadow: inset 10px 0px 10px -8px #656565;
-	box-shadow: inset 10px 0px 10px -8px #656565;
+	-webkit-box-shadow: inset 10px 0 10px -8px #656565;
+	-moz-box-shadow: inset 10px 0 10px -8px #656565;
+	box-shadow: inset 10px 0 10px -8px #656565;
 }
 .swipebox-touch #swipebox-container:after {
 	right: 0;
-	-webkit-box-shadow: inset -10px 0px 10px -8px #656565;
-	box-shadow: inset -10px 0px 10px -8px #656565;
+	-webkit-box-shadow: inset -10px 0 10px -8px #656565;
+	-moz-box-shadow: inset 10px 0 10px -8px #656565;
+	box-shadow: inset -10px 0 10px -8px #656565;
 }
 .swipebox-touch #swipebox-overlay.leftSpringTouch #swipebox-container:before {
 	opacity: 1;
@@ -265,7 +276,7 @@ html.swipebox-html.swipebox-touch {
   opacity: 0.95;
 }
 #swipebox-top-bar {
-  color: #FFF !important;
+  color: #FFF;
   font-size: 15px;
   line-height: 43px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

@@ -66,15 +66,15 @@
 /* Simple Lens - Thumbnails */
 .product-info .simpleLens-thumbnails-container {
 	width: 260px;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	overflow: hidden;
 	clear: both;
 }
 .product-info .simpleLens-thumbnails-container a {
 	float: left;
 	display: block;
-	margin: 0px 10px 10px 0px;
+	margin: 0 10px 10px 0;
 	padding: 0px;
 }
 .product-info .simpleLens-thumbnails-container img {

@@ -66,7 +66,6 @@ function fatal_error_shutdown_handler_for_export_import() {
 }
 
 class ModelToolExportImport extends Model {
-	private $error = array();
 	protected $null_array = array();
 
 	protected function clean(&$str, $allowBlanks = false) {

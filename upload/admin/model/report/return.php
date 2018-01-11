@@ -64,7 +64,7 @@ class ModelReportReturn extends Model {
 			$group = 'week';
 		}
 
-		switch ($group) { 
+		switch ($group) {
 			case 'day';
 				$sql = "SELECT COUNT(DISTINCT DAY(date_added)) AS total FROM `" . DB_PREFIX . "return`";
 				break;

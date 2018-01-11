@@ -260,7 +260,7 @@ class RapidAPI {
  * Class containing translations of Response Codes
  */
 class ResponseCode {
-	private static $_codes = array(
+	private static $ewaycodes = array(
 		'F7000' => "Undefined Fraud",
 		'V5000' => "Undefined System",
 		'A0000' => "Undefined Approved",
@@ -479,8 +479,8 @@ class ResponseCode {
 	* @static
 	*/
 	public static function getMessage($code) {
-		if (isset(ResponseCode::$_codes[$code])) {
-			return ResponseCode::$_codes[$code];
+		if (isset(ResponseCode::$ewaycodes[$code])) {
+			return ResponseCode::$ewaycodes[$code];
 		} else {
 			return $code;
 		}
@@ -545,7 +545,7 @@ class CreateDirectPaymentRequest {
 }
 
 /**
- *
+ * Refund
  */
 class CreateRefundRequest {
 	public $Refund;
@@ -663,7 +663,6 @@ class Payment {
 	public $InvoiceReference;
 	/// <summary>The merchant's currency</summary>
 	public $CurrencyCode;
-
 	/// For Refund
 	public $TransactionID;
 }

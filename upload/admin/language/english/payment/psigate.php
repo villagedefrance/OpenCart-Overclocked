@@ -5,8 +5,8 @@ $_['heading_title']      = 'PSiGate';
 // Link
 $_['text_psigate']       = '<a onclick="window.open(\'http://www.psigate.com/\');"><img src="view/image/payment/psigate.png" alt="PSiGate" title="PSiGate" style="border:1px solid #EEEEEE;" /></a>';
 
-// Text 
-$_['text_payment']       = 'Payment'; 
+// Text
+$_['text_payment']       = 'Payment';
 $_['text_success']       = 'Success: You have modified <b>Payment PSiGate</b> account details !';
 
 // Entry

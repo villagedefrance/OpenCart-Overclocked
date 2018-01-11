@@ -63,10 +63,11 @@ a img {
 	outline: none;
 }
 a:hover, a img:hover {
-	user-select: none;
-	-moz-user-select: none;
 	-webkit-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
 	-ms-user-select: none;
+	user-select: none;
 }
 form {
 	padding: 0;
@@ -2812,7 +2813,7 @@ table.order-options tr td > div.division {
 	margin-bottom: 5px;
 }
 .sitemap-info .left > ul > li, .sitemap-info .right > ul > li {
-	margin: 2px 0px;
+	margin: 2px 0;
 }
 .sitemap-info .left > ul > li.last-line, .sitemap-info .right > ul > li.last-line {
 	margin-bottom: 10px;
@@ -2851,7 +2852,7 @@ table.order-options tr td > div.division {
 	width: 50px;
 	display: block;
 	margin: 0 0 -50px 0;
-	padding: 0px;
+	padding: 0;
 	z-index: 9;
 }
 .stock-small, .offer-small, .special-small {
@@ -2862,14 +2863,14 @@ table.order-options tr td > div.division {
 	width: 30px;
 	display: block;
 	margin: 0 0 -30px 0;
-	padding: 0px;
+	padding: 0;
 	z-index: 9;
 }
 .product-label {
 	position: relative;
 	top: 0;
 	display: block;
-	padding: 0px;
+	padding: 0;
 	z-index: 9;
 }
 /* Banner */

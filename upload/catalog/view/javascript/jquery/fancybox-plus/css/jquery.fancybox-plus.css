@@ -75,7 +75,7 @@
 	position: relative;
 	overflow: hidden;
 	z-index: 1102;
-	border: 0px solid #FFF;
+	border: 0;
 }
 #fbplus-hide-sel-frame {
 	position: absolute;
@@ -92,7 +92,7 @@
 	right: -15px;
 	width: 30px;
 	height: 30px;
-	background: transparent url('../images/fbplus.png') -40px 0px;
+	background: transparent url('../images/fbplus.png') -40px 0;
 	cursor: pointer;
 	z-index: 1103;
 	display: none;
@@ -121,7 +121,7 @@
 }
 #fbplus-left, #fbplus-right {
 	position: absolute;
-	bottom: 0px;
+	bottom: 0;
 	height: 100%;
 	width: 35%;
 	cursor: pointer;
@@ -131,10 +131,10 @@
 	display: none;
 }
 #fbplus-left {
-	left: 0px;
+	left: 0;
 }
 #fbplus-right {
-	right: 0px;
+	right: 0;
 }
 #fbplus-left-ico, #fbplus-right-ico {
 	position: absolute;
@@ -191,7 +191,7 @@
 	right: -20px;
 	height: 100%;
 	background-image: url('../images/fbplus-y.png');
-	background-position: -20px 0px;
+	background-position: -20px 0;
 }
 #fbplus-bg-se {
 	bottom: -20px;
@@ -204,7 +204,7 @@
 	left: 0;
 	width: 100%;
 	background-image: url('../images/fbplus-x.png');
-	background-position: 0px -20px;
+	background-position: 0 -20px;
 }
 #fbplus-bg-sw {
 	bottom: -20px;
@@ -276,7 +276,7 @@
 	line-height: 29px;
 	font-weight: bold;
 	padding: 0 0 3px 0;
-	background: url('../images/fbplus-x.png') 0px -40px;
+	background: url('../images/fbplus-x.png') 0 -40px;
 }
 #fbplus-title-float-right {
 	padding: 0 0 0 15px;
@@ -326,7 +326,7 @@
 }
 /* IE6, IE7, IE8 */
 .fbplus-ie .fbplus-bg {
-	background: transparent !important;
+	background: transparent;
 }
 .fbplus-ie #fbplus-bg-n {
 	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/fbplus_shadow_n.png', sizingMethod='scale');

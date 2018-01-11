@@ -25,7 +25,7 @@ $_['text_transaction']           = 'Transactions';
 $_['text_download']              = 'Downloads';
 $_['text_addreturn']             = 'Add a Return Request';
 $_['text_return']                = 'View Return Requests';
-$_['text_reward']                = 'View Reward Points'; 
+$_['text_reward']                = 'View Reward Points';
 $_['text_giftvoucher']           = 'Purchase Gift Cards';
 $_['text_newsletter']            = 'Newsletter';
 

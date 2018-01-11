@@ -15,8 +15,10 @@ html, body, div, span {
 	overflow: hidden;
 	position: fixed;
 	background: rgba(14,14,14,0.8);
-	opacity: 0.8;
 	filter: alpha(opacity=80);
+	-khtml-opacity: 0.8;
+	-moz-opacity: 0.8;
+	opacity: 0.8;
 }
 .mfp-wrap {
 	top: 0;
@@ -138,14 +140,17 @@ button:-moz-focus-inner {
 	position: absolute;
 	right: 0;
 	top: 0;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-style: normal;
 	font-size: 28px;
 	color: #FFF;
 	text-decoration: none;
 	text-align: center;
-	opacity: 0.65;
 	padding: 0 0 18px 10px;
+	filter: alpha(opacity=65);
+	-khtml-opacity: 0.65;
+	-moz-opacity: 0.65;
+	opacity: 0.65;
 }
 .mfp-close:hover, .mfp-close:focus {
 	opacity: 1;
@@ -175,7 +180,6 @@ button:-moz-focus-inner {
 /* Arrows */
 .mfp-arrow {
 	position: absolute;
-	opacity: 0.65;
 	margin: 0;
 	top: 50%;
 	margin-top: -55px;
@@ -183,6 +187,10 @@ button:-moz-focus-inner {
 	width: 90px;
 	height: 110px;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	filter: alpha(opacity=65);
+	-khtml-opacity: 0.65;
+	-moz-opacity: 0.65;
+	opacity: 0.65;
 }
 .mfp-arrow:active {
 	margin-top: -54px;
@@ -390,7 +398,7 @@ img.mfp-img {
 		margin-left: 5px;
 	}
 	.mfp-img-mobile .mfp-bottom-bar {
-		background: rgba(0, 0, 0, 0.6);
+		background: rgba(0,0,0,0.6);
 		bottom: 0;
 		margin: 0;
 		top: auto;

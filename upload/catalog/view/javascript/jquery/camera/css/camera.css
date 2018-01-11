@@ -221,7 +221,7 @@
 	cursor: pointer;
 	display: inline-block;
 	position: relative;
-	margin: 10px 0px;
+	margin: 10px 0;
 	text-align: left;
 	text-indent: -9999px;
 	height: 10px;
@@ -230,38 +230,38 @@
 .camera_wrap .camera_pag .camera_pag_ul li > span {
 	overflow: hidden;
 	position: absolute;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	height: 10px;
 	width: 32px;
 }
 .camera_wrap .camera_pag .camera_pag_ul li:first-child {
-	border: 0px;
-	-moz-border-radius: 4px 0 0 4px;
+	border: 0;
 	-webkit-border-radius: 4px 0 0 4px;
+	-moz-border-radius: 4px 0 0 4px;
 	-khtml-border-radius: 4px 0 0 4px;
 	border-radius: 4px 0 0 4px;
 }
 .camera_wrap .camera_pag .camera_pag_ul li:last-child {
-	border: 0px;
-	-moz-border-radius: 0px 4px 4px 0;
-	-webkit-border-radius: 0px 4px 4px 0;
-	-khtml-border-radius: 0px 4px 4px 0;
-	border-radius: 0px 4px 4px 0;
+	border: 0;
+	-webkit-border-radius: 0 4px 4px 0;
+	-moz-border-radius: 0 4px 4px 0;
+	-khtml-border-radius: 0 4px 4px 0;
+	border-radius: 0 4px 4px 0;
 }
 .camera_commands_emboss .camera_pag .camera_pag_ul li {
-	-moz-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px -1px rgba(0,0,0,0.2);
-	-webkit-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px -1px rgba(0,0,0,0.2);
-	box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px -1px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,1), inset 0 1px 1px -1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0 1px 0 rgba(255,255,255,1), inset 0 1px 1px -1px rgba(0,0,0,0.2);
+	box-shadow: 0 1px 0 rgba(255,255,255,1), inset 0 1px 1px -1px rgba(0,0,0,0.2);
 }
 .camera_commands_emboss .camera_pag .camera_pag_ul li:hover > span {
-	-moz-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px -1px rgba(0,0,0,0.2);
-	-webkit-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px -1px rgba(0,0,0,0.2);
-	box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px -1px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,1), inset 0 1px 1px -1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0 1px 0 rgba(255,255,255,1), inset 0 1px 1px -1px rgba(0,0,0,0.2);
+	box-shadow: 0 1px 0 rgba(255,255,255,1), inset 0 1px 1px -1px rgba(0,0,0,0.2);
 }
 .camera_wrap .camera_pag .camera_pag_ul li.cameracurrent > span {
-	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
 	box-shadow: none;
 }
 .camera_pag_ul li img {
@@ -330,9 +330,9 @@
 	width: 100%;
 }
 .camera_commands_emboss .camera_thumbs_cont {
-	-moz-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
-	-webkit-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
-	box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,1), inset 0 1px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0 1px 0 rgba(255,255,255,1), inset 0 1px 1px rgba(0,0,0,0.2);
+	box-shadow: 0 1px 0 rgba(255,255,255,1), inset 0 1px 1px rgba(0,0,0,0.2);
 }
 .camera_thumbs_cont > div {
 	float: left;
@@ -416,15 +416,15 @@
 .camera_wrap .camera_pag .camera_pag_ul li {
 	background: #333;
 	background: rgba(51,51,51,0.05);
-	-moz-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 2px 2px -2px rgba(0,0,0,0.2);
-	-webkit-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 2px 2px -2px rgba(0,0,0,0.2);
-	box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 2px 2px -2px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,1), inset 0 2px 2px -2px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0 1px 0 rgba(255,255,255,1), inset 0 2px 2px -2px rgba(0,0,0,0.2);
+	box-shadow: 0 1px 0 rgba(255,255,255,1), inset 0 2px 2px -2px rgba(0,0,0,0.2);
 }
 .camera_wrap .camera_pag .camera_pag_ul li:hover > span {
 	background: #333;
 	background: rgba(51,51,51,0.1);
-	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
 	-khtml-border-radius: 4px;
 	border-radius: 4px;
 }
@@ -436,11 +436,11 @@
 }
 .camera_pag_ul li img {
 	border: 4px solid #FFF;
-	-moz-box-shadow: 0px 3px 6px rgba(10,10,10,.5);
-	-webkit-box-shadow: 0px 3px 6px rgba(10,10,10,.5);
-	box-shadow: 0px 3px 6px rgba(10,10,10,.5);
-	-moz-border-radius: 4px;
+	-webkit-box-shadow: 0 3px 6px rgba(10,10,10,.5);
+	-moz-box-shadow: 0 3px 6px rgba(10,10,10,.5);
+	box-shadow: 0 3px 6px rgba(10,10,10,.5);
 	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
 	-khtml-border-radius: 4px;
 	border-radius: 4px;
 }
@@ -453,13 +453,14 @@
 	transition: all 0.2s ease-in-out;
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
 	border-radius: 27px;
-	-moz-border-radius: 27px;
 	-webkit-border-radius: 27px;
+	-moz-border-radius: 27px;
 	-khtml-border-radius: 27px;
-	-moz-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
-	-webkit-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
-	box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,1), inset 0 1px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0 1px 0 rgba(255,255,255,1), inset 0 1px 1px rgba(0,0,0,0.2);
+	box-shadow: 0 1px 0 rgba(255,255,255,1), inset 0 1px 1px rgba(0,0,0,0.2);
 }
 .camera_prevThumbs:hover, .camera_nextThumbs:hover, .camera_prev:hover, .camera_next:hover, .camera_commands:hover, .camera_thumbs_cont:hover {
 	-webkit-transform: scale(1.1);

@@ -33,10 +33,10 @@
 .ui-widget-content {
 	border: 1px solid #a6c9e2;
 	background: #fcfdfd url("images/ui-bg_inset-hard_100_fcfdfd_1x100.png") 50% bottom repeat-x;
-	color: #222222;
+	color: #222;
 }
 .ui-widget-content a {
-	color: #222222;
+	color: #222;
 }
 .ui-widget-header {
 	border: 1px solid #4297d7;
@@ -60,7 +60,7 @@ html .ui-button.ui-state-disabled:active {
 	border: 1px solid #77d5f7;
 	background: #0078ae url("images/ui-bg_glass_45_0078ae_1x400.png") 50% 50% repeat-x;
 	font-weight: normal;
-	color: #ffffff;
+	color: #fff;
 }
 .ui-state-default a,
 .ui-state-default a:link,
@@ -69,7 +69,7 @@ a.ui-button,
 a:link.ui-button,
 a:visited.ui-button,
 .ui-button {
-	color: #ffffff;
+	color: #fff;
 	text-decoration: none;
 }
 .ui-state-hover,
@@ -111,17 +111,17 @@ a.ui-button:active,
 	border: 1px solid #acdd4a;
 	background: #6eac2c url("images/ui-bg_gloss-wave_50_6eac2c_500x100.png") 50% 50% repeat-x;
 	font-weight: normal;
-	color: #ffffff;
+	color: #fff;
 }
 .ui-icon-background,
 .ui-state-active .ui-icon-background {
 	border: #acdd4a;
-	background-color: #ffffff;
+	background-color: #fff;
 }
 .ui-state-active a,
 .ui-state-active a:link,
 .ui-state-active a:visited {
-	color: #ffffff;
+	color: #fff;
 	text-decoration: none;
 }
 
@@ -148,17 +148,17 @@ a.ui-button:active,
 .ui-widget-header .ui-state-error {
 	border: 1px solid #cd0a0a;
 	background: #e14f1c url("images/ui-bg_gloss-wave_45_e14f1c_500x100.png") 50% top repeat-x;
-	color: #ffffff;
+	color: #fff;
 }
 .ui-state-error a,
 .ui-widget-content .ui-state-error a,
 .ui-widget-header .ui-state-error a {
-	color: #ffffff;
+	color: #fff;
 }
 .ui-state-error-text,
 .ui-widget-content .ui-state-error-text,
 .ui-widget-header .ui-state-error-text {
-	color: #ffffff;
+	color: #fff;
 }
 .ui-priority-primary,
 .ui-widget-content .ui-priority-primary,
@@ -185,7 +185,6 @@ a.ui-button:active,
 
 /* Icons
 ----------------------------------*/
-
 /* States and Images */
 .ui-icon {
 	width: 16px;
@@ -429,11 +428,12 @@ a.ui-button:active,
 
 /* Overlays */
 .ui-widget-overlay {
-	background: #aaaaaa;
+	background: #aaa;
 	opacity: .3;
 	filter: Alpha(Opacity=30); /* support: IE8 */
 }
 .ui-widget-shadow {
-	-webkit-box-shadow: 5px 5px 0px #999999;
-	box-shadow: 5px 5px 0px #999999;
+	-webkit-box-shadow: 5px 5px 0 #999;
+	-moz-box-shadow: 5px 5px 0 #999;
+	box-shadow: 5px 5px 0 #999;
 }
