@@ -491,7 +491,7 @@
 .chart.line .fill svg path {
 	fill: rgba(98,167,224,0.1);
 	stroke: none;
-	stroke-width: 0px;
+	stroke-width: 0;
 }
 
 /* Line chart animation */

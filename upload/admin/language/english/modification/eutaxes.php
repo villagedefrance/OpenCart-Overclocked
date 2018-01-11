@@ -10,7 +10,7 @@ $_['text_status_tax_rate']  = 'Status EU tax_rate';
 $_['text_status_tax_class'] = 'Status EU tax_class';
 $_['text_status_tax_rule']  = 'Status EU tax_rule';
 $_['text_default']          = 'Default';
-$_['text_yes']              = 'Yes'; 
+$_['text_yes']              = 'Yes';
 $_['text_no']               = 'No';
 
 // Column
@@ -43,7 +43,7 @@ $_['help_tax_class']        = 'A <b>Tax Class</b> "EU E-medias" should be presen
 $_['help_tax_rate']         = 'A <b>Tax Rate</b> "EU Members VAT" should be present in your list of Tax rates. The rate itself is set by default at "20%" but can be changed to any since it will be bypassed anyway, according to the shipping country. Type should be set to "Percentage" because VAT rates are percentages. Customer Group should be "Customer" as opposed to "Company" since company are exempt of VAT. Geo Zone should be "EU VAT Zone".';
 $_['help_tax_rule']         = 'A <b>Tax Rule</b> should be present in your list of Tax rules. It should belong to the "EU E-medias" Class and should use the "EU Members VAT" Rate. Please make sure it is based on "Shipping" as only "Shipping" will give the correct result at checkout. Priority is "1" per default but can be changed.';
 $_['help_troubleshoot']     = 'EU Taxes is designed to install/uninstall all its files. If, for any reason, it stops working properly, simply uninstall and re-install. All required tables should be restored.';
-		
+
 // Button
 $_['button_eucountry']      = 'Add/Edit EU Countries';
 $_['button_save']           = 'Save';

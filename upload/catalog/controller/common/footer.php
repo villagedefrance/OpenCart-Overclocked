@@ -45,6 +45,7 @@ class ControllerCommonFooter extends Controller {
 					}
 				}
 			}
+
 		} else {
 			$this->data['footer_blocks'] = 0;
 		}
@@ -140,7 +141,7 @@ class ControllerCommonFooter extends Controller {
 				foreach ($signatures as $signature) {
 					$robot_signature = strtolower($signature['signature']);
 
-					if (strpos($lower_agent, $robot_signature)) { 
+					if (strpos($lower_agent, $robot_signature)) {
 						$robot_name = $signature['name'];
 						break;
 					}

@@ -57,7 +57,7 @@ class ControllerPaymentAmazonCheckout extends Controller {
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/amazon_checkout_address.tpl')) {
-			$this->template = $this->config->get('config_template') . '/template/payment/amazon_checkout_address.tpl'; 
+			$this->template = $this->config->get('config_template') . '/template/payment/amazon_checkout_address.tpl';
 		} else {
 			$this->template = 'default/template/payment/amazon_checkout_address.tpl';
 		}
@@ -188,6 +188,7 @@ class ControllerPaymentAmazonCheckout extends Controller {
 
 		$total_data = array();
 		$total = 0;
+
 		$taxes = $this->cart->getTaxes();
 
 		$old_taxes = $taxes;

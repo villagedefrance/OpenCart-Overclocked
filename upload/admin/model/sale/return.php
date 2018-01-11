@@ -16,7 +16,7 @@ class ModelSaleReturn extends Model {
 
 	public function editReturnAction($return_id, $return_action_id) {
 		$this->db->query("UPDATE `" . DB_PREFIX . "return` SET return_action_id = '" . (int)$return_action_id . "' WHERE return_id = '" . (int)$return_id . "'");
-	} 
+	}
 
 	public function deleteReturn($return_id) {
 		$this->db->query("DELETE FROM `" . DB_PREFIX . "return` WHERE return_id = '" . (int)$return_id . "'");

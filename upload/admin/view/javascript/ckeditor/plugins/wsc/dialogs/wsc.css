@@ -3,80 +3,58 @@ Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.html or http://ckeditor.com/license
 */
 
-html, body
-{
+html, body {
 	background-color: transparent;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
-
-body
-{
+body {
 	padding: 10px;
 }
-
-body, td, input, select, textarea
-{
+body, td, input, select, textarea {
 	font-size: 11px;
-	font-family: 'Microsoft Sans Serif' , Arial, Helvetica, Verdana;
+	font-family: 'Microsoft Sans Serif', Arial, Helvetica, Verdana;
 }
-
-.midtext
-{
-	padding:0px;
-	margin:10px;
+.midtext {
+	padding: 0;
+	margin: 10px;
 }
-
-.midtext p
-{
-	padding:0px;
-	margin:10px;
+.midtext p {
+	padding: 0;
+	margin: 10px;
 }
-
-.Button
-{
-	border: #737357 1px solid;
+.Button {
+	border: 1px solid #737357;
 	color: #3b3b1f;
 	background-color: #c7c78f;
 }
-
-.PopupTabArea
-{
+.PopupTabArea {
 	color: #737357;
 	background-color: #e3e3c7;
 }
-
-.PopupTitleBorder
-{
-	border-bottom: #d5d59d 1px solid;
+.PopupTitleBorder {
+	border-bottom: 1px solid #d5d59d;
 }
-.PopupTabEmptyArea
-{
+.PopupTabEmptyArea {
 	padding-left: 10px;
-	border-bottom: #d5d59d 1px solid;
+	border-bottom: 1px solid #d5d59d;
 }
-
-.PopupTab, .PopupTabSelected
-{
-	border-right: #d5d59d 1px solid;
-	border-top: #d5d59d 1px solid;
-	border-left: #d5d59d 1px solid;
-	padding: 3px 5px 3px 5px;
+.PopupTab, .PopupTabSelected {
+	border-right: 1px solid #d5d59d;
+	border-top: 1px solid #d5d59d;
+	border-left: 1px solid #d5d59d;
+	padding: 3px 5px;
 	color: #737357;
 }
-
-.PopupTab
-{
+.PopupTab {
 	margin-top: 1px;
-	border-bottom: #d5d59d 1px solid;
+	border-bottom: 1px solid #d5d59d;
 	cursor: pointer;
 }
-
-.PopupTabSelected
-{
+.PopupTabSelected {
 	font-weight: bold;
 	cursor: default;
 	padding-top: 4px;
-	border-bottom: #f1f1e3 1px solid;
+	border-bottom: 1px solid #f1f1e3;
 	background-color: #f1f1e3;
 }

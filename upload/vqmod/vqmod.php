@@ -676,7 +676,7 @@ class VQModObject {
 
 			$lineMax = count($tmp) - 1;
 
-			switch($mod['search']->position) {
+			switch ($mod['search']->position) {
 				case 'top':
 					$tmp[$mod['search']->offset] =  $mod['add']->getContent() . $tmp[$mod['search']->offset];
 					break;
@@ -691,7 +691,7 @@ class VQModObject {
 					}
 					break;
 
-				default:
+					default:
 
 				$changed = false;
 

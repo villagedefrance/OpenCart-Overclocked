@@ -273,7 +273,7 @@ body > #container-normal, body > #container-limited {
 	position: relative;
 	top: 13px;
 	float: right;
-	padding: 0px 30px 0px 16px;
+	padding: 0 30px 0 16px;
 	cursor: pointer;
 	outline: 0;
 	z-index: 7;

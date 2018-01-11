@@ -34,7 +34,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *
- * The function is providing, at least at the systems tested :), 
+ * The function is providing, at least at the systems tested :),
  * $len bytes of entropy under any PHP installation or operating system.
  * The execution time should be at most 10-20 ms in any system.
  */
@@ -57,7 +57,7 @@ function hash_rand($algo = 'md5', $len = 12) {
 
 	/*
 	 * Our primary choice for a cryptographic strong randomness function is
-	 * openssl_random_pseudo_bytes. 
+	 * openssl_random_pseudo_bytes.
 	 */
 	$SSLstr = '4'; // http://xkcd.com/221/
 
@@ -143,10 +143,10 @@ function hash_rand($algo = 'md5', $len = 12) {
 			}
 
 			// Based on the above measurement determine the total rounds in order to bound the total running time.
-			$rounds = (int) ($msec_per_round * 50 / (int) (($c2 - $c1) * 1000000));
+			$rounds = (int)($msec_per_round * 50 / (int)(($c2 - $c1) * 1000000));
 
 			// Take the additional measurements. On average we can expect at least $bits_per_round bits of entropy from each measurement.
-			$iter = $bytes * (int) (ceil(8 / $bits_per_round));
+			$iter = $bytes * (int)(ceil(8 / $bits_per_round));
 
 			for ($i = 0; $i < $iter; $i++) {
 				$c1 = microtime();

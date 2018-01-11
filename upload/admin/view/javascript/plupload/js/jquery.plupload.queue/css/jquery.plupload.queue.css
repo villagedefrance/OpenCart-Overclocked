@@ -137,7 +137,7 @@ li.plupload_done a {
 	padding: 1px;
 }
 .plupload_progress_bar {
-	width: 0px;
+	width: 0;
 	height: 7px;
 	background: #CDEB8B;
 }

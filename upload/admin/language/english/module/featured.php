@@ -36,6 +36,6 @@ $_['entry_position']      = 'Position';
 $_['entry_status']        = 'Status';
 $_['entry_sort_order']    = 'Sort Order';
 
-// Error 
+// Error
 $_['error_permission']    = 'Warning: You do not have permission to modify module <b>Featured</b> !';
 $_['error_image']         = 'Image width &amp; height dimensions required!';

@@ -286,10 +286,10 @@ class ControllerDesignMenu extends Controller {
 		);
 
 		if (!isset($this->request->get['menu_id'])) {
-			$this->data['action'] = $this->url->link('design/menu/insert', 'token=' . $this->session->data['token'], 'SSL'); 
-		} else { 
-			$this->data['action'] = $this->url->link('design/menu/update', 'token=' . $this->session->data['token'] . '&menu_id=' . $this->request->get['menu_id'], 'SSL'); 
-		} 
+			$this->data['action'] = $this->url->link('design/menu/insert', 'token=' . $this->session->data['token'], 'SSL');
+		} else {
+			$this->data['action'] = $this->url->link('design/menu/update', 'token=' . $this->session->data['token'] . '&menu_id=' . $this->request->get['menu_id'], 'SSL');
+		}
 
 		$this->data['cancel'] = $this->url->link('design/menu', 'token=' . $this->session->data['token'], 'SSL');
 

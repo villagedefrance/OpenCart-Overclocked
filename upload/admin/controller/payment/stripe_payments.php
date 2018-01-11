@@ -114,7 +114,7 @@ class ControllerPaymentStripePayments extends Controller {
 		if (isset($this->request->post['stripe_payments_order_status_id'])) {
 			$this->data['stripe_payments_order_status_id'] = $this->request->post['stripe_payments_order_status_id'];
 		} else {
-			$this->data['stripe_payments_order_status_id'] = $this->config->get('stripe_payments_order_status_id'); 
+			$this->data['stripe_payments_order_status_id'] = $this->config->get('stripe_payments_order_status_id');
 		}
 
 		$this->load->model('localisation/order_status');
@@ -124,7 +124,7 @@ class ControllerPaymentStripePayments extends Controller {
 		if (isset($this->request->post['stripe_payments_geo_zone_id'])) {
 			$this->data['stripe_payments_geo_zone_id'] = $this->request->post['stripe_payments_geo_zone_id'];
 		} else {
-			$this->data['stripe_payments_geo_zone_id'] = $this->config->get('stripe_payments_geo_zone_id'); 
+			$this->data['stripe_payments_geo_zone_id'] = $this->config->get('stripe_payments_geo_zone_id');
 		}
 
 		$this->load->model('localisation/geo_zone');
@@ -151,7 +151,7 @@ class ControllerPaymentStripePayments extends Controller {
 
 		$this->template = 'payment/stripe_payments.tpl';
 		$this->children = array(
-			'common/header',	
+			'common/header',
 			'common/footer'
 		);
 

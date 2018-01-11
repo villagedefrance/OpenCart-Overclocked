@@ -386,7 +386,7 @@ class ModelOpenbayEbayOpenbay extends Model {
 
 						$p_options = array();
 
-						foreach ($skuParts as $part){
+						foreach ($skuParts as $part) {
 							$sql = "SELECT
 								`pv`.`product_option_id`,
 								`pv`.`product_option_value_id`,
@@ -409,7 +409,7 @@ class ModelOpenbayEbayOpenbay extends Model {
 									'product_option_value_id'   => $option_qry->row['product_option_value_id'],
 									'name'                      => $option_qry->row['name'],
 									'value'                     => $option_qry->row['value'],
-									'type'                      => $option_qry->row['type'],
+									'type'                      => $option_qry->row['type']
 								);
 							}
 						}

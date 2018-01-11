@@ -198,6 +198,8 @@ span.from {
 #language img:hover {
 	-webkit-transform: scale(1.2);
 	-moz-transform: scale(1.2);
+	-ms-transform: scale(1.2);
+	-o-transform: scale(1.2);
 	transform: scale(1.2);
 }
 #language img:first-child {
@@ -451,7 +453,7 @@ a.top-link:hover {
 	-webkit-transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
 	-o-transition: all .3s ease-in-out;
-	transition: all 0.3s ease-in-out;
+	transition: all .3s ease-in-out;
 	box-shadow: none;
 }
 #header #search .search-inside input:focus {
@@ -861,7 +863,7 @@ a.button-add:hover {
 	width: 100%;
 	background: #FCFCFC;
 	border: 1px solid #E7E7E7;
-	margin: 0 0 20px 0px;
+	margin: 0 0 20px 0;
 	padding: 6px;
 	overflow: auto;
 }
@@ -1601,7 +1603,7 @@ ul.box-filter > li ul {
 	position: relative;
 	top: 0;
 	display: block;
-	padding: 0px;
+	padding: 0;
 	z-index: 9;
 }
 .product-list .image {
@@ -2663,7 +2665,7 @@ ul.box-filter > li ul {
 	text-decoration: none;
 }
 .checkout-content {
-	padding: 0px 0px 15px 0px;
+	padding: 0 0 15px 0;
 	display: none;
 	overflow: auto;
 }
@@ -2888,7 +2890,7 @@ table.order-options tr td > div.division {
 	overflow-y: scroll;
 	overflow-x: hidden;
 	list-style: none;
-	margin: 0px;
+	margin: 0;
 	font-size: 12px;
 	font-weight: normal;
 	line-height: 18px;
@@ -2914,7 +2916,7 @@ table.order-options tr td > div.division {
 	background-position: 0 -34px;
 }
 #backtotop span {
-	background: url('../image/up-arrow.png') 0% 0 no-repeat transparent;
+	background: url('../image/up-arrow.png') 0 0 no-repeat transparent;
 	display: block;
 	height: 20px;
 	width: 35px;
@@ -3013,7 +3015,7 @@ table.order-options tr td > div.division {
 	}
 	/* Contact */
 	.contact-info .info-left, .contact-info .info-right {
-		margin-left: 0px;
+		margin-left: 0;
 	}
 	/* General */
 	.hide-tablet {

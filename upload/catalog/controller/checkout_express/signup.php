@@ -36,7 +36,7 @@ class ControllerCheckoutExpressSignup extends Controller {
 			'text'      => $this->language->get('text_home'),
 			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
-		); 
+		);
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_account'),
@@ -276,7 +276,7 @@ class ControllerCheckoutExpressSignup extends Controller {
 			$this->data['country_id'] = $this->request->post['country_id'];
 		} elseif (isset($this->session->data['shipping_country_id'])) {
 			$this->data['country_id'] = $this->session->data['shipping_country_id'];
-		} else {	
+		} else {
 			$this->data['country_id'] = $this->config->get('config_country_id');
 		}
 
@@ -326,6 +326,7 @@ class ControllerCheckoutExpressSignup extends Controller {
 			} else {
 				$this->data['text_agree'] = '';
 			}
+
 		} else {
 			$this->data['text_agree'] = '';
 		}

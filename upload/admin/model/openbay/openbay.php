@@ -35,15 +35,15 @@ class ModelOpenbayOpenbay extends Model {
 		// create tmp file
 		try {
 			$tmp_file = fopen($web_root . '/system/cache/tmp/test_file.php', 'w+');
-		} catch(ErrorException $ex) {
+		} catch (ErrorException $ex) {
 			$this->error[] = $ex->getMessage();
 		}
 
 		// open and write over tmp file
 		try {
-			$output  = '<?php' . "\n";
-			$output  .= '$test = \'12345\';' . "\n";
-			$output  .= 'echo $test;' . "\n";
+			$output = '<?php' . "\n";
+			$output .= '$test = \'12345\';' . "\n";
+			$output .= 'echo $test;' . "\n";
 
 			fwrite($tmp_file, $output);
 			fclose($tmp_file);
@@ -94,6 +94,7 @@ class ModelOpenbayOpenbay extends Model {
 			$this->openbay->log('Check version error: ' . $this->lastmsg);
 
 			return array('error' => 1, 'response' => $this->lastmsg . ' (' . VERSION . ')');
+
 		} else {
 			if ($data['version'] > $current_version) {
 				$this->openbay->log('Check version new available: ' . $data['version']);
@@ -111,7 +112,7 @@ class ModelOpenbayOpenbay extends Model {
 		$web_root = preg_replace('/system\/$/', '', DIR_SYSTEM);
 
 		$local_file = $web_root . 'system/cache/openbaypro_update.zip';
-		$handle = fopen($local_file,"w+");
+		$handle = fopen($local_file, "w+");
 
 		$post = array('version' => 1, 'beta' => $beta);
 
@@ -169,7 +170,8 @@ class ModelOpenbayOpenbay extends Model {
 
 				$this->error[] = $this->language->get('text_fail_patch');
 			}
-		} catch(ErrorException $ex) {
+
+		} catch (ErrorException $ex) {
 			$this->openbay->log('Unable to extract update files');
 			$this->error[] = $ex->getMessage();
 		}
@@ -244,7 +246,6 @@ class ModelOpenbayOpenbay extends Model {
 
 		if ($this->lasterror == true) {
 			$this->openbay->log('Update version: ' . $this->lastmsg);
-
 			return array('error' => 1, 'response' => $this->lastmsg . ' (' . VERSION . ')');
 		} else {
 			$settings = $this->model_setting_setting->getSetting('openbaymanager');
@@ -414,6 +415,7 @@ class ModelOpenbayOpenbay extends Model {
 					foreach ($files['asset']['file'] as $file) {
 						$dir = '';
 						$dirLevel = 0;
+
 						if (isset($file['locations']['location']) && is_array($file['locations']['location'])) {
 							foreach ($file['locations']['location'] as $location) {
 								$updatelog .= "Current location: " . $dir . "\n";
@@ -447,7 +449,9 @@ class ModelOpenbayOpenbay extends Model {
 						$tmpFile = DIR_CACHE . 'openbay.tmp';
 
 						$fp = fopen($tmpFile, 'w');
+
 						fwrite($fp, $filedata);
+
 						fclose($fp);
 
 						if (ftp_put($connection, $file['name'], $tmpFile, FTP_BINARY)) {

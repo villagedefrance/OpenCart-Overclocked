@@ -143,7 +143,7 @@ class ControllerPaymentBest2pay extends Controller {
 		if (isset($this->request->post['best2pay_order_status_id'])) {
 			$this->data['best2pay_order_status_id'] = $this->request->post['best2pay_order_status_id'];
 		} else {
-			$this->data['best2pay_order_status_id'] = $this->config->get('best2pay_order_status_id'); 
+			$this->data['best2pay_order_status_id'] = $this->config->get('best2pay_order_status_id');
 		}
 
 		$this->load->model('localisation/order_status');
@@ -153,7 +153,7 @@ class ControllerPaymentBest2pay extends Controller {
 		if (isset($this->request->post['best2pay_geo_zone_id'])) {
 			$this->data['best2pay_geo_zone_id'] = $this->request->post['best2pay_geo_zone_id'];
 		} else {
-			$this->data['best2pay_geo_zone_id'] = $this->config->get('best2pay_geo_zone_id'); 
+			$this->data['best2pay_geo_zone_id'] = $this->config->get('best2pay_geo_zone_id');
 		}
 
 		$this->load->model('localisation/geo_zone');
