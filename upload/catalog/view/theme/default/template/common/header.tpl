@@ -110,7 +110,7 @@ $(document).ready(function() {
     <div id="search">
       <div class="search-inside">
         <label for="search" class="hidden"><?php echo $text_search; ?></label>
-        <input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="" />
+        <input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="" autocomplete="off" />
         <div class="button-search"></div>
       </div>
     </div>

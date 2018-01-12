@@ -626,8 +626,6 @@ class ControllerProductSearch extends Controller {
 
 					$this->load->model('tool/image');
 
-					$product_href = 'product/product&product_id=';
-
 					foreach ($data as $key => $values) {
 						if ($values['image']) {
 							$image = $this->model_tool_image->resize($values['image'], 32, 32);
@@ -655,9 +653,10 @@ class ControllerProductSearch extends Controller {
 						$product_id = (int)$values['product_id'];
 
 						$data[$key] = array(
-							'name'  => html_entity_decode($values['name'] . ' (' . $values['model'] . ') ' . $product_price, ENT_QUOTES, 'UTF-8'),
+							'name'  => html_entity_decode($values['name'] . ' ' . $product_price, ENT_QUOTES, 'UTF-8'),
 							'image' => $image,
-							'href'  => $this->url->link($product_href . $product_id, '', 'SSL')
+							'alt'   => $values['name'],
+							'href'  => $this->url->link('product/product&product_id=' . $product_id, '', 'SSL')
 						);
 					}
 				}

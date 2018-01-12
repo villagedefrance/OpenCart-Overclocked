@@ -76,7 +76,7 @@ form {
 }
 input[type='text'], input[type='password'], textarea {
 	padding: 3px 0 3px 4px;
-	min-height: 17px;
+	min-height: 20px;
 	margin-left: 0;
 	margin-right: 0;
 	border-top: 1px solid #B6B6B6;
@@ -442,7 +442,6 @@ a.top-link:hover {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	line-height: 15px;
 	color: #888;
-	opacity: 1;
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
@@ -454,6 +453,8 @@ a.top-link:hover {
 	-moz-transition: all .3s ease-in-out;
 	-o-transition: all .3s ease-in-out;
 	transition: all .3s ease-in-out;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
 	box-shadow: none;
 }
 #header #search .search-inside input:focus {
@@ -475,18 +476,19 @@ a.top-link:hover {
 	right: 1px;
 	background-color: rgba(255, 255, 255, 1);
 	border: 1px solid #DDD;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	-khtml-border-radius: 2px;
-	border-radius: 2px;
+	-webkit-border-radius: 1px;
+	-khtml-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 1px;
 	list-style-type: none;
 	z-index: 530;
 	width: 206px;
 	margin: 0;
-	padding: 5px;
+	padding: 3px;
 }
 #livesearch li {
 	padding: 0;
+	height: 42px;
 	cursor: pointer;
 	overflow: hidden;
 }
@@ -518,10 +520,10 @@ a.top-link:hover {
 	background-image: -ms-linear-gradient(top, #31B0D5, #239DD1);
 	background-image: -o-linear-gradient(top, #31B0D5, #239DD1);
 	background-image: linear-gradient(to bottom, #31B0D5, #239DD1);
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	-khtml-border-radius: 2px;
-	border-radius: 2px;
+	-moz-border-radius: 1px;
+	-webkit-border-radius: 1px;
+	-khtml-border-radius: 1px;
+	border-radius: 1px;
 	border: none;
 }
 /* Menu */
@@ -1950,12 +1952,12 @@ ul.box-filter > li ul {
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
 	border-top: 1px solid #E5E5E5;
-	border-bottom: 2px solid #E5E5E5;
+	border-bottom: 1px solid #E5E5E5;
 	border-left: 1px solid #E1E1E1;
 	border-right: 1px solid #E1E1E1;
 	color: #555;
 	text-align: center;
-	padding: 6px;
+	padding: 5px;
 	margin: 0;
 }
 .product-info .cart div > span {

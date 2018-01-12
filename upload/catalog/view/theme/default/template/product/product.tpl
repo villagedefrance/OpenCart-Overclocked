@@ -907,7 +907,7 @@ $('.review-rating input:radio').wrap('<span></span>').parent()
 	.on('mouseenter touchstart touchend', function() {
 		$(this).css({
 			'background': '#EAFBFF',
-			'padding': '1px 0px 5px 0px',
+			'padding': '1px 0 5px 0',
 			'border-radius': '9px',
 			'outline': 'none',
 			'cursor': 'pointer'
