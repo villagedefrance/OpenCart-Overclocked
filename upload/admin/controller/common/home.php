@@ -48,6 +48,11 @@ class ControllerCommonHome extends Controller {
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
+		$this->data['help_mail_log'] = $this->language->get('help_mail_log');
+		$this->data['help_quote_log'] = $this->language->get('help_quote_log');
+		$this->data['help_error_log'] = $this->language->get('help_error_log');
+		$this->data['help_seo_url'] = $this->language->get('help_seo_url');
+
 		$this->data['tab_map'] = $this->language->get('tab_map');
 		$this->data['tab_order'] = $this->language->get('tab_order');
 		$this->data['tab_customer'] = $this->language->get('tab_customer');

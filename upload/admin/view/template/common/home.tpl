@@ -28,27 +28,27 @@
       <h1><img src="view/image/home.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="event">
         <?php if ($mail_log_status) { ?>
-          <a href="<?php echo $open_mail_log; ?>" title=""><img src="view/image/email-on.png" alt="" /></a>
+          <a href="<?php echo $open_mail_log; ?>" title="<?php echo $help_mail_log; ?>"><img src="view/image/email-on.png" alt="" /></a>
         <?php } else { ?>
-          <a href="<?php echo $open_mail_log; ?>" title=""><img src="view/image/email-off.png" alt="" /></a>
+          <a href="<?php echo $open_mail_log; ?>" title="<?php echo $help_mail_log; ?>"><img src="view/image/email-off.png" alt="" /></a>
         <?php } ?>
         <?php if ($quote_log_status) { ?>
-          <a href="<?php echo $open_quote_log; ?>" title=""><img src="view/image/quote-on.png" alt="" /></a>
+          <a href="<?php echo $open_quote_log; ?>" title="<?php echo $help_quote_log; ?>"><img src="view/image/quote-on.png" alt="" /></a>
         <?php } else { ?>
-          <a href="<?php echo $open_quote_log; ?>" title=""><img src="view/image/quote-off.png" alt="" /></a>
+          <a href="<?php echo $open_quote_log; ?>" title="<?php echo $help_quote_log; ?>"><img src="view/image/quote-off.png" alt="" /></a>
         <?php } ?>
         <?php if ($error_log_status) { ?>
-          <a href="<?php echo $open_error_log; ?>" title=""><img src="view/image/bell-on.png" alt="" /></a>
+          <a href="<?php echo $open_error_log; ?>" title="<?php echo $help_error_log; ?>"><img src="view/image/bell-on.png" alt="" /></a>
         <?php } else { ?>
-          <a href="<?php echo $open_error_log; ?>" title=""><img src="view/image/bell-off.png" alt="" /></a>
+          <a href="<?php echo $open_error_log; ?>" title="<?php echo $help_error_log; ?>"><img src="view/image/bell-off.png" alt="" /></a>
         <?php } ?>
         <?php if ($seo_url_status && $seo_url_ratio) { ?>
           <?php if ($seo_url_ratio == 3) { ?>
-            <a href="<?php echo $open_seo_url; ?>" title=""><img src="view/image/seo-red.png" alt="" /></a>
+            <a href="<?php echo $open_seo_url; ?>" title="<?php echo $help_seo_url; ?>"><img src="view/image/seo-red.png" alt="" /></a>
           <?php } elseif ($seo_url_ratio == 2) { ?>
-            <a href="<?php echo $open_seo_url; ?>" title=""><img src="view/image/seo-yellow.png" alt="" /></a>
+            <a href="<?php echo $open_seo_url; ?>" title="<?php echo $help_seo_url; ?>"><img src="view/image/seo-yellow.png" alt="" /></a>
           <?php } else { ?>
-            <a href="<?php echo $open_seo_url; ?>" title=""><img src="view/image/seo-green.png" alt="" /></a>
+            <a href="<?php echo $open_seo_url; ?>" title="<?php echo $help_seo_url; ?>"><img src="view/image/seo-green.png" alt="" /></a>
           <?php } ?>
         <?php } ?>
       </div>

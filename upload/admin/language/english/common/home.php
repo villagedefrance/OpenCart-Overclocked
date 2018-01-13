@@ -34,6 +34,12 @@ $_['text_topcountry']               = 'Top Country';
 $_['text_download']                 = 'Download';
 $_['text_guest']                    = 'Guest';
 
+// Help
+$_['help_mail_log']                 = 'Mail log';
+$_['help_quote_log']                = 'Quote log';
+$_['help_error_log']                = 'Error log';
+$_['help_seo_url']                  = 'Seo Url status';
+
 // Tab
 $_['tab_map']                       = 'Map';
 $_['tab_order']                     = 'Orders';
