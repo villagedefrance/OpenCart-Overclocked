@@ -81,7 +81,7 @@ $(document).ready(function() {
       </div>
       <?php if ($logged) { ?>
         <div id="store-selector">
-          <a onclick="window.open('<?php echo $store; ?>');" title="<?php echo $text_front; ?>"><i class="fa fa-shopping-bag"></i></a>
+          <a onclick="window.open('<?php echo $store; ?>');" title="<?php echo $text_front; ?>"><i class="fa fa-opencart"></i></a>
           <?php if ($stores) { ?>
             <div id="show-store" style="display:none;">
               <a onclick="window.open('<?php echo $store; ?>');" title=""><?php echo $text_front; ?></a>

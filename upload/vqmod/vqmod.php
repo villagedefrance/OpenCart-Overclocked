@@ -725,7 +725,7 @@ class VQModObject {
 						$changed = true;
 
 						if (!$mod['search']->indexes() || ($mod['search']->indexes() && in_array($indexCount, $mod['search']->indexes()))) {
-							switch($mod['search']->position) {
+							switch ($mod['search']->position) {
 								case 'before':
 								$offset = ($lineNum - $mod['search']->offset < 0) ? -1 : $lineNum - $mod['search']->offset;
 								$tmp[$offset] = empty($tmp[$offset]) ? $mod['add']->getContent() : $mod['add']->getContent() . "\n" . $tmp[$offset];
