@@ -36,7 +36,7 @@
 <?php } ?>
 <script type="text/javascript" src="catalog/view/javascript/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/jquery/jquery-migrate-1.4.1.min.js"></script>
-<script type="text/javascript" src="catalog/view/javascript/jquery/jquery-migrate-3.0.0.min.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/jquery/jquery-migrate-3.0.1.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-1.12.1.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/jquery/ui/minified/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/livesearch.min.js"></script>
