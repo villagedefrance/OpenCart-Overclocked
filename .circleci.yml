@@ -1,0 +1,19 @@
+machine:
+php:
+    version: 5.4.5
+dependencies:
+pre:
+- script/circleci/prepare.sh
+cache_directories:
+- ~/dependencies
+- ~/.mix
+- _build
+- deps
+test:
+override:
+- script/circleci/test.s
+deployment:
+  production:
+    branch: master
+    commands:
+      - surge --project ./villagedefrance/OpenCart-Overclocked --domain OpenCart-Overclocked.surge.sh
