@@ -663,10 +663,10 @@ ul.menu ul {
 	background-image: -o-linear-gradient(top, #3C4044, #171C19);
 	background-image: linear-gradient(to bottom, #3C4044, #171C19);
 	border: 1px solid #2C2F32;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 }
 .box > .heading h1 {
 	margin: 0;
@@ -697,10 +697,10 @@ ul.menu ul {
 .box > .content {
 	min-height: 300px;
 	background: #30353A;
-	-moz-border-radius: 0 0 3px 3px;
-	-webkit-border-radius: 0 0 3px 3px;
-	-khtml-border-radius: 0 0 3px 3px;
-	border-radius: 0 0 3px 3px;
+	-moz-border-radius: 0 0 2px 2px;
+	-webkit-border-radius: 0 0 2px 2px;
+	-khtml-border-radius: 0 0 2px 2px;
+	border-radius: 0 0 2px 2px;
 	padding-bottom: 20px;
 	padding-top: 10px;
 	overflow: auto;
@@ -743,10 +743,10 @@ ul.menu ul {
 	background-image: -o-linear-gradient(top, #3C4044, #171C19);
 	background-image: linear-gradient(to bottom, #3C4044, #171C19);
 	border: 1px solid #2C2F32;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	margin-bottom: 10px;
 }
 .box > .content .report .right, .box > .content-body .report .right {
@@ -790,10 +790,10 @@ ul.menu ul {
 	background-image: -o-linear-gradient(top, #30353A, #191919);
 	background-image: linear-gradient(to bottom, #30353A, #191919);
 	border: 1px solid #2C2F32;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	overflow: hidden;
 }
 .box-login > .content-login h1 {
@@ -836,14 +836,14 @@ a.button, .list a.button, a.button-save, .list a.button-save, a.button-delete, .
 	line-height: 12px;
 	padding: 6px 15px;
 	margin: 0 3px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
 	color: #FCFCFC;
 	font-weight: bold;
 	text-decoration: none;
 	text-shadow: 0 0 1px rgba(252, 252, 252, 0.05);
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 }
 /* Button Blue */
 a.button, .list a.button {
@@ -889,21 +889,6 @@ a.button-filter, .list a.button-filter {
 	color: #FCFCFC;
 	font-weight: bold;
 	text-decoration: none;
-	text-shadow: 0 0 1px rgba(252, 252, 252, 0.05);
-	background-color: #6D777B;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#6D777B), to(#596367));
-	background-image: -webkit-linear-gradient(top, #6D777B, #596367);
-	background-image: -moz-linear-gradient(top, #6D777B, #596367);
-	background-image: -ms-linear-gradient(top, #6D777B, #596367);
-	background-image: -o-linear-gradient(top, #6D777B, #596367);
-	background-image: linear-gradient(to bottom, #6D777B, #596367);
-	border: 1px solid #191919;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
-}
-a.button-filter:hover, .list a.button-filter:hover {
 	background-color: #51595D;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#51595D), to(#464E52));
 	background-image: -webkit-linear-gradient(top, #51595D, #464E52);
@@ -912,6 +897,20 @@ a.button-filter:hover, .list a.button-filter:hover {
 	background-image: -o-linear-gradient(top, #51595D, #464E52);
 	background-image: linear-gradient(to bottom, #51595D, #464E52);
 	border: 1px solid #36AAD8;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
+}
+a.button-filter:hover, .list a.button-filter:hover {
+	background-color: #6D777B;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#6D777B), to(#596367));
+	background-image: -webkit-linear-gradient(top, #6D777B, #596367);
+	background-image: -moz-linear-gradient(top, #6D777B, #596367);
+	background-image: -ms-linear-gradient(top, #6D777B, #596367);
+	background-image: -o-linear-gradient(top, #6D777B, #596367);
+	background-image: linear-gradient(to bottom, #6D777B, #596367);
+	border: 1px solid #5DC15E;
 }
 /* Button Form */
 a.button-form, .list a.button-form, a.button-form-install, .list a.button-form-install, a.button-form-edit, .list a.button-form-edit, a.button-form-uninstall, .list a.button-form-uninstall {
@@ -919,27 +918,27 @@ a.button-form, .list a.button-form, a.button-form-install, .list a.button-form-i
 	line-height: 12px;
 	padding: 6px 13px;
 	margin: 0 3px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
 	color: #FCFCFC;
 	font-weight: bold;
 	text-decoration: none;
 	text-shadow: 0 0 1px rgba(252, 252, 252, 0.05);
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 }
 input.button-form, input.button-form-install, input.button-form-edit, input.button-form-uninstall {
 	height: 22px;
 	line-height: 12px;
 	padding: 0 13px 2px 13px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
 	color: #FCFCFC;
 	font-weight: bold;
 	text-decoration: none;
 	text-shadow: 0 0 1px rgba(252, 252, 252, 0.05);
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 }
 /* Button Form Blue */
 a.button-form, .list a.button-form, input.button-form, a.button-form-edit, .list a.button-form-edit, input.button-form-edit {
@@ -973,18 +972,18 @@ a.button-select, a.button-unselect, .list a.button-select, .list a.button-unsele
 a.button-select, .list a.button-select {
 	background: #DDD url('../image/theme-overclock/select.png') center 0 no-repeat;
 	border: 1px solid #222;
-	-webkit-border-radius: 3px 0 0 3px;
-	-moz-border-radius: 3px 0 0 3px;
-	-khtml-border-radius: 3px 0 0 3px;
-	border-radius: 3px 0 0 3px;
+	-webkit-border-radius: 2px 0 0 2px;
+	-moz-border-radius: 2px 0 0 2px;
+	-khtml-border-radius: 2px 0 0 2px;
+	border-radius: 2px 0 0 2px;
 }
 a.button-unselect, .list a.button-unselect {
 	background: #DDD url('../image/theme-overclock/unselect.png') center 0 no-repeat;
 	border: 1px solid #222;
-	-webkit-border-radius: 0 3px 3px 0;
-	-moz-border-radius: 0 3px 3px 0;
-	-khtml-border-radius: 0 3px 3px 0;
-	border-radius: 0 3px 3px 0;
+	-webkit-border-radius: 0 2px 2px 0;
+	-moz-border-radius: 0 2px 2px 0;
+	-khtml-border-radius: 0 2px 2px 0;
+	border-radius: 0 2px 2px 0;
 }
 a.button-select:hover, .list a.button-select:hover {
 	background: #DDD url('../image/theme-overclock/select.png') center -16px no-repeat;
@@ -1005,18 +1004,18 @@ a.button-browse, a.button-recycle, .list a.button-browse, .list a.button-recycle
 a.button-browse, .list a.button-browse {
 	background: #DDD url('../image/theme-overclock/browse.png') center 0 no-repeat;
 	border: 1px solid #222;
-	-webkit-border-radius: 3px 0 0 3px;
-	-moz-border-radius: 3px 0 0 3px;
-	-khtml-border-radius: 3px 0 0 3px;
-	border-radius: 3px 0 0 3px;
+	-webkit-border-radius: 2px 0 0 2px;
+	-moz-border-radius: 2px 0 0 2px;
+	-khtml-border-radius: 2px 0 0 2px;
+	border-radius: 2px 0 0 2px;
 }
 a.button-recycle, .list a.button-recycle {
 	background: #DDD url('../image/theme-overclock/recycle.png') center 0 no-repeat;
 	border: 1px solid #222;
-	-webkit-border-radius: 0 3px 3px 0;
-	-moz-border-radius: 0 3px 3px 0;
-	-khtml-border-radius: 0 3px 3px 0;
-	border-radius: 0 3px 3px 0;
+	-webkit-border-radius: 0 2px 2px 0;
+	-moz-border-radius: 0 2px 2px 0;
+	-khtml-border-radius: 0 2px 2px 0;
+	border-radius: 0 2px 2px 0;
 }
 a.button-browse:hover, .list a.button-browse:hover {
 	background: #DDD url('../image/theme-overclock/browse.png') center -16px no-repeat;
@@ -1037,18 +1036,18 @@ input.button-move-left, input.button-move-right {
 input.button-move-left {
 	background: #DDD url('../image/theme-overclock/move-left.png') center 0 no-repeat;
 	border: 1px solid #222;
-	-webkit-border-radius: 3px 0 0 3px;
-	-moz-border-radius: 3px 0 0 3px;
-	-khtml-border-radius: 3px 0 0 3px;
-	border-radius: 3px 0 0 3px;
+	-webkit-border-radius: 2px 0 0 2px;
+	-moz-border-radius: 2px 0 0 2px;
+	-khtml-border-radius: 2px 0 0 2px;
+	border-radius: 2px 0 0 2px;
 }
 input.button-move-right {
 	background: #DDD url('../image/theme-overclock/move-right.png') center 0 no-repeat;
 	border: 1px solid #222;
-	-webkit-border-radius: 0 3px 3px 0;
-	-moz-border-radius: 0 3px 3px 0;
-	-khtml-border-radius: 0 3px 3px 0;
-	border-radius: 0 3px 3px 0;
+	-webkit-border-radius: 0 2px 2px 0;
+	-moz-border-radius: 0 2px 2px 0;
+	-khtml-border-radius: 0 2px 2px 0;
+	border-radius: 0 2px 2px 0;
 }
 input.button-move-left:hover {
 	background: #DDD url('../image/theme-overclock/move-left.png') center -16px no-repeat;
@@ -1070,10 +1069,10 @@ a.button-preview, a.button-pdf, a.button-print {
 a.button-preview {
 	background: #DDD url('../image/theme-overclock/preview.png') center 0 no-repeat;
 	border: 1px solid #222;
-	-webkit-border-radius: 3px 0 0 3px;
-	-moz-border-radius: 3px 0 0 3px;
-	-khtml-border-radius: 3px 0 0 3px;
-	border-radius: 3px 0 0 3px;
+	-webkit-border-radius: 2px 0 0 2px;
+	-moz-border-radius: 2px 0 0 2px;
+	-khtml-border-radius: 2px 0 0 2px;
+	border-radius: 2px 0 0 2px;
 }
 a.button-pdf {
 	background: #DDD url('../image/theme-overclock/pdf.png') center 0 no-repeat;
@@ -1086,10 +1085,10 @@ a.button-pdf {
 a.button-print {
 	background: #DDD url('../image/theme-overclock/print.png') center 0 no-repeat;
 	border: 1px solid #222;
-	-webkit-border-radius: 0 3px 3px 0;
-	-moz-border-radius: 0 3px 3px 0;
-	-khtml-border-radius: 0 3px 3px 0;
-	border-radius: 0 3px 3px 0;
+	-webkit-border-radius: 0 2px 2px 0;
+	-moz-border-radius: 0 2px 2px 0;
+	-khtml-border-radius: 0 2px 2px 0;
+	border-radius: 0 2px 2px 0;
 }
 a.button-preview:hover {
 	background: #DDD url('../image/theme-overclock/preview.png') center -24px no-repeat;
@@ -1544,11 +1543,6 @@ table.tool tr td {
 	font-weight: normal;
 	text-decoration: none;
 	text-shadow: 0 0 1px rgba(152, 152, 152, 0.05);
-	border: 1px solid #313841;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
 	background-color: #3C4044;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#3C4044), to(#171C19));
 	background-image: -webkit-linear-gradient(top, #3C4044, #171C19);
@@ -1556,6 +1550,11 @@ table.tool tr td {
 	background-image: -ms-linear-gradient(top, #3C4044, #171C19);
 	background-image: -o-linear-gradient(top, #3C4044, #171C19);
 	background-image: linear-gradient(to bottom, #3C4044, #171C19);
+	border: 1px solid #313841;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	padding: 4px 10px;
 }
 .pagination .links b {
@@ -1564,11 +1563,6 @@ table.tool tr td {
 	font-weight: normal;
 	text-decoration: none;
 	text-shadow: 0 0 1px rgba(70, 145, 210, 0.05);
-	border: 1px solid #4691D2;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
 	background-color: #3C4044;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#3C4044), to(#171C19));
 	background-image: -webkit-linear-gradient(top, #3C4044, #171C19);
@@ -1576,6 +1570,11 @@ table.tool tr td {
 	background-image: -ms-linear-gradient(top, #3C4044, #171C19);
 	background-image: -o-linear-gradient(top, #3C4044, #171C19);
 	background-image: linear-gradient(to bottom, #3C4044, #171C19);
+	border: 1px solid #4691D2;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	padding: 4px 10px;
 }
 .pagination .results {
