@@ -1,18 +1,4 @@
 trigger:
-  stages:
-  - test
-  - deploy
-
-rspec:
+  type: deploy
   script:
-    - rake spec
-  stage: test
-  only:
-    - master
-
-build_docs:
-  stage: deploy
-  script:
-  - curl --request POST --form "token=$CI_JOB_TOKEN" --form ref=master https://gitlab.example.com/api/v4/projects/1567532/trigger/pipeline
-  only:
-  - tags
+    - "curl -X POST -F token=TOKEN -F ref=REF_NAME https://gitlab.com/api/v3/projects/1567532/trigger/builds"
