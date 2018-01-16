@@ -6,10 +6,8 @@ jQuery(function($) {
 		prevText: '&#x3c;Geri',
 		nextText: 'İrəli&#x3e;',
 		currentText: 'Bugün',
-		monthNames: ['Yanvar','Fevral','Mart','Aprel','May','İyun',
-		'İyul','Avqust','Sentyabr','Oktyabr','Noyabr','Dekabr'],
-		monthNamesShort: ['Yan','Fev','Mar','Apr','May','İyun',
-		'İyul','Avq','Sen','Okt','Noy','Dek'],
+		monthNames: ['Yanvar','Fevral','Mart','Aprel','May','İyun','İyul','Avqust','Sentyabr','Oktyabr','Noyabr','Dekabr'],
+		monthNamesShort: ['Yan','Fev','Mar','Apr','May','İyun','İyul','Avq','Sen','Okt','Noy','Dek'],
 		dayNames: ['Bazar','Bazar ertəsi','Çərşənbə axşamı','Çərşənbə','Cümə axşamı','Cümə','Şənbə'],
 		dayNamesShort: ['B','Be','Ça','Ç','Ca','C','Ş'],
 		dayNamesMin: ['B','B','Ç','С','Ç','C','Ş'],
@@ -18,6 +16,7 @@ jQuery(function($) {
 		firstDay: 1,
 		isRTL: false,
 		showMonthAfterYear: false,
-		yearSuffix: ''};
+		yearSuffix: ''
+	};
 	$.datepicker.setDefaults($.datepicker.regional['az']);
 });
