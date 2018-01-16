@@ -22,6 +22,12 @@ class ModelLocalisationCurrency extends Model {
 		$this->cache->delete('currency');
 	}
 
+	public function editValueByCode($code, $value) {
+		$this->db->query("UPDATE " . DB_PREFIX . "currency SET `value` = '" . (float)$value . "', date_modified = NOW() WHERE code = '" . $this->db->escape((string)$code) . "'");
+
+		$this->cache->delete('currency');
+	}
+
 	public function deleteCurrency($currency_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "currency WHERE currency_id = '" . (int)$currency_id . "'");
 
@@ -34,8 +40,8 @@ class ModelLocalisationCurrency extends Model {
 		return $query->row;
 	}
 
-	public function getCurrencyByCode($currency) {
-		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "currency WHERE code = '" . $this->db->escape($currency) . "'");
+	public function getCurrencyByCode($code) {
+		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "currency WHERE code = '" . $this->db->escape(trim($code)) . "'");
 
 		return $query->row;
 	}
@@ -109,90 +115,106 @@ class ModelLocalisationCurrency extends Model {
 		}
 	}
 
-	public function updateCurrencies($force = false) {
-		$default_currency = $this->config->get('config_currency');
+	public function updateCurrencies($default = '') {
+		$currencies = array();
 
-		$this->db->query("UPDATE " . DB_PREFIX . "currency SET `value` = '1.00000', date_modified = '" . $this->db->escape(date('Y-m-d H:i:s')) . "' WHERE code = '" . $this->db->escape($default_currency) . "'");
+		$default = $this->config->get('config_currency');
 
-		$data = array();
-
-		if ($force) {
-			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "currency WHERE code != '" . $this->db->escape($default_currency) . "' AND status = '1'");
-		} else {
-			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "currency WHERE code != '" . $this->db->escape($default_currency) . "' AND date_modified < '" .  $this->db->escape(date('Y-m-d H:i:s', strtotime('-1 day'))) . "' AND status = '1'");
-		}
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "currency WHERE code != '" . $this->db->escape(trim($default)) . "' AND date_modified < '" . $this->db->escape(date('Y-m-d H:i:s', strtotime('-1 day'))) . "' AND status = '1'");
 
 		if ($query->num_rows === 0) {
 			return;
 		}
 
-		foreach ($query->rows as $result) {
-			$data[] = $default_currency . $result['code'] . '=X';
-		}
+		$results = $this->getCurrencies();
 
-		$curl = curl_init();
-
-		curl_setopt($curl, CURLOPT_URL, 'http://download.finance.yahoo.com/d/quotes.csv?s=' . implode(',', $data) . '&f=sl1&e=.csv');
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($curl, CURLOPT_HEADER, false);
-		curl_setopt($curl, CURLOPT_FAILONERROR, 1);
-		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
-		curl_setopt($curl, CURLOPT_TIMEOUT, 30);
-
-		$content = curl_exec($curl);
-
-		curl_close($curl);
-
-		$lines = explode("\n", trim($content));
-
-		foreach ($lines as $line) {
-			$currency = utf8_substr($line, 4, 3);
-			$value = utf8_substr($line, 11, 6);
-
-			if ((float)$value) {
-				$this->db->query("UPDATE " . DB_PREFIX . "currency SET `value` = '" . (float)$value . "', date_modified = '" .  $this->db->escape(date('Y-m-d H:i:s')) . "' WHERE code = '" . $this->db->escape($currency) . "'");
+		if ($results) {
+			foreach ($results as $result) {
+				if (($result['code'] != $default)) {
+					$currencies[] = $result;
+				}
 			}
-		}
 
-		$this->cache->delete('currency');
+			if ($currencies) {
+				$curl = curl_init();
+
+				curl_setopt($curl, CURLOPT_URL, 'https://api.fixer.io/latest?base=' . trim($default));
+				curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($curl, CURLOPT_HEADER, false);
+				curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+				curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
+				curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+
+				$response = curl_exec($curl);
+
+				curl_close($curl);
+
+				$response_info = json_decode($response, true);
+
+				if (isset($response_info['rates'])) {
+					foreach ($currencies as $currency) {
+						if (isset($response_info['rates'][$currency['code']])) {
+							$this->editValueByCode($currency['code'], $response_info['rates'][$currency['code']]);
+						}
+					}
+				}
+
+				$this->cache->delete('currency');
+			}
+
+			$this->editValueByCode($default, '1.00000');
+		}
 	}
 
-	public function updateCurrenciesHourly() {
-		$this->db->query("UPDATE " . DB_PREFIX . "currency SET `value` = '1.00000', date_modified = '" . $this->db->escape(date('Y-m-d H:i:s')) . "' WHERE code = '" . $this->db->escape($this->config->get('config_currency')) . "'");
+	public function updateCurrenciesHourly($default = '') {
+		$currencies = array();
 
-		$data = array();
+		$default = $this->config->get('config_currency');
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "currency WHERE code != '" . $this->db->escape($this->config->get('config_currency')) . "' AND date_modified < '" . $this->db->escape(date('Y-m-d H:i:s', strtotime('-1 hour'))) . "' AND status = '1'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "currency WHERE code != '" . $this->db->escape(trim($default)) . "' AND date_modified < '" . $this->db->escape(date('Y-m-d H:i:s', strtotime('-2 hour'))) . "' AND status = '1'");
 
-		foreach ($query->rows as $result) {
-			$data[] = $this->config->get('config_currency') . $result['code'] . '=X';
+		if ($query->num_rows === 0) {
+			return;
 		}
 
-		$curl = curl_init();
+		$results = $this->getCurrencies();
 
-		curl_setopt($curl, CURLOPT_URL, 'http://download.finance.yahoo.com/d/quotes.csv?s=' . implode(',', $data) . '&f=sl1&e=.csv');
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($curl, CURLOPT_HEADER, false);
-		curl_setopt($curl, CURLOPT_FAILONERROR, 1);
-		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
-		curl_setopt($curl, CURLOPT_TIMEOUT, 30);
-
-		$content = curl_exec($curl);
-
-		curl_close($curl);
-
-		$lines = explode("\n", trim($content));
-
-		foreach ($lines as $line) {
-			$currency = utf8_substr($line, 4, 3);
-			$value = utf8_substr($line, 11, 6);
-
-			if ((float)$value) {
-				$this->db->query("UPDATE " . DB_PREFIX . "currency SET `value` = '" . (float)$value . "', date_modified = '" . $this->db->escape(date('Y-m-d H:i:s')) . "' WHERE code = '" . $this->db->escape($currency) . "' AND status = '1'");
+		if ($results) {
+			foreach ($results as $result) {
+				if (($result['code'] != $default)) {
+					$currencies[] = $result;
+				}
 			}
-		}
 
-		$this->cache->delete('currency');
+			if ($currencies) {
+				$curl = curl_init();
+
+				curl_setopt($curl, CURLOPT_URL, 'https://api.fixer.io/latest?base=' . trim($default));
+				curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($curl, CURLOPT_HEADER, false);
+				curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+				curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
+				curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+
+				$response = curl_exec($curl);
+
+				curl_close($curl);
+
+				$response_info = json_decode($response, true);
+
+				if (isset($response_info['rates'])) {
+					foreach ($currencies as $currency) {
+						if (isset($response_info['rates'][$currency['code']])) {
+							$this->editValueByCode($currency['code'], $response_info['rates'][$currency['code']]);
+						}
+					}
+				}
+
+				$this->cache->delete('currency');
+			}
+
+			$this->editValueByCode($default, '1.00000');
+		}
 	}
 
 	public function getTotalCurrencies() {
