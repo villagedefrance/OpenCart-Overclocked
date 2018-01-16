@@ -7,8 +7,7 @@ jQuery(function($) {
 		prevText: '&#x3c;قبلي',
 		nextText: 'بعدي&#x3e;',
 		currentText: 'امروز',
-		monthNames: ['فروردين','ارديبهشت','خرداد','تير','مرداد','شهريور',
-		'مهر','آبان','آذر','دي','بهمن','اسفند'],
+		monthNames: ['فروردين','ارديبهشت','خرداد','تير','مرداد','شهريور','مهر','آبان','آذر','دي','بهمن','اسفند'],
 		monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
 		dayNames: ['يکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه','شنبه'],
 		dayNamesShort: ['ي','د','س','چ','پ','ج', 'ش'],
@@ -18,6 +17,7 @@ jQuery(function($) {
 		firstDay: 6,
 		isRTL: true,
 		showMonthAfterYear: false,
-		yearSuffix: ''};
+		yearSuffix: ''
+	};
 	$.datepicker.setDefaults($.datepicker.regional['fa']);
 });
