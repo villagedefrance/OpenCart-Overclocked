@@ -167,7 +167,7 @@
           </tr>
           <tr>
             <td><?php echo $text_vqm_website; ?></td>
-            <td><a class="about" onclick="window.open('http://villagedefrance.net');" title="">http://villagedefrance.net</a></td>
+            <td><a class="about" onclick="window.open('https://villagedefrance.net');" title="">https://villagedefrance.net</a></td>
           </tr>
           <tr>
             <td><?php echo $text_vqm_support; ?></td>

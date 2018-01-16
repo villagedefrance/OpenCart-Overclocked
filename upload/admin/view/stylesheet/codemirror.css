@@ -1,9 +1,8 @@
 /* -----------------------------------
 * Overclocked Edition - CodeMirror
-* Copyright © 2017 - Villagedefrance
+* Copyright © 2018 - Villagedefrance
 * ------------------------------------
 */
-
 .CodeMirror{font-family:monospace;height:300px}
 .CodeMirror-scroll{overflow:auto}
 .CodeMirror-lines{padding:4px 0}
@@ -58,7 +57,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket{color:#f22}
 .CodeMirror-gutter{white-space:normal;height:100%;padding-bottom:30px;margin-bottom:-32px;display:inline-block;*zoom:1;*display:inline}
 .CodeMirror-gutter-elt{position:absolute;cursor:default;z-index:4}
 .CodeMirror-lines{cursor:text}
-.CodeMirror pre{-moz-border-radius:0;-webkit-border-radius:0;border-radius:0;border-width:0;background:transparent;font-family:inherit;font-size:inherit;margin:0;white-space:pre;word-wrap:normal;line-height:inherit;color:inherit;z-index:2;position:relative;overflow:visible}
+.CodeMirror pre{-webkit-border-radius:0;-moz-border-radius:0;-khtml-border-radius:0;border-radius:0;border-width:0;background:transparent;font-family:inherit;font-size:inherit;margin:0;white-space:pre;word-wrap:normal;line-height:inherit;color:inherit;z-index:2;position:relative;overflow:visible}
 .CodeMirror-wrap pre{word-wrap:break-word;white-space:pre-wrap;word-break:normal}
 .CodeMirror-linebackground{position:absolute;left:0;right:0;top:0;bottom:0;z-index:0}
 .CodeMirror-linewidget{position:relative;z-index:2;overflow:auto}

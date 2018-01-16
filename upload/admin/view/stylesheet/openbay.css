@@ -1,19 +1,18 @@
 /* -----------------------------------
 * Overclocked Edition - OpenBay
-* Copyright © 2017 - Villagedefrance
+* Copyright © 2018 - Villagedefrance
 * ------------------------------------
 */
-
 .box > .content{padding:20px}
 #greyScreen{position:absolute;left:0;top:0;background:#000}
-.greyScreenBox{width:300px;height:125px;border-radius:15px;background:#FFF;border:1px solid #000;text-align:center;position:absolute;margin-left:-125px;margin-top:-50px;left:50%;top:50%;z-index:20;display:none}
-#previewPage{width:80%;height:90%;left:20%;top:5%;margin-left:-10%;margin-top:0;border-radius:5px;padding:5px}
-.featurePage{width:500px;height:650px;left:50%;top:15%;margin-left:-250px;margin-top:0;border-radius:5px;padding:5px;position:fixed}
-.nodePage{width:300px;height:400px;left:50%;top:25%;margin-left:-150px;margin-top:0;border-radius:5px;padding:5px;position:fixed}
+.greyScreenBox{width:300px;height:125px;-webkit-border-radius:15px;-moz-border-radius:15px;-khtml-border-radius:15px;border-radius:15px;background:#FFF;border:1px solid #000;text-align:center;position:absolute;margin-left:-125px;margin-top:-50px;left:50%;top:50%;z-index:20;display:none}
+#previewPage{width:80%;height:90%;left:20%;top:5%;margin-left:-10%;margin-top:0;-webkit-border-radius:5px;-moz-border-radius:5px;-khtml-border-radius:5px;border-radius:5px;padding:5px}
+.featurePage{width:500px;height:650px;left:50%;top:15%;margin-left:-250px;margin-top:0;-webkit-border-radius:5px;-moz-border-radius:5px;-khtml-border-radius:5px;border-radius:5px;padding:5px;position:fixed}
+.nodePage{width:300px;height:400px;left:50%;top:25%;margin-left:-150px;margin-top:0;-webkit-border-radius:5px;-moz-border-radius:5px;-khtml-border-radius:5px;border-radius:5px;padding:5px;position:fixed}
 .previewContent{overflow:hidden;height:100%;width:100%}
 .previewContentScroll{overflow:auto;height:100%;width:100%}
-.previewClose{position:absolute;top:-15px;right:-15px;cursor:pointer;background-color:#FFF;font-size:16px;border-radius:5px;width:15px;height:15px;line-height:15px}
-.openbayPod,a > .openbayPod{width:120px;height:150px;margin-right:20px;margin-bottom:20px;border:1px solid #CCC;cursor:pointer;float:left;padding:10px;color:#036;-moz-border-radius:10px;border-radius:10px}
+.previewClose{position:absolute;top:-15px;right:-15px;cursor:pointer;background-color:#FFF;font-size:16px;-webkit-border-radius:5px;-moz-border-radius:5px;-khtml-border-radius:5px;border-radius:5px;width:15px;height:15px;line-height:15px}
+.openbayPod,a > .openbayPod{width:120px;height:150px;margin-right:20px;margin-bottom:20px;border:1px solid #CCC;cursor:pointer;float:left;padding:10px;color:#036;-webkit-border-radius:10px;-moz-border-radius:10px;-khtml-border-radius:10px;border-radius:10px}
 .openbayPod img{float:left;width:70px;height:70px;margin:25px}
 .openbayPod h3{line-height:30px;width:120px;text-align:center;font-weight:700;font-size:13px;padding:0;margin:0;float:left}
 .overviewPod{float:left;width:90px;height:120px}

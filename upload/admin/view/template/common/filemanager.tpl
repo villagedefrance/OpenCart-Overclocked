@@ -234,8 +234,8 @@ $(document).ready(function() {
 				'text-align': 'center'
 			});
 			$('span.fileName').css({
-				'margin-top': '',
-				'margin-left': '',
+				'margin-top': '0',
+				'margin-left': '0',
 				'text-decoration': 'none'
 			});
 		});
@@ -248,7 +248,7 @@ $(document).ready(function() {
 				'width': 'auto',
 				'height': 'auto',
 				'float': 'none',
-				'padding': '0px'
+				'padding': '0'
 			});
 		});
 
@@ -263,8 +263,8 @@ $(document).ready(function() {
 				'text-align': 'center'
 			});
 			$('span.fileName').css({
-				'margin-top': '',
-				'margin-left': '',
+				'margin-top': '0',
+				'margin-left': '0',
 				'text-decoration': 'none'
 			});
 		});
@@ -740,7 +740,6 @@ $(document).ready(function() {
 					}
 				});
 			},
-
 			close: function(event, ui) {
 				var tree = $.tree.focused();
 

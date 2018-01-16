@@ -1,7 +1,7 @@
 /* ------------------------------
-* VQmods v2.0.1
+* VQmods v2.0.2
 * Overclocked Edition Stylesheet
-* Copyright © 2017 - Villagedefrance
+* Copyright © 2018 - Villagedefrance
 * -------------------------------
 */
 #error-log {
@@ -21,12 +21,12 @@
 .notice {
 	padding: 10px 10px 10px 40px;
 	margin-bottom: 15px;
-	background: #FFF url('../image/lockscreen.png') 10px center no-repeat;
+	background: #FFF url('../image/theme-classic/lockscreen.png') 10px center no-repeat;
 	border: 1px solid #D7E6F4;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 	color: #444;
 }
 /* About */
@@ -40,8 +40,9 @@ a.about:hover {
 input[type='submit'] {
 	display: inline-block;
 	line-height: 12px;
-	padding: 5px 15px;
-	margin: 0 4px;
+	color: #405060;
+	font-weight: bold;
+	text-decoration: none;
 	background-color: #FCFCFC;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#DEDEDE));
 	background-image: -webkit-linear-gradient(top, #FCFCFC, #DEDEDE);
@@ -49,18 +50,23 @@ input[type='submit'] {
 	background-image: -ms-linear-gradient(top, #FCFCFC, #DEDEDE);
 	background-image: -o-linear-gradient(top, #FCFCFC, #DEDEDE);
 	background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);
-	border: 1px solid #CCC;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
-	text-decoration: none;
-	font-weight: bold;
-	color: #333;
+	border: 2px solid #36AAD8;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
+	padding: 5px 15px;
+	margin: 0 4px;
 }
 input[type='submit']:hover {
-	border: 1px solid #0093D3;
-	color: #0093D3;
+	background-color: #EEE;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#EEE), to(#CCC));
+	background-image: -webkit-linear-gradient(top, #EEE, #CCC);
+	background-image: -moz-linear-gradient(top, #EEE, #CCC);
+	background-image: -ms-linear-gradient(top, #EEE, #CCC);
+	background-image: -o-linear-gradient(top, #EEE, #CCC);
+	background-image: linear-gradient(to bottom, #EEE, #CCC);
+	border: 2px solid #5DC15E;
 }
 /* Description */
 .description {
@@ -68,7 +74,7 @@ input[type='submit']:hover {
 	margin: 3px 0;
 }
 .help {
-	color: #555;
+	color: #888;
 	font-size: 11px;
 	font-weight: normal;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -86,13 +92,16 @@ input[type='submit']:hover {
 }
 /* Table */
 .vqm-list {
-	border-collapse: collapse;
 	width: 100%;
+	border-collapse: collapse;
 	border-top: 1px solid #DDD;
 	border-left: 1px solid #DDD;
 	margin-bottom: 20px;
 }
 .vqm-list thead th {
+	color: #222;
+	font-weight: bold;
+	text-decoration: none;
 	background-color: #FCFCFC;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#EEE));
 	background-image: -webkit-linear-gradient(top, #FCFCFC, #EEE);
@@ -100,12 +109,9 @@ input[type='submit']:hover {
 	background-image: -ms-linear-gradient(top, #FCFCFC, #EEE);
 	background-image: -o-linear-gradient(top, #FCFCFC, #EEE);
 	background-image: linear-gradient(to bottom, #FCFCFC, #EEE);
-	padding: 0 5px;
-	color: #222;
-	font-weight: bold;
-	text-decoration: none;
 	border-right: 1px solid #DDD;
 	border-bottom: 1px solid #DDD;
+	padding: 0 5px;
 }
 .vqm-list tbody td {
 	vertical-align: middle;
