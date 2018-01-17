@@ -33,49 +33,98 @@
 			},
 			show : function(obj, t) {
 				var opts = $.extend(true, {}, $.tree.plugins.contextmenu.defaults, t.settings.plugins.contextmenu);
+
 				obj = $(obj);
 				$.tree.plugins.contextmenu.object.empty();
+
 				var str = "";
 				var cnt = 0;
-				for(var i in opts.items) {
-					if (!opts.items.hasOwnProperty(i)) continue;
-					if (opts.items[i] === false) continue;
+
+				for (var i in opts.items) {
+					if (!opts.items.hasOwnProperty(i)) {
+						continue;
+					}
+
+					if (opts.items[i] === false) {
+						continue;
+					}
+
 					var r = 1;
-					if (typeof opts.items[i].visible == "function") r = opts.items[i].visible.call(null, $.tree.plugins.contextmenu.data.a, t);
-					if (r == -1) continue;
-					else cnt ++;
-					if (opts.items[i].separator_before === true) str += "<li class='separator'><span>&nbsp;</span></li>";
+
+					if (typeof opts.items[i].visible == "function") {
+						r = opts.items[i].visible.call(null, $.tree.plugins.contextmenu.data.a, t);
+					}
+
+					if (r == -1) {
+						continue;
+					} else {
+						cnt ++;
+					}
+
+					if (opts.items[i].separator_before === true) {
+						str += "<li class='separator'><span>&nbsp;</span></li>";
+					}
+
 					str += '<li><a href="#" rel="' + i + '" class="' + i + ' ' + (r == 0 ? 'disabled' : '') + '">';
-					if (opts.items[i].icon) str += "<ins " + (opts.items[i].icon.indexOf("/") == -1 ? " class='" + opts.items[i].icon + "' " : " style='background-image:url(\"" + opts.items[i].icon + "\");' " ) + ">&nbsp;</ins>";
-					else str += "<ins>&nbsp;</ins>";
+
+					if (opts.items[i].icon) {
+						str += "<ins " + (opts.items[i].icon.indexOf("/") == -1 ? " class='" + opts.items[i].icon + "' " : " style='background-image:url(\"" + opts.items[i].icon + "\");' " ) + ">&nbsp;</ins>";
+					} else {
+						str += "<ins>&nbsp;</ins>";
+					}
+
 					str += "<span>" + opts.items[i].label + '</span></a></li>';
-					if (opts.items[i].separator_after === true) str += "<li class='separator'><span>&nbsp;</span></li>";
+
+					if (opts.items[i].separator_after === true) {
+						str += "<li class='separator'><span>&nbsp;</span></li>";
+					}
 				}
+
 				var tmp = obj.children("a:visible").offset();
+
 				$.tree.plugins.contextmenu.object.attr("class","tree-context tree-" + t.settings.ui.theme_name.toString() + "-context").html(str);
+
 				var h = $.tree.plugins.contextmenu.object.height();
 				var w = $.tree.plugins.contextmenu.object.width();
 				var x = tmp.left;
 				var y = tmp.top + parseInt(obj.children("a:visible").height()) + 2;
 				var max_y = $(window).height() + $(window).scrollTop();
 				var max_x = $(window).width() + $(window).scrollLeft();
-				if (y + h > max_y) y = Math.max( (max_y - h - 2), 0);
-				if (x + w > max_x) x = Math.max( (max_x - w - 2), 0);
+
+				if (y + h > max_y) {
+					y = Math.max( (max_y - h - 2), 0);
+				}
+
+				if (x + w > max_x) {
+					x = Math.max( (max_x - w - 2), 0);
+				}
+
 				$.tree.plugins.contextmenu.object.css({ "left" : (x), "top" : (y) }).fadeIn("fast");
 			},
 			hide : function() {
-				if (!$.tree.plugins.contextmenu.data.t) return;
+				if (!$.tree.plugins.contextmenu.data.t) {
+					return;
+				}
+
 				var opts = $.extend(true, {}, $.tree.plugins.contextmenu.defaults, $.tree.plugins.contextmenu.data.t.settings.plugins.contextmenu);
+
 				if ($.tree.plugins.contextmenu.data.r && $.tree.plugins.contextmenu.data.a) {
 					$.tree.plugins.contextmenu.data.a.children("a, span").removeClass(opts.class_name);
 				}
+
 				$.tree.plugins.contextmenu.data = { a : false, r : false, t : false };
 				$.tree.plugins.contextmenu.object.fadeOut("fast");
 			},
 			exec : function(cmd) {
-				if ($.tree.plugins.contextmenu.data.t == false) return;
+				if ($.tree.plugins.contextmenu.data.t == false) {
+					return;
+				}
+
 				var opts = $.extend(true, {}, $.tree.plugins.contextmenu.defaults, $.tree.plugins.contextmenu.data.t.settings.plugins.contextmenu);
-				try { opts.items[cmd].action.apply(null, [$.tree.plugins.contextmenu.data.a, $.tree.plugins.contextmenu.data.t]); } catch(e) { };
+
+				try {
+					opts.items[cmd].action.apply(null, [$.tree.plugins.contextmenu.data.a, $.tree.plugins.contextmenu.data.t]);
+				} catch(e) { };
 			},
 			callbacks : {
 				oninit : function() {
@@ -87,22 +136,27 @@
 				onrgtclk : function(n, t, e) {
 					var opts = $.extend(true, {}, $.tree.plugins.contextmenu.defaults, t.settings.plugins.contextmenu);
 					n = $(n);
-					if (n.size() == 0) return;
+
+					if (n.size() == 0) {
+						return;
+					}
+
 					$.tree.plugins.contextmenu.data.t = t;
+
 					if (!n.children("a:eq(0)").hasClass("clicked")) {
 						$.tree.plugins.contextmenu.data.a = n;
 						$.tree.plugins.contextmenu.data.r = true;
 						n.children("a").addClass(opts.class_name);
 						e.target.blur();
-					}
-					else {
+					} else {
 						$.tree.plugins.contextmenu.data.r = false;
 						$.tree.plugins.contextmenu.data.a = (t.selected_arr && t.selected_arr.length > 1) ? t.selected_arr : t.selected;
 					}
+
 					$.tree.plugins.contextmenu.show(n, t);
+
 					e.preventDefault();
 					e.stopPropagation();
-					// return false; // commented out because you might want to do something in your own callback
 				},
 				onchange : function() { $.tree.plugins.contextmenu.hide(); },
 				beforedata : function() { $.tree.plugins.contextmenu.hide(); },
@@ -113,17 +167,19 @@
 
 	$(function() {
 		$.tree.plugins.contextmenu.object.hide().appendTo("body");
-		$("#jstree-contextmenu a")
-			.live("click", function(event) {
-				if (!$(this).hasClass("disabled")) {
-					$.tree.plugins.contextmenu.exec.apply(null, [$(this).attr("rel")]);
-					$.tree.plugins.contextmenu.hide();
-				}
-				event.stopPropagation();
-				event.preventDefault();
-				return false;
-			})
-			$(document).bind("mousedown", function(event) { if ($(event.target).parents("#jstree-contextmenu").size() == 0) $.tree.plugins.contextmenu.hide();
+		$("#jstree-contextmenu a").live("click", function(event) {
+			if (!$(this).hasClass("disabled")) {
+				$.tree.plugins.contextmenu.exec.apply(null, [$(this).attr("rel")]);
+				$.tree.plugins.contextmenu.hide();
+			}
+			event.stopPropagation();
+			event.preventDefault();
+			return false;
+		})
+		$(document).bind("mousedown", function(event) {
+			if ($(event.target).parents("#jstree-contextmenu").size() == 0) {
+				$.tree.plugins.contextmenu.hide();
+			}
 		});
 	});
 })(jQuery);

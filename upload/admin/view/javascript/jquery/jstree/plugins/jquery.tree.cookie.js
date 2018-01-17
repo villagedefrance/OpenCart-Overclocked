@@ -1,5 +1,7 @@
 (function($) {
-	if (typeof $.cookie == "undefined") throw "jsTree cookie: jQuery cookie plugin not included.";
+	if (typeof $.cookie == "undefined") {
+		throw "jsTree cookie: jQuery cookie plugin not included.";
+	}
 
 	$.extend($.tree.plugins, {
 		"cookie" : {
@@ -21,9 +23,11 @@
 			set_cookie : function(type) {
 				var opts = $.extend(true, {}, $.tree.plugins.cookie.defaults, this.settings.plugins.cookie);
 
-				if (opts.types[type] !== true) return false;
+				if (opts.types[type] !== true) {
+					return false;
+				}
 
-				switch(type) {
+				switch (type) {
 					case "selected":
 						if (this.settings.rules.multiple != false && this.selected_arr.length > 1) {
 							var val = Array();
@@ -31,13 +35,18 @@
 								if (this.attr("id")) { val.push(this.attr("id")); }
 							});
 							val = val.join(",");
+						} else {
+							var val = this.selected ? this.selected.attr("id") : false;
 						}
-						else var val = this.selected ? this.selected.attr("id") : false;
 						$.cookie(opts.prefix + 'selected', val, opts.options);
 						break;
 					case "open":
 						var str = "";
-						this.container.find("li.open").each(function(i) { if (this.id) { str += this.id + ","; } });
+						this.container.find("li.open").each(function(i) {
+							if (this.id) {
+								str += this.id + ",";
+							}
+						});
 						$.cookie(opts.prefix + 'open', str.replace(/,$/ig,""), opts.options);
 						break;
 				}
