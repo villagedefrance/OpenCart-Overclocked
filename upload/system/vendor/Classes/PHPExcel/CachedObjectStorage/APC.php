@@ -213,7 +213,7 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
 
         $cacheList = $this->getCellList();
 
-        foreach($cacheList as $cellID) {
+        foreach ($cacheList as $cellID) {
             if ($cellID != $this->_currentObjectID) {
                 $obj = apc_fetch($this->_cachePrefix . $cellID . '.cache');
 

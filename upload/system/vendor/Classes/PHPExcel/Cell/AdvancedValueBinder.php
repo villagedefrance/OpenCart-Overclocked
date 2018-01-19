@@ -65,7 +65,7 @@ class PHPExcel_Cell_AdvancedValueBinder extends PHPExcel_Cell_DefaultValueBinder
             if ($value == PHPExcel_Calculation::getTRUE()) {
                 $cell->setValueExplicit(true, PHPExcel_Cell_DataType::TYPE_BOOL);
                 return true;
-            } elseif($value == PHPExcel_Calculation::getFALSE()) {
+            } elseif ($value == PHPExcel_Calculation::getFALSE()) {
                 $cell->setValueExplicit(false, PHPExcel_Cell_DataType::TYPE_BOOL);
                 return true;
             }
@@ -82,8 +82,8 @@ class PHPExcel_Cell_AdvancedValueBinder extends PHPExcel_Cell_DefaultValueBinder
                 $value = $matches[2] / $matches[3];
 
                 if ($matches[1] == '-') {
-					$value = 0 - $value;
-				}
+                    $value = 0 - $value;
+                }
 
                 $cell->setValueExplicit((float)$value, PHPExcel_Cell_DataType::TYPE_NUMERIC);
                 // Set style
@@ -95,8 +95,8 @@ class PHPExcel_Cell_AdvancedValueBinder extends PHPExcel_Cell_DefaultValueBinder
                 $value = $matches[2] + ($matches[3] / $matches[4]);
 
                 if ($matches[1] == '-') {
-					$value = 0 - $value;
-				}
+                    $value = 0 - $value;
+                }
 
                 $cell->setValueExplicit((float)$value, PHPExcel_Cell_DataType::TYPE_NUMERIC);
                 // Set style

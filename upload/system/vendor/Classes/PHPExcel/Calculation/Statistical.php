@@ -59,8 +59,13 @@ define('SQRT2PI', 2.5066282746310005024157652848110452530069867406099);
 class PHPExcel_Calculation_Statistical {
 
 	private static function _checkTrendArrays(&$array1, &$array2) {
-		if (!is_array($array1)) { $array1 = array($array1); }
-		if (!is_array($array2)) { $array2 = array($array2); }
+		if (!is_array($array1)) {
+			$array1 = array($array1);
+		}
+
+		if (!is_array($array2)) {
+			$array2 = array($array2);
+		}
 
 		$array1 = PHPExcel_Calculation_Functions::flattenArray($array1);
 		$array2 = PHPExcel_Calculation_Functions::flattenArray($array2);
@@ -1451,8 +1456,13 @@ class PHPExcel_Calculation_Statistical {
 			$m = floor($trials * $probability);
 			++$TotalUnscaledProbability;
 
-			if ($m == $Guess) { ++$UnscaledPGuess; }
-			if ($m <= $Guess) { ++$UnscaledCumPGuess; }
+			if ($m == $Guess) {
+				++$UnscaledPGuess;
+			}
+
+			if ($m <= $Guess) {
+				++$UnscaledCumPGuess;
+			}
 
 			$PreviousValue = 1;
 			$Done = false;
@@ -1461,9 +1471,19 @@ class PHPExcel_Calculation_Statistical {
 			while ((!$Done) && ($k <= $trials)) {
 				$CurrentValue = $PreviousValue * ($trials - $k + 1) * $probability / ($k * (1 - $probability));
 				$TotalUnscaledProbability += $CurrentValue;
-				if ($k == $Guess) { $UnscaledPGuess += $CurrentValue; }
-				if ($k <= $Guess) { $UnscaledCumPGuess += $CurrentValue; }
-				if ($CurrentValue <= $EssentiallyZero) { $Done = true; }
+
+				if ($k == $Guess) {
+					$UnscaledPGuess += $CurrentValue;
+				}
+
+				if ($k <= $Guess) {
+					$UnscaledCumPGuess += $CurrentValue;
+				}
+
+				if ($CurrentValue <= $EssentiallyZero) {
+					$Done = true;
+				}
+
 				$PreviousValue = $CurrentValue;
 				++$k;
 			}
@@ -1471,12 +1491,23 @@ class PHPExcel_Calculation_Statistical {
 			$PreviousValue = 1;
 			$Done = false;
 			$k = $m - 1;
+
 			while ((!$Done) && ($k >= 0)) {
 				$CurrentValue = $PreviousValue * $k + 1 * (1 - $probability) / (($trials - $k) * $probability);
 				$TotalUnscaledProbability += $CurrentValue;
-				if ($k == $Guess) { $UnscaledPGuess += $CurrentValue; }
-				if ($k <= $Guess) { $UnscaledCumPGuess += $CurrentValue; }
-				if ($CurrentValue <= $EssentiallyZero) { $Done = true; }
+
+				if ($k == $Guess) {
+					$UnscaledPGuess += $CurrentValue;
+				}
+
+				if ($k <= $Guess) {
+					$UnscaledCumPGuess += $CurrentValue;
+				}
+
+				if ($CurrentValue <= $EssentiallyZero) {
+					$Done = true;
+				}
+
 				$PreviousValue = $CurrentValue;
 				--$k;
 			}
@@ -1851,7 +1882,7 @@ class PHPExcel_Calculation_Statistical {
 
 		$returnArray = array();
 
-		foreach($newValues as $xValue) {
+		foreach ($newValues as $xValue) {
 			$returnArray[0][] = $bestFitExponential->getValueOfYForX($xValue);
 		}
 
@@ -2133,7 +2164,7 @@ class PHPExcel_Calculation_Statistical {
 		$yValueCount = count($yValues);
 		$xValueCount = count($xValues);
 
-		foreach($yValues as $value) {
+		foreach ($yValues as $value) {
 			if ($value <= 0.0) {
 				return PHPExcel_Calculation_Functions::NaN();
 			}
@@ -2507,7 +2538,7 @@ class PHPExcel_Calculation_Statistical {
 	private static function _modeCalc($data) {
 		$frequencyArray = array();
 
-		foreach($data as $datum) {
+		foreach ($data as $datum) {
 			$found = false;
 
 			foreach($frequencyArray as $key => $value) {
@@ -2526,7 +2557,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 
-		foreach($frequencyArray as $key => $value) {
+		foreach ($frequencyArray as $key => $value) {
 			$frequencyList[$key] = $value['frequency'];
 			$valueList[$key] = $value['value'];
 		}
@@ -2783,7 +2814,7 @@ class PHPExcel_Calculation_Statistical {
 
 		$significance = (is_null($significance)) ? 3 : (integer) PHPExcel_Calculation_Functions::flattenSingleValue($significance);
 
-		foreach($valueSet as $key => $valueEntry) {
+		foreach ($valueSet as $key => $valueEntry) {
 			if (!is_numeric($valueEntry)) {
 				unset($valueSet[$key]);
 			}
@@ -2937,7 +2968,7 @@ class PHPExcel_Calculation_Statistical {
 
 		$order = (is_null($order)) ? 0 : (integer) PHPExcel_Calculation_Functions::flattenSingleValue($order);
 
-		foreach($valueSet as $key => $valueEntry) {
+		foreach ($valueSet as $key => $valueEntry) {
 			if (!is_numeric($valueEntry)) {
 				unset($valueSet[$key]);
 			}

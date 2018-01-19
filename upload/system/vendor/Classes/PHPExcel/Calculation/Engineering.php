@@ -52,69 +52,69 @@ class PHPExcel_Calculation_Engineering {
 	 * @var mixed[]
 	 */
 	private static $_conversionUnits = array(
-		'g'			=> array('Group'	=> 'Mass', 'Unit Name'	=> 'Gram', 'AllowPrefix'	=> True),
-		'sg'		=> array('Group'	=> 'Mass', 'Unit Name'	=> 'Slug', 'AllowPrefix'	=> False),
-		'lbm'		=> array('Group'	=> 'Mass', 'Unit Name'	=> 'Pound mass (avoirdupois)', 'AllowPrefix'	=> False),
-		'u'			=> array('Group'	=> 'Mass', 'Unit Name'	=> 'U (atomic mass unit)', 'AllowPrefix'	=> True),
-		'ozm'		=> array('Group'	=> 'Mass', 'Unit Name'	=> 'Ounce mass (avoirdupois)', 'AllowPrefix'	=> False),
-		'm'			=> array('Group'	=> 'Distance', 'Unit Name'	=> 'Meter', 'AllowPrefix'	=> True),
-		'mi'		=> array('Group'	=> 'Distance', 'Unit Name'	=> 'Statute mile', 'AllowPrefix'	=> False),
-		'Nmi'		=> array('Group'	=> 'Distance', 'Unit Name'	=> 'Nautical mile', 'AllowPrefix'	=> False),
-		'in'			=> array('Group'	=> 'Distance', 'Unit Name'	=> 'Inch', 'AllowPrefix'	=> False),
-		'ft'			=> array('Group'	=> 'Distance', 'Unit Name'	=> 'Foot', 'AllowPrefix'	=> False),
-		'yd'		=> array('Group'	=> 'Distance', 'Unit Name'	=> 'Yard', 'AllowPrefix'	=> False),
-		'ang'		=> array('Group'	=> 'Distance', 'Unit Name'	=> 'Angstrom', 'AllowPrefix'	=> True),
-		'Pica'		=> array('Group'	=> 'Distance', 'Unit Name'	=> 'Pica (1/72 in)', 'AllowPrefix'	=> False),
-		'yr'		=> array('Group'	=> 'Time', 'Unit Name'	=> 'Year', 'AllowPrefix'	=> False),
-		'day'		=> array('Group'	=> 'Time', 'Unit Name'	=> 'Day', 'AllowPrefix'	=> False),
-		'hr'		=> array('Group'	=> 'Time', 'Unit Name'	=> 'Hour', 'AllowPrefix'	=> False),
-		'mn'		=> array('Group'	=> 'Time', 'Unit Name'	=> 'Minute', 'AllowPrefix'	=> False),
-		'sec'		=> array('Group'	=> 'Time', 'Unit Name'	=> 'Second', 'AllowPrefix'	=> True),
-		'Pa'		=> array('Group'	=> 'Pressure', 'Unit Name'	=> 'Pascal', 'AllowPrefix'	=> True),
-		'p'			=> array('Group'	=> 'Pressure', 'Unit Name'	=> 'Pascal', 'AllowPrefix'	=> True),
-		'atm'		=> array('Group'	=> 'Pressure', 'Unit Name'	=> 'Atmosphere', 'AllowPrefix'	=> True),
-		'at'		=> array('Group'	=> 'Pressure', 'Unit Name'	=> 'Atmosphere', 'AllowPrefix'	=> True),
-		'mmHg'	=> array('Group'	=> 'Pressure', 'Unit Name'	=> 'mm of Mercury', 'AllowPrefix'	=> True),
-		'N'			=> array('Group'	=> 'Force', 'Unit Name'	=> 'Newton', 'AllowPrefix'	=> True),
-		'dyn'		=> array('Group'	=> 'Force', 'Unit Name'	=> 'Dyne', 'AllowPrefix'	=> True),
-		'dy'		=> array('Group'	=> 'Force', 'Unit Name'	=> 'Dyne', 'AllowPrefix'	=> True),
-		'lbf'		=> array('Group'	=> 'Force', 'Unit Name'	=> 'Pound force', 'AllowPrefix'	=> False),
-		'J'			=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Joule', 'AllowPrefix'	=> True),
-		'e'			=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Erg', 'AllowPrefix'	=> True),
-		'c'			=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Thermodynamic calorie', 'AllowPrefix'	=> True),
-		'cal'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'IT calorie', 'AllowPrefix'	=> True),
-		'eV'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Electron volt', 'AllowPrefix'	=> True),
-		'ev'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Electron volt', 'AllowPrefix'	=> True),
-		'HPh'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Horsepower-hour', 'AllowPrefix'	=> False),
-		'hh'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Horsepower-hour', 'AllowPrefix'	=> False),
-		'Wh'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Watt-hour', 'AllowPrefix'	=> True),
-		'wh'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Watt-hour', 'AllowPrefix'	=> True),
-		'flb'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Foot-pound', 'AllowPrefix'	=> False),
-		'BTU'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'BTU', 'AllowPrefix'	=> False),
-		'btu'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'BTU', 'AllowPrefix'	=> False),
-		'HP'		=> array('Group'	=> 'Power', 'Unit Name'	=> 'Horsepower', 'AllowPrefix'	=> False),
-		'h'			=> array('Group'	=> 'Power', 'Unit Name'	=> 'Horsepower', 'AllowPrefix'	=> False),
-		'W'		=> array('Group'	=> 'Power', 'Unit Name'	=> 'Watt', 'AllowPrefix'	=> True),
-		'w'			=> array('Group'	=> 'Power', 'Unit Name'	=> 'Watt', 'AllowPrefix'	=> True),
-		'T'			=> array('Group'	=> 'Magnetism', 'Unit Name'	=> 'Tesla', 'AllowPrefix'	=> True),
-		'ga'		=> array('Group'	=> 'Magnetism', 'Unit Name'	=> 'Gauss', 'AllowPrefix'	=> True),
-		'C'			=> array('Group'	=> 'Temperature', 'Unit Name'	=> 'Celsius', 'AllowPrefix'	=> False),
-		'cel'		=> array('Group'	=> 'Temperature', 'Unit Name'	=> 'Celsius', 'AllowPrefix'	=> False),
-		'F'			=> array('Group'	=> 'Temperature', 'Unit Name'	=> 'Fahrenheit', 'AllowPrefix'	=> False),
-		'fah'		=> array('Group'	=> 'Temperature', 'Unit Name'	=> 'Fahrenheit', 'AllowPrefix'	=> False),
-		'K'			=> array('Group'	=> 'Temperature', 'Unit Name'	=> 'Kelvin', 'AllowPrefix'	=> False),
-		'kel'		=> array('Group'	=> 'Temperature', 'Unit Name'	=> 'Kelvin', 'AllowPrefix'	=> False),
-		'tsp'		=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'Teaspoon', 'AllowPrefix'	=> False),
-		'tbs'		=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'Tablespoon', 'AllowPrefix'	=> False),
-		'oz'		=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'Fluid Ounce', 'AllowPrefix'	=> False),
-		'cup'		=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'Cup', 'AllowPrefix'	=> False),
-		'pt'		=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'U.S. Pint', 'AllowPrefix'	=> False),
-		'us_pt'	=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'U.S. Pint', 'AllowPrefix'	=> False),
-		'uk_pt'	=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'U.K. Pint', 'AllowPrefix'	=> False),
-		'qt'		=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'Quart', 'AllowPrefix'	=> False),
-		'gal'		=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'Gallon', 'AllowPrefix'	=> False),
-		'l'			=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'Litre', 'AllowPrefix'	=> True),
-		'lt'			=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'Litre', 'AllowPrefix'	=> True)
+		'g'			=> array('Group'	=> 'Mass', 'Unit Name'	=> 'Gram', 'AllowPrefix'	=> true),
+		'sg'		=> array('Group'	=> 'Mass', 'Unit Name'	=> 'Slug', 'AllowPrefix'	=> false),
+		'lbm'		=> array('Group'	=> 'Mass', 'Unit Name'	=> 'Pound mass (avoirdupois)', 'AllowPrefix'	=> false),
+		'u'			=> array('Group'	=> 'Mass', 'Unit Name'	=> 'U (atomic mass unit)', 'AllowPrefix'	=> true),
+		'ozm'		=> array('Group'	=> 'Mass', 'Unit Name'	=> 'Ounce mass (avoirdupois)', 'AllowPrefix'	=> false),
+		'm'			=> array('Group'	=> 'Distance', 'Unit Name'	=> 'Meter', 'AllowPrefix'	=> true),
+		'mi'		=> array('Group'	=> 'Distance', 'Unit Name'	=> 'Statute mile', 'AllowPrefix'	=> false),
+		'Nmi'		=> array('Group'	=> 'Distance', 'Unit Name'	=> 'Nautical mile', 'AllowPrefix'	=> false),
+		'in'			=> array('Group'	=> 'Distance', 'Unit Name'	=> 'Inch', 'AllowPrefix'	=> false),
+		'ft'			=> array('Group'	=> 'Distance', 'Unit Name'	=> 'Foot', 'AllowPrefix'	=> false),
+		'yd'		=> array('Group'	=> 'Distance', 'Unit Name'	=> 'Yard', 'AllowPrefix'	=> false),
+		'ang'		=> array('Group'	=> 'Distance', 'Unit Name'	=> 'Angstrom', 'AllowPrefix'	=> true),
+		'Pica'		=> array('Group'	=> 'Distance', 'Unit Name'	=> 'Pica (1/72 in)', 'AllowPrefix'	=> false),
+		'yr'		=> array('Group'	=> 'Time', 'Unit Name'	=> 'Year', 'AllowPrefix'	=> false),
+		'day'		=> array('Group'	=> 'Time', 'Unit Name'	=> 'Day', 'AllowPrefix'	=> false),
+		'hr'		=> array('Group'	=> 'Time', 'Unit Name'	=> 'Hour', 'AllowPrefix'	=> false),
+		'mn'		=> array('Group'	=> 'Time', 'Unit Name'	=> 'Minute', 'AllowPrefix'	=> false),
+		'sec'		=> array('Group'	=> 'Time', 'Unit Name'	=> 'Second', 'AllowPrefix'	=> true),
+		'Pa'		=> array('Group'	=> 'Pressure', 'Unit Name'	=> 'Pascal', 'AllowPrefix'	=> true),
+		'p'			=> array('Group'	=> 'Pressure', 'Unit Name'	=> 'Pascal', 'AllowPrefix'	=> true),
+		'atm'		=> array('Group'	=> 'Pressure', 'Unit Name'	=> 'Atmosphere', 'AllowPrefix'	=> true),
+		'at'		=> array('Group'	=> 'Pressure', 'Unit Name'	=> 'Atmosphere', 'AllowPrefix'	=> true),
+		'mmHg'	=> array('Group'	=> 'Pressure', 'Unit Name'	=> 'mm of Mercury', 'AllowPrefix'	=> true),
+		'N'			=> array('Group'	=> 'Force', 'Unit Name'	=> 'Newton', 'AllowPrefix'	=> true),
+		'dyn'		=> array('Group'	=> 'Force', 'Unit Name'	=> 'Dyne', 'AllowPrefix'	=> true),
+		'dy'		=> array('Group'	=> 'Force', 'Unit Name'	=> 'Dyne', 'AllowPrefix'	=> true),
+		'lbf'		=> array('Group'	=> 'Force', 'Unit Name'	=> 'Pound force', 'AllowPrefix'	=> talse),
+		'J'			=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Joule', 'AllowPrefix'	=> true),
+		'e'			=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Erg', 'AllowPrefix'	=> true),
+		'c'			=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Thermodynamic calorie', 'AllowPrefix'	=> true),
+		'cal'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'IT calorie', 'AllowPrefix'	=> true),
+		'eV'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Electron volt', 'AllowPrefix'	=> true),
+		'ev'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Electron volt', 'AllowPrefix'	=> true),
+		'HPh'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Horsepower-hour', 'AllowPrefix'	=> false),
+		'hh'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Horsepower-hour', 'AllowPrefix'	=> false),
+		'Wh'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Watt-hour', 'AllowPrefix'	=> true),
+		'wh'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Watt-hour', 'AllowPrefix'	=> true),
+		'flb'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'Foot-pound', 'AllowPrefix'	=> false),
+		'BTU'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'BTU', 'AllowPrefix'	=> false),
+		'btu'		=> array('Group'	=> 'Energy', 'Unit Name'	=> 'BTU', 'AllowPrefix'	=> false),
+		'HP'		=> array('Group'	=> 'Power', 'Unit Name'	=> 'Horsepower', 'AllowPrefix'	=> false),
+		'h'			=> array('Group'	=> 'Power', 'Unit Name'	=> 'Horsepower', 'AllowPrefix'	=> false),
+		'W'		=> array('Group'	=> 'Power', 'Unit Name'	=> 'Watt', 'AllowPrefix'	=> true),
+		'w'			=> array('Group'	=> 'Power', 'Unit Name'	=> 'Watt', 'AllowPrefix'	=> true),
+		'T'			=> array('Group'	=> 'Magnetism', 'Unit Name'	=> 'Tesla', 'AllowPrefix'	=> true),
+		'ga'		=> array('Group'	=> 'Magnetism', 'Unit Name'	=> 'Gauss', 'AllowPrefix'	=> true),
+		'C'			=> array('Group'	=> 'Temperature', 'Unit Name'	=> 'Celsius', 'AllowPrefix'	=> false),
+		'cel'		=> array('Group'	=> 'Temperature', 'Unit Name'	=> 'Celsius', 'AllowPrefix'	=> false),
+		'F'			=> array('Group'	=> 'Temperature', 'Unit Name'	=> 'Fahrenheit', 'AllowPrefix'	=> false),
+		'fah'		=> array('Group'	=> 'Temperature', 'Unit Name'	=> 'Fahrenheit', 'AllowPrefix'	=> false),
+		'K'			=> array('Group'	=> 'Temperature', 'Unit Name'	=> 'Kelvin', 'AllowPrefix'	=> false),
+		'kel'		=> array('Group'	=> 'Temperature', 'Unit Name'	=> 'Kelvin', 'AllowPrefix'	=> false),
+		'tsp'		=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'Teaspoon', 'AllowPrefix'	=> false),
+		'tbs'		=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'Tablespoon', 'AllowPrefix'	=> false),
+		'oz'		=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'Fluid Ounce', 'AllowPrefix'	=> false),
+		'cup'		=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'Cup', 'AllowPrefix'	=> false),
+		'pt'		=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'U.S. Pint', 'AllowPrefix'	=> false),
+		'us_pt'	=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'U.S. Pint', 'AllowPrefix'	=> false),
+		'uk_pt'	=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'U.K. Pint', 'AllowPrefix'	=> false),
+		'qt'		=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'Quart', 'AllowPrefix'	=> false),
+		'gal'		=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'Gallon', 'AllowPrefix'	=> false),
+		'l'			=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'Litre', 'AllowPrefix'	=> true),
+		'lt'			=> array('Group'	=> 'Liquid', 'Unit Name'	=> 'Litre', 'AllowPrefix'	=> true)
 	);
 
 	/**
@@ -803,9 +803,9 @@ class PHPExcel_Calculation_Engineering {
 		}
 
 		return array(
-			'real'			=> $realNumber,
-			'imaginary'	=> $imaginary,
-			'suffix'		=> $suffix
+			'real'      => $realNumber,
+			'imaginary' => $imaginary,
+			'suffix'    => $suffix
 		);
 	}
 
@@ -1027,14 +1027,14 @@ class PHPExcel_Calculation_Engineering {
 				return PHPExcel_Calculation_Functions::NaN();
 			}
 
-			switch(floor($ord)) {
-				case 0 :
+			switch (floor($ord)) {
+				case 0:
 					return self::_Besselk0($x);
 					break;
-				case 1 :
+				case 1:
 					return self::_Besselk1($x);
 					break;
-				default :
+				default:
 					$fTox = 2 / $x;
 					$fBkm = self::_Besselk0($x);
 					$fBk = self::_Besselk1($x);
@@ -1112,11 +1112,11 @@ class PHPExcel_Calculation_Engineering {
 				return PHPExcel_Calculation_Functions::NaN();
 			}
 
-			switch(floor($ord)) {
-				case 0 :
+			switch (floor($ord)) {
+				case 0:
 					return self::_Bessely0($x);
 					break;
-				case 1 :
+				case 1:
 					return self::_Bessely1($x);
 					break;
 				default:
@@ -1181,6 +1181,7 @@ class PHPExcel_Calculation_Engineering {
 		} elseif (strlen($x) == 10) {
 			//	Two's Complement
 			$x = substr($x, -9);
+
 			return '-' . (512-bindec($x));
 		}
 
@@ -2483,7 +2484,7 @@ class PHPExcel_Calculation_Engineering {
 	public static function getConversionGroups() {
 		$conversionGroups = array();
 
-		foreach(self::$_conversionUnits as $conversionUnit) {
+		foreach (self::$_conversionUnits as $conversionUnit) {
 			$conversionGroups[] = $conversionUnit['Group'];
 		}
 

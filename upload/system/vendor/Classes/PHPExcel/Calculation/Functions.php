@@ -148,10 +148,10 @@ class PHPExcel_Calculation_Functions {
 	public static function setReturnDateType($returnDateType) {
 		if (($returnDateType == self::RETURNDATE_PHP_NUMERIC) || ($returnDateType == self::RETURNDATE_PHP_OBJECT) || ($returnDateType == self::RETURNDATE_EXCEL)) {
 			self::$ReturnDateType = $returnDateType;
-			return True;
+			return true;
 		}
 
-		return False;
+		return false;
 	}
 
 	/**
@@ -288,9 +288,11 @@ class PHPExcel_Calculation_Functions {
 	public static function _ifCondition($condition) {
 		$condition	= PHPExcel_Calculation_Functions::flattenSingleValue($condition);
 
-		if (!isset($condition{0}))
+		if (!isset($condition{0})) {
 			$condition = '=""';
-		if (!in_array($condition{0},array('>', '<', '='))) {
+		}
+
+		if (!in_array($condition{0}, array('>', '<', '='))) {
 			if (!is_numeric($condition)) {
 				$condition = PHPExcel_Calculation::_wrapResult(strtoupper($condition));
 			}
@@ -299,7 +301,7 @@ class PHPExcel_Calculation_Functions {
 		} else {
 			preg_match('/([<>=]+)(.*)/', $condition, $matches);
 
-			list(, $operator, $operand) = $matches;
+			list (, $operator, $operand) = $matches;
 
 			if (!is_numeric($operand)) {
 				$operand = str_replace('"', '""', $operand);
@@ -678,7 +680,7 @@ if (!function_exists('atanh')) {
 		return (log(1 + $x) - log(1 - $x)) / 2;
 	}
 }
-//
+
 //	Strangely, PHP doesn't have a mb_str_replace multibyte function
 //	As we'll only ever use this function with UTF-8 characters, we can simply "hard-code" the character set
 
@@ -702,7 +704,7 @@ if ((!function_exists('mb_str_replace')) && (function_exists('mb_substr')) && (f
 			$r = !is_array($replace) ? $replace : (array_key_exists($key, $replace) ? $replace[$key] : '');
 			$pos = mb_strpos($subject, $s, 0, 'UTF-8');
 
-			while($pos !== false) {
+			while ($pos !== false) {
 				$subject = mb_substr($subject, 0, $pos, 'UTF-8') . $r . mb_substr($subject, $pos + mb_strlen($s, 'UTF-8'), 65535, 'UTF-8');
 				$pos = mb_strpos($subject, $s, $pos + mb_strlen($r, 'UTF-8'), 'UTF-8');
 			}

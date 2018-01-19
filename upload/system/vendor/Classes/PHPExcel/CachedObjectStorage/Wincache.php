@@ -48,13 +48,13 @@ class PHPExcel_CachedObjectStorage_Wincache extends PHPExcel_CachedObjectStorage
 	 */
 	private $_cacheTime = 600;
 
-    /**
-     * Store cell data in cache for the current cell object if it's "dirty",
-     *     and the 'nullify' the current cell object
-     *
+	/**
+	 * Store cell data in cache for the current cell object if it's "dirty",
+	 *     and the 'nullify' the current cell object
+	 *
 	 * @return	void
-     * @throws	PHPExcel_Exception
-     */
+	 * @throws	PHPExcel_Exception
+	 */
 	protected function _storeData() {
 		if ($this->_currentCellIsDirty && !empty($this->_currentObjectID)) {
 			$this->_currentObject->detach();
@@ -143,7 +143,7 @@ class PHPExcel_CachedObjectStorage_Wincache extends PHPExcel_CachedObjectStorage
 		}
 
 		$this->_storeData();
-		//	Check if the entry that has been requested actually exists
+		// Check if the entry that has been requested actually exists
 		$obj = null;
 
 		if (parent::isDataSet($pCoord)) {
@@ -152,24 +152,24 @@ class PHPExcel_CachedObjectStorage_Wincache extends PHPExcel_CachedObjectStorage
 			$obj = wincache_ucache_get($this->_cachePrefix . $pCoord . '.cache', $success);
 
 			if ($success === false) {
-				//	Entry no longer exists in WinCache, so clear it from the cache array
+				// Entry no longer exists in WinCache, so clear it from the cache array
 				parent::deleteCacheData($pCoord);
 
 				throw new PHPExcel_Exception('Cell entry ' . $pCoord . ' no longer exists in WinCache');
 			}
 
 		} else {
-			//	Return null if requested entry doesn't exist in cache
+			// Return null if requested entry doesn't exist in cache
 			return null;
 		}
 
-		//	Set current entry to the requested entry
+		// Set current entry to the requested entry
 		$this->_currentObjectID = $pCoord;
 
 		$this->_currentObject = unserialize($obj);
-        //  Re-attach this as the cell's parent
-        $this->_currentObject->attach($this);
-		//	Return requested entry
+		// Re-attach this as the cell's parent
+		$this->_currentObject->attach($this);
+		// Return requested entry
 		return $this->_currentObject;
 	}
 
@@ -214,7 +214,7 @@ class PHPExcel_CachedObjectStorage_Wincache extends PHPExcel_CachedObjectStorage
 
 		$cacheList = $this->getCellList();
 
-		foreach($cacheList as $cellID) {
+		foreach ($cacheList as $cellID) {
 			if ($cellID != $this->_currentObjectID) {
 				$success = false;
 
@@ -281,7 +281,7 @@ class PHPExcel_CachedObjectStorage_Wincache extends PHPExcel_CachedObjectStorage
 	public function __destruct() {
 		$cacheList = $this->getCellList();
 
-		foreach($cacheList as $cellID) {
+		foreach ($cacheList as $cellID) {
 			wincache_ucache_delete($this->_cachePrefix . $cellID . '.cache');
 		}
 	}

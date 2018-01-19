@@ -34,21 +34,21 @@
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_CachedObjectStorage_Memory extends PHPExcel_CachedObjectStorage_CacheBase implements PHPExcel_CachedObjectStorage_ICache {
-    /**
-     * Dummy method callable from CacheBase, but unused by Memory cache
-     *
+	/**
+	 * Dummy method callable from CacheBase, but unused by Memory cache
+	 *
 	 * @return	void
-     */
+	 */
 	protected function _storeData() { }
 
-    /**
-     * Add or Update a cell in cache identified by coordinate address
-     *
-     * @param	string			$pCoord		Coordinate address of the cell to update
-     * @param	PHPExcel_Cell	$cell		Cell to update
+	/**
+	 * Add or Update a cell in cache identified by coordinate address
+	 *
+	 * @param	string			$pCoord		Coordinate address of the cell to update
+	 * @param	PHPExcel_Cell	$cell		Cell to update
 	 * @return	PHPExcel_Cell
-     * @throws	PHPExcel_Exception
-     */
+	 * @throws	PHPExcel_Exception
+	 */
 	public function addCacheData($pCoord, PHPExcel_Cell $cell) {
 		$this->_cellCache[$pCoord] = $cell;
 		//	Set current entry to the new/updated entry
@@ -57,13 +57,13 @@ class PHPExcel_CachedObjectStorage_Memory extends PHPExcel_CachedObjectStorage_C
 		return $cell;
 	}
 
-    /**
-     * Get cell at a specific coordinate
-     *
-     * @param 	string 			$pCoord		Coordinate of the cell
-     * @throws 	PHPExcel_Exception
-     * @return 	PHPExcel_Cell 	Cell that was found, or null if not found
-     */
+	/**
+	 * Get cell at a specific coordinate
+	 *
+	 * @param 	string 			$pCoord		Coordinate of the cell
+	 * @throws 	PHPExcel_Exception
+	 * @return 	PHPExcel_Cell 	Cell that was found, or null if not found
+	 */
 	public function getCacheData($pCoord) {
 		//	Check if the entry that has been requested actually exists
 		if (!isset($this->_cellCache[$pCoord])) {
@@ -89,7 +89,7 @@ class PHPExcel_CachedObjectStorage_Memory extends PHPExcel_CachedObjectStorage_C
 
 		$newCollection = array();
 
-		foreach($this->_cellCache as $k => &$cell) {
+		foreach ($this->_cellCache as $k => &$cell) {
 			$newCollection[$k] = clone $cell;
 			$newCollection[$k]->attach($this);
 		}

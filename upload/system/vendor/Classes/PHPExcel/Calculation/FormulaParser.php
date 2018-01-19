@@ -159,7 +159,9 @@ class PHPExcel_Calculation_FormulaParser {
 		// Check if the formula has a valid starting =
 		$formulaLength = strlen($this->_formula);
 
-		if ($formulaLength < 2 || $this->_formula{0} != '=') return;
+		if ($formulaLength < 2 || $this->_formula{0} != '=') {
+			return;
+		}
 
 		// Helper variables
 		$tokens1 = $tokens2 = $stack = array();
@@ -465,13 +467,16 @@ class PHPExcel_Calculation_FormulaParser {
 
 		// move tokenList to new set, excluding unnecessary white-space tokens and converting necessary ones to intersections
 		$tokenCount = count($tokens1);
+
 		for ($i = 0; $i < $tokenCount; ++$i) {
 			$token = $tokens1[$i];
+
 			if (isset($tokens1[$i - 1])) {
 				$previousToken = $tokens1[$i - 1];
 			} else {
 				$previousToken = null;
 			}
+
 			if (isset($tokens1[$i + 1])) {
 				$nextToken = $tokens1[$i + 1];
 			} else {
@@ -522,11 +527,13 @@ class PHPExcel_Calculation_FormulaParser {
 
 		for ($i = 0; $i < $tokenCount; ++$i) {
 			$token = $tokens2[$i];
+
 			if (isset($tokens2[$i - 1])) {
 				$previousToken = $tokens2[$i - 1];
 			} else {
 				$previousToken = null;
 			}
+
 			if (isset($tokens2[$i + 1])) {
 				$nextToken = $tokens2[$i + 1];
 			} else {

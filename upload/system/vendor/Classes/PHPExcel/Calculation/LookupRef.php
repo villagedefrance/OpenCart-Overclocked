@@ -86,14 +86,24 @@ class PHPExcel_Calculation_LookupRef {
 			$rowRelative = $columnRelative = '$';
 			$column = PHPExcel_Cell::stringFromColumnIndex($column-1);
 
-			if (($relativity == 2) || ($relativity == 4)) { $columnRelative = ''; }
-			if (($relativity == 3) || ($relativity == 4)) { $rowRelative = ''; }
+			if (($relativity == 2) || ($relativity == 4)) {
+				$columnRelative = '';
+			}
+
+			if (($relativity == 3) || ($relativity == 4)) {
+				$rowRelative = '';
+			}
 
 			return $sheetText . $columnRelative . $column . $rowRelative . $row;
 
 		} else {
-			if (($relativity == 2) || ($relativity == 4)) { $column = '[' . $column . ']'; }
-			if (($relativity == 3) || ($relativity == 4)) { $row = '[' . $row . ']'; }
+			if (($relativity == 2) || ($relativity == 4)) {
+				$column = '[' . $column . ']';
+			}
+
+			if (($relativity == 3) || ($relativity == 4)) {
+				$row = '[' . $row . ']';
+			}
 
 			return $sheetText . 'R' . $row . 'C' . $column;
 		}
@@ -203,8 +213,8 @@ class PHPExcel_Calculation_LookupRef {
 		}
 
 		if (is_array($cellAddress)) {
-			foreach($cellAddress as $columnKey => $rowValue) {
-				foreach($rowValue as $rowKey => $cellValue) {
+			foreach ($cellAddress as $columnKey => $rowValue) {
+				foreach ($rowValue as $rowKey => $cellValue) {
 					return (integer) preg_replace('/[^0-9]/i', '', $rowKey);
 				}
 			}
@@ -648,7 +658,7 @@ class PHPExcel_Calculation_LookupRef {
 			$rowNum = $rowKeys[--$rowNum];
 			$returnArray = array();
 
-			foreach($arrayValues as $arrayColumn) {
+			foreach ($arrayValues as $arrayColumn) {
 				if (is_array($arrayColumn)) {
 					if (isset($arrayColumn[$rowNum])) {
 						$returnArray[] = $arrayColumn[$rowNum];
@@ -694,10 +704,10 @@ class PHPExcel_Calculation_LookupRef {
 
 		$column = 0;
 
-		foreach($matrixData as $matrixRow) {
+		foreach ($matrixData as $matrixRow) {
 			$row = 0;
 
-			foreach($matrixRow as $matrixCell) {
+			foreach ($matrixRow as $matrixCell) {
 				$returnMatrix[$row][$column] = $matrixCell;
 				++$row;
 			}
@@ -721,8 +731,8 @@ class PHPExcel_Calculation_LookupRef {
 	/**
 	* VLOOKUP
 	* The VLOOKUP function searches for value in the left-most column of lookup_array and returns the value in the same row based on the index_number.
-	* @param	lookup_value	The value that you want to match in lookup_array
-	* @param	lookup_array	The range of cells being searched
+	* @param	lookup_value	The value that you want to match in lookup_array.
+	* @param	lookup_array	The range of cells being searched.
 	* @param	index_number	The column number in table_array from which the matching value must be returned. The first column is 1.
 	* @param	not_exact_match	Determines if you are looking for an exact match based on lookup_value.
 	* @return	mixed			The value of the found cell
@@ -759,7 +769,7 @@ class PHPExcel_Calculation_LookupRef {
 
 		$rowNumber = $rowValue = false;
 
-		foreach($lookup_array as $rowKey => $rowData) {
+		foreach ($lookup_array as $rowKey => $rowData) {
 			if ((is_numeric($lookup_value) && is_numeric($rowData[$firstColumn]) && ($rowData[$firstColumn] > $lookup_value)) || (!is_numeric($lookup_value) && !is_numeric($rowData[$firstColumn]) && (strtolower($rowData[$firstColumn]) > strtolower($lookup_value)))) {
 				break;
 			}
@@ -823,7 +833,7 @@ class PHPExcel_Calculation_LookupRef {
 
         $rowNumber = $rowValue = false;
 
-        foreach($lookup_array[$firstColumn] as $rowKey => $rowData) {
+        foreach ($lookup_array[$firstColumn] as $rowKey => $rowData) {
 			if ((is_numeric($lookup_value) && is_numeric($rowData) && ($rowData > $lookup_value)) ||
 				(!is_numeric($lookup_value) && !is_numeric($rowData) && (strtolower($rowData) > strtolower($lookup_value)))) {
                 break;

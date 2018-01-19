@@ -33,8 +33,7 @@
  * @package		PHPExcel_Chart
  * @copyright	Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Chart_Legend
-{
+class PHPExcel_Chart_Legend {
 	/** Legend positions */
 	const xlLegendPositionBottom = -4107;	//	Below the chart.
 	const xlLegendPositionCorner	= 2;		//	In the upper right-hand corner of the chart border.
@@ -70,21 +69,20 @@ class PHPExcel_Chart_Legend
 	 *
 	 * @var	boolean
 	 */
-	private $_overlay = TRUE;
+	private $_overlay = true;
 
 	/**
 	 * Legend Layout
 	 *
 	 * @var	PHPExcel_Chart_Layout
 	 */
-	private $_layout = NULL;
+	private $_layout = null;
 
 
 	/**
 	 *	Create a new PHPExcel_Chart_Legend
 	 */
-	public function __construct($position = self::POSITION_RIGHT, PHPExcel_Chart_Layout $layout = NULL, $overlay = FALSE)
-	{
+	public function __construct($position = self::POSITION_RIGHT, PHPExcel_Chart_Layout $layout = null, $overlay = false) {
 		$this->setPosition($position);
 		$this->_layout = $layout;
 		$this->setOverlay($overlay);
@@ -151,7 +149,7 @@ class PHPExcel_Chart_Legend
 	 * @param	boolean	$overlay
 	 * @return	boolean
 	 */
-	public function setOverlay($overlay = FALSE) {
+	public function setOverlay($overlay = false) {
 		if (!is_bool($overlay)) {
 			return false;
 		}

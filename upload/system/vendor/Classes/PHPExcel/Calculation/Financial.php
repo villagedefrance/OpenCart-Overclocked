@@ -201,7 +201,7 @@ class PHPExcel_Calculation_Financial {
 		//	Validate
 		if ((is_numeric($rate)) && (is_numeric($par))) {
 			$rate	= (float) $rate;
-			$par	= (float) $par;
+			$par = (float) $par;
 
 			if (($rate <= 0) || ($par <= 0)) {
 				return PHPExcel_Calculation_Functions::NaN();
@@ -254,7 +254,7 @@ class PHPExcel_Calculation_Financial {
 		//	Validate
 		if ((is_numeric($rate)) && (is_numeric($par))) {
 			$rate	= (float) $rate;
-			$par	= (float) $par;
+			$par = (float) $par;
 
 			if (($rate <= 0) || ($par <= 0)) {
 				return PHPExcel_Calculation_Functions::NaN();
@@ -1241,7 +1241,7 @@ class PHPExcel_Calculation_Financial {
 		$principal = PHPExcel_Calculation_Functions::flattenSingleValue($principal);
 		$schedule = PHPExcel_Calculation_Functions::flattenArray($schedule);
 
-		foreach($schedule as $rate) {
+		foreach ($schedule as $rate) {
 			$principal *= 1 + $rate;
 		}
 
@@ -1405,6 +1405,7 @@ class PHPExcel_Calculation_Financial {
 			if ($f_mid <= 0.0) {
 				$rtb = $x_mid;
 			}
+
 			if ((abs($f_mid) < FINANCIAL_PRECISION) || (abs($dx) < FINANCIAL_PRECISION)) {
 				return $x_mid;
 			}
@@ -1695,7 +1696,7 @@ class PHPExcel_Calculation_Financial {
 
 		$result = $redemption / pow($baseYF, (--$n + $de));
 
-		for($k = 0; $k <= $n; ++$k) {
+		for ($k = 0; $k <= $n; ++$k) {
 			$result += $rfp / (pow($baseYF, ($k + $de)));
 		}
 

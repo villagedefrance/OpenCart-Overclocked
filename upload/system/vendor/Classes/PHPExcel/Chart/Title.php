@@ -25,7 +25,6 @@
  * @version		##VERSION##, ##DATE##
  */
 
-
 /**
  * PHPExcel_Chart_Title
  *
@@ -33,8 +32,7 @@
  * @package		PHPExcel_Chart
  * @copyright	Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Chart_Title
-{
+class PHPExcel_Chart_Title {
 
 	/**
 	 * Title Caption
@@ -53,8 +51,7 @@ class PHPExcel_Chart_Title
 	/**
 	 * Create a new PHPExcel_Chart_Title
 	 */
-	public function __construct($caption = null, PHPExcel_Chart_Layout $layout = null)
-	{
+	public function __construct($caption = null, PHPExcel_Chart_Layout $layout = null) {
 		$this->_caption = $caption;
 		$this->_layout = $layout;
 	}
@@ -76,8 +73,8 @@ class PHPExcel_Chart_Title
 	 */
 	public function setCaption($caption = null) {
 		$this->_caption = $caption;
-        
-        return $this;
+
+		return $this;
 	}
 
 	/**

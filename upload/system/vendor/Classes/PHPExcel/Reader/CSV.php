@@ -104,7 +104,7 @@ class PHPExcel_Reader_CSV extends PHPExcel_Reader_Abstract implements PHPExcel_R
 	 * @return boolean
 	 */
 	protected function _isValidFormat() {
-		return TRUE;
+		return true;
 	}
 
 	/**
@@ -114,6 +114,7 @@ class PHPExcel_Reader_CSV extends PHPExcel_Reader_Abstract implements PHPExcel_R
 	 */
 	public function setInputEncoding($pValue = 'UTF-8') {
 		$this->_inputEncoding = $pValue;
+
 		return $this;
 	}
 
@@ -168,16 +169,18 @@ class PHPExcel_Reader_CSV extends PHPExcel_Reader_Abstract implements PHPExcel_R
 	public function listWorksheetInfo($pFilename) {
 		// Open file
 		$this->_openFile($pFilename);
+
 		if (!$this->_isValidFormat()) {
 			fclose ($this->_fileHandle);
 			throw new PHPExcel_Reader_Exception($pFilename . " is an Invalid Spreadsheet file.");
 		}
+
 		$fileHandle = $this->_fileHandle;
 
 		// Skip BOM, if any
 		$this->_skipBOM();
 
-		$escapeEnclosures = array( "\\" . $this->_enclosure, $this->_enclosure . $this->_enclosure );
+		$escapeEnclosures = array("\\" . $this->_enclosure, $this->_enclosure . $this->_enclosure);
 
 		$worksheetInfo = array();
 		$worksheetInfo[0]['worksheetName'] = 'Worksheet';
@@ -226,14 +229,17 @@ class PHPExcel_Reader_CSV extends PHPExcel_Reader_Abstract implements PHPExcel_R
 	 */
 	public function loadIntoExisting($pFilename, PHPExcel $objPHPExcel) {
 		$lineEnding = ini_get('auto_detect_line_endings');
+
 		ini_set('auto_detect_line_endings', true);
 
 		// Open file
 		$this->_openFile($pFilename);
+
 		if (!$this->_isValidFormat()) {
 			fclose ($this->_fileHandle);
 			throw new PHPExcel_Reader_Exception($pFilename . " is an Invalid Spreadsheet file.");
 		}
+
 		$fileHandle = $this->_fileHandle;
 
 		// Skip BOM, if any
@@ -243,12 +249,14 @@ class PHPExcel_Reader_CSV extends PHPExcel_Reader_Abstract implements PHPExcel_R
 		while ($objPHPExcel->getSheetCount() <= $this->_sheetIndex) {
 			$objPHPExcel->createSheet();
 		}
+
 		$sheet = $objPHPExcel->setActiveSheetIndex($this->_sheetIndex);
 
 		$escapeEnclosures = array( "\\" . $this->_enclosure, $this->_enclosure . $this->_enclosure);
 
 		// Set our starting row based on whether we're in contiguous mode or not
 		$currentRow = 1;
+
 		if ($this->_contiguous) {
 			$currentRow = ($this->_contiguousRow == -1) ? $sheet->getHighestRow(): $this->_contiguousRow;
 		}
@@ -327,6 +335,7 @@ class PHPExcel_Reader_CSV extends PHPExcel_Reader_Abstract implements PHPExcel_R
 		if ($pValue == '') {
 			$pValue = '"';
 		}
+
 		$this->_enclosure = $pValue;
 		return $this;
 	}
@@ -358,6 +367,7 @@ class PHPExcel_Reader_CSV extends PHPExcel_Reader_Abstract implements PHPExcel_R
 	 */
 	public function setContiguous($contiguous = false) {
 		$this->_contiguous = (bool) $contiguous;
+
 		if (!$contiguous) {
 			$this->_contiguousRow = -1;
 		}

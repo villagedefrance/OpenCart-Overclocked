@@ -1,6 +1,6 @@
 <?php
-
 class PHPExcel_Helper_HTML {
+
     protected static $colourMap = array(
         'aliceblue' => 'f0f8ff', 
         'antiquewhite' => 'faebd7',
@@ -569,7 +569,6 @@ class PHPExcel_Helper_HTML {
     protected $stack = array();
 
     protected $stringData = '';
-
     protected $richTextObject;
 
     protected function initialise() {
@@ -594,51 +593,67 @@ class PHPExcel_Helper_HTML {
         $dom->preserveWhiteSpace = false;
 
         $this->richTextObject = new PHPExcel_RichText();;
+
         $this->parseElements($dom);
+
         return $this->richTextObject;
     }
 
     protected function buildTextRun() {
         $text = $this->stringData;
-        if (trim($text) === '')
+
+        if (trim($text) === '') {
             return;
+        }
 
         $richtextRun = $this->richTextObject->createTextRun($this->stringData);
+
         if ($this->face) {
             $richtextRun->getFont()->setName($this->face);
         }
+
         if ($this->size) {
             $richtextRun->getFont()->setSize($this->size);
         }
+
         if ($this->color) {
-            $richtextRun->getFont()->setColor( new PHPExcel_Style_Color( 'ff' . $this->color ) );
+            $richtextRun->getFont()->setColor(new PHPExcel_Style_Color('ff' . $this->color));
         }
+
         if ($this->bold) {
             $richtextRun->getFont()->setBold(true);
         }
+
         if ($this->italic) {
             $richtextRun->getFont()->setItalic(true);
         }
+
         if ($this->underline) {
             $richtextRun->getFont()->setUnderline(PHPExcel_Style_Font::UNDERLINE_SINGLE);
         }
+
         if ($this->superscript) {
             $richtextRun->getFont()->setSuperScript(true);
         }
+
         if ($this->subscript) {
             $richtextRun->getFont()->setSubScript(true);
         }
+
         if ($this->strikethrough) {
             $richtextRun->getFont()->setStrikethrough(true);
         }
+
         $this->stringData = '';
     }
 
     protected function rgbToColour($rgb) {
         preg_match_all('/\d+/', $rgb, $values);
+
         foreach ($values[0] as &$value) {
             $value = str_pad(dechex($value), 2, '0', STR_PAD_LEFT);
         }
+
         return implode($values[0]);
     }
 
@@ -659,6 +674,7 @@ class PHPExcel_Helper_HTML {
                 } else {
                     $this->$attributeName = $this->colourNameLookup($attributeValue);
                 }
+
             } else {
                 $this->$attributeName = $attributeValue;
             }
@@ -730,6 +746,7 @@ class PHPExcel_Helper_HTML {
     protected function handleCallback($element, $callbackTag, $callbacks) {
         if (isset($callbacks[$callbackTag])) {
             $elementHandler = $callbacks[$callbackTag];
+
             if (method_exists($this, $elementHandler)) {
                 call_user_func(array($this, $elementHandler), $element);
             }

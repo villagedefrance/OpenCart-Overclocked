@@ -113,7 +113,7 @@ abstract class PHPExcel_Properties {
       SHADOW_PRESETS_PERSPECTIVE_LOWER_RIGHT = 22,
       SHADOW_PRESETS_PERSPECTIVE_LOWER_LEFT = 23;
 
-  protected function  getExcelPointsWidth($width) {
+  protected function getExcelPointsWidth($width) {
     return $width * 12700;
   }
 
@@ -278,7 +278,7 @@ abstract class PHPExcel_Properties {
           'distance' => '50800',
           'direction' => '13500000',
       ),
-      //perspective
+      // perspective
       19 => array(
           'effect' => 'outerShdw',
           'blur' => '152400',

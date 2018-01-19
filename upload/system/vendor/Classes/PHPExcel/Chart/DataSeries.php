@@ -33,8 +33,7 @@
  * @package		PHPExcel_Chart
  * @copyright	Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Chart_DataSeries
-{
+class PHPExcel_Chart_DataSeries {
 
 	const TYPE_BARCHART = 'barChart';
 	const TYPE_BARCHART_3D = 'bar3DChart';
@@ -137,21 +136,24 @@ class PHPExcel_Chart_DataSeries
 	/**
 	 * Create a new PHPExcel_Chart_DataSeries
 	 */
-	public function __construct($plotType = null, $plotGrouping = null, $plotOrder = array(), $plotLabel = array(), $plotCategory = array(), $plotValues = array(), $plotDirection = null, $smoothLine = null, $plotStyle = null)
-	{
+	public function __construct($plotType = null, $plotGrouping = null, $plotOrder = array(), $plotLabel = array(), $plotCategory = array(), $plotValues = array(), $plotDirection = null, $smoothLine = null, $plotStyle = null) {
 		$this->_plotType = $plotType;
 		$this->_plotGrouping = $plotGrouping;
 		$this->_plotOrder = $plotOrder;
+
 		$keys = array_keys($plotValues);
 		$this->_plotValues = $plotValues;
+
 		if ((count($plotLabel) == 0) || (is_null($plotLabel[$keys[0]]))) {
 			$plotLabel[$keys[0]] = new PHPExcel_Chart_DataSeriesValues();
 		}
 
 		$this->_plotLabel = $plotLabel;
+
 		if ((count($plotCategory) == 0) || (is_null($plotCategory[$keys[0]]))) {
 			$plotCategory[$keys[0]] = new PHPExcel_Chart_DataSeriesValues();
 		}
+
 		$this->_plotCategory = $plotCategory;
 		$this->_smoothLine = $smoothLine;
 		$this->_plotStyle = $plotStyle;
@@ -159,6 +161,7 @@ class PHPExcel_Chart_DataSeries
 		if (is_null($plotDirection)) {
 			$plotDirection = self::DIRECTION_COL;
 		}
+
 		$this->_plotDirection = $plotDirection;
 	}
 
@@ -247,11 +250,13 @@ class PHPExcel_Chart_DataSeries
 	 */
 	public function getPlotLabelByIndex($index) {
 		$keys = array_keys($this->_plotLabel);
+
 		if (in_array($index,$keys)) {
 			return $this->_plotLabel[$index];
 		} elseif (isset($keys[$index])) {
 			return $this->_plotLabel[$keys[$index]];
 		}
+
 		return false;
 	}
 
@@ -271,11 +276,13 @@ class PHPExcel_Chart_DataSeries
 	 */
 	public function getPlotCategoryByIndex($index) {
 		$keys = array_keys($this->_plotCategory);
+
 		if (in_array($index,$keys)) {
 			return $this->_plotCategory[$index];
 		} elseif (isset($keys[$index])) {
 			return $this->_plotCategory[$keys[$index]];
 		}
+
 		return false;
 	}
 
@@ -315,11 +322,13 @@ class PHPExcel_Chart_DataSeries
 	 */
 	public function getPlotValuesByIndex($index) {
 		$keys = array_keys($this->_plotValues);
+
 		if (in_array($index,$keys)) {
 			return $this->_plotValues[$index];
 		} elseif (isset($keys[$index])) {
 			return $this->_plotValues[$keys[$index]];
 		}
+
 		return false;
 	}
 
@@ -347,23 +356,25 @@ class PHPExcel_Chart_DataSeries
 	 * @param boolean $smoothLine
      * @return PHPExcel_Chart_DataSeries
 	 */
-	public function setSmoothLine($smoothLine = TRUE) {
+	public function setSmoothLine($smoothLine = true) {
 		$this->_smoothLine = $smoothLine;
         return $this;
 	}
 
 	public function refresh(PHPExcel_Worksheet $worksheet) {
 	    foreach ($this->_plotValues as $plotValues) {
-			if ($plotValues !== NULL)
-				$plotValues->refresh($worksheet, TRUE);
+			if ($plotValues !== null)
+				$plotValues->refresh($worksheet, true);
 		}
+
 		foreach ($this->_plotLabel as $plotValues) {
-			if ($plotValues !== NULL)
-				$plotValues->refresh($worksheet, TRUE);
+			if ($plotValues !== null)
+				$plotValues->refresh($worksheet, true);
 		}
+
 		foreach ($this->_plotCategory as $plotValues) {
-			if ($plotValues !== NULL)
-				$plotValues->refresh($worksheet, FALSE);
+			if ($plotValues !== null)
+				$plotValues->refresh($worksheet, false);
 		}
 	}
 }

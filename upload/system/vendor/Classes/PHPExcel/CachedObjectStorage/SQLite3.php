@@ -76,13 +76,13 @@ class PHPExcel_CachedObjectStorage_SQLite3 extends PHPExcel_CachedObjectStorage_
 	 */
 	private $_deleteQuery;
 
-    /**
-     * Store cell data in cache for the current cell object if it's "dirty",
-     *     and the 'nullify' the current cell object
-     *
+	/**
+	 * Store cell data in cache for the current cell object if it's "dirty",
+	 *     and the 'nullify' the current cell object
+	 *
 	 * @return	void
-     * @throws	PHPExcel_Exception
-     */
+	 * @throws	PHPExcel_Exception
+	 */
 	protected function _storeData() {
 		if ($this->_currentCellIsDirty && !empty($this->_currentObjectID)) {
 			$this->_currentObject->detach();
@@ -102,14 +102,14 @@ class PHPExcel_CachedObjectStorage_SQLite3 extends PHPExcel_CachedObjectStorage_
 		$this->_currentObjectID = $this->_currentObject = null;
 	}
 
-    /**
-     * Add or Update a cell in cache identified by coordinate address
-     *
-     * @param	string			$pCoord		Coordinate address of the cell to update
-     * @param	PHPExcel_Cell	$cell		Cell to update
+	/**
+	 * Add or Update a cell in cache identified by coordinate address
+	 *
+	 * @param	string			$pCoord		Coordinate address of the cell to update
+	 * @param	PHPExcel_Cell	$cell		Cell to update
 	 * @return	PHPExcel_Cell
-     * @throws	PHPExcel_Exception
-     */
+	 * @throws	PHPExcel_Exception
+	 */
 	public function addCacheData($pCoord, PHPExcel_Cell $cell) {
 		if (($pCoord !== $this->_currentObjectID) && ($this->_currentObjectID !== null)) {
 			$this->_storeData();
@@ -123,13 +123,13 @@ class PHPExcel_CachedObjectStorage_SQLite3 extends PHPExcel_CachedObjectStorage_
 		return $cell;
 	}
 
-    /**
-     * Get cell at a specific coordinate
-     *
-     * @param 	string 			$pCoord		Coordinate of the cell
-     * @throws 	PHPExcel_Exception
-     * @return 	PHPExcel_Cell 	Cell that was found, or null if not found
-     */
+	/**
+	 * Get cell at a specific coordinate
+	 *
+	 * @param 	string 			$pCoord		Coordinate of the cell
+	 * @throws 	PHPExcel_Exception
+	 * @return 	PHPExcel_Cell 	Cell that was found, or null if not found
+	 */
 	public function getCacheData($pCoord) {
 		if ($pCoord === $this->_currentObjectID) {
 			return $this->_currentObject;
@@ -156,8 +156,8 @@ class PHPExcel_CachedObjectStorage_SQLite3 extends PHPExcel_CachedObjectStorage_
 		$this->_currentObjectID = $pCoord;
 
 		$this->_currentObject = unserialize($cellData['value']);
-        //  Re-attach this as the cell's parent
-        $this->_currentObject->attach($this);
+		//  Re-attach this as the cell's parent
+		$this->_currentObject->attach($this);
 		//	Return requested entry
 		return $this->_currentObject;
 	}
@@ -186,12 +186,12 @@ class PHPExcel_CachedObjectStorage_SQLite3 extends PHPExcel_CachedObjectStorage_
 		return ($cellData === false) ? false : true;
 	}
 
-    /**
-     *	Delete a cell in cache identified by coordinate address
-     *
-     * @param	string			$pCoord		Coordinate address of the cell to delete
-     * @throws	PHPExcel_Exception
-     */
+	/**
+	 *	Delete a cell in cache identified by coordinate address
+	 *
+	 * @param	string			$pCoord		Coordinate address of the cell to delete
+	 * @throws	PHPExcel_Exception
+	 */
 	public function deleteCacheData($pCoord) {
 		if ($pCoord === $this->_currentObjectID) {
 			$this->_currentObject->detach();

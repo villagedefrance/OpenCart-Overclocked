@@ -142,8 +142,8 @@ class PHPExcel_Calculation_MathTrig {
 			$significance = $number/abs($number);
 		}
 
-        if ((is_numeric($number)) && (is_numeric($significance))) {
-            if (($number == 0.0 ) || ($significance == 0.0)) {
+		if ((is_numeric($number)) && (is_numeric($significance))) {
+			if (($number == 0.0 ) || ($significance == 0.0)) {
 				return 0.0;
 			} elseif (self::SIGN($number) == self::SIGN($significance)) {
 				return ceil($number / $significance) * $significance;
@@ -356,7 +356,7 @@ class PHPExcel_Calculation_MathTrig {
 		$allValuesFactors = array();
 
 		// Loop through arguments
-		foreach(PHPExcel_Calculation_Functions::flattenArray(func_get_args()) as $value) {
+		foreach (PHPExcel_Calculation_Functions::flattenArray(func_get_args()) as $value) {
 			if (!is_numeric($value)) {
 				return PHPExcel_Calculation_Functions::VALUE();
 			} elseif ($value == 0) {
@@ -472,7 +472,7 @@ class PHPExcel_Calculation_MathTrig {
 		$returnValue = 1;
 		$allPoweredFactors = array();
 		// Loop through arguments
-		foreach(PHPExcel_Calculation_Functions::flattenArray(func_get_args()) as $value) {
+		foreach (PHPExcel_Calculation_Functions::flattenArray(func_get_args()) as $value) {
 			if (!is_numeric($value)) {
 				return PHPExcel_Calculation_Functions::VALUE();
 			}
@@ -667,25 +667,25 @@ class PHPExcel_Calculation_MathTrig {
 		}
 
 		try {
-            $rowA = 0;
+			$rowA = 0;
 
-            foreach ($matrixData1 as $matrixRow) {
-                if (!is_array($matrixRow)) {
+			foreach ($matrixData1 as $matrixRow) {
+				if (!is_array($matrixRow)) {
 					$matrixRow = array($matrixRow);
 				}
 
-                $columnA = 0;
+				$columnA = 0;
 
-                foreach ($matrixRow as $matrixCell) {
-                    if ((!is_numeric($matrixCell)) || ($matrixCell === null)) {
-                        return PHPExcel_Calculation_Functions::VALUE();
-                    }
+				foreach ($matrixRow as $matrixCell) {
+					if ((!is_numeric($matrixCell)) || ($matrixCell === null)) {
+						return PHPExcel_Calculation_Functions::VALUE();
+					}
 
-                    $matrixAData[$rowA][$columnA] = $matrixCell;
-                    ++$columnA;
-                }
-                ++$rowA;
-            }
+					$matrixAData[$rowA][$columnA] = $matrixCell;
+					++$columnA;
+				}
+				++$rowA;
+			}
 
 			$matrixA = new PHPExcel_Shared_JAMA_Matrix($matrixAData);
 			$rowB = 0;
@@ -716,7 +716,7 @@ class PHPExcel_Calculation_MathTrig {
 
 			return $matrixA->times($matrixB)->getArray();
 		} catch (PHPExcel_Exception $ex) {
-            var_dump($ex->getMessage());
+			var_dump($ex->getMessage());
 			return PHPExcel_Calculation_Functions::VALUE();
 		}
 	}
@@ -971,10 +971,10 @@ class PHPExcel_Calculation_MathTrig {
 			return '';
 		}
 
-		$mill = Array('', 'M', 'MM', 'MMM', 'MMMM', 'MMMMM');
-		$cent = Array('', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM');
-		$tens = Array('', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC');
-		$ones = Array('', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX');
+		$mill = array('', 'M', 'MM', 'MMM', 'MMMM', 'MMMMM');
+		$cent = array('', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM');
+		$tens = array('', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC');
+		$ones = array('', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX');
 
 		$roman = '';
 
@@ -1067,7 +1067,7 @@ class PHPExcel_Calculation_MathTrig {
 			// Calculate
 			$i = 0;
 
-			foreach($aArgs as $arg) {
+			foreach ($aArgs as $arg) {
 				// Is it a numeric value?
 				if ((is_numeric($arg)) && (!is_string($arg))) {
 					$returnValue += $arg * pow($x, $n + ($m * $i++));
@@ -1148,38 +1148,38 @@ class PHPExcel_Calculation_MathTrig {
 		$subtotal = array_shift($aArgs);
 
 		if ((is_numeric($subtotal)) && (!is_string($subtotal))) {
-			switch($subtotal) {
-				case 1	:
+			switch ($subtotal) {
+				case 1:
 					return PHPExcel_Calculation_Statistical::AVERAGE($aArgs);
 					break;
-				case 2	:
+				case 2:
 					return PHPExcel_Calculation_Statistical::COUNT($aArgs);
 					break;
-				case 3	:
+				case 3:
 					return PHPExcel_Calculation_Statistical::COUNTA($aArgs);
 					break;
-				case 4	:
+				case 4:
 					return PHPExcel_Calculation_Statistical::MAX($aArgs);
 					break;
-				case 5	:
+				case 5:
 					return PHPExcel_Calculation_Statistical::MIN($aArgs);
 					break;
-				case 6	:
+				case 6:
 					return self::PRODUCT($aArgs);
 					break;
-				case 7	:
+				case 7:
 					return PHPExcel_Calculation_Statistical::STDEV($aArgs);
 					break;
-				case 8	:
+				case 8:
 					return PHPExcel_Calculation_Statistical::STDEVP($aArgs);
 					break;
-				case 9	:
+				case 9:
 					return self::SUM($aArgs);
 					break;
-				case 10	:
+				case 10:
 					return PHPExcel_Calculation_Statistical::VARFunc($aArgs);
 					break;
-				case 11	:
+				case 11:
 					return PHPExcel_Calculation_Statistical::VARP($aArgs);
 					break;
 			}
@@ -1281,7 +1281,7 @@ class PHPExcel_Calculation_MathTrig {
 			}
 		}
 
-		foreach($arrayList as $matrixData) {
+		foreach ($arrayList as $matrixData) {
 			$array2 = PHPExcel_Calculation_Functions::flattenArray($matrixData);
 			$count = count($array2);
 
