@@ -14,6 +14,7 @@
   Issues: http://github.com/kenwheeler/slick/issues
 
  */
+
 /* global window, document, define, jQuery, setInterval, clearInterval */
 (function(factory) {
     'use strict';
@@ -24,8 +25,9 @@
     } else {
         factory(jQuery);
     }
+}
 
-}(function($) {
+(function($) {
     'use strict';
     var Slick = window.Slick || {};
 
@@ -642,7 +644,7 @@
                 }
             }
 
-            // only trigger breakpoints during an actual break. not on initialize.
+            /* only trigger breakpoints during an actual break. not on initialize. */
             if ( !initial && triggerBreakpoint !== false ) {
                 _.$slider.trigger('breakpoint', [_, triggerBreakpoint]);
             }
@@ -655,12 +657,12 @@
             $target = $(event.currentTarget),
             indexOffset, slideOffset, unevenOffset;
 
-        // If target is a link, prevent default action.
+        /* If target is a link, prevent default action. */
         if ($target.is('a')) {
             event.preventDefault();
         }
 
-        // If target is not the <li> element (ie: a child), find the <li>.
+        /* If target is not the <li> element (ie: a child), find the <li>. */
         if (!$target.is('li')) {
             $target = $target.closest('li');
         }
@@ -1340,7 +1342,6 @@
         }
 
         if (_.options.dots === true && _.options.pauseOnDotsHover === true && _.slideCount > _.options.slidesToShow) {
-
             $('li', _.$dots)
                 .on('mouseenter.slick', $.proxy(_.interrupt, _, true))
                 .on('mouseleave.slick', $.proxy(_.interrupt, _, false));
@@ -1423,7 +1424,7 @@
     Slick.prototype.keyHandler = function(event) {
         var _ = this;
 
-        // Don't slide if the cursor is inside the form fields and arrow keys are pressed
+        /* Don't slide if the cursor is inside the form fields and arrow keys are pressed. */
         if (!event.target.tagName.match('TEXTAREA|INPUT|SELECT')) {
             if (event.keyCode === 37 && _.options.accessibility === true) {
                 _.changeSlide({
@@ -1459,7 +1460,6 @@
 
                     image
                         .animate({ opacity: 0 }, 100, function() {
-
                             if (imageSrcSet) {
                                 image
                                     .attr('srcset', imageSrcSet );
@@ -1734,12 +1734,12 @@
 
         lastVisibleIndex = _.slideCount - _.options.slidesToShow;
 
-        // in non-infinite sliders, we don't want to go past the last visible index.
+        /* in non-infinite sliders, we don't want to go past the last visible index. */
         if ( !_.options.infinite && ( _.currentSlide > lastVisibleIndex )) {
             _.currentSlide = lastVisibleIndex;
         }
 
-        // if less slides than to show, go to start.
+        /* if less slides than to show, go to start. */
         if ( _.slideCount <= _.options.slidesToShow ) {
             _.currentSlide = 0;
 
@@ -1777,8 +1777,7 @@
                 if (responsiveSettings.hasOwnProperty(breakpoint)) {
                     currentBreakpoint = responsiveSettings[breakpoint].breakpoint;
 
-                    // loop through the breakpoints and cut out any existing
-                    // ones with the same breakpoint number, we don't want dupes.
+                    /* loop through the breakpoints and cut out any existing ones with the same breakpoint number, we don't want dupes. */
                     while ( l >= 0 ) {
                         if ( _.breakpoints[l] && _.breakpoints[l] === currentBreakpoint ) {
                             _.breakpoints.splice(l,1);
@@ -2064,7 +2063,7 @@
                 } else {
                     l = _.options.responsive.length-1;
 
-                    // loop through the responsive object and splice out duplicates.
+                    /* loop through the responsive object and splice out duplicates. */
                     while ( l >= 0 ) {
                         if ( _.options.responsive[l].breakpoint === value[item].breakpoint ) {
                             _.options.responsive.splice(l,1);
@@ -2535,26 +2534,22 @@
             switch ( direction ) {
                 case 'left':
                 case 'down':
-
                     slideCount =
                         _.options.swipeToSlide ?
                             _.checkNavigable( _.currentSlide + _.getSlideCount() ) :
                             _.currentSlide + _.getSlideCount();
 
                     _.currentDirection = 0;
-
                     break;
 
                 case 'right':
                 case 'up':
-
                     slideCount =
                         _.options.swipeToSlide ?
                             _.checkNavigable( _.currentSlide - _.getSlideCount() ) :
                             _.currentSlide - _.getSlideCount();
 
                     _.currentDirection = 1;
-
                     break;
 
                 default:
