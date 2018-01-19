@@ -1,14 +1,4 @@
 <?php
-function sortPrices($a, $b) {
-	if ($a['price'] == $b['price']) {
-		return 0;
-	} elseif ($a['price'] < $b['price']) {
-		return 1;
-	} else {
-		return -1;
-	}
-}
-
 define('PRO_TO_PRO', '1');
 define('PRO_TO_CAT', '2');
 define('CAT_TO_CAT', '3');
@@ -124,7 +114,7 @@ class ModelTotalOffers {
 
 		reset($products);
 
-		usort($products, "sortPrices");
+		sort($products);
 
 		$discountable_products = array();
 
