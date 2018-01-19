@@ -176,7 +176,7 @@ class ModelTotalOffers {
 		}
 
 		if ($discount_total > 0) {
-			$this->load->language('total/offers');
+			$this->language->load('total/offers');
 
 			$total_data[] = array(
 				'code'       => 'offers',
