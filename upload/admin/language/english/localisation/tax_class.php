@@ -19,6 +19,9 @@ $_['entry_rate']        = 'Tax Rate';
 $_['entry_based']       = 'Based On';
 $_['entry_priority']    = 'Priority';
 
+// Button
+$_['button_rates']      = 'Tax Rates';
+
 // Error
 $_['error_permission']  = 'Warning: You do not have permission to modify <b>Tax Classes</b> !';
 $_['error_title']       = 'Tax Class Title must be between 3 and 32 characters!';

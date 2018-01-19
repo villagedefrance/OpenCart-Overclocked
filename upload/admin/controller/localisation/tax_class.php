@@ -220,8 +220,11 @@ class ControllerLocalisationTaxClass extends Controller {
 		$this->data['column_title'] = $this->language->get('column_title');
 		$this->data['column_action'] = $this->language->get('column_action');
 
+		$this->data['button_rates'] = $this->language->get('button_rates');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
+
+		$this->data['tax_rates'] = $this->url->link('localisation/tax_rate', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];

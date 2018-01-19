@@ -15,6 +15,7 @@
     <div class="heading">
       <h1><img src="view/image/tax.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
+        <a href="<?php echo $tax_rates; ?>" class="button-cancel"><?php echo $button_rates; ?></a>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>

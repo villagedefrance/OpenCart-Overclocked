@@ -23,6 +23,9 @@ $_['entry_type']           = 'Type:';
 $_['entry_customer_group'] = 'Customer Group:';
 $_['entry_geo_zone']       = 'Geo Zone:';
 
+// Button
+$_['button_classes']       = 'Tax Classes';
+
 // Error
 $_['error_permission']     = 'Warning: You do not have permission to modify <b>Tax Rates</b> !';
 $_['error_tax_rule']       = 'Warning: This tax rate cannot be deleted as it is currently assigned to %s tax classes!';
