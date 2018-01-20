@@ -193,9 +193,9 @@
 	box-shadow: 0 0 0 4px #0072C4;
 }
 
-@-webkit-keyframes rotateDonut {0% {transform: rotate(0deg);}}
-@-moz-keyframes rotateDonut {0% {transform: rotate(0deg);}}
-@keyframes rotateDonut {0% {transform: rotate(0deg);}}
+@-webkit-keyframes rotateDonut {0% {-webkit-transform: rotate(0deg);-moz-transform: rotate(0deg);-ms-transform: rotate(0deg);-o-transform: rotate(0deg);transform: rotate(0deg);}}
+@-moz-keyframes rotateDonut {0% {-webkit-transform: rotate(0deg);-moz-transform: rotate(0deg);-ms-transform: rotate(0deg);-o-transform: rotate(0deg);transform: rotate(0deg);}}
+@keyframes rotateDonut {0% {-webkit-transform: rotate(0deg);-moz-transform: rotate(0deg);-ms-transform: rotate(0deg);-o-transform: rotate(0deg);transform: rotate(0deg);}}
 
 .donut-chart .spinner.temp {
 	display: none;
