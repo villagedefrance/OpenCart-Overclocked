@@ -33,13 +33,13 @@
       <table>
         <thead>
           <tr>
-            <td class="image"><?php echo $column_image; ?></td>
+            <td class="image hide-phone"><?php echo $column_image; ?></td>
             <td class="name"><?php echo $column_name; ?></td>
-            <td class="model"><?php echo $column_model; ?></td>
+            <td class="model hide-phone"><?php echo $column_model; ?></td>
             <td class="quantity"><?php echo $column_quantity; ?></td>
-            <td class="price"><?php echo $column_price; ?></td>
-            <td class="price"><?php echo $column_tax_value; ?></td>
-            <td class="price"><?php echo $column_tax_percent; ?></td>
+            <td class="price hide-phone"><?php echo $column_price; ?></td>
+            <td class="price hide-phone"><?php echo $column_tax_value; ?></td>
+            <td class="price hide-phone"><?php echo $column_tax_percent; ?></td>
             <td class="total"><?php echo $column_total; ?></td>
           </tr>
         </thead>
@@ -55,7 +55,7 @@
               </tr>
             <?php } ?>
             <tr>
-              <td class="image">
+              <td class="image hide-phone">
                 <?php if ($product['thumb']) { ?>
                   <?php if ($product['stock_label']) { ?>
                     <div class="stock-small"><img src="<?php echo $product['stock_label']; ?>" alt="" /></div>
@@ -90,7 +90,7 @@
                   <small><?php echo $product['reward']; ?></small>
                 <?php } ?>
               </td>
-              <td class="model"><?php echo $product['model']; ?></td>
+              <td class="model hide-phone"><?php echo $product['model']; ?></td>
               <td class="quantity">
                 <input type="text" name="quantity[<?php echo $product['key']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" />
                 &nbsp;
@@ -102,23 +102,23 @@
                 <?php } ?>
                 <a href="<?php echo $product['remove']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a>
               </td>
-              <td class="price"><?php echo $product['price']; ?></td>
-              <td class="price"><?php echo $product['tax_value']; ?></td>
-              <td class="price"><?php echo $product['tax_percent']; ?>%</td>
+              <td class="price hide-phone"><?php echo $product['price']; ?></td>
+              <td class="price hide-phone"><?php echo $product['tax_value']; ?></td>
+              <td class="price hide-phone"><?php echo $product['tax_percent']; ?>%</td>
               <td class="total"><?php echo $product['total']; ?></td>
             </tr>
           <?php } ?>
           <?php foreach ($vouchers as $vouchers) { ?>
             <tr>
-              <td class="image"></td>
+              <td class="image hide-phone"></td>
               <td class="name"><?php echo $vouchers['description']; ?></td>
-              <td class="model"></td>
+              <td class="model hide-phone"></td>
               <td class="quantity"><input type="text" name="" value="1" size="1" disabled="disabled" />
                 &nbsp;<a href="<?php echo $vouchers['remove']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a>
               </td>
-              <td class="price"><?php echo $vouchers['amount']; ?></td>
-              <td class="price">0.00</td>
-              <td class="price">0%</td>
+              <td class="price hide-phone"><?php echo $vouchers['amount']; ?></td>
+              <td class="price hide-phone">0.00</td>
+              <td class="price hide-phone">0%</td>
               <td class="total"><?php echo $vouchers['amount']; ?></td>
             </tr>
           <?php } ?>

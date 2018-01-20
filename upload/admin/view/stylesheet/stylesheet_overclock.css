@@ -897,10 +897,10 @@ a.button-filter, .list a.button-filter {
 	background-image: -o-linear-gradient(top, #51595D, #464E52);
 	background-image: linear-gradient(to bottom, #51595D, #464E52);
 	border: 1px solid #36AAD8;
-	-webkit-border-radius: 1px;
-	-moz-border-radius: 1px;
-	-khtml-border-radius: 1px;
-	border-radius: 1px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 }
 a.button-filter:hover, .list a.button-filter:hover {
 	background-color: #6D777B;

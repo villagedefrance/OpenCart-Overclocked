@@ -79,7 +79,7 @@
   <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" name="checkout_one_page" id="form">
     <table class="checkout-one-page">
       <tr>
-        <td style="width:25%;">
+        <td class="checkout-page-left">
           <table class="address-options">
             <tr>
               <td colspan="2"><h2><?php echo $text_checkout_payment_address; ?></h2></td>
@@ -594,8 +594,8 @@
           <?php } ?>
         </table>
       </td>
-      <td style="width:3%;"></td>
-      <td style="width:72%;">
+      <td class="hide-phone" style="width:3%;"></td>
+      <td class="checkout-page-right">
         <table class="order-options">
           <tr>
             <td id="shipping-method" style="width:34%; vertical-align:top;">
@@ -698,7 +698,7 @@
               <td colspan="3">
                 <?php if (!isset($this->session->data['order_id'])) { ?>
                   <h2><?php echo $text_comments; ?></h2>
-                  <textarea name="comment" rows="4" style="width:99%;"><?php echo $comment; ?></textarea>
+                  <textarea name="comment" rows="4" style="width:100%;"><?php echo $comment; ?></textarea>
                 <?php } else { ?>
                   <?php if ($comment) { ?>
                     <h2><?php echo $text_comments; ?></h2>

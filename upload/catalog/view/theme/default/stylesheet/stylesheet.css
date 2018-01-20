@@ -2728,6 +2728,12 @@ table.checkout-one-page {
 table.checkout-one-page tr td {
 	vertical-align: top;
 }
+table.checkout-one-page tr td.checkout-page-left {
+	width: 25%;
+}
+table.checkout-one-page tr td.checkout-page-right {
+	width: 72%;
+}
 table.address-options, table.order-options {
 	width: 100%;
 	background: #FEFEFE;
