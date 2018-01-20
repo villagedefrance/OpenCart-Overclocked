@@ -840,10 +840,10 @@ a.button, .list a.button, a.button-save, .list a.button-save, a.button-delete, .
 	font-weight: bold;
 	text-decoration: none;
 	text-shadow: 0 0 1px rgba(252, 252, 252, 0.05);
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	-khtml-border-radius: 2px;
-	border-radius: 2px;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	-khtml-border-radius: 1px;
+	border-radius: 1px;
 }
 /* Button Blue */
 a.button, .list a.button {
@@ -897,10 +897,10 @@ a.button-filter, .list a.button-filter {
 	background-image: -o-linear-gradient(top, #51595D, #464E52);
 	background-image: linear-gradient(to bottom, #51595D, #464E52);
 	border: 1px solid #36AAD8;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	-khtml-border-radius: 2px;
-	border-radius: 2px;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	-khtml-border-radius: 1px;
+	border-radius: 1px;
 }
 a.button-filter:hover, .list a.button-filter:hover {
 	background-color: #6D777B;
@@ -1159,10 +1159,10 @@ a.button-print:hover {
 	height: 22px;
 	width: 22px;
 	border: 0;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	-moz-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
 	-webkit-box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 1px 0 rgba(48, 53, 58, 1), inset 0 4px 4px -3px rgba(0, 0, 0, 0.2);
@@ -1350,10 +1350,10 @@ table.tool tr td {
 	border-left: 1px solid #4B515A;
 	border-right: 1px solid #4B515A;
 	border-bottom: 1px solid #36AAD8;
-	-webkit-border-radius: 5px 5px 0 0;
-	-moz-border-radius: 5px 5px 0 0;
-	-khtml-border-radius: 5px 5px 0 0;
-	border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 3px 3px 0 0;
+	-moz-border-radius: 3px 3px 0 0;
+	-khtml-border-radius: 3px 3px 0 0;
+	border-radius: 3px 3px 0 0;
 	background-color: #30353A;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#30353A), to(#191919));
 	background-image: -webkit-linear-gradient(top, #30353A, #191919);
@@ -1372,10 +1372,6 @@ table.tool tr td {
 	border-left: 1px solid #36AAD8;
 	border-right: 1px solid #36AAD8;
 	border-bottom: 1px solid #30353A;
-	-webkit-border-radius: 5px 5px 0 0;
-	-moz-border-radius: 5px 5px 0 0;
-	-khtml-border-radius: 5px 5px 0 0;
-	border-radius: 5px 5px 0 0;
 	outline: 0;
 }
 .htabs-content {}

@@ -855,10 +855,10 @@ a.button, .list a.button, a.button-save, .list a.button-save, a.button-delete, .
 	font-weight: bold;
 	text-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
 	text-decoration: none;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	-khtml-border-radius: 2px;
-	border-radius: 2px;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	-khtml-border-radius: 1px;
+	border-radius: 1px;
 	-webkit-box-shadow: 0 1px 2px #DDD;
 	-moz-box-shadow: 0 1px 2px #DDD;
 	box-shadow: 0 1px 2px #DDD;
@@ -915,10 +915,10 @@ a.button-filter, .list a.button-filter {
 	background-image: -o-linear-gradient(top, #FCFCFC, #DEDEDE);
 	background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);
 	border: 1px solid #36AAD8;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	-khtml-border-radius: 2px;
-	border-radius: 2px;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	-khtml-border-radius: 1px;
+	border-radius: 1px;
 }
 a.button-filter:hover, .list a.button-filter:hover {
 	background-color: #F8F8F8;
@@ -1182,10 +1182,10 @@ a.button-print:hover {
 	height: 22px;
 	width: 22px;
 	border: 0;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	-webkit-box-shadow: 0 1px 2px #DDD;
 	-moz-box-shadow: 0 1px 2px #DDD;
 	box-shadow: 0 1px 2px #DDD;
