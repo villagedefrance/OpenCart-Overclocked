@@ -33,6 +33,7 @@ Requirements:
 
 COMING SOON in v1.11.0!
 - Upgraded to latest jQuery 3.2.1.
+- Currency rates auto-update fixed.
 - ...
 
 
