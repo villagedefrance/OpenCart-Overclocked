@@ -52,6 +52,7 @@ $_['entry_settings_use_import_cache']                   = 'Use phpTemp cache for
 // Error
 $_['error_permission']                                  = 'Warning: You do not have permission to modify <b>Export / Import XLSX</b> !';
 $_['error_upload']                                      = 'Uploaded spreadsheet file has validation errors!';
+$_['error_worksheets'] = 'Export/Import: Invalid worksheet names';
 $_['error_customers_header']                            = 'Export/Import: Invalid header in the Customers worksheet';
 $_['error_categories_header']                           = 'Export/Import: Invalid header in the Categories worksheet';
 $_['error_category_filters_header']                     = 'Export/Import: Invalid header in the CategoryFilters worksheet';
@@ -96,27 +97,27 @@ $_['error_upload_ext']                                  = 'Uploaded file has not
 $_['error_batch_number']                                = 'Batch number must be greater than 0 !';
 $_['error_min_item_id']                                 = 'Start id must be greater than 0 !';
 
-$_['error_option_name']                                 = 'Option \'%1\' is defined multiple times!<br />';
+$_['error_option_name'] = 'Option \'%1\' is defined multiple times!<br />';
 $_['error_option_name'] .= 'In the Settings-tab please activate the following:<br />';
 $_['error_option_name'] .= "Use <em>option_id</em> instead of <em>option name</em> in worksheets 'ProductOptions' and 'ProductOptionValues'";
 
-$_['error_option_value_name']                           = 'Option value \'%1\' is defined multiple times within its option!<br />';
+$_['error_option_value_name'] = 'Option value \'%1\' is defined multiple times within its option!<br />';
 $_['error_option_value_name'] .= 'In the Settings-tab please activate the following:<br />';
 $_['error_option_value_name'] .= "Use <em>option_value_id</em> instead of <em>option_value name</em> in worksheet 'ProductOptionValues'";
 
-$_['error_attribute_group_name']                        = 'AttributeGroup \'%1\' is defined multiple times!<br />';
+$_['error_attribute_group_name'] = 'AttributeGroup \'%1\' is defined multiple times!<br />';
 $_['error_attribute_group_name'] .= 'In the Settings-tab please activate the following:<br />';
 $_['error_attribute_group_name'] .= "Use <em>attribute_group_id</em> instead of <em>attribute_group name</em> in worksheets 'ProductAttributes'";
 
-$_['error_attribute_name']                              = 'Attribute \'%1\' is defined multiple times within its attribute group!<br />';
+$_['error_attribute_name'] = 'Attribute \'%1\' is defined multiple times within its attribute group!<br />';
 $_['error_attribute_name'] .= 'In the Settings-tab please activate the following:<br />';
 $_['error_attribute_name'] .= "Use <em>attribute_id</em> instead of <em>attribute name</em> in worksheet 'ProductAttributes'";
 
-$_['error_filter_group_name']                           = 'FilterGroup \'%1\' is defined multiple times!<br />';
+$_['error_filter_group_name'] = 'FilterGroup \'%1\' is defined multiple times!<br />';
 $_['error_filter_group_name'] .= 'In the Settings-tab please activate the following:<br />';
 $_['error_filter_group_name'] .= "Use <em>filter_group_id</em> instead of <em>filter_group name</em> in worksheets 'ProductFilters'";
 
-$_['error_filter_name']                                 = 'Filter \'%1\' is defined multiple times within its filter group!<br />';
+$_['error_filter_name'] = 'Filter \'%1\' is defined multiple times within its filter group!<br />';
 $_['error_filter_name'] .= 'In the Settings-tab please activate the following:<br />';
 $_['error_filter_name'] .= "Use <em>filter_id</em> instead of <em>filter name</em> in worksheet 'ProductFilters'";
 
@@ -158,7 +159,19 @@ $_['error_invalid_filter_group_name_filter_name']       = 'Export/Import: Undefi
 $_['error_invalid_product_id']                          = 'Export/Import: Invalid product_id \'%2\' used in worksheet \'%1\'!';
 $_['error_duplicate_product_id']                        = 'Export/Import: Duplicate product_id \'%2\' used in worksheet \'%1\'!';
 $_['error_unlisted_product_id']                         = 'Export/Import: Worksheet \'%1\' cannot use product_id \'%2\' because it is not listed in worksheet \'Products\'!';
+$_['error_wrong_order_product_id']                      = 'Export/Import: Worksheet \'%1\' uses product_id \'%2\' in the wrong order. Ascending order expected!';
 $_['error_filter_not_supported']                        = 'Export/Import: Filters are not supported in your OpenCart Overclocked version!';
+$_['error_missing_category_id'] = 'Export/Import: Missing category_ids in worksheet \'%1\'!';
+$_['error_invalid_category_id'] = 'Export/Import: Invalid category_id \'%2\' used in worksheet \'%1\'!';
+$_['error_duplicate_category_id'] = 'Export/Import: Duplicate category_id \'%2\' used in worksheet \'%1\'!';
+$_['error_wrong_order_category_id'] = 'Export/Import: Worksheet \'%1\' uses category_id \'%2\' in the wrong order. Ascending order expected!';
+$_['error_unlisted_category_id'] = 'Export/Import: Worksheet \'%1\' cannot use category_id \'%2\' because it is not listed in worksheet \'Categories\'!';
+$_['error_missing_customer_id'] = 'Export/Import: Missing customer_ids in worksheet \'%1\'!';
+$_['error_invalid_customer_id'] = 'Export/Import: Invalid customer_id \'%2\' used in worksheet \'%1\'!';
+$_['error_duplicate_customer_id'] = 'Export/Import: Duplicate customer_id \'%2\' used in worksheet \'%1\'!';
+$_['error_wrong_order_customer_id'] = 'Export/Import: Worksheet \'%1\' uses customer_id \'%2\' in the wrong order. Ascending order expected!';
+$_['error_unlisted_customer_id'] = 'Export/Import: Worksheet \'%1\' cannot use customer_id \'%2\' because it is not listed in worksheet \'Customers\'!';
+$_['error_incremental_only'] = 'Export/Import: Worksheet \'%1\' can only be imported in incremental mode for the time being!';
 
 // Tab
 $_['tab_import']                                        = 'Import';
@@ -203,7 +216,7 @@ $_['export_import_version']                             = '1.11.0 - Overclocked 
 $_['export_import_author']                              = 'Villagedefrance';
 $_['export_import_support']                             = 'contact@villagedefrance.net';
 $_['export_import_license']                             = 'GPLv3 (GNU General Public License)';
-$_['export_tool_version']                               = '2.27';
+$_['export_tool_version']                               = '2.29';
 $_['export_tool_author']                                = 'J.Neuhoff t/a MHCCORP.COM';
 $_['export_tool_license']                               = 'GPLv3 (GNU General Public License)';
 $_['phpexcel_version']                                  = 'PHPExcel v1.8.1 (GitHub)';
