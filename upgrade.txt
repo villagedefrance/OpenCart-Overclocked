@@ -1,5 +1,5 @@
 // ---------------------------------------
-//  OpenCart v1.10.x - OverClocked Edition
+//  OpenCart v1.11.x - OverClocked Edition
 //  UPGRADE INSTRUCTIONS
 //  https://www.opencart.com
 //  https://villagedefrance.net

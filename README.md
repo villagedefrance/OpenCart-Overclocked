@@ -67,6 +67,30 @@ Font-Awesome library, Admin menu icons, Choice of 5 product image viewers, PHP 7
 "Free" for zero prices, All fixes from Community Edition RC1/2 applied, Better Dashboard ...
 
 
+
+INSTALLATION:
+
+1 - Download the latest version of Overclocked Edition.
+2 - Upload the zip archive directly to your server (can be local or live).
+3 - Unzip the archive in a temporary folder of your choice.
+4 - Copy/Paste the content of the "upload" folder at the root of your domain.
+5 - Find the 2 "config-dist.php" files and rename them "config.php".
+6 - Create an empty database and give your username all privileges.
+7 - Run the installer by entering "<your domain>/install/index.php" in your browser.
+8 - Once you have completed the installer, simply go to your new Admin!
+
+
+To upgrade to the latest version of Overclocked Edition.
+
+Same as the above INSTALLATION guidelines but without steps 5 and 6:
+- Do not overwrite your "config.php" files! ... just Skip step 5.
+- No need for a new database. ... just Skip step 6.
+
+Then, when running step 7, you will be presented with the Upgrade page instead.
+Just click "Upgrade". Done!
+
+
+
 WANT TO CONTRIBUTE?
 - Test and report bugs, typos or improvements.
 - Design new Extensions and Themes.
