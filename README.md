@@ -66,7 +66,9 @@ Express Checkout (optional), Multi-language Manufacturers, Multi-language Countr
 Font-Awesome library, Admin menu icons, Choice of 5 product image viewers, PHP 7.1+ support, Media Player, 
 "Free" for zero prices, All fixes from Community Edition RC1/2 applied, Better Dashboard ...
 
---------------------------------------------------------------------------------------------------
+
+_____________________________________________________________________________________________
+
 
 INSTALLATION:
 
@@ -82,14 +84,19 @@ INSTALLATION:
 
 To UPGRADE to the latest version of Overclocked Edition.
 
-Same as the above INSTALLATION guidelines but without steps 5 and 6:
+Same as the above INSTALLATION guidelines, but without steps 5 and 6:
 - Do not overwrite your "config.php" files! ... just Skip step 5.
 - No need for a new database. ... just Skip step 6.
 
 Then, when running step 7, you will be presented with the Upgrade page instead.
+
 Just click "Upgrade". Done!
 
------------------------------------------------------------------------------------------------------
+_____________________________________________________________________________________________
+
+Also available on Packagist: https://packagist.org/packages/villagedefrance/opencart-overclocked
+_____________________________________________________________________________________________
+
 
 WANT TO CONTRIBUTE?
 - Test and report bugs, typos or improvements.
