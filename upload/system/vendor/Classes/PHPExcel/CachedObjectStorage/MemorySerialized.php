@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_CachedObjectStorage_MemorySerialized extends PHPExcel_CachedObjectStorage_CacheBase implements PHPExcel_CachedObjectStorage_ICache
-{
+class PHPExcel_CachedObjectStorage_MemorySerialized extends PHPExcel_CachedObjectStorage_CacheBase implements PHPExcel_CachedObjectStorage_ICache {
     /**
      * Store cell data in cache for the current cell object if it's "dirty",
      *     and the 'nullify' the current cell object
@@ -34,14 +35,14 @@ class PHPExcel_CachedObjectStorage_MemorySerialized extends PHPExcel_CachedObjec
      * @return    void
      * @throws    PHPExcel_Exception
      */
-    protected function storeData()
-    {
+    protected function storeData() {
         if ($this->currentCellIsDirty && !empty($this->currentObjectID)) {
             $this->currentObject->detach();
 
             $this->cellCache[$this->currentObjectID] = serialize($this->currentObject);
             $this->currentCellIsDirty = false;
         }
+
         $this->currentObjectID = $this->currentObject = null;
     }
 
@@ -53,8 +54,7 @@ class PHPExcel_CachedObjectStorage_MemorySerialized extends PHPExcel_CachedObjec
      * @return    PHPExcel_Cell
      * @throws    PHPExcel_Exception
      */
-    public function addCacheData($pCoord, PHPExcel_Cell $cell)
-    {
+    public function addCacheData($pCoord, PHPExcel_Cell $cell) {
         if (($pCoord !== $this->currentObjectID) && ($this->currentObjectID !== null)) {
             $this->storeData();
         }
@@ -73,26 +73,26 @@ class PHPExcel_CachedObjectStorage_MemorySerialized extends PHPExcel_CachedObjec
      * @throws     PHPExcel_Exception
      * @return     PHPExcel_Cell     Cell that was found, or null if not found
      */
-    public function getCacheData($pCoord)
-    {
+    public function getCacheData($pCoord) {
         if ($pCoord === $this->currentObjectID) {
             return $this->currentObject;
         }
+
         $this->storeData();
 
-        //    Check if the entry that has been requested actually exists
+        // Check if the entry that has been requested actually exists
         if (!isset($this->cellCache[$pCoord])) {
-            //    Return null if requested entry doesn't exist in cache
+            // Return null if requested entry doesn't exist in cache
             return null;
         }
 
-        //    Set current entry to the requested entry
+        // Set current entry to the requested entry
         $this->currentObjectID = $pCoord;
         $this->currentObject = unserialize($this->cellCache[$pCoord]);
-        //    Re-attach this as the cell's parent
+        // Re-attach this as the cell's parent
         $this->currentObject->attach($this);
 
-        //    Return requested entry
+        // Return requested entry
         return $this->currentObject;
     }
 
@@ -101,8 +101,7 @@ class PHPExcel_CachedObjectStorage_MemorySerialized extends PHPExcel_CachedObjec
      *
      * @return  string[]
      */
-    public function getCellList()
-    {
+    public function getCellList() {
         if ($this->currentObjectID !== null) {
             $this->storeData();
         }
@@ -115,15 +114,15 @@ class PHPExcel_CachedObjectStorage_MemorySerialized extends PHPExcel_CachedObjec
      *
      * @return    void
      */
-    public function unsetWorksheetCells()
-    {
+    public function unsetWorksheetCells() {
         if (!is_null($this->currentObject)) {
             $this->currentObject->detach();
             $this->currentObject = $this->currentObjectID = null;
         }
+
         $this->cellCache = array();
 
-        //    detach ourself from the worksheet, so that it can then delete this object successfully
+        // detach ourself from the worksheet, so that it can then delete this object successfully
         $this->parent = null;
     }
 }

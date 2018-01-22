@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_CalcEngine_CyclicReferenceStack
-{
+class PHPExcel_CalcEngine_CyclicReferenceStack {
     /**
      *  The call stack for calculated cells
      *
@@ -39,8 +40,7 @@ class PHPExcel_CalcEngine_CyclicReferenceStack
      *
      * @return  integer
      */
-    public function count()
-    {
+    public function count() {
         return count($this->stack);
     }
 
@@ -49,8 +49,7 @@ class PHPExcel_CalcEngine_CyclicReferenceStack
      *
      * @param  mixed  $value
      */
-    public function push($value)
-    {
+    public function push($value) {
         $this->stack[$value] = $value;
     }
 
@@ -59,8 +58,7 @@ class PHPExcel_CalcEngine_CyclicReferenceStack
      *
      * @return  mixed
      */
-    public function pop()
-    {
+    public function pop() {
         return array_pop($this->stack);
     }
 
@@ -69,16 +67,14 @@ class PHPExcel_CalcEngine_CyclicReferenceStack
      *
      * @param  mixed  $value  The value to test
      */
-    public function onStack($value)
-    {
+    public function onStack($value) {
         return isset($this->stack[$value]);
     }
 
     /**
      * Clear the stack
      */
-    public function clear()
-    {
+    public function clear() {
         $this->stack = array();
     }
 
@@ -87,8 +83,7 @@ class PHPExcel_CalcEngine_CyclicReferenceStack
      *
      * @return  mixed[]
      */
-    public function showStack()
-    {
+    public function showStack() {
         return $this->stack;
     }
 }

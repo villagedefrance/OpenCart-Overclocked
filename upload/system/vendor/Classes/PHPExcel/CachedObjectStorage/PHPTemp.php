@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_CacheBase implements PHPExcel_CachedObjectStorage_ICache
-{
+class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_CacheBase implements PHPExcel_CachedObjectStorage_ICache {
     /**
      * Name of the file for this cache
      *
@@ -48,8 +49,7 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
      * @return    void
      * @throws    PHPExcel_Exception
      */
-    protected function storeData()
-    {
+    protected function storeData() {
         if ($this->currentCellIsDirty && !empty($this->currentObjectID)) {
             $this->currentObject->detach();
 
@@ -57,13 +57,14 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
 
             $this->cellCache[$this->currentObjectID] = array(
                 'ptr' => ftell($this->fileHandle),
-                'sz'  => fwrite($this->fileHandle, serialize($this->currentObject))
+                'sz' => fwrite($this->fileHandle, serialize($this->currentObject))
             );
+
             $this->currentCellIsDirty = false;
         }
+
         $this->currentObjectID = $this->currentObject = null;
     }
-
 
     /**
      * Add or Update a cell in cache identified by coordinate address
@@ -73,8 +74,7 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
      * @return    PHPExcel_Cell
      * @throws    PHPExcel_Exception
      */
-    public function addCacheData($pCoord, PHPExcel_Cell $cell)
-    {
+    public function addCacheData($pCoord, PHPExcel_Cell $cell) {
         if (($pCoord !== $this->currentObjectID) && ($this->currentObjectID !== null)) {
             $this->storeData();
         }
@@ -86,7 +86,6 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
         return $cell;
     }
 
-
     /**
      * Get cell at a specific coordinate
      *
@@ -94,27 +93,27 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
      * @throws     PHPExcel_Exception
      * @return     PHPExcel_Cell     Cell that was found, or null if not found
      */
-    public function getCacheData($pCoord)
-    {
+    public function getCacheData($pCoord) {
         if ($pCoord === $this->currentObjectID) {
             return $this->currentObject;
         }
+
         $this->storeData();
 
-        //    Check if the entry that has been requested actually exists
+        // Check if the entry that has been requested actually exists
         if (!isset($this->cellCache[$pCoord])) {
-            //    Return null if requested entry doesn't exist in cache
+            // Return null if requested entry doesn't exist in cache
             return null;
         }
 
-        //    Set current entry to the requested entry
+        // Set current entry to the requested entry
         $this->currentObjectID = $pCoord;
         fseek($this->fileHandle, $this->cellCache[$pCoord]['ptr']);
         $this->currentObject = unserialize(fread($this->fileHandle, $this->cellCache[$pCoord]['sz']));
-        //    Re-attach this as the cell's parent
+        // Re-attach this as the cell's parent
         $this->currentObject->attach($this);
 
-        //    Return requested entry
+        // Return requested entry
         return $this->currentObject;
     }
 
@@ -123,8 +122,7 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
      *
      * @return  string[]
      */
-    public function getCellList()
-    {
+    public function getCellList() {
         if ($this->currentObjectID !== null) {
             $this->storeData();
         }
@@ -138,16 +136,17 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
      * @param    PHPExcel_Worksheet    $parent        The new worksheet
      * @return    void
      */
-    public function copyCellCollection(PHPExcel_Worksheet $parent)
-    {
+    public function copyCellCollection(PHPExcel_Worksheet $parent) {
         parent::copyCellCollection($parent);
-        //    Open a new stream for the cell cache data
+        // Open a new stream for the cell cache data
         $newFileHandle = fopen('php://temp/maxmemory:' . $this->memoryCacheSize, 'a+');
-        //    Copy the existing cell cache data to the new stream
+        // Copy the existing cell cache data to the new stream
         fseek($this->fileHandle, 0);
+
         while (!feof($this->fileHandle)) {
             fwrite($newFileHandle, fread($this->fileHandle, 1024));
         }
+
         $this->fileHandle = $newFileHandle;
     }
 
@@ -156,18 +155,18 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
      *
      * @return    void
      */
-    public function unsetWorksheetCells()
-    {
+    public function unsetWorksheetCells() {
         if (!is_null($this->currentObject)) {
             $this->currentObject->detach();
             $this->currentObject = $this->currentObjectID = null;
         }
+
         $this->cellCache = array();
 
-        //    detach ourself from the worksheet, so that it can then delete this object successfully
+        // detach ourself from the worksheet, so that it can then delete this object successfully
         $this->parent = null;
 
-        //    Close down the php://temp file
+        // Close down the php://temp file
         $this->__destruct();
     }
 
@@ -177,11 +176,11 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
      * @param    PHPExcel_Worksheet    $parent        The worksheet for this cell collection
      * @param    array of mixed        $arguments    Additional initialisation arguments
      */
-    public function __construct(PHPExcel_Worksheet $parent, $arguments)
-    {
+    public function __construct(PHPExcel_Worksheet $parent, $arguments) {
         $this->memoryCacheSize = (isset($arguments['memoryCacheSize'])) ? $arguments['memoryCacheSize'] : '1MB';
 
         parent::__construct($parent);
+
         if (is_null($this->fileHandle)) {
             $this->fileHandle = fopen('php://temp/maxmemory:' . $this->memoryCacheSize, 'a+');
         }
@@ -190,11 +189,11 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
     /**
      * Destroy this cell collection
      */
-    public function __destruct()
-    {
+    public function __destruct() {
         if (!is_null($this->fileHandle)) {
             fclose($this->fileHandle);
         }
+
         $this->fileHandle = null;
     }
 }

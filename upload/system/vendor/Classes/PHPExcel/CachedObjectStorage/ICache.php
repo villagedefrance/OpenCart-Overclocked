@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-interface PHPExcel_CachedObjectStorage_ICache
-{
+interface PHPExcel_CachedObjectStorage_ICache {
     /**
      * Add or Update a cell in cache identified by coordinate address
      *

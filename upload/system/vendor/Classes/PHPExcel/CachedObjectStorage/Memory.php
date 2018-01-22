@@ -24,17 +24,16 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_CachedObjectStorage_Memory extends PHPExcel_CachedObjectStorage_CacheBase implements PHPExcel_CachedObjectStorage_ICache
-{
+class PHPExcel_CachedObjectStorage_Memory extends PHPExcel_CachedObjectStorage_CacheBase implements PHPExcel_CachedObjectStorage_ICache {
     /**
      * Dummy method callable from CacheBase, but unused by Memory cache
      *
      * @return    void
      */
-    protected function storeData()
-    {
-    }
+    protected function storeData() { }
 
     /**
      * Add or Update a cell in cache identified by coordinate address
@@ -44,16 +43,14 @@ class PHPExcel_CachedObjectStorage_Memory extends PHPExcel_CachedObjectStorage_C
      * @return    PHPExcel_Cell
      * @throws    PHPExcel_Exception
      */
-    public function addCacheData($pCoord, PHPExcel_Cell $cell)
-    {
+    public function addCacheData($pCoord, PHPExcel_Cell $cell) {
         $this->cellCache[$pCoord] = $cell;
 
-        //    Set current entry to the new/updated entry
+        // Set current entry to the new/updated entry
         $this->currentObjectID = $pCoord;
 
         return $cell;
     }
-
 
     /**
      * Get cell at a specific coordinate
@@ -62,33 +59,31 @@ class PHPExcel_CachedObjectStorage_Memory extends PHPExcel_CachedObjectStorage_C
      * @throws     PHPExcel_Exception
      * @return     PHPExcel_Cell     Cell that was found, or null if not found
      */
-    public function getCacheData($pCoord)
-    {
-        //    Check if the entry that has been requested actually exists
+    public function getCacheData($pCoord) {
+        // Check if the entry that has been requested actually exists
         if (!isset($this->cellCache[$pCoord])) {
             $this->currentObjectID = null;
-            //    Return null if requested entry doesn't exist in cache
+            // Return null if requested entry doesn't exist in cache
             return null;
         }
 
-        //    Set current entry to the requested entry
+        // Set current entry to the requested entry
         $this->currentObjectID = $pCoord;
 
-        //    Return requested entry
+        // Return requested entry
         return $this->cellCache[$pCoord];
     }
-
 
     /**
      * Clone the cell collection
      *
      * @param    PHPExcel_Worksheet    $parent        The new worksheet
      */
-    public function copyCellCollection(PHPExcel_Worksheet $parent)
-    {
+    public function copyCellCollection(PHPExcel_Worksheet $parent) {
         parent::copyCellCollection($parent);
 
         $newCollection = array();
+
         foreach ($this->cellCache as $k => &$cell) {
             $newCollection[$k] = clone $cell;
             $newCollection[$k]->attach($this);
@@ -101,18 +96,18 @@ class PHPExcel_CachedObjectStorage_Memory extends PHPExcel_CachedObjectStorage_C
      * Clear the cell collection and disconnect from our parent
      *
      */
-    public function unsetWorksheetCells()
-    {
+    public function unsetWorksheetCells() {
         // Because cells are all stored as intact objects in memory, we need to detach each one from the parent
         foreach ($this->cellCache as $k => &$cell) {
             $cell->detach();
             $this->cellCache[$k] = null;
         }
+
         unset($cell);
 
         $this->cellCache = array();
 
-        //    detach ourself from the worksheet, so that it can then delete this object successfully
+        // detach ourself from the worksheet, so that it can then delete this object successfully
         $this->parent = null;
     }
 }

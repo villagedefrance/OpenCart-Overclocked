@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_CacheBase implements PHPExcel_CachedObjectStorage_ICache
-{
+class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_CacheBase implements PHPExcel_CachedObjectStorage_ICache {
     /**
      * Prefix used to uniquely identify cache data for this worksheet
      *
@@ -51,21 +52,19 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
      * @return  void
      * @throws  PHPExcel_Exception
      */
-    protected function storeData()
-    {
+    protected function storeData() {
         if ($this->currentCellIsDirty && !empty($this->currentObjectID)) {
             $this->currentObject->detach();
 
-            if (!apc_store(
-                $this->cachePrefix . $this->currentObjectID . '.cache',
-                serialize($this->currentObject),
-                $this->cacheTime
-            )) {
+            if (!apc_store($this->cachePrefix . $this->currentObjectID . '.cache', serialize($this->currentObject), $this->cacheTime)) {
                 $this->__destruct();
+
                 throw new PHPExcel_Exception('Failed to store cell ' . $this->currentObjectID . ' in APC');
             }
+
             $this->currentCellIsDirty = false;
         }
+
         $this->currentObjectID = $this->currentObject = null;
     }
 
@@ -78,11 +77,11 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
      * @return  PHPExcel_Cell
      * @throws  PHPExcel_Exception
      */
-    public function addCacheData($pCoord, PHPExcel_Cell $cell)
-    {
+    public function addCacheData($pCoord, PHPExcel_Cell $cell) {
         if (($pCoord !== $this->currentObjectID) && ($this->currentObjectID !== null)) {
             $this->storeData();
         }
+
         $this->cellCache[$pCoord] = true;
 
         $this->currentObjectID = $pCoord;
@@ -100,22 +99,23 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
      * @throws  PHPExcel_Exception
      * @return  boolean
      */
-    public function isDataSet($pCoord)
-    {
-        //    Check if the requested entry is the current object, or exists in the cache
+    public function isDataSet($pCoord) {
+        // Check if the requested entry is the current object, or exists in the cache
         if (parent::isDataSet($pCoord)) {
             if ($this->currentObjectID == $pCoord) {
                 return true;
             }
-            //    Check if the requested entry still exists in apc
+            // Check if the requested entry still exists in apc
             $success = apc_fetch($this->cachePrefix.$pCoord.'.cache');
             if ($success === false) {
                 //    Entry no longer exists in APC, so clear it from the cache array
                 parent::deleteCacheData($pCoord);
                 throw new PHPExcel_Exception('Cell entry '.$pCoord.' no longer exists in APC cache');
             }
+
             return true;
         }
+
         return false;
     }
 
@@ -127,33 +127,34 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
      * @throws  PHPExcel_Exception
      * @return  PHPExcel_Cell  Cell that was found, or null if not found
      */
-    public function getCacheData($pCoord)
-    {
+    public function getCacheData($pCoord) {
         if ($pCoord === $this->currentObjectID) {
             return $this->currentObject;
         }
+
         $this->storeData();
 
-        //    Check if the entry that has been requested actually exists
+        // Check if the entry that has been requested actually exists
         if (parent::isDataSet($pCoord)) {
             $obj = apc_fetch($this->cachePrefix . $pCoord . '.cache');
+
             if ($obj === false) {
-                //    Entry no longer exists in APC, so clear it from the cache array
+                // Entry no longer exists in APC, so clear it from the cache array
                 parent::deleteCacheData($pCoord);
                 throw new PHPExcel_Exception('Cell entry '.$pCoord.' no longer exists in APC cache');
             }
         } else {
-            //    Return null if requested entry doesn't exist in cache
+            // Return null if requested entry doesn't exist in cache
             return null;
         }
 
-        //    Set current entry to the requested entry
+        // Set current entry to the requested entry
         $this->currentObjectID = $pCoord;
         $this->currentObject = unserialize($obj);
-        //    Re-attach this as the cell's parent
+        // Re-attach this as the cell's parent
         $this->currentObject->attach($this);
 
-        //    Return requested entry
+        // Return requested entry
         return $this->currentObject;
     }
 
@@ -162,8 +163,7 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
      *
      * @return  string[]
      */
-    public function getCellList()
-    {
+    public function getCellList() {
         if ($this->currentObjectID !== null) {
             $this->storeData();
         }
@@ -178,12 +178,11 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
      * @param   string  $pCoord  Coordinate address of the cell to delete
      * @throws  PHPExcel_Exception
      */
-    public function deleteCacheData($pCoord)
-    {
-        //    Delete the entry from APC
+    public function deleteCacheData($pCoord) {
+        // Delete the entry from APC
         apc_delete($this->cachePrefix.$pCoord.'.cache');
 
-        //    Delete the entry from our cell address array
+        // Delete the entry from our cell address array
         parent::deleteCacheData($pCoord);
     }
 
@@ -195,27 +194,30 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
      * @throws  PHPExcel_Exception
      * @return  void
      */
-    public function copyCellCollection(PHPExcel_Worksheet $parent)
-    {
+    public function copyCellCollection(PHPExcel_Worksheet $parent) {
         parent::copyCellCollection($parent);
-        //    Get a new id for the new file name
+        // Get a new id for the new file name
         $baseUnique = $this->getUniqueID();
         $newCachePrefix = substr(md5($baseUnique), 0, 8) . '.';
         $cacheList = $this->getCellList();
+
         foreach ($cacheList as $cellID) {
             if ($cellID != $this->currentObjectID) {
                 $obj = apc_fetch($this->cachePrefix . $cellID . '.cache');
+
                 if ($obj === false) {
                     //    Entry no longer exists in APC, so clear it from the cache array
                     parent::deleteCacheData($cellID);
                     throw new PHPExcel_Exception('Cell entry ' . $cellID . ' no longer exists in APC');
                 }
+
                 if (!apc_store($newCachePrefix . $cellID . '.cache', $obj, $this->cacheTime)) {
                     $this->__destruct();
                     throw new PHPExcel_Exception('Failed to store cell ' . $cellID . ' in APC');
                 }
             }
         }
+
         $this->cachePrefix = $newCachePrefix;
     }
 
@@ -224,19 +226,18 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
      *
      * @return  void
      */
-    public function unsetWorksheetCells()
-    {
+    public function unsetWorksheetCells() {
         if ($this->currentObject !== null) {
             $this->currentObject->detach();
             $this->currentObject = $this->currentObjectID = null;
         }
 
-        //    Flush the APC cache
+        // Flush the APC cache
         $this->__destruct();
 
         $this->cellCache = array();
 
-        //    detach ourself from the worksheet, so that it can then delete this object successfully
+        // detach ourself from the worksheet, so that it can then delete this object successfully
         $this->parent = null;
     }
 
@@ -246,12 +247,12 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
      * @param  PHPExcel_Worksheet  $parent     The worksheet for this cell collection
      * @param  array of mixed      $arguments  Additional initialisation arguments
      */
-    public function __construct(PHPExcel_Worksheet $parent, $arguments)
-    {
+    public function __construct(PHPExcel_Worksheet $parent, $arguments) {
         $cacheTime = (isset($arguments['cacheTime'])) ? $arguments['cacheTime'] : 600;
 
         if ($this->cachePrefix === null) {
             $baseUnique = $this->getUniqueID();
+
             $this->cachePrefix = substr(md5($baseUnique), 0, 8) . '.';
             $this->cacheTime = $cacheTime;
 
@@ -262,9 +263,9 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
     /**
      * Destroy this cell collection
      */
-    public function __destruct()
-    {
+    public function __destruct() {
         $cacheList = $this->getCellList();
+
         foreach ($cacheList as $cellID) {
             apc_delete($this->cachePrefix . $cellID . '.cache');
         }
@@ -276,11 +277,11 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
      *
      * @return  boolean
      */
-    public static function cacheMethodIsAvailable()
-    {
+    public static function cacheMethodIsAvailable() {
         if (!function_exists('apc_store')) {
             return false;
         }
+
         if (apc_sma_info() === false) {
             return false;
         }
