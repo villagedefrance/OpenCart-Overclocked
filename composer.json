@@ -4,7 +4,7 @@
   "description": "OpenCart Overclocked Edition. Advanced Shopping Cart CMS based on OC v1.5.6.X source code.",
   "keywords": ["opencart", "ecommerce", "opensource"],
   "homepage": "https://villagedefrance.net/",
-  "license": "GPL-3.0+",
+  "license": "GPL-3.0-or-later",
   "config": {
     "vendor-dir": "./upload/system/vendor/"
   },
