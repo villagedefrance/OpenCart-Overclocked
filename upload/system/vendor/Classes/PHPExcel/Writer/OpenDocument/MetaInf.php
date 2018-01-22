@@ -1,8 +1,9 @@
 <?php
+
 /**
- * PHPExcel
+ * PHPExcel_Writer_OpenDocument_MetaInf
  *
- * Copyright (c) 2006 - 2014 PHPExcel
+ * Copyright (c) 2006 - 2015 PHPExcel
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,19 +21,9 @@
  *
  * @category   PHPExcel
  * @package    PHPExcel_Writer_OpenDocument
- * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    v1.8.1, released: 01-05-2015
- * @edition     Overclocked Edition
- */
-
-/**
- * PHPExcel_Writer_OpenDocument_MetaInf
- *
- * @category   PHPExcel
- * @package    PHPExcel_Writer_OpenDocument
- * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @author     Alexander Pervakov <frost-nzcr4@jagmort.com>
+ * @version    ##VERSION##, ##DATE##
  */
 class PHPExcel_Writer_OpenDocument_MetaInf extends PHPExcel_Writer_OpenDocument_WriterPart
 {
