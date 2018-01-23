@@ -33,13 +33,13 @@ if (!defined('PHPEXCEL_ROOT')) {
  * @copyright    Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license        http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version        ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Calculation_TextData
-{
+class PHPExcel_Calculation_TextData {
     private static $invalidChars;
 
-    private static function unicodeToOrd($c)
-    {
+    private static function unicodeToOrd($c) {
         if (ord($c{0}) >=0 && ord($c{0}) <= 127) {
             return ord($c{0});
         } elseif (ord($c{0}) >= 192 && ord($c{0}) <= 223) {
@@ -56,6 +56,7 @@ class PHPExcel_Calculation_TextData
             // error
             return PHPExcel_Calculation_Functions::VALUE();
         }
+
         return 0;
     }
 
@@ -65,8 +66,7 @@ class PHPExcel_Calculation_TextData
      * @param    string    $character    Value
      * @return    int
      */
-    public static function CHARACTER($character)
-    {
+    public static function CHARACTER($character) {
         $character = PHPExcel_Calculation_Functions::flattenSingleValue($character);
 
         if ((!is_numeric($character)) || ($character < 0)) {
@@ -80,15 +80,13 @@ class PHPExcel_Calculation_TextData
         }
     }
 
-
     /**
      * TRIMNONPRINTABLE
      *
      * @param    mixed    $stringValue    Value to check
      * @return    string
      */
-    public static function TRIMNONPRINTABLE($stringValue = '')
-    {
+    public static function TRIMNONPRINTABLE($stringValue = '') {
         $stringValue    = PHPExcel_Calculation_Functions::flattenSingleValue($stringValue);
 
         if (is_bool($stringValue)) {
@@ -102,9 +100,9 @@ class PHPExcel_Calculation_TextData
         if (is_string($stringValue) || is_numeric($stringValue)) {
             return str_replace(self::$invalidChars, '', trim($stringValue, "\x00..\x1F"));
         }
+
         return null;
     }
-
 
     /**
      * TRIMSPACES
@@ -112,9 +110,9 @@ class PHPExcel_Calculation_TextData
      * @param    mixed    $stringValue    Value to check
      * @return    string
      */
-    public static function TRIMSPACES($stringValue = '')
-    {
+    public static function TRIMSPACES($stringValue = '') {
         $stringValue = PHPExcel_Calculation_Functions::flattenSingleValue($stringValue);
+
         if (is_bool($stringValue)) {
             return ($stringValue) ? PHPExcel_Calculation::getTRUE() : PHPExcel_Calculation::getFALSE();
         }
@@ -122,9 +120,9 @@ class PHPExcel_Calculation_TextData
         if (is_string($stringValue) || is_numeric($stringValue)) {
             return trim(preg_replace('/ +/', ' ', trim($stringValue, ' ')), ' ');
         }
+
         return null;
     }
-
 
     /**
      * ASCIICODE
@@ -132,12 +130,13 @@ class PHPExcel_Calculation_TextData
      * @param    string    $characters        Value
      * @return    int
      */
-    public static function ASCIICODE($characters)
-    {
+    public static function ASCIICODE($characters) {
         if (($characters === null) || ($characters === '')) {
             return PHPExcel_Calculation_Functions::VALUE();
         }
-        $characters    = PHPExcel_Calculation_Functions::flattenSingleValue($characters);
+
+        $characters = PHPExcel_Calculation_Functions::flattenSingleValue($characters);
+
         if (is_bool($characters)) {
             if (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE) {
                 $characters = (int) $characters;
@@ -147,6 +146,7 @@ class PHPExcel_Calculation_TextData
         }
 
         $character = $characters;
+
         if ((function_exists('mb_strlen')) && (function_exists('mb_substr'))) {
             if (mb_strlen($characters, 'UTF-8') > 1) {
                 $character = mb_substr($characters, 0, 1, 'UTF-8');
@@ -160,18 +160,16 @@ class PHPExcel_Calculation_TextData
         }
     }
 
-
     /**
      * CONCATENATE
      *
      * @return    string
      */
-    public static function CONCATENATE()
-    {
+    public static function CONCATENATE() {
         $returnValue = '';
-
         // Loop through arguments
         $aArgs = PHPExcel_Calculation_Functions::flattenArray(func_get_args());
+
         foreach ($aArgs as $arg) {
             if (is_bool($arg)) {
                 if (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE) {
@@ -180,12 +178,12 @@ class PHPExcel_Calculation_TextData
                     $arg = ($arg) ? PHPExcel_Calculation::getTRUE() : PHPExcel_Calculation::getFALSE();
                 }
             }
+
             $returnValue .= $arg;
         }
 
         return $returnValue;
     }
-
 
     /**
      * DOLLAR
@@ -199,32 +197,33 @@ class PHPExcel_Calculation_TextData
      *                                    If you omit decimals, it is assumed to be 2
      * @return    string
      */
-    public static function DOLLAR($value = 0, $decimals = 2)
-    {
-        $value        = PHPExcel_Calculation_Functions::flattenSingleValue($value);
-        $decimals    = is_null($decimals) ? 0 : PHPExcel_Calculation_Functions::flattenSingleValue($decimals);
+    public static function DOLLAR($value = 0, $decimals = 2) {
+        $value = PHPExcel_Calculation_Functions::flattenSingleValue($value);
+        $decimals = is_null($decimals) ? 0 : PHPExcel_Calculation_Functions::flattenSingleValue($decimals);
 
         // Validate parameters
         if (!is_numeric($value) || !is_numeric($decimals)) {
             return PHPExcel_Calculation_Functions::NaN();
         }
+
         $decimals = floor($decimals);
 
         $mask = '$#,##0';
+
         if ($decimals > 0) {
             $mask .= '.' . str_repeat('0', $decimals);
         } else {
             $round = pow(10, abs($decimals));
+
             if ($value < 0) {
                 $round = 0-$round;
             }
+
             $value = PHPExcel_Calculation_MathTrig::MROUND($value, $round);
         }
 
         return PHPExcel_Style_NumberFormat::toFormattedString($value, $mask);
-
     }
-
 
     /**
      * SEARCHSENSITIVE
@@ -234,11 +233,10 @@ class PHPExcel_Calculation_TextData
      * @param    int        $offset        Offset within $haystack
      * @return    string
      */
-    public static function SEARCHSENSITIVE($needle, $haystack, $offset = 1)
-    {
-        $needle   = PHPExcel_Calculation_Functions::flattenSingleValue($needle);
+    public static function SEARCHSENSITIVE($needle, $haystack, $offset = 1) {
+        $needle = PHPExcel_Calculation_Functions::flattenSingleValue($needle);
         $haystack = PHPExcel_Calculation_Functions::flattenSingleValue($haystack);
-        $offset   = PHPExcel_Calculation_Functions::flattenSingleValue($offset);
+        $offset = PHPExcel_Calculation_Functions::flattenSingleValue($offset);
 
         if (!is_bool($needle)) {
             if (is_bool($haystack)) {
@@ -249,19 +247,21 @@ class PHPExcel_Calculation_TextData
                 if (PHPExcel_Shared_String::CountCharacters($needle) == 0) {
                     return $offset;
                 }
+
                 if (function_exists('mb_strpos')) {
                     $pos = mb_strpos($haystack, $needle, --$offset, 'UTF-8');
                 } else {
                     $pos = strpos($haystack, $needle, --$offset);
                 }
+
                 if ($pos !== false) {
                     return ++$pos;
                 }
             }
         }
+
         return PHPExcel_Calculation_Functions::VALUE();
     }
-
 
     /**
      * SEARCHINSENSITIVE
@@ -271,11 +271,10 @@ class PHPExcel_Calculation_TextData
      * @param    int        $offset        Offset within $haystack
      * @return    string
      */
-    public static function SEARCHINSENSITIVE($needle, $haystack, $offset = 1)
-    {
-        $needle   = PHPExcel_Calculation_Functions::flattenSingleValue($needle);
+    public static function SEARCHINSENSITIVE($needle, $haystack, $offset = 1) {
+        $needle = PHPExcel_Calculation_Functions::flattenSingleValue($needle);
         $haystack = PHPExcel_Calculation_Functions::flattenSingleValue($haystack);
-        $offset   = PHPExcel_Calculation_Functions::flattenSingleValue($offset);
+        $offset = PHPExcel_Calculation_Functions::flattenSingleValue($offset);
 
         if (!is_bool($needle)) {
             if (is_bool($haystack)) {
@@ -286,19 +285,21 @@ class PHPExcel_Calculation_TextData
                 if (PHPExcel_Shared_String::CountCharacters($needle) == 0) {
                     return $offset;
                 }
+
                 if (function_exists('mb_stripos')) {
                     $pos = mb_stripos($haystack, $needle, --$offset, 'UTF-8');
                 } else {
                     $pos = stripos($haystack, $needle, --$offset);
                 }
+
                 if ($pos !== false) {
                     return ++$pos;
                 }
             }
         }
+
         return PHPExcel_Calculation_Functions::VALUE();
     }
-
 
     /**
      * FIXEDFORMAT
@@ -308,29 +309,30 @@ class PHPExcel_Calculation_TextData
      * @param    boolean        $no_commas
      * @return    boolean
      */
-    public static function FIXEDFORMAT($value, $decimals = 2, $no_commas = false)
-    {
-        $value     = PHPExcel_Calculation_Functions::flattenSingleValue($value);
-        $decimals  = PHPExcel_Calculation_Functions::flattenSingleValue($decimals);
+    public static function FIXEDFORMAT($value, $decimals = 2, $no_commas = false) {
+        $value = PHPExcel_Calculation_Functions::flattenSingleValue($value);
+        $decimals = PHPExcel_Calculation_Functions::flattenSingleValue($decimals);
         $no_commas = PHPExcel_Calculation_Functions::flattenSingleValue($no_commas);
 
         // Validate parameters
         if (!is_numeric($value) || !is_numeric($decimals)) {
             return PHPExcel_Calculation_Functions::NaN();
         }
+
         $decimals = floor($decimals);
 
         $valueResult = round($value, $decimals);
+
         if ($decimals < 0) {
             $decimals = 0;
         }
+
         if (!$no_commas) {
             $valueResult = number_format($valueResult, $decimals);
         }
 
         return (string) $valueResult;
     }
-
 
     /**
      * LEFT
@@ -339,8 +341,7 @@ class PHPExcel_Calculation_TextData
      * @param    int        $chars    Number of characters
      * @return    string
      */
-    public static function LEFT($value = '', $chars = 1)
-    {
+    public static function LEFT($value = '', $chars = 1) {
         $value = PHPExcel_Calculation_Functions::flattenSingleValue($value);
         $chars = PHPExcel_Calculation_Functions::flattenSingleValue($chars);
 
@@ -359,7 +360,6 @@ class PHPExcel_Calculation_TextData
         }
     }
 
-
     /**
      * MID
      *
@@ -368,8 +368,7 @@ class PHPExcel_Calculation_TextData
      * @param    int        $chars    Number of characters
      * @return    string
      */
-    public static function MID($value = '', $start = 1, $chars = null)
-    {
+    public static function MID($value = '', $start = 1, $chars = null) {
         $value = PHPExcel_Calculation_Functions::flattenSingleValue($value);
         $start = PHPExcel_Calculation_Functions::flattenSingleValue($start);
         $chars = PHPExcel_Calculation_Functions::flattenSingleValue($chars);
@@ -389,7 +388,6 @@ class PHPExcel_Calculation_TextData
         }
     }
 
-
     /**
      * RIGHT
      *
@@ -397,8 +395,7 @@ class PHPExcel_Calculation_TextData
      * @param    int        $chars    Number of characters
      * @return    string
      */
-    public static function RIGHT($value = '', $chars = 1)
-    {
+    public static function RIGHT($value = '', $chars = 1) {
         $value = PHPExcel_Calculation_Functions::flattenSingleValue($value);
         $chars = PHPExcel_Calculation_Functions::flattenSingleValue($chars);
 
@@ -417,15 +414,13 @@ class PHPExcel_Calculation_TextData
         }
     }
 
-
     /**
      * STRINGLENGTH
      *
      * @param    string    $value    Value
      * @return    string
      */
-    public static function STRINGLENGTH($value = '')
-    {
+    public static function STRINGLENGTH($value = '') {
         $value = PHPExcel_Calculation_Functions::flattenSingleValue($value);
 
         if (is_bool($value)) {
@@ -439,7 +434,6 @@ class PHPExcel_Calculation_TextData
         }
     }
 
-
     /**
      * LOWERCASE
      *
@@ -448,8 +442,7 @@ class PHPExcel_Calculation_TextData
      * @param    string        $mixedCaseString
      * @return    string
      */
-    public static function LOWERCASE($mixedCaseString)
-    {
+    public static function LOWERCASE($mixedCaseString) {
         $mixedCaseString = PHPExcel_Calculation_Functions::flattenSingleValue($mixedCaseString);
 
         if (is_bool($mixedCaseString)) {
@@ -459,7 +452,6 @@ class PHPExcel_Calculation_TextData
         return PHPExcel_Shared_String::StrToLower($mixedCaseString);
     }
 
-
     /**
      * UPPERCASE
      *
@@ -468,8 +460,7 @@ class PHPExcel_Calculation_TextData
      * @param    string        $mixedCaseString
      * @return    string
      */
-    public static function UPPERCASE($mixedCaseString)
-    {
+    public static function UPPERCASE($mixedCaseString) {
         $mixedCaseString = PHPExcel_Calculation_Functions::flattenSingleValue($mixedCaseString);
 
         if (is_bool($mixedCaseString)) {
@@ -479,7 +470,6 @@ class PHPExcel_Calculation_TextData
         return PHPExcel_Shared_String::StrToUpper($mixedCaseString);
     }
 
-
     /**
      * PROPERCASE
      *
@@ -488,8 +478,7 @@ class PHPExcel_Calculation_TextData
      * @param    string        $mixedCaseString
      * @return    string
      */
-    public static function PROPERCASE($mixedCaseString)
-    {
+    public static function PROPERCASE($mixedCaseString) {
         $mixedCaseString = PHPExcel_Calculation_Functions::flattenSingleValue($mixedCaseString);
 
         if (is_bool($mixedCaseString)) {
@@ -498,7 +487,6 @@ class PHPExcel_Calculation_TextData
 
         return PHPExcel_Shared_String::StrToTitle($mixedCaseString);
     }
-
 
     /**
      * REPLACE
@@ -509,11 +497,10 @@ class PHPExcel_Calculation_TextData
      * @param    string    $newText    String to replace in defined position
      * @return    string
      */
-    public static function REPLACE($oldText = '', $start = 1, $chars = null, $newText)
-    {
+    public static function REPLACE($oldText = '', $start = 1, $chars = null, $newText) {
         $oldText = PHPExcel_Calculation_Functions::flattenSingleValue($oldText);
-        $start   = PHPExcel_Calculation_Functions::flattenSingleValue($start);
-        $chars   = PHPExcel_Calculation_Functions::flattenSingleValue($chars);
+        $start = PHPExcel_Calculation_Functions::flattenSingleValue($start);
+        $chars = PHPExcel_Calculation_Functions::flattenSingleValue($chars);
         $newText = PHPExcel_Calculation_Functions::flattenSingleValue($newText);
 
         $left = self::LEFT($oldText, $start-1);
@@ -521,7 +508,6 @@ class PHPExcel_Calculation_TextData
 
         return $left.$newText.$right;
     }
-
 
     /**
      * SUBSTITUTE
@@ -532,11 +518,10 @@ class PHPExcel_Calculation_TextData
      * @param    integer    $instance    Instance Number
      * @return    string
      */
-    public static function SUBSTITUTE($text = '', $fromText = '', $toText = '', $instance = 0)
-    {
-        $text     = PHPExcel_Calculation_Functions::flattenSingleValue($text);
+    public static function SUBSTITUTE($text = '', $fromText = '', $toText = '', $instance = 0) {
+        $text = PHPExcel_Calculation_Functions::flattenSingleValue($text);
         $fromText = PHPExcel_Calculation_Functions::flattenSingleValue($fromText);
-        $toText   = PHPExcel_Calculation_Functions::flattenSingleValue($toText);
+        $toText = PHPExcel_Calculation_Functions::flattenSingleValue($toText);
         $instance = floor(PHPExcel_Calculation_Functions::flattenSingleValue($instance));
 
         if ($instance == 0) {
@@ -547,17 +532,21 @@ class PHPExcel_Calculation_TextData
             }
         } else {
             $pos = -1;
+
             while ($instance > 0) {
                 if (function_exists('mb_strpos')) {
                     $pos = mb_strpos($text, $fromText, $pos+1, 'UTF-8');
                 } else {
                     $pos = strpos($text, $fromText, $pos+1);
                 }
+
                 if ($pos === false) {
                     break;
                 }
+
                 --$instance;
             }
+
             if ($pos !== false) {
                 if (function_exists('mb_strlen')) {
                     return self::REPLACE($text, ++$pos, mb_strlen($fromText, 'UTF-8'), $toText);
@@ -570,23 +559,21 @@ class PHPExcel_Calculation_TextData
         return $text;
     }
 
-
     /**
      * RETURNSTRING
      *
      * @param    mixed    $testValue    Value to check
      * @return    boolean
      */
-    public static function RETURNSTRING($testValue = '')
-    {
+    public static function RETURNSTRING($testValue = '') {
         $testValue = PHPExcel_Calculation_Functions::flattenSingleValue($testValue);
 
         if (is_string($testValue)) {
             return $testValue;
         }
+
         return null;
     }
-
 
     /**
      * TEXTFORMAT
@@ -595,9 +582,8 @@ class PHPExcel_Calculation_TextData
      * @param    string    $format    Format mask to use
      * @return    boolean
      */
-    public static function TEXTFORMAT($value, $format)
-    {
-        $value  = PHPExcel_Calculation_Functions::flattenSingleValue($value);
+    public static function TEXTFORMAT($value, $format) {
+        $value = PHPExcel_Calculation_Functions::flattenSingleValue($value);
         $format = PHPExcel_Calculation_Functions::flattenSingleValue($format);
 
         if ((is_string($value)) && (!is_numeric($value)) && PHPExcel_Shared_Date::isDateTimeFormatCode($format)) {
@@ -613,39 +599,41 @@ class PHPExcel_Calculation_TextData
      * @param    mixed    $value    Value to check
      * @return    boolean
      */
-    public static function VALUE($value = '')
-    {
+    public static function VALUE($value = '') {
         $value = PHPExcel_Calculation_Functions::flattenSingleValue($value);
 
         if (!is_numeric($value)) {
-            $numberValue = str_replace(
-                PHPExcel_Shared_String::getThousandsSeparator(),
-                '',
-                trim($value, " \t\n\r\0\x0B" . PHPExcel_Shared_String::getCurrencyCode())
-            );
+            $numberValue = str_replace(PHPExcel_Shared_String::getThousandsSeparator(), '', trim($value, " \t\n\r\0\x0B" . PHPExcel_Shared_String::getCurrencyCode()));
+
             if (is_numeric($numberValue)) {
                 return (float) $numberValue;
             }
 
             $dateSetting = PHPExcel_Calculation_Functions::getReturnDateType();
+
             PHPExcel_Calculation_Functions::setReturnDateType(PHPExcel_Calculation_Functions::RETURNDATE_EXCEL);
 
             if (strpos($value, ':') !== false) {
                 $timeValue = PHPExcel_Calculation_DateTime::TIMEVALUE($value);
+
                 if ($timeValue !== PHPExcel_Calculation_Functions::VALUE()) {
                     PHPExcel_Calculation_Functions::setReturnDateType($dateSetting);
                     return $timeValue;
                 }
             }
+
             $dateValue = PHPExcel_Calculation_DateTime::DATEVALUE($value);
+
             if ($dateValue !== PHPExcel_Calculation_Functions::VALUE()) {
                 PHPExcel_Calculation_Functions::setReturnDateType($dateSetting);
                 return $dateValue;
             }
+
             PHPExcel_Calculation_Functions::setReturnDateType($dateSetting);
 
             return PHPExcel_Calculation_Functions::VALUE();
         }
+
         return (float) $value;
     }
 }

@@ -4,10 +4,11 @@
  * User: nhw2h8s
  * Date: 7/2/14
  * Time: 5:45 PM
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
 
-abstract class PHPExcel_Chart_Properties
-{
+abstract class PHPExcel_Chart_Properties {
     const
         EXCEL_COLOR_TYPE_STANDARD = 'prstClr',
         EXCEL_COLOR_TYPE_SCHEME = 'schemeClr',
@@ -113,23 +114,19 @@ abstract class PHPExcel_Chart_Properties
         SHADOW_PRESETS_PERSPECTIVE_LOWER_RIGHT = 22,
         SHADOW_PRESETS_PERSPECTIVE_LOWER_LEFT = 23;
 
-    protected function getExcelPointsWidth($width)
-    {
+    protected function getExcelPointsWidth($width) {
         return $width * 12700;
     }
 
-    protected function getExcelPointsAngle($angle)
-    {
+    protected function getExcelPointsAngle($angle) {
         return $angle * 60000;
     }
 
-    protected function getTrueAlpha($alpha)
-    {
+    protected function getTrueAlpha($alpha) {
         return (string) 100 - $alpha . '000';
     }
 
-    protected function setColorProperties($color, $alpha, $type)
-    {
+    protected function setColorProperties($color, $alpha, $type) {
         return array(
             'type' => (string) $type,
             'value' => (string) $color,
@@ -137,8 +134,7 @@ abstract class PHPExcel_Chart_Properties
         );
     }
 
-    protected function getLineStyleArrowSize($array_selector, $array_kay_selector)
-    {
+    protected function getLineStyleArrowSize($array_selector, $array_kay_selector) {
         $sizes = array(
             1 => array('w' => 'sm', 'len' => 'sm'),
             2 => array('w' => 'sm', 'len' => 'med'),
@@ -154,8 +150,7 @@ abstract class PHPExcel_Chart_Properties
         return $sizes[$array_selector][$array_kay_selector];
     }
 
-    protected function getShadowPresetsMap($shadow_presets_option)
-    {
+    protected function getShadowPresetsMap($shadow_presets_option) {
         $presets_options = array(
             //OUTER
             1 => array(
@@ -347,17 +342,19 @@ abstract class PHPExcel_Chart_Properties
         return $presets_options[$shadow_presets_option];
     }
 
-    protected function getArrayElementsValue($properties, $elements)
-    {
+    protected function getArrayElementsValue($properties, $elements) {
         $reference = & $properties;
+
         if (!is_array($elements)) {
             return $reference[$elements];
         } else {
             foreach ($elements as $keys) {
                 $reference = & $reference[$keys];
             }
+
             return $reference;
         }
+
         return $this;
     }
 }

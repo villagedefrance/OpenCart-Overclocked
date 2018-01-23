@@ -1,4 +1,14 @@
 <?php
+
+/** PHPExcel root directory */
+if (!defined('PHPEXCEL_ROOT')) {
+    /**
+     * @ignore
+     */
+    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
+    require(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
+}
+
 /**
  * PHPExcel
  *
@@ -24,18 +34,9 @@
  * @copyright  Copyright (c) 2015 J.Neuhoff - mhccorp.com
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    PHPExcel version 1.8.0, 2014-03-02
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-
-
-/** PHPExcel root directory */
-if (!defined('PHPEXCEL_ROOT')) {
-    /**
-     * @ignore
-     */
-    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
-    require(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
-}
-
 
 /**
  * PHPExcel_Cell_ExportImportValueBinder
@@ -44,9 +45,7 @@ if (!defined('PHPEXCEL_ROOT')) {
  * @package    PHPExcel_Cell
  * @copyright  Copyright (c) 2015 J.Neuhoff - mhccorp.com
  */
-class PHPExcel_Cell_ExportImportValueBinder extends PHPExcel_Cell_DefaultValueBinder implements PHPExcel_Cell_IValueBinder 
-{ 
-
+class PHPExcel_Cell_ExportImportValueBinder extends PHPExcel_Cell_DefaultValueBinder implements PHPExcel_Cell_IValueBinder {
 	/**
 	* Bind value to a cell, preserving possible leading zeros
 	* See http://stackoverflow.com/questions/12457610/reading-numbers-as-text-format-with-phpexcel
@@ -63,11 +62,11 @@ class PHPExcel_Cell_ExportImportValueBinder extends PHPExcel_Cell_DefaultValueBi
 
 		// Preserve numeric string, including leading zeros, if it is a text format
 		$format = $cell->getStyle()->getNumberFormat()->getFormatCode();
+
 		if ($format == PHPExcel_Style_NumberFormat::FORMAT_TEXT) {
 			$cell->setValueExplicit($value, PHPExcel_Cell_DataType::TYPE_STRING); 
 			return true; 
 		}
-
 		// Not bound yet? Use default value parent... 
 		return parent::bindValue($cell, $value); 
 	} 

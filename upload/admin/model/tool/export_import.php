@@ -239,7 +239,7 @@ class ModelToolExportImport extends Model {
 		foreach ($result->rows as $row) {
 			$manufacturer_id = $row['manufacturer_id'];
 			$store_id = $row['store_id'];
-			$manufacturer_name = html_entity_decode($row['name'], ENT_QUOTES, 'UTF-8');
+			$manufacturer_name = htmlspecialchars_decode($row['name']);
 
 			if (!isset($manufacturers[$manufacturer_name])) {
 				$manufacturers[$manufacturer_name] = array();
@@ -366,7 +366,7 @@ class ModelToolExportImport extends Model {
 
 		foreach ($result->rows as $row) {
 			$customer_group_id = $row['customer_group_id'];
-			$name = html_entity_decode($row['name'], ENT_QUOTES, 'UTF-8');
+			$name = htmlspecialchars_decode($row['name']);
 
 			$customer_group_ids[$name] = $customer_group_id;
 		}
@@ -758,7 +758,7 @@ class ModelToolExportImport extends Model {
 	// Extract and Insert the Category details
 	protected function storeCategoryIntoDatabase(&$category, $languages, &$layout_ids, &$available_store_ids, &$url_alias_ids) {
 		$category_id = $category['category_id'];
-		$image_name = $this->db->escape($category['image']);
+		$image_name = $this->db->escape(html_entity_decode($category['image'], ENT_QUOTES, 'UTF-8'));
 		$parent_id = $category['parent_id'];
 		$top = $category['top'];
 		$top = ((strtoupper($top) == "TRUE") || (strtoupper($top) == "YES") || (strtoupper($top) == "ENABLED")) ? 1 : 0;
@@ -766,15 +766,15 @@ class ModelToolExportImport extends Model {
 		$sort_order = $category['sort_order'];
 		$date_added = $category['date_added'];
 		$date_modified = $category['date_modified'];
-		$names = htmlentities($category['names'], ENT_QUOTES, 'UTF-8');
-		$descriptions = htmlentities($category['descriptions'], ENT_QUOTES, 'UTF-8');
-		$meta_descriptions = htmlentities($category['meta_descriptions'], ENT_QUOTES, 'UTF-8');
-		$meta_keywords = htmlentities($category['meta_keywords'], ENT_QUOTES, 'UTF-8');
 		$seo_keyword = $category['seo_keyword'];
 		$store_ids = $category['store_ids'];
 		$layout = $category['layout'];
 		$status = $category['status'];
 		$status = ((strtoupper($status) == "TRUE") || (strtoupper($status) == "YES") || (strtoupper($status) == "ENABLED")) ? 1 : 0;
+		$names = htmlspecialchars($category['names']);
+		$descriptions = htmlspecialchars($category['descriptions']);
+		$meta_descriptions = htmlspecialchars($category['meta_descriptions']);
+		$meta_keywords = htmlspecialchars($category['meta_keywords']);
 
 		// Generate and execute SQL for inserting the category
 		$sql = "INSERT INTO `" . DB_PREFIX . "category` (`category_id`,`image`,`parent_id`,`top`,`column`,`sort_order`,`date_added`,`date_modified`,`status`) VALUES";
@@ -903,7 +903,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreCategoryCells($i, $j, $worksheet, &$category) {
+	protected function moreCategoryCells($i, &$j, &$worksheet, &$category) {
 		return;
 	}
 
@@ -961,33 +961,34 @@ class ModelToolExportImport extends Model {
 			}
 
 			$parent_id = $this->getCell($data, $i, $j++, '0');
+			$top = $this->getCell($data, $i, $j++, ($parent_id == '0') ? 'true' : 'false');
+			$columns = $this->getCell($data, $i, $j++, ($parent_id == '0') ? '1' : '0');
+			$sort_order = $this->getCell($data, $i, $j++, '0');
+			$image_name = trim($this->getCell($data, $i, $j++));
+			$date_added = trim($this->getCell($data, $i, $j++));
+			$date_added = ((is_string($date_added)) && (strlen($date_added) > 0)) ? $date_added : "NOW()";
+			$date_modified = trim($this->getCell($data, $i, $j++));
+			$date_modified = ((is_string($date_modified)) && (strlen($date_modified) > 0)) ? $date_modified : "NOW()";
+			$seo_keyword = $this->getCell($data, $i, $j++);
+			$store_ids = $this->getCell($data, $i, $j++);
+			$layout = $this->getCell($data, $i, $j++, '');
+			$status = $this->getCell($data, $i, $j++, 'true');
 
 			$names = array();
 
 			while ($this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlentities($name, ENT_QUOTES, 'UTF-8');
+				$name = htmlspecialchars( $name );
 				$names[$language_code] = $name;
 			}
-
-			$top = $this->getCell($data, $i, $j++, ($parent_id == '0') ? 'true' : 'false');
-			$columns = $this->getCell($data, $i, $j++, ($parent_id == '0') ? '1' : '0');
-			$sort_order = $this->getCell($data, $i, $j++, '0');
-			$image_name = trim($this->getCell($data, $i, $j++));
-			$image_name = html_entity_decode($image_name, ENT_QUOTES, 'UTF-8');
-			$date_added = trim($this->getCell($data, $i, $j++));
-			$date_added = ((is_string($date_added)) && (strlen($date_added) > 0)) ? $date_added : "NOW()";
-			$date_modified = trim($this->getCell($data, $i, $j++));
-			$date_modified = ((is_string($date_modified)) && (strlen($date_modified) > 0)) ? $date_modified : "NOW()";
-			$seo_keyword = $this->getCell($data, $i, $j++);
 
 			$descriptions = array();
 
 			while ($this->startsWith($first_row[$j-1], "description(")) {
 				$language_code = substr($first_row[$j-1], strlen("description("), strlen($first_row[$j-1])-strlen("description(")-1);
 				$description = $this->getCell($data, $i, $j++);
-				$description = htmlentities($description, ENT_QUOTES, 'UTF-8');
+				$description = htmlspecialchars( $description );
 				$descriptions[$language_code] = $description;
 			}
 
@@ -996,7 +997,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "meta_description(")) {
 				$language_code = substr($first_row[$j-1], strlen("meta_description("), strlen($first_row[$j-1])-strlen("meta_description(")-1);
 				$meta_description = $this->getCell($data, $i, $j++);
-				$meta_description = htmlentities($meta_description, ENT_QUOTES, 'UTF-8');
+				$meta_description = htmlspecialchars( $meta_description );
 				$meta_descriptions[$language_code] = $meta_description;
 			}
 
@@ -1005,28 +1006,20 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "meta_keywords(")) {
 				$language_code = substr($first_row[$j-1], strlen("meta_keywords("), strlen($first_row[$j-1])-strlen("meta_keywords(")-1);
 				$meta_keyword = $this->getCell($data, $i, $j++);
-				$meta_keyword = htmlentities($meta_keyword, ENT_QUOTES, 'UTF-8');
+				$meta_keyword = htmlspecialchars( $meta_keyword );
 				$meta_keywords[$language_code] = $meta_keyword;
 			}
-
-			$store_ids = $this->getCell($data, $i, $j++);
-			$layout = $this->getCell($data, $i, $j++, '');
-			$status = $this->getCell($data, $i, $j++, 'true');
 
 			$category = array();
 
 			$category['category_id'] = $category_id;
 			$category['parent_id'] = $parent_id;
-			$category['names'] = $names;
 			$category['sort_order'] = $sort_order;
 			$category['image'] = $image_name;
 			$category['date_added'] = $date_added;
 			$category['date_modified'] = $date_modified;
 			$category['top'] = $top;
 			$category['columns'] = $columns;
-			$category['descriptions'] = $descriptions;
-			$category['meta_descriptions'] = $meta_descriptions;
-			$category['meta_keywords'] = $meta_keywords;
 			$category['seo_keyword'] = $seo_keyword;
 
 			$store_ids = trim($this->clean($store_ids, false));
@@ -1044,6 +1037,11 @@ class ModelToolExportImport extends Model {
 			}
 
 			$category['status'] = $status;
+
+			$category['names'] = $names;
+			$category['descriptions'] = $descriptions;
+			$category['meta_descriptions'] = $meta_descriptions;
+			$category['meta_keywords'] = $meta_keywords;
 
 			if ($incremental) {
 				if ($available_category_ids) {
@@ -1227,11 +1225,10 @@ class ModelToolExportImport extends Model {
 	// Extract and Insert the product details
 	protected function storeProductIntoDatabase(&$product, $languages, &$product_fields, &$layout_ids, &$available_store_ids, &$manufacturers, &$weight_class_ids, &$length_class_ids, &$url_alias_ids) {
 		$product_id = $product['product_id'];
-		$names = htmlentities($product['names'], ENT_QUOTES, 'UTF-8');
-		$categories = htmlentities($product['categories'], ENT_QUOTES, 'UTF-8');
+		$categories = $product['categories'];
 		$quantity = $product['quantity'];
-		$model = $this->db->escape(htmlentities($product['model'], ENT_QUOTES, 'UTF-8'));
-		$manufacturer_name = $this->db->escape(htmlentities($product['manufacturer_name'], ENT_QUOTES, 'UTF-8'));
+		$model = $this->db->escape($product['model']);
+		$manufacturer_name = $this->db->escape($product['manufacturer_name']);
 		$image = $this->db->escape(html_entity_decode($product['image'], ENT_QUOTES, 'UTF-8'));
 		$label = $this->db->escape(html_entity_decode($product['label'], ENT_QUOTES, 'UTF-8'));
 		$shipping = $product['shipping'];
@@ -1253,9 +1250,7 @@ class ModelToolExportImport extends Model {
 		$status = ((strtoupper($status) == "TRUE") || (strtoupper($status) == "YES") || (strtoupper($status) == "ENABLED")) ? 1 : 0;
 		$tax_class_id = $product['tax_class_id'];
 		$viewed = $product['viewed'];
-		$descriptions = htmlentities($product['descriptions'], ENT_QUOTES, 'UTF-8');
 		$stock_status_id = $product['stock_status_id'];
-		$meta_descriptions = htmlentities($product['meta_descriptions'], ENT_QUOTES, 'UTF-8');
 		$length = $product['length'];
 		$width = $product['width'];
 		$height = $product['height'];
@@ -1283,9 +1278,13 @@ class ModelToolExportImport extends Model {
 		$subtract = $product['subtract'];
 		$subtract = ((strtoupper($subtract) == "TRUE") || (strtoupper($subtract) == "YES") || (strtoupper($subtract) == "ENABLED")) ? 1 : 0;
 		$minimum = $product['minimum'];
-		$meta_keywords = htmlentities($product['meta_keywords'], ENT_QUOTES, 'UTF-8');
-		$tags = htmlentities($product['tags'], ENT_QUOTES, 'UTF-8');
 		$sort_order = $product['sort_order'];
+
+		$names = htmlspecialchars($product['names']);
+		$descriptions = htmlspecialchars($product['descriptions']);
+		$meta_descriptions = htmlspecialchars($product['meta_descriptions']);
+		$meta_keywords = htmlspecialchars($product['meta_keywords']);
+		$tags = htmlspecialchars($product['tags']);
 
 		if ($manufacturer_name) {
 			$this->storeManufacturerIntoDatabase($manufacturers, $manufacturer_name, $store_ids, $available_store_ids);
@@ -1558,17 +1557,7 @@ class ModelToolExportImport extends Model {
 				continue;
 			}
 
-			$names = array();
-
-			while ($this->startsWith($first_row[$j-1], "name(")) {
-				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
-				$name = $this->getCell($data, $i, $j++);
-				$name = htmlentities($name, ENT_QUOTES, 'UTF-8');
-				$names[$language_code] = $name;
-			}
-
 			$categories = $this->getCell($data, $i, $j++);
-			$categories = htmlentities($categories, ENT_QUOTES, 'UTF-8');
 			$sku = $this->getCell($data, $i, $j++, '');
 			$upc = $this->getCell($data, $i, $j++, '');
 			if (in_array('ean', $product_fields)) {
@@ -1586,13 +1575,9 @@ class ModelToolExportImport extends Model {
 			$location = $this->getCell($data, $i, $j++, '');
 			$quantity = $this->getCell($data, $i, $j++, '0');
 			$model = $this->getCell($data, $i, $j++, '');
-			$model = htmlentities($model, ENT_QUOTES, 'UTF-8');
 			$manufacturer_name = $this->getCell($data, $i, $j++);
-			$manufacturer_name = htmlentities($manufacturer_name, ENT_QUOTES, 'UTF-8');
 			$image_name = $this->getCell($data, $i, $j++);
-			$image_name = html_entity_decode($image_name, ENT_QUOTES, 'UTF-8');
 			$label_name = $this->getCell($data, $i, $j++);
-			$label_name = html_entity_decode($label_name, ENT_QUOTES, 'UTF-8');
 			$shipping = $this->getCell($data, $i, $j++, 'Yes');
 			$price = $this->getCell($data, $i, $j++, '0.00');
 			$cost = $this->getCell($data, $i, $j++, '0.00');
@@ -1615,13 +1600,29 @@ class ModelToolExportImport extends Model {
 			$status = $this->getCell($data, $i, $j++, 'true');
 			$tax_class_id = $this->getCell($data, $i, $j++, '0');
 			$keyword = $this->getCell($data, $i, $j++);
+			$stock_status_id = $this->getCell($data, $i, $j++, $default_stock_status_id);
+			$store_ids = $this->getCell($data, $i, $j++);
+			$layout = $this->getCell($data, $i, $j++);
+			$related = $this->getCell($data, $i, $j++);
+			$subtract = $this->getCell($data, $i, $j++, 'true');
+			$minimum = $this->getCell($data, $i, $j++, '1');
+			$sort_order = $this->getCell($data, $i, $j++, '0');
+
+			$names = array();
+
+			while ($this->startsWith($first_row[$j-1], "name(")) {
+				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
+				$name = $this->getCell($data, $i, $j++);
+				$name = htmlspecialchars( $name );
+				$names[$language_code] = $name;
+			}
 
 			$descriptions = array();
 
 			while ($this->startsWith($first_row[$j-1], "description(")) {
 				$language_code = substr($first_row[$j-1], strlen("description("), strlen($first_row[$j-1])-strlen("description(")-1);
 				$description = $this->getCell($data, $i, $j++);
-				$description = htmlentities($description, ENT_QUOTES, 'UTF-8');
+				$description = htmlspecialchars( $description );
 				$descriptions[$language_code] = $description;
 			}
 
@@ -1630,7 +1631,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "meta_description(")) {
 				$language_code = substr($first_row[$j-1], strlen("meta_description("), strlen($first_row[$j-1])-strlen("meta_description(")-1);
 				$meta_description = $this->getCell($data, $i, $j++);
-				$meta_description = htmlentities($meta_description, ENT_QUOTES, 'UTF-8');
+				$meta_description = htmlspecialchars( $meta_description );
 				$meta_descriptions[$language_code] = $meta_description;
 			}
 
@@ -1639,32 +1640,22 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "meta_keywords(")) {
 				$language_code = substr($first_row[$j-1], strlen("meta_keywords("), strlen($first_row[$j-1])-strlen("meta_keywords(")-1);
 				$meta_keyword = $this->getCell($data, $i, $j++);
-				$meta_keyword = htmlentities($meta_keyword, ENT_QUOTES, 'UTF-8');
+				$meta_keyword = htmlspecialchars( $meta_keyword );
 				$meta_keywords[$language_code] = $meta_keyword;
 			}
-
-			$stock_status_id = $this->getCell($data, $i, $j++, $default_stock_status_id);
-			$store_ids = $this->getCell($data, $i, $j++);
-			$layout = $this->getCell($data, $i, $j++);
-			$related = $this->getCell($data, $i, $j++);
 
 			$tags = array();
 
 			while ($this->startsWith($first_row[$j-1], "tags(")) {
 				$language_code = substr($first_row[$j-1], strlen("tags("), strlen($first_row[$j-1])-strlen("tags(")-1);
 				$tag = $this->getCell($data, $i, $j++);
-				$tag = htmlentities($tag, ENT_QUOTES, 'UTF-8');
+				$tag = htmlspecialchars( $tag );
 				$tags[$language_code] = $tag;
 			}
-
-			$sort_order = $this->getCell($data, $i, $j++, '0');
-			$subtract = $this->getCell($data, $i, $j++, 'true');
-			$minimum = $this->getCell($data, $i, $j++, '1');
 
 			$product = array();
 
 			$product['product_id'] = $product_id;
-			$product['names'] = $names;
 
 			$categories = trim($this->clean($categories, false));
 
@@ -1692,9 +1683,7 @@ class ModelToolExportImport extends Model {
 			$product['status'] = $status;
 			$product['tax_class_id'] = $tax_class_id;
 			$product['viewed'] = isset($view_counts[$product_id]) ? $view_counts[$product_id] : 0;
-			$product['descriptions'] = $descriptions;
 			$product['stock_status_id'] = $stock_status_id;
-			$product['meta_descriptions'] = $meta_descriptions;
 			$product['length'] = $length;
 			$product['width'] = $width;
 			$product['height'] = $height;
@@ -1730,9 +1719,13 @@ class ModelToolExportImport extends Model {
 			}
 			$product['subtract'] = $subtract;
 			$product['minimum'] = $minimum;
+			$product['sort_order'] = $sort_order;
+
+			$product['names'] = $names;
+			$product['descriptions'] = $descriptions;
+			$product['meta_descriptions'] = $meta_descriptions;
 			$product['meta_keywords'] = $meta_keywords;
 			$product['tags'] = $tags;
-			$product['sort_order'] = $sort_order;
 
 			if ($incremental) {
 				$this->deleteProduct($product_id);
@@ -1747,7 +1740,8 @@ class ModelToolExportImport extends Model {
 	// Write Product Additional Images
 	protected function storeAdditionalImageIntoDatabase(&$image, &$old_product_image_ids, $exist_sort_order = true) {
 		$product_id = $image['product_id'];
-		$image_name = $image['image_name'];
+		$image_name = html_entity_decode($image['image_name'], ENT_QUOTES, 'UTF-8');
+
 		if ($exist_sort_order) {
 			$sort_order = $image['sort_order'];
 		}
@@ -1851,7 +1845,6 @@ class ModelToolExportImport extends Model {
 			}
 
 			$image_name = $this->getCell($data, $i, $j++, '');
-			$image_name = html_entity_decode($image_name, ENT_QUOTES, 'UTF-8');
 			$sort_order = $this->getCell($data, $i, $j++, '0');
 
 			$image = array();
@@ -2311,7 +2304,7 @@ class ModelToolExportImport extends Model {
 
 		foreach ($query->rows as $row) {
 			$option_id = $row['option_id'];
-			$name = html_entity_decode($row['name'], ENT_QUOTES, 'UTF-8');
+			$name = $row['name'];
 
 			$option_ids[$name] = $option_id;
 		}
@@ -2471,7 +2464,7 @@ class ModelToolExportImport extends Model {
 		foreach ($query->rows as $row) {
 			$option_id = $row['option_id'];
 			$option_value_id = $row['option_value_id'];
-			$name = html_entity_decode($row['name'], ENT_QUOTES, 'UTF-8');
+			$name = htmlspecialchars_decode($row['name']);
 
 			$option_value_ids[$option_id][$name] = $option_value_id;
 		}
@@ -2832,7 +2825,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "text(")) {
 				$language_code = substr($first_row[$j-1], strlen("text("), strlen($first_row[$j-1])-strlen("text(")-1);
 				$text = $this->getCell($data, $i, $j++);
-				$text = htmlspecialchars($text);
+				$text = htmlspecialchars( $text );
 				$texts[$language_code] = $text;
 			}
 
@@ -3107,7 +3100,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars($name);
+				$name = htmlspecialchars( $name );
 				$names[$language_code] = $name;
 			}
 
@@ -3234,7 +3227,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars($name);
+				$name = htmlspecialchars( $name );
 				$names[$language_code] = $name;
 			}
 
@@ -3339,7 +3332,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars($name);
+				$name = htmlspecialchars( $name );
 				$names[$language_code] = $name;
 			}
 
@@ -3445,7 +3438,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars($name);
+				$name = htmlspecialchars( $name );
 				$names[$language_code] = $name;
 			}
 
@@ -3545,7 +3538,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars($name);
+				$name = htmlspecialchars( $name );
 				$names[$language_code] = $name;
 			}
 
@@ -3651,7 +3644,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars($name);
+				$name = htmlspecialchars( $name );
 				$names[$language_code] = $name;
 			}
 

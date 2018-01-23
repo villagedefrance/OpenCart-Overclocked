@@ -24,18 +24,19 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Cell_DataType
-{
+class PHPExcel_Cell_DataType {
     /* Data types */
-    const TYPE_STRING2  = 'str';
-    const TYPE_STRING   = 's';
-    const TYPE_FORMULA  = 'f';
-    const TYPE_NUMERIC  = 'n';
-    const TYPE_BOOL     = 'b';
-    const TYPE_NULL     = 'null';
-    const TYPE_INLINE   = 'inlineStr';
-    const TYPE_ERROR    = 'e';
+    const TYPE_STRING2 = 'str';
+    const TYPE_STRING = 's';
+    const TYPE_FORMULA = 'f';
+    const TYPE_NUMERIC = 'n';
+    const TYPE_BOOL = 'b';
+    const TYPE_NULL = 'null';
+    const TYPE_INLINE = 'inlineStr';
+    const TYPE_ERROR = 'e';
 
     /**
      * List of error codes
@@ -57,8 +58,7 @@ class PHPExcel_Cell_DataType
      *
      * @return array
      */
-    public static function getErrorCodes()
-    {
+    public static function getErrorCodes() {
         return self::$errorCodes;
     }
 
@@ -69,8 +69,7 @@ class PHPExcel_Cell_DataType
      * @param       mixed  $pValue
      * @return      string
      */
-    public static function dataTypeForValue($pValue = null)
-    {
+    public static function dataTypeForValue($pValue = null) {
         return PHPExcel_Cell_DefaultValueBinder::dataTypeForValue($pValue);
     }
 
@@ -80,10 +79,8 @@ class PHPExcel_Cell_DataType
      * @param  mixed  Value to sanitize to an Excel string
      * @return mixed  Sanitized value
      */
-    public static function checkString($pValue = null)
-    {
+    public static function checkString($pValue = null) {
         if ($pValue instanceof PHPExcel_RichText) {
-            // TODO: Sanitize Rich-Text string (max. character count is 32,767)
             return $pValue;
         }
 
@@ -102,8 +99,7 @@ class PHPExcel_Cell_DataType
      * @param  mixed   Value to sanitize to an Excel error code
      * @return string  Sanitized value
      */
-    public static function checkErrorCode($pValue = null)
-    {
+    public static function checkErrorCode($pValue = null) {
         $pValue = (string) $pValue;
 
         if (!array_key_exists($pValue, self::$errorCodes)) {

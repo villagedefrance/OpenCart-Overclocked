@@ -24,21 +24,22 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Calculation_Function
-{
+class PHPExcel_Calculation_Function {
     /* Function categories */
-    const CATEGORY_CUBE                 = 'Cube';
-    const CATEGORY_DATABASE             = 'Database';
-    const CATEGORY_DATE_AND_TIME        = 'Date and Time';
-    const CATEGORY_ENGINEERING          = 'Engineering';
-    const CATEGORY_FINANCIAL            = 'Financial';
-    const CATEGORY_INFORMATION          = 'Information';
-    const CATEGORY_LOGICAL              = 'Logical';
+    const CATEGORY_CUBE = 'Cube';
+    const CATEGORY_DATABASE = 'Database';
+    const CATEGORY_DATE_AND_TIME = 'Date and Time';
+    const CATEGORY_ENGINEERING = 'Engineering';
+    const CATEGORY_FINANCIAL = 'Financial';
+    const CATEGORY_INFORMATION = 'Information';
+    const CATEGORY_LOGICAL = 'Logical';
     const CATEGORY_LOOKUP_AND_REFERENCE = 'Lookup and Reference';
-    const CATEGORY_MATH_AND_TRIG        = 'Math and Trig';
-    const CATEGORY_STATISTICAL          = 'Statistical';
-    const CATEGORY_TEXT_AND_DATA        = 'Text and Data';
+    const CATEGORY_MATH_AND_TRIG = 'Math and Trig';
+    const CATEGORY_STATISTICAL = 'Statistical';
+    const CATEGORY_TEXT_AND_DATA = 'Text and Data';
 
     /**
      * Category (represented by CATEGORY_*)
@@ -69,12 +70,11 @@ class PHPExcel_Calculation_Function
      * @param     string        $pPHPExcelName    PHPExcel function mapping
      * @throws     PHPExcel_Calculation_Exception
      */
-    public function __construct($pCategory = null, $pExcelName = null, $pPHPExcelName = null)
-    {
+    public function __construct($pCategory = null, $pExcelName = null, $pPHPExcelName = null) {
         if (($pCategory !== null) && ($pExcelName !== null) && ($pPHPExcelName !== null)) {
             // Initialise values
-            $this->category     = $pCategory;
-            $this->excelName    = $pExcelName;
+            $this->category = $pCategory;
+            $this->excelName = $pExcelName;
             $this->phpExcelName = $pPHPExcelName;
         } else {
             throw new PHPExcel_Calculation_Exception("Invalid parameters passed.");
@@ -86,8 +86,7 @@ class PHPExcel_Calculation_Function
      *
      * @return string
      */
-    public function getCategory()
-    {
+    public function getCategory() {
         return $this->category;
     }
 
@@ -97,8 +96,7 @@ class PHPExcel_Calculation_Function
      * @param     string        $value
      * @throws     PHPExcel_Calculation_Exception
      */
-    public function setCategory($value = null)
-    {
+    public function setCategory($value = null) {
         if (!is_null($value)) {
             $this->category = $value;
         } else {
@@ -111,8 +109,7 @@ class PHPExcel_Calculation_Function
      *
      * @return string
      */
-    public function getExcelName()
-    {
+    public function getExcelName() {
         return $this->excelName;
     }
 
@@ -121,8 +118,7 @@ class PHPExcel_Calculation_Function
      *
      * @param string    $value
      */
-    public function setExcelName($value)
-    {
+    public function setExcelName($value) {
         $this->excelName = $value;
     }
 
@@ -131,8 +127,7 @@ class PHPExcel_Calculation_Function
      *
      * @return string
      */
-    public function getPHPExcelName()
-    {
+    public function getPHPExcelName() {
         return $this->phpExcelName;
     }
 
@@ -141,8 +136,7 @@ class PHPExcel_Calculation_Function
      *
      * @param string    $value
      */
-    public function setPHPExcelName($value)
-    {
+    public function setPHPExcelName($value) {
         $this->phpExcelName = $value;
     }
 }
