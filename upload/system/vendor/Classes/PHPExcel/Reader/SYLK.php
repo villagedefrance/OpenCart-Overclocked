@@ -33,9 +33,10 @@ if (!defined('PHPEXCEL_ROOT')) {
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader
-{
+class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader {
     /**
      * Input encoding
      *
@@ -67,8 +68,7 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
     /**
      * Create a new PHPExcel_Reader_SYLK
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->readFilter = new PHPExcel_Reader_DefaultReadFilter();
     }
 
@@ -77,8 +77,7 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
      *
      * @return boolean
      */
-    protected function isValidFormat()
-    {
+    protected function isValidFormat() {
         // Read sample data (first 2 KB will do)
         $data = fread($this->fileHandle, 2048);
 
@@ -102,8 +101,7 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
      *
      * @param string $pValue Input encoding
      */
-    public function setInputEncoding($pValue = 'ANSI')
-    {
+    public function setInputEncoding($pValue = 'ANSI') {
         $this->inputEncoding = $pValue;
         return $this;
     }
@@ -113,8 +111,7 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
      *
      * @return string
      */
-    public function getInputEncoding()
-    {
+    public function getInputEncoding() {
         return $this->inputEncoding;
     }
 
@@ -124,14 +121,15 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
      * @param   string     $pFilename
      * @throws   PHPExcel_Reader_Exception
      */
-    public function listWorksheetInfo($pFilename)
-    {
+    public function listWorksheetInfo($pFilename) {
         // Open file
         $this->openFile($pFilename);
+
         if (!$this->isValidFormat()) {
             fclose($this->fileHandle);
             throw new PHPExcel_Reader_Exception($pFilename . " is an Invalid Spreadsheet file.");
         }
+
         $fileHandle = $this->fileHandle;
         rewind($fileHandle);
 
@@ -194,8 +192,7 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
      * @return     PHPExcel
      * @throws     PHPExcel_Reader_Exception
      */
-    public function load($pFilename)
-    {
+    public function load($pFilename) {
         // Create new PHPExcel
         $objPHPExcel = new PHPExcel();
 
@@ -211,8 +208,7 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
      * @return     PHPExcel
      * @throws     PHPExcel_Reader_Exception
      */
-    public function loadIntoExisting($pFilename, PHPExcel $objPHPExcel)
-    {
+    public function loadIntoExisting($pFilename, PHPExcel $objPHPExcel) {
         // Open file
         $this->openFile($pFilename);
         if (!$this->isValidFormat()) {
@@ -352,11 +348,13 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
                             break;
                     }
                 }
+
                 $columnLetter = PHPExcel_Cell::stringFromColumnIndex($column-1);
                 $cellData = PHPExcel_Calculation::unwrapResult($cellData);
 
                 // Set cell value
                 $objPHPExcel->getActiveSheet()->getCell($columnLetter.$row)->setValue(($hasCalculatedValue) ? $cellDataFormula : $cellData);
+
                 if ($hasCalculatedValue) {
                     $cellData = PHPExcel_Calculation::unwrapResult($cellData);
                     $objPHPExcel->getActiveSheet()->getCell($columnLetter.$row)->setCalculatedValue($cellData);
@@ -365,6 +363,7 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
             } elseif ($dataType == 'F') {
                 $formatStyle = $columnWidth = $styleSettings = '';
                 $styleData = array();
+
                 foreach ($rowData as $rowDatum) {
                     switch ($rowDatum{0}) {
                         case 'C':
@@ -408,16 +407,19 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
                             break;
                     }
                 }
+
                 if (($formatStyle > '') && ($column > '') && ($row > '')) {
                     $columnLetter = PHPExcel_Cell::stringFromColumnIndex($column-1);
                     if (isset($this->formats[$formatStyle])) {
                         $objPHPExcel->getActiveSheet()->getStyle($columnLetter.$row)->applyFromArray($this->formats[$formatStyle]);
                     }
                 }
+
                 if ((!empty($styleData)) && ($column > '') && ($row > '')) {
                     $columnLetter = PHPExcel_Cell::stringFromColumnIndex($column-1);
                     $objPHPExcel->getActiveSheet()->getStyle($columnLetter.$row)->applyFromArray($styleData);
                 }
+
                 if ($columnWidth > '') {
                     if ($startCol == $endCol) {
                         $startCol = PHPExcel_Cell::stringFromColumnIndex($startCol-1);
@@ -446,10 +448,8 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
                 }
             }
         }
-
         // Close file
         fclose($fileHandle);
-
         // Return
         return $objPHPExcel;
     }
@@ -459,8 +459,7 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
      *
      * @return int
      */
-    public function getSheetIndex()
-    {
+    public function getSheetIndex() {
         return $this->sheetIndex;
     }
 
@@ -470,8 +469,7 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
      * @param    int        $pValue        Sheet index
      * @return PHPExcel_Reader_SYLK
      */
-    public function setSheetIndex($pValue = 0)
-    {
+    public function setSheetIndex($pValue = 0) {
         $this->sheetIndex = $pValue;
         return $this;
     }

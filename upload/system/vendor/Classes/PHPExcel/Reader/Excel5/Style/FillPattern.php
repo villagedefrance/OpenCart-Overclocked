@@ -1,7 +1,12 @@
 <?php
 
-class PHPExcel_Reader_Excel5_Style_FillPattern
-{
+/**
+ * PHPExcel_FillPattern
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
+ */
+class PHPExcel_Reader_Excel5_Style_FillPattern {
+
     protected static $map = array(
         0x00 => PHPExcel_Style_Fill::FILL_NONE,
         0x01 => PHPExcel_Style_Fill::FILL_SOLID,
@@ -31,11 +36,11 @@ class PHPExcel_Reader_Excel5_Style_FillPattern
      * @param int $index
      * @return string
      */
-    public static function lookup($index)
-    {
+    public static function lookup($index) {
         if (isset(self::$map[$index])) {
             return self::$map[$index];
         }
+
         return PHPExcel_Style_Fill::FILL_NONE;
     }
 }

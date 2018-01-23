@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Reader_Excel5_RC4
-{
+class PHPExcel_Reader_Excel5_RC4 {
     // Context
     protected $s = array();
     protected $i = 0;
@@ -37,8 +38,7 @@ class PHPExcel_Reader_Excel5_RC4
      *
      * @param string $key Encryption key/passphrase
      */
-    public function __construct($key)
-    {
+    public function __construct($key) {
         $len = strlen($key);
 
         for ($this->i = 0; $this->i < 256; $this->i++) {
@@ -46,12 +46,14 @@ class PHPExcel_Reader_Excel5_RC4
         }
 
         $this->j = 0;
+
         for ($this->i = 0; $this->i < 256; $this->i++) {
             $this->j = ($this->j + $this->s[$this->i] + ord($key[$this->i % $len])) % 256;
             $t = $this->s[$this->i];
             $this->s[$this->i] = $this->s[$this->j];
             $this->s[$this->j] = $t;
         }
+
         $this->i = $this->j = 0;
     }
 
@@ -62,9 +64,9 @@ class PHPExcel_Reader_Excel5_RC4
      *
      * @return string
      */
-    public function RC4($data)
-    {
+    public function RC4($data) {
         $len = strlen($data);
+
         for ($c = 0; $c < $len; $c++) {
             $this->i = ($this->i + 1) % 256;
             $this->j = ($this->j + $this->s[$this->i]) % 256;
@@ -76,6 +78,7 @@ class PHPExcel_Reader_Excel5_RC4
 
             $data[$c] = chr(ord($data[$c]) ^ $this->s[$t]);
         }
+
         return $data;
     }
 }

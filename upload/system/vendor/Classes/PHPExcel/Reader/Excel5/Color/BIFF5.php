@@ -1,7 +1,12 @@
 <?php
 
-class PHPExcel_Reader_Excel5_Color_BIFF5
-{
+/**
+ * PHPExcel_BIFF5
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
+ */
+class PHPExcel_Reader_Excel5_Color_BIFF5 {
+
     protected static $map = array(
         0x08 => '000000',
         0x09 => 'FFFFFF',
@@ -67,11 +72,11 @@ class PHPExcel_Reader_Excel5_Color_BIFF5
      * @param int $color
      * @return array
      */
-    public static function lookup($color)
-    {
+    public static function lookup($color) {
         if (isset(self::$map[$color])) {
             return array('rgb' => self::$map[$color]);
         }
+
         return array('rgb' => '000000');
     }
 }

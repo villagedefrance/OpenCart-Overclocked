@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Reader_Exception extends PHPExcel_Exception
-{
+class PHPExcel_Reader_Exception extends PHPExcel_Exception {
     /**
      * Error handler callback
      *
@@ -36,8 +37,7 @@ class PHPExcel_Reader_Exception extends PHPExcel_Exception
      * @param mixed $line
      * @param mixed $context
      */
-    public static function errorHandlerCallback($code, $string, $file, $line, $context)
-    {
+    public static function errorHandlerCallback($code, $string, $file, $line, $context) {
         $e = new self($string, $code);
         $e->line = $line;
         $e->file = $file;

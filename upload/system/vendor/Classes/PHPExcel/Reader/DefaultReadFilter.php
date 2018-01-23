@@ -33,9 +33,10 @@ if (!defined('PHPEXCEL_ROOT')) {
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Reader_DefaultReadFilter implements PHPExcel_Reader_IReadFilter
-{
+class PHPExcel_Reader_DefaultReadFilter implements PHPExcel_Reader_IReadFilter {
     /**
      * Should this cell be read?
      *
@@ -44,8 +45,7 @@ class PHPExcel_Reader_DefaultReadFilter implements PHPExcel_Reader_IReadFilter
      * @param    $worksheetName    Optional worksheet name
      * @return   boolean
      */
-    public function readCell($column, $row, $worksheetName = '')
-    {
+    public function readCell($column, $row, $worksheetName = '') {
         return true;
     }
 }

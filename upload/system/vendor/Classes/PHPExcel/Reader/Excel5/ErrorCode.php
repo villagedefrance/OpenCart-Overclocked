@@ -1,7 +1,11 @@
 <?php
 
-class PHPExcel_Reader_Excel5_ErrorCode
-{
+/**
+ * PHPExcel_ErrorCode
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
+ */
+class PHPExcel_Reader_Excel5_ErrorCode {
     protected static $map = array(
         0x00 => '#NULL!',
         0x07 => '#DIV/0!',
@@ -18,11 +22,11 @@ class PHPExcel_Reader_Excel5_ErrorCode
      * @param int $code
      * @return string
      */
-    public static function lookup($code)
-    {
+    public static function lookup($code) {
         if (isset(self::$map[$code])) {
             return self::$map[$code];
         }
+
         return false;
     }
 }
