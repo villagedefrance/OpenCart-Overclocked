@@ -922,10 +922,10 @@ a.button-form, .list a.button-form, a.button-form-install, .list a.button-form-i
 	font-weight: bold;
 	text-decoration: none;
 	text-shadow: 0 0 1px rgba(252, 252, 252, 0.05);
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	-khtml-border-radius: 2px;
-	border-radius: 2px;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	-khtml-border-radius: 1px;
+	border-radius: 1px;
 }
 input.button-form, input.button-form-install, input.button-form-edit, input.button-form-uninstall {
 	height: 22px;
@@ -935,10 +935,10 @@ input.button-form, input.button-form-install, input.button-form-edit, input.butt
 	font-weight: bold;
 	text-decoration: none;
 	text-shadow: 0 0 1px rgba(252, 252, 252, 0.05);
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	-khtml-border-radius: 2px;
-	border-radius: 2px;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	-khtml-border-radius: 1px;
+	border-radius: 1px;
 }
 /* Button Form Blue */
 a.button-form, .list a.button-form, input.button-form, a.button-form-edit, .list a.button-form-edit, input.button-form-edit {

@@ -31,16 +31,16 @@
     </div>
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
       <div id="tab-list">
-        <table class="vqm-list">
+        <table class="list">
           <thead>
             <tr>
-              <th class="left"><?php echo $column_file_name; ?></th>
-              <th class="center"><?php echo $column_version; ?></th>
-              <th class="center"><?php echo $column_vqmver; ?></th>
-              <th class="center"><?php echo $column_author; ?></th>
-              <th class="center"><?php echo $column_status; ?></th>
-              <th class="center"><?php echo $column_action; ?></th>
-              <th class="center"><?php echo $column_delete; ?></th>
+              <td class="left"><?php echo $column_file_name; ?></td>
+              <td class="center"><?php echo $column_version; ?></td>
+              <td class="center"><?php echo $column_vqmver; ?></td>
+              <td class="center"><?php echo $column_author; ?></td>
+              <td class="center"><?php echo $column_status; ?></td>
+              <td class="center"><?php echo $column_action; ?></td>
+              <td class="center"><?php echo $column_delete; ?></td>
             </tr>
           </thead>
           <tbody>
@@ -126,10 +126,10 @@
           <tr>
             <td><textarea rows="16" cols="160" id="error-log"><?php echo $log; ?></textarea>
               <div class="right">
-                <?php if ($ziparchive) { ?>
-                  <a href="<?php echo $download_log; ?>" class="button-save"><?php echo $button_download_log; ?></a>
-                <?php } ?>
-                  <a href="<?php echo $clear_log; ?>" class="button-repair"><?php echo $button_clear; ?></a>
+              <?php if ($ziparchive) { ?>
+                <a href="<?php echo $download_log; ?>" class="button-save"><?php echo $button_download_log; ?></a>
+              <?php } ?>
+                <a href="<?php echo $clear_log; ?>" class="button-repair"><?php echo $button_clear; ?></a>
               </div>
             </td>
           </tr>
