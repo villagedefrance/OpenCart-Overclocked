@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Worksheet_RowDimension extends PHPExcel_Worksheet_Dimension
-{
+class PHPExcel_Worksheet_RowDimension extends PHPExcel_Worksheet_Dimension {
     /**
      * Row index
      *
@@ -55,11 +56,9 @@ class PHPExcel_Worksheet_RowDimension extends PHPExcel_Worksheet_Dimension
      *
      * @param int $pIndex Numeric row index
      */
-    public function __construct($pIndex = 0)
-    {
+    public function __construct($pIndex = 0) {
         // Initialise values
         $this->rowIndex = $pIndex;
-
         // set dimension as unformatted by default
         parent::__construct(null);
     }
@@ -69,8 +68,7 @@ class PHPExcel_Worksheet_RowDimension extends PHPExcel_Worksheet_Dimension
      *
      * @return int
      */
-    public function getRowIndex()
-    {
+    public function getRowIndex() {
         return $this->rowIndex;
     }
 
@@ -80,9 +78,9 @@ class PHPExcel_Worksheet_RowDimension extends PHPExcel_Worksheet_Dimension
      * @param int $pValue
      * @return PHPExcel_Worksheet_RowDimension
      */
-    public function setRowIndex($pValue)
-    {
+    public function setRowIndex($pValue) {
         $this->rowIndex = $pValue;
+
         return $this;
     }
 
@@ -91,8 +89,7 @@ class PHPExcel_Worksheet_RowDimension extends PHPExcel_Worksheet_Dimension
      *
      * @return double
      */
-    public function getRowHeight()
-    {
+    public function getRowHeight() {
         return $this->height;
     }
 
@@ -102,9 +99,9 @@ class PHPExcel_Worksheet_RowDimension extends PHPExcel_Worksheet_Dimension
      * @param double $pValue
      * @return PHPExcel_Worksheet_RowDimension
      */
-    public function setRowHeight($pValue = -1)
-    {
+    public function setRowHeight($pValue = -1) {
         $this->height = $pValue;
+
         return $this;
     }
 
@@ -113,8 +110,7 @@ class PHPExcel_Worksheet_RowDimension extends PHPExcel_Worksheet_Dimension
      *
      * @return bool
      */
-    public function getZeroHeight()
-    {
+    public function getZeroHeight() {
         return $this->zeroHeight;
     }
 
@@ -124,9 +120,9 @@ class PHPExcel_Worksheet_RowDimension extends PHPExcel_Worksheet_Dimension
      * @param bool $pValue
      * @return PHPExcel_Worksheet_RowDimension
      */
-    public function setZeroHeight($pValue = false)
-    {
+    public function setZeroHeight($pValue = false) {
         $this->zeroHeight = $pValue;
+
         return $this;
     }
 }

@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Worksheet_RowIterator implements Iterator
-{
+class PHPExcel_Worksheet_RowIterator implements Iterator {
     /**
      * PHPExcel_Worksheet to iterate
      *
@@ -48,14 +49,12 @@ class PHPExcel_Worksheet_RowIterator implements Iterator
      */
     private $startRow = 1;
 
-
     /**
      * End position
      *
      * @var int
      */
     private $endRow = 1;
-
 
     /**
      * Create a new row iterator
@@ -64,8 +63,7 @@ class PHPExcel_Worksheet_RowIterator implements Iterator
      * @param    integer                $startRow    The row number at which to start iterating
      * @param    integer                $endRow        Optionally, the row number at which to stop iterating
      */
-    public function __construct(PHPExcel_Worksheet $subject, $startRow = 1, $endRow = null)
-    {
+    public function __construct(PHPExcel_Worksheet $subject, $startRow = 1, $endRow = null) {
         // Set subject
         $this->subject = $subject;
         $this->resetEnd($endRow);
@@ -75,8 +73,7 @@ class PHPExcel_Worksheet_RowIterator implements Iterator
     /**
      * Destructor
      */
-    public function __destruct()
-    {
+    public function __destruct() {
         unset($this->subject);
     }
 
@@ -87,16 +84,17 @@ class PHPExcel_Worksheet_RowIterator implements Iterator
      * @return PHPExcel_Worksheet_RowIterator
      * @throws PHPExcel_Exception
      */
-    public function resetStart($startRow = 1)
-    {
+    public function resetStart($startRow = 1) {
         if ($startRow > $this->subject->getHighestRow()) {
             throw new PHPExcel_Exception("Start row ({$startRow}) is beyond highest row ({$this->subject->getHighestRow()})");
         }
 
         $this->startRow = $startRow;
+
         if ($this->endRow < $this->startRow) {
             $this->endRow = $this->startRow;
         }
+
         $this->seek($startRow);
 
         return $this;
@@ -108,8 +106,7 @@ class PHPExcel_Worksheet_RowIterator implements Iterator
      * @param integer    $endRow    The row number at which to stop iterating
      * @return PHPExcel_Worksheet_RowIterator
      */
-    public function resetEnd($endRow = null)
-    {
+    public function resetEnd($endRow = null) {
         $this->endRow = ($endRow) ? $endRow : $this->subject->getHighestRow();
 
         return $this;
@@ -122,11 +119,11 @@ class PHPExcel_Worksheet_RowIterator implements Iterator
      * @return PHPExcel_Worksheet_RowIterator
      * @throws PHPExcel_Exception
      */
-    public function seek($row = 1)
-    {
+    public function seek($row = 1) {
         if (($row < $this->startRow) || ($row > $this->endRow)) {
             throw new PHPExcel_Exception("Row $row is out of range ({$this->startRow} - {$this->endRow})");
         }
+
         $this->position = $row;
 
         return $this;
@@ -135,8 +132,7 @@ class PHPExcel_Worksheet_RowIterator implements Iterator
     /**
      * Rewind the iterator to the starting row
      */
-    public function rewind()
-    {
+    public function rewind() {
         $this->position = $this->startRow;
     }
 
@@ -145,8 +141,7 @@ class PHPExcel_Worksheet_RowIterator implements Iterator
      *
      * @return PHPExcel_Worksheet_Row
      */
-    public function current()
-    {
+    public function current() {
         return new PHPExcel_Worksheet_Row($this->subject, $this->position);
     }
 
@@ -155,24 +150,21 @@ class PHPExcel_Worksheet_RowIterator implements Iterator
      *
      * @return int
      */
-    public function key()
-    {
+    public function key() {
         return $this->position;
     }
 
     /**
      * Set the iterator to its next value
      */
-    public function next()
-    {
+    public function next() {
         ++$this->position;
     }
 
     /**
      * Set the iterator to its previous value
      */
-    public function prev()
-    {
+    public function prev() {
         if ($this->position <= $this->startRow) {
             throw new PHPExcel_Exception("Row is already at the beginning of range ({$this->startRow} - {$this->endRow})");
         }
@@ -185,8 +177,7 @@ class PHPExcel_Worksheet_RowIterator implements Iterator
      *
      * @return boolean
      */
-    public function valid()
-    {
+    public function valid() {
         return $this->position <= $this->endRow;
     }
 }

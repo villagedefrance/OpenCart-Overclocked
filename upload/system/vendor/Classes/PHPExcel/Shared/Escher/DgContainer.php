@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Shared_Escher_DgContainer
-{
+class PHPExcel_Shared_Escher_DgContainer {
     /**
      * Drawing index, 1-based.
      *
@@ -43,33 +44,27 @@ class PHPExcel_Shared_Escher_DgContainer
 
     private $spgrContainer = null;
 
-    public function getDgId()
-    {
+    public function getDgId() {
         return $this->dgId;
     }
 
-    public function setDgId($value)
-    {
+    public function setDgId($value) {
         $this->dgId = $value;
     }
 
-    public function getLastSpId()
-    {
+    public function getLastSpId() {
         return $this->lastSpId;
     }
 
-    public function setLastSpId($value)
-    {
+    public function setLastSpId($value) {
         $this->lastSpId = $value;
     }
 
-    public function getSpgrContainer()
-    {
+    public function getSpgrContainer() {
         return $this->spgrContainer;
     }
 
-    public function setSpgrContainer($spgrContainer)
-    {
+    public function setSpgrContainer($spgrContainer) {
         return $this->spgrContainer = $spgrContainer;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * A PHP class to provide the basic functionality to create a pdf document without
  * any requirement for additional modules.
@@ -14,13 +15,13 @@
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license Public Domain http://creativecommons.org/licenses/publicdomain/
  * @package Cpdf
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
 use FontLib\Font;
 use FontLib\BinaryStream;
 
-
 class Cpdf {
-
     /**
      * @var integer The current number of pdf objects in the document
      */

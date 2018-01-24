@@ -30,9 +30,10 @@ require_once PHPEXCEL_ROOT . 'PHPExcel/Shared/trend/polynomialBestFitClass.php';
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class trendClass
-{
+class trendClass {
     const TREND_LINEAR            = 'Linear';
     const TREND_LOGARITHMIC       = 'Logarithmic';
     const TREND_EXPONENTIAL       = 'Exponential';
@@ -77,9 +78,7 @@ class trendClass
      **/
     private static $trendCache = array();
 
-
-    public static function calculate($trendType = self::TREND_BEST_FIT, $yValues, $xValues = array(), $const = true)
-    {
+    public static function calculate($trendType = self::TREND_BEST_FIT, $yValues, $xValues = array(), $const = true) {
         //    Calculate number of points in each dataset
         $nY = count($yValues);
         $nX = count($xValues);
@@ -138,7 +137,9 @@ class trendClass
                 }
                 //    Determine which of our trend lines is the best fit, and then we return the instance of that trend class
                 arsort($bestFitValue);
+
                 $bestFitType = key($bestFitValue);
+
                 return $bestFit[$bestFitType];
             default:
                 return false;

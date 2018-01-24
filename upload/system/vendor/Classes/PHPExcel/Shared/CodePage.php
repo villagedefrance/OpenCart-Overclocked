@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Shared_CodePage
-{
+class PHPExcel_Shared_CodePage {
     /**
      * Convert Microsoft Code Page Identifier to Code Page Name which iconv
      * and mbstring understands
@@ -35,8 +36,7 @@ class PHPExcel_Shared_CodePage
      * @return string Code Page Name
      * @throws PHPExcel_Exception
      */
-    public static function NumberToName($codePage = 1252)
-    {
+    public static function NumberToName($codePage = 1252) {
         switch ($codePage) {
             case 367:
                 return 'ASCII';    //    ASCII
@@ -151,6 +151,7 @@ class PHPExcel_Shared_CodePage
             case 65001:
                 return 'UTF-8';    //    Unicode (UTF-8)
         }
+
         throw new PHPExcel_Exception('Unknown codepage: ' . $codePage);
     }
 }

@@ -16,9 +16,10 @@
  *    @author  Paul Meagher
  *    @license PHP v3.0
  *    @version 1.1
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class SingularValueDecomposition
-{
+class SingularValueDecomposition {
     /**
      *    Internal storage of U.
      *    @var array
@@ -57,17 +58,16 @@ class SingularValueDecomposition
      *    @param $A Rectangular matrix
      *    @return Structure to access U, S and V.
      */
-    public function __construct($Arg)
-    {
+    public function __construct($Arg) {
         // Initialize.
         $A = $Arg->getArrayCopy();
         $this->m = $Arg->getRowDimension();
         $this->n = $Arg->getColumnDimension();
-        $nu      = min($this->m, $this->n);
-        $e       = array();
-        $work    = array();
-        $wantu   = true;
-        $wantv   = true;
+        $nu = min($this->m, $this->n);
+        $e = array();
+        $work = array();
+        $wantu = true;
+        $wantv = true;
         $nct = min($this->m - 1, $this->n);
         $nrt = max(0, min($this->n - 2, $this->m));
 
@@ -425,9 +425,7 @@ class SingularValueDecomposition
                     break;
             } // end switch
         } // end while
-
     } // end constructor
-
 
     /**
      *    Return the left singular vectors
@@ -435,11 +433,9 @@ class SingularValueDecomposition
      *    @access public
      *    @return U
      */
-    public function getU()
-    {
+    public function getU() {
         return new Matrix($this->U, $this->m, min($this->m + 1, $this->n));
     }
-
 
     /**
      *    Return the right singular vectors
@@ -447,11 +443,9 @@ class SingularValueDecomposition
      *    @access public
      *    @return V
      */
-    public function getV()
-    {
+    public function getV() {
         return new Matrix($this->V);
     }
-
 
     /**
      *    Return the one-dimensional array of singular values
@@ -459,11 +453,9 @@ class SingularValueDecomposition
      *    @access public
      *    @return diagonal of S.
      */
-    public function getSingularValues()
-    {
+    public function getSingularValues() {
         return $this->s;
     }
-
 
     /**
      *    Return the diagonal matrix of singular values
@@ -471,17 +463,16 @@ class SingularValueDecomposition
      *    @access public
      *    @return S
      */
-    public function getS()
-    {
+    public function getS() {
         for ($i = 0; $i < $this->n; ++$i) {
             for ($j = 0; $j < $this->n; ++$j) {
                 $S[$i][$j] = 0.0;
             }
             $S[$i][$i] = $this->s[$i];
         }
+
         return new Matrix($S);
     }
-
 
     /**
      *    Two norm
@@ -489,11 +480,9 @@ class SingularValueDecomposition
      *    @access public
      *    @return max(S)
      */
-    public function norm2()
-    {
+    public function norm2() {
         return $this->s[0];
     }
-
 
     /**
      *    Two norm condition number
@@ -501,11 +490,9 @@ class SingularValueDecomposition
      *    @access public
      *    @return max(S)/min(S)
      */
-    public function cond()
-    {
+    public function cond() {
         return $this->s[0] / $this->s[min($this->m, $this->n) - 1];
     }
-
 
     /**
      *    Effective numerical matrix rank
@@ -513,16 +500,17 @@ class SingularValueDecomposition
      *    @access public
      *    @return Number of nonnegligible singular values.
      */
-    public function rank()
-    {
+    public function rank() {
         $eps = pow(2.0, -52.0);
         $tol = max($this->m, $this->n) * $this->s[0] * $eps;
         $r = 0;
+
         for ($i = 0; $i < count($this->s); ++$i) {
             if ($this->s[$i] > $tol) {
                 ++$r;
             }
         }
+
         return $r;
     }
 }

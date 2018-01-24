@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE
-{
+class PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE {
     const BLIPTYPE_ERROR    = 0x00;
     const BLIPTYPE_UNKNOWN  = 0x01;
     const BLIPTYPE_EMF      = 0x02;
@@ -64,8 +65,7 @@ class PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE
      *
      * @param PHPExcel_Shared_Escher_DggContainer_BstoreContainer $parent
      */
-    public function setParent($parent)
-    {
+    public function setParent($parent) {
         $this->parent = $parent;
     }
 
@@ -74,8 +74,7 @@ class PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE
      *
      * @return PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE_Blip
      */
-    public function getBlip()
-    {
+    public function getBlip() {
         return $this->blip;
     }
 
@@ -84,8 +83,7 @@ class PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE
      *
      * @param PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE_Blip $blip
      */
-    public function setBlip($blip)
-    {
+    public function setBlip($blip) {
         $this->blip = $blip;
         $blip->setParent($this);
     }
@@ -95,8 +93,7 @@ class PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE
      *
      * @return int
      */
-    public function getBlipType()
-    {
+    public function getBlipType() {
         return $this->blipType;
     }
 
@@ -105,8 +102,7 @@ class PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE
      *
      * @param int
      */
-    public function setBlipType($blipType)
-    {
+    public function setBlipType($blipType) {
         $this->blipType = $blipType;
     }
 }

@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExcel_IComparable
-{
+class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExcel_IComparable {
     /* Border style */
     const BORDER_NONE             = 'none';
     const BORDER_DASHDOT          = 'dashDot';
@@ -74,8 +75,7 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
      *                                    Leave this value at default unless you understand exactly what
      *                                        its ramifications are
      */
-    public function __construct($isSupervisor = false, $isConditional = false)
-    {
+    public function __construct($isSupervisor = false, $isConditional = false) {
         // Supervisor?
         parent::__construct($isSupervisor);
 
@@ -95,8 +95,7 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
      * @param string $parentPropertyName
      * @return PHPExcel_Style_Border
      */
-    public function bindParent($parent, $parentPropertyName = null)
-    {
+    public function bindParent($parent, $parentPropertyName = null) {
         $this->parent = $parent;
         $this->parentPropertyName = $parentPropertyName;
         return $this;
@@ -109,8 +108,7 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
      * @return PHPExcel_Style_Border
      * @throws PHPExcel_Exception
      */
-    public function getSharedComponent()
-    {
+    public function getSharedComponent() {
         switch ($this->parentPropertyName) {
             case 'allBorders':
             case 'horizontal':
@@ -138,8 +136,7 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
      * @param array $array
      * @return array
      */
-    public function getStyleArray($array)
-    {
+    public function getStyleArray($array) {
         switch ($this->parentPropertyName) {
             case 'allBorders':
             case 'bottom':
@@ -154,6 +151,7 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
                 $key = strtolower('vertical');
                 break;
         }
+
         return $this->parent->getStyleArray(array($key => $array));
     }
 
@@ -175,8 +173,7 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
      * @throws    PHPExcel_Exception
      * @return PHPExcel_Style_Border
      */
-    public function applyFromArray($pStyles = null)
-    {
+    public function applyFromArray($pStyles = null) {
         if (is_array($pStyles)) {
             if ($this->isSupervisor) {
                 $this->getActiveSheet()->getStyle($this->getSelectedCells())->applyFromArray($this->getStyleArray($pStyles));
@@ -191,6 +188,7 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
         } else {
             throw new PHPExcel_Exception("Invalid style array passed.");
         }
+
         return $this;
     }
 
@@ -199,11 +197,11 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
      *
      * @return string
      */
-    public function getBorderStyle()
-    {
+    public function getBorderStyle() {
         if ($this->isSupervisor) {
             return $this->getSharedComponent()->getBorderStyle();
         }
+
         return $this->borderStyle;
     }
 
@@ -215,20 +213,20 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
      *                                and TRUE to PHPExcel_Style_Border::BORDER_MEDIUM
      * @return PHPExcel_Style_Border
      */
-    public function setBorderStyle($pValue = PHPExcel_Style_Border::BORDER_NONE)
-    {
-
+    public function setBorderStyle($pValue = PHPExcel_Style_Border::BORDER_NONE) {
         if (empty($pValue)) {
             $pValue = PHPExcel_Style_Border::BORDER_NONE;
         } elseif (is_bool($pValue) && $pValue) {
             $pValue = PHPExcel_Style_Border::BORDER_MEDIUM;
         }
+
         if ($this->isSupervisor) {
             $styleArray = $this->getStyleArray(array('style' => $pValue));
             $this->getActiveSheet()->getStyle($this->getSelectedCells())->applyFromArray($styleArray);
         } else {
             $this->borderStyle = $pValue;
         }
+
         return $this;
     }
 
@@ -237,8 +235,7 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
      *
      * @return PHPExcel_Style_Color
      */
-    public function getColor()
-    {
+    public function getColor() {
         return $this->color;
     }
 
@@ -249,8 +246,7 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
      * @throws    PHPExcel_Exception
      * @return PHPExcel_Style_Border
      */
-    public function setColor(PHPExcel_Style_Color $pValue = null)
-    {
+    public function setColor(PHPExcel_Style_Color $pValue = null) {
         // make sure parameter is a real color and not a supervisor
         $color = $pValue->getIsSupervisor() ? $pValue->getSharedComponent() : $pValue;
 
@@ -260,6 +256,7 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
         } else {
             $this->color = $color;
         }
+
         return $this;
     }
 
@@ -268,11 +265,11 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
      *
      * @return string    Hash code
      */
-    public function getHashCode()
-    {
+    public function getHashCode() {
         if ($this->isSupervisor) {
             return $this->getSharedComponent()->getHashCode();
         }
+
         return md5(
             $this->borderStyle .
             $this->color->getHashCode() .

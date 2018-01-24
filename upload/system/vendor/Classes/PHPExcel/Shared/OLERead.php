@@ -23,13 +23,13 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
 
-defined('IDENTIFIER_OLE') ||
-    define('IDENTIFIER_OLE', pack('CCCCCCCC', 0xd0, 0xcf, 0x11, 0xe0, 0xa1, 0xb1, 0x1a, 0xe1));
+defined('IDENTIFIER_OLE') || define('IDENTIFIER_OLE', pack('CCCCCCCC', 0xd0, 0xcf, 0x11, 0xe0, 0xa1, 0xb1, 0x1a, 0xe1));
 
-class PHPExcel_Shared_OLERead
-{
+class PHPExcel_Shared_OLERead {
     private $data = '';
 
     // OLE identifier
@@ -61,12 +61,9 @@ class PHPExcel_Shared_OLERead
     const START_BLOCK_POS                   = 0x74;
     const SIZE_POS                          = 0x78;
 
-
-
     public $wrkbook                         = null;
     public $summaryInformation              = null;
     public $documentSummaryInformation      = null;
-
 
     /**
      * Read the file
@@ -74,8 +71,7 @@ class PHPExcel_Shared_OLERead
      * @param $sFileName string Filename
      * @throws PHPExcel_Reader_Exception
      */
-    public function read($sFileName)
-    {
+    public function read($sFileName) {
         // Check if file exists and is readable
         if (!is_readable($sFileName)) {
             throw new PHPExcel_Reader_Exception("Could not open " . $sFileName . " for reading! File does not exist, or it is not readable.");
@@ -171,8 +167,7 @@ class PHPExcel_Shared_OLERead
      *
      * @return string
      */
-    public function getStream($stream)
-    {
+    public function getStream($stream) {
         if ($stream === null) {
             return null;
         }
@@ -220,8 +215,7 @@ class PHPExcel_Shared_OLERead
      * @param int $bl Sector ID where the stream starts
      * @return string Data for standard stream
      */
-    private function _readData($bl)
-    {
+    private function _readData($bl) {
         $block = $bl;
         $data = '';
 
@@ -236,12 +230,12 @@ class PHPExcel_Shared_OLERead
     /**
      * Read entries in the directory stream.
      */
-    private function readPropertySets()
-    {
+    private function readPropertySets() {
         $offset = 0;
 
         // loop through entires, each entry is 128 bytes
         $entryLen = strlen($this->entry);
+
         while ($offset < $entryLen) {
             // entry data (128 bytes)
             $d = substr($this->entry, $offset, self::PROPERTY_STORAGE_BLOCK_SIZE);
@@ -280,13 +274,11 @@ class PHPExcel_Shared_OLERead
 
             // Summary information
             if ($name == chr(5) . 'SummaryInformation') {
-//                echo 'Summary Information<br />';
                 $this->summaryInformation = count($this->props) - 1;
             }
 
             // Additional Document Summary information
             if ($name == chr(5) . 'DocumentSummaryInformation') {
-//                echo 'Document Summary Information<br />';
                 $this->documentSummaryInformation = count($this->props) - 1;
             }
 
@@ -301,18 +293,19 @@ class PHPExcel_Shared_OLERead
      * @param int $pos
      * @return int
      */
-    private static function getInt4d($data, $pos)
-    {
+    private static function getInt4d($data, $pos) {
         // FIX: represent numbers correctly on 64-bit system
         // http://sourceforge.net/tracker/index.php?func=detail&aid=1487372&group_id=99160&atid=623334
         // Hacked by Andreas Rehm 2006 to ensure correct result of the <<24 block on 32 and 64bit systems
         $_or_24 = ord($data[$pos + 3]);
+
         if ($_or_24 >= 128) {
             // negative number
             $_ord_24 = -abs((256 - $_or_24) << 24);
         } else {
             $_ord_24 = ($_or_24 & 127) << 24;
         }
+
         return ord($data[$pos]) | (ord($data[$pos + 1]) << 8) | (ord($data[$pos + 2]) << 16) | $_ord_24;
     }
 }

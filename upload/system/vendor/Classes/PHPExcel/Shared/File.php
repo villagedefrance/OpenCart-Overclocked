@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Shared_File
-{
+class PHPExcel_Shared_File {
     /*
      * Use Temp or File Upload Temp for temporary files
      *
@@ -35,28 +36,23 @@ class PHPExcel_Shared_File
      */
     protected static $useUploadTempDirectory = false;
 
-
     /**
      * Set the flag indicating whether the File Upload Temp directory should be used for temporary files
      *
      * @param     boolean    $useUploadTempDir        Use File Upload Temporary directory (true or false)
      */
-    public static function setUseUploadTempDirectory($useUploadTempDir = false)
-    {
+    public static function setUseUploadTempDirectory($useUploadTempDir = false) {
         self::$useUploadTempDirectory = (boolean) $useUploadTempDir;
     }
-
 
     /**
      * Get the flag indicating whether the File Upload Temp directory should be used for temporary files
      *
      * @return     boolean    Use File Upload Temporary directory (true or false)
      */
-    public static function getUseUploadTempDirectory()
-    {
+    public static function getUseUploadTempDirectory() {
         return self::$useUploadTempDirectory;
     }
-
 
     /**
       * Verify if a file exists
@@ -64,8 +60,7 @@ class PHPExcel_Shared_File
       * @param     string    $pFilename    Filename
       * @return bool
       */
-    public static function file_exists($pFilename)
-    {
+    public static function file_exists($pFilename) {
         // Sick construction, but it seems that
         // file_exists returns strange values when
         // doing the original file_exists on ZIP archives...
@@ -94,8 +89,7 @@ class PHPExcel_Shared_File
      * @param string $pFilename
      * @return string
      */
-    public static function realpath($pFilename)
-    {
+    public static function realpath($pFilename) {
         // Returnvalue
         $returnValue = '';
 
@@ -128,11 +122,10 @@ class PHPExcel_Shared_File
      *
      * @return string
      */
-    public static function sys_get_temp_dir()
-    {
+    public static function sys_get_temp_dir() {
         if (self::$useUploadTempDirectory) {
             //  use upload-directory when defined to allow running on environments having very restricted
-            //      open_basedir configs
+            //  open_basedir configs
             if (ini_get('upload_tmp_dir') !== false) {
                 if ($temp = ini_get('upload_tmp_dir')) {
                     if (file_exists($temp)) {
@@ -150,11 +143,13 @@ class PHPExcel_Shared_File
                     return realpath($temp);
                 }
             }
+
             if ($temp = getenv('TEMP')) {
                 if ((!empty($temp)) && (file_exists($temp))) {
                     return realpath($temp);
                 }
             }
+
             if ($temp = getenv('TMPDIR')) {
                 if ((!empty($temp)) && (file_exists($temp))) {
                     return realpath($temp);
@@ -164,6 +159,7 @@ class PHPExcel_Shared_File
             // trick for creating a file in system's temporary dir
             // without knowing the path of the system's temporary dir
             $temp = tempnam(__FILE__, '');
+
             if (file_exists($temp)) {
                 unlink($temp);
                 return realpath(dirname($temp));

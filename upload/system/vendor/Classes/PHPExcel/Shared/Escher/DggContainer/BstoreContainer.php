@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Shared_Escher_DggContainer_BstoreContainer
-{
+class PHPExcel_Shared_Escher_DggContainer_BstoreContainer {
     /**
      * BLIP Store Entries. Each of them holds one BLIP (Big Large Image or Picture)
      *
@@ -39,8 +40,7 @@ class PHPExcel_Shared_Escher_DggContainer_BstoreContainer
      *
      * @param PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE $BSE
      */
-    public function addBSE($BSE)
-    {
+    public function addBSE($BSE) {
         $this->BSECollection[] = $BSE;
         $BSE->setParent($this);
     }
@@ -50,8 +50,7 @@ class PHPExcel_Shared_Escher_DggContainer_BstoreContainer
      *
      * @return PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE[]
      */
-    public function getBSECollection()
-    {
+    public function getBSECollection() {
         return $this->BSECollection;
     }
 }

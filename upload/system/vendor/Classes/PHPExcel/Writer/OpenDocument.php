@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Writer_OpenDocument extends PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter
-{
+class PHPExcel_Writer_OpenDocument extends PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter {
     /**
      * Private writer parts
      *
@@ -46,8 +47,7 @@ class PHPExcel_Writer_OpenDocument extends PHPExcel_Writer_Abstract implements P
      *
      * @param PHPExcel $pPHPExcel
      */
-    public function __construct(PHPExcel $pPHPExcel = null)
-    {
+    public function __construct(PHPExcel $pPHPExcel = null) {
         $this->setPHPExcel($pPHPExcel);
 
         $writerPartsArray = array(
@@ -71,8 +71,7 @@ class PHPExcel_Writer_OpenDocument extends PHPExcel_Writer_Abstract implements P
      * @param  string  $pPartName  Writer part name
      * @return PHPExcel_Writer_Excel2007_WriterPart
      */
-    public function getWriterPart($pPartName = '')
-    {
+    public function getWriterPart($pPartName = '') {
         if ($pPartName != '' && isset($this->writerParts[strtolower($pPartName)])) {
             return $this->writerParts[strtolower($pPartName)];
         } else {
@@ -86,8 +85,7 @@ class PHPExcel_Writer_OpenDocument extends PHPExcel_Writer_Abstract implements P
      * @param  string  $pFilename
      * @throws PHPExcel_Writer_Exception
      */
-    public function save($pFilename = null)
-    {
+    public function save($pFilename = null) {
         if (!$this->spreadSheet) {
             throw new PHPExcel_Writer_Exception('PHPExcel object unassigned.');
         }
@@ -135,8 +133,7 @@ class PHPExcel_Writer_OpenDocument extends PHPExcel_Writer_Abstract implements P
      * @throws PHPExcel_Writer_Exception
      * @return ZipArchive
      */
-    private function createZip($pFilename)
-    {
+    private function createZip($pFilename) {
         // Create new ZIP file and open it for writing
         $zipClass = PHPExcel_Settings::getZipClass();
         $objZip = new $zipClass();
@@ -166,8 +163,7 @@ class PHPExcel_Writer_OpenDocument extends PHPExcel_Writer_Abstract implements P
      * @return PHPExcel
      * @throws PHPExcel_Writer_Exception
      */
-    public function getPHPExcel()
-    {
+    public function getPHPExcel() {
         if ($this->spreadSheet !== null) {
             return $this->spreadSheet;
         } else {
@@ -182,8 +178,7 @@ class PHPExcel_Writer_OpenDocument extends PHPExcel_Writer_Abstract implements P
      * @throws PHPExcel_Writer_Exception
      * @return PHPExcel_Writer_Excel2007
      */
-    public function setPHPExcel(PHPExcel $pPHPExcel = null)
-    {
+    public function setPHPExcel(PHPExcel $pPHPExcel = null) {
         $this->spreadSheet = $pPHPExcel;
         return $this;
     }

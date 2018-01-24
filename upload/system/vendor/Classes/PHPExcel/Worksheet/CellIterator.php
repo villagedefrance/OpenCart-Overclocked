@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-abstract class PHPExcel_Worksheet_CellIterator
-{
+abstract class PHPExcel_Worksheet_CellIterator {
     /**
      * PHPExcel_Worksheet to iterate
      *
@@ -51,8 +52,7 @@ abstract class PHPExcel_Worksheet_CellIterator
     /**
      * Destructor
      */
-    public function __destruct()
-    {
+    public function __destruct() {
         unset($this->subject);
     }
 
@@ -61,8 +61,7 @@ abstract class PHPExcel_Worksheet_CellIterator
      *
      * @return boolean
      */
-    public function getIterateOnlyExistingCells()
-    {
+    public function getIterateOnlyExistingCells() {
         return $this->onlyExistingCells;
     }
 
@@ -79,8 +78,7 @@ abstract class PHPExcel_Worksheet_CellIterator
      * @param    boolean        $value
      * @throws PHPExcel_Exception
      */
-    public function setIterateOnlyExistingCells($value = true)
-    {
+    public function setIterateOnlyExistingCells($value = true) {
         $this->onlyExistingCells = (boolean) $value;
 
         $this->adjustForExistingOnlyRange();

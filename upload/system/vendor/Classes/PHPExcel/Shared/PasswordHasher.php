@@ -23,8 +23,9 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-
 
 /**
  * PHPExcel_Shared_PasswordHasher
@@ -33,8 +34,7 @@
  * @package    PHPExcel_Shared
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Shared_PasswordHasher
-{
+class PHPExcel_Shared_PasswordHasher {
     /**
      * Create a password hash from a given string.
      *
@@ -45,13 +45,13 @@ class PHPExcel_Shared_PasswordHasher
      * @param     string    $pPassword    Password to hash
      * @return     string                Hashed password
      */
-    public static function hashPassword($pPassword = '')
-    {
+    public static function hashPassword($pPassword = '') {
         $password   = 0x0000;
         $charPos    = 1;       // char position
 
         // split the plain text password in its component characters
         $chars = preg_split('//', $pPassword, -1, PREG_SPLIT_NO_EMPTY);
+
         foreach ($chars as $char) {
             $value            = ord($char) << $charPos++;    // shifted ASCII value
             $rotated_bits    = $value >> 15;                // rotated bits beyond bit 15

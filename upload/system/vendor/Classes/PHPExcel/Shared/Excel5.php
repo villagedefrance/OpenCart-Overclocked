@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Shared_Excel5
-{
+class PHPExcel_Shared_Excel5 {
     /**
      * Get the width of a column in pixels. We use the relationship y = ceil(7x) where
      * x is the width in intrinsic Excel units (measuring width in number of normal characters)
@@ -36,8 +37,7 @@ class PHPExcel_Shared_Excel5
      * @param string $col The column
      * @return integer The width in pixels
     */
-    public static function sizeCol($sheet, $col = 'A')
-    {
+    public static function sizeCol($sheet, $col = 'A') {
         // default font of the workbook
         $font = $sheet->getParent()->getDefaultStyle()->getFont();
 
@@ -78,8 +78,7 @@ class PHPExcel_Shared_Excel5
      * @param integer $row The row index (1-based)
      * @return integer The width in pixels
      */
-    public static function sizeRow($sheet, $row = 1)
-    {
+    public static function sizeRow($sheet, $row = 1) {
         // default font of the workbook
         $font = $sheet->getParent()->getDefaultStyle()->getFont();
 
@@ -123,8 +122,7 @@ class PHPExcel_Shared_Excel5
      * @param integer $endOffsetX Offset within end cell measured in 1/1024 of the cell width
      * @return integer Horizontal measured in pixels
      */
-    public static function getDistanceX(PHPExcel_Worksheet $sheet, $startColumn = 'A', $startOffsetX = 0, $endColumn = 'A', $endOffsetX = 0)
-    {
+    public static function getDistanceX(PHPExcel_Worksheet $sheet, $startColumn = 'A', $startOffsetX = 0, $endColumn = 'A', $endOffsetX = 0) {
         $distanceX = 0;
 
         // add the widths of the spanning columns
@@ -154,8 +152,7 @@ class PHPExcel_Shared_Excel5
      * @param integer $endOffsetY Offset within end cell measured in 1/256 of the cell height
      * @return integer Vertical distance measured in pixels
      */
-    public static function getDistanceY(PHPExcel_Worksheet $sheet, $startRow = 1, $startOffsetY = 0, $endRow = 1, $endOffsetY = 0)
-    {
+    public static function getDistanceY(PHPExcel_Worksheet $sheet, $startRow = 1, $startOffsetY = 0, $endRow = 1, $endOffsetY = 0) {
         $distanceY = 0;
 
         // add the widths of the spanning rows
@@ -224,8 +221,7 @@ class PHPExcel_Shared_Excel5
      * @param integer $height Height in pixels
      * @return array
      */
-    public static function oneAnchor2twoAnchor($sheet, $coordinates, $offsetX, $offsetY, $width, $height)
-    {
+    public static function oneAnchor2twoAnchor($sheet, $coordinates, $offsetX, $offsetY, $width, $height) {
         list($column, $row) = PHPExcel_Cell::coordinateFromString($coordinates);
         $col_start = PHPExcel_Cell::columnIndexFromString($column) - 1;
         $row_start = $row - 1;
@@ -265,21 +261,24 @@ class PHPExcel_Shared_Excel5
         if (self::sizeCol($sheet, PHPExcel_Cell::stringFromColumnIndex($col_start)) == 0) {
             return;
         }
-        if (self::sizeCol($sheet, PHPExcel_Cell::stringFromColumnIndex($col_end))   == 0) {
+
+        if (self::sizeCol($sheet, PHPExcel_Cell::stringFromColumnIndex($col_end)) == 0) {
             return;
         }
+
         if (self::sizeRow($sheet, $row_start + 1) == 0) {
             return;
         }
-        if (self::sizeRow($sheet, $row_end + 1)   == 0) {
+
+        if (self::sizeRow($sheet, $row_end + 1) == 0) {
             return;
         }
 
         // Convert the pixel values to the percentage value expected by Excel
-        $x1 = $x1     / self::sizeCol($sheet, PHPExcel_Cell::stringFromColumnIndex($col_start))   * 1024;
-        $y1 = $y1     / self::sizeRow($sheet, $row_start + 1)   *  256;
-        $x2 = ($width + 1)  / self::sizeCol($sheet, PHPExcel_Cell::stringFromColumnIndex($col_end))     * 1024; // Distance to right side of object
-        $y2 = ($height + 1) / self::sizeRow($sheet, $row_end + 1)     *  256; // Distance to bottom of object
+        $x1 = $x1 / self::sizeCol($sheet, PHPExcel_Cell::stringFromColumnIndex($col_start)) * 1024;
+        $y1 = $y1 / self::sizeRow($sheet, $row_start + 1) * 256;
+        $x2 = ($width + 1)  / self::sizeCol($sheet, PHPExcel_Cell::stringFromColumnIndex($col_end)) * 1024; // Distance to right side of object
+        $y2 = ($height + 1) / self::sizeRow($sheet, $row_end + 1) * 256; // Distance to bottom of object
 
         $startCoordinates = PHPExcel_Cell::stringFromColumnIndex($col_start) . ($row_start + 1);
         $endCoordinates = PHPExcel_Cell::stringFromColumnIndex($col_end) . ($row_end + 1);
@@ -290,7 +289,7 @@ class PHPExcel_Shared_Excel5
             'startOffsetY' => $y1,
             'endCoordinates' => $endCoordinates,
             'endOffsetX' => $x2,
-            'endOffsetY' => $y2,
+            'endOffsetY' => $y2
         );
 
         return  $twoAnchor;

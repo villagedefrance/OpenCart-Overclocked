@@ -19,16 +19,16 @@
 //
 // $Id: PPS.php,v 1.7 2007/02/13 21:00:42 schmidt Exp $
 
-
 /**
-* Class for creating PPS's for OLE containers
-*
-* @author   Xavier Noguer <xnoguer@php.net>
-* @category PHPExcel
-* @package  PHPExcel_Shared_OLE
-*/
-class PHPExcel_Shared_OLE_PPS
-{
+ * Class for creating PPS's for OLE containers
+ *
+ * @author   Xavier Noguer <xnoguer@php.net>
+ * @category PHPExcel
+ * @package  PHPExcel_Shared_OLE
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
+ */
+class PHPExcel_Shared_OLE_PPS {
     /**
     * The PPS index
     * @var integer
@@ -122,8 +122,7 @@ class PHPExcel_Shared_OLE_PPS
     * @param string  $data  The (usually binary) source data of the PPS
     * @param array   $children Array containing children PPS for this PPS
     */
-    public function __construct($No, $name, $type, $prev, $next, $dir, $time_1st, $time_2nd, $data, $children)
-    {
+    public function __construct($No, $name, $type, $prev, $next, $dir, $time_1st, $time_2nd, $data, $children) {
         $this->No      = $No;
         $this->Name    = $name;
         $this->Type    = $type;
@@ -134,6 +133,7 @@ class PHPExcel_Shared_OLE_PPS
         $this->Time2nd = $time_2nd;
         $this->_data      = $data;
         $this->children   = $children;
+
         if ($data != '') {
             $this->Size = strlen($data);
         } else {
@@ -147,18 +147,12 @@ class PHPExcel_Shared_OLE_PPS
     * @access public
     * @return integer The amount of data (in bytes)
     */
-    public function _DataLen()
-    {
+    public function _DataLen() {
         if (!isset($this->_data)) {
             return 0;
         }
-        //if (isset($this->_PPS_FILE)) {
-        //    fseek($this->_PPS_FILE, 0);
-        //    $stats = fstat($this->_PPS_FILE);
-        //    return $stats[7];
-        //} else {
-            return strlen($this->_data);
-        //}
+
+        return strlen($this->_data);
     }
 
     /**
@@ -167,8 +161,7 @@ class PHPExcel_Shared_OLE_PPS
     * @access public
     * @return string The binary string
     */
-    public function _getPpsWk()
-    {
+    public function _getPpsWk() {
         $ret = str_pad($this->Name, 64, "\x00");
 
         $ret .= pack("v", strlen($this->Name) + 2)  // 66
@@ -200,8 +193,7 @@ class PHPExcel_Shared_OLE_PPS
     *                          container
     * @return integer          The index for this PPS
     */
-    public static function _savePpsSetPnt(&$raList, $to_save, $depth = 0)
-    {
+    public static function _savePpsSetPnt(&$raList, $to_save, $depth = 0) {
         if (!is_array($to_save) || (empty($to_save))) {
             return 0xFFFFFFFF;
         } elseif (count($to_save) == 1) {

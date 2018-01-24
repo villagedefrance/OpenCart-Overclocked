@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter
-{
+class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter {
     /**
      * PHPExcel object
      *
@@ -95,11 +96,10 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
      *
      * @param    PHPExcel    $phpExcel    PHPExcel object
      */
-    public function __construct(PHPExcel $phpExcel)
-    {
-        $this->phpExcel    = $phpExcel;
+    public function __construct(PHPExcel $phpExcel) {
+        $this->phpExcel = $phpExcel;
 
-        $this->parser        = new PHPExcel_Writer_Excel5_Parser();
+        $this->parser = new PHPExcel_Writer_Excel5_Parser();
     }
 
     /**
@@ -108,9 +108,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
      * @param    string        $pFilename
      * @throws    PHPExcel_Writer_Exception
      */
-    public function save($pFilename = null)
-    {
-
+    public function save($pFilename = null) {
         // garbage collect
         $this->phpExcel->garbageCollect();
 
@@ -225,8 +223,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
      * @throws    PHPExcel_Writer_Exception    when directory does not exist
      * @return PHPExcel_Writer_Excel5
      */
-    public function setTempDir($pValue = '')
-    {
+    public function setTempDir($pValue = '') {
         return $this;
     }
 
@@ -234,8 +231,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
      * Build the Worksheet Escher objects
      *
      */
-    private function buildWorksheetEschers()
-    {
+    private function buildWorksheetEschers() {
         // 1-based index to BstoreContainer
         $blipIndex = 0;
         $lastReducedSpId = 0;
@@ -398,8 +394,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
     /**
      * Build the Escher object corresponding to the MSODRAWINGGROUP record
      */
-    private function buildWorkbookEscher()
-    {
+    private function buildWorkbookEscher() {
         $escher = null;
 
         // any drawings in this workbook?
@@ -537,8 +532,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
      * Build the OLE Part for DocumentSummary Information
      * @return string
      */
-    private function writeDocumentSummaryInformation()
-    {
+    private function writeDocumentSummaryInformation() {
         // offset: 0; size: 2; must be 0xFE 0xFF (UTF-16 LE byte order mark)
         $data = pack('v', 0xFFFE);
         // offset: 2; size: 2;
@@ -667,6 +661,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
         //        4     Property count
         //        8 * $dataSection_NumProps (8 =  ID (4) + OffSet(4))
         $dataSection_Content_Offset = 8 + $dataSection_NumProps * 8;
+
         foreach ($dataSection as $dataProp) {
             // Summary
             $dataSection_Summary .= pack($dataProp['summary']['pack'], $dataProp['summary']['data']);
@@ -733,8 +728,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
      * Build the OLE Part for Summary Information
      * @return string
      */
-    private function writeSummaryInformation()
-    {
+    private function writeSummaryInformation() {
         // offset: 0; size: 2; must be 0xFE 0xFF (UTF-16 LE byte order mark)
         $data = pack('v', 0xFFFE);
         // offset: 2; size: 2;
@@ -850,6 +844,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
         //        4     Property count
         //        8 * $dataSection_NumProps (8 =  ID (4) + OffSet(4))
         $dataSection_Content_Offset = 8 + $dataSection_NumProps * 8;
+
         foreach ($dataSection as $dataProp) {
             // Summary
             $dataSection_Summary .= pack($dataProp['summary']['pack'], $dataProp['summary']['data']);

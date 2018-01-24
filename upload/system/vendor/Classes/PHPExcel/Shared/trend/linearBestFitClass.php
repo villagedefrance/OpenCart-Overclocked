@@ -26,9 +26,10 @@ require_once(PHPEXCEL_ROOT . 'PHPExcel/Shared/trend/bestFitClass.php');
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Linear_Best_Fit extends PHPExcel_Best_Fit
-{
+class PHPExcel_Linear_Best_Fit extends PHPExcel_Best_Fit {
     /**
      * Algorithm type to use for best-fit
      * (Name of this trend class)
@@ -43,8 +44,7 @@ class PHPExcel_Linear_Best_Fit extends PHPExcel_Best_Fit
      * @param     float        $xValue            X-Value
      * @return     float                        Y-Value
      **/
-    public function getValueOfYForX($xValue)
-    {
+    public function getValueOfYForX($xValue) {
         return $this->getIntersect() + $this->getSlope() * $xValue;
     }
 
@@ -54,11 +54,9 @@ class PHPExcel_Linear_Best_Fit extends PHPExcel_Best_Fit
      * @param     float        $yValue            Y-Value
      * @return     float                        X-Value
      **/
-    public function getValueOfXForY($yValue)
-    {
+    public function getValueOfXForY($yValue) {
         return ($yValue - $this->getIntersect()) / $this->getSlope();
     }
-
 
     /**
      * Return the Equation of the best-fit line
@@ -66,8 +64,7 @@ class PHPExcel_Linear_Best_Fit extends PHPExcel_Best_Fit
      * @param     int        $dp        Number of places of decimal precision to display
      * @return     string
      **/
-    public function getEquation($dp = 0)
-    {
+    public function getEquation($dp = 0) {
         $slope = $this->getSlope($dp);
         $intersect = $this->getIntersect($dp);
 
@@ -81,8 +78,7 @@ class PHPExcel_Linear_Best_Fit extends PHPExcel_Best_Fit
      * @param     float[]    $xValues    The set of X-values for this regression
      * @param     boolean    $const
      */
-    private function linearRegression($yValues, $xValues, $const)
-    {
+    private function linearRegression($yValues, $xValues, $const) {
         $this->leastSquareFit($yValues, $xValues, $const);
     }
 
@@ -93,8 +89,7 @@ class PHPExcel_Linear_Best_Fit extends PHPExcel_Best_Fit
      * @param    float[]        $xValues    The set of X-values for this regression
      * @param    boolean        $const
      */
-    public function __construct($yValues, $xValues = array(), $const = true)
-    {
+    public function __construct($yValues, $xValues = array(), $const = true) {
         if (parent::__construct($yValues, $xValues) !== false) {
             $this->linearRegression($yValues, $xValues, $const);
         }

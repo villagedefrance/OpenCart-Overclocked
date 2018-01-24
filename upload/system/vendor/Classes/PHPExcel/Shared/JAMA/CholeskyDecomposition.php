@@ -14,9 +14,10 @@
  *    @author Paul Meagher
  *    @author Michael Bommarito
  *    @version 1.2
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class CholeskyDecomposition
-{
+class CholeskyDecomposition {
     /**
      *    Decomposition storage
      *    @var array
@@ -44,8 +45,7 @@ class CholeskyDecomposition
      *    Class constructor - decomposes symmetric positive definite matrix
      *    @param mixed Matrix square symmetric positive definite matrix
      */
-    public function __construct($A = null)
-    {
+    public function __construct($A = null) {
         if ($A instanceof Matrix) {
             $this->L = $A->getArray();
             $this->m = $A->getRowDimension();
@@ -55,6 +55,7 @@ class CholeskyDecomposition
                     for ($sum = $this->L[$i][$j], $k = $i - 1; $k >= 0; --$k) {
                         $sum -= $this->L[$i][$k] * $this->L[$j][$k];
                     }
+
                     if ($i == $j) {
                         if ($sum >= 0) {
                             $this->L[$i][$i] = sqrt($sum);
@@ -82,8 +83,7 @@ class CholeskyDecomposition
      *
      *    @return boolean
      */
-    public function isSPD()
-    {
+    public function isSPD() {
         return $this->isspd;
     }    //    function isSPD()
 
@@ -93,8 +93,7 @@ class CholeskyDecomposition
      *    Return triangular factor.
      *    @return Matrix Lower triangular matrix
      */
-    public function getL()
-    {
+    public function getL() {
         return new Matrix($this->L);
     }    //    function getL()
 
@@ -104,8 +103,7 @@ class CholeskyDecomposition
      *    @param $B Row-equal matrix
      *    @return Matrix L * L' * X = B
      */
-    public function solve($B = null)
-    {
+    public function solve($B = null) {
         if ($B instanceof Matrix) {
             if ($B->getRowDimension() == $this->m) {
                 if ($this->isspd) {
@@ -118,6 +116,7 @@ class CholeskyDecomposition
                                 $X[$i][$j] -= $X[$k][$j] * $this->L[$i][$k];
                             }
                         }
+
                         for ($j = 0; $j < $nx; ++$j) {
                             $X[$k][$j] /= $this->L[$k][$k];
                         }
@@ -127,6 +126,7 @@ class CholeskyDecomposition
                         for ($j = 0; $j < $nx; ++$j) {
                             $X[$k][$j] /= $this->L[$k][$k];
                         }
+
                         for ($i = 0; $i < $k; ++$i) {
                             for ($j = 0; $j < $nx; ++$j) {
                                 $X[$i][$j] -= $X[$k][$j] * $this->L[$k][$i];
@@ -144,5 +144,5 @@ class CholeskyDecomposition
         } else {
             throw new PHPExcel_Calculation_Exception(JAMAError(ARGUMENT_TYPE_EXCEPTION));
         }
-    }    //    function solve()
+    }
 }

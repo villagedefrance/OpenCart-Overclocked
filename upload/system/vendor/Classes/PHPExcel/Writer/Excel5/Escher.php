@@ -23,8 +23,9 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-
 
 /**
  * PHPExcel_Shared_Escher_DggContainer_BstoreContainer
@@ -33,8 +34,7 @@
  * @package    PHPExcel_Writer_Excel5
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Writer_Excel5_Escher
-{
+class PHPExcel_Writer_Excel5_Escher {
     /**
      * The object we are writing
      */
@@ -64,16 +64,14 @@ class PHPExcel_Writer_Excel5_Escher
      *
      * @param mixed
      */
-    public function __construct($object)
-    {
+    public function __construct($object) {
         $this->object = $object;
     }
 
     /**
      * Process the object to be written
      */
-    public function close()
-    {
+    public function close() {
         // initialize
         $this->data = '';
 
@@ -506,8 +504,7 @@ class PHPExcel_Writer_Excel5_Escher
      *
      * @return array
      */
-    public function getSpOffsets()
-    {
+    public function getSpOffsets() {
         return $this->spOffsets;
     }
 
@@ -516,8 +513,7 @@ class PHPExcel_Writer_Excel5_Escher
      *
      * @return array
      */
-    public function getSpTypes()
-    {
+    public function getSpTypes() {
         return $this->spTypes;
     }
 }

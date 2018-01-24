@@ -17,11 +17,12 @@
  *    @author Michael Bommarito
  *    @version 1.1
  *    @license PHP v3.0
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Shared_JAMA_LUDecomposition
-{
-    const MATRIX_SINGULAR_EXCEPTION    = "Can only perform operation on singular matrix.";
-    const MATRIX_SQUARE_EXCEPTION      = "Mismatched Row dimension";
+class PHPExcel_Shared_JAMA_LUDecomposition {
+    const MATRIX_SINGULAR_EXCEPTION = "Can only perform operation on singular matrix.";
+    const MATRIX_SQUARE_EXCEPTION = "Mismatched Row dimension";
 
     /**
      *    Decomposition storage
@@ -59,8 +60,7 @@ class PHPExcel_Shared_JAMA_LUDecomposition
      *    @param $A Rectangular matrix
      *    @return Structure to access L, U and piv.
      */
-    public function __construct($A)
-    {
+    public function __construct($A) {
         if ($A instanceof PHPExcel_Shared_JAMA_Matrix) {
             // Use a "left-looking", dot-product, Crout/Doolittle algorithm.
             $this->LU = $A->getArray();
@@ -117,15 +117,14 @@ class PHPExcel_Shared_JAMA_LUDecomposition
         } else {
             throw new PHPExcel_Calculation_Exception(PHPExcel_Shared_JAMA_Matrix::ARGUMENT_TYPE_EXCEPTION);
         }
-    }    //    function __construct()
+    }
 
     /**
      *    Get lower triangular factor.
      *
      *    @return array Lower triangular factor
      */
-    public function getL()
-    {
+    public function getL() {
         for ($i = 0; $i < $this->m; ++$i) {
             for ($j = 0; $j < $this->n; ++$j) {
                 if ($i > $j) {
@@ -137,16 +136,16 @@ class PHPExcel_Shared_JAMA_LUDecomposition
                 }
             }
         }
+
         return new PHPExcel_Shared_JAMA_Matrix($L);
-    }    //    function getL()
+    }
 
     /**
      *    Get upper triangular factor.
      *
      *    @return array Upper triangular factor
      */
-    public function getU()
-    {
+    public function getU() {
         for ($i = 0; $i < $this->n; ++$i) {
             for ($j = 0; $j < $this->n; ++$j) {
                 if ($i <= $j) {
@@ -156,61 +155,61 @@ class PHPExcel_Shared_JAMA_LUDecomposition
                 }
             }
         }
+
         return new PHPExcel_Shared_JAMA_Matrix($U);
-    }    //    function getU()
+    }
 
     /**
      *    Return pivot permutation vector.
      *
      *    @return array Pivot vector
      */
-    public function getPivot()
-    {
+    public function getPivot() {
         return $this->piv;
-    }    //    function getPivot()
+    }
 
     /**
      *    Alias for getPivot
      *
      *    @see getPivot
      */
-    public function getDoublePivot()
-    {
+    public function getDoublePivot() {
         return $this->getPivot();
-    }    //    function getDoublePivot()
+    }
 
     /**
      *    Is the matrix nonsingular?
      *
      *    @return true if U, and hence A, is nonsingular.
      */
-    public function isNonsingular()
-    {
+    public function isNonsingular() {
         for ($j = 0; $j < $this->n; ++$j) {
             if ($this->LU[$j][$j] == 0) {
                 return false;
             }
         }
+
         return true;
-    }    //    function isNonsingular()
+    }
 
     /**
      *    Count determinants
      *
      *    @return array d matrix deterninat
      */
-    public function det()
-    {
+    public function det() {
         if ($this->m == $this->n) {
             $d = $this->pivsign;
+
             for ($j = 0; $j < $this->n; ++$j) {
                 $d *= $this->LU[$j][$j];
             }
+
             return $d;
         } else {
             throw new PHPExcel_Calculation_Exception(PHPExcel_Shared_JAMA_Matrix::MATRIX_DIMENSION_EXCEPTION);
         }
-    }    //    function det()
+    }
 
     /**
      *    Solve A*X = B
@@ -220,8 +219,7 @@ class PHPExcel_Shared_JAMA_LUDecomposition
      *    @PHPExcel_Calculation_Exception  IllegalArgumentException Matrix row dimensions must agree.
      *    @PHPExcel_Calculation_Exception  RuntimeException  Matrix is singular.
      */
-    public function solve($B)
-    {
+    public function solve($B) {
         if ($B->getRowDimension() == $this->m) {
             if ($this->isNonsingular()) {
                 // Copy right hand side with pivoting
@@ -246,10 +244,12 @@ class PHPExcel_Shared_JAMA_LUDecomposition
                         }
                     }
                 }
+
                 return $X;
             } else {
                 throw new PHPExcel_Calculation_Exception(self::MATRIX_SINGULAR_EXCEPTION);
             }
+
         } else {
             throw new PHPExcel_Calculation_Exception(self::MATRIX_SQUARE_EXCEPTION);
         }

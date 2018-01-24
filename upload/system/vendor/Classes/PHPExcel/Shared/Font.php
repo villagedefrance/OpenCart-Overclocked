@@ -23,8 +23,9 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-
 
 /**
  * PHPExcel_Shared_Font
@@ -33,8 +34,7 @@
  * @package    PHPExcel_Shared
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Shared_Font
-{
+class PHPExcel_Shared_Font {
     /* Methods for resolving autosize value */
     const AUTOSIZE_METHOD_APPROX    = 'approx';
     const AUTOSIZE_METHOD_EXACT     = 'exact';
@@ -194,8 +194,7 @@ class PHPExcel_Shared_Font
      * @param string $pValue
      * @return     boolean                    Success or failure
      */
-    public static function setAutoSizeMethod($pValue = self::AUTOSIZE_METHOD_APPROX)
-    {
+    public static function setAutoSizeMethod($pValue = self::AUTOSIZE_METHOD_APPROX) {
         if (!in_array($pValue, self::$autoSizeMethods)) {
             return false;
         }
@@ -209,8 +208,7 @@ class PHPExcel_Shared_Font
      *
      * @return string
      */
-    public static function getAutoSizeMethod()
-    {
+    public static function getAutoSizeMethod() {
         return self::$autoSizeMethod;
     }
 
@@ -225,8 +223,7 @@ class PHPExcel_Shared_Font
      *
      * @param string $pValue
      */
-    public static function setTrueTypeFontPath($pValue = '')
-    {
+    public static function setTrueTypeFontPath($pValue = '') {
         self::$trueTypeFontPath = $pValue;
     }
 
@@ -235,8 +232,7 @@ class PHPExcel_Shared_Font
      *
      * @return string
      */
-    public static function getTrueTypeFontPath()
-    {
+    public static function getTrueTypeFontPath() {
         return self::$trueTypeFontPath;
     }
 
@@ -249,8 +245,7 @@ class PHPExcel_Shared_Font
      * @param     PHPExcel_Style_Font|NULL    $defaultFont    Font object
      * @return     integer        Column width
      */
-    public static function calculateColumnWidth(PHPExcel_Style_Font $font, $cellText = '', $rotation = 0, PHPExcel_Style_Font $defaultFont = null)
-    {
+    public static function calculateColumnWidth(PHPExcel_Style_Font $font, $cellText = '', $rotation = 0, PHPExcel_Style_Font $defaultFont = null) {
         // If it is rich text, use plain text
         if ($cellText instanceof PHPExcel_RichText) {
             $cellText = $cellText->getPlainText();
@@ -260,16 +255,20 @@ class PHPExcel_Shared_Font
         if (strpos($cellText, "\n") !== false) {
             $lineTexts = explode("\n", $cellText);
             $lineWidths = array();
+
             foreach ($lineTexts as $lineText) {
                 $lineWidths[] = self::calculateColumnWidth($font, $lineText, $rotation = 0, $defaultFont);
             }
+
             return max($lineWidths); // width of longest line in cell
         }
 
         // Try to get the exact text width in pixels
         $approximate = self::$autoSizeMethod == self::AUTOSIZE_METHOD_APPROX;
+
         if (!$approximate) {
             $columnWidthAdjust = ceil(self::getTextWidthPixelsExact('n', $font, 0) * 1.07);
+
             try {
                 // Width of text in pixels excl. padding
                 // and addition because Excel adds some padding, just use approx width of 'n' glyph
@@ -302,8 +301,7 @@ class PHPExcel_Shared_Font
      * @return int
      * @throws PHPExcel_Exception
      */
-    public static function getTextWidthPixelsExact($text, PHPExcel_Style_Font $font, $rotation = 0)
-    {
+    public static function getTextWidthPixelsExact($text, PHPExcel_Style_Font $font, $rotation = 0) {
         if (!function_exists('imagettfbbox')) {
             throw new PHPExcel_Exception('GD library needs to be enabled');
         }
@@ -337,8 +335,7 @@ class PHPExcel_Shared_Font
      * @param int $rotation
      * @return int Text width in pixels (no padding added)
      */
-    public static function getTextWidthPixelsApprox($columnText, PHPExcel_Style_Font $font = null, $rotation = 0)
-    {
+    public static function getTextWidthPixelsApprox($columnText, PHPExcel_Style_Font $font = null, $rotation = 0) {
         $fontName = $font->getName();
         $fontSize = $font->getSize();
 
@@ -352,7 +349,6 @@ class PHPExcel_Shared_Font
 
             case 'Arial':
                 // value 7 was found via interpolation by inspecting real Excel files with Arial 10 font.
-//                $columnWidth = (int) (7 * PHPExcel_Shared_String::CountCharacters($columnText));
                 // value 8 was set because of experience in different exports at Arial 10 font.
                 $columnWidth = (int) (8 * PHPExcel_Shared_String::CountCharacters($columnText));
                 $columnWidth = $columnWidth * $fontSize / 10; // extrapolate from font size
@@ -393,8 +389,7 @@ class PHPExcel_Shared_Font
      * @param     int        $fontSizeInPoints    Font size (in points)
      * @return     int        Font size (in pixels)
      */
-    public static function fontSizeToPixels($fontSizeInPoints = 11)
-    {
+    public static function fontSizeToPixels($fontSizeInPoints = 11) {
         return (int) ((4 / 3) * $fontSizeInPoints);
     }
 
@@ -404,8 +399,7 @@ class PHPExcel_Shared_Font
      * @param     int        $sizeInInch    Font size (in inch)
      * @return     int        Size (in pixels)
      */
-    public static function inchSizeToPixels($sizeInInch = 1)
-    {
+    public static function inchSizeToPixels($sizeInInch = 1) {
         return ($sizeInInch * 96);
     }
 
@@ -415,8 +409,7 @@ class PHPExcel_Shared_Font
      * @param     int        $sizeInCm    Font size (in centimeters)
      * @return     int        Size (in pixels)
      */
-    public static function centimeterSizeToPixels($sizeInCm = 1)
-    {
+    public static function centimeterSizeToPixels($sizeInCm = 1) {
         return ($sizeInCm * 37.795275591);
     }
 
@@ -426,15 +419,14 @@ class PHPExcel_Shared_Font
      * @param PHPExcel_Style_Font
      * @return string Path to TrueType font file
      */
-    public static function getTrueTypeFontFileFromFont($font)
-    {
+    public static function getTrueTypeFontFileFromFont($font) {
         if (!file_exists(self::$trueTypeFontPath) || !is_dir(self::$trueTypeFontPath)) {
             throw new PHPExcel_Exception('Valid directory to TrueType Font files not specified');
         }
 
-        $name        = $font->getName();
-        $bold        = $font->getBold();
-        $italic      = $font->getItalic();
+        $name = $font->getName();
+        $bold = $font->getBold();
+        $italic = $font->getItalic();
 
         // Check if we can map font to true type font file
         switch ($name) {
@@ -538,8 +530,7 @@ class PHPExcel_Shared_Font
      * @param string $name Font name
      * @return int Character set code
      */
-    public static function getCharsetFromFontName($name)
-    {
+    public static function getCharsetFromFontName($name) {
         switch ($name) {
             // Add more cases. Check FONT records in real Excel files.
             case 'EucrosiaUPC':
@@ -563,8 +554,7 @@ class PHPExcel_Shared_Font
      * @param boolean $pPixels true = return column width in pixels, false = return in OOXML units
      * @return mixed Column width
      */
-    public static function getDefaultColumnWidthByFont(PHPExcel_Style_Font $font, $pPixels = false)
-    {
+    public static function getDefaultColumnWidthByFont(PHPExcel_Style_Font $font, $pPixels = false) {
         if (isset(self::$defaultColumnWidths[$font->getName()][$font->getSize()])) {
             // Exact width can be determined
             $columnWidth = $pPixels ?
@@ -595,8 +585,7 @@ class PHPExcel_Shared_Font
      * @param PHPExcel_Style_Font $font The workbooks default font
      * @return float Row height in points
      */
-    public static function getDefaultRowHeightByFont(PHPExcel_Style_Font $font)
-    {
+    public static function getDefaultRowHeightByFont(PHPExcel_Style_Font $font) {
         switch ($font->getName()) {
             case 'Arial':
                 switch ($font->getSize()) {

@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter
-{
+class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter {
     /**
      * Pre-calculate formulas
      * Forces PHPExcel to recalculate all formulae in a workbook when saving, so that the pre-calculated values are
@@ -50,7 +51,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      *
      * @var PHPExcel_Writer_Excel2007_WriterPart[]
      */
-    private $writerParts    = array();
+    private $writerParts = array();
 
     /**
      * Private PHPExcel
@@ -64,7 +65,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      *
      * @var string[]
      */
-    private $stringTable    = array();
+    private $stringTable = array();
 
     /**
      * Private unique PHPExcel_Style_Conditional HashTable
@@ -120,8 +121,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      *
      * @param     PHPExcel    $pPHPExcel
      */
-    public function __construct(PHPExcel $pPHPExcel = null)
-    {
+    public function __construct(PHPExcel $pPHPExcel = null) {
         // Assign PHPExcel
         $this->setPHPExcel($pPHPExcel);
 
@@ -140,16 +140,20 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
                                     'relsribbonobjects' => 'PHPExcel_Writer_Excel2007_RelsRibbon'
                                  );
 
-        //    Initialise writer parts
-        //        and Assign their parent IWriters
+        //    Initialise writer parts and Assign their parent IWriters
         foreach ($writerPartsArray as $writer => $class) {
             $this->writerParts[$writer] = new $class($this);
         }
 
-        $hashTablesArray = array( 'stylesConditionalHashTable',    'fillHashTable',        'fontHashTable',
-                                  'bordersHashTable',                'numFmtHashTable',        'drawingHashTable',
-                                  'styleHashTable'
-                                );
+        $hashTablesArray = array(
+            'stylesConditionalHashTable',
+            'fillHashTable',
+            'fontHashTable',
+            'bordersHashTable',
+            'numFmtHashTable',
+            'drawingHashTable',
+            'styleHashTable'
+        );
 
         // Set HashTable variables
         foreach ($hashTablesArray as $tableName) {
@@ -163,8 +167,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      * @param     string     $pPartName        Writer part name
      * @return     PHPExcel_Writer_Excel2007_WriterPart
      */
-    public function getWriterPart($pPartName = '')
-    {
+    public function getWriterPart($pPartName = '') {
         if ($pPartName != '' && isset($this->writerParts[strtolower($pPartName)])) {
             return $this->writerParts[strtolower($pPartName)];
         } else {
@@ -178,8 +181,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      * @param     string         $pFilename
      * @throws     PHPExcel_Writer_Exception
      */
-    public function save($pFilename = null)
-    {
+    public function save($pFilename = null) {
         if ($this->spreadSheet !== null) {
             // garbage collect
             $this->spreadSheet->garbageCollect();
@@ -200,6 +202,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
 
             // Create string lookup table
             $this->stringTable = array();
+
             for ($i = 0; $i < $this->spreadSheet->getSheetCount(); ++$i) {
                 $this->stringTable = $this->getWriterPart('StringTable')->createStringTable($this->spreadSheet->getSheet($i), $this->stringTable);
             }
@@ -407,8 +410,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      * @return PHPExcel
      * @throws PHPExcel_Writer_Exception
      */
-    public function getPHPExcel()
-    {
+    public function getPHPExcel() {
         if ($this->spreadSheet !== null) {
             return $this->spreadSheet;
         } else {
@@ -423,8 +425,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      * @throws    PHPExcel_Writer_Exception
      * @return PHPExcel_Writer_Excel2007
      */
-    public function setPHPExcel(PHPExcel $pPHPExcel = null)
-    {
+    public function setPHPExcel(PHPExcel $pPHPExcel = null) {
         $this->spreadSheet = $pPHPExcel;
         return $this;
     }
@@ -434,8 +435,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      *
      * @return string[]
      */
-    public function getStringTable()
-    {
+    public function getStringTable() {
         return $this->stringTable;
     }
 
@@ -444,8 +444,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      *
      * @return PHPExcel_HashTable
      */
-    public function getStyleHashTable()
-    {
+    public function getStyleHashTable() {
         return $this->styleHashTable;
     }
 
@@ -454,8 +453,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      *
      * @return PHPExcel_HashTable
      */
-    public function getStylesConditionalHashTable()
-    {
+    public function getStylesConditionalHashTable() {
         return $this->stylesConditionalHashTable;
     }
 
@@ -464,8 +462,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      *
      * @return PHPExcel_HashTable
      */
-    public function getFillHashTable()
-    {
+    public function getFillHashTable() {
         return $this->fillHashTable;
     }
 
@@ -474,8 +471,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      *
      * @return PHPExcel_HashTable
      */
-    public function getFontHashTable()
-    {
+    public function getFontHashTable() {
         return $this->fontHashTable;
     }
 
@@ -484,8 +480,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      *
      * @return PHPExcel_HashTable
      */
-    public function getBordersHashTable()
-    {
+    public function getBordersHashTable() {
         return $this->bordersHashTable;
     }
 
@@ -494,8 +489,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      *
      * @return PHPExcel_HashTable
      */
-    public function getNumFmtHashTable()
-    {
+    public function getNumFmtHashTable() {
         return $this->numFmtHashTable;
     }
 
@@ -504,8 +498,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      *
      * @return PHPExcel_HashTable
      */
-    public function getDrawingHashTable()
-    {
+    public function getDrawingHashTable() {
         return $this->drawingHashTable;
     }
 
@@ -514,8 +507,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      *
      * @return boolean
      */
-    public function getOffice2003Compatibility()
-    {
+    public function getOffice2003Compatibility() {
         return $this->office2003compatibility;
     }
 
@@ -525,9 +517,9 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      * @param boolean $pValue    Office2003 compatibility?
      * @return PHPExcel_Writer_Excel2007
      */
-    public function setOffice2003Compatibility($pValue = false)
-    {
+    public function setOffice2003Compatibility($pValue = false) {
         $this->office2003compatibility = $pValue;
+
         return $this;
     }
 }

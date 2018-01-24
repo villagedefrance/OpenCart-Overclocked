@@ -24,9 +24,10 @@
  * @copyright    Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license        http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version        ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Worksheet_AutoFilter_Column_Rule
-{
+class PHPExcel_Worksheet_AutoFilter_Column_Rule {
     const AUTOFILTER_RULETYPE_FILTER        = 'filter';
     const AUTOFILTER_RULETYPE_DATEGROUP     = 'dateGroupItem';
     const AUTOFILTER_RULETYPE_CUSTOMFILTER  = 'customFilter';
@@ -186,7 +187,6 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
         self::AUTOFILTER_COLUMN_RULE_TOPTEN_BOTTOM,
     );
 
-
     /* Rule Operators (Numeric, Boolean etc) */
 //    const AUTOFILTER_COLUMN_RULE_BETWEEN            = 'between';        //    greaterThanOrEqual 1 && lessThanOrEqual 2
     /* Rule Operators (Numeric Special) which are translated to standard numeric operators with calculated values */
@@ -228,14 +228,12 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
      */
     private $parent = null;
 
-
     /**
      * Autofilter Rule Type
      *
      * @var string
      */
     private $ruleType = self::AUTOFILTER_RULETYPE_FILTER;
-
 
     /**
      * Autofilter Rule Value
@@ -258,14 +256,12 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
      */
     private $grouping = '';
 
-
     /**
      * Create a new PHPExcel_Worksheet_AutoFilter_Column_Rule
      *
      * @param PHPExcel_Worksheet_AutoFilter_Column $pParent
      */
-    public function __construct(PHPExcel_Worksheet_AutoFilter_Column $pParent = null)
-    {
+    public function __construct(PHPExcel_Worksheet_AutoFilter_Column $pParent = null) {
         $this->parent = $pParent;
     }
 
@@ -274,8 +270,7 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
      *
      * @return string
      */
-    public function getRuleType()
-    {
+    public function getRuleType() {
         return $this->ruleType;
     }
 
@@ -286,8 +281,7 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
      *    @throws    PHPExcel_Exception
      *    @return PHPExcel_Worksheet_AutoFilter_Column
      */
-    public function setRuleType($pRuleType = self::AUTOFILTER_RULETYPE_FILTER)
-    {
+    public function setRuleType($pRuleType = self::AUTOFILTER_RULETYPE_FILTER) {
         if (!in_array($pRuleType, self::$ruleTypes)) {
             throw new PHPExcel_Exception('Invalid rule type for column AutoFilter Rule.');
         }
@@ -302,8 +296,7 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
      *
      * @return string
      */
-    public function getValue()
-    {
+    public function getValue() {
         return $this->value;
     }
 
@@ -314,10 +307,10 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
      *    @throws    PHPExcel_Exception
      *    @return PHPExcel_Worksheet_AutoFilter_Column_Rule
      */
-    public function setValue($pValue = '')
-    {
+    public function setValue($pValue = '') {
         if (is_array($pValue)) {
             $grouping = -1;
+
             foreach ($pValue as $key => $value) {
                 //    Validate array entries
                 if (!in_array($key, self::$dateTimeGroups)) {
@@ -328,12 +321,14 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
                     $grouping = max($grouping, array_search($key, self::$dateTimeGroups));
                 }
             }
+
             if (count($pValue) == 0) {
                 throw new PHPExcel_Exception('Invalid rule value for column AutoFilter Rule.');
             }
             //    Set the dateTime grouping that we've anticipated
             $this->setGrouping(self::$dateTimeGroups[$grouping]);
         }
+
         $this->value = $pValue;
 
         return $this;
@@ -344,8 +339,7 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
      *
      * @return string
      */
-    public function getOperator()
-    {
+    public function getOperator() {
         return $this->operator;
     }
 
@@ -356,15 +350,16 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
      *    @throws    PHPExcel_Exception
      *    @return PHPExcel_Worksheet_AutoFilter_Column_Rule
      */
-    public function setOperator($pOperator = self::AUTOFILTER_COLUMN_RULE_EQUAL)
-    {
+    public function setOperator($pOperator = self::AUTOFILTER_COLUMN_RULE_EQUAL) {
         if (empty($pOperator)) {
             $pOperator = self::AUTOFILTER_COLUMN_RULE_EQUAL;
         }
+
         if ((!in_array($pOperator, self::$operators)) &&
             (!in_array($pOperator, self::$topTenValue))) {
             throw new PHPExcel_Exception('Invalid operator for column AutoFilter Rule.');
         }
+
         $this->operator = $pOperator;
 
         return $this;
@@ -375,8 +370,7 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
      *
      * @return string
      */
-    public function getGrouping()
-    {
+    public function getGrouping() {
         return $this->grouping;
     }
 
@@ -387,14 +381,11 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
      *    @throws    PHPExcel_Exception
      *    @return PHPExcel_Worksheet_AutoFilter_Column_Rule
      */
-    public function setGrouping($pGrouping = null)
-    {
-        if (($pGrouping !== null) &&
-            (!in_array($pGrouping, self::$dateTimeGroups)) &&
-            (!in_array($pGrouping, self::$dynamicTypes)) &&
-            (!in_array($pGrouping, self::$topTenType))) {
+    public function setGrouping($pGrouping = null) {
+        if (($pGrouping !== null) && (!in_array($pGrouping, self::$dateTimeGroups)) && (!in_array($pGrouping, self::$dynamicTypes)) && (!in_array($pGrouping, self::$topTenType))) {
             throw new PHPExcel_Exception('Invalid rule type for column AutoFilter Rule.');
         }
+
         $this->grouping = $pGrouping;
 
         return $this;
@@ -409,8 +400,7 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
      *    @throws    PHPExcel_Exception
      *    @return PHPExcel_Worksheet_AutoFilter_Column_Rule
      */
-    public function setRule($pOperator = self::AUTOFILTER_COLUMN_RULE_EQUAL, $pValue = '', $pGrouping = null)
-    {
+    public function setRule($pOperator = self::AUTOFILTER_COLUMN_RULE_EQUAL, $pValue = '', $pGrouping = null) {
         $this->setOperator($pOperator);
         $this->setValue($pValue);
         //    Only set grouping if it's been passed in as a user-supplied argument,
@@ -428,8 +418,7 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
      *
      * @return PHPExcel_Worksheet_AutoFilter_Column
      */
-    public function getParent()
-    {
+    public function getParent() {
         return $this->parent;
     }
 
@@ -439,8 +428,7 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
      * @param PHPExcel_Worksheet_AutoFilter_Column
      * @return PHPExcel_Worksheet_AutoFilter_Column_Rule
      */
-    public function setParent(PHPExcel_Worksheet_AutoFilter_Column $pParent = null)
-    {
+    public function setParent(PHPExcel_Worksheet_AutoFilter_Column $pParent = null) {
         $this->parent = $pParent;
 
         return $this;
@@ -449,9 +437,9 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
     /**
      * Implement PHP __clone to create a deep clone, not just a shallow copy.
      */
-    public function __clone()
-    {
+    public function __clone() {
         $vars = get_object_vars($this);
+
         foreach ($vars as $key => $value) {
             if (is_object($value)) {
                 if ($key == 'parent') {

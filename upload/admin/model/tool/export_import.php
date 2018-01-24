@@ -6109,15 +6109,27 @@ class ModelToolExportImport extends Model {
 			$language_code = strtolower($language['code']);
 
 			foreach ($results->rows as $key => $row) {
-				if (isset($category_descriptions[$language_code][$key])) {
+				if (isset($category_descriptions[$language_code][$key]['name'])) {
 					$results->rows[$key]['name'][$language_code] = $category_descriptions[$language_code][$key]['name'];
-					$results->rows[$key]['description'][$language_code] = $category_descriptions[$language_code][$key]['description'];
-					$results->rows[$key]['meta_description'][$language_code] = $category_descriptions[$language_code][$key]['meta_description'];
-					$results->rows[$key]['meta_keyword'][$language_code] = $category_descriptions[$language_code][$key]['meta_keyword'];
 				} else {
 					$results->rows[$key]['name'][$language_code] = '';
+				}
+
+				if (isset($category_descriptions[$language_code][$key]['description'])) {
+					$results->rows[$key]['description'][$language_code] = $category_descriptions[$language_code][$key]['description'];
+				} else {
 					$results->rows[$key]['description'][$language_code] = '';
+				}
+
+				if (isset($category_descriptions[$language_code][$key]['meta_description'])) {
+					$results->rows[$key]['meta_description'][$language_code] = $category_descriptions[$language_code][$key]['meta_description'];
+				} else {
 					$results->rows[$key]['meta_description'][$language_code] = '';
+				}
+
+				if (isset($category_descriptions[$language_code][$key]['meta_keyword'])) {
+					$results->rows[$key]['meta_keyword'][$language_code] = $category_descriptions[$language_code][$key]['meta_keyword'];
+				} else {
 					$results->rows[$key]['meta_keyword'][$language_code] = '';
 				}
 			}
@@ -6502,13 +6514,15 @@ class ModelToolExportImport extends Model {
 			$language_id = $language['language_id'];
 			$language_code = strtolower($language['code']);
 
-			$sql = "SELECT product_id, name, description, meta_description, meta_keyword, GROUP_CONCAT(tag SEPARATOR \",\") AS tag";
-			$sql .= " FROM `" . DB_PREFIX . "product_description` WHERE language_id = '" . (int)$language_id . "'";
+			$sql = "SELECT p.product_id, pd.*, GROUP_CONCAT(pt.tag SEPARATOR \",\") AS tag";
+			$sql .= " FROM `" . DB_PREFIX . "product` p";
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_description` pd ON (pd.product_id = p.product_id) AND pd.language_id = '" . (int)$language_id . "'";
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_tag` pt ON (pt.product_id = p.product_id) AND pt.language_id = '" . (int)$language_id . "'";
 			if (isset($min_id) && isset($max_id)) {
-				$sql .= " AND product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+				$sql .= " AND p.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 			}
-			$sql .= " GROUP BY product_id, language_id";
-			$sql .= " ORDER BY product_id";
+			$sql .= " GROUP BY p.product_id";
+			$sql .= " ORDER BY p.product_id";
 			if (isset($offset) && isset($rows)) {
 				$sql .= " ASC LIMIT '" . (int)$offset . "','" . (int)$rows . "'";
 			} else {
@@ -6600,17 +6614,33 @@ class ModelToolExportImport extends Model {
 			$language_code = strtolower($language['code']);
 
 			foreach ($results->rows as $key => $row) {
-				if (isset($product_descriptions[$language_code][$key])) {
+				if (isset($product_descriptions[$language_code][$key]['name'])) {
 					$results->rows[$key]['name'][$language_code] = $product_descriptions[$language_code][$key]['name'];
-					$results->rows[$key]['description'][$language_code] = $product_descriptions[$language_code][$key]['description'];
-					$results->rows[$key]['meta_description'][$language_code] = $product_descriptions[$language_code][$key]['meta_description'];
-					$results->rows[$key]['meta_keyword'][$language_code] = $product_descriptions[$language_code][$key]['meta_keyword'];
-					$results->rows[$key]['tag'][$language_code] = $product_descriptions[$language_code][$key]['tag'];
 				} else {
 					$results->rows[$key]['name'][$language_code] = '';
+				}
+
+				if (isset($product_descriptions[$language_code][$key]['description'])) {
+					$results->rows[$key]['description'][$language_code] = $product_descriptions[$language_code][$key]['description'];
+				} else {
 					$results->rows[$key]['description'][$language_code] = '';
+				}
+
+				if (isset($product_descriptions[$language_code][$key]['meta_description'])) {
+					$results->rows[$key]['meta_description'][$language_code] = $product_descriptions[$language_code][$key]['meta_description'];
+				} else {
 					$results->rows[$key]['meta_description'][$language_code] = '';
+				}
+
+				if (isset($product_descriptions[$language_code][$key]['meta_keyword'])) {
+					$results->rows[$key]['meta_keyword'][$language_code] = $product_descriptions[$language_code][$key]['meta_keyword'];
+				} else {
 					$results->rows[$key]['meta_keyword'][$language_code] = '';
+				}
+
+				if (isset($product_descriptions[$language_code][$key]['tag'])) {
+					$results->rows[$key]['tag'][$language_code] = $product_descriptions[$language_code][$key]['tag'];
+				} else {
 					$results->rows[$key]['tag'][$language_code] = '';
 				}
 			}

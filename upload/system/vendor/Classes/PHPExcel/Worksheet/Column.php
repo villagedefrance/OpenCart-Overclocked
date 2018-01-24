@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Worksheet_Column
-{
+class PHPExcel_Worksheet_Column {
     /**
      * PHPExcel_Worksheet
      *
@@ -47,18 +48,16 @@ class PHPExcel_Worksheet_Column
      * @param PHPExcel_Worksheet     $parent
      * @param string                $columnIndex
      */
-    public function __construct(PHPExcel_Worksheet $parent = null, $columnIndex = 'A')
-    {
+    public function __construct(PHPExcel_Worksheet $parent = null, $columnIndex = 'A') {
         // Set parent and column index
-        $this->parent         = $parent;
+        $this->parent = $parent;
         $this->columnIndex = $columnIndex;
     }
 
     /**
      * Destructor
      */
-    public function __destruct()
-    {
+    public function __destruct() {
         unset($this->parent);
     }
 
@@ -67,8 +66,7 @@ class PHPExcel_Worksheet_Column
      *
      * @return string
      */
-    public function getColumnIndex()
-    {
+    public function getColumnIndex() {
         return $this->columnIndex;
     }
 
@@ -79,8 +77,7 @@ class PHPExcel_Worksheet_Column
      * @param    integer                $endRow            Optionally, the row number at which to stop iterating
      * @return PHPExcel_Worksheet_CellIterator
      */
-    public function getCellIterator($startRow = 1, $endRow = null)
-    {
+    public function getCellIterator($startRow = 1, $endRow = null) {
         return new PHPExcel_Worksheet_ColumnCellIterator($this->parent, $this->columnIndex, $startRow, $endRow);
     }
 }

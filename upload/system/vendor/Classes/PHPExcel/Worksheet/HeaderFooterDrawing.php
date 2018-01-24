@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Worksheet_HeaderFooterDrawing extends PHPExcel_Worksheet_Drawing implements PHPExcel_IComparable
-{
+class PHPExcel_Worksheet_HeaderFooterDrawing extends PHPExcel_Worksheet_Drawing implements PHPExcel_IComparable {
     /**
      * Path
      *
@@ -79,16 +80,15 @@ class PHPExcel_Worksheet_HeaderFooterDrawing extends PHPExcel_Worksheet_Drawing 
     /**
      * Create a new PHPExcel_Worksheet_HeaderFooterDrawing
      */
-    public function __construct()
-    {
+    public function __construct() {
         // Initialise values
-        $this->path                = '';
-        $this->name                = '';
-        $this->offsetX             = 0;
-        $this->offsetY             = 0;
-        $this->width               = 0;
-        $this->height              = 0;
-        $this->resizeProportional  = true;
+        $this->path = '';
+        $this->name = '';
+        $this->offsetX = 0;
+        $this->offsetY = 0;
+        $this->width = 0;
+        $this->height = 0;
+        $this->resizeProportional = true;
     }
 
     /**
@@ -96,8 +96,7 @@ class PHPExcel_Worksheet_HeaderFooterDrawing extends PHPExcel_Worksheet_Drawing 
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -107,9 +106,9 @@ class PHPExcel_Worksheet_HeaderFooterDrawing extends PHPExcel_Worksheet_Drawing 
      * @param string $pValue
      * @return PHPExcel_Worksheet_HeaderFooterDrawing
      */
-    public function setName($pValue = '')
-    {
+    public function setName($pValue = '') {
         $this->name = $pValue;
+
         return $this;
     }
 
@@ -118,8 +117,7 @@ class PHPExcel_Worksheet_HeaderFooterDrawing extends PHPExcel_Worksheet_Drawing 
      *
      * @return int
      */
-    public function getOffsetX()
-    {
+    public function getOffsetX() {
         return $this->offsetX;
     }
 
@@ -129,9 +127,9 @@ class PHPExcel_Worksheet_HeaderFooterDrawing extends PHPExcel_Worksheet_Drawing 
      * @param int $pValue
      * @return PHPExcel_Worksheet_HeaderFooterDrawing
      */
-    public function setOffsetX($pValue = 0)
-    {
+    public function setOffsetX($pValue = 0) {
         $this->offsetX = $pValue;
+
         return $this;
     }
 
@@ -140,8 +138,7 @@ class PHPExcel_Worksheet_HeaderFooterDrawing extends PHPExcel_Worksheet_Drawing 
      *
      * @return int
      */
-    public function getOffsetY()
-    {
+    public function getOffsetY() {
         return $this->offsetY;
     }
 
@@ -151,9 +148,9 @@ class PHPExcel_Worksheet_HeaderFooterDrawing extends PHPExcel_Worksheet_Drawing 
      * @param int $pValue
      * @return PHPExcel_Worksheet_HeaderFooterDrawing
      */
-    public function setOffsetY($pValue = 0)
-    {
+    public function setOffsetY($pValue = 0) {
         $this->offsetY = $pValue;
+
         return $this;
     }
 
@@ -162,8 +159,7 @@ class PHPExcel_Worksheet_HeaderFooterDrawing extends PHPExcel_Worksheet_Drawing 
      *
      * @return int
      */
-    public function getWidth()
-    {
+    public function getWidth() {
         return $this->width;
     }
 
@@ -173,8 +169,7 @@ class PHPExcel_Worksheet_HeaderFooterDrawing extends PHPExcel_Worksheet_Drawing 
      * @param int $pValue
      * @return PHPExcel_Worksheet_HeaderFooterDrawing
      */
-    public function setWidth($pValue = 0)
-    {
+    public function setWidth($pValue = 0) {
         // Resize proportional?
         if ($this->resizeProportional && $pValue != 0) {
             $ratio = $this->width / $this->height;

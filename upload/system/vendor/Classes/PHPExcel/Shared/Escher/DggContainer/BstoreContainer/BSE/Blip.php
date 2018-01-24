@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE_Blip
-{
+class PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE_Blip {
     /**
      * The parent BSE
      *
@@ -46,8 +47,7 @@ class PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE_Blip
      *
      * @return string
      */
-    public function getData()
-    {
+    public function getData() {
         return $this->data;
     }
 
@@ -56,8 +56,7 @@ class PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE_Blip
      *
      * @param string
      */
-    public function setData($data)
-    {
+    public function setData($data) {
         $this->data = $data;
     }
 
@@ -66,8 +65,7 @@ class PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE_Blip
      *
      * @param PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE $parent
      */
-    public function setParent($parent)
-    {
+    public function setParent($parent) {
         $this->parent = $parent;
     }
 
@@ -76,8 +74,7 @@ class PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE_Blip
      *
      * @return PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE $parent
      */
-    public function getParent()
-    {
+    public function getParent() {
         return $this->parent;
     }
 }

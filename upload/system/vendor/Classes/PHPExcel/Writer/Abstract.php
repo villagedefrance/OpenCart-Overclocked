@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-abstract class PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter
-{
+abstract class PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter {
     /**
      * Write charts that are defined in the workbook?
      * Identifies whether the Writer should write definitions for any charts that exist in the PHPExcel object;
@@ -65,8 +66,7 @@ abstract class PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter
      *
      * @return    boolean
      */
-    public function getIncludeCharts()
-    {
+    public function getIncludeCharts() {
         return $this->includeCharts;
     }
 
@@ -78,9 +78,9 @@ abstract class PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter
      * @param    boolean    $pValue
      * @return    PHPExcel_Writer_IWriter
      */
-    public function setIncludeCharts($pValue = false)
-    {
+    public function setIncludeCharts($pValue = false) {
         $this->includeCharts = (boolean) $pValue;
+
         return $this;
     }
 
@@ -94,8 +94,7 @@ abstract class PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter
      *
      * @return boolean
      */
-    public function getPreCalculateFormulas()
-    {
+    public function getPreCalculateFormulas() {
         return $this->preCalculateFormulas;
     }
 
@@ -107,9 +106,9 @@ abstract class PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter
      * @param boolean $pValue    Pre-Calculate Formulas?
      * @return    PHPExcel_Writer_IWriter
      */
-    public function setPreCalculateFormulas($pValue = true)
-    {
+    public function setPreCalculateFormulas($pValue = true) {
         $this->preCalculateFormulas = (boolean) $pValue;
+
         return $this;
     }
 
@@ -118,8 +117,7 @@ abstract class PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter
      *
      * @return boolean
      */
-    public function getUseDiskCaching()
-    {
+    public function getUseDiskCaching() {
         return $this->_useDiskCaching;
     }
 
@@ -131,8 +129,7 @@ abstract class PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter
      * @throws    PHPExcel_Writer_Exception    when directory does not exist
      * @return PHPExcel_Writer_Excel2007
      */
-    public function setUseDiskCaching($pValue = false, $pDirectory = null)
-    {
+    public function setUseDiskCaching($pValue = false, $pDirectory = null) {
         $this->_useDiskCaching = $pValue;
 
         if ($pDirectory !== null) {
@@ -142,6 +139,7 @@ abstract class PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter
                 throw new PHPExcel_Writer_Exception("Directory does not exist: $pDirectory");
             }
         }
+
         return $this;
     }
 
@@ -150,8 +148,7 @@ abstract class PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter
      *
      * @return string
      */
-    public function getDiskCachingDirectory()
-    {
+    public function getDiskCachingDirectory() {
         return $this->_diskCachingDirectory;
     }
 }

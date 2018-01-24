@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2007 Christian Schmidt
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Shared_OLE_ChainedBlockStream
-{
+class PHPExcel_Shared_OLE_ChainedBlockStream {
     /**
      * The OLE container of the file that is being read.
      * @var OLE
@@ -62,8 +63,7 @@ class PHPExcel_Shared_OLE_ChainedBlockStream
      * @param    string  &$openedPath    absolute path of the opened stream (out parameter)
      * @return    bool    true on success
      */
-    public function stream_open($path, $mode, $options, &$openedPath)
-    {
+    public function stream_open($path, $mode, $options, &$openedPath) {
         if ($mode != 'r') {
             if ($options & STREAM_REPORT_ERRORS) {
                 trigger_error('Only reading is supported', E_USER_WARNING);
@@ -73,16 +73,19 @@ class PHPExcel_Shared_OLE_ChainedBlockStream
 
         // 25 is length of "ole-chainedblockstream://"
         parse_str(substr($path, 25), $this->params);
+
         if (!isset($this->params['oleInstanceId'], $this->params['blockId'], $GLOBALS['_OLE_INSTANCES'][$this->params['oleInstanceId']])) {
             if ($options & STREAM_REPORT_ERRORS) {
                 trigger_error('OLE stream not found', E_USER_WARNING);
             }
             return false;
         }
+
         $this->ole = $GLOBALS['_OLE_INSTANCES'][$this->params['oleInstanceId']];
 
         $blockId = $this->params['blockId'];
         $this->data = '';
+
         if (isset($this->params['size']) && $this->params['size'] < $this->ole->bigBlockThreshold && $blockId != $this->ole->root->_StartBlock) {
             // Block id refers to small blocks
             $rootPos = $this->ole->_getBlockOffset($this->ole->root->_StartBlock);
@@ -101,6 +104,7 @@ class PHPExcel_Shared_OLE_ChainedBlockStream
                 $blockId = $this->ole->bbat[$blockId];
             }
         }
+
         if (isset($this->params['size'])) {
             $this->data = substr($this->data, 0, $this->params['size']);
         }
@@ -116,8 +120,7 @@ class PHPExcel_Shared_OLE_ChainedBlockStream
      * Implements support for fclose().
      *
      */
-    public function stream_close()
-    {
+    public function stream_close() {
         $this->ole = null;
         unset($GLOBALS['_OLE_INSTANCES']);
     }
@@ -128,13 +131,14 @@ class PHPExcel_Shared_OLE_ChainedBlockStream
      * @param   int        $count    maximum number of bytes to read
      * @return  string
      */
-    public function stream_read($count)
-    {
+    public function stream_read($count) {
         if ($this->stream_eof()) {
             return false;
         }
+
         $s = substr($this->data, $this->pos, $count);
         $this->pos += $count;
+
         return $s;
     }
 
@@ -143,8 +147,7 @@ class PHPExcel_Shared_OLE_ChainedBlockStream
      *
      * @return  bool  TRUE if the file pointer is at EOF; otherwise FALSE
      */
-    public function stream_eof()
-    {
+    public function stream_eof() {
         return $this->pos >= strlen($this->data);
     }
 
@@ -154,8 +157,7 @@ class PHPExcel_Shared_OLE_ChainedBlockStream
      *
      * @return  int
      */
-    public function stream_tell()
-    {
+    public function stream_tell() {
         return $this->pos;
     }
 
@@ -166,8 +168,7 @@ class PHPExcel_Shared_OLE_ChainedBlockStream
      * @param    int        $whence    SEEK_SET, SEEK_CUR or SEEK_END
      * @return    bool
      */
-    public function stream_seek($offset, $whence)
-    {
+    public function stream_seek($offset, $whence) {
         if ($whence == SEEK_SET && $offset >= 0) {
             $this->pos = $offset;
         } elseif ($whence == SEEK_CUR && -$offset <= $this->pos) {
@@ -177,6 +178,7 @@ class PHPExcel_Shared_OLE_ChainedBlockStream
         } else {
             return false;
         }
+
         return true;
     }
 
@@ -185,11 +187,8 @@ class PHPExcel_Shared_OLE_ChainedBlockStream
      * "size".
      * @return  array
      */
-    public function stream_stat()
-    {
-        return array(
-            'size' => strlen($this->data),
-            );
+    public function stream_stat() {
+        return array('size' => strlen($this->data));
     }
 
     // Methods used by stream_wrapper_register() that are not implemented:

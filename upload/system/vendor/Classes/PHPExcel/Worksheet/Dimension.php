@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-abstract class PHPExcel_Worksheet_Dimension
-{
+abstract class PHPExcel_Worksheet_Dimension {
     /**
      * Visible?
      *
@@ -60,8 +61,7 @@ abstract class PHPExcel_Worksheet_Dimension
      *
      * @param int $pIndex Numeric row index
      */
-    public function __construct($initialValue = null)
-    {
+    public function __construct($initialValue = null) {
         // set dimension as unformatted by default
         $this->xfIndex = $initialValue;
     }
@@ -71,8 +71,7 @@ abstract class PHPExcel_Worksheet_Dimension
      *
      * @return bool
      */
-    public function getVisible()
-    {
+    public function getVisible() {
         return $this->visible;
     }
 
@@ -82,8 +81,7 @@ abstract class PHPExcel_Worksheet_Dimension
      * @param bool $pValue
      * @return PHPExcel_Worksheet_Dimension
      */
-    public function setVisible($pValue = true)
-    {
+    public function setVisible($pValue = true) {
         $this->visible = $pValue;
         return $this;
     }
@@ -93,8 +91,7 @@ abstract class PHPExcel_Worksheet_Dimension
      *
      * @return int
      */
-    public function getOutlineLevel()
-    {
+    public function getOutlineLevel() {
         return $this->outlineLevel;
     }
 
@@ -107,13 +104,13 @@ abstract class PHPExcel_Worksheet_Dimension
      * @throws PHPExcel_Exception
      * @return PHPExcel_Worksheet_Dimension
      */
-    public function setOutlineLevel($pValue)
-    {
+    public function setOutlineLevel($pValue) {
         if ($pValue < 0 || $pValue > 7) {
             throw new PHPExcel_Exception("Outline level must range between 0 and 7.");
         }
 
         $this->outlineLevel = $pValue;
+
         return $this;
     }
 
@@ -122,8 +119,7 @@ abstract class PHPExcel_Worksheet_Dimension
      *
      * @return bool
      */
-    public function getCollapsed()
-    {
+    public function getCollapsed() {
         return $this->collapsed;
     }
 
@@ -133,9 +129,9 @@ abstract class PHPExcel_Worksheet_Dimension
      * @param bool $pValue
      * @return PHPExcel_Worksheet_Dimension
      */
-    public function setCollapsed($pValue = true)
-    {
+    public function setCollapsed($pValue = true) {
         $this->collapsed = $pValue;
+
         return $this;
     }
 
@@ -144,8 +140,7 @@ abstract class PHPExcel_Worksheet_Dimension
      *
      * @return int
      */
-    public function getXfIndex()
-    {
+    public function getXfIndex() {
         return $this->xfIndex;
     }
 
@@ -155,18 +150,18 @@ abstract class PHPExcel_Worksheet_Dimension
      * @param int $pValue
      * @return PHPExcel_Worksheet_Dimension
      */
-    public function setXfIndex($pValue = 0)
-    {
+    public function setXfIndex($pValue = 0) {
         $this->xfIndex = $pValue;
+
         return $this;
     }
 
     /**
      * Implement PHP __clone to create a deep clone, not just a shallow copy.
      */
-    public function __clone()
-    {
+    public function __clone() {
         $vars = get_object_vars($this);
+
         foreach ($vars as $key => $value) {
             if (is_object($value)) {
                 $this->$key = clone $value;

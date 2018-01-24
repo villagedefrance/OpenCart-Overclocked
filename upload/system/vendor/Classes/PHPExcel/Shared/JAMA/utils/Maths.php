@@ -10,9 +10,10 @@
  *    r = 5
  *
  *    r = sqrt(a^2 + b^2) without under/overflow.
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-function hypo($a, $b)
-{
+function hypo($a, $b) {
     if (abs($a) > abs($b)) {
         $r = $b / $a;
         $r = abs($a) * sqrt(1 + $r * $r);
@@ -22,9 +23,9 @@ function hypo($a, $b)
     } else {
         $r = 0.0;
     }
-    return $r;
-}    //    function hypo()
 
+    return $r;
+}
 
 /**
  *    Mike Bommarito's version.
