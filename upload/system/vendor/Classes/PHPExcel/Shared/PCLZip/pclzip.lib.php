@@ -3277,7 +3277,6 @@ class PclZip {
             return $v_result;
         }
 
-
         // ----- Check that the file header is coherent with $p_entry info
         if ($this->privCheckFileHeaders($v_header, $p_entry) != 1) {
             // TBC
@@ -3653,7 +3652,6 @@ class PclZip {
         }
 
         // ----- Trace
-
         // ----- Look if extraction should be done
         if ($p_entry['status'] == 'ok') {
             // ----- Do the extraction (if not a folder)

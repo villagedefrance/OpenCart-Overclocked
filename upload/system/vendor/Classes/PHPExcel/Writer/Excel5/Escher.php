@@ -453,7 +453,7 @@ class PHPExcel_Writer_Excel5_Escher {
                     $endOffsetY = $this->object->getEndOffsetY();
 
                     $clientAnchorData = pack('vvvvvvvvv', $this->object->getSpFlag(), $c1, $startOffsetX, $r1, $startOffsetY, $c2, $endOffsetX, $r2, $endOffsetY);
-                    
+
                     $length = strlen($clientAnchorData);
 
                     $recVerInstance  = $recVer;
