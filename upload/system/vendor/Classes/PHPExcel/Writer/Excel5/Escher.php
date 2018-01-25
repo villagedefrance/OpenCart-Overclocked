@@ -401,7 +401,6 @@ class PHPExcel_Writer_Excel5_Escher {
 
                 $data .= $header . pack('VV', $this->object->getSpId(), $this->object->getSpgr() ? 0x0005 : 0x0A00);
 
-
                 // the options
                 if ($this->object->getOPTCollection()) {
                     $optData = '';
