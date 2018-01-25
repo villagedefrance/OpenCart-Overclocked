@@ -2,16 +2,14 @@
 
 namespace Stripe;
 
-class ApplicationFee extends ApiResource
-{
+class ApplicationFee extends ApiResource {
     /**
      * This is a special case because the application fee endpoint has an
      *    underscore in it. The parent `className` function strips underscores.
      *
      * @return string The name of the class.
      */
-    public static function className()
-    {
+    public static function className() {
         return 'application_fee';
     }
 
@@ -21,8 +19,7 @@ class ApplicationFee extends ApiResource
      *
      * @return ApplicationFee
      */
-    public static function retrieve($id, $opts = null)
-    {
+    public static function retrieve($id, $opts = null) {
         return self::_retrieve($id, $opts);
     }
 
@@ -33,8 +30,7 @@ class ApplicationFee extends ApiResource
      *
      * @return ApplicationFee The updated application fee.
      */
-    public static function update($id, $params = null, $options = null)
-    {
+    public static function update($id, $params = null, $options = null) {
         return self::_update($id, $params, $options);
     }
 
@@ -44,8 +40,7 @@ class ApplicationFee extends ApiResource
      *
      * @return Collection of ApplicationFees
      */
-    public static function all($params = null, $opts = null)
-    {
+    public static function all($params = null, $opts = null) {
         return self::_all($params, $opts);
     }
 
@@ -55,8 +50,7 @@ class ApplicationFee extends ApiResource
      *
      * @return ApplicationFee The refunded application fee.
      */
-    public function refund($params = null, $opts = null)
-    {
+    public function refund($params = null, $opts = null) {
         $this->refunds->create($params, $opts);
         $this->refresh();
         return $this;

@@ -2,25 +2,23 @@
 
 namespace Stripe;
 
-class ApiRequestor
-{
-    private $_apiKey;
+class ApiRequestor {
 
+    private $_apiKey;
     private $_apiBase;
 
     private static $_httpClient;
 
-    public function __construct($apiKey = null, $apiBase = null)
-    {
+    public function __construct($apiKey = null, $apiBase = null) {
         $this->_apiKey = $apiKey;
+
         if (!$apiBase) {
             $apiBase = Stripe::$apiBase;
         }
         $this->_apiBase = $apiBase;
     }
 
-    private static function _encodeObjects($d)
-    {
+    private static function _encodeObjects($d) {
         if ($d instanceof ApiResource) {
             return Util\Util::utf8($d->id);
         } elseif ($d === true) {
@@ -47,8 +45,7 @@ class ApiRequestor
      * @return array An array whose first element is an API response and second
      *    element is the API key used to make the request.
      */
-    public function request($method, $url, $params = null, $headers = null)
-    {
+    public function request($method, $url, $params = null, $headers = null) {
         if (!$params) {
             $params = array();
         }
@@ -77,8 +74,7 @@ class ApiRequestor
      *    hitting the API.
      * @throws Error\Api otherwise.
      */
-    public function handleApiError($rbody, $rcode, $rheaders, $resp)
-    {
+    public function handleApiError($rbody, $rcode, $rheaders, $resp) {
         if (!is_array($resp) || !isset($resp['error'])) {
             $msg = "Invalid response object from API: $rbody "
               . "(HTTP response code was $rcode)";
@@ -86,6 +82,7 @@ class ApiRequestor
         }
 
         $error = $resp['error'];
+
         $msg = isset($error['message']) ? $error['message'] : null;
         $param = isset($error['param']) ? $error['param'] : null;
         $code = isset($error['code']) ? $error['code'] : null;
@@ -112,9 +109,9 @@ class ApiRequestor
         }
     }
 
-    private function _requestRaw($method, $url, $params, $headers)
-    {
+    private function _requestRaw($method, $url, $params, $headers) {
         $myApiKey = $this->_apiKey;
+
         if (!$myApiKey) {
             $myApiKey = Stripe::$apiKey;
         }
@@ -138,11 +135,13 @@ class ApiRequestor
             'publisher' => 'stripe',
             'uname' => $uname,
         );
+
         $defaultHeaders = array(
             'X-Stripe-Client-User-Agent' => json_encode($ua),
             'User-Agent' => 'Stripe/v1 PhpBindings/' . Stripe::VERSION,
             'Authorization' => 'Bearer ' . $myApiKey,
         );
+
         if (Stripe::$apiVersion) {
             $defaultHeaders['Stripe-Version'] = Stripe::$apiVersion;
         }
@@ -153,6 +152,7 @@ class ApiRequestor
 
         $hasFile = false;
         $hasCurlFile = class_exists('\CURLFile', false);
+
         foreach ($params as $k => $v) {
             if (is_resource($v)) {
                 $hasFile = true;
@@ -185,8 +185,7 @@ class ApiRequestor
         return array($rbody, $rcode, $rheaders, $myApiKey);
     }
 
-    private function _processResourceParam($resource, $hasCurlFile)
-    {
+    private function _processResourceParam($resource, $hasCurlFile) {
         if (get_resource_type($resource) !== 'stream') {
             throw new Error\Api(
                 'Attempted to upload a resource that is not a stream'
@@ -208,8 +207,7 @@ class ApiRequestor
         }
     }
 
-    private function _interpretResponse($rbody, $rcode, $rheaders)
-    {
+    private function _interpretResponse($rbody, $rcode, $rheaders) {
         try {
             $resp = json_decode($rbody, true);
         } catch (Exception $e) {
@@ -221,19 +219,19 @@ class ApiRequestor
         if ($rcode < 200 || $rcode >= 300) {
             $this->handleApiError($rbody, $rcode, $rheaders, $resp);
         }
+
         return $resp;
     }
 
-    public static function setHttpClient($client)
-    {
+    public static function setHttpClient($client) {
         self::$_httpClient = $client;
     }
 
-    private function httpClient()
-    {
+    private function httpClient() {
         if (!self::$_httpClient) {
             self::$_httpClient = HttpClient\CurlClient::instance();
         }
+
         return self::$_httpClient;
     }
 }

@@ -4,6 +4,8 @@
  * @link    http://dompdf.github.com/
  * @author  Benj Carson <benjcarson@digitaljunkies.ca>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
 namespace Dompdf\Renderer;
 
@@ -16,7 +18,6 @@ use Dompdf\FrameDecorator\Table;
  * @package dompdf
  */
 class TableCell extends Block {
-
     /**
      * @param Frame $frame
      */
@@ -93,8 +94,9 @@ class TableCell extends Block {
 
             if ($draw_bottom) {
                 $bp = $cellmap->get_border_properties($num_rows - 1, $j);
-                if ($bp["bottom"]["style"] === "none" || $bp["bottom"]["width"] <= 0)
+                if ($bp["bottom"]["style"] === "none" || $bp["bottom"]["width"] <= 0) {
                     continue;
+                }
 
                 $y = $bottom_row["y"] + $bottom_row["height"] + $bp["bottom"]["width"] / 2;
 
@@ -166,7 +168,7 @@ class TableCell extends Block {
 
         $id = $frame->get_node()->getAttribute("id");
 
-        if (strlen($id) > 0)  {
+        if (strlen($id) > 0) {
             $this->_canvas->add_named_dest($id);
         }
     }

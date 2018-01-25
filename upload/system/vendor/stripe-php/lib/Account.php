@@ -2,10 +2,9 @@
 
 namespace Stripe;
 
-class Account extends ApiResource
-{
-    public function instanceUrl()
-    {
+class Account extends ApiResource {
+
+    public function instanceUrl() {
         if ($this['id'] === null) {
             return '/v1/account';
         } else {
@@ -19,12 +18,12 @@ class Account extends ApiResource
      *
      * @return Account
      */
-    public static function retrieve($id = null, $opts = null)
-    {
+    public static function retrieve($id = null, $opts = null) {
         if (!$opts && is_string($id) && substr($id, 0, 3) === 'sk_') {
             $opts = $id;
             $id = null;
         }
+
         return self::_retrieve($id, $opts);
     }
 
@@ -34,8 +33,7 @@ class Account extends ApiResource
      *
      * @return Account
      */
-    public static function create($params = null, $opts = null)
-    {
+    public static function create($params = null, $opts = null) {
         return self::_create($params, $opts);
     }
 
@@ -46,8 +44,7 @@ class Account extends ApiResource
      *
      * @return Account The updated account.
      */
-    public static function update($id, $params = null, $options = null)
-    {
+    public static function update($id, $params = null, $options = null) {
         return self::_update($id, $params, $options);
     }
 
@@ -56,8 +53,7 @@ class Account extends ApiResource
      *
      * @return Account
      */
-    public function save($opts = null)
-    {
+    public function save($opts = null) {
         return $this->_save($opts);
     }
 
@@ -67,8 +63,7 @@ class Account extends ApiResource
      *
      * @return Account The deleted account.
      */
-    public function delete($params = null, $opts = null)
-    {
+    public function delete($params = null, $opts = null) {
         return $this->_delete($params, $opts);
     }
 
@@ -78,8 +73,7 @@ class Account extends ApiResource
      *
      * @return Account The rejected account.
      */
-    public function reject($params = null, $opts = null)
-    {
+    public function reject($params = null, $opts = null) {
         $url = $this->instanceUrl() . '/reject';
         list($response, $opts) = $this->_request('post', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
@@ -92,8 +86,7 @@ class Account extends ApiResource
      *
      * @return Collection of Accounts
      */
-    public static function all($params = null, $opts = null)
-    {
+    public static function all($params = null, $opts = null) {
         return self::_all($params, $opts);
     }
 }

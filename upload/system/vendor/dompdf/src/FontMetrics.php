@@ -6,6 +6,8 @@
  * @author  Helmut Tischer <htischer@weihenstephan.org>
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
 
 namespace Dompdf;
@@ -124,9 +126,14 @@ class FontMetrics {
         $fontDir = $this->getOptions()->getFontDir();
         $rootDir = $this->getOptions()->getRootDir();
 
-        // FIXME: tempoarary define constants for cache files <= v0.6.2
-        if (!defined("DOMPDF_DIR")) { define("DOMPDF_DIR", $rootDir); }
-        if (!defined("DOMPDF_FONT_DIR")) { define("DOMPDF_FONT_DIR", $fontDir); }
+        // temporary define constants for cache files <= v0.6.2
+        if (!defined("DOMPDF_DIR")) {
+            define("DOMPDF_DIR", $rootDir);
+        }
+
+        if (!defined("DOMPDF_FONT_DIR")) {
+            define("DOMPDF_FONT_DIR", $fontDir);
+        }
 
         $file = $rootDir . "/lib/fonts/dompdf_font_family_cache.dist.php";
         $distFonts = require $file;
@@ -210,14 +217,14 @@ class FontMetrics {
 
             unlink($localTempFile);
 
-            if ( !file_exists("$cacheEntry.ufm") ) {
+            if (!file_exists("$cacheEntry.ufm")) {
                 return false;
             }
 
             // Save the changes
             file_put_contents($localFile, $remoteFileContent);
 
-            if ( !file_exists($localFile) ) {
+            if (!file_exists($localFile)) {
                 unlink("$cacheEntry.ufm");
                 return false;
             }
@@ -256,7 +263,7 @@ class FontMetrics {
      * @return float
      */
     public function getTextWidth($text, $font, $size, $wordSpacing = 0.0, $charSpacing = 0.0) {
-        // @todo Make sure this cache is efficient before enabling it
+        // Make sure this cache is efficient before enabling it
         static $cache = array();
 
         if ($text === "") {

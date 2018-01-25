@@ -2,8 +2,7 @@
 
 namespace Stripe\HttpClient;
 
-interface ClientInterface
-{
+interface ClientInterface {
     /**
      * @param string $method The HTTP method being used
      * @param string $absUrl The URL being requested, including domain and protocol

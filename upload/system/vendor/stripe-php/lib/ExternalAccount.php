@@ -2,19 +2,17 @@
 
 namespace Stripe;
 
-abstract class ExternalAccount extends ApiResource
-{
+abstract class ExternalAccount extends ApiResource {
     /**
      * @return string The instance URL for this resource. It needs to be special
      *    cased because it doesn't fit into the standard resource pattern.
      */
-    public function instanceUrl()
-    {
+    public function instanceUrl() {
         $id = $this['id'];
+
         if (!$id) {
             $class = get_class($this);
-            $msg = "Could not determine which URL to request: $class instance "
-             . "has invalid ID: $id";
+            $msg = "Could not determine which URL to request: $class instance " . "has invalid ID: $id";
             throw new Error\InvalidRequest($msg, null);
         }
 
@@ -48,8 +46,7 @@ abstract class ExternalAccount extends ApiResource
      *
      * @return ExternalAccount The deleted external account.
      */
-    public function delete($params = null, $opts = null)
-    {
+    public function delete($params = null, $opts = null) {
         return $this->_delete($params, $opts);
     }
 
@@ -58,8 +55,7 @@ abstract class ExternalAccount extends ApiResource
      *
      * @return ExternalAccount The saved external account.
      */
-    public function save($opts = null)
-    {
+    public function save($opts = null) {
         return $this->_save($opts);
     }
 
@@ -69,8 +65,7 @@ abstract class ExternalAccount extends ApiResource
      *
      * @return ExternalAccount The verified (or not) external account.
      */
-    public function verify($params = null, $opts = null)
-    {
+    public function verify($params = null, $opts = null) {
         if ($this['customer']) {
             $url = $this->instanceUrl() . '/verify';
             list($response, $options) = $this->_request('post', $url, $params, $opts);

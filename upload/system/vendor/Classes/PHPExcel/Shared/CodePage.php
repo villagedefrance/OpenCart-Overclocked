@@ -116,7 +116,7 @@ class PHPExcel_Shared_CodePage {
                 return 'CP950';    //    Macintosh Chinese Traditional
             case 10003:
                 return 'CP1361';   //    Macintosh Korean
-            case 10004:	
+            case 10004:
                 return 'MACARABIC';  //	Apple Arabic
             case 10005:
                 return 'MACHEBREW';		//	Apple Hebrew

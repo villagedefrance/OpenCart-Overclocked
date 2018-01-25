@@ -2,16 +2,14 @@
 
 namespace Stripe;
 
-class Coupon extends ApiResource
-{
+class Coupon extends ApiResource {
     /**
      * @param string $id The ID of the coupon to retrieve.
      * @param array|string|null $opts
      *
      * @return Coupon
      */
-    public static function retrieve($id, $opts = null)
-    {
+    public static function retrieve($id, $opts = null) {
         return self::_retrieve($id, $opts);
     }
 
@@ -21,8 +19,7 @@ class Coupon extends ApiResource
      *
      * @return Coupon The created coupon.
      */
-    public static function create($params = null, $opts = null)
-    {
+    public static function create($params = null, $opts = null) {
         return self::_create($params, $opts);
     }
 
@@ -33,8 +30,7 @@ class Coupon extends ApiResource
      *
      * @return Coupon The updated coupon.
      */
-    public static function update($id, $params = null, $options = null)
-    {
+    public static function update($id, $params = null, $options = null) {
         return self::_update($id, $params, $options);
     }
 
@@ -44,8 +40,7 @@ class Coupon extends ApiResource
      *
      * @return Coupon The deleted coupon.
      */
-    public function delete($params = null, $opts = null)
-    {
+    public function delete($params = null, $opts = null) {
         return $this->_delete($params, $opts);
     }
 
@@ -54,8 +49,7 @@ class Coupon extends ApiResource
      *
      * @return Coupon The saved coupon.
      */
-    public function save($opts = null)
-    {
+    public function save($opts = null) {
         return $this->_save($opts);
     }
 
@@ -65,8 +59,7 @@ class Coupon extends ApiResource
      *
      * @return Collection of Coupons
      */
-    public static function all($params = null, $opts = null)
-    {
+    public static function all($params = null, $opts = null) {
         return self::_all($params, $opts);
     }
 }

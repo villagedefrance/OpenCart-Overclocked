@@ -2,6 +2,4 @@
 
 namespace Stripe\Error;
 
-class Authentication extends Base
-{
-}
+class Authentication extends Base { }

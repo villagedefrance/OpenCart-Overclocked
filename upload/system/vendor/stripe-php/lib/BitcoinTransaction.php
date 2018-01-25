@@ -2,7 +2,4 @@
 
 namespace Stripe;
 
-class BitcoinTransaction extends ApiResource
-{
-
-}
+class BitcoinTransaction extends ApiResource { }

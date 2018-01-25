@@ -5,6 +5,8 @@
  * @author  Benj Carson <benjcarson@digitaljunkies.ca>
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
 namespace Dompdf\Adapter;
 
@@ -481,9 +483,7 @@ class GD implements Canvas {
      * @param float $w
      * @param float $h
      */
-    public function clipping_rectangle($x1, $y1, $w, $h) {
-        // @todo
-    }
+    public function clipping_rectangle($x1, $y1, $w, $h) { }
 
     public function clipping_roundrectangle($x1, $y1, $w, $h, $rTL, $rTR, $rBR, $rBL) { }
 
@@ -799,7 +799,7 @@ class GD implements Canvas {
 
         $text = mb_encode_numericentity($text, array(0x0080, 0xffff, 0, 0xffff), 'UTF-8');
 
-        // FIXME: word spacing
+        // word spacing
         list($x1, , $x2) = imagettfbbox($size, 0, $font, $text);
 
         // Add additional 1pt to prevent text overflow issues
@@ -854,7 +854,7 @@ class GD implements Canvas {
         $font = $this->get_ttf_file($font);
         $ratio = $this->_dompdf->getOptions()->getFontHeightRatio();
 
-        // FIXME: word spacing
+        // word spacing
         list(, $y2, , , , $y1) = imagettfbbox($size, 0, $font, "MXjpqytfhl"); // Test string with ascenders, descenders and caps
         return ($y2 - $y1) * $ratio;
     }
@@ -923,7 +923,7 @@ class GD implements Canvas {
 
         if (!isset($options["type"])) {
             $options["type"] = "png";
-		}
+        }
 
         $type = strtolower($options["type"]);
 
@@ -962,8 +962,9 @@ class GD implements Canvas {
         switch ($type) {
             case "jpg":
             case "jpeg":
-                if (!isset($options["quality"]))
+                if (!isset($options["quality"])) {
                     $options["quality"] = 75;
+                }
 
                 header("Content-type: image/jpeg");
                 imagejpeg($dst, '', $options["quality"]);
@@ -978,7 +979,7 @@ class GD implements Canvas {
 
         if ($this->_aa_factor != 1) {
             imagedestroy($dst);
-		}
+        }
     }
 
     /**

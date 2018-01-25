@@ -2,6 +2,4 @@
 
 namespace Stripe\Error;
 
-class ApiConnection extends Base
-{
-}
+class ApiConnection extends Base { }

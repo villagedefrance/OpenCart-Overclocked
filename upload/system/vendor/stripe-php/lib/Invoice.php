@@ -2,16 +2,14 @@
 
 namespace Stripe;
 
-class Invoice extends ApiResource
-{
+class Invoice extends ApiResource {
     /**
      * @param array|null $params
      * @param array|string|null $opts
      *
      * @return Invoice The created invoice.
      */
-    public static function create($params = null, $opts = null)
-    {
+    public static function create($params = null, $opts = null) {
         return self::_create($params, $opts);
     }
 
@@ -21,8 +19,7 @@ class Invoice extends ApiResource
      *
      * @return Invoice
      */
-    public static function retrieve($id, $opts = null)
-    {
+    public static function retrieve($id, $opts = null) {
         return self::_retrieve($id, $opts);
     }
 
@@ -32,8 +29,7 @@ class Invoice extends ApiResource
      *
      * @return Collection of Invoices
      */
-    public static function all($params = null, $opts = null)
-    {
+    public static function all($params = null, $opts = null) {
         return self::_all($params, $opts);
     }
 
@@ -44,8 +40,7 @@ class Invoice extends ApiResource
      *
      * @return Invoice The updated invoice.
      */
-    public static function update($id, $params = null, $options = null)
-    {
+    public static function update($id, $params = null, $options = null) {
         return self::_update($id, $params, $options);
     }
 
@@ -55,8 +50,7 @@ class Invoice extends ApiResource
      *
      * @return Invoice The upcoming invoice.
      */
-    public static function upcoming($params = null, $opts = null)
-    {
+    public static function upcoming($params = null, $opts = null) {
         $url = static::classUrl() . '/upcoming';
         list($response, $opts) = static::_staticRequest('get', $url, $params, $opts);
         $obj = Util\Util::convertToStripeObject($response->json, $opts);
@@ -69,16 +63,14 @@ class Invoice extends ApiResource
      *
      * @return Invoice The saved invoice.
      */
-    public function save($opts = null)
-    {
+    public function save($opts = null) {
         return $this->_save($opts);
     }
 
     /**
      * @return Invoice The paid invoice.
      */
-    public function pay($opts = null)
-    {
+    public function pay($opts = null) {
         $url = $this->instanceUrl() . '/pay';
         list($response, $opts) = $this->_request('post', $url, null, $opts);
         $this->refreshFrom($response, $opts);

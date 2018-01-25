@@ -2,8 +2,7 @@
 
 namespace Stripe;
 
-class ApiResponse
-{
+class ApiResponse {
     public $headers;
     public $body;
     public $json;
@@ -17,8 +16,7 @@ class ApiResponse
      *
      * @return obj An APIResponse
      */
-    public function __construct($body, $code, $headers, $json)
-    {
+    public function __construct($body, $code, $headers, $json) {
         $this->body = $body;
         $this->code = $code;
         $this->headers = $headers;

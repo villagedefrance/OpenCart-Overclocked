@@ -2,7 +2,4 @@
 
 namespace Stripe;
 
-class AlipayAccount extends ExternalAccount
-{
-
-}
+class AlipayAccount extends ExternalAccount { }

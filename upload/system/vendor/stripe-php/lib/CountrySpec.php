@@ -2,16 +2,14 @@
 
 namespace Stripe;
 
-class CountrySpec extends ApiResource
-{
+class CountrySpec extends ApiResource {
     /**
      * This is a special case because the country specs endpoint has an
      *    underscore in it. The parent `className` function strips underscores.
      *
      * @return string The name of the class.
      */
-    public static function className()
-    {
+    public static function className() {
         return 'country_spec';
     }
 
@@ -21,8 +19,7 @@ class CountrySpec extends ApiResource
      *
      * @return CountrySpec
      */
-    public static function retrieve($country, $opts = null)
-    {
+    public static function retrieve($country, $opts = null) {
         return self::_retrieve($country, $opts);
     }
 
@@ -32,8 +29,7 @@ class CountrySpec extends ApiResource
      *
      * @return Collection of CountrySpecs
      */
-    public static function all($params = null, $opts = null)
-    {
+    public static function all($params = null, $opts = null) {
         return self::_all($params, $opts);
     }
 }

@@ -2,16 +2,14 @@
 
 namespace Stripe;
 
-class Plan extends ApiResource
-{
+class Plan extends ApiResource {
     /**
      * @param string $id The ID of the plan to retrieve.
      * @param array|string|null $opts
      *
      * @return Plan
      */
-    public static function retrieve($id, $opts = null)
-    {
+    public static function retrieve($id, $opts = null) {
         return self::_retrieve($id, $opts);
     }
 
@@ -21,8 +19,7 @@ class Plan extends ApiResource
      *
      * @return Plan The created plan.
      */
-    public static function create($params = null, $opts = null)
-    {
+    public static function create($params = null, $opts = null) {
         return self::_create($params, $opts);
     }
 
@@ -33,8 +30,7 @@ class Plan extends ApiResource
      *
      * @return Plan The updated plan.
      */
-    public static function update($id, $params = null, $options = null)
-    {
+    public static function update($id, $params = null, $options = null) {
         return self::_update($id, $params, $options);
     }
 
@@ -44,8 +40,7 @@ class Plan extends ApiResource
      *
      * @return Plan The deleted plan.
      */
-    public function delete($params = null, $opts = null)
-    {
+    public function delete($params = null, $opts = null) {
         return $this->_delete($params, $opts);
     }
 
@@ -54,8 +49,7 @@ class Plan extends ApiResource
      *
      * @return Plan The saved plan.
      */
-    public function save($opts = null)
-    {
+    public function save($opts = null) {
         return $this->_save($opts);
     }
 
@@ -65,8 +59,7 @@ class Plan extends ApiResource
      *
      * @return Collection of Plans
      */
-    public static function all($params = null, $opts = null)
-    {
+    public static function all($params = null, $opts = null) {
         return self::_all($params, $opts);
     }
 }

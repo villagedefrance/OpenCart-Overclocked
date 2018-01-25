@@ -2,16 +2,14 @@
 
 namespace Stripe;
 
-class Charge extends ApiResource
-{
+class Charge extends ApiResource {
     /**
      * @param string $id The ID of the charge to retrieve.
      * @param array|string|null $options
      *
      * @return Charge
      */
-    public static function retrieve($id, $options = null)
-    {
+    public static function retrieve($id, $options = null) {
         return self::_retrieve($id, $options);
     }
 
@@ -21,8 +19,7 @@ class Charge extends ApiResource
      *
      * @return Collection of Charges
      */
-    public static function all($params = null, $options = null)
-    {
+    public static function all($params = null, $options = null) {
         return self::_all($params, $options);
     }
 
@@ -32,8 +29,7 @@ class Charge extends ApiResource
      *
      * @return Charge The created charge.
      */
-    public static function create($params = null, $options = null)
-    {
+    public static function create($params = null, $options = null) {
         return self::_create($params, $options);
     }
 
@@ -44,8 +40,7 @@ class Charge extends ApiResource
      *
      * @return Charge The updated charge.
      */
-    public static function update($id, $params = null, $options = null)
-    {
+    public static function update($id, $params = null, $options = null) {
         return self::_update($id, $params, $options);
     }
 
@@ -54,8 +49,7 @@ class Charge extends ApiResource
      *
      * @return Charge The saved charge.
      */
-    public function save($options = null)
-    {
+    public function save($options = null) {
         return $this->_save($options);
     }
 
@@ -65,8 +59,7 @@ class Charge extends ApiResource
      *
      * @return Charge The refunded charge.
      */
-    public function refund($params = null, $options = null)
-    {
+    public function refund($params = null, $options = null) {
         $url = $this->instanceUrl() . '/refund';
         list($response, $opts) = $this->_request('post', $url, $params, $options);
         $this->refreshFrom($response, $opts);
@@ -79,8 +72,7 @@ class Charge extends ApiResource
      *
      * @return Charge The captured charge.
      */
-    public function capture($params = null, $options = null)
-    {
+    public function capture($params = null, $options = null) {
         $url = $this->instanceUrl() . '/capture';
         list($response, $opts) = $this->_request('post', $url, $params, $options);
         $this->refreshFrom($response, $opts);
@@ -95,8 +87,7 @@ class Charge extends ApiResource
      *
      * @return array The updated dispute.
      */
-    public function updateDispute($params = null, $options = null)
-    {
+    public function updateDispute($params = null, $options = null) {
         $url = $this->instanceUrl() . '/dispute';
         list($response, $opts) = $this->_request('post', $url, $params, $options);
         $this->refreshFrom(array('dispute' => $response), $opts, true);
@@ -110,8 +101,7 @@ class Charge extends ApiResource
      *
      * @return Charge The updated charge.
      */
-    public function closeDispute($options = null)
-    {
+    public function closeDispute($options = null) {
         $url = $this->instanceUrl() . '/dispute/close';
         list($response, $opts) = $this->_request('post', $url, null, $options);
         $this->refreshFrom($response, $opts);
@@ -123,8 +113,7 @@ class Charge extends ApiResource
      *
      * @return Charge The updated charge.
      */
-    public function markAsFraudulent($opts = null)
-    {
+    public function markAsFraudulent($opts = null) {
         $params = array('fraud_details' => array('user_report' => 'fraudulent'));
         $url = $this->instanceUrl();
         list($response, $opts) = $this->_request('post', $url, $params, $opts);
@@ -137,8 +126,7 @@ class Charge extends ApiResource
      *
      * @return Charge The updated charge.
      */
-    public function markAsSafe($opts = null)
-    {
+    public function markAsSafe($opts = null) {
         $params = array('fraud_details' => array('user_report' => 'safe'));
         $url = $this->instanceUrl();
         list($response, $opts) = $this->_request('post', $url, $params, $opts);

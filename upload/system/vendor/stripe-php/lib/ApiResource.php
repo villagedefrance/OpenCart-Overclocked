@@ -2,20 +2,17 @@
 
 namespace Stripe;
 
-abstract class ApiResource extends StripeObject
-{
+abstract class ApiResource extends StripeObject {
     private static $HEADERS_TO_PERSIST = array('Stripe-Account' => true, 'Stripe-Version' => true);
 
-    public static function baseUrl()
-    {
+    public static function baseUrl() {
         return Stripe::$apiBase;
     }
 
     /**
      * @return ApiResource The refreshed resource.
      */
-    public function refresh()
-    {
+    public function refresh() {
         $requestor = new ApiRequestor($this->_opts->apiKey, static::baseUrl());
         $url = $this->instanceUrl();
 
@@ -25,6 +22,7 @@ abstract class ApiResource extends StripeObject
             $this->_retrieveOptions,
             $this->_opts->headers
         );
+
         $this->setLastResponse($response);
         $this->refreshFrom($response->json, $this->_opts);
         return $this;
@@ -34,8 +32,7 @@ abstract class ApiResource extends StripeObject
      * @return string The name of the class, with namespacing and underscores
      *    stripped.
      */
-    public static function className()
-    {
+    public static function className() {
         $class = get_called_class();
         // Useful for namespaces: Foo\Charge
         if ($postfixNamespaces = strrchr($class, '\\')) {
@@ -57,8 +54,7 @@ abstract class ApiResource extends StripeObject
     /**
      * @return string The endpoint URL for the given class.
      */
-    public static function classUrl()
-    {
+    public static function classUrl() {
         $base = static::className();
         return "/v1/${base}s";
     }
@@ -66,14 +62,14 @@ abstract class ApiResource extends StripeObject
     /**
      * @return string The instance endpoint URL for the given class.
      */
-    public static function resourceUrl($id)
-    {
+    public static function resourceUrl($id) {
         if ($id === null) {
             $class = get_called_class();
             $message = "Could not determine which URL to request: "
                . "$class instance has invalid ID: $id";
             throw new Error\InvalidRequest($message, null);
         }
+
         $id = Util\Util::utf8($id);
         $base = static::classUrl();
         $extn = urlencode($id);
@@ -83,13 +79,11 @@ abstract class ApiResource extends StripeObject
     /**
      * @return string The full API URL for this API resource.
      */
-    public function instanceUrl()
-    {
+    public function instanceUrl() {
         return static::resourceUrl($this['id']);
     }
 
-    private static function _validateParams($params = null)
-    {
+    private static function _validateParams($params = null) {
         if ($params && !is_array($params)) {
             $message = "You must pass an array as the first argument to Stripe API "
                . "method calls.  (HINT: an example call to create a charge "
@@ -100,19 +94,21 @@ abstract class ApiResource extends StripeObject
         }
     }
 
-    protected function _request($method, $url, $params = array(), $options = null)
-    {
+    protected function _request($method, $url, $params = array(), $options = null) {
         $opts = $this->_opts->merge($options);
+
         list($resp, $options) = static::_staticRequest($method, $url, $params, $opts);
+
         $this->setLastResponse($resp);
         return array($resp->json, $options);
     }
 
-    protected static function _staticRequest($method, $url, $params, $options)
-    {
+    protected static function _staticRequest($method, $url, $params, $options) {
         $opts = Util\RequestOptions::parse($options);
         $requestor = new ApiRequestor($opts->apiKey, static::baseUrl());
+
         list($response, $opts->apiKey) = $requestor->request($method, $url, $params, $opts->headers);
+
         foreach ($opts->headers as $k => $v) {
             if (!array_key_exists($k, self::$HEADERS_TO_PERSIST)) {
                 unset($opts->headers[$k]);
@@ -121,16 +117,14 @@ abstract class ApiResource extends StripeObject
         return array($response, $opts);
     }
 
-    protected static function _retrieve($id, $options = null)
-    {
+    protected static function _retrieve($id, $options = null) {
         $opts = Util\RequestOptions::parse($options);
         $instance = new static($id, $opts);
         $instance->refresh();
         return $instance;
     }
 
-    protected static function _all($params = null, $options = null)
-    {
+    protected static function _all($params = null, $options = null) {
         self::_validateParams($params);
         $url = static::classUrl();
 
@@ -146,8 +140,7 @@ abstract class ApiResource extends StripeObject
         return $obj;
     }
 
-    protected static function _create($params = null, $options = null)
-    {
+    protected static function _create($params = null, $options = null) {
         self::_validateParams($params);
         $base = static::baseUrl();
         $url = static::classUrl();
@@ -165,8 +158,7 @@ abstract class ApiResource extends StripeObject
      *
      * @return ApiResource the updated API resource
      */
-    protected static function _update($id, $params = null, $options = null)
-    {
+    protected static function _update($id, $params = null, $options = null) {
         self::_validateParams($params);
         $base = static::baseUrl();
         $url = static::resourceUrl($id);
@@ -177,8 +169,7 @@ abstract class ApiResource extends StripeObject
         return $obj;
     }
 
-    protected function _save($options = null)
-    {
+    protected function _save($options = null) {
         $params = $this->serializeParameters();
         if (count($params) > 0) {
             $url = $this->instanceUrl();
@@ -188,8 +179,7 @@ abstract class ApiResource extends StripeObject
         return $this;
     }
 
-    protected function _delete($params = null, $options = null)
-    {
+    protected function _delete($params = null, $options = null) {
         self::_validateParams($params);
 
         $url = $this->instanceUrl();

@@ -2,16 +2,14 @@
 
 namespace Stripe;
 
-class InvoiceItem extends ApiResource
-{
+class InvoiceItem extends ApiResource {
     /**
      * @param string $id The ID of the invoice item to retrieve.
      * @param array|string|null $opts
      *
      * @return InvoiceItem
      */
-    public static function retrieve($id, $opts = null)
-    {
+    public static function retrieve($id, $opts = null) {
         return self::_retrieve($id, $opts);
     }
 
@@ -21,8 +19,7 @@ class InvoiceItem extends ApiResource
      *
      * @return Collection of InvoiceItems
      */
-    public static function all($params = null, $opts = null)
-    {
+    public static function all($params = null, $opts = null) {
         return self::_all($params, $opts);
     }
 
@@ -32,8 +29,7 @@ class InvoiceItem extends ApiResource
      *
      * @return InvoiceItem The created invoice item.
      */
-    public static function create($params = null, $opts = null)
-    {
+    public static function create($params = null, $opts = null) {
         return self::_create($params, $opts);
     }
 
@@ -44,8 +40,7 @@ class InvoiceItem extends ApiResource
      *
      * @return InvoiceItem The updated invoice item.
      */
-    public static function update($id, $params = null, $options = null)
-    {
+    public static function update($id, $params = null, $options = null) {
         return self::_update($id, $params, $options);
     }
 
@@ -54,8 +49,7 @@ class InvoiceItem extends ApiResource
      *
      * @return InvoiceItem The saved invoice item.
      */
-    public function save($opts = null)
-    {
+    public function save($opts = null) {
         return $this->_save($opts);
     }
 
@@ -65,8 +59,7 @@ class InvoiceItem extends ApiResource
      *
      * @return InvoiceItem The deleted invoice item.
      */
-    public function delete($params = null, $opts = null)
-    {
+    public function delete($params = null, $opts = null) {
         return $this->_delete($params, $opts);
     }
 }

@@ -2,6 +2,4 @@
 
 namespace Stripe\Error;
 
-class RateLimit extends InvalidRequest
-{
-}
+class RateLimit extends InvalidRequest { }

@@ -2,15 +2,13 @@
 
 namespace Stripe;
 
-class FileUpload extends ApiResource
-{
-    public static function baseUrl()
-    {
+class FileUpload extends ApiResource {
+
+    public static function baseUrl() {
         return Stripe::$apiUploadBase;
     }
 
-    public static function className()
-    {
+    public static function className() {
         return 'file';
     }
 
@@ -20,8 +18,7 @@ class FileUpload extends ApiResource
      *
      * @return FileUpload
      */
-    public static function retrieve($id, $opts = null)
-    {
+    public static function retrieve($id, $opts = null) {
         return self::_retrieve($id, $opts);
     }
 
@@ -31,8 +28,7 @@ class FileUpload extends ApiResource
      *
      * @return FileUpload The created file upload.
      */
-    public static function create($params = null, $opts = null)
-    {
+    public static function create($params = null, $opts = null) {
         return self::_create($params, $opts);
     }
 
@@ -42,8 +38,7 @@ class FileUpload extends ApiResource
      *
      * @return Collection of FileUploads
      */
-    public static function all($params = null, $opts = null)
-    {
+    public static function all($params = null, $opts = null) {
         return self::_all($params, $opts);
     }
 }

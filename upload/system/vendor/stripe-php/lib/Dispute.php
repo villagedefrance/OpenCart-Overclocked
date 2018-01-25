@@ -2,16 +2,14 @@
 
 namespace Stripe;
 
-class Dispute extends ApiResource
-{
+class Dispute extends ApiResource {
     /**
      * @param string $id The ID of the dispute to retrieve.
      * @param array|string|null $options
      *
      * @return Dispute
      */
-    public static function retrieve($id, $options = null)
-    {
+    public static function retrieve($id, $options = null) {
         return self::_retrieve($id, $options);
     }
 
@@ -21,8 +19,7 @@ class Dispute extends ApiResource
      *
      * @return array An array of Disputes.
      */
-    public static function all($params = null, $options = null)
-    {
+    public static function all($params = null, $options = null) {
         return self::_all($params, $options);
     }
 
@@ -33,8 +30,7 @@ class Dispute extends ApiResource
      *
      * @return Dispute The updated dispute.
      */
-    public static function update($id, $params = null, $options = null)
-    {
+    public static function update($id, $params = null, $options = null) {
         return self::_update($id, $params, $options);
     }
 
@@ -43,8 +39,7 @@ class Dispute extends ApiResource
      *
      * @return Dispute The saved charge.
      */
-    public function save($options = null)
-    {
+    public function save($options = null) {
         return $this->_save($options);
     }
 
@@ -53,8 +48,7 @@ class Dispute extends ApiResource
      *
      * @return Dispute The closed dispute.
      */
-    public function close($options = null)
-    {
+    public function close($options = null) {
         $url = $this->instanceUrl() . '/close';
         list($response, $opts) = $this->_request('post', $url, null, $options);
         $this->refreshFrom($response, $opts);

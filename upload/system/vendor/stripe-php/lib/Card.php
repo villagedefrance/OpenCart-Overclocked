@@ -2,7 +2,4 @@
 
 namespace Stripe;
 
-class Card extends ExternalAccount
-{
-
-}
+class Card extends ExternalAccount { }

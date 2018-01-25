@@ -2,17 +2,14 @@
 
 namespace Stripe;
 
-class Collection extends ApiResource
-{
+class Collection extends ApiResource {
     protected $_requestParams = array();
 
-    public function setRequestParams($params)
-    {
+    public function setRequestParams($params) {
         $this->_requestParams = $params;
     }
 
-    public function all($params = null, $opts = null)
-    {
+    public function all($params = null, $opts = null) {
         list($url, $params) = $this->extractPathAndUpdateParams($params);
 
         list($response, $opts) = $this->_request('get', $url, $params, $opts);
@@ -20,8 +17,7 @@ class Collection extends ApiResource
         return Util\Util::convertToStripeObject($response, $opts);
     }
 
-    public function create($params = null, $opts = null)
-    {
+    public function create($params = null, $opts = null) {
         list($url, $params) = $this->extractPathAndUpdateParams($params);
 
         list($response, $opts) = $this->_request('post', $url, $params, $opts);
@@ -29,8 +25,7 @@ class Collection extends ApiResource
         return Util\Util::convertToStripeObject($response, $opts);
     }
 
-    public function retrieve($id, $params = null, $opts = null)
-    {
+    public function retrieve($id, $params = null, $opts = null) {
         list($url, $params) = $this->extractPathAndUpdateParams($params);
 
         $id = Util\Util::utf8($id);
@@ -51,14 +46,13 @@ class Collection extends ApiResource
      *    encountered, the next page will be fetched automatically for
      *    continued iteration.
      */
-    public function autoPagingIterator()
-    {
+    public function autoPagingIterator() {
         return new Util\AutoPagingIterator($this, $this->_requestParams);
     }
 
-    private function extractPathAndUpdateParams($params)
-    {
+    private function extractPathAndUpdateParams($params) {
         $url = parse_url($this->url);
+
         if (!isset($url['path'])) {
             throw new Error\Api("Could not parse list url into parts: $url");
         }
