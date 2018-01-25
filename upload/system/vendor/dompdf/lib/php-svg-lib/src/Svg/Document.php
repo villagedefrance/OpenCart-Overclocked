@@ -61,12 +61,14 @@ class Document extends AbstractTag {
 
     protected function initParser() {
         $parser = xml_parser_create("utf-8");
+
         xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, false);
         xml_set_element_handler(
             $parser,
             array($this, "_tagStart"),
             array($this, "_tagEnd")
         );
+
         xml_set_character_data_handler(
             $parser,
             array($this, "_charData")
@@ -102,6 +104,7 @@ class Document extends AbstractTag {
         $rootAttributes = null;
 
         $parser = xml_parser_create("utf-8");
+
         xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, false);
         xml_set_element_handler(
             $parser,
@@ -152,6 +155,7 @@ class Document extends AbstractTag {
                     if (!$this->width) {
                         $this->width = $viewBox[2];
                     }
+
                     if (!$this->height) {
                         $this->height = $viewBox[3];
                     }
@@ -250,8 +254,7 @@ class Document extends AbstractTag {
             case 'svg':
                 if (count($this->attributes)) {
                     $tag = new Group($this, $name);
-                }
-                else {
+                } else {
                     $tag = $this;
                     $this->svgOffset($attributes);
                 }

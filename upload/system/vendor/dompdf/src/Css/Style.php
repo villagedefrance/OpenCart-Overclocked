@@ -7,7 +7,7 @@
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
- 
+
 namespace Dompdf\Css;
 
 use Dompdf\Adapter\CPDF;
@@ -65,8 +65,7 @@ class Style {
      *
      * @var array
      */
-    static $vertical_align_keywords = array("baseline", "bottom", "middle", "sub",
-        "super", "text-bottom", "text-top", "top");
+    static $vertical_align_keywords = array("baseline", "bottom", "middle", "sub", "super", "text-bottom", "text-top", "top");
 
     /**
      * List of all inline types.  Should really be a constant.
@@ -101,8 +100,7 @@ class Style {
      *
      * @var array
      */
-    static $BORDER_STYLES = array("none", "hidden", "dotted", "dashed", "solid",
-        "double", "groove", "ridge", "inset", "outset");
+    static $BORDER_STYLES = array("none", "hidden", "dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset");
 
     /**
      * Default style values.
@@ -424,7 +422,9 @@ class Style {
     /**
      * "Destructor": forcibly free all references held by this object
      */
-    function dispose() { }
+    function dispose() {
+
+    }
 
     /**
      * @param $media_queries
@@ -501,13 +501,14 @@ class Style {
 
         if (!is_array($length)) {
             $key = $length . "/$ref_size";
-            //Early check on cache, before converting $length to array
+            // Early check on cache, before converting $length to array
             if (isset($cache[$key])) {
                 return $cache[$key];
             }
             $length = array($length);
         } else {
             $key = implode("@", $length) . "/$ref_size";
+
             if (isset($cache[$key])) {
                 return $cache[$key];
             }

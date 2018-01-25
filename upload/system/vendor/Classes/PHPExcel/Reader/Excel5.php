@@ -376,7 +376,7 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
      * @var int
      */
     private $encryption = 0;
-    
+
     /**
      * The position in the stream after which contents are encrypted
      *
@@ -513,7 +513,7 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
         $this->dataSize = strlen($this->data);
 
         // initialize
-        $this->pos    = 0;
+        $this->pos = 0;
         $this->sheets = array();
 
         // Parse Workbook Global Substream

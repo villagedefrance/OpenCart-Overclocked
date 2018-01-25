@@ -1247,7 +1247,6 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
         $rwTop          = 0x0000;     // Top row visible in window
         $colLeft        = 0x0000;     // Leftmost column visible in window
 
-
         // The options flags that comprise $grbit
         $fDspFmla       = 0;                     // 0 - bit
         $fDspGrid       = $this->phpSheet->getShowGridlines() ? 1 : 0; // 1
@@ -2563,7 +2562,6 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 
         // Read and remove the bitmap size. This is more reliable than reading
         // the data size at offset 0x22.
-        //
         $size_array   = unpack("Vsa", substr($data, 0, 4));
         $size   = $size_array['sa'];
         $data   = substr($data, 4);
@@ -2578,6 +2576,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
         $width  = $width_and_height[1];
         $height = $width_and_height[2];
         $data   = substr($data, 8);
+
         if ($width > 0xFFFF) {
             throw new PHPExcel_Writer_Exception("$bitmap: largest image width supported is 65k.\n");
         }

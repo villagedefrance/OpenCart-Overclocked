@@ -31,12 +31,6 @@ class EigenvalueDecomposition {
     private $n;
 
     /**
-     *    Internal symmetry flag.
-     *    @var int
-     */
-    private $issymmetric;
-
-    /**
      *    Arrays for internal storage of eigenvalues.
      *    @var array
      */

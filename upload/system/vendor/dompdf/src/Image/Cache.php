@@ -34,7 +34,7 @@ class Cache {
      * @var string
      */
     public static $broken_image = "";
-    
+
     /**
      * Current dompdf instance
      *
@@ -73,8 +73,7 @@ class Cache {
             // Remote not allowed and is not DataURI
             if (!$enable_remote && $remote && !$data_uri) {
                 throw new ImageException("Remote file access is disabled.", E_WARNING);
-            } // Remote allowed or DataURI
-            else {
+            } else {
                 if ($enable_remote && $remote || $data_uri) {
                     // Download remote files to a temporary directory
                     $full_url = Helpers::build_url($protocol, $host, $base_path, $url);
@@ -82,8 +81,7 @@ class Cache {
                     // From cache
                     if (isset(self::$_cache[$full_url])) {
                         $resolved_url = self::$_cache[$full_url];
-                    } // From remote
-                    else {
+                    } else {
                         $tmp_dir = $dompdf->getOptions()->getTempDir();
 
                         $resolved_url = tempnam($tmp_dir, "ca_dompdf_img_");
@@ -102,8 +100,7 @@ class Cache {
                         if (strlen($image) == 0) {
                             $msg = ($data_uri ? "Data-URI could not be parsed" : "Image not found");
                             throw new ImageException($msg, E_WARNING);
-                        } // Image found, put in cache and process
-                        else {
+                        } else {
                             //e.g. fetch.php?media=url.jpg&cache=1
                             //- Image file name might be one of the dynamic parts of the url, don't strip off!
                             //- a remote url does not need to have a file extension at all
@@ -112,8 +109,7 @@ class Cache {
                             file_put_contents($resolved_url, $image);
                         }
                     }
-                } // Not remote, local image
-                else {
+                } else {
                     $resolved_url = Helpers::build_url($protocol, $host, $base_path, $url);
                 }
             }
@@ -121,8 +117,7 @@ class Cache {
             // Check if the local file is readable
             if (!is_readable($resolved_url) || !filesize($resolved_url)) {
                 throw new ImageException("Image not readable or empty", E_WARNING);
-            } // Check is the file is an image
-            else {
+            } else {
                 list($width, $height, $type) = Helpers::dompdf_getimagesize($resolved_url, $dompdf->getHttpContext());
 
                 $image_mime = image_type_to_mime_type(exif_imagetype($resolved_url));
@@ -158,8 +153,7 @@ class Cache {
                     if ($enable_remote && $remote || $data_uri) {
                         self::$_cache[$full_url] = $resolved_url;
                     }
-                } // Unknown image type
-                else {
+                } else {
                     throw new ImageException("Image type unknown", E_WARNING);
                 }
             }

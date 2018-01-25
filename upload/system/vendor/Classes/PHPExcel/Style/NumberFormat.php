@@ -94,7 +94,7 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
      *
      * @var string
      */
-    protected $builtInFormatCode    = 0;
+    protected $builtInFormatCode = 0;
 
     /**
      * Create a new PHPExcel_Style_NumberFormat
@@ -261,7 +261,7 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
         //      40: "#,##0.00_);[Red](#,##0.00)"
         //      47: "mm:ss.0"
         //      KOR fmt 55: "yyyy/mm/dd"
- 
+
         // Built-in format codes
         if (is_null(self::$builtInFormats)) {
             self::$builtInFormats = array();
@@ -425,19 +425,13 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
      *
      * @var array
      */
-    private static $dateFormatReplacements24 = array(
-            'hh' => 'H',
-            'h'  => 'G'
-        );
+    private static $dateFormatReplacements24 = array('hh' => 'H', 'h'  => 'G');
     /**
      * Search/replace values to convert Excel date/time format masks hours to PHP format masks (12 hr clock)
      *
      * @var array
      */
-    private static $dateFormatReplacements12 = array(
-            'hh' => 'h',
-            'h'  => 'g'
-        );
+    private static $dateFormatReplacements12 = array('hh' => 'h', 'h'  => 'g');
 
     private static function setLowercaseCallback($matches) {
         return mb_strtolower($matches[0]);
@@ -460,9 +454,10 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
         // Only process the non-quoted blocks for date format characters
         $blocks = explode('"', $format);
 
-        foreach($blocks as $key => &$block) {
+        foreach ($blocks as $key => &$block) {
             if ($key % 2 == 0) {
                 $block = strtr($block, self::$dateFormatReplacements);
+
                 if (!strpos($block, 'A')) {
                     // 24-hour time format
                     $block = strtr($block, self::$dateFormatReplacements24);
@@ -548,10 +543,7 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
                 $size = strlen($block[0]);
                 $offset = $block[1];
 
-                $blockValue = sprintf(
-                    '%0' . $size . 'd',
-                    fmod($number, $divisor)
-                );
+                $blockValue = sprintf('%0' . $size . 'd', fmod($number, $divisor));
 
                 $number = floor($number / $divisor);
                 $mask = substr_replace($mask, $blockValue, $offset, $size);
@@ -669,6 +661,7 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
                 //        #,   or    0.0,,
                 $scale = 1; // same as no scale
                 $matches = array();
+
                 if (preg_match('/(#|0)(,+)/', $format, $matches)) {
                     $scale = pow(1000, strlen($matches[2]));
 

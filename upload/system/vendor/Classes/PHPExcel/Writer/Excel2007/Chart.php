@@ -552,7 +552,6 @@ class PHPExcel_Writer_Excel2007_Chart extends PHPExcel_Writer_Excel2007_WriterPa
         $objWriter->startElement('c:orientation');
         $objWriter->writeAttribute('val', $xAxis->getAxisOptionsProperty('orientation'));
 
-
         $objWriter->endElement();
         $objWriter->endElement();
 
@@ -609,6 +608,7 @@ class PHPExcel_Writer_Excel2007_Chart extends PHPExcel_Writer_Excel2007_WriterPa
             }
             $objWriter->endElement(); //end ln
         }
+
         $objWriter->startElement('a:effectLst');
 
         if (!is_null($majorGridlines->getGlowSize())) {

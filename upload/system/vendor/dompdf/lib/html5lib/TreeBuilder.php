@@ -51,7 +51,6 @@ class HTML5_TreeBuilder {
     private $form_pointer = null;
 
     private $flag_frameset_ok = true;
-    private $flag_force_quirks = false;
     private $ignored = false;
     private $quirks_mode = null;
     // this gets to 2 when we want to ignore the next lf character, and

@@ -3953,13 +3953,14 @@ EOT;
 
             } elseif (($c >> 0x06) === 0x02) { // bytes 2, 3 and 4 must start with 0x02 = 10 BIN
                 $bytes[] = $c - 0x80;
+
                 if (count($bytes) === $numbytes) {
                     // compose UTF-8 bytes to a single unicode value
                     $c = $bytes[0];
                     for ($j = 1; $j < $numbytes; $j++) {
                         $c += ($bytes[$j] << (($numbytes - $j - 1) * 0x06));
                     }
-                    if ((($c >= 0xD800) AND ($c <= 0xDFFF)) OR ($c >= 0x10FFFF)) {
+                    if ((($c >= 0xD800) && ($c <= 0xDFFF)) || ($c >= 0x10FFFF)) {
                         // The definition of UTF-8 prohibits encoding character numbers between
                         // U+D800 and U+DFFF, which are reserved for use with the UTF-16
                         // encoding form (as surrogate pairs) and do not directly represent
@@ -4725,12 +4726,13 @@ EOT;
             $color_channels->writeimage($tempfile_plain);
 
             $imgplain = imagecreatefrompng($tempfile_plain);
-        }
-        // Use PECL imagick + ImageMagic to process transparent PNG images
-        elseif (extension_loaded("imagick")) {
+
+        } elseif (extension_loaded("imagick")) {
+            // Use PECL imagick + ImageMagic to process transparent PNG images
             // Native cloning was added to pecl-imagick in svn commit 263814
             // the first version containing it was 3.0.1RC1
             static $imagickClonable = null;
+
             if ($imagickClonable === null) {
                 $imagickClonable = version_compare(Imagick::IMAGICK_EXTVER, '3.0.1rc1') > 0;
             }
@@ -4746,6 +4748,7 @@ EOT;
 
             // Cast to 8bit+palette
             $imgalpha_ = imagecreatefrompng($tempfile_alpha);
+
             imagecopy($imgalpha, $imgalpha_, 0, 0, 0, 0, $wpx, $hpx);
             imagedestroy($imgalpha_);
             imagepng($imgalpha, $tempfile_alpha);
@@ -4871,8 +4874,8 @@ EOT;
             $img = imagecreatetruecolor($sx, $sy);
             imagealphablending($img, true);
 
-            // @todo is it still needed ??
             $ti = imagecolortransparent($imgtmp);
+
             if ($ti >= 0) {
                 $tc = imagecolorsforindex($imgtmp, $ti);
                 $ti = imagecolorallocate($img, $tc['red'], $tc['green'], $tc['blue']);

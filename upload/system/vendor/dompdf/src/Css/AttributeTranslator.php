@@ -509,7 +509,9 @@ class AttributeTranslator {
      * @return null|string
      */
     static protected function _set_input_width(\DOMElement $node, $value) {
-        if (empty($value)) { return null; }
+        if (empty($value)) {
+            return null;
+        }
 
         if ($node->hasAttribute("type") && in_array(strtolower($node->getAttribute("type")), array("text","password"))) {
             return sprintf("width: %Fem", (((int)$value * .65)+2));

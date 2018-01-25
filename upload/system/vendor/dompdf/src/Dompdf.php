@@ -224,11 +224,6 @@ class Dompdf {
     private $allowedLocalFileExtensions = array("htm", "html", "tpl");
 
     /**
-     * @var array
-     */
-    private $messages = array();
-
-    /**
      * @var Options
      */
     private $options;

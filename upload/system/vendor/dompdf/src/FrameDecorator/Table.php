@@ -185,8 +185,11 @@ class Table extends AbstractFrameDecorator {
      * @return Table the table that is an ancestor of $frame
      */
     public static function find_parent_table(Frame $frame) {
-        while ($frame = $frame->get_parent())
-            if ($frame->is_table()) break;
+        while ($frame = $frame->get_parent()) {
+            if ($frame->is_table()) {
+                break;
+            }
+        }
 
         return $frame;
     }

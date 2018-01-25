@@ -19,23 +19,23 @@ class BinaryStream {
    */
   protected $f;
 
-  const uint8        = 1;
-  const  int8        = 2;
-  const uint16       = 3;
-  const  int16       = 4;
-  const uint32       = 5;
-  const  int32       = 6;
-  const shortFrac    = 7;
-  const Fixed        = 8;
-  const  FWord       = 9;
-  const uFWord       = 10;
-  const F2Dot14      = 11;
-  const longDateTime = 12;
-  const char         = 13;
+  const UINT8 = 1;
+  const INT8 = 2;
+  const UINT16 = 3;
+  const INT16 = 4;
+  const UINT32 = 5;
+  const INT32 = 6;
+  const SHORTFRAC = 7;
+  const FIXED = 8;
+  const FWORD = 9;
+  const UFWORD = 10;
+  const F2DOT14 = 11;
+  const LONGDATETIME = 12;
+  const CHAR = 13;
 
-  const modeRead      = "rb";
-  const modeWrite     = "wb";
-  const modeReadWrite = "rb+";
+  const MODEREAD = "rb";
+  const MODEWRITE = "wb";
+  const MODEREADWRITE = "rb+";
 
   static function backtrace() {
     var_dump(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS));
@@ -49,7 +49,7 @@ class BinaryStream {
    * @return bool
    */
   public function load($filename) {
-    return $this->open($filename, self::modeRead);
+    return $this->open($filename, self::MODEREAD);
   }
 
   /**
@@ -61,8 +61,8 @@ class BinaryStream {
    * @throws \Exception
    * @return bool
    */
-  public function open($filename, $mode = self::modeRead) {
-    if (!in_array($mode, array(self::modeRead, self::modeWrite, self::modeReadWrite))) {
+  public function open($filename, $mode = self::MODEREAD) {
+    if (!in_array($mode, array(self::MODEREAD, self::MODEWRITE, self::MODEREADWRITE))) {
       throw new \Exception("Unkown file open mode");
     }
 
@@ -257,14 +257,14 @@ class BinaryStream {
   }
 
   public function readFixed() {
-    $d  = $this->readInt16();
+    $d = $this->readInt16();
     $d2 = $this->readUInt16();
 
     return round($d + $d2 / 0x10000, 4);
   }
 
   public function writeFixed($data) {
-    $left  = floor($data);
+    $left = floor($data);
     $right = ($data - $left) * 0x10000;
 
     return $this->writeInt16($left) + $this->writeUInt16($right);
@@ -275,7 +275,7 @@ class BinaryStream {
     $date = $this->readUInt32() - 2082844800;
     
     # PHP_INT_MIN isn't defined in PHP < 7.0
-    $php_int_min = defined("PHP_INT_MIN") ? PHP_INT_MIN : ~PHP_INT_MAX;
+    $php_int_min = (defined("PHP_INT_MIN")) ? PHP_INT_MIN : ~PHP_INT_MAX;
 
     if (is_string($date) || $date > PHP_INT_MAX || $date < $php_int_min) {
       $date = 0;
@@ -293,6 +293,7 @@ class BinaryStream {
 
   public function unpack($def) {
     $d = array();
+
     foreach ($def as $name => $type) {
       $d[$name] = $this->r($type);
     }
@@ -302,6 +303,7 @@ class BinaryStream {
 
   public function pack($def, $data) {
     $bytes = 0;
+
     foreach ($def as $name => $type) {
       $bytes += $this->w($type, $data[$name]);
     }
@@ -318,51 +320,52 @@ class BinaryStream {
    */
   public function r($type) {
     switch ($type) {
-      case self::uint8:
+      case self::UINT8:
         return $this->readUInt8();
-      case self::int8:
+      case self::INT8:
         return $this->readInt8();
-      case self::uint16:
+      case self::UINT16:
         return $this->readUInt16();
-      case self::int16:
+      case self::INT16:
         return $this->readInt16();
-      case self::uint32:
+      case self::UINT32:
         return $this->readUInt32();
-      case self::int32:
+      case self::INT32:
         return $this->readUInt32();
-      case self::shortFrac:
+      case self::SHORTFRAC:
         return $this->readFixed();
-      case self::Fixed:
+      case self::FIXED:
         return $this->readFixed();
-      case self::FWord:
+      case self::FWORD:
         return $this->readInt16();
-      case self::uFWord:
+      case self::UFWORD:
         return $this->readUInt16();
-      case self::F2Dot14:
+      case self::F2DOT14:
         return $this->readInt16();
-      case self::longDateTime:
+      case self::LONGDATETIME:
         return $this->readLongDateTime();
-      case self::char:
+      case self::CHAR:
         return $this->read(1);
       default:
         if (is_array($type)) {
-          if ($type[0] == self::char) {
+          if ($type[0] == self::CHAR) {
             return $this->read($type[1]);
           }
-          if ($type[0] == self::uint16) {
+          if ($type[0] == self::UINT16) {
             return $this->readUInt16Many($type[1]);
           }
-          if ($type[0] == self::int16) {
+          if ($type[0] == self::INT16) {
             return $this->readInt16Many($type[1]);
           }
-          if ($type[0] == self::uint8) {
+          if ($type[0] == self::UINT8) {
             return $this->readUInt8Many($type[1]);
           }
-          if ($type[0] == self::int8) {
+          if ($type[0] == self::INT8) {
             return $this->readInt8Many($type[1]);
           }
 
           $ret = array();
+
           for ($i = 0; $i < $type[1]; $i++) {
             $ret[] = $this->r($type[0]);
           }
@@ -384,39 +387,40 @@ class BinaryStream {
    */
   public function w($type, $data) {
     switch ($type) {
-      case self::uint8:
+      case self::UINT8:
         return $this->writeUInt8($data);
-      case self::int8:
+      case self::INT8:
         return $this->writeInt8($data);
-      case self::uint16:
+      case self::UINT16:
         return $this->writeUInt16($data);
-      case self::int16:
+      case self::INT16:
         return $this->writeInt16($data);
-      case self::uint32:
+      case self::UINT32:
         return $this->writeUInt32($data);
-      case self::int32:
+      case self::INT32:
         return $this->writeUInt32($data);
-      case self::shortFrac:
+      case self::SHORTFRAC:
         return $this->writeFixed($data);
-      case self::Fixed:
+      case self::FIXED:
         return $this->writeFixed($data);
-      case self::FWord:
+      case self::FWORD:
         return $this->writeInt16($data);
-      case self::uFWord:
+      case self::UFWORD:
         return $this->writeUInt16($data);
-      case self::F2Dot14:
+      case self::F2DOT14:
         return $this->writeInt16($data);
-      case self::longDateTime:
+      case self::LONGDATETIME:
         return $this->writeLongDateTime($data);
-      case self::char:
+      case self::CHAR:
         return $this->write($data, 1);
       default:
         if (is_array($type)) {
-          if ($type[0] == self::char) {
+          if ($type[0] == self::CHAR) {
             return $this->write($data, $type[1]);
           }
 
           $ret = 0;
+
           for ($i = 0; $i < $type[1]; $i++) {
             if (isset($data[$i])) {
               $ret += $this->w($type[0], $data[$i]);

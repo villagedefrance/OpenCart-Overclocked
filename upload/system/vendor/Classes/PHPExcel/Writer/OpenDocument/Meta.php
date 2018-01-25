@@ -81,7 +81,7 @@ class PHPExcel_Writer_OpenDocument_Meta extends PHPExcel_Writer_OpenDocument_Wri
         $objWriter->writeAttribute('meta:name', 'Company');
         $objWriter->writeRaw($pPHPExcel->getProperties()->getCompany());
         $objWriter->endElement();
- 
+
         $objWriter->startElement('meta:user-defined');
         $objWriter->writeAttribute('meta:name', 'category');
         $objWriter->writeRaw($pPHPExcel->getProperties()->getCategory());

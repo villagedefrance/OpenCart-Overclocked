@@ -96,6 +96,7 @@ class Inline extends AbstractRenderer {
 
                 // Handle anchors & links
                 $link_node = null;
+
                 if ($frame->get_node()->nodeName === "a") {
                     $link_node = $frame->get_node();
                 } else if ($frame->get_parent()->get_node()->nodeName === "a") {
@@ -183,7 +184,7 @@ class Inline extends AbstractRenderer {
 
         $id = $frame->get_node()->getAttribute("id");
 
-        if (strlen($id) > 0)  {
+        if (strlen($id) > 0) {
             $this->_canvas->add_named_dest($id);
         }
 

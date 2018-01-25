@@ -195,7 +195,9 @@ class Image extends AbstractFrameReflower {
             }
         }
 
-        if ($this->get_dompdf()->getOptions()->getDebugPng()) print $width . ' ' . $height . ';';
+        if ($this->get_dompdf()->getOptions()->getDebugPng()) {
+            print $width . ' ' . $height . ';';
+        }
 
         $style->width = $width . "pt";
         $style->height = $height . "pt";

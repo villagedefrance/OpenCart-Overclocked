@@ -272,7 +272,6 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
             $spgrContainer->addChild($spContainer);
 
             // add the shapes
-
             $countShapes[$sheetIndex] = 0; // count number of shapes (minus group shape), in sheet
 
             foreach ($sheet->getDrawingCollection() as $drawing) {
@@ -838,7 +837,6 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
                                'type'     => array('pack' => 'V', 'data' => 0x03), // 4 byte signed integer
                                'data'    => array('data' => 0x00));
         $dataSection_NumProps++;
-
 
         //         4     Section Length
         //        4     Property count

@@ -170,7 +170,7 @@ class Color {
     static function parse($color) {
         if (is_array($color)) {
             // Assume the array has the right format...
-            // FIXME: should/could verify this.
+            // should/could verify this.
             return $color;
         }
 
@@ -195,19 +195,19 @@ class Color {
         // #rgb format
         if ($length == 4 && $color[0] === "#") {
             return $cache[$color] = self::getArray($color[1] . $color[1] . $color[2] . $color[2] . $color[3] . $color[3]);
-        } // #rgba format
-        else if ($length == 5 && $color[0] === "#") {
+
+        } else if ($length == 5 && $color[0] === "#") {
             $alpha = round(hexdec($color[4] . $color[4])/255, 2);
             return $cache[$color] = self::getArray($color[1] . $color[1] . $color[2] . $color[2] . $color[3] . $color[3], $alpha);
-        } // #rrggbb format
-        else if ($length == 7 && $color[0] === "#") {
+
+        } else if ($length == 7 && $color[0] === "#") {
             return $cache[$color] = self::getArray(mb_substr($color, 1, 6));
-        } // #rrggbbaa format
-        else if ($length == 9 && $color[0] === "#") {
+
+        } else if ($length == 9 && $color[0] === "#") {
             $alpha = round(hexdec(mb_substr($color, 7, 2))/255, 2);
             return $cache[$color] = self::getArray(mb_substr($color, 1, 8), $alpha);
-        } // rgb( r,g,b ) / rgbaa( r,g,b,α ) format
-        else if (mb_strpos($color, "rgb") !== false) {
+
+        } else if (mb_strpos($color, "rgb") !== false) {
             $i = mb_strpos($color, "(");
             $j = mb_strpos($color, ")");
 
@@ -242,11 +242,8 @@ class Color {
             }
 
             return $cache[$color] = self::getArray(vsprintf("%02X%02X%02X", $triplet), $alpha);
-        }
 
-        // cmyk( c,m,y,k ) format
-        // http://www.w3.org/TR/css3-gcpm/#cmyk-colors
-        else if (mb_strpos($color, "cmyk") !== false) {
+        } else if (mb_strpos($color, "cmyk") !== false) {
             $i = mb_strpos($color, "(");
             $j = mb_strpos($color, ")");
 

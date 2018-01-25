@@ -37,12 +37,6 @@ if (!defined('PHPEXCEL_ROOT')) {
  * Overclocked Edition © 2018 | Villagedefrance
  */
 class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader {
-    /**
-     * Formats
-     *
-     * @var array
-     */
-    private $styles = array();
 
     /**
      * Shared Expressions
@@ -104,7 +98,7 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
         }
 
         $xml = new XMLReader();
-        $xml->xml($this->securityScanFile('compress.zlib://'.realpath($pFilename)), null, PHPExcel_Settings::getLibXmlLoaderOptions());
+        $xml->xml($this->securityScanFile('compress.zlib://' . realpath($pFilename)), null, PHPExcel_Settings::getLibXmlLoaderOptions());
         $xml->setParserProperty(2, true);
 
         $worksheetNames = array();
@@ -135,7 +129,7 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
         }
 
         $xml = new XMLReader();
-        $xml->xml($this->securityScanFile('compress.zlib://'.realpath($pFilename)), null, PHPExcel_Settings::getLibXmlLoaderOptions());
+        $xml->xml($this->securityScanFile('compress.zlib://' . realpath($pFilename)), null, PHPExcel_Settings::getLibXmlLoaderOptions());
         $xml->setParserProperty(2, true);
 
         $worksheetInfo = array();
@@ -164,7 +158,9 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                         break;
                     }
                 }
+
                 $tmpInfo['lastColumnLetter'] = PHPExcel_Cell::stringFromColumnIndex($tmpInfo['lastColumnIndex']);
+
                 $worksheetInfo[] = $tmpInfo;
             }
         }
@@ -239,8 +235,10 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                 if (isset($namespacesMeta['dc'])) {
                     $officePropertyDC = $officePropertyData->children($namespacesMeta['dc']);
                 }
+
                 foreach ($officePropertyDC as $propertyName => $propertyValue) {
                     $propertyValue = (string) $propertyValue;
+
                     switch ($propertyName) {
                         case 'title':
                             $docProps->setTitle(trim($propertyValue));
@@ -264,6 +262,7 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                 }
 
                 $officePropertyMeta = array();
+
                 if (isset($namespacesMeta['meta'])) {
                     $officePropertyMeta = $officePropertyData->children($namespacesMeta['meta']);
                 }
@@ -271,6 +270,7 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                 foreach ($officePropertyMeta as $propertyName => $propertyValue) {
                     $attributes = $propertyValue->attributes($namespacesMeta['meta']);
                     $propertyValue = (string) $propertyValue;
+
                     switch ($propertyName) {
                         case 'keyword':
                             $docProps->setKeywords(trim($propertyValue));
@@ -301,10 +301,12 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                     }
                 }
             }
+
         } elseif (isset($gnmXML->Summary)) {
             foreach ($gnmXML->Summary->Item as $summaryItem) {
                 $propertyName = $summaryItem->name;
                 $propertyValue = $summaryItem->{'val-string'};
+
                 switch ($propertyName) {
                     case 'title':
                         $docProps->setTitle(trim($propertyValue));
@@ -333,6 +335,7 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
         }
 
         $worksheetID = 0;
+
         foreach ($gnmXML->Sheets->Sheet as $sheet) {
             $worksheetName = (string) $sheet->Name;
 
@@ -355,11 +358,13 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                     foreach ($sheet->PrintInformation->Margins->children('gnm', true) as $key => $margin) {
                         $marginAttributes = $margin->attributes();
                         $marginSize = 72 / 100;    //    Default
+
                         switch ($marginAttributes['PrefUnit']) {
                             case 'mm':
                                 $marginSize = intval($marginAttributes['Points']) / 100;
                                 break;
                         }
+
                         switch ($key) {
                             case 'top':
                                 $objPHPExcel->getActiveSheet()->getPageMargins()->setTop($marginSize);
@@ -392,6 +397,7 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                 if ($row > $maxRow) {
                     $maxRow = $row;
                 }
+
                 if ($column > $maxCol) {
                     $maxCol = $column;
                 }
@@ -409,6 +415,7 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                 $ExprID = (string) $cellAttributes->ExprID;
 
                 $type = PHPExcel_Cell_DataType::TYPE_FORMULA;
+
                 if ($ExprID > '') {
                     if (((string) $cell) > '') {
                         $this->expressions[$ExprID] = array(
@@ -662,6 +669,7 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                                     $styleArray['borders']['diagonaldirection'] = PHPExcel_Style_Borders::DIAGONAL_DOWN;
                                 }
                             }
+
                             if (isset($styleRegion->Style->HyperLink)) {
                                 $hyperlink = $styleRegion->Style->HyperLink->attributes();
                             }
@@ -696,6 +704,7 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                         ++$c;
                     }
                 }
+
                 while ($c <= $maxCol) {
                     $objPHPExcel->getActiveSheet()->getColumnDimension(PHPExcel_Cell::stringFromColumnIndex($c))->setWidth($defaultWidth);
                     ++$c;
@@ -714,10 +723,12 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                     $rowHeight = $rowAttributes['Unit'];
                     $hidden = ((isset($rowAttributes['Hidden'])) && ($rowAttributes['Hidden'] == '1')) ? true : false;
                     $rowCount = (isset($rowAttributes['Count'])) ? $rowAttributes['Count'] : 1;
+
                     while ($r < $row) {
                         ++$r;
                         $objPHPExcel->getActiveSheet()->getRowDimension($r)->setRowHeight($defaultHeight);
                     }
+
                     while (($r < ($row+$rowCount)) && ($r < $maxRow)) {
                         ++$r;
                         $objPHPExcel->getActiveSheet()->getRowDimension($r)->setRowHeight($rowHeight);
@@ -726,6 +737,7 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                         }
                     }
                 }
+
                 while ($r < $maxRow) {
                     ++$r;
                     $objPHPExcel->getActiveSheet()->getRowDimension($r)->setRowHeight($defaultHeight);
@@ -749,12 +761,14 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
             foreach ($gnmXML->Names->Name as $namedRange) {
                 $name = (string) $namedRange->name;
                 $range = (string) $namedRange->value;
+
                 if (stripos($range, '#REF!') !== false) {
                     continue;
                 }
 
                 $range = explode('!', $range);
                 $range[0] = trim($range[0], "'");
+
                 if ($worksheet = $objPHPExcel->getSheetByName($range[0])) {
                     $extractedRange = str_replace('$', '', $range[1]);
                     $objPHPExcel->addNamedRange(new PHPExcel_NamedRange($name, $worksheet, $extractedRange));

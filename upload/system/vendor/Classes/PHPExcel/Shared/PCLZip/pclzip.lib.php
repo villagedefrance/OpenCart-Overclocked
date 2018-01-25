@@ -1684,7 +1684,9 @@ class PclZip {
         }
 
         // ----- Look for default values
-        if (!isset($v_result_list[PCLZIP_OPT_TEMP_FILE_THRESHOLD])) { }
+        if (!isset($v_result_list[PCLZIP_OPT_TEMP_FILE_THRESHOLD])) {
+
+        }
         // ----- Return
         return $v_result;
     }

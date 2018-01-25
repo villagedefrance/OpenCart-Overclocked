@@ -798,7 +798,6 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
             $css['html']['background-color'] = 'white';
         }
 
-
         // table { }
         $css['table']['border-collapse']  = 'collapse';
         if (!$this->isPdf) {

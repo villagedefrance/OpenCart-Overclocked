@@ -62,4 +62,4 @@ class Text extends Shape {
     public function getText() {
         return trim($this->text);
     }
-} 
+}

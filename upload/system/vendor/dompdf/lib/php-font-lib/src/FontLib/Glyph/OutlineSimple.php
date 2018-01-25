@@ -15,10 +15,10 @@ namespace FontLib\Glyph;
  * @package php-font-lib
  */
 class OutlineSimple extends Outline {
-  const ON_CURVE       = 0x01;
+  const ON_CURVE = 0x01;
   const X_SHORT_VECTOR = 0x02;
   const Y_SHORT_VECTOR = 0x04;
-  const REPEAT         = 0x08;
+  const REPEAT = 0x08;
   const THIS_X_IS_SAME = 0x10;
   const THIS_Y_IS_SAME = 0x20;
 
@@ -81,8 +81,8 @@ class OutlineSimple extends Outline {
         if ($flag & self::X_SHORT_VECTOR) {
           $x += $font->readUInt8();
         }
-      }
-      else {
+
+      } else {
         if ($flag & self::X_SHORT_VECTOR) {
           $x -= $font->readUInt8();
         } else {
@@ -95,6 +95,7 @@ class OutlineSimple extends Outline {
 
     // Y Coords
     $y = 0;
+
     for ($i = 0; $i < $count; $i++) {
       $flag = $flags[$i];
 
@@ -315,8 +316,7 @@ class OutlineSimple extends Outline {
       } else {
         if ($point_p1["onCurve"]) {
           $path .= "Q{$point['x']},{$point['y']},{$point_p1['x']},{$point_p1['y']} ";
-        }
-        else {
+        } else {
           $path .= "Q{$point['x']},{$point['y']}," . $this->midValue($point['x'], $point_p1['x']) . "," . $this->midValue($point['y'], $point_p1['y']) . " ";
         }
 
