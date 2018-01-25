@@ -36,7 +36,7 @@ class Cellmap {
         "solid" => 7,
         "double" => 8,
         "hidden" => 9,
-        "none" => 0,
+        "none" => 0
     );
 
     /**
@@ -146,7 +146,6 @@ class Cellmap {
         }
 
         $this->_rows = array();
-
         $this->_borders = array();
 
         $this->__col = $this->__row = 0;
@@ -222,7 +221,7 @@ class Cellmap {
                 "used-width" => null,
                 "absolute" => 0,
                 "percent" => 0,
-                "auto" => true,
+                "auto" => true
             );
         }
 
@@ -246,7 +245,7 @@ class Cellmap {
             $this->_rows[$j] = array(
                 "y" => 0,
                 "first-column" => 0,
-                "height" => null,
+                "height" => null
             );
         }
 
@@ -266,7 +265,7 @@ class Cellmap {
             $this->_borders[$i][$j][$h_v] = array(
                 "width" => 0,
                 "style" => "solid",
-                "color" => "black",
+                "color" => "black"
             );
         }
 
@@ -288,7 +287,7 @@ class Cellmap {
             "top" => $this->get_border($i, $j, "horizontal"),
             "right" => $this->get_border($i, $j + 1, "vertical"),
             "bottom" => $this->get_border($i + 1, $j, "horizontal"),
-            "left" => $this->get_border($i, $j, "vertical"),
+            "left" => $this->get_border($i, $j, "vertical")
         );
     }
 
@@ -368,6 +367,7 @@ class Cellmap {
 
         $cols = $this->_frames[$key]["columns"];
         $w = 0;
+
         foreach ($cols as $i) {
             $w += $this->_columns[$i]["used-width"];
         }
@@ -391,6 +391,7 @@ class Cellmap {
 
         $rows = $this->_frames[$key]["rows"];
         $h = 0;
+
         foreach ($rows as $i) {
             if (!isset($this->_rows[$i])) {
                 throw new Exception("The row #$i could not be found, please file an issue in the tracker with the HTML code");
@@ -431,7 +432,6 @@ class Cellmap {
         $row["height"] = $height;
         $next_row =& $this->get_row($i + 1);
         $next_row["y"] = $row["y"] + $height;
-
     }
 
     /**
@@ -452,21 +452,12 @@ class Cellmap {
             return $this->_borders[$i][$j][$h_v]["width"];
         }
 
-        $border = & $this->_borders[$i][$j][$h_v];
+        $border =& $this->_borders[$i][$j][$h_v];
 
         $o_width = $border["width"];
         $o_style = $border["style"];
 
-        if (($n_style === "hidden" ||
-                $n_width > $o_width ||
-                $o_style === "none")
-
-            or
-
-            ($o_width == $n_width &&
-                in_array($n_style, self::$_BORDER_STYLE_SCORE) &&
-                self::$_BORDER_STYLE_SCORE[$n_style] > self::$_BORDER_STYLE_SCORE[$o_style])
-        ) {
+        if (($n_style === "hidden" || $n_width > $o_width || $o_style === "none") or ($o_width == $n_width && in_array($n_style, self::$_BORDER_STYLE_SCORE) && self::$_BORDER_STYLE_SCORE[$n_style] > self::$_BORDER_STYLE_SCORE[$o_style])) {
             $border = $border_spec;
         }
 
@@ -483,12 +474,7 @@ class Cellmap {
         $collapse = $this->_table->get_style()->border_collapse == "collapse";
 
         // Recursively add the frames within tables, table-row-groups and table-rows
-        if ($display === "table-row" ||
-            $display === "table" ||
-            $display === "inline-table" ||
-            in_array($display, TableFrameDecorator::$ROW_GROUPS)
-        ) {
-
+        if ($display === "table-row" || $display === "table" || $display === "inline-table" || in_array($display, TableFrameDecorator::$ROW_GROUPS)) {
             $start_row = $this->__row;
 
             foreach ($frame->get_children() as $child) {
@@ -689,7 +675,7 @@ class Cellmap {
     }
 
     /**
-     *
+     * Add Row
      */
     public function add_row() {
         $this->__row++;
@@ -729,7 +715,7 @@ class Cellmap {
 
                     $this->_cells[$r][$c] = null;
                     unset($this->_cells[$r][$c]);
-                    
+
                     // has multiple rows?
                     if (isset($this->_frames[$id]) && count($this->_frames[$id]["rows"]) > 1) {
                         // remove just the desired row, but leave the frame

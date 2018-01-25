@@ -71,8 +71,8 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
     // ParseXL definitions
     const XLS_BIFF8                     = 0x0600;
     const XLS_BIFF7                     = 0x0500;
-    const XLS_WorkbookGlobals           = 0x0005;
-    const XLS_Worksheet                 = 0x0010;
+    const XLS_WORKBOOKGLOBALS           = 0x0005;
+    const XLS_WORKSHEET                 = 0x0010;
 
     // record identifiers
     const XLS_TYPE_FORMULA              = 0x0006;
@@ -154,7 +154,7 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
     const MS_BIFF_CRYPTO_NONE           = 0;
     const MS_BIFF_CRYPTO_XOR            = 1;
     const MS_BIFF_CRYPTO_RC4            = 2;
-    
+
     // Size of stream blocks when using RC4 encryption
     const REKEY_BLOCK                   = 0x400;
 
@@ -738,10 +738,10 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
                 }
 
                 // border colors
-                $top      = $objStyle->getBorders()->getTop();
-                $right    = $objStyle->getBorders()->getRight();
-                $bottom   = $objStyle->getBorders()->getBottom();
-                $left     = $objStyle->getBorders()->getLeft();
+                $top = $objStyle->getBorders()->getTop();
+                $right = $objStyle->getBorders()->getRight();
+                $bottom = $objStyle->getBorders()->getBottom();
+                $left = $objStyle->getBorders()->getLeft();
                 $diagonal = $objStyle->getBorders()->getDiagonal();
 
                 if (isset($top->colorIndex)) {
@@ -3428,7 +3428,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
         }
     }
 
-
     /**
      * ROW
      *
@@ -3660,6 +3659,7 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
                 // offset: var; size: 4; RK value
                 $numValue = self::getIEEE754(self::getInt4d($recordData, $offset + 2));
                 $cell = $this->phpSheet->getCell($columnString . ($row + 1));
+
                 if (!$this->readDataOnly) {
                     // add style
                     $cell->setXfIndex($this->mapCellXfIndex[$xfIndex]);

@@ -2093,7 +2093,7 @@ class PHPExcel_Calculation {
             $instance = $workbook->getCalculationEngine();
 
             if (isset($instance)) {
-                return $instance;  
+                return $instance;
             }
         }
 

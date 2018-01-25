@@ -593,7 +593,7 @@ class Style {
                 continue;
             }
 
-            // FIXME: em:ex ratio?
+            // em:ex ratio?
             if (($i = mb_strpos($l, "ex")) !== false) {
                 $ret += (float)mb_substr($l, 0, $i) * $this->__get("font_size") / 2;
                 continue;
@@ -616,7 +616,6 @@ class Style {
         return $cache[$key] = $ret;
     }
 
-
     /**
      * Set inherited properties in this style using values in $parent
      *
@@ -629,13 +628,9 @@ class Style {
         $this->_parent_font_size = $parent->get_font_size();
 
         foreach (self::$_inherited as $prop) {
-            //inherit the !important property also.
-            //if local property is also !important, don't inherit.
-            if (isset($parent->_props[$prop]) &&
-                (!isset($this->_props[$prop]) ||
-                    (isset($parent->_important_props[$prop]) && !isset($this->_important_props[$prop]))
-                )
-            ) {
+            // inherit the !important property also.
+            // if local property is also !important, don't inherit.
+            if (isset($parent->_props[$prop]) && (!isset($this->_props[$prop]) || (isset($parent->_important_props[$prop]) && !isset($this->_important_props[$prop])))) {
                 if (isset($parent->_important_props[$prop])) {
                     $this->_important_props[$prop] = true;
                 }
@@ -941,7 +936,10 @@ class Style {
             $font = $this->getFontMetrics()->getFont($family, $subtype);
 
             if ($font) {
-                if ($DEBUGCSS) print '(' . $font . ")get_font_family]\n</pre>";
+                if ($DEBUGCSS) {
+                    print '(' . $font . ")get_font_family]\n</pre>";
+                }
+
                 return $this->_font_family = $font;
             }
         }
@@ -955,7 +953,10 @@ class Style {
         $font = $this->getFontMetrics()->getFont($family, $subtype);
 
         if ($font) {
-            if ($DEBUGCSS) print '(' . $font . ")get_font_family]\n</pre>";
+            if ($DEBUGCSS) {
+                print '(' . $font . ")get_font_family]\n</pre>";
+            }
+
             return $this->_font_family = $font;
         }
 
@@ -1019,8 +1020,8 @@ class Style {
         $this->_prop_cache["font_size"] = null;
         $this->_props["font_size"] = $fs;
         $this->__font_size_calculated = true;
-        return $this->_props["font_size"];
 
+        return $this->_props["font_size"];
     }
 
     /**
@@ -1182,7 +1183,6 @@ class Style {
         );
     }
 
-
     /**
      * Returns the background as it is currently stored
      *
@@ -1195,7 +1195,6 @@ class Style {
     function get_background_attachment() {
         return $this->_props["background_attachment"];
     }
-
 
     /**
      * Returns the background_repeat as it is currently stored
@@ -1210,7 +1209,6 @@ class Style {
         return $this->_props["background_repeat"];
     }
 
-
     /**
      * Returns the background as it is currently stored
      *
@@ -1223,7 +1221,6 @@ class Style {
     function get_background() {
         return $this->_props["background"];
     }
-
 
     /**#@+
      * Returns the border color as an array
@@ -1684,6 +1681,7 @@ class Style {
      */
     protected function _image($val) {
         $DEBUGCSS = $this->_stylesheet->get_dompdf()->getOptions()->getDebugCss();
+
         $parsed_url = "none";
 
         if (mb_strpos($val, "url") === false) {
@@ -1693,6 +1691,7 @@ class Style {
 
             // Resolve the url now in the context of the current stylesheet
             $parsed_url = Helpers::explode_url($val);
+
             if ($parsed_url["protocol"] == "" && $this->_stylesheet->get_protocol() == "") {
                 if ($parsed_url["path"][0] === '/' || $parsed_url["path"][0] === '\\') {
                     $path = $_SERVER["DOCUMENT_ROOT"] . '/';
@@ -1707,10 +1706,7 @@ class Style {
                     $path = 'none';
                 }
             } else {
-                $path = Helpers::build_url($this->_stylesheet->get_protocol(),
-                    $this->_stylesheet->get_host(),
-                    $this->_stylesheet->get_base_path(),
-                    $val);
+                $path = Helpers::build_url($this->_stylesheet->get_protocol(), $this->_stylesheet->get_host(), $this->_stylesheet->get_base_path(), $val);
             }
         }
 
@@ -1842,6 +1838,7 @@ class Style {
             $this->_set_style("background_color", "transparent", $important);
         } else {
             $pos = array();
+
             $tmp = preg_replace("/\s*\,\s*/", ",", $val); // when rgb() has spaces
             $tmp = preg_split("/\s+/", $tmp);
 
@@ -2081,10 +2078,10 @@ class Style {
         //$border_spec = str_replace(",", " ", $border_spec); // Why did we have this ?? rbg(10, 102, 10) > rgb(10  102  10)
         $arr = explode(" ", $border_spec);
 
-        // FIXME: handle partial values
+        // handle partial values
 
-        //For consistency of individal and combined properties, and with ie8 and firefox3
-        //reset all attributes, even if only partially given
+        // For consistency of individal and combined properties, and with ie8 and firefox3
+        // reset all attributes, even if only partially given
         $this->_set_style_side_type('border', $side, '_style', self::$_defaults['border_' . $side . '_style'], $important);
         $this->_set_style_side_type('border', $side, '_width', self::$_defaults['border_' . $side . '_width'], $important);
         $this->_set_style_side_type('border', $side, '_color', self::$_defaults['border_' . $side . '_color'], $important);
@@ -2320,6 +2317,7 @@ class Style {
                 if ($important) {
                     $this->_important_props[$prop] = true;
                 }
+
                 $this->_props[$prop] = $_val;
             }
         }
@@ -2332,7 +2330,7 @@ class Style {
 
             if (in_array($value, self::$BORDER_STYLES)) {
                 $this->set_outline_style($value);
-            } else if (preg_match("/[.0-9]+(?:px|pt|pc|em|ex|%|in|mm|cm)|(?:thin|medium|thick)/", $value)) {
+            } elseif (preg_match("/[.0-9]+(?:px|pt|pc|em|ex|%|in|mm|cm)|(?:thin|medium|thick)/", $value)) {
                 $this->set_outline_width($value);
             } else {
                 // must be color
@@ -2480,12 +2478,14 @@ class Style {
             if (isset($parts[2]) && $parts[2] === "landscape") {
                 $computed = array_reverse($computed);
             }
+
         } elseif (isset(CPDF::$PAPER_SIZES[$parts[0]])) {
             $computed = array_slice(CPDF::$PAPER_SIZES[$parts[0]], 2, 2);
 
             if (isset($parts[1]) && $parts[1] === "landscape") {
                 $computed = array_reverse($computed);
             }
+
         } else {
             return;
         }
@@ -2541,7 +2541,6 @@ class Style {
                         case "skew":
                         case "skewX":
                         case "skewY":
-
                             foreach ($values as $i => $value) {
                                 if (strpos($value, "rad")) {
                                     $values[$i] = rad2deg(floatval($value));
@@ -2606,10 +2605,7 @@ class Style {
                             break;
                     }
 
-                    $transforms[] = array(
-                        $name,
-                        $values,
-                    );
+                    $transforms[] = array($name, $values);
                 }
             }
         }
@@ -2804,22 +2800,16 @@ class Style {
 
     /*DEBUGCSS*/
     function debug_print() {
-        /*DEBUGCSS*/
         print "parent_font_size:" . $this->_parent_font_size . ";\n";
-        /*DEBUGCSS*/
+
         foreach ($this->_props as $prop => $val) {
-            /*DEBUGCSS*/
             print $prop . ':' . $val;
-            /*DEBUGCSS*/
+
             if (isset($this->_important_props[$prop])) {
-                /*DEBUGCSS*/
                 print '!important';
-                /*DEBUGCSS*/
             }
-            /*DEBUGCSS*/
+
             print ";\n";
-            /*DEBUGCSS*/
         }
-        /*DEBUGCSS*/
     }
 }

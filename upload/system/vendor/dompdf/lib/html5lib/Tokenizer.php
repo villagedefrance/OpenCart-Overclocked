@@ -134,7 +134,7 @@ class HTML5_Tokenizer {
          */
         $escape = false;
         //echo "\n\n";
-        while($state !== null) {
+        while ($state !== null) {
             /*echo $state . ' ';
             switch ($this->content_model) {
                 case self::PCDATA: echo 'PCDATA'; break;
@@ -145,7 +145,7 @@ class HTML5_Tokenizer {
             if ($escape) echo " escape";
             echo "\n";*/
 
-            switch($state) {
+            switch ($state) {
                 case 'data':
 
                     /* Consume the next input character */
@@ -655,8 +655,7 @@ class HTML5_Tokenizer {
                         /* U+0022 QUOTATION MARK (")
                            U+0027 APOSTROPHE (')
                            U+003C LESS-THAN SIGN (<)
-                        Parse error. Treat it as per the "anything else"
-                        entry below. */
+                        Parse error. Treat it as per the "anything else" entry below. */
                         if ($char === '"' || $char === "'" || $char === '<') {
                             $this->emitToken(array('type' => self::PARSEERROR, 'data' => 'invalid-character-in-attribute-name'));
                         }
@@ -719,7 +718,7 @@ class HTML5_Tokenizer {
                         input character (add 0x0020 to the character's code
                         point), and its value to the empty string. Switch to the
                         attribute name state. */
-                        $this->token['attr'][] = array('name'  => strtolower($char), 'value' => '');
+                        $this->token['attr'][] = array('name' => strtolower($char), 'value' => '');
 
                         $state = 'attribute name';
 

@@ -38,13 +38,6 @@ if (!defined('PHPEXCEL_ROOT')) {
  */
 class PHPExcel_Reader_OOCalc extends PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader {
     /**
-     * Formats
-     *
-     * @var array
-     */
-    private $styles = array();
-
-    /**
      * Create a new PHPExcel_Reader_OOCalc
      */
     public function __construct() {
@@ -180,7 +173,7 @@ class PHPExcel_Reader_OOCalc extends PHPExcel_Reader_Abstract implements PHPExce
         }
 
         $xml = new XMLReader();
-        $res = $xml->xml($this->securityScanFile('zip://'.realpath($pFilename).'#content.xml'), null, PHPExcel_Settings::getLibXmlLoaderOptions());
+        $res = $xml->xml($this->securityScanFile('zip://' . realpath($pFilename) . '#content.xml'), null, PHPExcel_Settings::getLibXmlLoaderOptions());
 
         $xml->setParserProperty(2, true);
 
@@ -206,7 +199,7 @@ class PHPExcel_Reader_OOCalc extends PHPExcel_Reader_Abstract implements PHPExce
                         'lastColumnLetter' => 'A',
                         'lastColumnIndex' => 0,
                         'totalRows' => 0,
-                        'totalColumns' => 0,
+                        'totalColumns' => 0
                     );
 
                     // Loop through each child node of the table:table element reading

@@ -20,8 +20,6 @@ class TableCell extends BlockFrameDecorator {
     protected $_resolved_borders;
     protected $_content_height;
 
-    //........................................................................
-
     /**
      * TableCell constructor.
      * @param Frame $frame
@@ -33,8 +31,6 @@ class TableCell extends BlockFrameDecorator {
         $this->_resolved_borders = array();
         $this->_content_height = 0;
     }
-
-    //........................................................................
 
     function reset() {
         parent::reset();
@@ -64,15 +60,10 @@ class TableCell extends BlockFrameDecorator {
     function set_cell_height($height) {
         $style = $this->get_style();
 
-        $v_space = (float)$style->length_in_pt(array($style->margin_top,
-                $style->padding_top,
-                $style->border_top_width,
-                $style->border_bottom_width,
-                $style->padding_bottom,
-                $style->margin_bottom),
-            $style->width);
+        $v_space = (float)$style->length_in_pt(array($style->margin_top, $style->padding_top, $style->border_top_width, $style->border_bottom_width, $style->padding_bottom, $style->margin_bottom), $style->width);
 
         $new_height = $height - $v_space;
+
         $style->height = $new_height;
 
         if ($new_height > $this->_content_height) {
@@ -82,7 +73,7 @@ class TableCell extends BlockFrameDecorator {
             switch ($style->vertical_align) {
                 default:
                 case "baseline":
-                    // FIXME: this isn't right
+                    // this isn't right!
 
                 case "top":
                     // Don't need to do anything
@@ -100,8 +91,9 @@ class TableCell extends BlockFrameDecorator {
             if ($y_offset) {
                 // Move our children
                 foreach ($this->get_line_boxes() as $line) {
-                    foreach ($line->get_frames() as $frame)
+                    foreach ($line->get_frames() as $frame) {
                         $frame->move(0, $y_offset);
+                    }
                 }
             }
         }

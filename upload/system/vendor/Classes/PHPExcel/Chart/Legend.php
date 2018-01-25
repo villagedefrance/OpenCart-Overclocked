@@ -29,12 +29,12 @@
  */
 class PHPExcel_Chart_Legend {
     /** Legend positions */
-    const xlLegendPositionBottom = -4107;    // Below the chart.
-    const xlLegendPositionCorner = 2;           // In the upper right-hand corner of the chart border.
-    const xlLegendPositionCustom = -4161;    // A custom position.
-    const xlLegendPositionLeft = -4131;        // Left of the chart.
-    const xlLegendPositionRight = -4152;      // Right of the chart.
-    const xlLegendPositionTop = -4160;       // Above the chart.
+    const XLLEGENDPOSITIONBOTTOM = -4107;    // Below the chart.
+    const XLLEGENDPOSITIONCORNER = 2;           // In the upper right-hand corner of the chart border.
+    const XLLEGENDPOSITIONCUSTOM = -4161;    // A custom position.
+    const XLLEGENDPOSITIONLEFT = -4131;        // Left of the chart.
+    const XLLEGENDPOSITIONRIGHT = -4152;      // Right of the chart.
+    const XLLEGENDPOSITIONTOP = -4160;       // Above the chart.
 
     const POSITION_RIGHT = 'r';
     const POSITION_LEFT = 'l';
@@ -43,12 +43,12 @@ class PHPExcel_Chart_Legend {
     const POSITION_TOPRIGHT = 'tr';
 
     private static $positionXLref = array(
-        self::xlLegendPositionBottom => self::POSITION_BOTTOM,
-        self::xlLegendPositionCorner => self::POSITION_TOPRIGHT,
-        self::xlLegendPositionCustom => '??',
-        self::xlLegendPositionLeft => self::POSITION_LEFT,
-        self::xlLegendPositionRight => self::POSITION_RIGHT,
-        self::xlLegendPositionTop => self::POSITION_TOP
+        self::XLLEGENDPOSITIONBOTTOM => self::POSITION_BOTTOM,
+        self::XLLEGENDPOSITIONCORNER => self::POSITION_TOPRIGHT,
+        self::XLLEGENDPOSITIONCUSTOM => '??',
+        self::XLLEGENDPOSITIONLEFT => self::POSITION_LEFT,
+        self::XLLEGENDPOSITIONRIGHT => self::POSITION_RIGHT,
+        self::XLLEGENDPOSITIONTOP => self::POSITION_TOP
     );
 
     /**
@@ -118,7 +118,7 @@ class PHPExcel_Chart_Legend {
      *
      * @param    number    $positionXL
      */
-    public function setPositionXL($positionXL = self::xlLegendPositionRight) {
+    public function setPositionXL($positionXL = self::XLLEGENDPOSITIONRIGHT) {
         if (!array_key_exists($positionXL, self::$positionXLref)) {
             return false;
         }

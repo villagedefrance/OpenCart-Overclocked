@@ -89,10 +89,11 @@ class ListBullet extends AbstractRenderer {
             case "decimal-leading-zero":
             case "decimal":
             case "1":
-                if ($pad)
+                if ($pad) {
                     $text = str_pad($n, $pad, "0", STR_PAD_LEFT);
-                else
+                } else {
                     $text = $n;
+                }
                 break;
 
             case "upper-alpha":
@@ -155,6 +156,7 @@ class ListBullet extends AbstractRenderer {
             //$h = $frame->get_height();
             list($width, $height) = Helpers::dompdf_getimagesize($img, $this->_dompdf->getHttpContext());
             $dpi = $this->_dompdf->getOptions()->getDpi();
+
             $w = ((float)rtrim($width, "px") * 72) / $dpi;
             $h = ((float)rtrim($height, "px") * 72) / $dpi;
 
@@ -206,6 +208,7 @@ class ListBullet extends AbstractRenderer {
                 case "A":
                 case "I":
                     $pad = null;
+
                     if ($bullet_style === "decimal-leading-zero") {
                         $pad = strlen($li->get_parent()->get_node()->getAttribute("dompdf-children-count"));
                     }
