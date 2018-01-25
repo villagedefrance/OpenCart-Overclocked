@@ -214,8 +214,9 @@ class Text extends AbstractFrameReflower {
             default:
             case "normal":
                 $frame->set_text($text = $this->_collapse_white_space($text));
-                if ($text == "")
+                if ($text == "") {
                     break;
+                }
 
                 $split = $this->_line_break($text);
                 break;
@@ -237,6 +238,7 @@ class Text extends AbstractFrameReflower {
                     $split = min($tmp, $split);
                 } else
                     $add_line = true;
+                }
 
                 break;
 
@@ -258,7 +260,6 @@ class Text extends AbstractFrameReflower {
                 }
 
                 break;
-
         }
 
         // Handle degenerate case
@@ -283,16 +284,16 @@ class Text extends AbstractFrameReflower {
 
                 // Layout the new line
                 $this->_layout_line();
-            } else if ($split < mb_strlen($frame->get_text())) {
+            } elseif ($split < mb_strlen($frame->get_text())) {
                 // split the line if required
                 $frame->split_text($split);
 
                 $t = $frame->get_text();
 
                 // Remove any trailing newlines
-                if ($split > 1 && $t[$split - 1] === "\n" && !$frame->is_pre())
+                if ($split > 1 && $t[$split - 1] === "\n" && !$frame->is_pre()) {
                     $frame->set_text(mb_substr($t, 0, -1));
-
+                }
                 // Do we need to trim spaces on wrapped lines? This might be desired, however, we
                 // can't trim the lines here or the layout will be affected if trimming the line
                 // leaves enough space to fit the next word in the text stream (because pdf layout

@@ -62,7 +62,6 @@ class Recipient extends ApiResource {
         return $this->_delete($params, $opts);
     }
 
-
     /**
      * @param array|null $params
      *

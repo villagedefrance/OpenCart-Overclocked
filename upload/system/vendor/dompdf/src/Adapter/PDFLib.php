@@ -152,13 +152,6 @@ class PDFLib implements Canvas {
     private $_page_text;
 
     /**
-     * Array of pages for accesing after rendering is initially complete
-     *
-     * @var array
-     */
-    private $_pages;
-
-    /**
      * Class constructor
      *
      * @param mixed $paper The size of paper to use either a string (see {@link Dompdf\Adapter\CPDF::$PAPER_SIZES}) or an array(xmin,ymin,xmax,ymax)
@@ -337,7 +330,7 @@ class PDFLib implements Canvas {
 
             if ($where == "") {
                 $where = "add";
-			}
+            }
         }
 
         $this->_objs[$object]["where"] = $where;
@@ -354,7 +347,7 @@ class PDFLib implements Canvas {
     public function stop_object($object) {
         if (!isset($this->_objs[$object])) {
             return;
-		}
+        }
 
         $start = $this->_objs[$object]["start_page"];
         $where = $this->_objs[$object]["where"];
@@ -440,13 +433,13 @@ class PDFLib implements Canvas {
     protected function _set_line_style($width, $cap, $join, $dash) {
         if (count($dash) == 1) {
             $dash[] = $dash[0];
-		}
+        }
 
         if (count($dash) > 1) {
             $this->_pdf->setdashpattern("dasharray={" . implode(" ", $dash) . "}");
         } else {
             $this->_pdf->setdash(0, 0);
-		}
+        }
 
         switch ($join) {
             case "miter":
@@ -526,7 +519,7 @@ class PDFLib implements Canvas {
     protected function _set_fill_color($color) {
         if ($this->_last_fill_color == $color) {
             return;
-		}
+        }
 
         $alpha = isset($color["alpha"]) ? $color["alpha"] : 1;
 
