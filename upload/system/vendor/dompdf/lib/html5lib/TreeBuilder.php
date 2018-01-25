@@ -3507,7 +3507,9 @@ class HTML5_TreeBuilder {
         $ret = false;
 
         foreach ($token['attr'] as $keypair) {
-            if ($keypair['name'] === $key) $ret = $keypair['value'];
+            if ($keypair['name'] === $key) {
+                $ret = $keypair['value'];
+            }
         }
 
         return $ret;

@@ -2576,7 +2576,6 @@ class PclZip {
         // ----- Working variable
         $p_filename = $p_filedescr['filename'];
 
-
         // ----- Open the source file
         if (($v_file = @fopen($p_filename, "rb")) == 0) {
             PclZip::privErrorLog(PCLZIP_ERR_READ_OPEN_FAIL, "Unable to open file '$p_filename' in binary read mode");

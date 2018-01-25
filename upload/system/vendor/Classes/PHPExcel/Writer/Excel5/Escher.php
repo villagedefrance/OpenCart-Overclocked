@@ -94,9 +94,9 @@ class PHPExcel_Writer_Excel5_Escher {
                 $innerData = '';
 
                 // write the dgg
-                $recVer            = 0x0;
-                $recInstance    = 0x0000;
-                $recType        = 0xF006;
+                $recVer = 0x0;
+                $recInstance = 0x0000;
+                $recType = 0xF006;
 
                 $recVerInstance  = $recVer;
                 $recVerInstance |= $recInstance << 4;
@@ -347,7 +347,7 @@ class PHPExcel_Writer_Excel5_Escher {
                     // save the shape offsets (where new shape records begin)
                     $totalSize += strlen($spData);
                     $spOffsets[] = $totalSize;
-                    
+
                     $spTypes = array_merge($spTypes, $writer->getSpTypes());
                 }
 

@@ -157,7 +157,7 @@ class PHPExcel_Calculation_Database {
         foreach ($database as $row) {
             $colData[] = $row[$field];
         }
-        
+
         return $colData;
     }
 
