@@ -1,4 +1,5 @@
 <?php
+
 class Stripe_Balance extends Stripe_SingletonApiResource {
 	/**
 	* @param string|null $apiKey
@@ -7,7 +8,7 @@ class Stripe_Balance extends Stripe_SingletonApiResource {
 	*/
 	public static function retrieve($apiKey = null) {
 		$class = get_class();
+
 		return self::_scopedSingletonRetrieve($class, $apiKey);
 	}
 }
-?>

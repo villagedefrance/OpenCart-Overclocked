@@ -1,15 +1,13 @@
 <?php
 
-class Stripe_Invoice extends Stripe_ApiResource
-{
+class Stripe_Invoice extends Stripe_ApiResource {
   /**
    * @param array|null $params
    * @param string|null $apiKey
    *
    * @return Stripe_Invoice The created invoice.
    */
-  public static function create($params=null, $apiKey=null)
-  {
+  public static function create($params = null, $apiKey = null) {
     $class = get_class();
     return self::_scopedCreate($class, $params, $apiKey);
   }
@@ -20,8 +18,7 @@ class Stripe_Invoice extends Stripe_ApiResource
    *
    * @return Stripe_Invoice
    */
-  public static function retrieve($id, $apiKey=null)
-  {
+  public static function retrieve($id, $apiKey = null) {
     $class = get_class();
     return self::_scopedRetrieve($class, $id, $apiKey);
   }
@@ -32,8 +29,7 @@ class Stripe_Invoice extends Stripe_ApiResource
    *
    * @return array An array of Stripe_Invoices.
    */
-  public static function all($params=null, $apiKey=null)
-  {
+  public static function all($params = null, $apiKey = null) {
     $class = get_class();
     return self::_scopedAll($class, $params, $apiKey);
   }
@@ -44,8 +40,7 @@ class Stripe_Invoice extends Stripe_ApiResource
    *
    * @return Stripe_Invoice The upcoming invoice.
    */
-  public static function upcoming($params=null, $apiKey=null)
-  {
+  public static function upcoming($params = null, $apiKey = null) {
     $requestor = new Stripe_ApiRequestor($apiKey);
     $url = self::classUrl(get_class()) . '/upcoming';
     list($response, $apiKey) = $requestor->request('get', $url, $params);
@@ -55,8 +50,7 @@ class Stripe_Invoice extends Stripe_ApiResource
   /**
    * @return Stripe_Invoice The saved invoice.
    */
-  public function save()
-  {
+  public function save() {
     $class = get_class();
     return self::_scopedSave($class);
   }
@@ -64,8 +58,7 @@ class Stripe_Invoice extends Stripe_ApiResource
   /**
    * @return Stripe_Invoice The paid invoice.
    */
-  public function pay()
-  {
+  public function pay() {
     $requestor = new Stripe_ApiRequestor($this->_apiKey);
     $url = $this->instanceUrl() . '/pay';
     list($response, $apiKey) = $requestor->request('post', $url);

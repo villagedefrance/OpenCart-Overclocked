@@ -1,4 +1,5 @@
 <?php
+
 class Stripe_Charge extends Stripe_ApiResource {
 	/**
 	* @param string $id The ID of the charge to retrieve.
@@ -91,4 +92,3 @@ class Stripe_Charge extends Stripe_ApiResource {
 		return $this;
 	}
 }
-?>

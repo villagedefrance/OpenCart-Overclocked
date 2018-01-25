@@ -1,4 +1,5 @@
 <?php
+
 class Stripe_Coupon extends Stripe_ApiResource {
 	/**
 	* @param string $id The ID of the coupon to retrieve.
@@ -51,4 +52,3 @@ class Stripe_Coupon extends Stripe_ApiResource {
 		return self::_scopedAll($class, $params, $apiKey);
 	}
 }
-?>

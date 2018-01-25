@@ -1,5 +1,6 @@
 <?php
-class Stripe_BalanceTransaction extends Stripe_ApiResource{
+
+class Stripe_BalanceTransaction extends Stripe_ApiResource {
 	/**
 	* @param string $class Ignored.
 	*
@@ -18,6 +19,7 @@ class Stripe_BalanceTransaction extends Stripe_ApiResource{
 	*/
 	public static function retrieve($id, $apiKey = null) {
 		$class = get_class();
+
 		return self::_scopedRetrieve($class, $id, $apiKey);
 	}
 
@@ -29,7 +31,7 @@ class Stripe_BalanceTransaction extends Stripe_ApiResource{
 	*/
 	public static function all($params = null, $apiKey = null) {
 		$class = get_class();
+
 		return self::_scopedAll($class, $params, $apiKey);
 	}
 }
-?>

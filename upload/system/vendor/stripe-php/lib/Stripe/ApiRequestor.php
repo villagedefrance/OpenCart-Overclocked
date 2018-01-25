@@ -1,4 +1,5 @@
 <?php
+
 class Stripe_ApiRequestor {
 	/**
 	* @var string $apiKey The API key that's to be used to make requests.
@@ -137,18 +138,18 @@ class Stripe_ApiRequestor {
 		$code = isset($error['code']) ? $error['code'] : null;
 
 		switch ($rcode) {
-		case 400:
-			if ($code == 'rate_limit') {
-				throw new Stripe_RateLimitError($msg, $param, $rcode, $rbody, $resp);
-			}
-		case 404:
-			throw new Stripe_InvalidRequestError($msg, $param, $rcode, $rbody, $resp);
-		case 401:
-			throw new Stripe_AuthenticationError($msg, $rcode, $rbody, $resp);
-		case 402:
-			throw new Stripe_CardError($msg, $param, $code, $rcode, $rbody, $resp);
-		default:
-			throw new Stripe_ApiError($msg, $rcode, $rbody, $resp);
+			case 400:
+				if ($code == 'rate_limit') {
+					throw new Stripe_RateLimitError($msg, $param, $rcode, $rbody, $resp);
+				}
+			case 404:
+				throw new Stripe_InvalidRequestError($msg, $param, $rcode, $rbody, $resp);
+			case 401:
+				throw new Stripe_AuthenticationError($msg, $rcode, $rbody, $resp);
+			case 402:
+				throw new Stripe_CardError($msg, $param, $code, $rcode, $rbody, $resp);
+			default:
+				throw new Stripe_ApiError($msg, $rcode, $rbody, $resp);
 		}
 	}
 
@@ -207,6 +208,7 @@ class Stripe_ApiRequestor {
 		if ($rcode < 200 || $rcode >= 300) {
 			$this->handleApiError($rbody, $rcode, $resp);
 		}
+
 		return $resp;
 	}
 
@@ -216,12 +218,14 @@ class Stripe_ApiRequestor {
 		}
 
 		$curl = curl_init();
+
 		$method = strtolower($method);
 
 		$opts = array();
 
 		if ($method == 'get') {
 			$opts[CURLOPT_HTTPGET] = 1;
+
 			if (count($params) > 0) {
 				$encoded = self::encode($params);
 				$absUrl = "$absUrl?$encoded";
@@ -231,6 +235,7 @@ class Stripe_ApiRequestor {
 			$opts[CURLOPT_POSTFIELDS] = self::encode($params);
 		} elseif ($method == 'delete') {
 			$opts[CURLOPT_CUSTOMREQUEST] = 'DELETE';
+
 			if (count($params) > 0) {
 				$encoded = self::encode($params);
 				$absUrl = "$absUrl?$encoded";
@@ -253,6 +258,7 @@ class Stripe_ApiRequestor {
 		}
 
 		curl_setopt_array($curl, $opts);
+
 		$rbody = curl_exec($curl);
 
 		if (!defined('CURLE_SSL_CACERT_BADFILE')) {
@@ -311,9 +317,10 @@ class Stripe_ApiRequestor {
 			default:
 			$msg = "Unexpected error communicating with Stripe.  " . "If this problem persists,";
 		}
-		$msg .= " let us know at support@stripe.com.";
 
+		$msg .= " let us know at support@stripe.com.";
 		$msg .= "\n\n(Network error [errno $errno]: $message)";
+
 		throw new Stripe_ApiConnectionError($msg);
 	}
 
@@ -363,6 +370,7 @@ class Stripe_ApiRequestor {
 
 		if ($errno !== 0) {
 			$apiBase = Stripe::$apiBase;
+
 			throw new Stripe_ApiConnectionError(
 				'Could not connect to Stripe (' . $apiBase . ').  Please check your '.
 				'internet connection and try again.  If this problem persists, '.
@@ -397,10 +405,12 @@ class Stripe_ApiRequestor {
 		$lines = explode("\n", $certificate);
 
 		// Kludgily remove the PEM padding
-		array_shift($lines); array_pop($lines);
+		array_shift($lines);
+		array_pop($lines);
 
 		$derCert = base64_decode(implode("", $lines));
 		$fingerprint = sha1($derCert);
+
 		return in_array($fingerprint, self::blacklistedCerts());
 	}
 
@@ -408,4 +418,3 @@ class Stripe_ApiRequestor {
 		return dirname(__FILE__) . '/../data/ca-certificates.crt';
 	}
 }
-?>

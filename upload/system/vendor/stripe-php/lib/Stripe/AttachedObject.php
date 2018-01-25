@@ -18,4 +18,3 @@ class Stripe_AttachedObject extends Stripe_Object {
 		}
 	}
 }
-?>

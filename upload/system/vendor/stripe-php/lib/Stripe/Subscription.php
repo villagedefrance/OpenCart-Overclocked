@@ -18,6 +18,7 @@ class Stripe_Subscription extends Stripe_ApiResource {
         $base = self::classUrl('Stripe_Customer');
         $customerExtn = urlencode($customer);
         $extn = urlencode($id);
+
         return "$base/$customerExtn/subscriptions/$extn";
     }
 
@@ -45,6 +46,7 @@ class Stripe_Subscription extends Stripe_ApiResource {
         $requestor = new Stripe_ApiRequestor($this->_apiKey);
         $url = $this->instanceUrl() . '/discount';
         list($response, $apiKey) = $requestor->request('delete', $url);
+
         $this->refreshFrom(array('discount' => null), $apiKey, true);
     }
 }

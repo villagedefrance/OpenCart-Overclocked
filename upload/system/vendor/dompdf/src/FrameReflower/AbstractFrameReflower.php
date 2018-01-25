@@ -111,13 +111,14 @@ abstract class AbstractFrameReflower {
         // Collapse our first child's margin, if there is no border or padding
         if ($style->get_border_top_width() == 0 && $style->length_in_pt($style->padding_top) == 0) {
             $f = $this->_frame->get_first_child();
-            if ( $f && !$f->is_block() ) {
-                while ( $f = $f->get_next_sibling() ) {
-                    if ( $f->is_block() ) {
+
+            if ($f && !$f->is_block()) {
+                while ($f = $f->get_next_sibling()) {
+                    if ($f->is_block()) {
                         break;
                     }
 
-                    if ( !$f->get_first_child() ) {
+                    if (!$f->get_first_child()) {
                         $f = null;
                         break;
                     }
@@ -136,13 +137,14 @@ abstract class AbstractFrameReflower {
         // Collapse our last child's margin, if there is no border or padding
         if ($style->get_border_bottom_width() == 0 && $style->length_in_pt($style->padding_bottom) == 0) {
             $l = $this->_frame->get_last_child();
+
             if ($l && !$l->is_block()) {
-                while ( $l = $l->get_prev_sibling() ) {
-                    if ( $l->is_block() ) {
+                while ($l = $l->get_prev_sibling()) {
+                    if ($l->is_block()) {
                         break;
                     }
 
-                    if ( !$l->get_last_child() ) {
+                    if (!$l->get_last_child()) {
                         $l = null;
                         break;
                     }
@@ -193,11 +195,7 @@ abstract class AbstractFrameReflower {
 
         // Handle degenerate case
         if (!$this->_frame->get_first_child()) {
-            return $this->_min_max_cache = array(
-                $delta, $delta,
-                "min" => $delta,
-                "max" => $delta,
-            );
+            return $this->_min_max_cache = array($delta, $delta, "min" => $delta, "max" => $delta);
         }
 
         $low = array();
@@ -226,8 +224,13 @@ abstract class AbstractFrameReflower {
                 $iter->next();
             }
 
-            if ($inline_max > 0) $high[] = $inline_max;
-            if ($inline_min > 0) $low[] = $inline_min;
+            if ($inline_max > 0) {
+                $high[] = $inline_max;
+            }
+
+            if ($inline_min > 0) {
+                $low[] = $inline_min;
+            }
 
             if ($iter->valid()) {
                 list($low[], $high[]) = $iter->current()->get_min_max_width();
@@ -244,9 +247,11 @@ abstract class AbstractFrameReflower {
 
         if ($width !== "auto" && !Helpers::is_percent($width)) {
             $width = (float)$style->length_in_pt($width, $cb_w);
+
             if ($min < $width) {
                 $min = $width;
             }
+
             if ($max < $width) {
                 $max = $width;
             }
@@ -279,6 +284,7 @@ abstract class AbstractFrameReflower {
         $string = preg_replace_callback("/\\\\([0-9a-fA-F]{0,6})/",
             function ($matches) { return \Dompdf\Helpers::unichr(hexdec($matches[1])); },
             $string);
+
         return $string;
     }
 
@@ -299,6 +305,7 @@ abstract class AbstractFrameReflower {
         }
 
         $quotes_array = array();
+
         foreach ($matches as $_quote) {
             $quotes_array[] = $this->_parse_string($_quote[0], true);
         }
@@ -379,7 +386,7 @@ abstract class AbstractFrameReflower {
 
                     $text .= $p->counter_value($counter_id, $type);
 
-                } else if (strtolower($args[1]) == 'counters') {
+                } elseif (strtolower($args[1]) == 'counters') {
                     // counters(name, string [,style])
                     if (isset($args[5])) {
                         $string = $this->_parse_string($args[5]);
@@ -401,8 +408,10 @@ abstract class AbstractFrameReflower {
                         if (array_key_exists($counter_id, $p->_counters)) {
                             array_unshift($tmp, $p->counter_value($counter_id, $type));
                         }
+
                         $p = $p->lookup_counter_frame($counter_id);
                     }
+
                     $text .= implode($string, $tmp);
 
                 } else {
@@ -413,26 +422,28 @@ abstract class AbstractFrameReflower {
             } else if (isset($match[4]) && $match[4] !== "") {
                 // String match
                 $text .= $this->_parse_string($match[4]);
+
             } else if (isset($match[7]) && $match[7] !== "") {
                 // Directive match
-
                 if ($match[7] === "open-quote") {
-                    // FIXME: do something here
+                    // do something here
                     $text .= $quotes[0][0];
-                } else if ($match[7] === "close-quote") {
-                    // FIXME: do something else here
+                } elseif ($match[7] === "close-quote") {
+                    // do something else here
                     $text .= $quotes[0][1];
-                } else if ($match[7] === "no-open-quote") {
-                    // FIXME:
-                } else if ($match[7] === "no-close-quote") {
-                    // FIXME:
-                } else if (mb_strpos($match[7], "attr(") === 0) {
+                } elseif ($match[7] === "no-open-quote") {
+                    //
+                } elseif ($match[7] === "no-close-quote") {
+                    //
+                } elseif (mb_strpos($match[7], "attr(") === 0) {
                     $i = mb_strpos($match[7], ")");
+
                     if ($i === false) {
                         continue;
                     }
 
                     $attr = mb_substr($match[7], 5, $i - 5);
+
                     if ($attr == "") {
                         continue;
                     }
@@ -467,7 +478,7 @@ abstract class AbstractFrameReflower {
         if ($style->content && $frame->get_node()->nodeName === "dompdf_generated") {
             $content = $this->_parse_content();
             // add generated content to the font subset
-            // FIXME: This is currently too late because the font subset has already been generated.
+            // This is currently too late because the font subset has already been generated.
             //        See notes in issue #750.
             if ($frame->get_dompdf()->getOptions()->getIsFontSubsettingEnabled() && $frame->get_dompdf()->get_canvas() instanceof CPDF) {
                 $frame->get_dompdf()->get_canvas()->register_string_subset($style->font_family, $content);
@@ -482,6 +493,7 @@ abstract class AbstractFrameReflower {
             $new_frame->set_style($new_style);
 
             Factory::decorate_frame($new_frame, $frame->get_dompdf(), $frame->get_root());
+
             $frame->append_child($new_frame);
         }
     }

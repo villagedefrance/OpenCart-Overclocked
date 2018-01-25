@@ -173,13 +173,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
     private $documentSummaryInformation;
 
     /**
-     * User-Defined Properties stream data.
-     *
-     * @var string
-     */
-    private $userDefinedProperties;
-
-    /**
      * Workbook stream data. (Includes workbook globals substream as well as sheet substreams)
      *
      * @var string

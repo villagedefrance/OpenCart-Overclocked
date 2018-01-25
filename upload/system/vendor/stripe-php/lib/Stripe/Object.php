@@ -22,7 +22,7 @@ class Stripe_Object implements ArrayAccess {
     protected $_transientValues;
     protected $_retrieveOptions;
 
-    public function __construct($id=null, $apiKey=null) {
+    public function __construct($id = null, $apiKey = null) {
         $this->_apiKey = $apiKey;
 
         $this->_values = array();
@@ -79,7 +79,7 @@ class Stripe_Object implements ArrayAccess {
     public function __get($k) {
         if (array_key_exists($k, $this->_values)) {
             return $this->_values[$k];
-        } else if ($this->_transientValues->includes($k)) {
+        } elseif ($this->_transientValues->includes($k)) {
           $class = get_class($this);
           $attrs = join(', ', array_keys($this->_values));
 
@@ -249,7 +249,7 @@ class Stripe_Object implements ArrayAccess {
         return $class . ' JSON: ' . $this->__toJSON();
     }
 
-    public function __toArray($recursive=false) {
+    public function __toArray($recursive = false) {
         if ($recursive) {
             return Stripe_Util::convertStripeObjectToArray($this->_values);
         } else {

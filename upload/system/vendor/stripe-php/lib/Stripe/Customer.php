@@ -1,15 +1,13 @@
 <?php
 
-class Stripe_Customer extends Stripe_ApiResource
-{
+class Stripe_Customer extends Stripe_ApiResource {
   /**
    * @param string $id The ID of the customer to retrieve.
    * @param string|null $apiKey
    *
    * @return Stripe_Customer
    */
-  public static function retrieve($id, $apiKey=null)
-  {
+  public static function retrieve($id, $apiKey = null) {
     $class = get_class();
     return self::_scopedRetrieve($class, $id, $apiKey);
   }
@@ -20,8 +18,7 @@ class Stripe_Customer extends Stripe_ApiResource
    *
    * @return array An array of Stripe_Customers.
    */
-  public static function all($params=null, $apiKey=null)
-  {
+  public static function all($params = null, $apiKey = null) {
     $class = get_class();
     return self::_scopedAll($class, $params, $apiKey);
   }
@@ -32,8 +29,7 @@ class Stripe_Customer extends Stripe_ApiResource
    *
    * @return Stripe_Customer The created customer.
    */
-  public static function create($params=null, $apiKey=null)
-  {
+  public static function create($params = null, $apiKey = null) {
     $class = get_class();
     return self::_scopedCreate($class, $params, $apiKey);
   }
@@ -41,8 +37,7 @@ class Stripe_Customer extends Stripe_ApiResource
   /**
    * @returns Stripe_Customer The saved customer.
    */
-  public function save()
-  {
+  public function save() {
     $class = get_class();
     return self::_scopedSave($class);
   }
@@ -52,8 +47,7 @@ class Stripe_Customer extends Stripe_ApiResource
    *
    * @returns Stripe_Customer The deleted customer.
    */
-  public function delete($params=null)
-  {
+  public function delete($params = null) {
     $class = get_class();
     return self::_scopedDelete($class, $params);
   }
@@ -63,10 +57,11 @@ class Stripe_Customer extends Stripe_ApiResource
    *
    * @returns Stripe_InvoiceItem The resulting invoice item.
    */
-  public function addInvoiceItem($params=null)
-  {
-    if (!$params)
+  public function addInvoiceItem($params = null) {
+    if (!$params) {
       $params = array();
+    }
+
     $params['customer'] = $this->id;
     $ii = Stripe_InvoiceItem::create($params, $this->_apiKey);
     return $ii;
@@ -77,10 +72,11 @@ class Stripe_Customer extends Stripe_ApiResource
    *
    * @returns array An array of the customer's Stripe_Invoices.
    */
-  public function invoices($params=null)
-  {
-    if (!$params)
+  public function invoices($params = null) {
+    if (!$params) {
       $params = array();
+	}
+
     $params['customer'] = $this->id;
     $invoices = Stripe_Invoice::all($params, $this->_apiKey);
     return $invoices;
@@ -91,10 +87,11 @@ class Stripe_Customer extends Stripe_ApiResource
    *
    * @returns array An array of the customer's Stripe_InvoiceItems.
    */
-  public function invoiceItems($params=null)
-  {
-    if (!$params)
+  public function invoiceItems($params = null) {
+    if (!$params) {
       $params = array();
+    }
+
     $params['customer'] = $this->id;
     $iis = Stripe_InvoiceItem::all($params, $this->_apiKey);
     return $iis;
@@ -105,10 +102,11 @@ class Stripe_Customer extends Stripe_ApiResource
    *
    * @returns array An array of the customer's Stripe_Charges.
    */
-  public function charges($params=null)
-  {
-    if (!$params)
+  public function charges($params = null) {
+    if (!$params) {
       $params = array();
+	}
+
     $params['customer'] = $this->id;
     $charges = Stripe_Charge::all($params, $this->_apiKey);
     return $charges;
@@ -119,8 +117,7 @@ class Stripe_Customer extends Stripe_ApiResource
    *
    * @returns Stripe_Subscription The updated subscription.
    */
-  public function updateSubscription($params=null)
-  {
+  public function updateSubscription($params = null) {
     $requestor = new Stripe_ApiRequestor($this->_apiKey);
     $url = $this->instanceUrl() . '/subscription';
     list($response, $apiKey) = $requestor->request('post', $url, $params);
@@ -133,8 +130,7 @@ class Stripe_Customer extends Stripe_ApiResource
    *
    * @returns Stripe_Subscription The cancelled subscription.
    */
-  public function cancelSubscription($params=null)
-  {
+  public function cancelSubscription($params = null) {
     $requestor = new Stripe_ApiRequestor($this->_apiKey);
     $url = $this->instanceUrl() . '/subscription';
     list($response, $apiKey) = $requestor->request('delete', $url, $params);
@@ -147,8 +143,7 @@ class Stripe_Customer extends Stripe_ApiResource
    *
    * @returns Stripe_Customer The updated customer.
    */
-  public function deleteDiscount()
-  {
+  public function deleteDiscount() {
     $requestor = new Stripe_ApiRequestor($this->_apiKey);
     $url = $this->instanceUrl() . '/discount';
     list($response, $apiKey) = $requestor->request('delete', $url);

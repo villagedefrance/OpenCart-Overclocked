@@ -1,4 +1,5 @@
 <?php
+
 abstract class Stripe_ApiResource extends Stripe_Object {
 
 	protected static function _scopedRetrieve($class, $id, $apiKey = null) {
@@ -35,12 +36,15 @@ abstract class Stripe_ApiResource extends Stripe_Object {
 		if ($postfixFakeNamespaces = strrchr($class, 'Stripe_')) {
 			$class = $postfixFakeNamespaces;
 		}
+
 		if (substr($class, 0, strlen('Stripe')) == 'Stripe') {
 			$class = substr($class, strlen('Stripe'));
 		}
+
 		$class = str_replace('_', '', $class);
 		$name = urlencode($class);
 		$name = strtolower($name);
+
 		return $name;
 	}
 
@@ -51,6 +55,7 @@ abstract class Stripe_ApiResource extends Stripe_Object {
 	*/
 	public static function classUrl($class) {
 		$base = self::_scopedLsb($class, 'className', $class);
+
 		return "/v1/${base}s";
 	}
 
@@ -69,6 +74,7 @@ abstract class Stripe_ApiResource extends Stripe_Object {
 		$id = Stripe_ApiRequestor::utf8($id);
 		$base = $this->_lsb('classUrl', $class);
 		$extn = urlencode($id);
+
 		return "$base/$extn";
 	}
 
@@ -96,6 +102,7 @@ abstract class Stripe_ApiResource extends Stripe_Object {
 		$requestor = new Stripe_ApiRequestor($apiKey);
 		$url = self::_scopedLsb($class, 'classUrl', $class);
 		list($response, $apiKey) = $requestor->request('get', $url, $params);
+
 		return Stripe_Util::convertToStripeObject($response, $apiKey);
 	}
 
@@ -104,6 +111,7 @@ abstract class Stripe_ApiResource extends Stripe_Object {
 		$requestor = new Stripe_ApiRequestor($apiKey);
 		$url = self::_scopedLsb($class, 'classUrl', $class);
 		list($response, $apiKey) = $requestor->request('post', $url, $params);
+
 		return Stripe_Util::convertToStripeObject($response, $apiKey);
 	}
 
@@ -117,6 +125,7 @@ abstract class Stripe_ApiResource extends Stripe_Object {
 			list($response, $apiKey) = $requestor->request('post', $url, $params);
 			$this->refreshFrom($response, $apiKey);
 		}
+
 		return $this;
 	}
 
@@ -126,7 +135,7 @@ abstract class Stripe_ApiResource extends Stripe_Object {
 		$url = $this->instanceUrl();
 		list($response, $apiKey) = $requestor->request('delete', $url, $params);
 		$this->refreshFrom($response, $apiKey);
+
 		return $this;
 	}
 }
-?>

@@ -54,20 +54,20 @@ class PHPExcel_Cell_ExportImportValueBinder extends PHPExcel_Cell_DefaultValueBi
 	* @param  mixed          $value  Value to bind in cell
 	* @return boolean
 	*/
-	public function bindValue(PHPExcel_Cell $cell, $value = null) { 
-		// sanitize UTF-8 strings 
-		if (is_string($value)) { 
-			$value = PHPExcel_Shared_String::SanitizeUTF8($value); 
-		} 
+	public function bindValue(PHPExcel_Cell $cell, $value = null) {
+		// sanitize UTF-8 strings
+		if (is_string($value)) {
+			$value = PHPExcel_Shared_String::SanitizeUTF8($value);
+		}
 
 		// Preserve numeric string, including leading zeros, if it is a text format
 		$format = $cell->getStyle()->getNumberFormat()->getFormatCode();
 
 		if ($format == PHPExcel_Style_NumberFormat::FORMAT_TEXT) {
-			$cell->setValueExplicit($value, PHPExcel_Cell_DataType::TYPE_STRING); 
-			return true; 
+			$cell->setValueExplicit($value, PHPExcel_Cell_DataType::TYPE_STRING);
+			return true;
 		}
-		// Not bound yet? Use default value parent... 
-		return parent::bindValue($cell, $value); 
+		// Not bound yet? Use default value parent...
+		return parent::bindValue($cell, $value);
 	} 
 }

@@ -298,12 +298,10 @@ class Style {
             if ($percent) {
                 if ($triplet[$c][strlen($triplet[$c]) - 1] === "%") {
                     $triplet[$c] = $triplet[$c] / 100;
-                }
-                else {
+                } else {
                     $triplet[$c] = $triplet[$c] / 255;
                 }
-            }
-            else {
+            } else {
                 if ($triplet[$c][strlen($triplet[$c]) - 1] === "%") {
                     $triplet[$c] = round($triplet[$c] * 2.55);
                 }

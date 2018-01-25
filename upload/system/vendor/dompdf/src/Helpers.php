@@ -1,4 +1,5 @@
 <?php
+
 namespace Dompdf;
 
 class Helpers {
@@ -76,8 +77,10 @@ class Helpers {
                 // For real path and local access we ignore the host, and run the path through realpath()
                 $ret .= realpath($base_path) . '/';
             }
+
             $ret .= $url;
             $ret = preg_replace('/\?(.*)$/', "", $ret);
+
             return $ret;
         }
 
@@ -180,15 +183,15 @@ class Helpers {
 
     /**
      * Encodes a Uniform Resource Identifier (URI) by replacing non-alphanumeric
-     * characters with a percent (%) sign followed by two hex digits, excepting 
+     * characters with a percent (%) sign followed by two hex digits, excepting
      * characters in the URI reserved character set.
-     * 
-     * Assumes that the URI is a complete URI, so does not encode reserved 
+     *
+     * Assumes that the URI is a complete URI, so does not encode reserved
      * characters that have special meaning in the URI.
      *
-     * Simulates the encodeURI function available in JavaScript  
+     * Simulates the encodeURI function available in JavaScript
      * https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/encodeURI
-     * 
+     *
      * Source: http://stackoverflow.com/q/4929584/264628
      *
      * @param string $uri The URI to encode
@@ -235,20 +238,31 @@ class Helpers {
                     switch (ord($str[$i])) {
                         case 0: # NEW LINE
                             $padCnt = $lineWidth - strlen($out) % $lineWidth;
-                            if ($padCnt < $lineWidth) $out .= str_repeat(chr(0), $padCnt); # pad line
+
+                            if ($padCnt < $lineWidth) {
+                                $out .= str_repeat(chr(0), $padCnt); # pad line
+                            }
                             break;
                         case 1: # END OF FILE
                             $padCnt = $lineWidth - strlen($out) % $lineWidth;
-                            if ($padCnt < $lineWidth) $out .= str_repeat(chr(0), $padCnt); # pad line
+
+                            if ($padCnt < $lineWidth) {
+                                $out .= str_repeat(chr(0), $padCnt); # pad line
+                            }
                             break 3;
                         case 2: # DELTA
                             $i += 2;
                             break;
                         default: # ABSOLUTE MODE
                             $num = ord($str[$i]);
-                            for ($j = 0; $j < $num; $j++)
+
+                            for ($j = 0; $j < $num; $j++) {
                                 $out .= $str[++$i];
-                            if ($num % 2) $i++;
+                            }
+
+                            if ($num % 2) {
+                                $i++;
+                            }
                     }
                     break;
                 default:
@@ -281,6 +295,7 @@ class Helpers {
             switch ($o) {
                 case 0: # ESCAPE
                     $i++;
+
                     switch (ord($str[$i])) {
                         case 0: # NEW LINE
                             while (count($pixels) % $lineWidth != 0) {
@@ -297,6 +312,7 @@ class Helpers {
                             break;
                         default: # ABSOLUTE MODE
                             $num = ord($str[$i]);
+
                             for ($j = 0; $j < $num; $j++) {
                                 if ($j % 2 == 0) {
                                     $c = ord($str[++$i]);
@@ -313,6 +329,7 @@ class Helpers {
                     break;
                 default:
                     $c = ord($str[++$i]);
+
                     for ($j = 0; $j < $o; $j++) {
                         $pixels[] = ($j % 2 == 0 ? ($c & 240) >> 4 : $c & 15);
                     }
@@ -406,7 +423,6 @@ class Helpers {
             $host = ""; // localhost, really
 
             $file = basename($url);
-
             $path = dirname($url);
 
             // Check that the path exists
@@ -510,13 +526,11 @@ class Helpers {
         } else if ($c <= 0x7FF) {
             return chr(0xC0 | $c >> 6) . chr(0x80 | $c & 0x3F);
         } else if ($c <= 0xFFFF) {
-            return chr(0xE0 | $c >> 12) . chr(0x80 | $c >> 6 & 0x3F)
-            . chr(0x80 | $c & 0x3F);
+            return chr(0xE0 | $c >> 12) . chr(0x80 | $c >> 6 & 0x3F) . chr(0x80 | $c & 0x3F);
         } else if ($c <= 0x10FFFF) {
-            return chr(0xF0 | $c >> 18) . chr(0x80 | $c >> 12 & 0x3F)
-            . chr(0x80 | $c >> 6 & 0x3F)
-            . chr(0x80 | $c & 0x3F);
+            return chr(0xF0 | $c >> 18) . chr(0x80 | $c >> 12 & 0x3F) . chr(0x80 | $c >> 6 & 0x3F) . chr(0x80 | $c & 0x3F);
         }
+
         return false;
     }
 
@@ -544,9 +558,17 @@ class Helpers {
         $g = (1 - round(2.55 * ($m + $k)));
         $b = (1 - round(2.55 * ($y + $k)));
 
-        if ($r < 0) $r = 0;
-        if ($g < 0) $g = 0;
-        if ($b < 0) $b = 0;
+        if ($r < 0) {
+            $r = 0;
+        }
+
+        if ($g < 0) {
+            $g = 0;
+        }
+
+        if ($b < 0) {
+            $b = 0;
+        }
 
         return array($r, $g, $b, "r" => $r, "g" => $g, "b" => $b);
     }
@@ -661,6 +683,7 @@ class Helpers {
             // in rare cases filesize is equal to offset so we need to read physical size
             if ($meta['imagesize'] < 1) {
                 $meta['imagesize'] = @filesize($filename) - $meta['offset'];
+
                 if ($meta['imagesize'] < 1) {
                     trigger_error('imagecreatefrombmp: Can not obtain filesize of ' . $filename . '!', E_USER_WARNING);
                     return false;
@@ -746,6 +769,7 @@ class Helpers {
                         break;
                     case 1:
                         $color = unpack('n', $vide . substr($data, floor($p), 1));
+
                         switch (($p * 8) % 8) {
                             case 0:
                                 $color[1] = $color[1] >> 7;
@@ -831,7 +855,7 @@ class Helpers {
         } elseif (function_exists("curl_exec")) {
             $curl = curl_init($uri);
 
-            //TODO: use $context to define additional curl options
+            // use $context to define additional curl options
             curl_setopt($curl, CURLOPT_TIMEOUT, 10);
             curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

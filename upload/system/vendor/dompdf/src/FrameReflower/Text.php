@@ -236,7 +236,7 @@ class Text extends AbstractFrameReflower {
                 if (($tmp = $this->_line_break($text)) !== false) {
                     $add_line = $split < $tmp;
                     $split = min($tmp, $split);
-                } else
+                } else {
                     $add_line = true;
                 }
 

@@ -64,11 +64,13 @@ class Block extends AbstractRenderer {
         }
 
         $border_box = array($x, $y, $w, $h);
+
         $this->_render_border($frame, $border_box);
         $this->_render_outline($frame, $border_box);
 
         if ($this->_dompdf->getOptions()->getDebugLayout() && $this->_dompdf->getOptions()->getDebugLayoutBlocks()) {
             $this->_debug_layout($frame->get_border_box(), "red");
+
             if ($this->_dompdf->getOptions()->getDebugLayoutPaddingBox()) {
                 $this->_debug_layout($frame->get_padding_box(), "red", array(0.5, 0.5));
             }
@@ -81,7 +83,8 @@ class Block extends AbstractRenderer {
         }
 
         $id = $frame->get_node()->getAttribute("id");
-        if (strlen($id) > 0)  {
+
+        if (strlen($id) > 0) {
             $this->_canvas->add_named_dest($id);
         }
     }

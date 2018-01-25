@@ -1,4 +1,5 @@
 <?php
+
 class Stripe_ApplicationFeeRefund extends Stripe_ApiResource {
 	/**
 	* @return string The API URL for this Stripe refund.
@@ -8,11 +9,7 @@ class Stripe_ApplicationFeeRefund extends Stripe_ApiResource {
 		$fee = $this['fee'];
 
 		if (!$id) {
-			throw new Stripe_InvalidRequestError(
-				"Could not determine which URL to request: " .
-				"class instance has invalid ID: $id",
-				null
-			);
+			throw new Stripe_InvalidRequestError("Could not determine which URL to request: " . "class instance has invalid ID: $id", null);
 		}
 
 		$id = Stripe_ApiRequestor::utf8($id);
@@ -21,6 +18,7 @@ class Stripe_ApplicationFeeRefund extends Stripe_ApiResource {
 		$base = self::classUrl('Stripe_ApplicationFee');
 		$feeExtn = urlencode($fee);
 		$extn = urlencode($id);
+
 		return "$base/$feeExtn/refunds/$extn";
 	}
 
@@ -29,7 +27,7 @@ class Stripe_ApplicationFeeRefund extends Stripe_ApiResource {
 	*/
 	public function save() {
 		$class = get_class();
+
 		return self::_scopedSave($class);
 	}
 }
-?>
