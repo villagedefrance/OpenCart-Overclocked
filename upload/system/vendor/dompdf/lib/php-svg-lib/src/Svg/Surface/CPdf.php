@@ -391,6 +391,7 @@ class CPdf {
             case 'new':
                 $this->objects[$id] = array('t' => 'destination', 'info' => array());
                 $tmp = '';
+
                 switch ($options['type']) {
                     case 'XYZ':
                     case 'FitR':
@@ -486,7 +487,6 @@ class CPdf {
 
                 $vp = $o['info']['viewerPreferences'];
                 $this->o_viewerPreferences($vp, 'add', $options);
-
                 break;
 
             case 'out':
@@ -605,10 +605,7 @@ class CPdf {
 
                     $res .= "]\n/Count " . count($this->objects[$id]['info']['pages']);
 
-                    if ((isset($o['info']['fonts']) && count($o['info']['fonts'])) ||
-                        isset($o['info']['procset']) ||
-                        (isset($o['info']['extGStates']) && count($o['info']['extGStates']))
-                    ) {
+                    if ((isset($o['info']['fonts']) && count($o['info']['fonts'])) || isset($o['info']['procset']) || (isset($o['info']['extGStates']) && count($o['info']['extGStates']))) {
                         $res .= "\n/Resources <<";
 
                         if (isset($o['info']['procset'])) {
@@ -640,6 +637,7 @@ class CPdf {
                         }
 
                         $res .= "\n>>";
+
                         if (isset($o['info']['mediaBox'])) {
                             $tmp = $o['info']['mediaBox'];
                             $res .= "\n/MediaBox [" . sprintf(
@@ -713,6 +711,7 @@ class CPdf {
                         'SubType'      => 'Type1'
                     )
                 );
+
                 $fontNum = $this->numFonts;
                 $this->objects[$id]['info']['fontNum'] = $fontNum;
 

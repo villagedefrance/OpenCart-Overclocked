@@ -59,63 +59,88 @@ class SurfaceGmagick implements SurfaceInterface {
     }
 
     public function restore() {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->canvas->restore();
     }
 
     public function scale($x, $y) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->canvas->scale($x, $y);
     }
 
     public function rotate($angle) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->canvas->rotate($angle);
     }
 
     public function translate($x, $y) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->canvas->translate($x, $y);
     }
 
     public function transform($a, $b, $c, $d, $e, $f) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->canvas->concat($a, $b, $c, $d, $e, $f);
     }
 
     public function beginPath() {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
-        // TODO: Implement beginPath() method.
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
+        // Implement beginPath() method.
     }
 
     public function closePath() {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->canvas->closepath();
     }
 
     public function fillStroke() {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->canvas->fill_stroke();
     }
 
     public function clip() {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->canvas->clip();
     }
 
     public function fillText($text, $x, $y, $maxWidth = null) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
+
         $this->canvas->set_text_pos($x, $y);
         $this->canvas->show($text);
     }
 
     public function strokeText($text, $x, $y, $maxWidth = null) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
-        // TODO: Implement drawImage() method.
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
+        // Implement drawImage() method.
     }
 
     public function drawImage($image, $sx, $sy, $sw = null, $sh = null, $dx = null, $dy = null, $dw = null, $dh = null) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
 
         if (strpos($image, "data:") === 0) {
             $data = substr($image, strpos($image, ";") + 1);
@@ -137,78 +162,108 @@ class SurfaceGmagick implements SurfaceInterface {
     }
 
     public function lineTo($x, $y) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->canvas->lineto($x, $y);
     }
 
     public function moveTo($x, $y) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->canvas->moveto($x, $y);
     }
 
     public function quadraticCurveTo($cpx, $cpy, $x, $y) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         // Implement quadraticCurveTo() method.
     }
 
     public function bezierCurveTo($cp1x, $cp1y, $cp2x, $cp2y, $x, $y) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->canvas->curveto($cp1x, $cp1y, $cp2x, $cp2y, $x, $y);
     }
 
     public function arcTo($x1, $y1, $x2, $y2, $radius) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
     }
 
     public function arc($x, $y, $radius, $startAngle, $endAngle, $anticlockwise = false) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->canvas->arc($x, $y, $radius, $startAngle, $endAngle);
     }
 
     public function circle($x, $y, $radius) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->canvas->circle($x, $y, $radius);
     }
 
     public function ellipse($x, $y, $radiusX, $radiusY, $rotation, $startAngle, $endAngle, $anticlockwise) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->canvas->ellipse($x, $y, $radiusX, $radiusY);
     }
 
     public function fillRect($x, $y, $w, $h) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->rect($x, $y, $w, $h);
         $this->fill();
     }
 
     public function rect($x, $y, $w, $h) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->canvas->rect($x, $y, $w, $h);
     }
 
     public function fill() {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->canvas->fill();
     }
 
     public function strokeRect($x, $y, $w, $h) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->rect($x, $y, $w, $h);
         $this->stroke();
     }
 
     public function stroke() {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $this->canvas->stroke();
     }
 
     public function endPath() {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         //$this->canvas->endPath();
     }
 
     public function measureText($text) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
         $style = $this->getStyle();
         $font = $this->getFont($style->fontFamily, $style->fontStyle);
 
@@ -216,13 +271,17 @@ class SurfaceGmagick implements SurfaceInterface {
     }
 
     public function getStyle() {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
 
         return $this->style;
     }
 
     public function setStyle(Style $style) {
-        if (self::DEBUG) echo __FUNCTION__ . "\n";
+        if (self::DEBUG) {
+            echo __FUNCTION__ . "\n";
+        }
 
         $this->style = $style;
         $canvas = $this->canvas;
@@ -261,7 +320,7 @@ class SurfaceGmagick implements SurfaceInterface {
             "sans-serif" => "Helvetica",
             "fantasy" => "Symbol",
             "cursive" => "serif",
-            "monospance" => "Courier",
+            "monospance" => "Courier"
         );
 
         $family = strtolower($family);

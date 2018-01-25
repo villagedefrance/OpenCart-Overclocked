@@ -2290,7 +2290,7 @@ class PHPExcel_Calculation_Engineering {
             $parsedComplex = self::parseComplex($arg);
 
             $workValue = $returnValue;
-	
+
             if (($parsedComplex['suffix'] != '') && ($activeSuffix == '')) {
                 $activeSuffix = $parsedComplex['suffix'];
             } elseif (($parsedComplex['suffix'] != '') && ($activeSuffix != $parsedComplex['suffix'])) {

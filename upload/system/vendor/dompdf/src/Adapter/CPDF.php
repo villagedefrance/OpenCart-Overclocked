@@ -576,6 +576,7 @@ class CPDF implements Canvas {
         }
 
         set_error_handler(array("\\Dompdf\\Helpers", "record_warnings"));
+
         $im = call_user_func($func_name, $image_url);
 
         if ($im) {
@@ -777,30 +778,39 @@ class CPDF implements Canvas {
 
         switch ($type) {
             case "png":
-                if ($debug_png) print '!!!png!!!';
+                if ($debug_png) {
+                    print '!!!png!!!';
+                }
                 $this->_pdf->addPngFromFile($img, $x, $this->y($y) - $h, $w, $h);
                 break;
 
             case "jpeg":
-                if ($debug_png) print '!!!jpg!!!';
+                if ($debug_png) {
+                    print '!!!jpg!!!';
+                }
                 $this->_pdf->addJpegFromFile($img, $x, $this->y($y) - $h, $w, $h);
                 break;
 
             case "gif":
             /** @noinspection PhpMissingBreakStatementInspection */
             case "bmp":
-                if ($debug_png) print '!!!bmp or gif!!!';
+                if ($debug_png) {
+                    print '!!!bmp or gif!!!';
+                }
                 // use cache for BMP and GIF
                 $img = $this->_convert_gif_bmp_to_png($img, $type);
 
             case "svg":
-                if ($debug_png) print '!!!SVG!!!';
-
+                if ($debug_png) {
+                    print '!!!SVG!!!';
+                }
                 $this->_pdf->addSvgFromFile($img, $x, $this->y($y) - $h, $w, $h);
                 break;
 
             default:
-                if ($debug_png) print '!!!unknown!!!';
+                if ($debug_png) {
+                    print '!!!unknown!!!';
+                }
         }
     }
 
@@ -1017,8 +1027,7 @@ class CPDF implements Canvas {
 
                 switch ($_t) {
                     case "text":
-                        $text = str_replace(array("{PAGE_NUM}", "{PAGE_COUNT}"),
-                            array($page_number, $this->_page_count), $text);
+                        $text = str_replace(array("{PAGE_NUM}", "{PAGE_COUNT}"), array($page_number, $this->_page_count), $text);
                         $this->text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
                         break;
 
