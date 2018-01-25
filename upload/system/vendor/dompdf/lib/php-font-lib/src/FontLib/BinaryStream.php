@@ -273,7 +273,7 @@ class BinaryStream {
   public function readLongDateTime() {
     $this->readUInt32(); // ignored
     $date = $this->readUInt32() - 2082844800;
-    
+
     # PHP_INT_MIN isn't defined in PHP < 7.0
     $php_int_min = (defined("PHP_INT_MIN")) ? PHP_INT_MIN : ~PHP_INT_MAX;
 

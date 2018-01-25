@@ -3500,7 +3500,9 @@ class HTML5_TreeBuilder {
      * @return bool
      */
     private function getAttr($token, $key) {
-        if (!isset($token['attr'])) return false;
+        if (!isset($token['attr'])) {
+            return false;
+        }
 
         $ret = false;
 
@@ -3606,8 +3608,11 @@ class HTML5_TreeBuilder {
         $names = array();
 
         foreach ($this->a_formatting as $node) {
-            if ($node === self::MARKER) $names[] = 'MARKER';
-            else $names[] = $node->tagName;
+            if ($node === self::MARKER) {
+                $names[] = 'MARKER';
+            } else {
+                $names[] = $node->tagName;
+            }
         }
         echo "  -> active formatting [" . implode(', ', $names) . "]\n";
     }

@@ -304,7 +304,7 @@ class PHPExcel_Writer_Excel5_Escher {
                     // get the shape offsets relative to the spgrContainer record
                     $spOffsets = $writer->getSpOffsets();
                     $spTypes = $writer->getSpTypes();
-                    
+
                     // save the shape offsets relative to dgContainer
                     foreach ($spOffsets as & $spOffset) {
                         $spOffset += 24; // add length of dgContainer header data (8 bytes) plus dg data (16 bytes)

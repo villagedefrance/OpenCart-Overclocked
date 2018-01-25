@@ -1579,7 +1579,6 @@ class PclZip {
                             return PclZip::errorCode();
                         }
 
-
                         // ----- Look for list sort
                         if ($v_result_list[$p_options_list[$i]][$j]['start'] < $v_sort_value) {
                             $v_sort_flag = true;

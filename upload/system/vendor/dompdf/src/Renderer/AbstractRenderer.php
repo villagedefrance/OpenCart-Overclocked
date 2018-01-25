@@ -445,10 +445,11 @@ abstract class AbstractRenderer {
                 break;
 
             case "dotted":
-                if ($width <= 1)
+                if ($width <= 1) {
                     $pattern = array($width, $width * 2);
-                else
+                } else {
                     $pattern = array($width);
+                }
                 break;
 
             case "dashed":

@@ -100,7 +100,7 @@ class PHPExcel_Calculation_Database {
         foreach ($criteriaNames as $key => $criteriaName) {
             $testCondition = array();
             $testConditionCount = 0;
-	
+
             foreach ($criteria as $row => $criterion) {
                 if ($criterion[$key] > '') {
                     $testCondition[] = '[:'.$criteriaName.']'.PHPExcel_Calculation_Functions::ifCondition($criterion[$key]);

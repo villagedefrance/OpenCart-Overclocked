@@ -268,8 +268,9 @@ class Table extends AbstractFrameReflower {
                     $columns[$i]["percent"] *= $scale;
                     $w = min($columns[$i]["percent"] * $remaining_width / 100, $slack);
 
-                    if ($w < $columns[$i]["min-width"])
+                    if ($w < $columns[$i]["min-width"]) {
                         $w = $columns[$i]["min-width"];
+                    }
 
                     $columns[$i]["used-width"] = $w;
                     $used_width += $w;
@@ -331,6 +332,7 @@ class Table extends AbstractFrameReflower {
                 } else {
                     $min_height = $style->length_in_pt($min_height, $cb["w"]);
                 }
+
                 if (mb_strpos($max_height, "%") !== false) {
                     $max_height = "none";
                 } else {

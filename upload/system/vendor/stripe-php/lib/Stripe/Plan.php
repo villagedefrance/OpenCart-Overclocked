@@ -32,7 +32,7 @@ class Stripe_Plan extends Stripe_ApiResource {
     $class = get_class();
     return self::_scopedDelete($class, $params);
   }
-  
+
   /**
    * @return Stripe_Plan The saved plan.
    */
@@ -40,7 +40,7 @@ class Stripe_Plan extends Stripe_ApiResource {
     $class = get_class();
     return self::_scopedSave($class);
   }
-  
+
   /**
    * @param array|null $params
    * @param string|null $apiKey
