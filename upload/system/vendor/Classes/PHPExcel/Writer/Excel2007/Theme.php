@@ -23,8 +23,9 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-
 
 /**
  * PHPExcel_Writer_Excel2007_Theme
@@ -33,8 +34,7 @@
  * @package    PHPExcel_Writer_Excel2007
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Writer_Excel2007_Theme extends PHPExcel_Writer_Excel2007_WriterPart
-{
+class PHPExcel_Writer_Excel2007_Theme extends PHPExcel_Writer_Excel2007_WriterPart {
     /**
      * Map of Major fonts to write
      * @static    array of string
@@ -70,7 +70,7 @@ class PHPExcel_Writer_Excel2007_Theme extends PHPExcel_Writer_Excel2007_WriterPa
         'Mong' => 'Mongolian Baiti',
         'Viet' => 'Times New Roman',
         'Uigh' => 'Microsoft Uighur',
-        'Geor' => 'Sylfaen',
+        'Geor' => 'Sylfaen'
     );
 
     /**
@@ -108,7 +108,7 @@ class PHPExcel_Writer_Excel2007_Theme extends PHPExcel_Writer_Excel2007_WriterPa
         'Mong' => 'Mongolian Baiti',
         'Viet' => 'Arial',
         'Uigh' => 'Microsoft Uighur',
-        'Geor' => 'Sylfaen',
+        'Geor' => 'Sylfaen'
     );
 
     /**
@@ -126,9 +126,9 @@ class PHPExcel_Writer_Excel2007_Theme extends PHPExcel_Writer_Excel2007_WriterPa
         'accent5'    => '4BACC6',
         'accent6'    => 'F79646',
         'hlink'        => '0000FF',
-        'folHlink'    => '800080',
+        'folHlink'    => '800080'
     );
-            
+
     /**
      * Write theme to XML format
      *
@@ -136,8 +136,7 @@ class PHPExcel_Writer_Excel2007_Theme extends PHPExcel_Writer_Excel2007_WriterPa
      * @return     string         XML Output
      * @throws     PHPExcel_Writer_Exception
      */
-    public function writeTheme(PHPExcel $pPHPExcel = null)
-    {
+    public function writeTheme(PHPExcel $pPHPExcel = null) {
         // Create XML writer
         $objWriter = null;
         if ($this->getParentWriter()->getUseDiskCaching()) {
@@ -476,8 +475,6 @@ class PHPExcel_Writer_Excel2007_Theme extends PHPExcel_Writer_Excel2007_WriterPa
                         $objWriter->endElement();
 
                     $objWriter->endElement();
-
-
 
                     // a:effectStyleLst
                     $objWriter->startElement('a:effectStyleLst');
@@ -822,8 +819,7 @@ class PHPExcel_Writer_Excel2007_Theme extends PHPExcel_Writer_Excel2007_WriterPa
      * @return     string                         XML Output
      * @throws     PHPExcel_Writer_Exception
      */
-    private function writeFonts($objWriter, $latinFont, $fontSet)
-    {
+    private function writeFonts($objWriter, $latinFont, $fontSet) {
         // a:latin
         $objWriter->startElement('a:latin');
         $objWriter->writeAttribute('typeface', $latinFont);
@@ -854,8 +850,7 @@ class PHPExcel_Writer_Excel2007_Theme extends PHPExcel_Writer_Excel2007_WriterPa
      * @return     string                         XML Output
      * @throws     PHPExcel_Writer_Exception
      */
-    private function writeColourScheme($objWriter)
-    {
+    private function writeColourScheme($objWriter) {
         foreach (self::$colourScheme as $colourName => $colourValue) {
             $objWriter->startElement('a:'.$colourName);
 

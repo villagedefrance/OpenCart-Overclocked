@@ -23,8 +23,9 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-
 
 /**
  * PHPExcel_Writer_Excel2007_Worksheet
@@ -33,8 +34,7 @@
  * @package    PHPExcel_Writer_Excel2007
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_WriterPart
-{
+class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_WriterPart {
     /**
      * Write worksheet to XML format
      *
@@ -44,11 +44,11 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @return    string                    XML Output
      * @throws    PHPExcel_Writer_Exception
      */
-    public function writeWorksheet($pSheet = null, $pStringTable = null, $includeCharts = false)
-    {
+    public function writeWorksheet($pSheet = null, $pStringTable = null, $includeCharts = false) {
         if (!is_null($pSheet)) {
             // Create XML writer
             $objWriter = null;
+
             if ($this->getParentWriter()->getUseDiskCaching()) {
                 $objWriter = new PHPExcel_Shared_XMLWriter(PHPExcel_Shared_XMLWriter::STORAGE_DISK, $this->getParentWriter()->getDiskCachingDirectory());
             } else {
@@ -143,8 +143,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet                $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeSheetPr(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writeSheetPr(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         // sheetPr
         $objWriter->startElement('sheetPr');
         //$objWriter->writeAttribute('codeName',        $pSheet->getTitle());
@@ -190,8 +189,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet            $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeDimension(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writeDimension(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         // dimension
         $objWriter->startElement('dimension');
         $objWriter->writeAttribute('ref', $pSheet->calculateWorksheetDimension());
@@ -205,8 +203,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet                    $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeSheetViews(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writeSheetViews(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         // sheetViews
         $objWriter->startElement('sheetViews');
 
@@ -293,17 +290,17 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
         }
 
         // Selection
-//      if ($pane != '') {
         // Only need to write selection element if we have a split pane
         // We cheat a little by over-riding the active cell selection, setting it to the split cell
         $objWriter->startElement('selection');
+
         if ($pane != '') {
             $objWriter->writeAttribute('pane', $pane);
         }
+
         $objWriter->writeAttribute('activeCell', $activeCell);
         $objWriter->writeAttribute('sqref', $activeCell);
         $objWriter->endElement();
-//      }
 
         $objWriter->endElement();
 
@@ -317,8 +314,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet          $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeSheetFormatPr(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writeSheetFormatPr(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         // sheetFormatPr
         $objWriter->startElement('sheetFormatPr');
 
@@ -369,8 +365,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet $pSheet Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeCols(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writeCols(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         // cols
         if (count($pSheet->getColumnDimensions()) > 0) {
             $objWriter->startElement('cols');
@@ -434,8 +429,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet                    $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeSheetProtection(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writeSheetProtection(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         // sheetProtection
         $objWriter->startElement('sheetProtection');
 
@@ -469,8 +463,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet                    $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeConditionalFormatting(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writeConditionalFormatting(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         // Conditional id
         $id = 1;
 
@@ -542,8 +535,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet                    $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeDataValidations(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writeDataValidations(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         // Datavalidation collection
         $dataValidationCollection = $pSheet->getDataValidationCollection();
 
@@ -608,8 +600,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet                    $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeHyperlinks(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writeHyperlinks(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         // Hyperlink collection
         $hyperlinkCollection = $pSheet->getHyperlinkCollection();
 
@@ -649,8 +640,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet                    $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeProtectedRanges(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writeProtectedRanges(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         if (count($pSheet->getProtectedCells()) > 0) {
             // protectedRanges
             $objWriter->startElement('protectedRanges');
@@ -678,8 +668,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet                    $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeMergeCells(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writeMergeCells(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         if (count($pSheet->getMergeCells()) > 0) {
             // mergeCells
             $objWriter->startElement('mergeCells');
@@ -703,8 +692,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet                    $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writePrintOptions(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writePrintOptions(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         // printOptions
         $objWriter->startElement('printOptions');
 
@@ -729,8 +717,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet                        $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writePageMargins(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writePageMargins(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         // pageMargins
         $objWriter->startElement('pageMargins');
         $objWriter->writeAttribute('left', PHPExcel_Shared_String::FormatNumber($pSheet->getPageMargins()->getLeft()));
@@ -749,9 +736,9 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet                        $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeAutoFilter(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writeAutoFilter(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         $autoFilterRange = $pSheet->getAutoFilter()->getRange();
+
         if (!empty($autoFilterRange)) {
             // autoFilter
             $objWriter->startElement('autoFilter');
@@ -768,6 +755,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
             $objWriter->writeAttribute('ref', str_replace('$', '', $range));
 
             $columns = $pSheet->getAutoFilter()->getColumns();
+
             if (count($columns > 0)) {
                 foreach ($columns as $columnID => $column) {
                     $rules = $column->getRules();
@@ -842,8 +830,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet                    $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writePageSetup(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writePageSetup(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         // pageSetup
         $objWriter->startElement('pageSetup');
         $objWriter->writeAttribute('paperSize', $pSheet->getPageSetup()->getPaperSize());
@@ -877,8 +864,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet                $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeHeaderFooter(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writeHeaderFooter(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         // headerFooter
         $objWriter->startElement('headerFooter');
         $objWriter->writeAttribute('differentOddEven', ($pSheet->getHeaderFooter()->getDifferentOddEven() ? 'true' : 'false'));
@@ -902,11 +888,11 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet                $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeBreaks(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writeBreaks(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         // Get row and column breaks
         $aRowBreaks = array();
         $aColumnBreaks = array();
+
         foreach ($pSheet->getBreaks() as $cell => $breakType) {
             if ($breakType == PHPExcel_Worksheet::BREAK_ROW) {
                 $aRowBreaks[] = $cell;
@@ -960,8 +946,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    string[]                        $pStringTable    String table
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeSheetData(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null, $pStringTable = null)
-    {
+    private function writeSheetData(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null, $pStringTable = null) {
         if (is_array($pStringTable)) {
             // Flipped stringtable, for faster index searching
             $aFlippedStringTable = $this->getParentWriter()->getWriterPart('stringtable')->flipStringTable($pStringTable);
@@ -1052,8 +1037,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    string[]                    $pFlippedStringTable    String table (flipped), for faster index searching
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeCell(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null, $pCellAddress = null, $pStringTable = null, $pFlippedStringTable = null)
-    {
+    private function writeCell(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null, $pCellAddress = null, $pStringTable = null, $pFlippedStringTable = null) {
         if (is_array($pStringTable) && is_array($pFlippedStringTable)) {
             // Cell
             $pCell = $pSheet->getCell($pCellAddress);
@@ -1127,7 +1111,6 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
                         }
                         if ($this->getParentWriter()->getOffice2003Compatibility() === false) {
                             if ($this->getParentWriter()->getPreCalculateFormulas()) {
-//                                $calculatedValue = $pCell->getCalculatedValue();
                                 if (!is_array($calculatedValue) && substr($calculatedValue, 0, 1) != '#') {
                                     $objWriter->writeElement('v', PHPExcel_Shared_String::FormatNumber($calculatedValue));
                                 } else {
@@ -1171,8 +1154,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    boolean                        $includeCharts    Flag indicating if we should include drawing details for charts
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeDrawings(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null, $includeCharts = false)
-    {
+    private function writeDrawings(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null, $includeCharts = false) {
         $chartCount = ($includeCharts) ? $pSheet->getChartCollection()->count() : 0;
         // If sheet contains drawings, add the relationships
         if (($pSheet->getDrawingCollection()->count() > 0) ||
@@ -1190,8 +1172,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet                $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeLegacyDrawing(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writeLegacyDrawing(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         // If sheet contains comments, add the relationships
         if (count($pSheet->getComments()) > 0) {
             $objWriter->startElement('legacyDrawing');
@@ -1207,8 +1188,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
      * @param    PHPExcel_Worksheet                $pSheet            Worksheet
      * @throws    PHPExcel_Writer_Exception
      */
-    private function writeLegacyDrawingHF(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null)
-    {
+    private function writeLegacyDrawingHF(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Worksheet $pSheet = null) {
         // If sheet contains images, add the relationships
         if (count($pSheet->getHeaderFooter()->getImages()) > 0) {
             $objWriter->startElement('legacyDrawingHF');

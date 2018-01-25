@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Writer_OpenDocument_Meta extends PHPExcel_Writer_OpenDocument_WriterPart
-{
+class PHPExcel_Writer_OpenDocument_Meta extends PHPExcel_Writer_OpenDocument_WriterPart {
     /**
      * Write meta.xml to XML format
      *
@@ -34,8 +35,7 @@ class PHPExcel_Writer_OpenDocument_Meta extends PHPExcel_Writer_OpenDocument_Wri
      * @return  string                     XML Output
      * @throws  PHPExcel_Writer_Exception
      */
-    public function write(PHPExcel $pPHPExcel = null)
-    {
+    public function write(PHPExcel $pPHPExcel = null) {
         if (!$pPHPExcel) {
             $pPHPExcel = $this->getParentWriter()->getPHPExcel();
         }
@@ -71,6 +71,7 @@ class PHPExcel_Writer_OpenDocument_Meta extends PHPExcel_Writer_OpenDocument_Wri
         $objWriter->writeElement('dc:description', $pPHPExcel->getProperties()->getDescription());
         $objWriter->writeElement('dc:subject', $pPHPExcel->getProperties()->getSubject());
         $keywords = explode(' ', $pPHPExcel->getProperties()->getKeywords());
+
         foreach ($keywords as $keyword) {
             $objWriter->writeElement('meta:keyword', $keyword);
         }

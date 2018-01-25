@@ -344,7 +344,7 @@ class Cpdf {
     function __construct($pageSize = array(0, 0, 612, 792), $isUnicode = false, $fontcache = '', $tmp = '') {
         $this->isUnicode = $isUnicode;
         $this->fontcache = rtrim($fontcache, DIRECTORY_SEPARATOR."/\\");
-        $this->tmp = ($tmp !== '' ? $tmp : sys_get_temp_dir());
+        $this->tmp = ($tmp !== '') ? $tmp : sys_get_temp_dir();
 
         $this->newDocument($pageSize);
 

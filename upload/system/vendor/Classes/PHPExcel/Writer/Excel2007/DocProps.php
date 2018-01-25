@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Writer_Excel2007_DocProps extends PHPExcel_Writer_Excel2007_WriterPart
-{
+class PHPExcel_Writer_Excel2007_DocProps extends PHPExcel_Writer_Excel2007_WriterPart {
     /**
      * Write docProps/app.xml to XML format
      *
@@ -34,10 +35,10 @@ class PHPExcel_Writer_Excel2007_DocProps extends PHPExcel_Writer_Excel2007_Write
      * @return     string         XML Output
      * @throws     PHPExcel_Writer_Exception
      */
-    public function writeDocPropsApp(PHPExcel $pPHPExcel = null)
-    {
+    public function writeDocPropsApp(PHPExcel $pPHPExcel = null) {
         // Create XML writer
         $objWriter = null;
+
         if ($this->getParentWriter()->getUseDiskCaching()) {
             $objWriter = new PHPExcel_Shared_XMLWriter(PHPExcel_Shared_XMLWriter::STORAGE_DISK, $this->getParentWriter()->getDiskCachingDirectory());
         } else {
@@ -131,10 +132,10 @@ class PHPExcel_Writer_Excel2007_DocProps extends PHPExcel_Writer_Excel2007_Write
      * @return     string         XML Output
      * @throws     PHPExcel_Writer_Exception
      */
-    public function writeDocPropsCore(PHPExcel $pPHPExcel = null)
-    {
+    public function writeDocPropsCore(PHPExcel $pPHPExcel = null) {
         // Create XML writer
         $objWriter = null;
+
         if ($this->getParentWriter()->getUseDiskCaching()) {
             $objWriter = new PHPExcel_Shared_XMLWriter(PHPExcel_Shared_XMLWriter::STORAGE_DISK, $this->getParentWriter()->getDiskCachingDirectory());
         } else {
@@ -198,15 +199,16 @@ class PHPExcel_Writer_Excel2007_DocProps extends PHPExcel_Writer_Excel2007_Write
      * @return     string         XML Output
      * @throws     PHPExcel_Writer_Exception
      */
-    public function writeDocPropsCustom(PHPExcel $pPHPExcel = null)
-    {
+    public function writeDocPropsCustom(PHPExcel $pPHPExcel = null) {
         $customPropertyList = $pPHPExcel->getProperties()->getCustomProperties();
+
         if (empty($customPropertyList)) {
             return;
         }
 
         // Create XML writer
         $objWriter = null;
+
         if ($this->getParentWriter()->getUseDiskCaching()) {
             $objWriter = new PHPExcel_Shared_XMLWriter(PHPExcel_Shared_XMLWriter::STORAGE_DISK, $this->getParentWriter()->getDiskCachingDirectory());
         } else {
@@ -220,7 +222,6 @@ class PHPExcel_Writer_Excel2007_DocProps extends PHPExcel_Writer_Excel2007_Write
         $objWriter->startElement('Properties');
         $objWriter->writeAttribute('xmlns', 'http://schemas.openxmlformats.org/officeDocument/2006/custom-properties');
         $objWriter->writeAttribute('xmlns:vt', 'http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes');
-
 
         foreach ($customPropertyList as $key => $customProperty) {
             $propertyValue = $pPHPExcel->getProperties()->getCustomPropertyValue($customProperty);
@@ -253,7 +254,6 @@ class PHPExcel_Writer_Excel2007_DocProps extends PHPExcel_Writer_Excel2007_Write
 
             $objWriter->endElement();
         }
-
 
         $objWriter->endElement();
 

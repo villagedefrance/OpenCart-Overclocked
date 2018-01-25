@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Writer_OpenDocument_Settings extends PHPExcel_Writer_OpenDocument_WriterPart
-{
+class PHPExcel_Writer_OpenDocument_Settings extends PHPExcel_Writer_OpenDocument_WriterPart {
     /**
      * Write settings.xml to XML format
      *
@@ -34,8 +35,7 @@ class PHPExcel_Writer_OpenDocument_Settings extends PHPExcel_Writer_OpenDocument
      * @return  string                     XML Output
      * @throws  PHPExcel_Writer_Exception
      */
-    public function write(PHPExcel $pPHPExcel = null)
-    {
+    public function write(PHPExcel $pPHPExcel = null) {
         if (!$pPHPExcel) {
             $pPHPExcel = $this->getParentWriter()->getPHPExcel();
         }

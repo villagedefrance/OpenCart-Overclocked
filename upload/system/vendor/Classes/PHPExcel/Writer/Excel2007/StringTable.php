@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Writer_Excel2007_StringTable extends PHPExcel_Writer_Excel2007_WriterPart
-{
+class PHPExcel_Writer_Excel2007_StringTable extends PHPExcel_Writer_Excel2007_WriterPart {
     /**
      * Create worksheet stringtable
      *
@@ -35,8 +36,7 @@ class PHPExcel_Writer_Excel2007_StringTable extends PHPExcel_Writer_Excel2007_Wr
      * @return     string[]                 String table for worksheet
      * @throws     PHPExcel_Writer_Exception
      */
-    public function createStringTable($pSheet = null, $pExistingTable = null)
-    {
+    public function createStringTable($pSheet = null, $pExistingTable = null) {
         if ($pSheet !== null) {
             // Create string lookup table
             $aStringTable = array();
@@ -83,11 +83,11 @@ class PHPExcel_Writer_Excel2007_StringTable extends PHPExcel_Writer_Excel2007_Wr
      * @return     string         XML Output
      * @throws     PHPExcel_Writer_Exception
      */
-    public function writeStringTable($pStringTable = null)
-    {
+    public function writeStringTable($pStringTable = null) {
         if ($pStringTable !== null) {
             // Create XML writer
             $objWriter = null;
+
             if ($this->getParentWriter()->getUseDiskCaching()) {
                 $objWriter = new PHPExcel_Shared_XMLWriter(PHPExcel_Shared_XMLWriter::STORAGE_DISK, $this->getParentWriter()->getDiskCachingDirectory());
             } else {
@@ -137,12 +137,11 @@ class PHPExcel_Writer_Excel2007_StringTable extends PHPExcel_Writer_Excel2007_Wr
      * @param     string                        $prefix            Optional Namespace prefix
      * @throws     PHPExcel_Writer_Exception
      */
-    public function writeRichText(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_RichText $pRichText = null, $prefix = null)
-    {
+    public function writeRichText(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_RichText $pRichText = null, $prefix = null) {
         if ($prefix !== null) {
             $prefix .= ':';
         }
-            
+
         // Loop through rich text elements
         $elements = $pRichText->getRichTextElements();
         foreach ($elements as $element) {
@@ -221,8 +220,7 @@ class PHPExcel_Writer_Excel2007_StringTable extends PHPExcel_Writer_Excel2007_Wr
      * @param     string                        $prefix            Optional Namespace prefix
      * @throws     PHPExcel_Writer_Exception
      */
-    public function writeRichTextForCharts(PHPExcel_Shared_XMLWriter $objWriter = null, $pRichText = null, $prefix = null)
-    {
+    public function writeRichTextForCharts(PHPExcel_Shared_XMLWriter $objWriter = null, $pRichText = null, $prefix = null) {
         if (!$pRichText instanceof PHPExcel_RichText) {
             $textRun = $pRichText;
             $pRichText = new PHPExcel_RichText();
@@ -232,7 +230,7 @@ class PHPExcel_Writer_Excel2007_StringTable extends PHPExcel_Writer_Excel2007_Wr
         if ($prefix !== null) {
             $prefix .= ':';
         }
-            
+
         // Loop through rich text elements
         $elements = $pRichText->getRichTextElements();
         foreach ($elements as $element) {
@@ -265,22 +263,11 @@ class PHPExcel_Writer_Excel2007_StringTable extends PHPExcel_Writer_Excel2007_Wr
                 $objWriter->writeAttribute('typeface', $element->getFont()->getName());
             $objWriter->endElement();
 
-                // Superscript / subscript
-//                    if ($element->getFont()->getSuperScript() || $element->getFont()->getSubScript()) {
-//                        $objWriter->startElement($prefix.'vertAlign');
-//                        if ($element->getFont()->getSuperScript()) {
-//                            $objWriter->writeAttribute('val', 'superscript');
-//                        } elseif ($element->getFont()->getSubScript()) {
-//                            $objWriter->writeAttribute('val', 'subscript');
-//                        }
-//                        $objWriter->endElement();
-//                    }
-//
             $objWriter->endElement();
 
             // t
             $objWriter->startElement($prefix.'t');
-//                    $objWriter->writeAttribute('xml:space', 'preserve');    //    Excel2010 accepts, Excel2007 complains
+
             $objWriter->writeRawData(PHPExcel_Shared_String::ControlCharacterPHP2OOXML($element->getText()));
             $objWriter->endElement();
 
@@ -294,8 +281,7 @@ class PHPExcel_Writer_Excel2007_StringTable extends PHPExcel_Writer_Excel2007_Wr
      * @param     array    $stringTable    Stringtable
      * @return     array
      */
-    public function flipStringTable($stringTable = array())
-    {
+    public function flipStringTable($stringTable = array()) {
         // Return value
         $returnValue = array();
 

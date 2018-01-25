@@ -24,9 +24,10 @@
  * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version     ##VERSION##, ##DATE##
+ *
+ * Overclocked Edition © 2018 | Villagedefrance
  */
-class PHPExcel_Writer_Excel2007_RelsVBA extends PHPExcel_Writer_Excel2007_WriterPart
-{
+class PHPExcel_Writer_Excel2007_RelsVBA extends PHPExcel_Writer_Excel2007_WriterPart {
     /**
      * Write relationships for a signed VBA Project
      *
@@ -34,10 +35,10 @@ class PHPExcel_Writer_Excel2007_RelsVBA extends PHPExcel_Writer_Excel2007_Writer
      * @return     string         XML Output
      * @throws     PHPExcel_Writer_Exception
      */
-    public function writeVBARelationships(PHPExcel $pPHPExcel = null)
-    {
+    public function writeVBARelationships(PHPExcel $pPHPExcel = null) {
         // Create XML writer
         $objWriter = null;
+
         if ($this->getParentWriter()->getUseDiskCaching()) {
             $objWriter = new PHPExcel_Shared_XMLWriter(PHPExcel_Shared_XMLWriter::STORAGE_DISK, $this->getParentWriter()->getDiskCachingDirectory());
         } else {
@@ -58,6 +59,5 @@ class PHPExcel_Writer_Excel2007_RelsVBA extends PHPExcel_Writer_Excel2007_Writer
         $objWriter->endElement();
 
         return $objWriter->getData();
-
     }
 }

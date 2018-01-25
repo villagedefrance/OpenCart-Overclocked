@@ -328,10 +328,7 @@ class HTML5_TreeBuilder {
                      "-//w3c//dtd html 4.01 transitional//",
                     );
                     // first, do easy checks
-                    if (
-                        !empty($token['force-quirks']) ||
-                        strtolower($token['name']) !== 'html'
-                    ) {
+                    if (!empty($token['force-quirks']) || strtolower($token['name']) !== 'html') {
                         $this->quirks_mode = self::QUIRKS_MODE;
                     } else {
                         do {
@@ -484,11 +481,7 @@ class HTML5_TreeBuilder {
                     $this->mode = self::IN_HEAD;
 
                 /* An end tag whose tag name is one of: "head", "body", "html", "br" */
-                } elseif (
-                    $token['type'] === HTML5_Tokenizer::ENDTAG && (
-                        $token['name'] === 'head' || $token['name'] === 'body' ||
-                        $token['name'] === 'html' || $token['name'] === 'br'
-                )) {
+                } elseif ($token['type'] === HTML5_Tokenizer::ENDTAG && ($token['name'] === 'head' || $token['name'] === 'body' || $token['name'] === 'html' || $token['name'] === 'br')) {
                     /* Act as if a start tag token with the tag name "head" and no
                      * attributes had been seen, then reprocess the current token. */
                     $this->emitToken(array(
@@ -496,6 +489,7 @@ class HTML5_TreeBuilder {
                         'type' => HTML5_Tokenizer::STARTTAG,
                         'attr' => array()
                     ));
+
                     $this->emitToken($token);
 
                 /* Any other end tag */
