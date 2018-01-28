@@ -1,10 +1,10 @@
-<?php if (isset($error)) { ?>
+<?php if (!empty($error)) { ?>
   <div class="warning"><?php echo $error; ?></div>
-<?php } elseif (isset($attention)) { ?>
+<?php } elseif (!empty($attention)) { ?>
   <div class="attention"><?php echo $attention; ?></div>
 <?php } else { ?>
-  <?php if ($checkout_method == 'iframe') { ?>
-    <iframe src="<?php echo $iframe_url; ?>" scrolling="no" width="570px" height="540px"></iframe>
+  <?php if (isset($checkout_method) && $checkout_method == 'iframe') { ?>
+    <iframe src="<?php echo $iframe_url; ?>" width="490" height="565" border="0" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
   <?php } else { ?>
     <div class="buttons">
       <div class="right">

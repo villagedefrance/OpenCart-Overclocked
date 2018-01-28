@@ -5,64 +5,93 @@
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
   <?php } ?>
   </div>
-  <?php if ($error_warning) { ?>
-    <div class="warning"><?php echo $error_warning; ?></div>
+<?php if (!empty($errors)) { ?>
+  <div class="warning">
+  <?php foreach ($errors as $error) { ?>
+    <?php echo $error; ?><br />
+  <?php } ?>
+  </div>
+<?php } ?>
+<?php if (!empty($success)) { ?>
+  <div class="success"><?php echo $success; ?></div>
   <?php } ?>
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
+        <a onclick="window.open('https://manager.paypal.com');" class="button"><?php echo $button_pp_manager; ?></a>
         <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
         <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-        <a onclick="location = '<?php echo $cancel; ?>';" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content"> 
       <div id="htabs" class="htabs">
-        <a href="#tab-settings"><?php echo $tab_settings; ?></a>
+        <a href="#tab-api"><?php echo $tab_api; ?></a>
+        <a href="#tab-general"><?php echo $tab_general; ?></a>
       <?php if ($pp_payflow_iframe_debug) { ?>
         <a href="#tab-debug-log"><?php echo $tab_debug_log; ?></a>
       <?php } ?>
       </div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
-        <div id="tab-settings">
+        <div id="tab-api">
         <table class="form">
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_vendor; ?><br /><span class="help"><?php echo $help_vendor; ?></span></td>
-            <td><?php if ($error_vendor) { ?>
-              <input type="text" name="pp_payflow_iframe_vendor" value="<?php echo $pp_payflow_iframe_vendor; ?>" size="40" class="input-error" />
-              <span class="error"><?php echo $error_vendor; ?></span>
+            <td><span class="required">*</span>&nbsp;<label for="input-partner"><?php echo $entry_partner; ?><br /><span class="help"><?php echo $help_partner; ?></span></label></td>
+            <td><?php if (isset($errors['partner'])) { ?>
+              <input type="text" name="pp_payflow_iframe_partner" id="input-partner" value="<?php echo $pp_payflow_iframe_partner; ?>" size="40" class="input-error" />
+              <span class="error"><?php echo $errors['partner']; ?></span>
             <?php } else { ?>
-              <input type="text" name="pp_payflow_iframe_vendor" value="<?php echo $pp_payflow_iframe_vendor; ?>" size="40" />
+              <input type="text" name="pp_payflow_iframe_partner" id="input-partner" value="<?php echo $pp_payflow_iframe_partner; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_user; ?><br /><span class="help"><?php echo $help_user; ?></span></td>
-            <td><?php if ($error_user) { ?>
-              <input type="text" name="pp_payflow_iframe_user" value="<?php echo $pp_payflow_iframe_user; ?>" size="40" class="input-error" />
-              <span class="error"><?php echo $error_user; ?></span>
+            <td><span class="required">*</span>&nbsp;<label for="input-vendor"><?php echo $entry_vendor; ?><br /><span class="help"><?php echo $help_vendor; ?></span></label></td>
+            <td><?php if (isset($errors['vendor'])) { ?>
+              <input type="text" name="pp_payflow_iframe_vendor" id="input-vendor" value="<?php echo $pp_payflow_iframe_vendor; ?>" size="40" class="input-error" />
+              <span class="error"><?php echo $errors['vendor'] ?></span>
             <?php } else { ?>
-              <input type="text" name="pp_payflow_iframe_user" value="<?php echo $pp_payflow_iframe_user; ?>" size="40" />
+              <input type="text" name="pp_payflow_iframe_vendor" id="input-vendor" value="<?php echo $pp_payflow_iframe_vendor; ?>" size="40" />
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><span class="required">*</span>&nbsp;<label for="input-username"><?php echo $entry_username; ?><br /><span class="help"><?php echo $help_username; ?></span></label></td>
+            <td><?php if (isset($errors['username'])) { ?>
+              <input type="text" name="pp_payflow_iframe_username" id="input-username" value="<?php echo $pp_payflow_iframe_username; ?>" size="40" class="input-error" />
+              <span class="error"><?php echo $errors['username']; ?></span>
+            <?php } else { ?>
+              <input type="text" name="pp_payflow_iframe_username" id="input-username" value="<?php echo $pp_payflow_iframe_username; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span>&nbsp;<label for="input-password"><?php echo $entry_password; ?></label></td>
-            <td><?php if ($error_password) { ?>
+            <td><?php if (isset($errors['password'])) { ?>
               <input type="text" name="pp_payflow_iframe_password" id="input-password" value="<?php echo $pp_payflow_iframe_password; ?>" size="40" class="input-error" />
-              <span class="error"><?php echo $error_password; ?></span>
+              <span class="error"><?php echo $errors['password']; ?></span>
             <?php } else { ?>
               <input type="text" name="pp_payflow_iframe_password" id="input-password" value="<?php echo $pp_payflow_iframe_password; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_partner; ?><br /><span class="help"><?php echo $help_partner; ?></span></td>
-            <td><?php if ($error_partner) { ?>
-              <input type="text" name="pp_payflow_iframe_partner" value="<?php echo $pp_payflow_iframe_partner; ?>" size="40" class="input-error" />
-              <span class="error"><?php echo $error_partner; ?></span>
-            <?php } else { ?>
-              <input type="text" name="pp_payflow_iframe_partner" value="<?php echo $pp_payflow_iframe_partner; ?>" size="40" />
-            <?php } ?></td>
+            <td><?php echo $entry_cancel_url; ?></td>
+            <td><?php echo $cancel_url; ?></td>
           </tr>
+          <tr>
+            <td><?php echo $entry_error_url; ?></td>
+            <td><?php echo $error_url; ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_return_url; ?></td>
+            <td><?php echo $return_url; ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_silent_post_url; ?></td>
+            <td><?php echo $silent_post_url; ?></td>
+          </tr>
+        </table>
+      </div>
+      <div id="tab-general">
+        <table class="form">
           <tr>
             <td><label for="input-live-demo"><?php echo $entry_test; ?><br /><span class="help"><?php echo $help_test; ?></span></label></td>
             <td><select name="pp_payflow_iframe_test" id="input-live-demo">
@@ -112,6 +141,10 @@
             </select></td>
           </tr>
           <tr>
+            <td><label for="input-timeout"><?php echo $entry_timeout; ?><br /><span class="help"><?php echo $help_timeout; ?></span></label></td>
+            <td><input type="text" name="pp_payflow_iframe_timeout" id="input-timeout" value="<?php echo $pp_payflow_iframe_timeout; ?>" /></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_order_status; ?></td>
             <td><select name="pp_payflow_iframe_order_status_id">
               <?php foreach ($order_statuses as $order_status) { ?>
@@ -157,24 +190,8 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_sort_order; ?></td>
-            <td><input type="text" name="pp_payflow_iframe_sort_order" value="<?php echo $pp_payflow_iframe_sort_order; ?>" size="1" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_cancel_url; ?></td>
-            <td><?php echo $cancel_url; ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_error_url; ?></td>
-            <td><?php echo $error_url; ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_return_url; ?></td>
-            <td><?php echo $return_url; ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_post_url; ?></td>
-            <td><?php echo $post_url; ?></td>
+            <td><label for="input-sort-order"><?php echo $entry_sort_order; ?></label></td>
+            <td><input type="text" name="pp_payflow_iframe_sort_order" id="input-sort-order" value="<?php echo $pp_payflow_iframe_sort_order; ?>" size="1" /></td>
           </tr>
         </table>
       </div>

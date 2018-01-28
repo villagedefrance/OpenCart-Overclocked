@@ -32,52 +32,106 @@ class ModelPaymentPPPayflowIframe extends Model {
 		return $method_data;
 	}
 
-	public function getOrderId($secure_token_id) {
-		$query = $this->db->query("SELECT order_id FROM " . DB_PREFIX . "paypal_payflow_iframe_order WHERE secure_token_id = '" . $this->db->escape($secure_token_id) . "'");
+	public function getPaypalOrderByOrderId($order_id) {
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "paypal_payflow_iframe_order` WHERE order_id = " . (int)$order_id);
 
-		if ($query->num_rows) {
-			$order_id = $query->row['order_id'];
-			return $order_id;
+		return (($query instanceof stdClass) && isset($query->row) && is_array($query->row)) ? $query->row : false;
+	}
+
+	public function getPaypalOrderBySecureTokenId($secure_token_id) {
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "paypal_payflow_iframe_order` WHERE secure_token_id = '" . $this->db->escape($secure_token_id) . "'");
+
+		return (($query instanceof stdClass) && isset($query->row) && is_array($query->row)) ? $query->row : false;
+	}
+
+	public function addPaypalOrder($data) {
+		if (is_array($data) && !empty($data)) {
+			$this->db->query("INSERT INTO " . DB_PREFIX . "paypal_payflow_iframe_order SET "
+			. "order_id = " . (isset($data['order_id']) ? (int)$data['order_id'] : 0) . ", "
+			. (isset($data['secure_token_id']) ? "secure_token_id = '" . $this->db->escape($data['secure_token_id']) . "', " : null)
+			. (isset($data['complete']) ? "complete = " . (int)$data['complete'] . ", " : null)
+			. (isset($data['currency_code']) ? "currency_code = '" . $this->db->escape($data['currency_code']) . "', " : null)
+			. "date_added = NOW(), date_modified = NOW()");
+
+			return $this->db->getLastId();
 		} else {
 			return false;
 		}
 	}
 
-	public function addOrder($order_id, $secure_token_id) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "paypal_payflow_iframe_order SET order_id = '" . (int)$order_id . "', secure_token_id = '" . $this->db->escape($secure_token_id) . "'");
+	public function addPaypalTransaction($data) {
+		if (is_array($data) && !empty($data)) {
+			$this->db->query("INSERT INTO " . DB_PREFIX . "paypal_payflow_iframe_order_transaction SET "
+			. "order_id = " . (isset($data['order_id']) ? (int)$data['order_id'] : 0) . ", "
+			. "transaction_reference = '" . (isset($data['transaction_reference']) ? $this->db->escape($data['transaction_reference']) : null) . "', "
+			. (isset($data['parent_transaction_reference']) ? "parent_transaction_reference = '" . $this->db->escape($data['parent_transaction_reference']) . "', " : null)
+			. (isset($data['void_transaction_reference']) ? "void_transaction_reference = '" . $this->db->escape($data['void_transaction_reference']) . "', " : null)
+			. (isset($data['transaction_type']) ? "transaction_type = '" . $this->db->escape($data['transaction_type']) . "', " : null)
+			. (isset($data['amount']) ? "amount = " . (double)$data['amount'] . ", " : null)
+			. "date_added = NOW(), date_modified = NOW()");
+
+			return $this->db->getLastId();
+		} else {
+			return false;
+		}
 	}
 
-	public function updateOrder($data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "paypal_payflow_iframe_order SET transaction_reference = '" . $this->db->escape($data['transaction_reference']) . "', transaction_type = '" . $this->db->escape($data['transaction_type']) . "', complete = " . (int)$data['complete'] . " WHERE secure_token_id = '" . $this->db->escape($data['secure_token_id']) . "'");
+	public function log($data, $title = null, $force = false) {
+		if ($this->config->get('pp_payflow_iframe_debug') || $force) {
+			$log = new Log('pp_payflow_iframe.log');
+			$log->write('PayPal Payflow iFrame debug (' . $title . '): ' . json_encode($data));
+		}
 	}
 
 	public function call($data) {
 		if ($this->config->get('pp_payflow_iframe_test')) {
-			$url = 'https://pilot-payflowpro.paypal.com';
+			$host = 'pilot-payflowpro.paypal.com';
 		} else {
-			$url = 'https://payflowpro.paypal.com';
+			$host = 'payflowpro.paypal.com';
 		}
 
-		$default_parameters = array(
-			'USER'         => $this->config->get('pp_payflow_iframe_user'),
-			'VENDOR'       => $this->config->get('pp_payflow_iframe_vendor'),
-			'PWD'          => $this->config->get('pp_payflow_iframe_password'),
-			'PARTNER'      => $this->config->get('pp_payflow_iframe_partner'),
-			'BUTTONSOURCE' => 'OpenCart_Cart_PFP'
+		$user_parameters = array(
+			'USER'         => html_entity_decode($this->config->get('pp_payflow_iframe_username'), ENT_QUOTES, 'UTF-8'),
+			'VENDOR'       => html_entity_decode($this->config->get('pp_payflow_iframe_vendor'), ENT_QUOTES, 'UTF-8'),
+			'PWD'          => html_entity_decode($this->config->get('pp_payflow_iframe_password'), ENT_QUOTES, 'UTF-8'),
+			'PARTNER'      => html_entity_decode($this->config->get('pp_payflow_iframe_partner'), ENT_QUOTES, 'UTF-8'),
+			'BUTTONSOURCE' => 'OpenCart_Overclocked_PFP' // (Optional) Identification code for use by third-party applications to identify transactions.
 		);
 
-		$call_parameters = array_merge($data, $default_parameters);
+		$call_parameters = array_merge($data, $user_parameters);
 
 		$this->log($call_parameters, 'Call data');
 
+		// NVP format with length
+		$call_parameters_with_length = array();
+		foreach ($call_parameters as $key => $value) {
+			$call_parameters_with_length[] = $key . '[' . strlen($value) . ']=' . $value;
+		}
+		$post_fields = implode('&', $call_parameters_with_length);
+		$timeout = $this->config->has('pp_payflow_iframe_timeout') ? $this->config->get('pp_payflow_iframe_timeout') : 30;
+
+		// Standard HTTP Headers
+		$headers = array();
+		$headers[] = 'Content-Type: text/name value';
+		$headers[] = 'Content-Length: ' . strlen($post_fields);
+		$headers[] = 'Host: ' . $host;
+		// Payflow Message Protocol Headers
+		$headers[] = 'X-VPS-REQUEST-ID: ' . md5($post_fields . time());  // Unique ID to prevent duplicate requests. Append time to separate between multiple errors/requests on same shopping cart checkout attempt
+		$headers[] = 'X-VPS-CLIENT-TIMEOUT: ' . $timeout;  // Should be less than cURL timeout.
+		// Optional Headers
+		$headers[] = 'X-VPS-VIT-INTEGRATION-PRODUCT: OpenCart Overclocked with PPPayflowIframe Extension';
+
 		$options = array(
-			CURLOPT_POST => true,
-			CURLOPT_HEADER => false,
-			CURLOPT_URL => $url,
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_TIMEOUT => 30,
-			CURLOPT_SSL_VERIFYPEER => false,
-			CURLOPT_POSTFIELDS => http_build_query($call_parameters, '', "&")
+			CURLOPT_URL            => 'https://' . $host,
+			CURLOPT_PORT           => 443,
+			CURLOPT_HTTPHEADER     => $headers,
+			CURLOPT_POST           => true,
+			CURLOPT_USERAGENT      => $_SERVER['HTTP_USER_AGENT'],
+			CURLOPT_HEADER         => false, // Tells curl to not include headers in response
+			CURLOPT_RETURNTRANSFER => true, // Return into a variable
+			CURLOPT_TIMEOUT        => $timeout + 1,
+			CURLOPT_SSL_VERIFYPEER => false, // This line makes it work under https
+			CURLOPT_POSTFIELDS     => $post_fields
 		);
 
 		$ch = curl_init();
@@ -92,30 +146,54 @@ class ModelPaymentPPPayflowIframe extends Model {
 				'curl_error' => curl_error($ch)
 			);
 
-			$this->log($log_data, 'CURL failed');
-
+			$this->log($log_data, 'cURL failed');
 			return false;
 		}
 
-		$this->log($response, 'Response');
-
 		curl_close($ch);
 
-		$response_params = array();
+		$response_data = $this->parse_payflow_string($response);
 
-		parse_str($response, $response_params);
+		$this->log($response_data, 'Response');
 
-		return $response_params;
+		return $response_data;
 	}
 
-	public function addTransaction($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "paypal_payflow_iframe_order_transaction SET order_id = " . (int)$data['order_id'] . ", transaction_reference = '" . $this->db->escape($data['transaction_reference']) . "', transaction_type = '" . $this->db->escape($data['type']) . "', `time` = NOW(), amount = '" . $this->db->escape($data['amount']) . "'");
-	}
+	// Parses a response string from Payflow and returns an associative array of response parameters.
+	private function parse_payflow_string($str) {
+		$workstr = $str;
+		$out = array();
 
-	public function log($data, $title = null) {
-		if ($this->config->get('pp_payflow_iframe_debug')) {
-			$log = new Log('pp_payflow_iframe.log');
-			$log->write('PayPal Payflow iFrame debug (' . $title . '): ' . json_encode($data));
+		while(strlen($workstr) > 0) {
+			$loc = strpos($workstr, '=');
+			if ($loc === FALSE) {
+				// Truncate the rest of the string, it's not valid
+				$workstr = '';
+				continue;
+			}
+
+			$substr = substr($workstr, 0, $loc);
+			$workstr = substr($workstr, $loc + 1); // "+1" because we need to get rid of the "="
+
+			if (preg_match('/^(\w+)\[(\d+)]$/', $substr, $matches)) {
+				// This one has a length tag with it. Read the number of characters specified by $matches[2].
+				$count = intval($matches[2]);
+
+				$out[$matches[1]] = substr($workstr, 0, $count);
+				$workstr = substr($workstr, $count + 1); // "+1" because we need to get rid of the "&"
+			} else {
+				// Read up to the next "&"
+				$count = strpos($workstr, '&');
+				if ($count === FALSE) { // No more "&"'s, read up to the end of the string
+					$out[$substr] = $workstr;
+					$workstr = '';
+				} else {
+					$out[$substr] = substr($workstr, 0, $count);
+					$workstr = substr($workstr, $count + 1); // "+1" because we need to get rid of the "&"
+				}
+			}
 		}
+
+		return $out;
 	}
 }
