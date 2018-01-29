@@ -61,7 +61,7 @@
             <td class="left"><?php echo $palette['name']; ?></td>
             <td class="center"><?php echo $palette['colors']; ?></td>
             <td class="right"><?php foreach ($palette['action'] as $action) { ?>
-              <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+              <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
             <?php } ?></td>
           </tr>
           <?php } ?>

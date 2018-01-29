@@ -79,7 +79,7 @@
             <td class="right"><?php echo $currency['value']; ?></td>
             <td class="right"><?php echo $currency['date_modified']; ?></td>
             <td class="right"><?php foreach ($currency['action'] as $action) { ?>
-              <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+              <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
             <?php } ?></td>
           </tr>
           <?php } ?>

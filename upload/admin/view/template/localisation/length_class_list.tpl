@@ -62,7 +62,7 @@
             <td class="left"><?php echo $length_class['unit']; ?></td>
             <td class="right"><?php echo $length_class['value']; ?></td>
             <td class="right"><?php foreach ($length_class['action'] as $action) { ?>
-              <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+              <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
             <?php } ?></td>
           </tr>
           <?php } ?>

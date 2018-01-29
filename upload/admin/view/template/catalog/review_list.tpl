@@ -89,7 +89,7 @@
               <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
             <?php } ?>
             <td class="right"><?php foreach ($review['action'] as $action) { ?>
-              <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+              <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
             <?php } ?></td>
           </tr>
           <?php } ?>

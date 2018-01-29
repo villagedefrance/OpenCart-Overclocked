@@ -56,7 +56,7 @@
             <td class="left"><?php echo $geo_zone['name']; ?></td>
             <td class="left"><?php echo $geo_zone['description']; ?></td>
             <td class="right"><?php foreach ($geo_zone['action'] as $action) { ?>
-              <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+              <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
             <?php } ?></td>
           </tr>
           <?php } ?>

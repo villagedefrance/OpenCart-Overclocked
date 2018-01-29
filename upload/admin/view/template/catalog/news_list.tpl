@@ -86,7 +86,7 @@
               <td class="center"><?php echo $news_story['viewed']; ?></td>
               <td class="right">
                 <?php foreach ($news_story['action'] as $action) { ?>
-                  <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                  <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
                 <?php } ?>
               </td>
             </tr>

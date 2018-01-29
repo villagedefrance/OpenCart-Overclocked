@@ -72,7 +72,7 @@
               <td class="left"><?php echo $eucountry_story['status']; ?></td>
               <td class="right">
                 <?php foreach ($eucountry_story['action'] as $action) { ?>
-                  <a href="<?php echo $action['href']; ?>" class="button"><?php echo $action['text']; ?></a>
+                  <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
                 <?php } ?>
               </td>
             </tr>

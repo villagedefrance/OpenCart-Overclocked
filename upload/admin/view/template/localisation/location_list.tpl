@@ -64,7 +64,7 @@
                 <td class="left"><?php echo $location['latitude']; ?></td>
                 <td class="left"><?php echo $location['longitude']; ?></td>
                 <td class="right"><?php foreach ($location['action'] as $action) { ?>
-                  <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                  <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
                 <?php } ?></td>
               </tr>
             <?php } ?>

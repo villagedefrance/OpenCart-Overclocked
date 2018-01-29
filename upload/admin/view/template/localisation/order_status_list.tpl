@@ -56,7 +56,7 @@
             <td class="left"><?php echo $order_status['name']; ?></td>
             <td class="center"><?php echo $order_status['order_status_id']; ?></td>
             <td class="right"><?php foreach ($order_status['action'] as $action) { ?>
-              <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+              <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
             <?php } ?></td>
           </tr>
           <?php } ?>
