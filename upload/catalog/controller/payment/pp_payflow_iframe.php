@@ -14,9 +14,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 			$order_info = $this->model_checkout_order->getOrder($order_id);
 
 			if ($order_info) {
-
 				if (in_array(strtoupper($order_info['currency_code']), array('AUD','CAD','EUR','GBP','JPY','USD'))) {
-
 					if ($this->config->get('pp_payflow_iframe_test')) {
 						$mode = 'TEST';
 						$payflow_url = 'https://pilot-payflowlink.paypal.com';
@@ -90,7 +88,6 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 						$this->data['error'] = $this->language->get('error_connection');
 
 					} elseif (is_array($response) && isset($response['RESULT'])) {
-
 						if (intval($response['RESULT']) == 0) {
 							// Get the secure token
 							$secure_token = (isset($response['SECURETOKEN']) ? $response['SECURETOKEN'] : '');
@@ -194,13 +191,14 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 		$order_id = isset($this->request->post['USER1']) ? $this->request->post['USER1'] : 0;
 
 		$order_info = $this->model_checkout_order->getOrder($order_id);
+
 		if ($order_info) {
 			// Inquire status of the transaction from Paypal
 			$request = array(
 				'TENDER'    => 'C',
 				'TRXTYPE'   => 'I',
 				'ORIGID'    => $this->request->post['PNREF'],
-//      	'VERBOSITY' => 'HIGH'
+//  			'VERBOSITY' => 'HIGH'
 			);
 
 			$response = $this->model_payment_pp_payflow_iframe->call($request);
@@ -225,7 +223,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 						'transaction_reference'        => $this->request->post['PNREF'],
 						'transaction_type'             => $this->request->post['TYPE'],
 						'parent_transaction_reference' => '',
-						'amount'                       => $this->request->post['AMT'],
+						'amount'                       => $this->request->post['AMT']
 					);
 
 					$this->model_payment_pp_payflow_iframe->addPaypalTransaction($paypal_transaction);
