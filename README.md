@@ -33,6 +33,11 @@ Requirements:
 
 COMING SOON in v1.11.0!
 - Upgraded to latest jQuery 3.2.1.
+- Upgraded almost all Javascript libraries.
+- Extensive code validation using Codacy.
+- Added Composer.json and Packagist repo.
+- Added Animate CSS for Admin pages.
+- Paypal Payflow Iframe update (Thanks Gob33!)
 - Currency rates auto-update fixed.
 - ...
 
