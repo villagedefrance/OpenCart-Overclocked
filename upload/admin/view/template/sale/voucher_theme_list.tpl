@@ -52,7 +52,7 @@
               <td class="center"><img src="<?php echo $voucher_theme['image']; ?>" alt="<?php echo $voucher_theme['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
               <td class="left"><?php echo $voucher_theme['name']; ?></td>
               <td class="right"><?php foreach ($voucher_theme['action'] as $action) { ?>
-                <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
               <?php } ?></td>
             </tr>
             <?php } ?>

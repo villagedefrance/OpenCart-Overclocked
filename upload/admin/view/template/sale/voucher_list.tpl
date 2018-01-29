@@ -91,7 +91,7 @@
                 <?php } ?>
                 <td class="right"><a onclick="sendVoucher('<?php echo $voucher['voucher_id']; ?>');" class="button-save"><?php echo $text_send; ?></a>
                 <?php foreach ($voucher['action'] as $action) { ?>
-                  <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                  <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
                 <?php } ?></td>
               </tr>
             <?php } ?>

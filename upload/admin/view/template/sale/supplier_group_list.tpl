@@ -68,7 +68,7 @@
 			<td class="left"><?php echo $supplier_group['payment_method']; ?></td>
             <td class="center"><?php echo $supplier_group['sort_order']; ?></td>
             <td class="right"><?php foreach ($supplier_group['action'] as $action) { ?>
-              <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+              <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
             <?php } ?></td>
           </tr>
           <?php } ?>

@@ -118,7 +118,7 @@
             <td class="center"><?php echo $supplier['date_added']; ?></td>
             <td class="center"><?php echo $supplier['date_modified']; ?></td>
             <td class="right"><?php foreach ($supplier['action'] as $action) { ?>
-              <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+              <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
             <?php } ?></td>
           </tr>
           <?php } ?>
