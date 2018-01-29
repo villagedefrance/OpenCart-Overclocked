@@ -62,7 +62,7 @@ $_['help_test']                      = 'Use the live or testing (sandbox) gatewa
 $_['help_debug']                     = 'Logs additional information.';
 $_['help_transaction_method']        = 'Sale will charge customer immediately. Authorization will put funds on hold for future capture.';
 $_['help_checkout_method']           = 'Please use Redirect method if do not have SSL installed or if you do not have Pay with PayPal option disabled on your hosted payment page.';
-$_['help_timeout']                   = 'The maximum duration in secs a request is attemped.';
+$_['help_timeout']                   = 'The maximum duration in secondes a request is attempted.';
 $_['help_total']                     = 'The checkout total the order must reach before this payment method becomes <b>active</b>.';
 $_['help_total_max']                 = 'The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.';
 

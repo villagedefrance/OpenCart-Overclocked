@@ -104,9 +104,11 @@ class ModelPaymentPPPayflowIframe extends Model {
 
 		// NVP format with length
 		$call_parameters_with_length = array();
+
 		foreach ($call_parameters as $key => $value) {
 			$call_parameters_with_length[] = $key . '[' . strlen($value) . ']=' . $value;
 		}
+
 		$post_fields = implode('&', $call_parameters_with_length);
 		$timeout = $this->config->has('pp_payflow_iframe_timeout') ? $this->config->get('pp_payflow_iframe_timeout') : 30;
 
@@ -164,9 +166,10 @@ class ModelPaymentPPPayflowIframe extends Model {
 		$workstr = $str;
 		$out = array();
 
-		while(strlen($workstr) > 0) {
+		while (strlen($workstr) > 0) {
 			$loc = strpos($workstr, '=');
-			if ($loc === FALSE) {
+
+			if ($loc === false) {
 				// Truncate the rest of the string, it's not valid
 				$workstr = '';
 				continue;
@@ -184,7 +187,8 @@ class ModelPaymentPPPayflowIframe extends Model {
 			} else {
 				// Read up to the next "&"
 				$count = strpos($workstr, '&');
-				if ($count === FALSE) { // No more "&"'s, read up to the end of the string
+
+				if ($count === false) { // No more "&"'s, read up to the end of the string
 					$out[$substr] = $workstr;
 					$workstr = '';
 				} else {

@@ -7,7 +7,7 @@ class ModelPaymentPPPayflowIframe extends Model {
 			`order_id` int(11) NOT NULL DEFAULT 0,
 			`secure_token_id` varchar(255) NOT NULL,
 			`complete` tinyint(1) NOT NULL DEFAULT 0,
-			`currency_code` char(3) NOT NULL,  // Common to all its transactions
+			`currency_code` char(3) NOT NULL,
 			`date_added` datetime NOT NULL DEFAULT '0001-01-01 00:00:00',
 			`date_modified` datetime NOT NULL,
 			PRIMARY KEY(`order_id`),
@@ -72,6 +72,7 @@ class ModelPaymentPPPayflowIframe extends Model {
 			. (isset($data['currency_code']) ? "currency_code = '" . $this->db->escape($data['currency_code']) . "', " : null)
 			. "date_modified = NOW()"
 			. " WHERE order_id = " . (int)$order_id);
+
 			return $result;
 		} else {
 			return false;
@@ -261,10 +262,13 @@ class ModelPaymentPPPayflowIframe extends Model {
 
 		// NVP format with length
 		$call_parameters_with_length = array();
+
 		foreach ($call_parameters as $key => $value) {
 			$call_parameters_with_length[] = $key . '[' . strlen($value) . ']=' . $value;
 		}
+
 		$post_fields = implode('&', $call_parameters_with_length);
+
 		$timeout = $this->config->has('pp_payflow_iframe_timeout') ? $this->config->get('pp_payflow_iframe_timeout') : 30;
 
 		// Standard HTTP Headers
@@ -321,9 +325,10 @@ class ModelPaymentPPPayflowIframe extends Model {
 		$workstr = $str;
 		$out = array();
 
-		while(strlen($workstr) > 0) {
+		while (strlen($workstr) > 0) {
 			$loc = strpos($workstr, '=');
-			if ($loc === FALSE) {
+
+			if ($loc === false) {
 				// Truncate the rest of the string, it's not valid
 				$workstr = '';
 				continue;
@@ -341,7 +346,8 @@ class ModelPaymentPPPayflowIframe extends Model {
 			} else {
 				// Read up to the next "&"
 				$count = strpos($workstr, '&');
-				if ($count === FALSE) { // No more "&"'s, read up to the end of the string
+
+				if ($count === false) { // No more "&"'s, read up to the end of the string
 					$out[$substr] = $workstr;
 					$workstr = '';
 				} else {
