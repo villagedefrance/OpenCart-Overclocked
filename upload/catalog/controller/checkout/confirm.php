@@ -357,6 +357,14 @@ class ControllerCheckoutConfirm extends Controller {
 			$this->data['text_recurring_item'] = $this->language->get('text_recurring_item');
 			$this->data['text_payment_profile'] = $this->language->get('text_payment_profile');
 
+			$frequencies = array(
+				'day'        => $this->language->get('text_day'),
+				'week'       => $this->language->get('text_week'),
+				'semi_month' => $this->language->get('text_semi_month'),
+				'month'      => $this->language->get('text_month'),
+				'year'       => $this->language->get('text_year')
+			);
+
 			$this->data['products'] = array();
 
 			foreach ($this->cart->getProducts() as $product) {
@@ -380,14 +388,6 @@ class ControllerCheckoutConfirm extends Controller {
 				$profile_description = '';
 
 				if ($product['recurring']) {
-					$frequencies = array(
-						'day'        => $this->language->get('text_day'),
-						'week'       => $this->language->get('text_week'),
-						'semi_month' => $this->language->get('text_semi_month'),
-						'month'      => $this->language->get('text_month'),
-						'year'       => $this->language->get('text_year')
-					);
-
 					if ($product['recurring_trial']) {
 						$recurring_price = $this->currency->format($this->tax->calculate($product['recurring_trial_price'] * $product['quantity'], $product['tax_class_id'], $this->config->get('config_tax')));
 
