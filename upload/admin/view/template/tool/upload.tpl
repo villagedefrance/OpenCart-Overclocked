@@ -61,7 +61,7 @@
               <td class="left"><?php echo $upload['name']; ?></td>
               <td class="left"><?php echo $upload['filename']; ?></td>
               <td class="center"><?php echo $upload['date_added']; ?></td>
-              <td class="right"><a href="<?php echo $upload['download']; ?>" title="" class="button-form"><?php echo $button_download; ?></a></td>
+              <td class="right"><a href="<?php echo $upload['download']; ?>" title="" class="button-form animated fadeIn"><?php echo $button_download; ?></a></td>
             </tr>
           <?php } ?>
         <?php } else { ?>

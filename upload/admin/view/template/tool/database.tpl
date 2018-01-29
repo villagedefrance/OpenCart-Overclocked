@@ -36,7 +36,7 @@
             <td width="20%"><b><?php echo $text_optimize; ?></b></td>
             <td width="55%"><?php echo $text_help_optimize; ?></td>
             <td width="25%">
-              <a onclick="Optimize();" class="button-save"><?php echo $button_optimize; ?></a>
+              <a onclick="Optimize();" class="button-save animated fadeIn"><?php echo $button_optimize; ?></a>
             </td>
           </tr>
         </table>
@@ -46,7 +46,7 @@
             <td width="20%"><b><?php echo $text_repair; ?></b></td>
             <td width="55%"><?php echo $text_help_repair; ?></td>
             <td width="25%">
-              <a onclick="Repair();" class="button-repair"><?php echo $button_repair; ?></a>
+              <a onclick="Repair();" class="button-repair animated fadeIn"><?php echo $button_repair; ?></a>
             </td>
           </tr>
         </table>
@@ -56,10 +56,10 @@
             <td width="20%"><b><?php echo $text_table_engine; ?></b></td>
           <?php if (!$engine) { ?>
             <td width="55%"><?php echo $text_help_myisam; ?></td>
-            <td width="25%"><a onclick="Innodb();" class="button-cancel"><?php echo $button_innodb; ?></a></td>
+            <td width="25%"><a onclick="Innodb();" class="button-cancel animated fadeIn"><?php echo $button_innodb; ?></a></td>
           <?php } else { ?>
             <td width="55%"><?php echo $text_help_innodb; ?></td>
-            <td width="25%"><a onclick="Myisam();" class="button-cancel"><?php echo $button_myisam; ?></a></td>
+            <td width="25%"><a onclick="Myisam();" class="button-cancel animated fadeIn"><?php echo $button_myisam; ?></a></td>
           <?php } ?>
           </tr>
         </table>

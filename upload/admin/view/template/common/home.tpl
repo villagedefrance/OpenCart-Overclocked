@@ -44,7 +44,7 @@
         <?php } ?>
         <?php if ($seo_url_status && $seo_url_ratio) { ?>
           <?php if ($seo_url_ratio == 3) { ?>
-            <a href="<?php echo $open_seo_url; ?>" title="<?php echo $help_seo_url; ?>"><img src="view/image/seo-red.png" alt="" class="animated bounceIn" /></a>
+            <a href="<?php echo $open_seo_url; ?>" title="<?php echo $help_seo_url; ?>"><img src="view/image/seo-red.png" alt="" class="animated flash" /></a>
           <?php } elseif ($seo_url_ratio == 2) { ?>
             <a href="<?php echo $open_seo_url; ?>" title="<?php echo $help_seo_url; ?>"><img src="view/image/seo-yellow.png" alt="" class="animated jello" /></a>
           <?php } else { ?>
@@ -75,7 +75,7 @@
             <tr>
               <td class="left"><?php echo $text_total_order; ?>
               <?php if ($total_pending_orders > 0) { ?>
-                <a href="<?php echo $view_orders; ?>" title=""><span class="color animated bounceIn" style="background-color:#F2B155; color:#FFF;"><?php echo $total_pending_orders; ?></span></a>
+                <a href="<?php echo $view_orders; ?>" title=""><span class="color animated flash" style="background-color:#F2B155; color:#FFF;"><?php echo $total_pending_orders; ?></span></a>
               <?php } else { ?>
                 <a href="<?php echo $view_orders; ?>" title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
               <?php } ?>
@@ -85,7 +85,7 @@
             <tr>
               <td class="left"><?php echo $text_total_customer; ?>
               <?php if ($total_customer_approval > 0) { ?>
-                <a href="<?php echo $view_customers; ?>" title=""><span class="color animated bounceIn" style="background-color:#DE5954; color:#FFF;"><?php echo $total_customer_approval; ?></span></a>
+                <a href="<?php echo $view_customers; ?>" title=""><span class="color animated flash" style="background-color:#DE5954; color:#FFF;"><?php echo $total_customer_approval; ?></span></a>
               <?php } else { ?>
                 <a href="<?php echo $view_customers; ?>" title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
               <?php } ?>
@@ -95,7 +95,7 @@
             <tr>
               <td class="left"><?php echo $text_total_review; ?>
               <?php if ($total_review_approval > 0) { ?>
-                <a href="<?php echo $view_reviews; ?>" title=""><span class="color animated bounceIn" style="background-color:#DE5954; color:#FFF;"><?php echo $total_review_approval; ?></span></a>
+                <a href="<?php echo $view_reviews; ?>" title=""><span class="color animated flash" style="background-color:#DE5954; color:#FFF;"><?php echo $total_review_approval; ?></span></a>
               <?php } else { ?>
                 <a href="<?php echo $view_reviews; ?>" title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
               <?php } ?>
@@ -106,7 +106,7 @@
             <tr>
               <td class="left"><?php echo $text_total_affiliate; ?>
               <?php if ($total_affiliate_approval > 0) { ?>
-                <a href="<?php echo $view_affiliates; ?>" title=""><span class="color animated bounceIn" style="background-color:#DE5954; color:#FFF;"><?php echo $total_affiliate_approval; ?></span></a>
+                <a href="<?php echo $view_affiliates; ?>" title=""><span class="color animated flash" style="background-color:#DE5954; color:#FFF;"><?php echo $total_affiliate_approval; ?></span></a>
               <?php } else { ?>
                 <a href="<?php echo $view_affiliates; ?>" title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
               <?php } ?>

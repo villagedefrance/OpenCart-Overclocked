@@ -30,7 +30,7 @@
           </tr>
           <tr>
             <td width="20%"></td>
-            <td><a onclick="$('#import-raw').submit();" class="button-filter"><i class="fa fa-upload"></i> &nbsp;&nbsp; <?php echo $button_import; ?></a></td>
+            <td><a onclick="$('#import-raw').submit();" class="button-filter animated fadeIn"><i class="fa fa-upload"></i> &nbsp;&nbsp; <?php echo $button_import; ?></a></td>
           </tr>
         </table>
       </form>
@@ -47,7 +47,7 @@
           </tr>
           <tr>
             <td width="20%"></td>
-            <td><a onclick="$('#export-raw').submit();" class="button-filter"><i class="fa fa-download"></i> &nbsp;&nbsp; <?php echo $button_export; ?></a></td>
+            <td><a onclick="$('#export-raw').submit();" class="button-filter animated fadeIn"><i class="fa fa-download"></i> &nbsp;&nbsp; <?php echo $button_export; ?></a></td>
           </tr>
         </table>
         <h2><?php echo $heading_parameter; ?></h2>

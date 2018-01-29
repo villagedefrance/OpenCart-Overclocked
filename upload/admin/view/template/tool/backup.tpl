@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td width="20%"></td>
-            <td><a onclick="$('#restore').submit();" class="button-filter"><i class="fa fa-upload"></i> &nbsp;&nbsp; <?php echo $button_restore; ?></a></td>
+            <td><a onclick="$('#restore').submit();" class="button-filter animated fadeIn"><i class="fa fa-upload"></i> &nbsp;&nbsp; <?php echo $button_restore; ?></a></td>
           </tr>
         </table>
       </form>
@@ -50,7 +50,7 @@
           </tr>
           <tr>
             <td width="20%"></td>
-            <td><a onclick="$('#backup').submit();" class="button-filter"><i class="fa fa-download"></i> &nbsp;&nbsp; <?php echo $button_backup; ?></a></td>
+            <td><a onclick="$('#backup').submit();" class="button-filter animated fadeIn"><i class="fa fa-download"></i> &nbsp;&nbsp; <?php echo $button_backup; ?></a></td>
           </tr>
         </table>
       </form>
