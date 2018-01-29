@@ -483,7 +483,7 @@
         <?php } ?>
       </div>
       <div class="tops">
-        <div class="tiers animated fadeInLeft">
+        <div class="tiers animated fadeIn">
           <div class="dashboard-heading-left"><?php echo $text_topseller; ?></div>
           <div class="dashboard-content-left">
             <table class="list" style="margin-bottom:10px;">
@@ -545,7 +545,7 @@
             </table>
           </div>
         </div>
-        <div class="tiers animated fadeInRight">
+        <div class="tiers animated fadeIn">
           <div class="dashboard-heading-right"><?php echo $text_topcustomer; ?></div>
           <div class="dashboard-content-right">
             <table class="list" style="margin-bottom:10px;">
