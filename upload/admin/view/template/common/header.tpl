@@ -19,7 +19,7 @@
 <link rel="stylesheet" type="text/css" href="view/stylesheet/stylesheet_<?php echo $admin_css; ?>.css" />
 <link rel="stylesheet" type="text/css" href="view/javascript/jquery/ui/themes/start/jquery-ui-1.12.1.min.css" />
 <link rel="stylesheet" type="text/css" href="view/javascript/awesome/css/font-awesome.min.css" />
-<link rel="stylesheet" type="text/css" href="view/stylesheet/animate-custom.css" />
+<link rel="stylesheet" type="text/css" href="view/stylesheet/animate-custom.min.css" />
 <?php foreach ($styles as $style) { ?>
 <link rel="<?php echo $style['rel']; ?>" type="text/css" href="<?php echo $style['href']; ?>" media="<?php echo $style['media']; ?>" />
 <?php } ?>
