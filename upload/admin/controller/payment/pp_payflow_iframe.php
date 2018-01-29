@@ -303,6 +303,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 			}
 
 			$this->load->model('payment/pp_payflow_iframe');
+
 			$paypal_order = $this->model_payment_pp_payflow_iframe->getPaypalOrderByOrderId($order_id);
 
 			if ($paypal_order) {
@@ -338,6 +339,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 				// Updating display
 				$captured = $refunded = $remaining = 0;
 				$root_transaction = $this->model_payment_pp_payflow_iframe->getPaypalRootTransactionByOrderId($paypal_order['order_id']);
+
 				if ($root_transaction) {
 					switch ($root_transaction['transaction_type']) {
 						case 'S': // Sale
@@ -391,6 +393,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 		}
 
 		$this->load->model('payment/pp_payflow_iframe');
+
 		$paypal_order = $this->model_payment_pp_payflow_iframe->getPaypalOrderByOrderId($order_id);
 
 		if ($paypal_order) {
@@ -398,6 +401,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 			$refund_expiration = strtotime('-1 month');
 
 			$transactions = $this->model_payment_pp_payflow_iframe->getPaypalTransactionsByOrderId($paypal_order['order_id']);
+
 			foreach ($transactions as $transaction) {
 				$actions = array();
 
@@ -488,7 +492,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 						$text_transaction_type = '';
 						break;
 				}
-yutut
+
 				$this->data['transactions'][] = array(
 					'transaction_reference'        => $transaction['transaction_reference'],
 					'parent_transaction_reference' => $transaction['parent_transaction_reference'],
@@ -530,24 +534,26 @@ yutut
 			$complete = (isset($this->request->post['complete']) && $this->request->post['complete']) ?  true : false;
 
 			$this->load->model('payment/pp_payflow_iframe');
+
 			$paypal_order = $this->model_payment_pp_payflow_iframe->getPaypalOrderByOrderId($order_id);
+
 			if ($paypal_order) {
-
 				if (empty($paypal_order['complete'])) {
-
 					$authorization = $this->model_payment_pp_payflow_iframe->getPaypalLastAuthorizationByOrderId($order_id);
+
 					if ($authorization) {
 						if (empty($authorization['void_transaction_reference'])) {
-
 							// Ensure the capture amount is within the allowed limit for this (re)authorization.
 							$already_captured = 0;
 							// An authorization has M captures
 							$captures = $this->model_payment_pp_payflow_iframe->getPaypalCapturesByParentReference($authorization['transaction_reference']);
+
 							foreach ($captures as $capture) {
 								if (empty($capture['void_transaction_reference'])) {
 									// A capture has N refunds
 									$already_refunded = 0;
 									$refunds = $this->model_payment_pp_payflow_iframe->getPaypalRefundsByParentReference($capture['transaction_reference']);
+
 									foreach ($refunds as $refund) {
 										if (empty($refund['void_transaction_reference'])) {
 											$already_refunded += $refund['amount'];
@@ -574,7 +580,6 @@ yutut
 									$json['error'] = $this->language->get('error_connection');
 
 								} elseif (is_array($response) && isset($response['RESULT'])) {
-
 									if (intval($response['RESULT']) == 0) {
 										$data = array(
 											'order_id'                     => $order_id,
@@ -589,6 +594,7 @@ yutut
 										// Updating display
 										$captured = $refunded = $remaining = 0;
 										$root_transaction = $this->model_payment_pp_payflow_iframe->getPaypalRootTransactionByOrderId($order_id);
+
 										if ($root_transaction) {
 											switch ($root_transaction['transaction_type']) {
 												case 'S': // Sale
@@ -670,21 +676,21 @@ yutut
 			$pnref = $this->request->post['pnref'];
 
 			$this->load->model('payment/pp_payflow_iframe');
+
 			$paypal_order = $this->model_payment_pp_payflow_iframe->getPaypalOrderByOrderId($order_id);
+
 			if ($paypal_order) {
-
 				if (empty($paypal_order['complete'])) {
-
 					$transaction = $this->model_payment_pp_payflow_iframe->getPaypalTransactionByReference($pnref);
-					if ($transaction) {
 
+					if ($transaction) {
 						if (in_array($transaction['transaction_type'], array('S', 'A', 'F', 'D', 'C'))) {
 							$is_authorization = ($transaction['transaction_type'] == 'A' || $transaction['transaction_type'] == 'F') ? true : false;
 
 							// You cannot void an already voided transaction, an authorization having capture(s), a capture having refund(s).
 							if (empty($transaction['void_transaction_reference'])) {
-
 								$void_possible = true;
+
 								switch ($transaction['transaction_type']) {
 									case 'S': // Sale
 									case 'C': // Credit (Refund)
@@ -693,6 +699,7 @@ yutut
 									case 'F': // Voice authorization
 									case 'D': // Delayed Capture
 										$children = $this->model_payment_pp_payflow_iframe->getPaypalTransactionsByParentReference($transaction['transaction_reference']);
+
 										foreach ($children as $child) {
 											if (empty($child['void_transaction_reference'])) {
 												$void_possible = false;
@@ -719,7 +726,6 @@ yutut
 										$json['error'] = $this->language->get('error_connection');
 
 									} elseif (is_array($response) && isset($response['RESULT'])) {
-
 										if (intval($response['RESULT']) == 0) {
 											// Records the void
 											$void_data = array(
@@ -745,6 +751,7 @@ yutut
 											// Updating display
 											$captured = $refunded = $remaining = 0;
 											$root_transaction = $this->model_payment_pp_payflow_iframe->getPaypalRootTransactionByOrderId($order_id);
+
 											if ($root_transaction) {
 												switch ($root_transaction['transaction_type']) {
 													case 'S': // Sale
@@ -871,13 +878,14 @@ yutut
 		$this->data['order_id'] = $order_id;
 
 		$paypal_order = $this->model_payment_pp_payflow_iframe->getPaypalOrderByOrderId($order_id);
+
 		if ($paypal_order) {
-
 			$transaction = $this->model_payment_pp_payflow_iframe->getPaypalTransactionByReference($transaction_reference);
-			if ($transaction) {
 
+			if ($transaction) {
 				$already_refunded = 0;
 				$refunds = $this->model_payment_pp_payflow_iframe->getPaypalRefundsByParentReference($transaction['transaction_reference']);
+
 				foreach ($refunds as $refund) {
 					if (empty($refund['void_transaction_reference'])) {
 						$already_refunded += $refund['amount'];
@@ -917,17 +925,18 @@ yutut
 			$amount = (double)$this->request->post['amount'];
 
 			$this->load->model('payment/pp_payflow_iframe');
-			$paypal_order = $this->model_payment_pp_payflow_iframe->getPaypalOrderByOrderId($order_id);
-			if ($paypal_order) {
 
+			$paypal_order = $this->model_payment_pp_payflow_iframe->getPaypalOrderByOrderId($order_id);
+
+			if ($paypal_order) {
 				$transaction = $this->model_payment_pp_payflow_iframe->getPaypalTransactionByReference($reference);
 
 				if ($transaction) {
 					// To issue a referenced credit, the original transaction can only be one of the following: a Sale (TRXTYPE=S), Delayed Capture (TRXTYPE=D) or Voice Authorization (TRXTYPE=F).
 					if (in_array($transaction['transaction_type'], array('S', 'D', 'F'))) {
-
 						$already_refunded = 0;
 						$refunds = $this->model_payment_pp_payflow_iframe->getPaypalRefundsByParentReference($transaction['transaction_reference']);
+
 						foreach ($refunds as $refund) {
 							if (empty($refund['void_transaction_reference'])) {
 								$already_refunded += $refund['amount'];
@@ -949,7 +958,6 @@ yutut
 								$json['error'] = $this->language->get('error_connection');
 
 							} elseif (is_array($response) && isset($response['RESULT'])) {
-
 								if (intval($response['RESULT']) == 0) {
 									$refund_data = array(
 										'order_id'                     => $transaction['order_id'],
@@ -1016,22 +1024,22 @@ yutut
 			$amount = (double)$this->request->post['amount'];
 
 			$this->load->model('payment/pp_payflow_iframe');
+
 			$paypal_order = $this->model_payment_pp_payflow_iframe->getPaypalOrderByOrderId($order_id);
+
 			if ($paypal_order) {
-
 				if (empty($paypal_order['complete'])) {
-
 					$root_transaction = $this->model_payment_pp_payflow_iframe->getPaypalRootTransactionByOrderId($paypal_order['order_id']);
+
 					if ($root_transaction) {
 						if (in_array($root_transaction['transaction_type'], array('A', 'F'))) {
 							if (empty($root_transaction['void_transaction_reference'])) {
-
 								$captured = $this->model_payment_pp_payflow_iframe->getTotalCaptured($paypal_order['order_id']);
 								$refunded = $this->model_payment_pp_payflow_iframe->getTotalRefunded($paypal_order['order_id']);
+
 								$remaining = $root_transaction['amount'] - $captured + $refunded;
 
 								if ($amount <= $remaining) {
-
 									$request = array(
 										'TRXTYPE'           => 'A',
 										'TENDER'            => 'C',
@@ -1046,7 +1054,6 @@ yutut
 										$json['error'] = $this->language->get('error_connection');
 
 									} elseif (is_array($response) && isset($response['RESULT'])) {
-
 										if (intval($response['RESULT']) == 0) {
 											$data = array(
 												'order_id'                     => $order_id,

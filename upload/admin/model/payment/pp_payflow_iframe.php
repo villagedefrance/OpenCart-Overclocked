@@ -26,7 +26,7 @@ class ModelPaymentPPPayflowIframe extends Model {
 			`date_added` datetime NOT NULL DEFAULT '0001-01-01 00:00:00',
 			`date_modified` datetime NOT NULL,
 			PRIMARY KEY (`transaction_reference`),
-			KEY `order_id` (`order_id`)
+			KEY `order_id` (`order_id`),
 			KEY `parent_transaction_reference` (`parent_transaction_reference`)
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 		");
