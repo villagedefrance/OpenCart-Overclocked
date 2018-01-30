@@ -37,8 +37,10 @@ COMING SOON in v1.11.0!
 - Extensive code validation using Codacy.
 - Added Composer.json and Packagist repo.
 - Added Animate CSS for Admin pages.
-- Paypal Payflow Iframe update (Thanks Gob33!)
+- Paypal Payflow Iframe update. (Thanks Gob33!)
+- Piwik changed to new Matomo Analytics.
 - Currency rates auto-update fixed.
+- PHP 7.2+ improved support.
 - ...
 
 
