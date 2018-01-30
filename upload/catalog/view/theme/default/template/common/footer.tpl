@@ -110,7 +110,7 @@ Please donate via PayPal to donate@opencart.com
 <?php if ($this->config->get($template . '_powered_by')) { ?>
 <div id="powered"><?php echo $powered; ?></div>
 <?php } ?>
-<?php echo ($piwik) ? $piwik : ''; ?><br />
+<?php echo ($matomo) ? $matomo : ''; ?><br />
 </div>
 </div>
 <?php if ($this->config->get($template . '_back_to_top')) { ?>

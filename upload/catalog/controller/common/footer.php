@@ -101,8 +101,8 @@ class ControllerCommonFooter extends Controller {
 
 		$this->data['footer_class'] = $footer_class;
 
-		// Piwik
-		$this->data['piwik'] = html_entity_decode($this->config->get('config_piwik_analytics'), ENT_QUOTES, 'UTF-8');
+		// Matomo
+		$this->data['matomo'] = html_entity_decode($this->config->get('config_matomo_analytics'), ENT_QUOTES, 'UTF-8');
 
 		// Whos Online
 		if (isset($this->request->server['HTTP_USER_AGENT'])) {

@@ -228,7 +228,7 @@ $_['entry_meta_baidu']             = 'Baidu Identification:';
 $_['entry_meta_alexa']             = 'Alexa Identification:';
 $_['entry_google_analytics']       = 'Google Analytics Code:';
 $_['entry_alexa_analytics']        = 'Alexa Analytics Code:';
-$_['entry_piwik_analytics']        = 'Piwik Analytics Code:';
+$_['entry_matomo_analytics']       = 'Matomo Analytics Code:';
 $_['entry_maintenance']            = 'Maintenance Mode:';
 $_['entry_seo_url']                = 'Use SEO URLs:';
 $_['entry_seo_url_cache']          = 'Use SEO URLs Caching:';
@@ -364,7 +364,7 @@ $_['help_meta_baidu']              = 'Enter the website unique "meta name" <b>Ke
 $_['help_meta_alexa']              = 'Enter the website unique "meta name" <b>Key</b> here.<br />It will be added to the Catalog Header to identify the site with <b>Alexa</b>.';
 $_['help_google_analytics']        = 'Login to your <a onclick="window.open(\'http://www.google.com/analytics/\');"><u>Google Analytics</u></a> account and after creating your web site profile copy and paste the analytics code into this field.';
 $_['help_alexa_analytics']         = 'Login to your <a onclick="window.open(\'http://www.alexa.com/\');"><u>Alexa Analytics</u></a> account and after creating your web site profile copy and paste the analytics code into this field.';
-$_['help_piwik_analytics']         = 'Login to your <a onclick="window.open(\'https://piwik.org/\');"><u>Piwik Analytics</u></a> server and copy and paste the analytics code into this field.';
+$_['help_matomo_analytics']        = 'Login to your <a onclick="window.open(\'https://matomo.org/\');"><u>Matomo Analytics</u></a> server and copy and paste the analytics code into this field.';
 $_['help_maintenance']             = 'Prevents customers from browsing your store. They will instead see a maintenance message. If logged in as admin, you will see the store as normal.';
 $_['help_seo_url']                 = 'To use SEO URLs apache module mod-rewrite must be installed. If enabled, the "htaccess.txt" file will be automatically converted to ".htaccess".';
 $_['help_seo_url_cache']           = 'Generates a cached map file of all SEO URL keyword definitions for faster access.';
