@@ -198,10 +198,10 @@ label {
 	padding: 10px 10px 10px 33px;
 	margin-bottom: 15px;
 	color: #555;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 }
 .success {
 	background: #EAF7D9 url('../image/good.png') 10px center no-repeat;
@@ -232,10 +232,10 @@ a.button, input.button {
 	background-image: -ms-linear-gradient(top, #31B0D5, #239DD1);
 	background-image: -o-linear-gradient(top, #31B0D5, #239DD1);
 	background-image: linear-gradient(to bottom, #31B0D5, #239DD1);
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	-webkit-box-shadow: 0 2px 2px #DDD;
 	-moz-box-shadow: 0 2px 2px #DDD;
 	box-shadow: 0 2px 2px #DDD;
@@ -322,10 +322,10 @@ a.button:hover, input.button:hover {
 	width: 270px;
 	background: #FFF;
 	border: 1px solid #DDD;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 	margin-bottom: 5px;
 	padding: 5px;
 }

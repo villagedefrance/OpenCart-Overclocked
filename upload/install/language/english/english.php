@@ -51,6 +51,7 @@ $_['text_curl']              = 'cURL';
 $_['text_dom']               = 'DOM';
 $_['text_xml']               = 'XML';
 $_['text_mcrypt']            = 'mCrypt';
+$_['text_openssl']           = 'OpenSSL Encrypt';
 $_['text_zlib']              = 'ZLIB';
 $_['text_zip']               = 'ZIP';
 $_['text_mbstring']          = 'mbstring';
@@ -68,7 +69,7 @@ $_['text_project']           = 'Project Homepage';
 $_['text_opencart']          = 'Opencart Home';
 $_['text_documentation']     = 'Documentation';
 $_['text_support']           = 'Support Forums';
-$_['text_footer']            = 'Copyright © 2017 OpenCart Overclocked Edition - All rights reserved';
+$_['text_footer']            = 'Copyright © 2018 OpenCart Overclocked Edition - All rights reserved';
 
 // Entry
 $_['entry_db_driver']        = 'DB Driver';
@@ -95,6 +96,7 @@ $_['error_php_curl']         = 'Warning: CURL extension needs to be loaded for O
 $_['error_php_dom']          = 'Warning: DOM extension needs to be loaded for OpenCart OCE to work!';
 $_['error_php_xml']          = 'Warning: XML extension needs to be loaded for OpenCart OCE to work!';
 $_['error_php_mcrypt']       = 'Warning: mCrypt extension needs to be loaded for OpenCart OCE to work!';
+$_['error_php_openssl']      = 'Warning: OpenSSL Encrypt extension needs to be loaded for OpenCart OCE to work!';
 $_['error_php_zlib']         = 'Warning: ZLIB extension needs to be loaded for OpenCart OCE to work!';
 $_['error_php_zip']          = 'Warning: ZIP extension needs to be loaded for OpenCart OCE to work!';
 $_['error_php_mbstring']     = 'Warning: mbstring extension needs to be loaded for OpenCart OCE to work!';

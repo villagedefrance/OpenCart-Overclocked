@@ -169,6 +169,22 @@
             <img src="view/image/bad.png" alt="Bad" />
           <?php } ?></td>
         </tr>
+      <?php if ($php_version >= '7.1') { ?>
+        <tr>
+          <td><?php echo $text_openssl; ?></td>
+          <td><?php if ($openssl_encrypt) { ?>
+            <?php echo $text_on; ?>
+          <?php } else { ?>
+            <?php echo $text_off; ?>
+          <?php } ?></td>
+          <td><?php echo $text_on; ?></td>
+          <td style="text-align:center;"><?php if ($openssl_encrypt) { ?>
+            <img src="view/image/good.png" alt="Good" />
+          <?php } else { ?>
+            <img src="view/image/bad.png" alt="Bad" />
+          <?php } ?></td>
+        </tr>
+      <?php } else { ?>
         <tr>
           <td><?php echo $text_mcrypt; ?></td>
           <td><?php if ($mcrypt_encrypt) { ?>
@@ -183,6 +199,7 @@
             <img src="view/image/bad.png" alt="Bad" />
           <?php } ?></td>
         </tr>
+      <?php } ?>
         <tr>
           <td><?php echo $text_zlib; ?></td>
           <td><?php if ($zlib) { ?>

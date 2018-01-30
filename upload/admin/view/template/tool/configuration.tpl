@@ -161,12 +161,21 @@
               <td><?php echo extension_loaded('xml') ? 'On' : 'Off'; ?></td>
               <td><?php echo extension_loaded('xml') ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/warning.png" alt="" />'; ?></td>
             </tr>
+          <?php if (phpversion() >= '7.1') { ?>
+            <tr>
+              <td><?php echo $text_openssl; ?></td>
+              <td><?php echo $text_on; ?></td>
+              <td><?php echo function_exists('openssl_encrypt') ? 'On' : 'Off'; ?></td>
+              <td><?php echo function_exists('openssl_encrypt') ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/warning.png" alt="" />'; ?></td>
+            </tr>
+          <?php } else { ?>
             <tr>
               <td><?php echo $text_mcrypt; ?></td>
               <td><?php echo $text_on; ?></td>
               <td><?php echo function_exists('mcrypt_encrypt') ? 'On' : 'Off'; ?></td>
               <td><?php echo function_exists('mcrypt_encrypt') ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/warning.png" alt="" />'; ?></td>
             </tr>
+          <?php } ?>
             <tr>
               <td><?php echo $text_zlib; ?></td>
               <td><?php echo $text_on; ?></td>

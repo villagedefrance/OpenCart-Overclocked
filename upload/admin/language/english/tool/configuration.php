@@ -58,6 +58,7 @@ $_['text_curl']             = 'cURL:';
 $_['text_dom']              = 'DOM:';
 $_['text_xml']              = 'XML:';
 $_['text_mcrypt']           = 'mCrypt:';
+$_['text_openssl']          = 'OpenSSL Encrypt:';
 $_['text_zlib']             = 'ZLIB:';
 $_['text_zip']              = 'ZIP:';
 $_['text_mbstring']         = 'mbstring:';

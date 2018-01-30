@@ -84,6 +84,7 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['text_dom'] = $this->language->get('text_dom');
 		$this->data['text_xml'] = $this->language->get('text_xml');
 		$this->data['text_mcrypt'] = $this->language->get('text_mcrypt');
+		$this->data['text_openssl'] = $this->language->get('text_openssl');
 		$this->data['text_zlib'] = $this->language->get('text_zlib');
 		$this->data['text_zip'] = $this->language->get('text_zip');
 		$this->data['text_mbstring'] = $this->language->get('text_mbstring');
