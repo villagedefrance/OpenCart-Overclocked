@@ -75,6 +75,20 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_right_click; ?></td>
+            <td><?php if ($default_right_click) { ?>
+              <input type="radio" name="default_right_click" value="1" id="right-click-on" class="radio" checked />
+              <label for="right-click-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="default_right_click" value="0" id="right-click-off" class="radio" />
+              <label for="right-click-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="default_right_click" value="1" id="right-click-on" class="radio" />
+              <label for="right-click-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="default_right_click" value="0" id="right-click-off" class="radio" checked />
+              <label for="right-click-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_web_design; ?></td>
             <td><textarea name="default_web_design" cols="40" rows="10"><?php echo $default_web_design; ?></textarea></td>
           </tr>

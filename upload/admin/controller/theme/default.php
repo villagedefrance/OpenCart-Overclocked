@@ -46,6 +46,7 @@ class ControllerThemeDefault extends Controller {
 		$this->data['entry_widescreen'] = $this->language->get('entry_widescreen');
 		$this->data['entry_breadcrumbs'] = $this->language->get('entry_breadcrumbs');
 		$this->data['entry_back_to_top'] = $this->language->get('entry_back_to_top');
+		$this->data['entry_right_click'] = $this->language->get('entry_right_click');
 		$this->data['entry_web_design'] = $this->language->get('entry_web_design');
 		$this->data['entry_powered_by'] = $this->language->get('entry_powered_by');
 		$this->data['entry_footer_theme'] = $this->language->get('entry_footer_theme');
@@ -175,6 +176,12 @@ class ControllerThemeDefault extends Controller {
 			$this->data[$this->_name . '_back_to_top'] = $this->request->post[$this->_name . '_back_to_top'];
 		} else {
 			$this->data[$this->_name . '_back_to_top'] = $this->config->get($this->_name . '_back_to_top');
+		}
+
+		if (isset($this->request->post[$this->_name . '_right_click'])) {
+			$this->data[$this->_name . '_right_click'] = $this->request->post[$this->_name . '_right_click'];
+		} else {
+			$this->data[$this->_name . '_right_click'] = $this->config->get($this->_name . '_right_click');
 		}
 
 		if (isset($this->request->post[$this->_name . '_web_design'])) {

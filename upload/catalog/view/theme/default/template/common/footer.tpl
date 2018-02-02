@@ -133,5 +133,14 @@ $(document).ready(function() {
 });
 //--></script>
 <?php } ?>
+<?php if ($this->config->get($template . '_right_click')) { ?>
+<script type="text/javascript"><!--
+document.onselectstart = new Function('return false');
+document.oncontextmenu = new Function('return false');
+$('img').mousedown(function() {
+  return false;
+});
+//--></script>
+<?php } ?>
 </body>
 </html>
