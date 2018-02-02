@@ -665,7 +665,7 @@ class ControllerModificationVQmods extends Controller {
 	}
 
 	protected function zipSend($targets, $filename = 'download') {
-		$temp = tempnam('tmp', 'zip');
+		$temp = tempnam(sys_get_temp_dir(), 'zip');
 
 		$zip = new ZipArchive();
 		$zip->open($temp, ZipArchive::OVERWRITE);
