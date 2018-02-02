@@ -74,7 +74,7 @@ class ModelToolExportImport extends Model {
 		$n = strlen($str);
 
 		for ($m = 0; $m < $n; $m++) {
-			$ch = substr($str, $m, 1);
+			$ch = mb_substr($str, $m, 1, 'UTF-8');
 
 			if (($ch == " ") && (!$allowBlanks) || ($ch == "\n") || ($ch == "\r") || ($ch == "\t") || ($ch == "\0") || ($ch == "\x0B")) {
 				continue;
@@ -101,7 +101,7 @@ class ModelToolExportImport extends Model {
 			return false;
 		}
 
-		return (substr($haystack, 0, strlen($needle)) == $needle);
+		return (mb_substr($haystack, 0, strlen($needle), 'UTF-8') == $needle);
 	}
 
 	protected function endsWith($haystack, $needle) {
@@ -109,7 +109,7 @@ class ModelToolExportImport extends Model {
 			return false;
 		}
 
-		return (substr($haystack, strlen($haystack)-strlen($needle), strlen($needle)) == $needle);
+		return (mb_substr($haystack, strlen($haystack)-strlen($needle), strlen($needle), 'UTF-8') == $needle);
 	}
 
 	public function getDefaultLanguageId() {
@@ -5738,7 +5738,7 @@ class ModelToolExportImport extends Model {
 
 			chdir(DIR_SYSTEM . 'vendor');
 
-			require_once('Classes/PHPExcel.php');
+			require_once('phpexcel/PHPExcel.php');
 
 			chdir($cwd);
 
@@ -6514,10 +6514,11 @@ class ModelToolExportImport extends Model {
 			$language_id = $language['language_id'];
 			$language_code = strtolower($language['code']);
 
-			$sql = "SELECT p.product_id, pd.*, GROUP_CONCAT(pt.tag SEPARATOR \",\") AS tag";
+			$sql = "SELECT p.product_id, pd.*, pt.*, GROUP_CONCAT(pt.tag SEPARATOR \",\") AS tag";
 			$sql .= " FROM `" . DB_PREFIX . "product` p";
-			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_description` pd ON (pd.product_id = p.product_id) AND pd.language_id = '" . (int)$language_id . "'";
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_description` pd ON (pd.product_id = p.product_id)";
 			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_tag` pt ON (pt.product_id = p.product_id) AND pt.language_id = '" . (int)$language_id . "'";
+			$sql .= " WHERE pd.language_id = '" . (int)$language_id . "'";
 			if (isset($min_id) && isset($max_id)) {
 				$sql .= " AND p.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 			}
@@ -8420,7 +8421,7 @@ class ModelToolExportImport extends Model {
 
 		chdir(DIR_SYSTEM . 'vendor');
 
-		require_once('Classes/PHPExcel.php');
+		require_once('phpexcel/PHPExcel.php');
 
 		PHPExcel_Cell::setValueBinder(new PHPExcel_Cell_ExportImportValueBinder());
 
