@@ -580,8 +580,6 @@ ul.menu ul {
 .success, .warning, .attention, .tooltip {
 	padding: 10px 10px 10px 33px;
 	margin-bottom: 15px;
-	color: #333;
-	text-shadow: 0 0 1px rgba(68, 68, 68, 0.05);
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	-khtml-border-radius: 2px;
@@ -590,18 +588,22 @@ ul.menu ul {
 .success {
 	background: rgba(186, 209, 156, 0.9) url('../image/success.png') 10px center no-repeat;
 	border: 1px solid #8EAD66;
+	color: #333;
 }
 .warning {
 	background: rgba(226, 170, 170, 0.9) url('../image/warning.png') 10px center no-repeat;
 	border: 1px solid #D38383;
+	color: #333;
 }
 .attention {
 	background: rgba(255, 245, 204, 0.9) url('../image/attention.png') 10px center no-repeat;
 	border: 1px solid #F2DD8C;
+	color: #333;
 }
 .tooltip {
-	background: rgba(145, 174, 188, 0.9) url('../image/tooltip.png') 10px center no-repeat;
-	border: 1px solid #4D95BC;
+	background: transparent url('../image/tooltip.png') 10px center no-repeat;
+	border: none;
+	color: #F8F8F8;
 }
 .close, .success .close, .warning .close, .attention .close, .tooltip .close {
 	float: right;
