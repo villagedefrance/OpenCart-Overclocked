@@ -3,9 +3,21 @@ machine:
     Europe/Dublin
   php:
     version: 7.0.4
-  environment:
-    foo: bar
-    baz: 123
 
-  jobs:
-  build:
+dependencies:
+  pre:
+    - gem install bundler
+  override:
+    - php composer.phar install
+    - bundle install
+
+test:
+  override:
+    - mkdir -p $CIRCLE_TEST_REPORTS/cucumber
+    - bundle exec cucumber --format pretty --format json --out $CIRCLE_TEST_REPORTS/cucumber/tests.cucumber
+
+workflows:
+  build_and_test:
+    jobs:
+      - build:
+      - test:
