@@ -3,12 +3,15 @@ machine:
     Europe/Dublin
   php:
     version: 7.0.4
+  environment:
+    CIRCLE_ENV: test
 
 dependencies:
   pre:
-    - gem install bundler
+    - gem install bundler --pre
   override:
-    - bundle install
+    - bundle install:
+       timeout: 180
 
 test:
   override:
