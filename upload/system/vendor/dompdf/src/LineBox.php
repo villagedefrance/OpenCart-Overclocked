@@ -128,10 +128,13 @@ class LineBox {
         foreach ($floating_frames as $_floating) {
             $p = $_floating->get_parent();
 
-            while (($p = $p->get_parent()) && $p !== $parent);
+            while (($p = $p->get_parent()) && $p !== $parent) {
+                $child = $p;
+                break;
+            }
 
-            if ($p) {
-                $childs[] = $p;
+            if ($child) {
+                $childs[] = $child;
             }
         }
 
