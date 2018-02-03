@@ -192,12 +192,7 @@ class CPDF implements Canvas {
 
         $this->_dompdf = $dompdf;
 
-        $this->_pdf = new \Cpdf(
-            $size,
-            true,
-            $dompdf->getOptions()->getFontCache(),
-            $dompdf->getOptions()->getTempDir()
-        );
+        $this->_pdf = new \Cpdf($size, true, $dompdf->getOptions()->getFontCache(), $dompdf->getOptions()->getTempDir());
 
         $this->_pdf->addInfo("Producer", sprintf("%s + CPDF", $dompdf->version));
         $time = substr_replace(date('YmdHisO'), '\'', -2, 0) . '\'';
@@ -586,8 +581,11 @@ class CPDF implements Canvas {
             imageinterlace($im, false);
 
             $tmp_dir = $this->_dompdf->getOptions()->getTempDir();
+
             $tmp_name = tempnam($tmp_dir, "{$type}dompdf_img_");
+
             @unlink($tmp_name);
+
             $filename = "$tmp_name.png";
             $this->_image_cache[] = $filename;
 
@@ -1049,6 +1047,7 @@ class CPDF implements Canvas {
                         if (!$eval) {
                             $eval = new PhpEvaluator($this);
                         }
+
                         $eval->evaluate($code, array('PAGE_NUM' => $page_number, 'PAGE_COUNT' => $this->_page_count));
                         break;
                 }
@@ -1103,7 +1102,9 @@ class CPDF implements Canvas {
      * @return string
      */
     public function output($options = array()) {
-        if (!isset($options["compress"])) $options["compress"] = true;
+        if (!isset($options["compress"])) {
+            $options["compress"] = true;
+        }
 
         $this->_add_page_text();
 

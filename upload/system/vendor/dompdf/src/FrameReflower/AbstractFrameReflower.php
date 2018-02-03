@@ -20,7 +20,7 @@ use Dompdf\Frame\Factory;
  * Base reflower class
  *
  * Reflower objects are responsible for determining the width and height of
- * individual frames.  They also create line and page breaks as necessary.
+ * individual frames. They also create line and page breaks as necessary.
  *
  * @package dompdf
  */
@@ -171,9 +171,9 @@ abstract class AbstractFrameReflower {
 
     /**
      * Get the combined (collapsed) length of two adjoining margins.
-     * 
+     *
      * See http://www.w3.org/TR/CSS2/box.html#collapsing-margins.
-     * 
+     *
      * @param number $length1
      * @param number $length2
      * @return number
@@ -182,11 +182,11 @@ abstract class AbstractFrameReflower {
         if ($length1 < 0 && $length2 < 0) {
             return min($length1, $length2);
         }
-        
+
         if ($length1 < 0 || $length2 < 0) {
             return $length1 + $length2;
         }
-        
+
         return max($length1, $length2);
     }
 
@@ -219,11 +219,7 @@ abstract class AbstractFrameReflower {
 
         // Handle degenerate case
         if (!$this->_frame->get_first_child()) {
-            return $this->_min_max_cache = array(
-                $delta, $delta,
-                "min" => $delta,
-                "max" => $delta
-            );
+            return $this->_min_max_cache = array($delta, $delta, "min" => $delta, "max" => $delta);
         }
 
         $low = array();

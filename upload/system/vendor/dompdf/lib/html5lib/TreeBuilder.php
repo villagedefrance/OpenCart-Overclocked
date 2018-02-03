@@ -49,7 +49,7 @@ class HTML5_TreeBuilder {
     private $form_pointer = null;
 
     private $flag_frameset_ok = true;
-    private $flag_force_quirks = false;
+    //private $flag_force_quirks = false;
     private $ignored = false;
     private $quirks_mode = null;
     // this gets to 2 when we want to ignore the next lf character, and is decrement at the beginning of each processed token (this way,
@@ -2614,7 +2614,7 @@ class HTML5_TreeBuilder {
                     $this->emitToken($token);
 
                 /* An end tag whose tag name is one of: "caption", "table", "tbody", "tfoot", "thead", "tr", "td", "th" */
-                } elseif ($token['type'] === HTML5_Tokenizer::ENDTAG && in_array($token['name'], array('caption', 'table', 'tbody', 'tfoot', 'thead', 'tr', 'td', 'th')))  {
+                } elseif ($token['type'] === HTML5_Tokenizer::ENDTAG && in_array($token['name'], array('caption', 'table', 'tbody', 'tfoot', 'thead', 'tr', 'td', 'th'))) {
                     /* Parse error. */
                     // parse error
 

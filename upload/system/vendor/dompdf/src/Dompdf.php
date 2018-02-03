@@ -226,7 +226,7 @@ class Dompdf {
     /**
      * @var array
      */
-    private $messages = array();
+    //private $messages = array();
 
     /**
      * @var Options

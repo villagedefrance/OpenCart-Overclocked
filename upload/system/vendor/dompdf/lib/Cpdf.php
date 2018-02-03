@@ -4018,7 +4018,7 @@ EOT;
                         $c += ($bytes[$j] << (($numbytes - $j - 1) * 0x06));
                     }
 
-                    if ((($c >= 0xD800) AND ($c <= 0xDFFF)) OR ($c >= 0x10FFFF)) {
+                    if ((($c >= 0xD800) && ($c <= 0xDFFF)) || ($c >= 0x10FFFF)) {
                         // The definition of UTF-8 prohibits encoding character numbers between
                         // U+D800 and U+DFFF, which are reserved for use with the UTF-16
                         // encoding form (as surrogate pairs) and do not directly represent

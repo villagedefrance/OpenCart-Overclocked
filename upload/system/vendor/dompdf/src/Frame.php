@@ -300,7 +300,6 @@ class Frame {
         $this->_original_style->dispose();
         $this->_original_style = null;
         unset($this->_original_style);
-
     }
 
     /**
@@ -320,7 +319,7 @@ class Frame {
         $this->_style = clone $this->_original_style;
 
         // If this represents a generated node then child nodes represent generated content.
-        // Remove the children since the content will be generated next time this frame is reflowed. 
+        // Remove the children since the content will be generated next time this frame is reflowed.
         if ($this->_node->nodeName === "dompdf_generated" && $this->_style->content != "normal") {
             foreach ($this->get_children() as $child) {
                 $this->remove_child($child);

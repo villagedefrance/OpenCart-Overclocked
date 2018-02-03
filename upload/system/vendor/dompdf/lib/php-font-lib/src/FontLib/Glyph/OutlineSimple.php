@@ -15,6 +15,7 @@ namespace FontLib\Glyph;
  * @package php-font-lib
  */
 class OutlineSimple extends Outline {
+
   const ON_CURVE = 0x01;
   const X_SHORT_VECTOR = 0x02;
   const Y_SHORT_VECTOR = 0x04;
@@ -41,7 +42,7 @@ class OutlineSimple extends Outline {
     }
 
     $endPtsOfContours = $font->r(array(self::uint16, $noc));
-    $instructionLength  = $font->readUInt16();
+    $instructionLength = $font->readUInt16();
 
     $this->instructions = $font->r(array(self::uint8, $instructionLength));
 
@@ -319,8 +320,7 @@ class OutlineSimple extends Outline {
       } else {
         if ($point_p1["onCurve"]) {
           $path .= "Q{$point['x']},{$point['y']},{$point_p1['x']},{$point_p1['y']} ";
-        }
-        else {
+        } else {
           $path .= "Q{$point['x']},{$point['y']}," . $this->midValue($point['x'], $point_p1['x']) . "," . $this->midValue($point['y'], $point_p1['y']) . " ";
         }
 

@@ -437,7 +437,11 @@ class Page extends AbstractFrameDecorator {
         $in_table = false;
 
         while ($p) {
-            if ($p->is_table()) { $in_table = true; break; }
+            if ($p->is_table()) {
+                $in_table = true;
+                break;
+            }
+
             $p = $p->get_parent();
         }
 
@@ -450,7 +454,7 @@ class Page extends AbstractFrameDecorator {
             return false;
         }
 
-        // work-around for infinite loop due to tables 
+        // work-around for infinite loop due to tables
         if ($in_table && $frame->_already_pushed) {
             return false;
         }

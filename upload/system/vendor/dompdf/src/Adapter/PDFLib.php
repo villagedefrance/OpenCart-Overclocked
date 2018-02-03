@@ -155,7 +155,7 @@ class PDFLib implements Canvas {
      *
      * @var array
      */
-    private $_pages;
+    //private $_pages;
 
     /**
      * Class constructor
