@@ -6,18 +6,6 @@ machine:
   environment:
     CIRCLE_ENV: test
 
-dependencies:
-  pre:
-    - gem install bundler --pre
-  override:
-    - bundle install:
-       timeout: 180
-
-test:
-  override:
-    - mkdir -p $CIRCLE_TEST_REPORTS/cucumber
-    - bundle exec cucumber --format pretty --format json --out $CIRCLE_TEST_REPORTS/cucumber/tests.cucumber
-
 deployment:
   build:
     branch: master
