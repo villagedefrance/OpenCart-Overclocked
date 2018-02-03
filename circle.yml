@@ -16,8 +16,6 @@ test:
     - mkdir -p $CIRCLE_TEST_REPORTS/cucumber
     - bundle exec cucumber --format pretty --format json --out $CIRCLE_TEST_REPORTS/cucumber/tests.cucumber
 
-workflows:
-  build_and_test:
-    jobs:
-      - build:
-      - test:
+deployment:
+  build:
+    branch: master
