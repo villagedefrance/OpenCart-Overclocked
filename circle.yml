@@ -8,9 +8,7 @@ machine:
   build-workflow:
     jobs:
       - build:
-      filters:
-        tags:
-          only: /.*/
-        branches:
-          only:
-            - master
+
+  checkout:
+  post:
+    - git submodule sync
