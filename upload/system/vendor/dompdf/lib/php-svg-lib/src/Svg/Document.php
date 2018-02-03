@@ -29,6 +29,7 @@ use Svg\Tag\UseTag;
 
 class Document extends AbstractTag {
     protected $filename;
+
     public $inDefs = false;
 
     protected $x;
@@ -52,7 +53,6 @@ class Document extends AbstractTag {
     /** @var AbstractTag[] */
     protected $defs = array();
 
-    /** @var \Sabberworm\CSS\CSSList\Document[] */
     protected $styleSheets = array();
 
     public function loadFile($filename) {
@@ -63,22 +63,14 @@ class Document extends AbstractTag {
         $parser = xml_parser_create("utf-8");
 
         xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, false);
-        xml_set_element_handler(
-            $parser,
-            array($this, "_tagStart"),
-            array($this, "_tagEnd")
-        );
+        xml_set_element_handler($parser, array($this, "_tagStart"), array($this, "_tagEnd"));
 
-        xml_set_character_data_handler(
-            $parser,
-            array($this, "_charData")
-        );
+        xml_set_character_data_handler($parser, array($this, "_charData"));
 
         return $this->parser = $parser;
     }
 
     public function __construct() {
-
     }
 
     /**
@@ -164,8 +156,8 @@ class Document extends AbstractTag {
         }
 
         return array(
-            0        => $this->width,
-            1        => $this->height,
+            0 => $this->width,
+            1 => $this->height,
             "width"  => $this->width,
             "height" => $this->height,
         );
@@ -178,7 +170,7 @@ class Document extends AbstractTag {
     /**
      * Append a style sheet
      *
-     * @param \Sabberworm\CSS\CSSList\Document $stylesheet
+     * @param
      */
     public function appendStyleSheet($stylesheet) {
         $this->styleSheets[] = $stylesheet;
@@ -187,7 +179,7 @@ class Document extends AbstractTag {
     /**
      * Get the document style sheets
      *
-     * @return \Sabberworm\CSS\CSSList\Document[]
+     * @return
      */
     public function getStyleSheets() {
         return $this->styleSheets;
@@ -334,8 +326,8 @@ class Document extends AbstractTag {
             if (isset($attributes["id"])) {
                 $this->defs[$attributes["id"]] = $tag;
             } else {
-                /** @var AbstractTag $top */
                 $top = end($this->stack);
+
                 if ($top && $top != $tag) {
                     $top->children[] = $tag;
                 }
@@ -358,8 +350,8 @@ class Document extends AbstractTag {
     }
 
     function _tagEnd($parser, $name) {
-        /** @var AbstractTag $tag */
         $tag = null;
+
         switch (strtolower($name)) {
             case 'defs':
                 $this->inDefs = false;

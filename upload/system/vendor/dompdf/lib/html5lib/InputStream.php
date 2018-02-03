@@ -1,5 +1,4 @@
 <?php
-
 /*
 
 Copyright 2009 Geoffrey Sneddon <http://gsnedders.com/>
@@ -24,10 +23,6 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
-
-// Some conventions:
-// /* */ indicates verbatim text from the HTML 5 specification
-// // indicates regular comments
 
 class HTML5_InputStream {
     /**
@@ -55,7 +50,6 @@ class HTML5_InputStream {
      * @throws Exception
      */
     public function __construct($data) {
-
         /* Given an encoding, the bytes in the input stream must be
         converted to Unicode characters for the tokeniser, as
         described by the rules for that encoding, except that the
@@ -70,8 +64,7 @@ class HTML5_InputStream {
         // build encoding detection this will no longer be the case
         //
         // We previously had an mbstring implementation here, but that
-        // implementation is heavily non-conforming, so it's been
-        // omitted.
+        // implementation is heavily non-conforming, so it's been omitted.
         if (extension_loaded('iconv')) {
             // non-conforming
             $data = @iconv('UTF-8', 'UTF-8//IGNORE', $data);
@@ -80,28 +73,23 @@ class HTML5_InputStream {
             throw new Exception('Not implemented, please install iconv');
         }
 
-        /* One leading U+FEFF BYTE ORDER MARK character must be
-        ignored if any are present. */
+        /* One leading U+FEFF BYTE ORDER MARK character must be ignored if any are present. */
         if (substr($data, 0, 3) === "\xEF\xBB\xBF") {
             $data = substr($data, 3);
         }
 
-        /* All U+0000 NULL characters in the input must be replaced
-        by U+FFFD REPLACEMENT CHARACTERs. Any occurrences of such
-        characters is a parse error. */
+        /* All U+0000 NULL characters in the input must be replaced by U+FFFD REPLACEMENT CHARACTERs.
+        Any occurrences of such characters is a parse error. */
         for ($i = 0, $count = substr_count($data, "\0"); $i < $count; $i++) {
             $this->errors[] = array(
                 'type' => HTML5_Tokenizer::PARSEERROR,
                 'data' => 'null-character'
             );
         }
-        /* U+000D CARRIAGE RETURN (CR) characters and U+000A LINE FEED
-        (LF) characters are treated specially. Any CR characters
-        that are followed by LF characters must be removed, and any
-        CR characters not followed by LF characters must be converted
-        to LF characters. Thus, newlines in HTML DOMs are represented
-        by LF characters, and there are never any CR characters in the
-        input to the tokenization stage. */
+        /* U+000D CARRIAGE RETURN (CR) characters and U+000A LINE FEED (LF) characters are treated specially.
+        Any CR characters that are followed by LF characters must be removed, and any CR characters
+        not followed by LF characters must be converted to LF characters. Thus, newlines in HTML DOMs are represented
+        by LF characters, and there are never any CR characters in the input to the tokenization stage. */
         $data = str_replace(
             array(
                 "\0",
@@ -124,8 +112,7 @@ class HTML5_InputStream {
         U+6FFFF, U+7FFFE, U+7FFFF, U+8FFFE, U+8FFFF, U+9FFFE, U+9FFFF,
         U+AFFFE, U+AFFFF, U+BFFFE, U+BFFFF, U+CFFFE, U+CFFFF, U+DFFFE,
         U+DFFFF, U+EFFFE, U+EFFFF, U+FFFFE, U+FFFFF, U+10FFFE, and
-        U+10FFFF are parse errors. (These are all control characters
-        or permanently undefined Unicode characters.) */
+        U+10FFFF are parse errors. (These are all control characters or permanently undefined Unicode characters.) */
         // Check PCRE is loaded.
         if (extension_loaded('pcre')) {
             $count = preg_match_all(
@@ -152,7 +139,6 @@ class HTML5_InputStream {
                     'data' => 'invalid-codepoint'
                 );
             }
-
         } else {
             // XXX: Need non-PCRE impl, probably using substr_count
         }
@@ -187,8 +173,7 @@ class HTML5_InputStream {
         // strrpos is weird, and the offset needs to be negative for what we
         // want (i.e., the last \n before $this->char). This needs to not have
         // one (to make it point to the next character, the one we want the
-        // position of) added to it because strrpos's behaviour includes the
-        // final offset byte.
+        // position of) added to it because strrpos's behaviour includes the final offset byte.
         $lastLine = strrpos($this->data, "\n", $this->char - 1 - strlen($this->data));
 
         // However, for here we want the length up until the next byte to be
@@ -210,7 +195,8 @@ class HTML5_InputStream {
             $count = count_chars($findLengthOf);
             // 0x80 = 0x7F - 0 + 1 (one added to get inclusive range)
             // 0x33 = 0xF4 - 0x2C + 1 (one added to get inclusive range)
-            return array_sum(array_slice($count, 0, 0x80)) + array_sum(array_slice($count, 0xC2, 0x33));
+            return array_sum(array_slice($count, 0, 0x80)) +
+                   array_sum(array_slice($count, 0xC2, 0x33));
         }
     }
 
@@ -255,6 +241,7 @@ class HTML5_InputStream {
             } else {
                 $len = strcspn($this->data, $bytes, $this->char);
             }
+
             $string = (string) substr($this->data, $this->char, $len);
             $this->char += $len;
             return $string;
@@ -278,6 +265,7 @@ class HTML5_InputStream {
             } else {
                 $len = strspn($this->data, $bytes, $this->char);
             }
+
             $string = (string) substr($this->data, $this->char, $len);
             $this->char += $len;
             return $string;

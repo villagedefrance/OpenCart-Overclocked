@@ -15,7 +15,6 @@ class SurfacePDFLib implements SurfaceInterface {
     const DEBUG = false;
 
     private $canvas;
-
     private $width;
     private $height;
 
@@ -75,6 +74,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->save();
     }
 
@@ -82,6 +82,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->restore();
     }
 
@@ -89,6 +90,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->scale($x, $y);
     }
 
@@ -96,6 +98,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->rotate($angle);
     }
 
@@ -103,6 +106,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->translate($x, $y);
     }
 
@@ -110,6 +114,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->concat($a, $b, $c, $d, $e, $f);
     }
 
@@ -124,6 +129,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->closepath();
     }
 
@@ -131,6 +137,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->fill_stroke();
     }
 
@@ -138,6 +145,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->clip();
     }
 
@@ -145,6 +153,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->set_text_pos($x, $y);
         $this->canvas->show($text);
     }
@@ -171,7 +180,7 @@ class SurfacePDFLib implements SurfaceInterface {
             $data = file_get_contents($image);
         }
 
-        $image = tempnam("", "svg");
+        $image = tempnam(sys_get_temp_dir(), "svg");
 
         file_put_contents($image, $data);
 
@@ -187,6 +196,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->lineto($x, $y);
     }
 
@@ -194,6 +204,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->moveto($x, $y);
     }
 
@@ -209,6 +220,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->curveto($cp1x, $cp1y, $cp2x, $cp2y, $x, $y);
     }
 
@@ -222,6 +234,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->arc($x, $y, $radius, $startAngle, $endAngle);
     }
 
@@ -229,6 +242,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->circle($x, $y, $radius);
     }
 
@@ -236,6 +250,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->ellipse($x, $y, $radiusX, $radiusY);
     }
 
@@ -243,6 +258,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->rect($x, $y, $w, $h);
         $this->fill();
     }
@@ -294,6 +310,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->fill();
     }
 
@@ -301,6 +318,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->rect($x, $y, $w, $h);
         $this->stroke();
     }
@@ -309,6 +327,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->stroke();
     }
 
@@ -316,6 +335,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->endPath();
     }
 
@@ -323,6 +343,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $style = $this->getStyle();
         $font = $this->getFont($style->fontFamily, $style->fontStyle);
 
@@ -333,6 +354,7 @@ class SurfacePDFLib implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         return $this->style;
     }
 

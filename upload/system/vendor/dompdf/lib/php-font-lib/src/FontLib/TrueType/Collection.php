@@ -64,6 +64,7 @@ class Collection extends BinaryStream implements Iterator, Countable {
     }
 
     $font = new File();
+
     $font->f = $this->f;
     $font->setTableOffset($this->collectionOffsets[$fontId]);
 

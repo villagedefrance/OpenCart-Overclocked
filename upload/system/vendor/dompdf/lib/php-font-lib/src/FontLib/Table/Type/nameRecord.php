@@ -5,6 +5,7 @@
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace FontLib\Table\Type;
 
 use FontLib\Font;

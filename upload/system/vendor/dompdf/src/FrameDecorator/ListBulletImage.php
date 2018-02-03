@@ -6,6 +6,7 @@
  * @author  Helmut Tischer <htischer@weihenstephan.org>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\FrameDecorator;
 
 use Dompdf\Dompdf;
@@ -49,8 +50,8 @@ class ListBulletImage extends AbstractFrameDecorator {
     function __construct(Frame $frame, Dompdf $dompdf) {
         $style = $frame->get_style();
         $url = $style->list_style_image;
-
         $frame->get_node()->setAttribute("src", $url);
+
         $this->_img = new Image($frame, $dompdf);
 
         parent::__construct($this->_img, $dompdf);
@@ -64,18 +65,6 @@ class ListBulletImage extends AbstractFrameDecorator {
 
         $this->_width = ((float)rtrim($width, "px") * 72) / $dpi;
         $this->_height = ((float)rtrim($height, "px") * 72) / $dpi;
-
-        //If an image is taller as the containing block/box, the box should be extended.
-        //Neighbour elements are overwriting the overlapping image areas.
-        //Todo: Where can the box size be extended?
-        //Code below has no effect.
-        //See block_frame_reflower _calculate_restricted_height
-        //See generated_frame_reflower, Dompdf:render() "list-item", "-dompdf-list-bullet"S.
-        //Leave for now
-        //if ($style->min_height < $this->_height ) {
-        //  $style->min_height = $this->_height;
-        //}
-        //$style->height = "auto";
     }
 
     /**
@@ -87,7 +76,6 @@ class ListBulletImage extends AbstractFrameDecorator {
         //ignore image width, use same width as on predefined bullet ListBullet
         //for proper alignment of bullet image and text. Allow image to not fitting on left border.
         //This controls the distance between bullet image and text
-        //return $this->_width;
         return $this->_frame->get_style()->get_font_size() * ListBullet::BULLET_SIZE + 2 * ListBullet::BULLET_PADDING;
     }
 
@@ -97,7 +85,7 @@ class ListBulletImage extends AbstractFrameDecorator {
      * @return int
      */
     function get_height() {
-        //based on image height
+        // based on image height
         return $this->_height;
     }
 
@@ -111,8 +99,6 @@ class ListBulletImage extends AbstractFrameDecorator {
         //for proper alignment of bullet image and text. Allow image to not fitting on left border.
         //This controls the extra indentation of text to make room for the bullet image.
         //Here use actual image size, not predefined bullet size
-        //return $this->_frame->get_style()->get_font_size()*ListBullet::BULLET_SIZE +
-        //  2 * ListBullet::BULLET_PADDING;
 
         // Small hack to prevent indenting of list text
         // Image Might not exist, then position like on list_bullet_frame_decorator fallback to none.
@@ -133,8 +119,7 @@ class ListBulletImage extends AbstractFrameDecorator {
      * @return int
      */
     function get_margin_height() {
-        //Hits only on "inset" lists items, to increase height of box
-        //based on image height
+        //Hits only on "inset" lists items, to increase height of box based on image height
         return $this->_height + 2 * ListBullet::BULLET_PADDING;
     }
 

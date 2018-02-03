@@ -5,10 +5,9 @@
  * @author  Benj Carson <benjcarson@digitaljunkies.ca>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf;
 
-use Dompdf\Exception;
-use Dompdf\Frame;
 use Dompdf\FrameDecorator\Table as TableFrameDecorator;
 use Dompdf\FrameDecorator\TableCell as TableCellFrameDecorator;
 
@@ -36,7 +35,7 @@ class Cellmap {
         "solid" => 7,
         "double" => 8,
         "hidden" => 9,
-        "none" => 0
+        "none" => 0,
     );
 
     /**
@@ -221,7 +220,7 @@ class Cellmap {
                 "used-width" => null,
                 "absolute" => 0,
                 "percent" => 0,
-                "auto" => true
+                "auto" => true,
             );
         }
 
@@ -245,7 +244,7 @@ class Cellmap {
             $this->_rows[$j] = array(
                 "y" => 0,
                 "first-column" => 0,
-                "height" => null
+                "height" => null,
             );
         }
 
@@ -265,7 +264,7 @@ class Cellmap {
             $this->_borders[$i][$j][$h_v] = array(
                 "width" => 0,
                 "style" => "solid",
-                "color" => "black"
+                "color" => "black",
             );
         }
 
@@ -287,7 +286,7 @@ class Cellmap {
             "top" => $this->get_border($i, $j, "horizontal"),
             "right" => $this->get_border($i, $j + 1, "vertical"),
             "bottom" => $this->get_border($i + 1, $j, "horizontal"),
-            "left" => $this->get_border($i, $j, "vertical")
+            "left" => $this->get_border($i, $j, "vertical"),
         );
     }
 
@@ -336,14 +335,14 @@ class Cellmap {
         $row = $this->_frames[$key]["rows"][0];
 
         if (!isset($this->_columns[$col])) {
-            $_dompdf_warnings[] = "Frame not found in columns array.  Check your table layout for missing or extra TDs.";
+            $_dompdf_warnings[] = "Frame not found in columns array. Check your table layout for missing or extra TDs.";
             $x = 0;
         } else {
             $x = $this->_columns[$col]["x"];
         }
 
         if (!isset($this->_rows[$row])) {
-            $_dompdf_warnings[] = "Frame not found in row array.  Check your table layout for missing or extra TDs.";
+            $_dompdf_warnings[] = "Frame not found in row array. Check your table layout for missing or extra TDs.";
             $y = 0;
         } else {
             $y = $this->_rows[$row]["y"];
@@ -366,6 +365,7 @@ class Cellmap {
         }
 
         $cols = $this->_frames[$key]["columns"];
+
         $w = 0;
 
         foreach ($cols as $i) {
@@ -390,6 +390,7 @@ class Cellmap {
         }
 
         $rows = $this->_frames[$key]["rows"];
+
         $h = 0;
 
         foreach ($rows as $i) {
@@ -430,8 +431,10 @@ class Cellmap {
         }
 
         $row["height"] = $height;
+
         $next_row =& $this->get_row($i + 1);
         $next_row["y"] = $row["y"] + $height;
+
     }
 
     /**
@@ -452,12 +455,12 @@ class Cellmap {
             return $this->_borders[$i][$j][$h_v]["width"];
         }
 
-        $border =& $this->_borders[$i][$j][$h_v];
+        $border = & $this->_borders[$i][$j][$h_v];
 
         $o_width = $border["width"];
         $o_style = $border["style"];
 
-        if (($n_style === "hidden" || $n_width > $o_width || $o_style === "none") or ($o_width == $n_width && in_array($n_style, self::$_BORDER_STYLE_SCORE) && self::$_BORDER_STYLE_SCORE[$n_style] > self::$_BORDER_STYLE_SCORE[$o_style])) {
+        if (($n_style === "hidden" || $n_width > $o_width || $o_style === "none") || ($o_width == $n_width && in_array($n_style, self::$_BORDER_STYLE_SCORE) && self::$_BORDER_STYLE_SCORE[$n_style] > self::$_BORDER_STYLE_SCORE[$o_style])) {
             $border = $border_spec;
         }
 
@@ -585,13 +588,11 @@ class Cellmap {
 
             // Border spacing is effectively a margin between cells
             $v = $style->length_in_pt($v);
-
             if (is_numeric($v)) {
                 $v = $v / 2;
             }
 
             $h = $style->length_in_pt($h);
-
             if (is_numeric($h)) {
                 $h = $h / 2;
             }
@@ -605,6 +606,7 @@ class Cellmap {
             $style->border_right_width = $max_right / 2;
             $style->border_top_width = $max_top / 2;
             $style->border_bottom_width = $max_bottom / 2;
+
             $style->margin = "none";
         }
 
@@ -635,9 +637,8 @@ class Cellmap {
                 // Resolve the frame's width(s) with other cells
                 $col =& $this->get_column($this->__col + $cs);
 
-                // Note: $var is either 'percent' or 'absolute'.  We compare the
-                // requested percentage or absolute values with the existing widths
-                // and adjust accordingly.
+                // Note: $var is either 'percent' or 'absolute'. We compare the
+                // requested percentage or absolute values with the existing widths and adjust accordingly.
                 if (isset($var) && $val > $col[$var]) {
                     $col[$var] = $val;
                     $col["auto"] = false;
@@ -649,8 +650,9 @@ class Cellmap {
 
             if ($frame_min > $min) {
                 // The frame needs more space.  Expand each sub-column
-                // FIXME try to avoid putting this dummy value when table-layout:fixed
+                // try to avoid putting this dummy value when table-layout:fixed
                 $inc = ($this->is_layout_fixed() ? 10e-10 : ($frame_min - $min) / $colspan);
+
                 for ($c = 0; $c < $colspan; $c++) {
                     $col =& $this->get_column($this->__col + $c);
                     $col["min-width"] += $inc;
@@ -658,8 +660,9 @@ class Cellmap {
             }
 
             if ($frame_max > $max) {
-                // FIXME try to avoid putting this dummy value when table-layout:fixed
+                // try to avoid putting this dummy value when table-layout:fixed
                 $inc = ($this->is_layout_fixed() ? 10e-10 : ($frame_max - $max) / $colspan);
+
                 for ($c = 0; $c < $colspan; $c++) {
                     $col =& $this->get_column($this->__col + $c);
                     $col["max-width"] += $inc;
@@ -675,7 +678,7 @@ class Cellmap {
     }
 
     /**
-     * Add Row
+     *
      */
     public function add_row() {
         $this->__row++;
@@ -683,6 +686,7 @@ class Cellmap {
 
         // Find the next available column
         $i = 0;
+
         while (isset($this->_cells[$this->__row][$i])) {
             $i++;
         }
@@ -858,11 +862,11 @@ class Cellmap {
      */
     public function __toString() {
         $str = "";
+
         $str .= "Columns:<br/>";
         $str .= Helpers::pre_r($this->_columns, true);
         $str .= "Rows:<br/>";
         $str .= Helpers::pre_r($this->_rows, true);
-
         $str .= "Frames:<br/>";
 
         $arr = array();
@@ -874,9 +878,7 @@ class Cellmap {
         $str .= Helpers::pre_r($arr, true);
 
         if (php_sapi_name() == "cli") {
-            $str = strip_tags(str_replace(array("<br/>", "<b>", "</b>"),
-                array("\n", chr(27) . "[01;33m", chr(27) . "[0m"),
-                $str));
+            $str = strip_tags(str_replace(array("<br/>", "<b>", "</b>"), array("\n", chr(27) . "[01;33m", chr(27) . "[0m"), $str));
         }
 
         return $str;

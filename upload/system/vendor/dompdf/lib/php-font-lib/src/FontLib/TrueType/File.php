@@ -34,7 +34,6 @@ class File extends BinaryStream {
 
   protected $directory = array();
   protected $data = array();
-
   protected $glyph_subset = array();
 
   public $glyph_all = array();
@@ -129,7 +128,7 @@ class File extends BinaryStream {
 
     for ($i = 0; $i < $len; $i++) {
       $uni = -1;
-      $h   = ord($str[$i]);
+      $h = ord($str[$i]);
 
       if ($h <= 0x7F) {
         $uni = $h;
@@ -202,7 +201,7 @@ class File extends BinaryStream {
     sort($gids);
 
     $this->glyph_subset = $gids;
-    $this->glyph_all = array_values($glyphIndexArray);
+    $this->glyph_all = array_values($glyphIndexArray); // FIXME
   }
 
   function getSubset() {
@@ -225,7 +224,6 @@ class File extends BinaryStream {
 
     Font::d("Tables : " . implode(", ", $tags));
 
-    /** @var DirectoryEntry[] $entries */
     $entries = array();
 
     foreach ($tags as $tag) {
@@ -266,6 +264,7 @@ class File extends BinaryStream {
 
   function getFontType(){
     $class_parts = explode("\\", get_class($this));
+
     return $class_parts[1];
   }
 
@@ -284,7 +283,6 @@ class File extends BinaryStream {
     $class = "FontLib\\$type\\TableDirectoryEntry";
 
     for ($i = 0; $i < $this->header->data["numTables"]; $i++) {
-      /** @var TableDirectoryEntry $entry */
       $entry = new $class($this);
       $entry->parse();
 
@@ -304,15 +302,13 @@ class File extends BinaryStream {
 
       $class = "FontLib\\Table\\Type\\$name_canon";
 
-      if (!isset($this->directory[$tag]) || !class_exists($class)) {
+      if (!isset($this->directory[$tag]) || !@class_exists($class)) {
         return;
       }
-
     } else {
       $class = "FontLib\\Table\\Table";
     }
 
-    /** @var Table $table */
     $table = new $class($this->directory[$tag]);
     $table->parse();
 
@@ -367,7 +363,6 @@ class File extends BinaryStream {
    * @return string|null
    */
   function getNameTableString($nameID) {
-    /** @var nameRecord[] $records */
     $records = $this->getData("name", "records");
 
     if (!isset($records[$nameID])) {

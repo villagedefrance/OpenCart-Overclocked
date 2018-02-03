@@ -5,6 +5,7 @@
  * @author  Benj Carson <benjcarson@digitaljunkies.ca>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\FrameReflower;
 
 use Dompdf\Frame;
@@ -68,8 +69,7 @@ class Inline extends AbstractFrameReflower {
             $block->add_frame_to_line($this->_frame);
         }
 
-        // Set the containing blocks and reflow each child.  The containing
-        // block is not changed by line boxes.
+        // Set the containing blocks and reflow each child. The containing block is not changed by line boxes.
         foreach ($frame->get_children() as $child) {
             $child->set_containing_block($cb);
             $child->reflow($block);

@@ -32,19 +32,19 @@ class File extends \FontLib\TrueType\File {
     parent::load($file);
 
     $this->parseTableEntries();
-
     $dataOffset = $this->pos() + count($this->directory) * 20;
 
     $fw = $this->getTempFile(false);
     $fr = $this->f;
 
     $this->f = $fw;
-    $offset  = $this->header->encode();
+    $offset = $this->header->encode();
 
     foreach ($this->directory as $entry) {
       // Read ...
       $this->f = $fr;
       $this->seek($entry->offset);
+
       $data = $this->read($entry->length);
 
       if ($entry->length < $entry->origLength) {
@@ -53,6 +53,7 @@ class File extends \FontLib\TrueType\File {
 
       // Prepare data ...
       $length = strlen($data);
+
       $entry->length = $entry->origLength = $length;
       $entry->offset = $dataOffset;
 
@@ -61,6 +62,7 @@ class File extends \FontLib\TrueType\File {
 
       // Woff Entry
       $this->seek($offset);
+
       $offset += $this->write($entry->tag, 4); // tag
       $offset += $this->writeUInt32($dataOffset); // offset
       $offset += $this->writeUInt32($length); // length
@@ -78,6 +80,7 @@ class File extends \FontLib\TrueType\File {
     // Need to re-parse this, don't know why
     $this->header = null;
     $this->directory = array();
+
     $this->parseTableEntries();
   }
 }

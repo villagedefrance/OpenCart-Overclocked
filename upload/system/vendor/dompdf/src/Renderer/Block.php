@@ -5,6 +5,7 @@
  * @author  Benj Carson <benjcarson@digitaljunkies.ca>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\Renderer;
 
 use Dompdf\Frame;
@@ -31,11 +32,11 @@ class Block extends AbstractRenderer {
 
         if ($node->nodeName === "body") {
             $h = $frame->get_containing_block("h") - (float)$style->length_in_pt(array(
-                        $style->margin_top,
-                        $style->border_top_width,
-                        $style->border_bottom_width,
-                        $style->margin_bottom),
-                    $style->width);
+                    $style->margin_top,
+                    $style->border_top_width,
+                    $style->border_bottom_width,
+                    $style->margin_bottom),
+                (float)$style->length_in_pt($style->width));
         }
 
         // Handle anchors & links
@@ -84,7 +85,7 @@ class Block extends AbstractRenderer {
 
         $id = $frame->get_node()->getAttribute("id");
 
-        if (strlen($id) > 0) {
+        if (strlen($id) > 0)  {
             $this->_canvas->add_named_dest($id);
         }
     }
@@ -96,6 +97,7 @@ class Block extends AbstractRenderer {
      */
     protected function _render_border(AbstractFrameDecorator $frame, $border_box = null, $corner_style = "bevel") {
         $style = $frame->get_style();
+
         $bp = $style->get_border_properties();
 
         if (empty($border_box)) {
@@ -103,24 +105,22 @@ class Block extends AbstractRenderer {
         }
 
         // find the radius
-        $radius = $style->get_computed_border_radius($border_box[2], $border_box[3]); // w, h
+        $radius = $style->get_computed_border_radius($border_box[2], $border_box[3]);
 
         // Short-cut: If all the borders are "solid" with the same color and style, and no radius, we'd better draw a rectangle
-        if (
-            in_array($bp["top"]["style"], array("solid", "dashed", "dotted")) &&
-            $bp["top"] == $bp["right"] &&
-            $bp["right"] == $bp["bottom"] &&
-            $bp["bottom"] == $bp["left"] &&
-            array_sum($radius) == 0
-        ) {
+        if (in_array($bp["top"]["style"], array("solid", "dashed", "dotted")) && $bp["top"] == $bp["right"] && $bp["right"] == $bp["bottom"] && $bp["bottom"] == $bp["left"] && array_sum($radius) == 0) {
             $props = $bp["top"];
+
             if ($props["color"] === "transparent" || $props["width"] <= 0) {
                 return;
             }
 
             list($x, $y, $w, $h) = $border_box;
+
             $width = (float)$style->length_in_pt($props["width"]);
+
             $pattern = $this->_get_dash_pattern($props["style"], $width);
+
             $this->_canvas->rectangle($x + $width / 2, $y + $width / 2, (float)$w - $width, (float)$h - $width, $props["color"], $width, $pattern);
             return;
         }
@@ -135,15 +135,12 @@ class Block extends AbstractRenderer {
 
         foreach ($bp as $side => $props) {
             list($x, $y, $w, $h) = $border_box;
+
             $length = 0;
             $r1 = 0;
             $r2 = 0;
 
-            if (!$props["style"] ||
-                $props["style"] === "none" ||
-                $props["width"] <= 0 ||
-                $props["color"] == "transparent"
-            ) {
+            if (!$props["style"] || $props["style"] === "none" || $props["width"] <= 0 || $props["color"] == "transparent") {
                 continue;
             }
 
@@ -176,8 +173,8 @@ class Block extends AbstractRenderer {
                 default:
                     break;
             }
-            $method = "_border_" . $props["style"];
 
+            $method = "_border_" . $props["style"];
             // draw rounded corners
             $this->$method($x, $y, $length, $props["color"], $widths, $side, $corner_style, $r1, $r2);
         }
@@ -216,6 +213,7 @@ class Block extends AbstractRenderer {
             $border_box[3] += $offset;
 
             list($x, $y, $w, $h) = $border_box;
+
             $this->_canvas->rectangle($x, $y, (float)$w, (float)$h, $props["color"], $offset, $pattern);
             return;
         }
@@ -226,6 +224,7 @@ class Block extends AbstractRenderer {
         $border_box[3] += $offset * 2;
 
         $method = "_border_" . $props["style"];
+
         $widths = array_fill(0, 4, (float)$style->length_in_pt($props["width"]));
         $sides = array("top", "right", "left", "bottom");
         $length = 0;

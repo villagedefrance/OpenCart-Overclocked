@@ -18,23 +18,29 @@ use FontLib\Table\Table;
 class cmap extends Table {
 
   private static $header_format = array(
-    "version"         => self::uint16,
+    "version" => self::uint16,
     "numberSubtables" => self::uint16,
   );
 
   private static $subtable_header_format = array(
-    "platformID"         => self::uint16,
+    "platformID" => self::uint16,
     "platformSpecificID" => self::uint16,
-    "offset"             => self::uint32,
+    "offset" => self::uint32,
   );
 
   private static $subtable_v4_format = array(
-    "length"        => self::uint16,
-    "language"      => self::uint16,
-    "segCountX2"    => self::uint16,
-    "searchRange"   => self::uint16,
+    "length" => self::uint16,
+    "language" => self::uint16,
+    "segCountX2" => self::uint16,
+    "searchRange" => self::uint16,
     "entrySelector" => self::uint16,
-    "rangeShift"    => self::uint16,
+    "rangeShift" => self::uint16,
+  );
+
+  private static $subtable_v12_format = array(
+    "length" => self::uint32,
+    "language" => self::uint32,
+    "ngroups" => self::uint32
   );
 
   protected function _parse() {
@@ -49,6 +55,7 @@ class cmap extends Table {
     for ($i = 0; $i < $data["numberSubtables"]; $i++) {
       $subtables[] = $font->unpack(self::$subtable_header_format);
     }
+
     $data["subtables"] = $subtables;
 
     foreach ($data["subtables"] as $i => &$subtable) {
@@ -56,67 +63,96 @@ class cmap extends Table {
 
       $subtable["format"] = $font->readUInt16();
 
-      // @todo Only CMAP version 4
-      if ($subtable["format"] != 4) {
+      if (($subtable["format"] != 4) && ($subtable["format"] != 12)) {
         unset($data["subtables"][$i]);
         $data["numberSubtables"]--;
         continue;
       }
 
-      $subtable += $font->unpack(self::$subtable_v4_format);
-      $segCount             = $subtable["segCountX2"] / 2;
-      $subtable["segCount"] = $segCount;
+      if ($subtable["format"] == 12) {
+        $font->readUInt16();
 
-      $endCode = $font->readUInt16Many($segCount);
+        $subtable += $font->unpack(self::$subtable_v12_format);
 
-      $font->readUInt16(); // reservedPad
+        $glyphIndexArray = array();
+        $endCodes = array();
+        $startCodes = array();
 
-      $startCode = $font->readUInt16Many($segCount);
-      $idDelta   = $font->readInt16Many($segCount);
+        for ($p = 0; $p < $subtable['ngroups']; $p++) {
+          $startCode = $startCodes[] = $font->readUInt32();
+          $endCode = $endCodes[] = $font->readUInt32();
 
-      $ro_start      = $font->pos();
-      $idRangeOffset = $font->readUInt16Many($segCount);
+          $startGlyphCode = $font->readUInt32();
 
-      $glyphIndexArray = array();
-
-      for ($i = 0; $i < $segCount; $i++) {
-        $c1 = $startCode[$i];
-        $c2 = $endCode[$i];
-        $d  = $idDelta[$i];
-        $ro = $idRangeOffset[$i];
-
-        if ($ro > 0) {
-          $font->seek($subtable["offset"] + 2 * $i + $ro);
+          for ($c = $startCode; $c <= $endCode; $c++) {
+            $glyphIndexArray[$c] = $startGlyphCode;
+            $startGlyphCode++;
+          }
         }
 
-        for ($c = $c1; $c <= $c2; $c++) {
-          if ($ro == 0) {
-            $gid = ($c + $d) & 0xFFFF;
-          } else {
-            $offset = ($c - $c1) * 2 + $ro;
-            $offset = $ro_start + 2 * $i + $offset;
+        $subtable += array(
+          "startCode" => $startCodes,
+          "endCode" => $endCodes,
+          "glyphIndexArray" => $glyphIndexArray,
+        );
 
-            $font->seek($offset);
-            $gid = $font->readUInt16();
+      } elseif ($subtable["format"] == 4) {
+        $subtable += $font->unpack(self::$subtable_v4_format);
 
-            if ($gid != 0) {
-              $gid = ($gid + $d) & 0xFFFF;
+        $segCount = $subtable["segCountX2"] / 2;
+        $subtable["segCount"] = $segCount;
+
+        $endCode = $font->readUInt16Many($segCount);
+
+        $font->readUInt16(); // reservedPad
+
+        $startCode = $font->readUInt16Many($segCount);
+        $idDelta = $font->readInt16Many($segCount);
+
+        $ro_start = $font->pos();
+        $idRangeOffset = $font->readUInt16Many($segCount);
+
+        $glyphIndexArray = array();
+
+        for ($i = 0; $i < $segCount; $i++) {
+          $c1 = $startCode[$i];
+          $c2 = $endCode[$i];
+          $d = $idDelta[$i];
+          $ro = $idRangeOffset[$i];
+
+          if ($ro > 0) {
+            $font->seek($subtable["offset"] + 2 * $i + $ro);
+          }
+
+          for ($c = $c1; $c <= $c2; $c++) {
+            if ($ro == 0) {
+              $gid = ($c + $d) & 0xFFFF;
+            } else {
+              $offset = ($c - $c1) * 2 + $ro;
+              $offset = $ro_start + 2 * $i + $offset;
+
+              $font->seek($offset);
+              $gid = $font->readUInt16();
+
+              if ($gid != 0) {
+                $gid = ($gid + $d) & 0xFFFF;
+              }
+            }
+
+            if ($gid > 0) {
+              $glyphIndexArray[$c] = $gid;
             }
           }
-
-          if ($gid > 0) {
-            $glyphIndexArray[$c] = $gid;
-          }
         }
-      }
 
-      $subtable += array(
-        "endCode" => $endCode,
-        "startCode" => $startCode,
-        "idDelta" => $idDelta,
-        "idRangeOffset" => $idRangeOffset,
-        "glyphIndexArray" => $glyphIndexArray,
-      );
+        $subtable += array(
+          "endCode" => $endCode,
+          "startCode" => $startCode,
+          "idDelta" => $idDelta,
+          "idRangeOffset" => $idRangeOffset,
+          "glyphIndexArray" => $glyphIndexArray,
+        );
+      }
     }
 
     $this->data = $data;
@@ -125,7 +161,7 @@ class cmap extends Table {
   function _encode() {
     $font = $this->getFont();
 
-    $subset          = $font->getSubset();
+    $subset = $font->getSubset();
     $glyphIndexArray = $font->getUnicodeCharMap();
 
     $newGlyphIndexArray = array();
@@ -142,15 +178,12 @@ class cmap extends Table {
 
     $segments = array();
 
-    $i        = -1;
+    $i = -1;
     $prevCode = 0xFFFF;
-    $prevGid  = 0xFFFF;
+    $prevGid = 0xFFFF;
 
     foreach ($newGlyphIndexArray as $code => $gid) {
-      if (
-        $prevCode + 1 != $code ||
-        $prevGid + 1 != $gid
-      ) {
+      if ($prevCode + 1 != $code || $prevGid + 1 != $gid) {
         $i++;
         $segments[$i] = array();
       }
@@ -164,12 +197,12 @@ class cmap extends Table {
     $segments[][] = array(0xFFFF, 0xFFFF);
 
     $startCode = array();
-    $endCode   = array();
-    $idDelta   = array();
+    $endCode = array();
+    $idDelta = array();
 
     foreach ($segments as $codes) {
       $start = reset($codes);
-      $end   = end($codes);
+      $end = end($codes);
 
       $startCode[] = $start[0];
       $endCode[] = $end[0];
@@ -181,61 +214,64 @@ class cmap extends Table {
 
     $searchRange = 1;
     $entrySelector = 0;
+
     while ($searchRange * 2 <= $segCount) {
       $searchRange *= 2;
       $entrySelector++;
     }
+
     $searchRange *= 2;
     $rangeShift = $segCount * 2 - $searchRange;
 
     $subtables = array(
       array(
         // header
-        "platformID"         => 3, // Unicode
+        "platformID" => 3, // Unicode
         "platformSpecificID" => 1,
-        "offset"             => null,
-
+        "offset" => null,
         // subtable
-        "format"             => 4,
-        "length"             => null,
-        "language"           => 0,
-        "segCount"           => $segCount,
-        "segCountX2"         => $segCount * 2,
-        "searchRange"        => $searchRange,
-        "entrySelector"      => $entrySelector,
-        "rangeShift"         => $rangeShift,
-        "startCode"          => $startCode,
-        "endCode"            => $endCode,
-        "idDelta"            => $idDelta,
-        "idRangeOffset"      => $idRangeOffset,
-        "glyphIndexArray"    => $newGlyphIndexArray,
+        "format" => 4,
+        "length" => null,
+        "language" => 0,
+        "segCount" => $segCount,
+        "segCountX2" => $segCount * 2,
+        "searchRange" => $searchRange,
+        "entrySelector" => $entrySelector,
+        "rangeShift" => $rangeShift,
+        "startCode" => $startCode,
+        "endCode" => $endCode,
+        "idDelta" => $idDelta,
+        "idRangeOffset" => $idRangeOffset,
+        "glyphIndexArray" => $newGlyphIndexArray,
       )
     );
 
     $data = array(
-      "version"         => 0,
+      "version" => 0,
       "numberSubtables" => count($subtables),
-      "subtables"       => $subtables,
+      "subtables" => $subtables,
     );
 
     $length = $font->pack(self::$header_format, $data);
 
-    $subtable_headers_size   = $data["numberSubtables"] * 8; // size of self::$subtable_header_format
+    $subtable_headers_size = $data["numberSubtables"] * 8; // size of self::$subtable_header_format
     $subtable_headers_offset = $font->pos();
 
     $length += $font->write(str_repeat("\0", $subtable_headers_size), $subtable_headers_size);
 
     // write subtables data
     foreach ($data["subtables"] as $i => $subtable) {
-      $length_before                   = $length;
+      $length_before = $length;
       $data["subtables"][$i]["offset"] = $length;
 
       $length += $font->writeUInt16($subtable["format"]);
 
       $before_subheader = $font->pos();
+
       $length += $font->pack(self::$subtable_v4_format, $subtable);
 
       $segCount = $subtable["segCount"];
+
       $length += $font->w(array(self::uint16, $segCount), $subtable["endCode"]);
       $length += $font->writeUInt16(0); // reservedPad
       $length += $font->w(array(self::uint16, $segCount), $subtable["startCode"]);

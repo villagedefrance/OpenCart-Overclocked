@@ -13,6 +13,7 @@ namespace Dompdf\Css;
 use Dompdf\Helpers;
 
 class Color {
+
     static $cssColorNames = array(
         "aliceblue" => "F0F8FF",
         "antiquewhite" => "FAEBD7",
@@ -170,7 +171,6 @@ class Color {
     static function parse($color) {
         if (is_array($color)) {
             // Assume the array has the right format...
-            // should/could verify this.
             return $color;
         }
 
@@ -196,18 +196,18 @@ class Color {
         if ($length == 4 && $color[0] === "#") {
             return $cache[$color] = self::getArray($color[1] . $color[1] . $color[2] . $color[2] . $color[3] . $color[3]);
 
-        } else if ($length == 5 && $color[0] === "#") {
+        } elseif ($length == 5 && $color[0] === "#") {
             $alpha = round(hexdec($color[4] . $color[4])/255, 2);
             return $cache[$color] = self::getArray($color[1] . $color[1] . $color[2] . $color[2] . $color[3] . $color[3], $alpha);
 
-        } else if ($length == 7 && $color[0] === "#") {
+        } elseif ($length == 7 && $color[0] === "#") {
             return $cache[$color] = self::getArray(mb_substr($color, 1, 6));
 
-        } else if ($length == 9 && $color[0] === "#") {
+        } elseif ($length == 9 && $color[0] === "#") {
             $alpha = round(hexdec(mb_substr($color, 7, 2))/255, 2);
             return $cache[$color] = self::getArray(mb_substr($color, 1, 8), $alpha);
 
-        } else if (mb_strpos($color, "rgb") !== false) {
+        } elseif (mb_strpos($color, "rgb") !== false) {
             $i = mb_strpos($color, "(");
             $j = mb_strpos($color, ")");
 
@@ -218,7 +218,8 @@ class Color {
 
             $triplet = explode(",", mb_substr($color, $i + 1, $j - $i - 1));
 
-            // alpha transparency: not currently using transparency
+            // alpha transparency
+            // not currently using transparency
             $alpha = 1.0;
 
             if (count($triplet) == 4) {
@@ -243,7 +244,7 @@ class Color {
 
             return $cache[$color] = self::getArray(vsprintf("%02X%02X%02X", $triplet), $alpha);
 
-        } else if (mb_strpos($color, "cmyk") !== false) {
+        } elseif (mb_strpos($color, "cmyk") !== false) {
             $i = mb_strpos($color, "(");
             $j = mb_strpos($color, ")");
 

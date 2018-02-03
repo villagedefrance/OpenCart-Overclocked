@@ -30,7 +30,7 @@ use Dompdf\Exception;
 abstract class AbstractFrameDecorator extends Frame {
     const DEFAULT_COUNTER = "-dompdf-default-counter";
 
-    public $_counters = array(); // array([id] => counter_value) (for generated content)
+    public $_counters = array();
 
     /**
      * The root node of the DOM tree
@@ -174,15 +174,13 @@ abstract class AbstractFrameDecorator extends Frame {
 
         $this->_counters = array();
 
-        $this->_cached_parent = null; //clear get_parent() cache
+        $this->_cached_parent = null;
 
         // Reset all children
         foreach ($this->get_children() as $child) {
             $child->reset();
         }
     }
-
-    // Getters -----------
 
     /**
      * @return string
@@ -617,31 +615,25 @@ abstract class AbstractFrameDecorator extends Frame {
         // decrement any counters that were incremented on the current node, unless that node is the body
         $style = $this->_frame->get_style();
 
-        if (
-            $this->_frame->get_node()->nodeName !== "body" &&
-            $style->counter_increment &&
-            ($decrement = $style->counter_increment) !== "none"
-        ) {
+        if ($this->_frame->get_node()->nodeName !== "body" && $style->counter_increment && ($decrement = $style->counter_increment) !== "none") {
             $this->decrement_counters($decrement);
         }
 
         if (is_null($child)) {
             // check for counter increment on :before content (always a child of the selected element @link AbstractFrameReflower::_set_content)
-            // this can push the current node to the next page before counter rules have bubbled up (but only if
-            // it's been rendered, thus the position check)
+            // this can push the current node to the next page before counter rules have bubbled up (but only if it's been rendered, thus the position check)
             if (!$this->is_text_node() && $this->get_node()->hasAttribute("dompdf_before_frame_id")) {
                 foreach ($this->_frame->get_children() as $child) {
-                    if (
-                        $this->get_node()->getAttribute("dompdf_before_frame_id") == $child->get_id() &&
-                        $child->get_position('x') !== null
-                    ) {
+                    if ($this->get_node()->getAttribute("dompdf_before_frame_id") == $child->get_id() && $child->get_position('x') !== null) {
                         $style = $child->get_style();
+
                         if ($style->counter_increment && ($decrement = $style->counter_increment) !== "none") {
                             $this->decrement_counters($decrement);
                         }
                     }
                 }
             }
+
             $this->get_parent()->split($this, $force_pagebreak);
 
             return;
@@ -659,9 +651,11 @@ abstract class AbstractFrameDecorator extends Frame {
         }
 
         $split = $this->copy($node->cloneNode());
+
         $split->reset();
         $split->get_original_style()->text_indent = 0;
         $split->_splitted = true;
+        $split->_already_pushed = true;
 
         // The body's properties must be kept
         if ($node->nodeName !== "body") {
@@ -769,6 +763,7 @@ abstract class AbstractFrameDecorator extends Frame {
             if (isset($f->_counters[$id])) {
                 return $f;
             }
+
             $fp = $f->get_parent();
 
             if (!$fp) {
@@ -847,9 +842,7 @@ abstract class AbstractFrameDecorator extends Frame {
      * @param Block|null $block
      */
     final function reflow(Block $block = null) {
-        // Uncomment this to see the frames before they're laid out, instead of
-        // during rendering.
-        //echo $this->_frame; flush();
+        // Uncomment this to see the frames before they're laid out, instead of during rendering.
         $this->_reflower->reflow($block);
     }
 

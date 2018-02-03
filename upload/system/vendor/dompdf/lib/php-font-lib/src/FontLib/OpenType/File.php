@@ -14,5 +14,4 @@ namespace FontLib\OpenType;
  * @package php-font-lib
  */
 class File extends \FontLib\TrueType\File {
-  //
 }

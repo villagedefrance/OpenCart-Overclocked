@@ -6,9 +6,9 @@
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\FrameReflower;
 
-use Dompdf\FontMetrics;
 use Dompdf\Frame;
 use Dompdf\FrameDecorator\Block as BlockFrameDecorator;
 use Dompdf\FrameDecorator\TableCell as TableCellFrameDecorator;
@@ -84,52 +84,60 @@ class Block extends AbstractFrameReflower {
             if ($absolute) {
                 // resolve auto properties: see
                 // http://www.w3.org/TR/CSS21/visudet.html#abs-non-replaced-width
-
                 if ($width === "auto" && $left === "auto" && $right === "auto") {
                     if ($lm === "auto") {
                         $lm = 0;
                     }
+
                     if ($rm === "auto") {
                         $rm = 0;
                     }
 
-                    // Technically, the width should be "shrink-to-fit" i.e. based on the
-                    // preferred width of the content...  a little too costly here as a
-                    // special case.  Just get the width to take up the slack:
+                    // Technically, the width should be "shrink-to-fit" i.e. based on the preferred width of the content...  
+                    // a little too costly here as a special case. Just get the width to take up the slack:
                     $left = 0;
                     $right = 0;
                     $width = $diff;
-                } else if ($width === "auto") {
+
+                } elseif ($width === "auto") {
                     if ($lm === "auto") {
                         $lm = 0;
                     }
+
                     if ($rm === "auto") {
                         $rm = 0;
                     }
+
                     if ($left === "auto") {
                         $left = 0;
                     }
+
                     if ($right === "auto") {
                         $right = 0;
                     }
 
                     $width = $diff;
-                } else if ($left === "auto") {
+
+                } elseif ($left === "auto") {
                     if ($lm === "auto") {
                         $lm = 0;
                     }
+
                     if ($rm === "auto") {
                         $rm = 0;
                     }
+
                     if ($right === "auto") {
                         $right = 0;
                     }
 
                     $left = $diff;
-                } else if ($right === "auto") {
+
+                } elseif ($right === "auto") {
                     if ($lm === "auto") {
                         $lm = 0;
                     }
+
                     if ($rm === "auto") {
                         $rm = 0;
                     }
@@ -141,15 +149,16 @@ class Block extends AbstractFrameReflower {
                 // Find auto properties and get them to take up the slack
                 if ($width === "auto") {
                     $width = $diff;
-                } else if ($lm === "auto" && $rm === "auto") {
+                } elseif ($lm === "auto" && $rm === "auto") {
                     $lm = $rm = round($diff / 2);
-                } else if ($lm === "auto") {
+                } elseif ($lm === "auto") {
                     $lm = $diff;
-                } else if ($rm === "auto") {
+                } elseif ($rm === "auto") {
                     $rm = $diff;
                 }
             }
-        } else if ($diff < 0) {
+
+        } elseif ($diff < 0) {
             // We are over constrained--set margin-right to the difference
             $rm = $diff;
         }
@@ -159,7 +168,7 @@ class Block extends AbstractFrameReflower {
             "margin_left" => $lm,
             "margin_right" => $rm,
             "left" => $left,
-            "right" => $right,
+            "right" => $right
         );
     }
 
@@ -178,9 +187,6 @@ class Block extends AbstractFrameReflower {
             $cb = $frame->get_root()->get_containing_block();
         }
 
-        //if ( $style->position === "absolute" )
-        //  $cb = $frame->find_positionned_parent()->get_containing_block();
-
         if (!isset($cb["w"])) {
             throw new Exception("Box property calculation requires containing block width");
         }
@@ -193,6 +199,7 @@ class Block extends AbstractFrameReflower {
         }
 
         $calculate_width = $this->_calculate_width($width);
+
         $margin_left = $calculate_width['margin_left'];
         $margin_right = $calculate_width['margin_right'];
         $width =  $calculate_width['width'];
@@ -264,7 +271,6 @@ class Block extends AbstractFrameReflower {
 
         if ($frame->is_absolute()) {
             // see http://www.w3.org/TR/CSS21/visudet.html#abs-non-replaced-height
-
             $dims = array($top !== "auto" ? $top : 0,
                 $style->margin_top !== "auto" ? $style->margin_top : 0,
                 $style->padding_top,
@@ -284,99 +290,114 @@ class Block extends AbstractFrameReflower {
                     if ($margin_top === "auto") {
                         $margin_top = 0;
                     }
+
                     if ($margin_bottom === "auto") {
                         $margin_bottom = 0;
                     }
 
                     $height = $diff;
-                } else if ($height === "auto" && $top === "auto") {
+
+                } elseif ($height === "auto" && $top === "auto") {
                     if ($margin_top === "auto") {
                         $margin_top = 0;
                     }
+
                     if ($margin_bottom === "auto") {
                         $margin_bottom = 0;
                     }
 
                     $height = $content_height;
                     $top = $diff - $content_height;
-                } else if ($height === "auto" && $bottom === "auto") {
+
+                } elseif ($height === "auto" && $bottom === "auto") {
                     if ($margin_top === "auto") {
                         $margin_top = 0;
                     }
+
                     if ($margin_bottom === "auto") {
                         $margin_bottom = 0;
                     }
 
                     $height = $content_height;
                     $bottom = $diff - $content_height;
-                } else if ($top === "auto" && $bottom === "auto") {
+
+                } elseif ($top === "auto" && $bottom === "auto") {
                     if ($margin_top === "auto") {
                         $margin_top = 0;
                     }
+
                     if ($margin_bottom === "auto") {
                         $margin_bottom = 0;
                     }
 
                     $bottom = $diff;
-                } else if ($top === "auto") {
+
+                } elseif ($top === "auto") {
                     if ($margin_top === "auto") {
                         $margin_top = 0;
                     }
+
                     if ($margin_bottom === "auto") {
                         $margin_bottom = 0;
                     }
 
                     $top = $diff;
-                } else if ($height === "auto") {
+
+                } elseif ($height === "auto") {
                     if ($margin_top === "auto") {
                         $margin_top = 0;
                     }
+
                     if ($margin_bottom === "auto") {
                         $margin_bottom = 0;
                     }
 
                     $height = $diff;
-                } else if ($bottom === "auto") {
+
+                } elseif ($bottom === "auto") {
                     if ($margin_top === "auto") {
                         $margin_top = 0;
                     }
+
                     if ($margin_bottom === "auto") {
                         $margin_bottom = 0;
                     }
 
                     $bottom = $diff;
+
                 } else {
                     if ($style->overflow === "visible") {
                         // set all autos to zero
                         if ($margin_top === "auto") {
                             $margin_top = 0;
                         }
+
                         if ($margin_bottom === "auto") {
                             $margin_bottom = 0;
                         }
+
                         if ($top === "auto") {
                             $top = 0;
                         }
+
                         if ($bottom === "auto") {
                             $bottom = 0;
                         }
+
                         if ($height === "auto") {
                             $height = $content_height;
                         }
                     }
-
-                    // FIXME: overflow hidden
                 }
             }
 
         } else {
             // Expand the height if overflow is visible
-            if ($height === "auto" && $content_height > $height /* && $style->overflow === "visible" */) {
+            if ($height === "auto" && $content_height > $height) {
                 $height = $content_height;
             }
 
-            // FIXME: this should probably be moved to a seperate function as per
-            // _calculate_restricted_width
+            // this should probably be moved to a seperate function as per _calculate_restricted_width
 
             // Only handle min/max height if the height is independent of the frame's content
             if (!($style->overflow === "visible" || ($style->overflow === "hidden" && $height === "auto"))) {
@@ -386,8 +407,7 @@ class Block extends AbstractFrameReflower {
                 if (isset($cb["h"])) {
                     $min_height = $style->length_in_pt($min_height, $cb["h"]);
                     $max_height = $style->length_in_pt($max_height, $cb["h"]);
-
-                } else if (isset($cb["w"])) {
+                } elseif (isset($cb["w"])) {
                     if (mb_strpos($min_height, "%") !== false) {
                         $min_height = 0;
                     } else {
@@ -440,6 +460,7 @@ class Block extends AbstractFrameReflower {
                         if ($frame instanceof BlockFrameDecorator) {
                             continue;
                         }
+
                         $frame->set_position($frame->get_position("x") + $line->left);
                     }
                 }
@@ -463,7 +484,7 @@ class Block extends AbstractFrameReflower {
 
             case "justify":
                 // We justify all lines except the last one
-                $lines = $this->_frame->get_line_boxes(); // needs to be a variable (strict standards)
+                $lines = $this->_frame->get_line_boxes();
                 $last_line = array_pop($lines);
 
                 foreach ($lines as $i => $line) {
@@ -494,6 +515,7 @@ class Block extends AbstractFrameReflower {
                     }
 
                     $dx = 0;
+
                     foreach ($line->get_frames() as $frame) {
                         if (!$frame instanceof TextFrameDecorator) {
                             continue;
@@ -521,6 +543,7 @@ class Block extends AbstractFrameReflower {
                         if ($frame instanceof BlockFrameDecorator) {
                             continue;
                         }
+
                         $frame->set_position($frame->get_position("x") + $last_line->left);
                     }
                 }
@@ -570,7 +593,7 @@ class Block extends AbstractFrameReflower {
                 $baseline = $canvas->get_font_baseline($style->font_family, $style->font_size);
                 $y_offset = 0;
 
-                //The 0.8 ratio applied to the height is arbitrary (used to accommodate descenders?)
+                // The 0.8 ratio applied to the height is arbitrary (used to accommodate descenders?)
                 if ($isInlineBlock) {
                     $lineFrames = $line->get_frames();
 
@@ -579,7 +602,8 @@ class Block extends AbstractFrameReflower {
                     }
 
                     $frameBox = $frame->get_frame()->get_border_box();
-                    $imageHeightDiff = $height * 0.8 - $frameBox['h'];
+
+                    $imageHeightDiff = $height * 0.8 - (float)$frameBox['h'];
 
                     $align = $frame->get_style()->vertical_align;
 
@@ -597,14 +621,14 @@ class Block extends AbstractFrameReflower {
                                 $y_offset = -0.2 * $height + $imageHeightDiff;
                                 break;
 
-                            case "text-top": // FIXME: this should be the height of the frame minus the height of the text
+                            case "text-top": // this should be the height of the frame minus the height of the text
                                 $y_offset = $height - (float)$style->length_in_pt($style->get_line_height(), $style->font_size);
                                 break;
 
                             case "top":
                                 break;
 
-                            case "text-bottom": // FIXME: align bottom of image with the descender?
+                            case "text-bottom": // align bottom of image with the descender?
                             case "bottom":
                                 $y_offset = 0.3 * $height + $imageHeightDiff;
                                 break;
@@ -616,7 +640,7 @@ class Block extends AbstractFrameReflower {
                         }
 
                     } else {
-                        $y_offset = $baseline - (float)$style->length_in_pt($align, $style->font_size) - $frameBox['h'];
+                        $y_offset = $baseline - (float)$style->length_in_pt($align, $style->font_size) - (float)$frameBox['h'];
                     }
 
                 } else {
@@ -678,7 +702,7 @@ class Block extends AbstractFrameReflower {
 
         // Handle "clear"
         if ($child_style->clear !== "none") {
-            //This is a WIP for handling clear/float frames that are in between inline frames
+            // this is a WIP for handling clear/float frames that are in between inline frames
             if ($child->get_prev_sibling() !== null) {
                 $this->_frame->add_line();
             }
@@ -740,6 +764,7 @@ class Block extends AbstractFrameReflower {
                         $float_x += ($cb_w - $line_box->right - $float_w);
                         break;
                 }
+
             } else {
                 if ($child_style->float === "right") {
                     $float_x += ($cb_w - $float_w);
@@ -747,7 +772,7 @@ class Block extends AbstractFrameReflower {
             }
 
             if ($cb_w < $float_x + $float_w - $old_x) {
-                // TODO handle when floating elements don't fit
+                // handle when floating elements don't fit
             }
 
             $line_box->get_float_offsets();
@@ -788,7 +813,7 @@ class Block extends AbstractFrameReflower {
             $cb = $this->_frame->get_root()->get_containing_block();
         }
 
-        // Determine the constraints imposed by this frame: calculate the width of the content area:
+        // Determine the constraints imposed by this frame: calculate the width of the content area
         list($w, $left_margin, $right_margin, $left, $right) = $this->_calculate_restricted_width();
 
         // Store the calculated properties
@@ -800,6 +825,7 @@ class Block extends AbstractFrameReflower {
 
         // Update the position
         $this->_frame->position();
+
         list($x, $y) = $this->_frame->get_position();
 
         // Adjust the first line based on the text-indent property
@@ -807,16 +833,10 @@ class Block extends AbstractFrameReflower {
         $this->_frame->increase_line_width($indent);
 
         // Determine the content edge
-        $top = (float)$style->length_in_pt(array($style->margin_top,
-            $style->padding_top,
-            $style->border_top_width), $cb["h"]);
+        $top = (float)$style->length_in_pt(array($style->margin_top, $style->padding_top, $style->border_top_width), $cb["h"]);
+        $bottom = (float)$style->length_in_pt(array($style->border_bottom_width, $style->margin_bottom, $style->padding_bottom), $cb["h"]);
 
-        $bottom = (float)$style->length_in_pt(array($style->border_bottom_width,
-            $style->margin_bottom,
-            $style->padding_bottom), $cb["h"]);
-
-        $cb_x = $x + (float)$left_margin + (float)$style->length_in_pt(array($style->border_left_width,
-                $style->padding_left), $cb["w"]);
+        $cb_x = $x + (float)$left_margin + (float)$style->length_in_pt(array($style->border_left_width, $style->padding_left), $cb["w"]);
 
         $cb_y = $y + $top;
 
@@ -865,9 +885,11 @@ class Block extends AbstractFrameReflower {
         if ($needs_reposition) {
             if ($orig_style->width === "auto" && ($orig_style->left === "auto" || $orig_style->right === "auto")) {
                 $width = 0;
+
                 foreach ($this->_frame->get_line_boxes() as $line) {
                     $width = max($line->w, $width);
                 }
+
                 $style->width = $width;
             }
 
@@ -901,6 +923,7 @@ class Block extends AbstractFrameReflower {
         if ($needs_reposition) {
             list($x, $y) = $this->_frame->get_position();
             $this->_frame->position();
+
             list($new_x, $new_y) = $this->_frame->get_position();
             $this->_frame->move($new_x - $x, $new_y - $y, true);
         }

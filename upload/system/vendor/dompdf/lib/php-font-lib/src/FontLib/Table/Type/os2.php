@@ -16,6 +16,7 @@ use FontLib\Table\Table;
  * @package php-font-lib
  */
 class os2 extends Table {
+
   protected $def = array(
     "version" => self::uint16,
     "xAvgCharWidth" => self::int16,

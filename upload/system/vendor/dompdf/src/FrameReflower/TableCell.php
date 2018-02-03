@@ -5,6 +5,7 @@
  * @author  Benj Carson <benjcarson@digitaljunkies.ca>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\FrameReflower;
 
 use Dompdf\FrameDecorator\Block as BlockFrameDecorator;
@@ -16,6 +17,7 @@ use Dompdf\FrameDecorator\Table as TableFrameDecorator;
  * @package dompdf
  */
 class TableCell extends Block {
+
     /**
      * TableCell constructor.
      * @param BlockFrameDecorator $frame
@@ -34,6 +36,7 @@ class TableCell extends Block {
         $cellmap = $table->get_cellmap();
 
         list($x, $y) = $cellmap->get_frame_position($this->_frame);
+
         $this->_frame->set_position($x, $y);
 
         $cells = $cellmap->get_spanned_cells($this->_frame);
@@ -47,24 +50,10 @@ class TableCell extends Block {
 
         $h = $this->_frame->get_containing_block("h");
 
-        $left_space = (float)$style->length_in_pt(array($style->margin_left,
-                $style->padding_left,
-                $style->border_left_width),
-            $w);
-
-        $right_space = (float)$style->length_in_pt(array($style->padding_right,
-                $style->margin_right,
-                $style->border_right_width),
-            $w);
-
-        $top_space = (float)$style->length_in_pt(array($style->margin_top,
-                $style->padding_top,
-                $style->border_top_width),
-            $h);
-        $bottom_space = (float)$style->length_in_pt(array($style->margin_bottom,
-                $style->padding_bottom,
-                $style->border_bottom_width),
-            $h);
+        $left_space = (float)$style->length_in_pt(array($style->margin_left, $style->padding_left, $style->border_left_width), $w);
+        $right_space = (float)$style->length_in_pt(array($style->padding_right, $style->margin_right, $style->border_right_width), $w);
+        $top_space = (float)$style->length_in_pt(array($style->margin_top, $style->padding_top, $style->border_top_width), $h);
+        $bottom_space = (float)$style->length_in_pt(array($style->margin_bottom, $style->padding_bottom, $style->border_bottom_width), $h);
 
         $style->width = $cb_w = $w - $left_space - $right_space;
 
@@ -89,6 +78,7 @@ class TableCell extends Block {
 
             $child->set_containing_block($content_x, $content_y, $cb_w, $h);
             $this->process_clear($child);
+
             $child->reflow($this->_frame);
             $this->process_float($child, $x + $left_space, $w - $right_space - $left_space);
         }
@@ -112,6 +102,7 @@ class TableCell extends Block {
         }
 
         $style->height = $height;
+
         $this->_text_align();
         $this->vertical_align();
     }

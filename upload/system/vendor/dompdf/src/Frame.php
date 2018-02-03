@@ -318,6 +318,14 @@ class Frame {
         $this->_style = null;
         unset($this->_style);
         $this->_style = clone $this->_original_style;
+
+        // If this represents a generated node then child nodes represent generated content.
+        // Remove the children since the content will be generated next time this frame is reflowed. 
+        if ($this->_node->nodeName === "dompdf_generated" && $this->_style->content != "normal") {
+            foreach ($this->get_children() as $child) {
+                $this->remove_child($child);
+            }
+        }
     }
 
     /**
@@ -403,8 +411,6 @@ class Frame {
         return $this->_frame_list;
     }
 
-    // Layout property accessors
-
     /**
      * Containing block dimensions
      *
@@ -434,8 +440,6 @@ class Frame {
 
         return $this->_position;
     }
-
-    //........................................................................
 
     /**
      * Return the height of the margin box of the frame, in pt.  Meaningless
@@ -613,9 +617,6 @@ class Frame {
         return $this->_containing_line;
     }
 
-    //........................................................................
-
-    // Set methods
     /**
      * @param $id
      */
@@ -623,8 +624,7 @@ class Frame {
         $this->_id = $id;
 
         // We can only set attributes of DOMElement objects (nodeType == 1).
-        // Since these are the only objects that we can assign CSS rules to,
-        // this shortcoming is okay.
+        // Since these are the only objects that we can assign CSS rules to, this shortcoming is okay.
         if ($this->_node->nodeType == XML_ELEMENT_NODE) {
             $this->_node->setAttribute("frame_id", $id);
         }
@@ -638,7 +638,6 @@ class Frame {
             $this->_original_style = clone $style;
         }
 
-        //$style->set_frame($this);
         $this->_style = $style;
     }
 
@@ -702,7 +701,9 @@ class Frame {
      */
     public function set_opacity($opacity) {
         $parent = $this->get_parent();
+
         $base_opacity = (($parent && $parent->_opacity !== null) ? $parent->_opacity : 1.0);
+
         $this->_opacity = $base_opacity * $opacity;
     }
 
@@ -858,11 +859,10 @@ class Frame {
         return $this->_is_cache["table"] = in_array($display, Style::$TABLE_TYPES);
     }
 
-
     /**
      * Inserts a new child at the beginning of the Frame
      *
-     * @param $child       Frame The new Frame to insert
+     * @param $child Frame The new Frame to insert
      * @param $update_node boolean Whether or not to update the DOM
      */
     public function prepend_child(Frame $child, $update_node = true) {
@@ -912,6 +912,7 @@ class Frame {
         if ($decorator !== null) {
             $decorator->get_parent(false);
         }
+
         $child->_next_sibling = null;
 
         // Handle the first child
@@ -938,13 +939,11 @@ class Frame {
     public function insert_child_before(Frame $new_child, Frame $ref, $update_node = true) {
         if ($ref === $this->_first_child) {
             $this->prepend_child($new_child, $update_node);
-
             return;
         }
 
         if (is_null($ref)) {
             $this->append_child($new_child, $update_node);
-
             return;
         }
 
@@ -985,13 +984,11 @@ class Frame {
     public function insert_child_after(Frame $new_child, Frame $ref, $update_node = true) {
         if ($ref === $this->_last_child) {
             $this->append_child($new_child, $update_node);
-
             return;
         }
 
         if (is_null($ref)) {
             $this->prepend_child($new_child, $update_node);
-
             return;
         }
 
@@ -1066,18 +1063,11 @@ class Frame {
         return $child;
     }
 
-    //........................................................................
-
     // Debugging function:
     /**
      * @return string
      */
     public function __toString() {
-        // Skip empty text frames
-//     if ( $this->is_text_node() &&
-//          preg_replace("/\s/", "", $this->_node->data) === "" )
-//       return "";
-
         $str = "<b>" . $this->_node->nodeName . ":</b><br/>";
         //$str .= spl_object_hash($this->_node) . "<br/>";
         $str .= "Id: " . $this->get_id() . "<br/>";
@@ -1091,21 +1081,15 @@ class Frame {
         }
 
         if ($this->_parent) {
-            $str .= "\nParent:" . $this->_parent->_node->nodeName .
-                " (" . spl_object_hash($this->_parent->_node) . ") " .
-                "<br/>";
+            $str .= "\nParent:" . $this->_parent->_node->nodeName . " (" . spl_object_hash($this->_parent->_node) . ") " . "<br/>";
         }
 
         if ($this->_prev_sibling) {
-            $str .= "Prev: " . $this->_prev_sibling->_node->nodeName .
-                " (" . spl_object_hash($this->_prev_sibling->_node) . ") " .
-                "<br/>";
+            $str .= "Prev: " . $this->_prev_sibling->_node->nodeName . " (" . spl_object_hash($this->_prev_sibling->_node) . ") " . "<br/>";
         }
 
         if ($this->_next_sibling) {
-            $str .= "Next: " . $this->_next_sibling->_node->nodeName .
-                " (" . spl_object_hash($this->_next_sibling->_node) . ") " .
-                "<br/>";
+            $str .= "Next: " . $this->_next_sibling->_node->nodeName . " (" . spl_object_hash($this->_next_sibling->_node) . ") " . "<br/>";
         }
 
         $d = $this->get_decorator();
@@ -1135,12 +1119,7 @@ class Frame {
                     }
                 }
 
-                $str .=
-                    "\ny => " . $line->y . "\n" .
-                    "w => " . $line->w . "\n" .
-                    "h => " . $line->h . "\n" .
-                    "left => " . $line->left . "\n" .
-                    "right => " . $line->right . "\n";
+                $str .= "\ny => " . $line->y . "\n" . "w => " . $line->w . "\n" . "h => " . $line->h . "\n" . "left => " . $line->left . "\n" . "right => " . $line->right . "\n";
             }
             $str .= "</pre>";
         }
@@ -1148,9 +1127,7 @@ class Frame {
         $str .= "\n";
 
         if (php_sapi_name() === "cli") {
-            $str = strip_tags(str_replace(array("<br/>", "<b>", "</b>"),
-                array("\n", "", ""),
-                $str));
+            $str = strip_tags(str_replace(array("<br/>", "<b>", "</b>"), array("\n", "", ""), $str));
         }
 
         return $str;

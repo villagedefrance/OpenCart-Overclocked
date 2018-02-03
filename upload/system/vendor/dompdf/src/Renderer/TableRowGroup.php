@@ -5,6 +5,7 @@
  * @author  Benj Carson <benjcarson@digitaljunkies.ca>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\Renderer;
 
 use Dompdf\Frame;
@@ -29,6 +30,7 @@ class TableRowGroup extends Block {
 
         if ($this->_dompdf->getOptions()->getDebugLayout() && $this->_dompdf->getOptions()->getDebugLayoutBlocks()) {
             $this->_debug_layout($frame->get_border_box(), "red");
+
             if ($this->_dompdf->getOptions()->getDebugLayoutPaddingBox()) {
                 $this->_debug_layout($frame->get_padding_box(), "red", array(0.5, 0.5));
             }
@@ -42,7 +44,7 @@ class TableRowGroup extends Block {
 
         $id = $frame->get_node()->getAttribute("id");
 
-        if (strlen($id) > 0) {
+        if (strlen($id) > 0)  {
             $this->_canvas->add_named_dest($id);
         }
     }

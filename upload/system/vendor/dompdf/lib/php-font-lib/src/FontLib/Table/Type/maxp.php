@@ -16,6 +16,7 @@ use FontLib\Table\Table;
  * @package php-font-lib
  */
 class maxp extends Table {
+
   protected $def = array(
     "version" => self::Fixed,
     "numGlyphs" => self::uint16,

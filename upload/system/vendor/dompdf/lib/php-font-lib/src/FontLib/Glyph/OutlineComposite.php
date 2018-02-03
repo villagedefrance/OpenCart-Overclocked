@@ -51,10 +51,6 @@ class OutlineComposite extends Outline {
     return $glyphIDs;
   }
 
-  /*function parse() {
-    //$this->parseData();
-  }*/
-
   function parseData() {
     parent::parseData();
 
@@ -71,7 +67,7 @@ class OutlineComposite extends Outline {
       $e = 0.0;
       $f = 0.0;
 
-      $point_compound  = null;
+      $point_compound = null;
       $point_component = null;
 
       $instructions = null;
@@ -81,15 +77,16 @@ class OutlineComposite extends Outline {
           $e = $font->readInt16();
           $f = $font->readInt16();
         } else {
-          $point_compound  = $font->readUInt16();
+          $point_compound = $font->readUInt16();
           $point_component = $font->readUInt16();
         }
+
       } else {
         if ($flags & self::ARGS_ARE_XY_VALUES) {
           $e = $font->readInt8();
           $f = $font->readInt8();
         } else {
-          $point_compound  = $font->readUInt8();
+          $point_compound = $font->readUInt8();
           $point_component = $font->readUInt8();
         }
       }
@@ -106,11 +103,8 @@ class OutlineComposite extends Outline {
         $d = $font->readInt16();
       }
 
-      //if ($flags & self::WE_HAVE_INSTRUCTIONS) {
-      //
-      //}
-
       $component = new OutlineComponent();
+
       $component->flags = $flags;
       $component->glyphIndex = $glyphIndex;
       $component->a = $a;
@@ -133,6 +127,7 @@ class OutlineComposite extends Outline {
     $gids = $font->getSubset();
 
     $size = $font->writeInt16(-1);
+
     $size += $font->writeFWord($this->xMin);
     $size += $font->writeFWord($this->yMin);
     $size += $font->writeFWord($this->xMax);
@@ -157,6 +152,7 @@ class OutlineComposite extends Outline {
           if ($_component->a != 1.0) {
             $flags |= self::WE_HAVE_A_SCALE;
           }
+
         } else {
           $flags |= self::WE_HAVE_AN_X_AND_Y_SCALE;
         }
@@ -212,10 +208,8 @@ class OutlineComposite extends Outline {
   public function getSVGContours() {
     $contours = array();
 
-    /** @var \FontLib\Table\Type\glyf $glyph_data */
     $glyph_data = $this->getFont()->getTableObject("glyf");
 
-    /** @var Outline[] $glyphs */
     $glyphs = $glyph_data->data;
 
     foreach ($this->components as $component) {
@@ -224,7 +218,7 @@ class OutlineComposite extends Outline {
       if ($_glyph !== $this) {
         $contours[] = array(
           "contours" => $_glyph->getSVGContours(),
-          "transform" => $component->getMatrix(),
+          "transform" => $component->getMatrix()
         );
       }
     }

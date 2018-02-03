@@ -5,9 +5,9 @@
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf;
 
-use Dompdf\Frame;
 use Dompdf\FrameDecorator\Block;
 use Dompdf\FrameDecorator\Page;
 
@@ -128,7 +128,9 @@ class LineBox {
         foreach ($floating_frames as $_floating) {
             $p = $_floating->get_parent();
 
-            if ($p && ($p = $p->get_parent()) && $p !== $parent) {
+            while (($p = $p->get_parent()) && $p !== $parent);
+
+            if ($p) {
                 $childs[] = $p;
             }
         }
@@ -140,7 +142,7 @@ class LineBox {
      *
      */
     public function get_float_offsets() {
-        static $anti_infinite_loop = 10000; // FIXME smelly hack
+        static $anti_infinite_loop = 10000; // smelly hack
 
         $reflower = $this->_block_frame->get_reflower();
 
@@ -159,6 +161,7 @@ class LineBox {
 
         $style = $this->_block_frame->get_style();
         $floating_frames = $this->get_floats_inside($root);
+
         $inside_left_floating_width = 0;
         $inside_right_floating_width = 0;
         $outside_left_floating_width = 0;
@@ -187,10 +190,7 @@ class LineBox {
             }
 
             // If the child is still shifted by the floating element
-            if ($anti_infinite_loop-- > 0 &&
-                $floating_frame->get_position("y") + $floating_frame->get_margin_height() >= $this->y &&
-                $block->get_position("x") + $block->get_margin_width() >= $floating_frame->get_position("x")
-            ) {
+            if ($anti_infinite_loop-- > 0 && $floating_frame->get_position("y") + $floating_frame->get_margin_height() >= $this->y && $block->get_position("x") + $block->get_margin_width() >= $floating_frame->get_position("x")) {
                 if ($float === "left") {
                     if ($floating_frame_parent === $this->_block_frame) {
                         $inside_left_floating_width += $floating_width;
@@ -206,21 +206,20 @@ class LineBox {
                 }
 
                 $this->floating_blocks[$id] = true;
-            } // else, the floating element won't shift anymore
-            else {
+            } else {
                 $root->remove_floating_frame($child_key);
             }
         }
 
         $this->left += $inside_left_floating_width;
 
-        if ($outside_left_floating_width > (float)$style->length_in_pt($style->margin_left) + (float)$style->length_in_pt($style->padding_left)) {
+        if ($outside_left_floating_width > 0 && $outside_left_floating_width > ((float)$style->length_in_pt($style->margin_left) + (float)$style->length_in_pt($style->padding_left))) {
             $this->left += $outside_left_floating_width - (float)$style->length_in_pt($style->margin_left) - (float)$style->length_in_pt($style->padding_left);
         }
 
         $this->right += $inside_right_floating_width;
 
-        if ($outside_right_floating_width > (float)$style->length_in_pt($style->margin_left) + (float)$style->length_in_pt($style->padding_right)) {
+        if ($outside_right_floating_width > 0 && $outside_right_floating_width > ((float)$style->length_in_pt($style->margin_left) + (float)$style->length_in_pt($style->padding_right))) {
             $this->right += $outside_right_floating_width - (float)$style->length_in_pt($style->margin_right) - (float)$style->length_in_pt($style->padding_right);
         }
     }
@@ -283,16 +282,4 @@ class LineBox {
 
         return $s;
     }
-    /*function __get($prop) {
-      if (!isset($this->{"_$prop"})) return;
-      return $this->{"_$prop"};
-    }*/
 }
-
-/*
-class LineBoxList implements Iterator {
-  private $_p = 0;
-  private $_lines = array();
-
-}
-*/

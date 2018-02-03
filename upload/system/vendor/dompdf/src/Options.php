@@ -1,4 +1,5 @@
 <?php
+
 namespace Dompdf;
 
 class Options {
@@ -83,7 +84,7 @@ class Options {
      * The default paper size.
      *
      * North America standard is "letter"; other countries generally "a4"
-     * @see Dompdf\Adapter\CPDF::PAPER_SIZES for valid sizes
+     * @see \Dompdf\Adapter\CPDF::PAPER_SIZES for valid sizes
      *
      * @var string
      */
@@ -135,7 +136,7 @@ class Options {
      *
      * @var float
      */
-    private $fontHeightRatio = 1.1;
+    private $fontHeightRatio = 1.0;
 
     /**
      * Enable embedded PHP
@@ -291,9 +292,12 @@ class Options {
     public function __construct(array $attributes = null) {
         $this->setChroot(realpath(__DIR__ . "/../"));
         $this->setRootDir($this->getChroot());
+
         $this->setTempDir(sys_get_temp_dir());
+
         $this->setFontDir($this->chroot . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "fonts");
         $this->setFontCache($this->getFontDir());
+
         $this->setLogOutputFile($this->getTempDir() . DIRECTORY_SEPARATOR . "log.htm");
 
         if (null !== $attributes) {
@@ -510,6 +514,7 @@ class Options {
      */
     public function setChroot($chroot) {
         $this->chroot = $chroot;
+
         return $this;
     }
 
@@ -526,6 +531,7 @@ class Options {
      */
     public function setDebugCss($debugCss) {
         $this->debugCss = $debugCss;
+
         return $this;
     }
 
@@ -542,6 +548,7 @@ class Options {
      */
     public function setDebugKeepTemp($debugKeepTemp) {
         $this->debugKeepTemp = $debugKeepTemp;
+
         return $this;
     }
 
@@ -558,6 +565,7 @@ class Options {
      */
     public function setDebugLayout($debugLayout) {
         $this->debugLayout = $debugLayout;
+
         return $this;
     }
 
@@ -574,6 +582,7 @@ class Options {
      */
     public function setDebugLayoutBlocks($debugLayoutBlocks) {
         $this->debugLayoutBlocks = $debugLayoutBlocks;
+
         return $this;
     }
 
@@ -590,6 +599,7 @@ class Options {
      */
     public function setDebugLayoutInline($debugLayoutInline) {
         $this->debugLayoutInline = $debugLayoutInline;
+
         return $this;
     }
 
@@ -606,6 +616,7 @@ class Options {
      */
     public function setDebugLayoutLines($debugLayoutLines) {
         $this->debugLayoutLines = $debugLayoutLines;
+
         return $this;
     }
 
@@ -622,6 +633,7 @@ class Options {
      */
     public function setDebugLayoutPaddingBox($debugLayoutPaddingBox) {
         $this->debugLayoutPaddingBox = $debugLayoutPaddingBox;
+
         return $this;
     }
 
@@ -638,6 +650,7 @@ class Options {
      */
     public function setDebugPng($debugPng) {
         $this->debugPng = $debugPng;
+
         return $this;
     }
 
@@ -654,6 +667,7 @@ class Options {
      */
     public function setDefaultFont($defaultFont) {
         $this->defaultFont = $defaultFont;
+
         return $this;
     }
 
@@ -670,6 +684,7 @@ class Options {
      */
     public function setDefaultMediaType($defaultMediaType) {
         $this->defaultMediaType = $defaultMediaType;
+
         return $this;
     }
 
@@ -686,6 +701,7 @@ class Options {
      */
     public function setDefaultPaperSize($defaultPaperSize) {
         $this->defaultPaperSize = $defaultPaperSize;
+
         return $this;
     }
 
@@ -695,6 +711,7 @@ class Options {
      */
     public function setDefaultPaperOrientation($defaultPaperOrientation) {
         $this->defaultPaperOrientation = $defaultPaperOrientation;
+
         return $this;
     }
 
@@ -718,6 +735,7 @@ class Options {
      */
     public function setDpi($dpi) {
         $this->dpi = $dpi;
+
         return $this;
     }
 
@@ -734,6 +752,7 @@ class Options {
      */
     public function setFontCache($fontCache) {
         $this->fontCache = $fontCache;
+
         return $this;
     }
 
@@ -750,6 +769,7 @@ class Options {
      */
     public function setFontDir($fontDir) {
         $this->fontDir = $fontDir;
+
         return $this;
     }
 
@@ -766,6 +786,7 @@ class Options {
      */
     public function setFontHeightRatio($fontHeightRatio) {
         $this->fontHeightRatio = $fontHeightRatio;
+
         return $this;
     }
 
@@ -782,6 +803,7 @@ class Options {
      */
     public function setIsFontSubsettingEnabled($isFontSubsettingEnabled) {
         $this->isFontSubsettingEnabled = $isFontSubsettingEnabled;
+
         return $this;
     }
 
@@ -805,6 +827,7 @@ class Options {
      */
     public function setIsHtml5ParserEnabled($isHtml5ParserEnabled) {
         $this->isHtml5ParserEnabled = $isHtml5ParserEnabled;
+
         return $this;
     }
 
@@ -828,6 +851,7 @@ class Options {
      */
     public function setIsJavascriptEnabled($isJavascriptEnabled) {
         $this->isJavascriptEnabled = $isJavascriptEnabled;
+
         return $this;
     }
 
@@ -851,6 +875,7 @@ class Options {
      */
     public function setIsPhpEnabled($isPhpEnabled) {
         $this->isPhpEnabled = $isPhpEnabled;
+
         return $this;
     }
 
@@ -874,6 +899,7 @@ class Options {
      */
     public function setIsRemoteEnabled($isRemoteEnabled) {
         $this->isRemoteEnabled = $isRemoteEnabled;
+
         return $this;
     }
 
@@ -897,6 +923,7 @@ class Options {
      */
     public function setLogOutputFile($logOutputFile) {
         $this->logOutputFile = $logOutputFile;
+
         return $this;
     }
 
@@ -913,6 +940,7 @@ class Options {
      */
     public function setTempDir($tempDir) {
         $this->tempDir = $tempDir;
+
         return $this;
     }
 
@@ -929,6 +957,7 @@ class Options {
      */
     public function setRootDir($rootDir) {
         $this->rootDir = $rootDir;
+
         return $this;
     }
 

@@ -5,9 +5,8 @@
  * @author  Benj Carson <benjcarson@digitaljunkies.ca>
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- *
- * Overclocked Edition © 2018 | Villagedefrance
  */
+
 namespace Dompdf\Adapter;
 
 use Dompdf\Canvas;
@@ -257,7 +256,8 @@ class GD implements Canvas {
      * @param $opacity
      * @param $mode
      */
-    public function set_opacity($opacity, $mode = "Normal") { }
+    public function set_opacity($opacity, $mode = "Normal") {
+    }
 
     /**
      * Allocate a new color.  Allocate with GD as needed and store
@@ -347,6 +347,7 @@ class GD implements Canvas {
         $y1 = $this->_upscale($y1);
         $x2 = $this->_upscale($x2);
         $y2 = $this->_upscale($y2);
+
         $width = $this->_upscale($width);
 
         $c = $this->_allocate_color($color);
@@ -365,6 +366,7 @@ class GD implements Canvas {
                 }
             } else {
                 $i = 0;
+
                 foreach ($style as $length) {
                     if ($i % 2 == 0) {
                         // 'On' pattern
@@ -404,7 +406,8 @@ class GD implements Canvas {
      * @param float $width
      * @param array $style
      */
-    public function arc($x1, $y1, $r1, $r2, $astart, $aend, $color, $width, $style = array()) { }
+    public function arc($x1, $y1, $r1, $r2, $astart, $aend, $color, $width, $style = array()) {
+    }
 
     /**
      * Draws a rectangle at x1,y1 with width w and height h
@@ -483,14 +486,17 @@ class GD implements Canvas {
      * @param float $w
      * @param float $h
      */
-    public function clipping_rectangle($x1, $y1, $w, $h) { }
+    public function clipping_rectangle($x1, $y1, $w, $h) {
+    }
 
-    public function clipping_roundrectangle($x1, $y1, $w, $h, $rTL, $rTR, $rBR, $rBL) { }
+    public function clipping_roundrectangle($x1, $y1, $w, $h, $rTL, $rTR, $rBR, $rBL) {
+    }
 
     /**
      * Ends the last clipping shape
      */
-    public function clipping_end() { }
+    public function clipping_end() {
+    }
 
     /**
      *
@@ -511,7 +517,8 @@ class GD implements Canvas {
      * @param $x
      * @param $y
      */
-    public function rotate($angle, $x, $y) { }
+    public function rotate($angle, $x, $y) {
+    }
 
     /**
      * @param $angle_x
@@ -519,7 +526,8 @@ class GD implements Canvas {
      * @param $x
      * @param $y
      */
-    public function skew($angle_x, $angle_y, $x, $y) { }
+    public function skew($angle_x, $angle_y, $x, $y) {
+    }
 
     /**
      * @param $s_x
@@ -527,13 +535,15 @@ class GD implements Canvas {
      * @param $x
      * @param $y
      */
-    public function scale($s_x, $s_y, $x, $y) { }
+    public function scale($s_x, $s_y, $x, $y) {
+    }
 
     /**
      * @param $t_x
      * @param $t_y
      */
-    public function translate($t_x, $t_y) { }
+    public function translate($t_x, $t_y) {
+    }
 
     /**
      * @param $a
@@ -543,7 +553,8 @@ class GD implements Canvas {
      * @param $e
      * @param $f
      */
-    public function transform($a, $b, $c, $d, $e, $f) { }
+    public function transform($a, $b, $c, $d, $e, $f) {
+    }
 
     /**
      * Draws a polygon
@@ -677,7 +688,7 @@ class GD implements Canvas {
 
         if (!function_exists($func_name)) {
             if (!method_exists("Dompdf\Helpers", $func_name)) {
-                throw new \Exception("Function $func_name() not found. Cannot convert $img_type image: $img_url. Please install the image PHP extension.");
+                throw new \Exception("Function $func_name() not found. Cannot convert $type image: $img_url. Please install the image PHP extension.");
             }
 
             $func_name = "\\Dompdf\\Helpers::" . $func_name;
@@ -729,8 +740,7 @@ class GD implements Canvas {
         $c = $this->_allocate_color($color);
 
         // imagettftext() converts numeric entities to their respective
-        // character. Preserve any originally double encoded entities to be
-        // represented as is.
+        // character. Preserve any originally double encoded entities to be represented as is.
         // eg: &amp;#160; will render &#160; rather than its character.
         $text = preg_replace('/&(#(?:x[a-fA-F0-9]+|[0-9]+);)/', '&#38;\1', $text);
 
@@ -738,18 +748,22 @@ class GD implements Canvas {
 
         $font = $this->get_ttf_file($font);
 
-        //word spacing
+        // word spacing?
         imagettftext($this->get_image(), $size, $angle, $x, $y + $h, $c, $font, $text);
     }
 
-    public function javascript($code) { }
+    public function javascript($code) {
+        // Not implemented
+    }
 
     /**
      * Add a named destination (similar to <a name="foo">...</a> in html)
      *
      * @param string $anchorname The name of the named destination
      */
-    public function add_named_dest($anchorname) { }
+    public function add_named_dest($anchorname) {
+        // Not implemented
+    }
 
     /**
      * Add a link to the pdf
@@ -760,7 +774,9 @@ class GD implements Canvas {
      * @param float $width The width of the link
      * @param float $height The height of the link
      */
-    public function add_link($url, $x, $y, $width, $height) { }
+    public function add_link($url, $x, $y, $width, $height) {
+        // Not implemented
+    }
 
     /**
      * Add meta information to the PDF
@@ -768,13 +784,17 @@ class GD implements Canvas {
      * @param string $label label of the value (Creator, Producer, etc.)
      * @param string $value the text to set
      */
-    public function add_info($label, $value) { }
+    public function add_info($label, $value) {
+        // Not implemented
+    }
 
     /**
      * @param string $view
      * @param array $options
      */
-    public function set_default_view($view, $options = array()) { }
+    public function set_default_view($view, $options = array()) {
+        // Not implemented
+    }
 
     /**
      * Calculates text size, in points
@@ -799,7 +819,7 @@ class GD implements Canvas {
 
         $text = mb_encode_numericentity($text, array(0x0080, 0xffff, 0, 0xffff), 'UTF-8');
 
-        // word spacing
+        // word spacing?
         list($x1, , $x2) = imagettfbbox($size, 0, $font, $text);
 
         // Add additional 1pt to prevent text overflow issues
@@ -811,7 +831,7 @@ class GD implements Canvas {
      * @return string
      */
     public function get_ttf_file($font) {
-        if ( stripos($font, ".ttf") === false ) {
+        if (stripos($font, ".ttf") === false) {
             $font .= ".ttf";
         }
 
@@ -854,8 +874,9 @@ class GD implements Canvas {
         $font = $this->get_ttf_file($font);
         $ratio = $this->_dompdf->getOptions()->getFontHeightRatio();
 
-        // word spacing
+        // word spacing?
         list(, $y2, , , , $y1) = imagettfbbox($size, 0, $font, "MXjpqytfhl"); // Test string with ascenders, descenders and caps
+
         return ($y2 - $y1) * $ratio;
     }
 
@@ -881,6 +902,7 @@ class GD implements Canvas {
         $this->_img = imagecreatetruecolor($this->_actual_width, $this->_actual_height);
 
         $this->_bg_color = $this->_allocate_color($this->_bg_color_array);
+
         imagealphablending($this->_img, true);
         imagesavealpha($this->_img, true);
         imagefill($this->_img, 0, 0, $this->_bg_color);
@@ -888,25 +910,105 @@ class GD implements Canvas {
         $this->_imgs[] = $this->_img;
     }
 
-    public function open_object() { }
+    public function open_object() {
+        // Not implemented
+    }
 
-    public function close_object() { }
+    public function close_object() {
+        // Not implemented
+    }
 
-    public function add_object() { }
+    public function add_object() {
+        // Not implemented
+    }
 
-    public function page_text() { }
+    public function page_text() {
+        // Not implemented
+    }
 
     /**
-     * Streams the image directly to the browser
+     * Streams the image to the client.
      *
-     * @param string $filename the name of the image file (ignored)
-     * @param array $options associative array, 'type' => jpeg|jpg|png, 'quality' => 0 - 100 (jpeg only)
+     * @param string $filename The filename to present to the client.
+     * @param array $options Associative array: 'type' => jpeg|jpg|png; 'quality' => 0 - 100 (JPEG only);
+     *     'page' => Number of the page to output (defaults to the first); 'Attachment': 1 or 0 (default 1).
      */
-    public function stream($filename, $options = null) {
-        $img = $this->_imgs[0];
+    public function stream($filename, $options = array()) {
+        if (headers_sent()) {
+            die("Unable to stream image: headers already sent");
+        }
 
-        if (isset($options['page']) && isset($this->_imgs[$options['page'] - 1])) {
-            $img = $this->_imgs[$options['page'] - 1];
+        if (!isset($options["type"])) {
+            $options["type"] = "png";
+        }
+
+        if (!isset($options["Attachment"])) {
+            $options["Attachment"] = true;
+        }
+
+        $type = strtolower($options["type"]);
+
+        switch ($type) {
+            case "jpg":
+            case "jpeg":
+                $contentType = "image/jpeg";
+                $extension = ".jpg";
+                break;
+            case "png":
+            default:
+                $contentType = "image/png";
+                $extension = ".png";
+                break;
+        }
+
+        header("Cache-Control: private");
+        header("Content-Type: $contentType");
+
+        $filename = str_replace(array("\n", "'"), "", basename($filename, ".$type")) . $extension;
+        $attachment = $options["Attachment"] ? "attachment" : "inline";
+
+        header(Helpers::buildContentDispositionHeader($attachment, $filename));
+
+        $this->_output($options);
+        flush();
+    }
+
+    /**
+     * Returns the image as a string.
+     *
+     * @param array $options Associative array: 'type' => jpeg|jpg|png; 'quality' => 0 - 100 (JPEG only);
+     *     'page' => Number of the page to output (defaults to the first).
+     * @return string
+     */
+    public function output($options = array()) {
+        ob_start();
+
+        $this->_output($options);
+
+        return ob_get_clean();
+    }
+
+    /**
+     * Outputs the image stream directly.
+     *
+     * @param array $options Associative array: 'type' => jpeg|jpg|png; 'quality' => 0 - 100 (JPEG only);
+     *     'page' => Number of the page to output (defaults to the first).
+     */
+    private function _output($options = array()) {
+        if (!isset($options["type"])) {
+            $options["type"] = "png";
+        }
+
+        if (!isset($options["page"])) {
+            $options["page"] = 1;
+        }
+
+        $type = strtolower($options["type"]);
+
+        if (isset($this->_imgs[$options["page"] - 1])) {
+            $img = $this->_imgs[$options["page"] - 1];
+        } else {
+            $img = $this->_imgs[0];
         }
 
         // Perform any antialiasing
@@ -914,50 +1016,11 @@ class GD implements Canvas {
             $dst_w = $this->_actual_width / $this->_aa_factor;
             $dst_h = $this->_actual_height / $this->_aa_factor;
             $dst = imagecreatetruecolor($dst_w, $dst_h);
-            imagecopyresampled($dst, $img, 0, 0, 0, 0,
-                $dst_w, $dst_h,
-                $this->_actual_width, $this->_actual_height);
+
+            imagecopyresampled($dst, $img, 0, 0, 0, 0, $dst_w, $dst_h, $this->_actual_width, $this->_actual_height);
         } else {
             $dst = $img;
         }
-
-        if (!isset($options["type"])) {
-            $options["type"] = "png";
-        }
-
-        $type = strtolower($options["type"]);
-
-        header("Cache-Control: private");
-
-        $filename = str_replace(array("\n", "'"), "", basename($filename, ".$type"));
-
-        switch ($type) {
-            case "jpg":
-            case "jpeg":
-                $filename .= ".jpg";
-                break;
-
-            case "png":
-            default:
-                $filename .= ".png";
-                break;
-        }
-
-        $attachment = (isset($options["Attachment"]) && $options["Attachment"]) ? "attachment" : "inline";
-
-        // detect the character encoding of the incoming file
-        $encoding = mb_detect_encoding($filename);
-        $fallbackfilename = mb_convert_encoding($filename, "ISO-8859-1", $encoding);
-        $encodedfallbackfilename = rawurlencode($fallbackfilename);
-        $encodedfilename = rawurlencode($filename);
-
-        $contentDisposition = "Content-Disposition: $attachment; filename=\"" . $encodedfallbackfilename . "\"";
-
-        if ($encodedfallbackfilename !== $encodedfilename) {
-            $contentDisposition .= "; filename*=UTF-8''$encodedfilename";
-        }
-
-        header($contentDisposition);
 
         switch ($type) {
             case "jpg":
@@ -966,62 +1029,7 @@ class GD implements Canvas {
                     $options["quality"] = 75;
                 }
 
-                header("Content-type: image/jpeg");
-                imagejpeg($dst, '', $options["quality"]);
-                break;
-
-            case "png":
-            default:
-                header("Content-type: image/png");
-                imagepng($dst);
-                break;
-        }
-
-        if ($this->_aa_factor != 1) {
-            imagedestroy($dst);
-        }
-    }
-
-    /**
-     * Returns the PNG as a string
-     *
-     * @param array $options associative array, 'type' => jpeg|jpg|png, 'quality' => 0 - 100 (jpeg only)
-     * @return string
-     */
-    public function output($options = null) {
-        $img = $this->_imgs[0];
-
-        if (isset($options['page']) && isset($this->_imgs[$options['page'] - 1])) {
-            $img = $this->_imgs[$options['page'] - 1];
-        }
-
-        if ($this->_aa_factor != 1) {
-            $dst_w = $this->_actual_width / $this->_aa_factor;
-            $dst_h = $this->_actual_height / $this->_aa_factor;
-            $dst = imagecreatetruecolor($dst_w, $dst_h);
-            imagecopyresampled($dst, $img, 0, 0, 0, 0,
-                $dst_w, $dst_h,
-                $this->_actual_width, $this->_actual_height);
-        } else {
-            $dst = $img;
-        }
-
-        if (!isset($options["type"])) {
-            $options["type"] = "png";
-        }
-
-        $type = $options["type"];
-
-        ob_start();
-
-        switch ($type) {
-            case "jpg":
-            case "jpeg":
-                if (!isset($options["quality"])) {
-                    $options["quality"] = 75;
-                }
-
-                imagejpeg($dst, '', $options["quality"]);
+                imagejpeg($dst, null, $options["quality"]);
                 break;
             case "png":
             default:
@@ -1029,12 +1037,8 @@ class GD implements Canvas {
                 break;
         }
 
-        $image = ob_get_clean();
-
         if ($this->_aa_factor != 1) {
             imagedestroy($dst);
         }
-
-        return $image;
     }
 }

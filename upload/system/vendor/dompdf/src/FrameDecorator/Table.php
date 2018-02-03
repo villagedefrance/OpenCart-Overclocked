@@ -5,6 +5,7 @@
  * @author  Benj Carson <benjcarson@digitaljunkies.ca>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\FrameDecorator;
 
 use Dompdf\Cellmap;
@@ -19,6 +20,7 @@ use Dompdf\Frame\Factory;
  * @package dompdf
  */
 class Table extends AbstractFrameDecorator {
+
     public static $VALID_CHILDREN = array(
         "table-row-group",
         "table-row",
@@ -106,8 +108,6 @@ class Table extends AbstractFrameDecorator {
         $this->_reflower->reset();
     }
 
-    //........................................................................
-
     /**
      * split the table at $row.  $row and all subsequent rows will be
      * added to the clone.  This method is overidden in order to remove
@@ -132,7 +132,6 @@ class Table extends AbstractFrameDecorator {
 
             // Insert copies of the table headers before $child
             foreach ($this->_headers as $header) {
-
                 $new_header = $header->deep_copy();
 
                 if (is_null($first_header)) {
@@ -294,16 +293,16 @@ class Table extends AbstractFrameDecorator {
                     $style->inherit($this->get_style());
 
                     // Lookup styles for tbody tags.  If the user wants styles to work
-                    // better, they should make the tbody explicit... I'm not going to
-                    // try to guess what they intended.
+                    // better, they should make the tbody explicit... I'm not going to try to guess what they intended.
                     if ($tbody_style = $css->lookup("tbody")) {
                         $style->merge($tbody_style);
                     }
+
                     $style->display = 'table-row-group';
 
-                    // Okay, I have absolutely no idea why I need this clone here, but
-                    // if it's omitted, php (as of 2004-07-28) segfaults.
+                    // Okay, I have absolutely no idea why I need this clone here, but if it's omitted, php (as of 2004-07-28) segfaults.
                     $frame->set_style($style);
+
                     $table_row_group = Factory::decorate_frame($frame, $this->_dompdf, $this->_root);
 
                     // Create an anonymous table row
@@ -315,15 +314,14 @@ class Table extends AbstractFrameDecorator {
                     $style->inherit($this->get_style());
 
                     // Lookup styles for tr tags.  If the user wants styles to work
-                    // better, they should make the tr explicit... I'm not going to
-                    // try to guess what they intended.
+                    // better, they should make the tr explicit... I'm not going to try to guess what they intended.
                     if ($tr_style = $css->lookup("tr")) {
                         $style->merge($tr_style);
                     }
+
                     $style->display = 'table-row';
 
-                    // Okay, I have absolutely no idea why I need this clone here, but
-                    // if it's omitted, php (as of 2004-07-28) segfaults.
+                    // Okay, I have absolutely no idea why I need this clone here, but if it's omitted, php (as of 2004-07-28) segfaults.
                     $frame->set_style(clone $style);
                     $table_row = Factory::decorate_frame($frame, $this->_dompdf, $this->_root);
 
@@ -368,8 +366,6 @@ class Table extends AbstractFrameDecorator {
             $this->move_after($frame);
         }
     }
-
-    //........................................................................
 
     /**
      * Moves the specified frame and it's corresponding node outside of

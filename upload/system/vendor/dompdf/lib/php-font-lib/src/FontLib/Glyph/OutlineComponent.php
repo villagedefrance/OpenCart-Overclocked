@@ -23,10 +23,6 @@ class OutlineComponent {
   public $instructions;
 
   function getMatrix() {
-    return array(
-      $this->a, $this->b,
-      $this->c, $this->d,
-      $this->e, $this->f,
-    );
+    return array($this->a, $this->b, $this->c, $this->d, $this->e, $this->f);
   }
 }

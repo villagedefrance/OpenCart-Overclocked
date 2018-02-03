@@ -5,6 +5,7 @@
  * @author  Benj Carson <benjcarson@digitaljunkies.ca>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\FrameDecorator;
 
 use Dompdf\Dompdf;
@@ -16,6 +17,7 @@ use Dompdf\Frame;
  * @package dompdf
  */
 class NullFrameDecorator extends AbstractFrameDecorator {
+
     /**
      * NullFrameDecorator constructor.
      * @param Frame $frame

@@ -7,13 +7,12 @@
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\FrameDecorator;
 
 use Dompdf\Dompdf;
 use Dompdf\Frame;
 use Dompdf\Exception;
-use DOMText;
-use Dompdf\FontMetrics;
 
 /**
  * Decorates Frame objects for text layout
@@ -45,8 +44,6 @@ class Text extends AbstractFrameDecorator {
         $this->_text_spacing = null;
     }
 
-    // Accessor methods
-
     /**
      * @return null
      */
@@ -59,23 +56,8 @@ class Text extends AbstractFrameDecorator {
      */
     function get_text() {
         // this should be in a child class (and is incorrect)
-//    if ( $this->_frame->get_style()->content !== "normal" ) {
-//      $this->_frame->get_node()->data = $this->_frame->get_style()->content;
-//      $this->_frame->get_style()->content = "normal";
-//    }
-
-//      Helpers::pre_r("---");
-//      $style = $this->_frame->get_style();
-//      var_dump($text = $this->_frame->get_node()->data);
-//      var_dump($asc = utf8_decode($text));
-//      for ($i = 0; $i < strlen($asc); $i++)
-//        Helpers::pre_r("$i: " . $asc[$i] . " - " . ord($asc[$i]));
-//      Helpers::pre_r("width: " . $this->_dompdf->getFontMetrics()->getTextWidth($text, $style->font_family, $style->font_size));
-
         return $this->_frame->get_node()->data;
     }
-
-    //........................................................................
 
     /**
      * Vertical margins & padding do not apply to text frames
@@ -96,14 +78,6 @@ class Text extends AbstractFrameDecorator {
         $style = $this->get_parent()->get_style();
         $font = $style->font_family;
         $size = $style->font_size;
-
-        /*
-        Helpers::pre_r('-----');
-        Helpers::pre_r($style->line_height);
-        Helpers::pre_r($style->font_size);
-        Helpers::pre_r($this->_dompdf->getFontMetrics()->getFontHeight($font, $size));
-        Helpers::pre_r(($style->line_height / $size) * $this->_dompdf->getFontMetrics()->getFontHeight($font, $size));
-        */
 
         return ($style->line_height / ($size > 0 ? $size : 1)) * $this->_dompdf->getFontMetrics()->getFontHeight($font, $size);
     }
@@ -139,15 +113,15 @@ class Text extends AbstractFrameDecorator {
     function recalculate_width() {
         $style = $this->get_style();
         $text = $this->get_text();
+
         $size = $style->font_size;
         $font = $style->font_family;
+
         $word_spacing = (float)$style->length_in_pt($style->word_spacing);
         $char_spacing = (float)$style->length_in_pt($style->letter_spacing);
 
         return $style->width = $this->_dompdf->getFontMetrics()->getTextWidth($text, $font, $size, $word_spacing, $char_spacing);
     }
-
-    // Text manipulation methods
 
     /**
      * split the text in this frame at the offset specified.  The remaining

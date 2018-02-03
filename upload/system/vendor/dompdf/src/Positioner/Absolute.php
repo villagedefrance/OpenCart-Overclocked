@@ -73,7 +73,7 @@ class Absolute extends AbstractPositioner {
                 $x += (float)$left;
             } else {
                 if ($orig_width === "auto") {
-                    // D - TODO change width
+                    // D - change width
                     $x += (float)$left;
                 } else {
                     // H - Everything is fixed: left + width win
@@ -102,7 +102,7 @@ class Absolute extends AbstractPositioner {
                 $y += (float)$top;
             } else {
                 if ($orig_height === "auto") {
-                    // D - TODO change height
+                    // D - change height
                     $y += (float)$top;
                 } else {
                     // H - Everything is fixed: top + height win

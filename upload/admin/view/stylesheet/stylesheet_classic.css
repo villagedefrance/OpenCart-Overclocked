@@ -615,7 +615,7 @@ ul.menu ul {
 }
 .tooltip {
 	background: transparent url('../image/tooltip.png') 10px center no-repeat;
-	border: none;
+	border: 1px solid #D7E6F4;
 	color: #333;
 }
 .close, .success .close, .warning .close, .attention .close, .tooltip .close {

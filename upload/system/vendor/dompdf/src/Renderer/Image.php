@@ -6,6 +6,7 @@
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\Renderer;
 
 use Dompdf\Frame;
@@ -67,7 +68,7 @@ class Image extends Block {
                 $style->border_top_width,
                 $style->border_right_width,
                 $style->border_bottom_width,
-                $style->border_left_width
+                $style->border_left_width,
             );
 
             // we have to get the "inner" radius
@@ -97,16 +98,8 @@ class Image extends Block {
             $font = $style->font_family;
             $size = $style->font_size;
             $spacing = $style->word_spacing;
-            $this->_canvas->text(
-                $x,
-                $y,
-                $alt,
-                $font,
-                $size,
-                $style->color,
-                $spacing
-            );
 
+            $this->_canvas->text($x, $y, $alt, $font, $size, $style->color, $spacing);
         } else {
             $this->_canvas->image($src, $x, $y, $w, $h, $style->image_resolution);
         }
@@ -118,7 +111,8 @@ class Image extends Block {
         if ($msg = $frame->get_image_msg()) {
             $parts = preg_split("/\s*\n\s*/", $msg);
             $height = 10;
-            $_y = $alt ? $y + $h - count($parts) * $height : $y;
+
+            $_y = ($alt) ? $y + $h - count($parts) * $height : $y;
 
             foreach ($parts as $i => $_part) {
                 $this->_canvas->text($x, $_y + $i * $height, $_part, "times", $height * 0.8, array(0.5, 0.5, 0.5));
@@ -135,7 +129,7 @@ class Image extends Block {
 
         $id = $frame->get_node()->getAttribute("id");
 
-        if (strlen($id) > 0) {
+        if (strlen($id) > 0)  {
             $this->_canvas->add_named_dest($id);
         }
     }

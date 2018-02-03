@@ -62,6 +62,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->restore();
     }
 
@@ -69,6 +70,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->scale($x, $y);
     }
 
@@ -76,6 +78,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->rotate($angle);
     }
 
@@ -83,6 +86,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->translate($x, $y);
     }
 
@@ -90,6 +94,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->concat($a, $b, $c, $d, $e, $f);
     }
 
@@ -104,6 +109,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->closepath();
     }
 
@@ -111,6 +117,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->fill_stroke();
     }
 
@@ -118,6 +125,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->clip();
     }
 
@@ -149,7 +157,7 @@ class SurfaceGmagick implements SurfaceInterface {
                 $data = base64_decode(substr($data, 7));
             }
 
-            $image = tempnam("", "svg");
+            $image = tempnam(sys_get_temp_dir(), "svg");
 
             file_put_contents($image, $data);
         }
@@ -165,6 +173,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->lineto($x, $y);
     }
 
@@ -172,6 +181,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->moveto($x, $y);
     }
 
@@ -186,6 +196,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->curveto($cp1x, $cp1y, $cp2x, $cp2y, $x, $y);
     }
 
@@ -199,6 +210,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->arc($x, $y, $radius, $startAngle, $endAngle);
     }
 
@@ -206,6 +218,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->circle($x, $y, $radius);
     }
 
@@ -213,6 +226,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->ellipse($x, $y, $radiusX, $radiusY);
     }
 
@@ -220,6 +234,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->rect($x, $y, $w, $h);
         $this->fill();
     }
@@ -228,6 +243,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->rect($x, $y, $w, $h);
     }
 
@@ -235,6 +251,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->fill();
     }
 
@@ -242,6 +259,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->rect($x, $y, $w, $h);
         $this->stroke();
     }
@@ -250,6 +268,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->stroke();
     }
 
@@ -264,6 +283,7 @@ class SurfaceGmagick implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $style = $this->getStyle();
         $font = $this->getFont($style->fontFamily, $style->fontStyle);
 

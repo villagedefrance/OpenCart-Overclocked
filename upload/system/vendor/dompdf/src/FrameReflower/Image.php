@@ -6,6 +6,7 @@
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\FrameReflower;
 
 use Dompdf\Helpers;
@@ -32,14 +33,6 @@ class Image extends AbstractFrameReflower {
      */
     function reflow(BlockFrameDecorator $block = null) {
         $this->_frame->position();
-
-        //FLOAT
-        //$frame = $this->_frame;
-        //$page = $frame->get_root();
-
-        //if ($frame->get_style()->float !== "none" ) {
-        //  $page->add_floating_frame($this);
-        //}
 
         // Set the frame's width
         $this->get_min_max_width();
@@ -73,12 +66,6 @@ class Image extends AbstractFrameReflower {
         $width_forced = true;
         $height_forced = true;
 
-        //own style auto or invalid value: use natural size in px
-        //own style value: ignore suffix text including unit, use given number as px
-        //own style %: walk up parent chain until found available space in pt; fill available space
-        //
-        //special ignored unit: e.g. 10ex: e treated as exponent; x ignored; 10e completely invalid ->like auto
-
         $width = ($style->width > 0 ? $style->width : 0);
 
         if (Helpers::is_percent($width)) {
@@ -93,7 +80,7 @@ class Image extends AbstractFrameReflower {
                 }
             }
 
-            $width = ((float)rtrim($width, "%") * $t) / 100; //maybe 0
+            $width = ((float)rtrim($width, "%") * $t) / 100;
 
         } else {
             // Don't set image original size if "%" branch was 0 or size not given.
@@ -110,14 +97,14 @@ class Image extends AbstractFrameReflower {
 
             for ($f = $this->_frame->get_parent(); $f; $f = $f->get_parent()) {
                 $f_style = $f->get_style();
-                $t = $f_style->length_in_pt($f_style->height);
+                $t = (float)$f_style->length_in_pt($f_style->height);
 
                 if ($t != 0) {
                     break;
                 }
             }
 
-            $height = ((float)rtrim($height, "%") * $t) / 100; //maybe 0
+            $height = ((float)rtrim($height, "%") * $t) / 100;
 
         } else {
             // Don't set image original size if "%" branch was 0 or size not given.
@@ -136,17 +123,13 @@ class Image extends AbstractFrameReflower {
             // See also ListBulletImage::__construct
             if ($width == 0 && $height == 0) {
                 $dpi = $this->_frame->get_dompdf()->getOptions()->getDpi();
-
                 $width = (float)($img_width * 72) / $dpi;
                 $height = (float)($img_height * 72) / $dpi;
-
                 $width_forced = false;
                 $height_forced = false;
-
             } elseif ($height == 0 && $width != 0) {
                 $height_forced = false;
                 $height = ($width / $img_width) * $img_height; //keep aspect ratio
-
             } elseif ($width == 0 && $height != 0) {
                 $width_forced = false;
                 $width = ($height / $img_height) * $img_width; //keep aspect ratio
@@ -159,6 +142,7 @@ class Image extends AbstractFrameReflower {
 
             $min_width = $style->length_in_pt($style->min_width, $w);
             $max_width = $style->length_in_pt($style->max_width, $w);
+
             $min_height = $style->length_in_pt($style->min_height, $h);
             $max_height = $style->length_in_pt($style->max_height, $h);
 

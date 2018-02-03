@@ -7,6 +7,7 @@
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\Image;
 
 use Dompdf\Dompdf;
@@ -21,7 +22,7 @@ use Dompdf\Exception\ImageException;
  */
 class Cache {
     /**
-     * Array of downloaded images. Cached so that identical images are
+     * Array of downloaded images.  Cached so that identical images are
      * not needlessly downloaded.
      *
      * @var array
@@ -34,6 +35,8 @@ class Cache {
      * @var string
      */
     public static $broken_image = "";
+
+    public static $error_message = "";
 
     /**
      * Current dompdf instance
@@ -65,6 +68,7 @@ class Cache {
         $remote = ($protocol && $protocol !== "file://") || ($parsed_url['protocol'] != "");
 
         $data_uri = strpos($parsed_url['protocol'], "data:") === 0;
+
         $full_url = null;
 
         $enable_remote = $dompdf->getOptions()->getIsRemoteEnabled();
@@ -98,7 +102,7 @@ class Cache {
 
                         // Image not found or invalid
                         if (strlen($image) == 0) {
-                            $msg = ($data_uri ? "Data-URI could not be parsed" : "Image not found");
+                            $msg = ($data_uri) ? "Data-URI could not be parsed" : "Image not found";
                             throw new ImageException($msg, E_WARNING);
                         } else {
                             //e.g. fetch.php?media=url.jpg&cache=1
@@ -109,6 +113,7 @@ class Cache {
                             file_put_contents($resolved_url, $image);
                         }
                     }
+
                 } else {
                     $resolved_url = Helpers::build_url($protocol, $host, $base_path, $url);
                 }
@@ -120,39 +125,14 @@ class Cache {
             } else {
                 list($width, $height, $type) = Helpers::dompdf_getimagesize($resolved_url, $dompdf->getHttpContext());
 
-                $image_mime = image_type_to_mime_type(exif_imagetype($resolved_url));
-
-                switch ($image_mime) {
-                  case "image/gif":
-                    $type = "gif";
-                    break;
-                  case "image/jpeg":
-                    $type = "jpeg";
-                    break;
-                  case "image/pjpeg":
-                    $type = "jpeg";
-                    break;
-                  case "image/png":
-                    $type = "png";
-                    break;
-                  case "image/x-png":
-                    $type = "png";
-                    break;
-                  case "image/bmp":
-                    $type = "bmp";
-                    break;
-                  case "image/svg+xml":
-                    $type = "svg";
-                    break;
-                }
-
                 // Known image type
                 if ($width && $height && in_array($type, array("gif", "png", "jpeg", "bmp", "svg"))) {
-                    //Don't put replacement image into cache - otherwise it will be deleted on cache cleanup.
-                    //Only execute on successful caching of remote image.
+                    // Don't put replacement image into cache - otherwise it will be deleted on cache cleanup.
+                    // Only execute on successful caching of remote image.
                     if ($enable_remote && $remote || $data_uri) {
                         self::$_cache[$full_url] = $resolved_url;
                     }
+
                 } else {
                     throw new ImageException("Image type unknown", E_WARNING);
                 }
@@ -161,7 +141,7 @@ class Cache {
         } catch (ImageException $e) {
             $resolved_url = self::$broken_image;
             $type = "png";
-            $message = "";
+            $message = self::$error_message;
 
             Helpers::record_warnings($e->getCode(), $e->getMessage() . " \n $url", $e->getFile(), $e->getLine());
         }
@@ -182,6 +162,7 @@ class Cache {
             if (self::$_dompdf->getOptions()->getDebugPng()) {
                 print "[clear unlink $file]";
             }
+
             unlink($file);
         }
 
@@ -190,32 +171,6 @@ class Cache {
 
     static function detect_type($file, $context = null) {
         list(, , $type) = Helpers::dompdf_getimagesize($file, $context);
-
-        $image_mime = image_type_to_mime_type(exif_imagetype($file));
-
-        switch ($image_mime) {
-          case "image/gif":
-            $type = "gif";
-            break;
-          case "image/jpeg":
-            $type = "jpeg";
-            break;
-          case "image/pjpeg":
-            $type = "jpeg";
-            break;
-          case "image/png":
-            $type = "png";
-            break;
-          case "image/x-png":
-            $type = "png";
-            break;
-          case "image/bmp":
-            $type = "bmp";
-            break;
-          case "image/svg+xml":
-            $type = "svg";
-            break;
-        }
 
         return $type;
     }

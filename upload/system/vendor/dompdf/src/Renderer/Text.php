@@ -7,10 +7,10 @@
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\Renderer;
 
 use Dompdf\Adapter\CPDF;
-use Dompdf\FontMetrics;
 use Dompdf\Frame;
 
 /**
@@ -76,20 +76,11 @@ class Text extends AbstractRenderer {
         $char_spacing = (float)$style->length_in_pt($style->letter_spacing);
         $width = $style->width;
 
-        /*$text = str_replace(
-          array("{PAGE_NUM}"),
-          array($this->_canvas->get_page_number()),
-          $text
-        );*/
-
-        $this->_canvas->text($x, $y, $text,
-            $font, $size,
-            $style->color, $word_spacing, $char_spacing);
+        $this->_canvas->text($x, $y, $text, $font, $size, $style->color, $word_spacing, $char_spacing);
 
         $line = $frame->get_containing_line();
 
-        // FIXME Instead of using the tallest frame to position,
-        // the decoration, the text should be well placed
+        // Instead of using the tallest frame to position, the decoration, the text should be well placed
         if (false && $line->tallest_frame) {
             $base_frame = $line->tallest_frame;
             $style = $base_frame->get_style();
@@ -100,6 +91,7 @@ class Text extends AbstractRenderer {
         $underline_offset = $size * self::UNDERLINE_OFFSET;
         $overline_offset = $size * self::OVERLINE_OFFSET;
         $linethrough_offset = $size * self::LINETHROUGH_OFFSET;
+
         $underline_position = -0.08;
 
         if ($this->_canvas instanceof CPDF) {
@@ -122,6 +114,7 @@ class Text extends AbstractRenderer {
 
         // Draw all applicable text-decorations.  Start with the root and work our way down.
         $p = $frame;
+
         $stack = array();
 
         while ($p = $p->get_parent()) {
@@ -135,7 +128,7 @@ class Text extends AbstractRenderer {
                 continue;
             }
 
-            $deco_y = $y; //$line->y;
+            $deco_y = $y;
             $color = $f->get_style()->color;
 
             switch ($text_deco) {
@@ -156,13 +149,16 @@ class Text extends AbstractRenderer {
             }
 
             $dx = 0;
+
             $x1 = $x - self::DECO_EXTENSION;
             $x2 = $x + $width + $dx + self::DECO_EXTENSION;
+
             $this->_canvas->line($x1, $deco_y, $x2, $deco_y, $color, $line_thickness);
         }
 
         if ($this->_dompdf->getOptions()->getDebugLayout() && $this->_dompdf->getOptions()->getDebugLayoutLines()) {
             $text_width = $this->_dompdf->getFontMetrics()->getTextWidth($text, $font, $frame_font_size);
+
             $this->_debug_layout(array($x, $y, $text_width + ($line->wc - 1) * $word_spacing, $frame_font_size), "orange", array(0.5, 0.5));
         }
     }

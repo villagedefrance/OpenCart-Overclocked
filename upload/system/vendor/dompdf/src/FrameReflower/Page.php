@@ -6,6 +6,7 @@
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\FrameReflower;
 
 use Dompdf\Frame;
@@ -56,6 +57,7 @@ class Page extends AbstractFrameReflower {
 
             $style = clone $page_styles["base"];
 
+            // RTL
             if ($odd && isset($page_styles[":right"])) {
                 $style->merge($page_styles[":right"]);
             }
@@ -64,6 +66,7 @@ class Page extends AbstractFrameReflower {
                 $style->merge($page_styles[":odd"]);
             }
 
+            // RTL
             if (!$odd && isset($page_styles[":left"])) {
                 $style->merge($page_styles[":left"]);
             }
@@ -89,7 +92,9 @@ class Page extends AbstractFrameReflower {
     function reflow(BlockFrameDecorator $block = null) {
         $fixed_children = array();
         $prev_child = null;
+
         $child = $this->_frame->get_first_child();
+
         $current_page = 0;
 
         while ($child) {
@@ -99,6 +104,7 @@ class Page extends AbstractFrameReflower {
 
             // Pages are only concerned with margins
             $cb = $this->_frame->get_containing_block();
+
             $left = (float)$style->length_in_pt($style->margin_left, $cb["w"]);
             $right = (float)$style->length_in_pt($style->margin_right, $cb["w"]);
             $top = (float)$style->length_in_pt($style->margin_top, $cb["h"]);
@@ -112,11 +118,13 @@ class Page extends AbstractFrameReflower {
             // Only if it's the first page, we save the nodes with a fixed position
             if ($current_page == 0) {
                 $children = $child->get_children();
+
                 foreach ($children as $onechild) {
                     if ($onechild->get_style()->position === "fixed") {
                         $fixed_children[] = $onechild->deep_copy();
                     }
                 }
+
                 $fixed_children = array_reverse($fixed_children);
             }
 
@@ -125,7 +133,7 @@ class Page extends AbstractFrameReflower {
             // Check for begin reflow callback
             $this->_check_callbacks("begin_page_reflow", $child);
 
-            // Insert a copy of each node which have a fixed position
+            //Insert a copy of each node which have a fixed position
             if ($current_page >= 1) {
                 foreach ($fixed_children as $fixed_child) {
                     $child->insert_child_before($fixed_child->deep_copy(), $child->get_first_child());
@@ -148,11 +156,11 @@ class Page extends AbstractFrameReflower {
                 $this->_frame->next_page();
             }
 
-            // Wait to dispose of all frames on the previous page
-            // so callback will have access to them
+            // Wait to dispose of all frames on the previous page so callback will have access to them
             if ($prev_child) {
                 $prev_child->dispose(true);
             }
+
             $prev_child = $child;
             $child = $next_child;
             $current_page++;
@@ -180,10 +188,7 @@ class Page extends AbstractFrameReflower {
         }
 
         if (is_array($this->_callbacks) && isset($this->_callbacks[$event])) {
-            $info = array(
-                0 => $this->_canvas, "canvas" => $this->_canvas,
-                1 => $frame, "frame"  => $frame,
-            );
+            $info = array(0 => $this->_canvas, "canvas" => $this->_canvas, 1 => $frame, "frame"  => $frame);
 
             $fs = $this->_callbacks[$event];
 

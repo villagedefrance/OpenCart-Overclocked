@@ -5,6 +5,7 @@
  * @author  Benj Carson <benjcarson@digitaljunkies.ca>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\FrameDecorator;
 
 use Dompdf\Dompdf;
@@ -82,7 +83,7 @@ class Block extends AbstractFrameDecorator {
     function set_current_line_number($line_number) {
         $line_boxes_count = count($this->_line_boxes);
         $cl = max(min($line_number, $line_boxes_count), 0);
-        return ($this->_cl = $line_number);
+        return ($this->_cl = $cl);
     }
 
     /**
@@ -106,22 +107,6 @@ class Block extends AbstractFrameDecorator {
 
         $frame->set_containing_line($this->_line_boxes[$this->_cl]);
 
-        /*
-        // Adds a new line after a block, only if certain conditions are met
-        if ((($frame instanceof Inline && $frame->get_node()->nodeName !== "br") ||
-              $frame instanceof Text && trim($frame->get_text())) &&
-            ($frame->get_prev_sibling() && $frame->get_prev_sibling()->get_style()->display === "block" &&
-             $this->_line_boxes[$this->_cl]->w > 0 )) {
-
-               $this->maximize_line_height( $style->length_in_pt($style->line_height), $frame );
-               $this->add_line();
-
-               // Add each child of the inline frame to the line individually
-               foreach ($frame->get_children() as $child)
-                 $this->add_frame_to_line( $child );
-        }
-        else*/
-
         // Handle inline frames (which are effectively wrappers)
         if ($frame instanceof Inline) {
             // Handle line breaks
@@ -133,8 +118,7 @@ class Block extends AbstractFrameDecorator {
             return;
         }
 
-        // Trim leading text if this is an empty line.  Kinda a hack to put it here,
-        // but what can you do...
+        // Trim leading text if this is an empty line. Kinda a hack to put it here, but what can you do...
         if ($this->get_current_line_box()->w == 0 && $frame->is_text_node() && !$frame->is_pre()) {
             $frame->set_text(ltrim($frame->get_text()));
             $frame->recalculate_width();
@@ -147,23 +131,6 @@ class Block extends AbstractFrameDecorator {
         if ($w == 0 && $frame->get_node()->nodeName !== "hr") {
             return;
         }
-
-        // Debugging code:
-        /*
-        Helpers::pre_r("\n<h3>Adding frame to line:</h3>");
-
-        //    Helpers::pre_r("Me: " . $this->get_node()->nodeName . " (" . spl_object_hash($this->get_node()) . ")");
-        //    Helpers::pre_r("Node: " . $frame->get_node()->nodeName . " (" . spl_object_hash($frame->get_node()) . ")");
-        if ( $frame->is_text_node() )
-          Helpers::pre_r('"'.$frame->get_node()->nodeValue.'"');
-
-        Helpers::pre_r("Line width: " . $this->_line_boxes[$this->_cl]->w);
-        Helpers::pre_r("Frame: " . get_class($frame));
-        Helpers::pre_r("Frame width: "  . $w);
-        Helpers::pre_r("Frame height: " . $frame->get_margin_height());
-        Helpers::pre_r("Containing block width: " . $this->get_containing_block("w"));
-        */
-        // End debugging
 
         $line = $this->_line_boxes[$this->_cl];
 
@@ -254,10 +221,8 @@ class Block extends AbstractFrameDecorator {
      * @param bool $br
      */
     function add_line($br = false) {
-//     if ( $this->_line_boxes[$this->_cl]["h"] == 0 ) //count($this->_line_boxes[$i]["frames"]) == 0 ||
-//       return;
-
         $this->_line_boxes[$this->_cl]->br = $br;
+
         $y = $this->_line_boxes[$this->_cl]->y + $this->_line_boxes[$this->_cl]->h;
 
         $new_line = new LineBox($this, $y);

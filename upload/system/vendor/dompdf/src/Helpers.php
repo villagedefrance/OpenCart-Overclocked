@@ -57,8 +57,8 @@ class Helpers {
         $protocol = mb_strtolower($protocol);
 
         if (strlen($url) == 0) {
-            return $protocol . $host . rtrim($base_path, "/\\") . "/";
-            //return $protocol . $host . $base_path;
+            // return $protocol . $host . rtrim($base_path, "/\\") . "/";
+            return $protocol . $host . $base_path;
         }
 
         // Is the url already fully qualified, a Data URI, or a reference to a named anchor?
@@ -69,12 +69,11 @@ class Helpers {
         $ret = $protocol;
 
         if (!in_array(mb_strtolower($protocol), array("http://", "https://", "ftp://", "ftps://"))) {
-            //On Windows local file, an abs path can begin also with a '\' or a drive letter and colon
-            //drive: followed by a relative path would be a drive specific default folder.
-            //not known in php app code, treat as abs path
-            //($url[1] !== ':' || ($url[2]!=='\\' && $url[2]!=='/'))
+            // On Windows local file, an abs path can begin also with a '\' or a drive letter and colon
+            // drive: followed by a relative path would be a drive specific default folder.
+            // not known in php app code, treat as abs path ($url[1] !== ':' || ($url[2]!=='\\' && $url[2]!=='/'))
             if ($url[0] !== '/' && (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN' || (mb_strlen($url) > 1 && $url[0] !== '\\' && $url[1] !== ':'))) {
-                // For real path and local access we ignore the host, and run the path through realpath()
+                // For rel path and local acess we ignore the host, and run the path through realpath()
                 $ret .= realpath($base_path) . '/';
             }
 
@@ -93,11 +92,40 @@ class Helpers {
             $ret .= $host . $url;
         } else {
             // Relative path
-            $base_path = ($base_path !== "") ? rtrim($base_path, "/\\") . "/" : "";
+            //$base_path = $base_path !== "" ? rtrim($base_path, "/\\") . "/" : "";
             $ret .= $host . $base_path . $url;
         }
 
         return $ret;
+    }
+
+    /**
+     * Builds a HTTP Content-Disposition header string using `$dispositionType`
+     * and `$filename`.
+     *
+     * If the filename contains any characters not in the ISO-8859-1 character
+     * set, a fallback filename will be included for clients not supporting the
+     * `filename*` parameter.
+     *
+     * @param string $dispositionType
+     * @param string $filename
+     * @return string
+     */
+    public static function buildContentDispositionHeader($dispositionType, $filename) {
+        $encoding = mb_detect_encoding($filename);
+
+        $fallbackfilename = mb_convert_encoding($filename, "ISO-8859-1", $encoding);
+        $fallbackfilename = str_replace("\"", "", $fallbackfilename);
+
+        $encodedfilename = rawurlencode($filename);
+
+        $contentDisposition = "Content-Disposition: $dispositionType; filename=\"$fallbackfilename\"";
+
+        if ($fallbackfilename !== $filename) {
+            $contentDisposition .= "; filename*=UTF-8''$encodedfilename";
+        }
+
+        return $contentDisposition;
     }
 
     /**
@@ -235,17 +263,16 @@ class Helpers {
             switch ($o) {
                 case 0: # ESCAPE
                     $i++;
+
                     switch (ord($str[$i])) {
                         case 0: # NEW LINE
                             $padCnt = $lineWidth - strlen($out) % $lineWidth;
-
                             if ($padCnt < $lineWidth) {
                                 $out .= str_repeat(chr(0), $padCnt); # pad line
                             }
                             break;
                         case 1: # END OF FILE
                             $padCnt = $lineWidth - strlen($out) % $lineWidth;
-
                             if ($padCnt < $lineWidth) {
                                 $out .= str_repeat(chr(0), $padCnt); # pad line
                             }
@@ -255,11 +282,9 @@ class Helpers {
                             break;
                         default: # ABSOLUTE MODE
                             $num = ord($str[$i]);
-
                             for ($j = 0; $j < $num; $j++) {
                                 $out .= $str[++$i];
                             }
-
                             if ($num % 2) {
                                 $i++;
                             }
@@ -285,8 +310,10 @@ class Helpers {
     public static function rle4_decode($str, $width) {
         $w = floor($width / 2) + ($width % 2);
         $lineWidth = $w + (3 - (($width - 1) / 2) % 4);
+
         $pixels = array();
         $cnt = strlen($str);
+
         $c = 0;
 
         for ($i = 0; $i < $cnt; $i++) {
@@ -312,7 +339,6 @@ class Helpers {
                             break;
                         default: # ABSOLUTE MODE
                             $num = ord($str[$i]);
-
                             for ($j = 0; $j < $num; $j++) {
                                 if ($j % 2 == 0) {
                                     $c = ord($str[++$i]);
@@ -329,7 +355,6 @@ class Helpers {
                     break;
                 default:
                     $c = ord($str[++$i]);
-
                     for ($j = 0; $j < $o; $j++) {
                         $pixels[] = ($j % 2 == 0 ? ($c & 240) >> 4 : $c & 15);
                     }
@@ -439,15 +464,7 @@ class Helpers {
                     $protocol = 'http://';
                 }
 
-                if (isset($_SERVER['HTTP_HOST'])) {
-                    $host = $_SERVER['HTTP_HOST'];
-                } else {
-                    $host = getenv('HTTP_HOST');
-                }
-
-                if (!isset($_SERVER['HTTP_HOST'])) {
-                    $host = php_uname("n");
-                }
+                $host = isset($_SERVER["HTTP_HOST"]) ? $_SERVER["HTTP_HOST"] : php_uname("n");
 
                 if (substr($arr["path"], 0, 1) === '/') {
                     $path = dirname($arr["path"]);
@@ -457,12 +474,7 @@ class Helpers {
             }
         }
 
-        $ret = array($protocol, $host, $path, $file,
-            "protocol" => $protocol,
-            "host" => $host,
-            "path" => $path,
-            "file" => $file
-        );
+        $ret = array($protocol, $host, $path, $file, "protocol" => $protocol, "host" => $host, "path" => $path, "file" => $file);
 
         return $ret;
     }
@@ -480,7 +492,6 @@ class Helpers {
             $arr = debug_backtrace();
 
             echo basename($arr[0]["file"]) . " (" . $arr[0]["line"] . "): " . $arr[1]["function"] . ": ";
-
             Helpers::pre_r($msg);
         }
     }
@@ -523,11 +534,11 @@ class Helpers {
     public static function unichr($c) {
         if ($c <= 0x7F) {
             return chr($c);
-        } else if ($c <= 0x7FF) {
+        } elseif ($c <= 0x7FF) {
             return chr(0xC0 | $c >> 6) . chr(0x80 | $c & 0x3F);
-        } else if ($c <= 0xFFFF) {
+        } elseif ($c <= 0xFFFF) {
             return chr(0xE0 | $c >> 12) . chr(0x80 | $c >> 6 & 0x3F) . chr(0x80 | $c & 0x3F);
-        } else if ($c <= 0x10FFFF) {
+        } elseif ($c <= 0x10FFFF) {
             return chr(0xF0 | $c >> 18) . chr(0x80 | $c >> 12 & 0x3F) . chr(0x80 | $c >> 6 & 0x3F) . chr(0x80 | $c & 0x3F);
         }
 
@@ -570,7 +581,10 @@ class Helpers {
             $b = 0;
         }
 
-        return array($r, $g, $b, "r" => $r, "g" => $g, "b" => $b);
+        return array(
+            $r, $g, $b,
+            "r" => $r, "g" => $g, "b" => $b
+        );
     }
 
     /**
@@ -589,25 +603,14 @@ class Helpers {
         list($width, $height, $type) = getimagesize($filename);
 
         // Custom types
-		$image_mime = image_type_to_mime_type(exif_imagetype($filename));
+        $types = array(
+            IMAGETYPE_JPEG => "jpeg",
+            IMAGETYPE_GIF  => "gif",
+            IMAGETYPE_BMP  => "bmp",
+            IMAGETYPE_PNG  => "png"
+        );
 
-        switch ($image_mime) {
-          case "image/gif":
-            $type = "gif";
-            break;
-          case "image/jpeg":
-            $type = "jpeg";
-            break;
-          case "image/pjpeg":
-            $type = "jpeg";
-            break;
-          case "image/png":
-            $type = "png";
-            break;
-          case "image/x-png":
-            $type = "png";
-            break;
-        }
+        $type = isset($types[$type]) ? $types[$type] : null;
 
         if ($width == null || $height == null) {
             list($data, $headers) = Helpers::getFileContent($filename, $context);
@@ -626,6 +629,7 @@ class Helpers {
                     $type = "svg";
                 }
             }
+
         }
 
         return $cache[$filename] = array($width, $height, $type);
@@ -769,7 +773,6 @@ class Helpers {
                         break;
                     case 1:
                         $color = unpack('n', $vide . substr($data, floor($p), 1));
-
                         switch (($p * 8) % 8) {
                             case 0:
                                 $color[1] = $color[1] >> 7;
@@ -833,6 +836,7 @@ class Helpers {
         $headers = null;
 
         list($proto, $host, $path, $file) = Helpers::explode_url($uri);
+
         $is_local_path = ($proto == "" || $proto === "file://");
 
         set_error_handler(array("\\Dompdf\\Helpers", "record_warnings"));
@@ -866,11 +870,8 @@ class Helpers {
             }
 
             $data = curl_exec($curl);
-
             $raw_headers = substr($data, 0, curl_getinfo($curl, CURLINFO_HEADER_SIZE));
-
             $headers = preg_split("/[\n\r]+/", trim($raw_headers));
-
             $result = substr($data, curl_getinfo($curl, CURLINFO_HEADER_SIZE));
 
             curl_close($curl);
@@ -879,5 +880,34 @@ class Helpers {
         restore_error_handler();
 
         return array($result, $headers);
+    }
+
+    public static function mb_ucwords($str) {
+        $max_len = mb_strlen($str);
+
+        if ($max_len === 1) {
+            return mb_strtoupper($str);
+        }
+
+        $str = mb_strtoupper(mb_substr($str, 0, 1)) . mb_substr($str, 1);
+
+        foreach (array(' ', '.', ',', '!', '?', '-', '+') as $s) {
+            $pos = 0;
+
+            while (($pos = mb_strpos($str, $s, $pos)) !== false) {
+                $pos++;
+                // Nothing to do if the separator is the last char of the string
+                if ($pos !== false && $pos < $max_len) {
+                    // If the char we want to upper is the last char there is nothing to append behind
+                    if ($pos + 1 < $max_len) {
+                        $str = mb_substr($str, 0, $pos) . mb_strtoupper(mb_substr($str, $pos, 1)) . mb_substr($str, $pos + 1);
+                    } else {
+                        $str = mb_substr($str, 0, $pos) . mb_strtoupper(mb_substr($str, $pos, 1));
+                    }
+                }
+            }
+        }
+
+        return $str;
     }
 }

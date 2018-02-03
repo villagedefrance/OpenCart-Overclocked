@@ -32,7 +32,6 @@ class Path extends Shape {
     public function start($attributes) {
         if (!isset($attributes['d'])) {
             $this->hasShape = false;
-
             return;
         }
 
@@ -49,11 +48,7 @@ class Path extends Shape {
                 $item = $arguments[0];
                 $commandLower = strtolower($c[1]);
 
-                if (
-                    isset(self::$commandLengths[$commandLower]) &&
-                    ($commandLength = self::$commandLengths[$commandLower]) &&
-                    count($item) > $commandLength
-                ) {
+                if (isset(self::$commandLengths[$commandLower]) && ($commandLength = self::$commandLengths[$commandLower]) && count($item) > $commandLength) {
                     $repeatedCommand = isset(self::$repeatedCommands[$c[1]]) ? self::$repeatedCommands[$c[1]] : $c[1];
                     $command = $c[1];
 
@@ -178,7 +173,6 @@ class Path extends Shape {
                     break;
 
                 case 's': // shorthand cubic bezierCurveTo, relative
-
                     // transform to absolute x,y
                     $tempX = $x + $current[3];
                     $tempY = $y + $current[4];
@@ -283,7 +277,6 @@ class Path extends Shape {
                     break;
 
                 case 't': // shorthand quadraticCurveTo, relative
-
                     // transform to absolute x,y
                     $tempX = $x + $current[1];
                     $tempY = $y + $current[2];
@@ -340,7 +333,7 @@ class Path extends Shape {
                     break;
 
                 case 'a':
-                    // TODO: optimize this
+                    // optimize this
                     $this->drawArc(
                         $surface,
                         $x + $l,
@@ -360,7 +353,7 @@ class Path extends Shape {
                     break;
 
                 case 'A':
-                    // TODO: optimize this
+                    // optimize this
                     $this->drawArc(
                         $surface,
                         $x + $l,

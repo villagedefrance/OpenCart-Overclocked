@@ -47,12 +47,16 @@ class Fixed extends AbstractPositioner {
         $left = $style->length_in_pt($style->left, $initialcb["w"]);
 
         $y = $margin_top;
+
         if (isset($top)) {
             $y = (float)$top + $margin_top;
+
             if ($top === "auto") {
                 $y = $margin_top;
+
                 if (isset($bottom) && $bottom !== "auto") {
                     $y = $initialcb["h"] - $bottom - $margin_bottom;
+
                     if ($frame->is_auto_height()) {
                         $y -= $height;
                     } else {
@@ -63,12 +67,16 @@ class Fixed extends AbstractPositioner {
         }
 
         $x = $margin_left;
+
         if (isset($left)) {
             $x = (float)$left + $margin_left;
+
             if ($left === "auto") {
                 $x = $margin_left;
+
                 if (isset($right) && $right !== "auto") {
                     $x = $initialcb["w"] - $right - $margin_right;
+
                     if ($frame->is_auto_width()) {
                         $x -= $width;
                     } else {

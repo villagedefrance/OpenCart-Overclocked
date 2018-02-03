@@ -42,23 +42,15 @@ class File extends \FontLib\TrueType\File {
     $flags = $this->header->data["Flags"];
 
     if ($flags & self::TTEMBED_TTCOMPRESSED) {
-      $mtx_version    = $this->readUInt8();
+      $mtx_version = $this->readUInt8();
       $mtx_copy_limit = $this->readUInt8() << 16 | $this->readUInt8() << 8 | $this->readUInt8();
-      $mtx_offset_1   = $this->readUInt8() << 16 | $this->readUInt8() << 8 | $this->readUInt8();
-      $mtx_offset_2   = $this->readUInt8() << 16 | $this->readUInt8() << 8 | $this->readUInt8();
-      /*
-      var_dump("$mtx_version $mtx_copy_limit $mtx_offset_1 $mtx_offset_2");
-
-      $pos = $this->pos();
-      $size = $mtx_offset_1 - $pos;
-      var_dump("pos: $pos");
-      var_dump("size: $size");*/
+      $mtx_offset_1 = $this->readUInt8() << 16 | $this->readUInt8() << 8 | $this->readUInt8();
+      $mtx_offset_2 = $this->readUInt8() << 16 | $this->readUInt8() << 8 | $this->readUInt8();
     }
 
     if ($flags & self::TTEMBED_XORENCRYPTDATA) {
       // Process XOR
     }
-    // TODO Read font data ...
   }
 
     /**

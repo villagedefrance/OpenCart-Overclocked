@@ -5,6 +5,7 @@
  * @author  Benj Carson <benjcarson@digitaljunkies.ca>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\FrameReflower;
 
 use Dompdf\FrameDecorator\Block as BlockFrameDecorator;
@@ -38,6 +39,7 @@ class TableRow extends AbstractFrameReflower {
         }
 
         $this->_frame->position();
+
         $style = $this->_frame->get_style();
         $cb = $this->_frame->get_containing_block();
 

@@ -6,6 +6,7 @@
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  * @version $Id: Font_Table_glyf.php 46 2012-04-02 20:22:38Z fabien.menager $
  */
+
 namespace FontLib\Glyph;
 
 use FontLib\Table\Type\glyf;
@@ -22,6 +23,7 @@ class Outline extends BinaryStream {
    * @var \FontLib\Table\Type\glyf
    */
   protected $table;
+
   protected $offset;
   protected $size;
 
@@ -31,12 +33,13 @@ class Outline extends BinaryStream {
   public $yMin;
   public $xMax;
   public $yMax;
+
   public $raw;
 
   /**
    * @param glyf $table
-   * @param                 $offset
-   * @param                 $size
+   * @param   $offset
+   * @param   $size
    *
    * @return Outline
    */
@@ -44,10 +47,8 @@ class Outline extends BinaryStream {
     $font->seek($offset);
 
     if ($font->readInt16() > -1) {
-      /** @var OutlineSimple $glyph */
       $glyph = new OutlineSimple($table, $offset, $size);
     } else {
-      /** @var OutlineComposite $glyph */
       $glyph = new OutlineComposite($table, $offset, $size);
     }
 

@@ -150,8 +150,7 @@ class FrameTree {
     protected function fix_tables() {
         $xp = new DOMXPath($this->_dom);
 
-        // Move table caption before the table
-        // FIXME find a better way to deal with it...
+        // Move table caption before the table. Find a better way to deal with it...
         $captions = $xp->query('//table/caption');
 
         foreach ($captions as $caption) {
@@ -160,7 +159,7 @@ class FrameTree {
         }
 
         $firstRows = $xp->query('//table/tr[1]');
-        /** @var DOMElement $tableChild */
+
         foreach ($firstRows as $tableChild) {
             $tbody = $this->_dom->createElement('tbody');
             $tableNode = $tableChild->parentNode;
@@ -186,7 +185,7 @@ class FrameTree {
         }
     }
 
-    // FIXME: temporary hack, preferably we will improve rendering of sequential #text nodes
+    // temporary hack, preferably we will improve rendering of sequential #text nodes
     /**
      * Remove a child from a node
      *
@@ -201,7 +200,6 @@ class FrameTree {
         $child = $children[$index];
         $previousChild = $child->previousSibling;
         $nextChild = $child->nextSibling;
-
         $node->removeChild($child);
 
         if (isset($previousChild, $nextChild)) {
@@ -228,6 +226,7 @@ class FrameTree {
      */
     protected function _build_tree_r(DOMNode $node) {
         $frame = new Frame($node);
+
         $id = $frame->get_id();
         $this->_registry[$id] = $frame;
 
@@ -237,7 +236,6 @@ class FrameTree {
 
         // Store the children in an array so that the tree can be modified
         $children = array();
-
         $length = $node->childNodes->length;
 
         for ($i = 0; $i < $length; $i++) {
@@ -273,7 +271,6 @@ class FrameTree {
             if (is_object($child)) {
                 $frame->append_child($this->_build_tree_r($child), false);
             }
-
             $index++;
         }
 

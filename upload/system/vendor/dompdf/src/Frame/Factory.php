@@ -5,6 +5,7 @@
  * @author  Benj Carson <benjcarson@digitaljunkies.ca>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\Frame;
 
 use Dompdf\Css\Style;
@@ -80,15 +81,15 @@ class Factory {
         $display = $style->display;
 
         switch ($display) {
-            case "flex": //FIXME: display type not yet supported
-            case "table-caption": //FIXME: display type not yet supported
+            case "flex": // display type not yet supported 
+            case "table-caption": // display type not yet supported
             case "block":
                 $positioner = "Block";
                 $decorator = "Block";
                 $reflower = "Block";
                 break;
 
-            case "inline-flex": //FIXME: display type not yet supported
+            case "inline-flex": // display type not yet supported 
             case "inline-block":
                 $positioner = "Inline";
                 $decorator = "Block";
@@ -178,7 +179,7 @@ class Factory {
                 break;
 
             default:
-                // FIXME: should throw some sort of warning or something?
+                // should throw some sort of warning or something?
             case "none":
                 if ($style->_dompdf_keep !== "yes") {
                     // Remove the node and the frame
@@ -212,10 +213,9 @@ class Factory {
             $reflower = "Image";
         }
 
-        $decorator  = "Dompdf\\FrameDecorator\\$decorator";
-        $reflower   = "Dompdf\\FrameReflower\\$reflower";
+        $decorator = "Dompdf\\FrameDecorator\\$decorator";
+        $reflower = "Dompdf\\FrameReflower\\$reflower";
 
-        /** @var AbstractFrameDecorator $deco */
         $deco = new $decorator($frame, $dompdf);
 
         $deco->set_positioner(self::getPositionerInstance($positioner));
@@ -228,7 +228,8 @@ class Factory {
         if ($display === "list-item") {
             // Insert a list-bullet frame
             $xml = $dompdf->getDom();
-            $bullet_node = $xml->createElement("bullet"); // arbitrary choice
+            $bullet_node = $xml->createElement("bullet");
+
             $b_f = new Frame($bullet_node);
 
             $node = $frame->get_node();

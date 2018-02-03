@@ -5,6 +5,7 @@
  * @author  Benj Carson <benjcarson@digitaljunkies.ca>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\FrameDecorator;
 
 use Dompdf\Dompdf;
@@ -45,6 +46,7 @@ class TableRowGroup extends AbstractFrameDecorator {
 
         // Remove child & all subsequent rows from the cellmap
         $cellmap = $this->get_parent()->get_cellmap();
+
         $iter = $child;
 
         while ($iter) {
@@ -60,6 +62,7 @@ class TableRowGroup extends AbstractFrameDecorator {
         }
 
         $cellmap->update_row_group($this, $child->get_prev_sibling());
+
         parent::split($child);
     }
 }

@@ -5,6 +5,7 @@
  * @author  Benj Carson <benjcarson@digitaljunkies.ca>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\FrameReflower;
 
 use Dompdf\FrameDecorator\Block as BlockFrameDecorator;
@@ -30,6 +31,7 @@ class TableRowGroup extends AbstractFrameReflower {
      */
     function reflow(BlockFrameDecorator $block = null) {
         $page = $this->_frame->get_root();
+
         $style = $this->_frame->get_style();
 
         // Our width is equal to the width of our parent table
@@ -55,6 +57,7 @@ class TableRowGroup extends AbstractFrameReflower {
         }
 
         $cellmap = $table->get_cellmap();
+
         $style->width = $cellmap->get_frame_width($this->_frame);
         $style->height = $cellmap->get_frame_height($this->_frame);
 

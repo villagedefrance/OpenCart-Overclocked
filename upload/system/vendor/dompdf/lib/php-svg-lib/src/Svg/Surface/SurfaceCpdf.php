@@ -29,17 +29,18 @@ class SurfaceCpdf implements SurfaceInterface {
         }
 
         $dimensions = $doc->getDimensions();
+
         $w = $dimensions["width"];
         $h = $dimensions["height"];
 
         if (!$canvas) {
             $canvas = new \CPdf\CPdf(array(0, 0, $w, $h));
             $refl = new \ReflectionClass($canvas);
+
             $canvas->fontcache = realpath(dirname($refl->getFileName()) . "/../../fonts/")."/";
         }
 
-        // Flip PDF coordinate system so that the origin is in
-        // the top left rather than the bottom left
+        // Flip PDF coordinate system so that the origin is in the top left rather than the bottom left
         $canvas->transform(array(1,  0, 0, -1, 0, $h));
 
         $this->width  = $w;
@@ -52,6 +53,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         return $this->canvas->output();
     }
 
@@ -59,6 +61,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->save();
     }
 
@@ -66,6 +69,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->restore();
     }
 
@@ -86,11 +90,7 @@ class SurfaceCpdf implements SurfaceInterface {
         $cos_a = cos($a);
         $sin_a = sin($a);
 
-        $this->transform(
-            $cos_a, $sin_a,
-            -$sin_a, $cos_a,
-            0, 0
-        );
+        $this->transform($cos_a, $sin_a, -$sin_a, $cos_a, 0, 0);
     }
 
     public function translate($x, $y) {
@@ -120,6 +120,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->closePath();
     }
 
@@ -127,6 +128,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->fillStroke();
     }
 
@@ -134,6 +136,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->clip();
     }
 
@@ -141,6 +144,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->addText($x, $y, $this->style->fontSize, $text);
     }
 
@@ -148,6 +152,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->addText($x, $y, $this->style->fontSize, $text);
     }
 
@@ -163,6 +168,7 @@ class SurfaceCpdf implements SurfaceInterface {
             $base64 = false;
 
             $token = strtok($parts[0], ';');
+
             while ($token !== false) {
                 if ($token == 'base64') {
                     $base64 = true;
@@ -179,7 +185,8 @@ class SurfaceCpdf implements SurfaceInterface {
             $data = file_get_contents($image);
         }
 
-        $image = tempnam("", "svg");
+        $image = tempnam(sys_get_temp_dir(), "svg");
+
         file_put_contents($image, $data);
 
         $img = $this->image($image, $sx, $sy, $sw, $sh, "normal");
@@ -232,6 +239,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->lineTo($x, $y);
     }
 
@@ -239,6 +247,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->moveTo($x, $y);
     }
 
@@ -254,6 +263,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->curveTo($cp1x, $cp1y, $cp2x, $cp2y, $x, $y);
     }
 
@@ -267,6 +277,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->ellipse($x, $y, $radius, $radius, 0, 8, $startAngle, $endAngle, false, false, false, true);
     }
 
@@ -274,6 +285,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->ellipse($x, $y, $radius, $radius, 0, 8, 0, 360, true, false, false, false);
     }
 
@@ -281,6 +293,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->ellipse($x, $y, $radiusX, $radiusY, 0, 8, 0, 360, false, false, false, false);
     }
 
@@ -288,6 +301,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->rect($x, $y, $w, $h);
         $this->fill();
     }
@@ -341,6 +355,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->fill();
     }
 
@@ -348,6 +363,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->rect($x, $y, $w, $h);
         $this->stroke();
     }
@@ -356,6 +372,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->stroke();
     }
 
@@ -363,6 +380,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $this->canvas->endPath();
     }
 
@@ -370,6 +388,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         $style = $this->getStyle();
         $this->setFont($style->fontFamily, $style->fontStyle, $style->fontWeight);
 
@@ -380,6 +399,7 @@ class SurfaceCpdf implements SurfaceInterface {
         if (self::DEBUG) {
             echo __FUNCTION__ . "\n";
         }
+
         return $this->style;
     }
 

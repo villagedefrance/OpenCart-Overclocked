@@ -5,6 +5,7 @@
  * @author  Benj Carson <benjcarson@digitaljunkies.ca>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\Renderer;
 
 use Dompdf\Frame;
@@ -38,9 +39,9 @@ class Inline extends AbstractRenderer {
             (float)$style->length_in_pt($bp["left"]["width"])
         );
 
-        // Draw the background & border behind each child.  To do this we need
-        // to figure out just how much space each child takes:
+        // Draw the background & border behind each child. To do this we need to figure out just how much space each child takes
         list($x, $y) = $frame->get_first_child()->get_position();
+
         $w = null;
         $h = 0;
         // $x += $widths[3];
@@ -56,16 +57,14 @@ class Inline extends AbstractRenderer {
             list($child_x, $child_y, $child_w, $child_h) = $child->get_padding_box();
 
             if (!is_null($w) && $child_x < $x + $w) {
-                //This branch seems to be supposed to being called on the first part
-                //of an inline html element, and the part after the if clause for the
-                //parts after a line break.
-                //But because $w initially mostly is 0, and gets updated only on the next
-                //round, this seem to be never executed and the common close always.
+                // This branch seems to be supposed to being called on the first part
+                // of an inline html element, and the part after the if clause for the parts after a line break.
+                // But because $w initially mostly is 0, and gets updated only on the next
+                // round, this seem to be never executed and the common close always.
 
-                // The next child is on another line.  Draw the background &
-                // borders on this line.
+                // The next child is on another line.  Draw the background & borders on this line.
 
-                // Background:
+                // Background
                 if (($bg = $style->background_color) !== "transparent") {
                     $this->_canvas->filled_rectangle($x, $y, $w, $h, $bg);
                 }
@@ -80,6 +79,7 @@ class Inline extends AbstractRenderer {
                         $method = "_border_" . $bp["left"]["style"];
                         $this->$method($x, $y, $h + $widths[0] + $widths[2], $bp["left"]["color"], $widths, "left");
                     }
+
                     $first_row = false;
                 }
 
@@ -99,7 +99,7 @@ class Inline extends AbstractRenderer {
 
                 if ($frame->get_node()->nodeName === "a") {
                     $link_node = $frame->get_node();
-                } else if ($frame->get_parent()->get_node()->nodeName === "a") {
+                } elseif ($frame->get_parent()->get_node()->nodeName === "a") {
                     $link_node = $frame->get_parent()->get_node();
                 }
 
@@ -145,6 +145,7 @@ class Inline extends AbstractRenderer {
         // Repeat not given: default is Style::__construct
         // ... && (!($repeat = $style->background_repeat) || $repeat === "repeat" ...
         //different position? $this->_background_image($url, $x, $y, $w, $h, $style);
+
         if (($url = $style->background_image) && $url !== "none") {
             $this->_background_image($url, $x + $widths[3], $y + $widths[0], $w, $h, $style);
         }
@@ -155,6 +156,7 @@ class Inline extends AbstractRenderer {
 
         // make sure the border and background start inside the left margin
         $left_margin = (float)$style->length_in_pt($style->margin_left);
+
         $x += $left_margin;
 
         // If this is the first row, draw the left border too
@@ -174,8 +176,6 @@ class Inline extends AbstractRenderer {
             $this->$method($x, $y + $h, $w, $bp["bottom"]["color"], $widths, "bottom");
         }
 
-        //    Helpers::var_dump(get_class($frame->get_next_sibling()));
-        //    $last_row = get_class($frame->get_next_sibling()) !== 'Inline';
         // Draw the right border if this is the last row
         if ($bp["right"]["style"] !== "none" && $bp["right"]["color"] !== "transparent" && $widths[1] > 0) {
             $method = "_border_" . $bp["right"]["style"];
@@ -184,7 +184,7 @@ class Inline extends AbstractRenderer {
 
         $id = $frame->get_node()->getAttribute("id");
 
-        if (strlen($id) > 0) {
+        if (strlen($id) > 0)  {
             $this->_canvas->add_named_dest($id);
         }
 

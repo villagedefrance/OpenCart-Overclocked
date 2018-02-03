@@ -7,6 +7,7 @@
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\Renderer;
 
 use Dompdf\Adapter\CPDF;
@@ -122,13 +123,9 @@ abstract class AbstractRenderer {
         $bg_width = round((float)($width * $dpi) / 72);
         $bg_height = round((float)($height * $dpi) / 72);
 
-        //Need %bg_x, $bg_y as background pos, where img starts, converted to pixel
-
         list($bg_x, $bg_y) = $style->background_position;
 
         if (Helpers::is_percent($bg_x)) {
-            // The point $bg_x % from the left edge of the image is placed
-            // $bg_x % from the left edge of the background rectangle
             $p = ((float)$bg_x) / 100.0;
             $x1 = $p * $img_w;
             $x2 = $p * $bg_width;
@@ -141,8 +138,6 @@ abstract class AbstractRenderer {
         $bg_x = round($bg_x + (float)$style->length_in_pt($style->border_left_width) * $dpi / 72);
 
         if (Helpers::is_percent($bg_y)) {
-            // The point $bg_y % from the left edge of the image is placed
-            // $bg_y % from the left edge of the background rectangle
             $p = ((float)$bg_y) / 100.0;
             $y1 = $p * $img_h;
             $y2 = $p * $bg_height;
@@ -217,7 +212,7 @@ abstract class AbstractRenderer {
             }
         }
 
-        //Optimization, if repeat has no effect
+        // Optimization, if repeat has no effect
         if ($repeat === "repeat" && $bg_y <= 0 && $img_h + $bg_y >= $bg_height) {
             $repeat = "repeat-x";
         }
@@ -238,7 +233,6 @@ abstract class AbstractRenderer {
         $filedummy = $img;
 
         $is_png = false;
-
         $filedummy .= '_' . $bg_width . '_' . $bg_height . '_' . $bg_x . '_' . $bg_y . '_' . $repeat;
 
         //Optimization to avoid multiple times rendering the same image.
@@ -288,6 +282,7 @@ abstract class AbstractRenderer {
             if ($ti >= 0) {
                 $tc = imagecolorsforindex($src, $ti);
                 $ti = imagecolorallocate($bg, $tc['red'], $tc['green'], $tc['blue']);
+
                 imagefill($bg, 0, 0, $ti);
                 imagecolortransparent($bg, $ti);
             }
@@ -320,7 +315,7 @@ abstract class AbstractRenderer {
                 // Simply place the image on the background
                 imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $img_w, $img_h);
 
-            } else if ($repeat === "repeat-x") {
+            } elseif ($repeat === "repeat-x") {
                 for ($bg_x = $start_x; $bg_x < $bg_width; $bg_x += $img_w) {
                     if ($bg_x < 0) {
                         $dst_x = 0;
@@ -331,10 +326,11 @@ abstract class AbstractRenderer {
                         $src_x = 0;
                         $w = $img_w;
                     }
+
                     imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $w, $img_h);
                 }
 
-            } else if ($repeat === "repeat-y") {
+            } elseif ($repeat === "repeat-y") {
                 for ($bg_y = $start_y; $bg_y < $bg_height; $bg_y += $img_h) {
                     if ($bg_y < 0) {
                         $dst_y = 0;
@@ -345,10 +341,11 @@ abstract class AbstractRenderer {
                         $src_y = 0;
                         $h = $img_h;
                     }
+
                     imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $img_w, $h);
                 }
 
-            } else if ($repeat === "repeat") {
+            } elseif ($repeat === "repeat") {
                 for ($bg_y = $start_y; $bg_y < $bg_height; $bg_y += $img_h) {
                     for ($bg_x = $start_x; $bg_x < $bg_width; $bg_x += $img_w) {
                         if ($bg_x < 0) {
@@ -370,16 +367,17 @@ abstract class AbstractRenderer {
                             $src_y = 0;
                             $h = $img_h;
                         }
+
                         imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $w, $h);
                     }
                 }
+
             } else {
                 print 'Unknown repeat!';
             }
 
             imagedestroy($src);
-
-        } /* End optimize away creation of duplicates */
+        }
 
         $this->_canvas->clipping_rectangle($x, $y, $box_width, $box_height);
 
@@ -394,12 +392,15 @@ abstract class AbstractRenderer {
         //$src: GD object of original image
         //When using cpdf and optimization to direct png creation from gd object is available,
         //don't create temp file, but place gd object directly into the pdf
+
         if (!$is_png && $this->_canvas instanceof CPDF) {
             // Note: CPDF_Adapter image converts y position
             $this->_canvas->get_cpdf()->addImagePng($filedummy, $x, $this->_canvas->get_height() - $y - $height, $width, $height, $bg);
         } else {
             $tmp_dir = $this->_dompdf->getOptions()->getTempDir();
+
             $tmp_name = tempnam($tmp_dir, "bg_dompdf_img_");
+
             @unlink($tmp_name);
             $tmp_file = "$tmp_name.png";
 
@@ -489,8 +490,6 @@ abstract class AbstractRenderer {
     protected function _border_hidden($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
         return;
     }
-
-    // Border rendering functions
 
     /**
      * @param $x
@@ -679,6 +678,7 @@ abstract class AbstractRenderer {
         $this->_apply_ratio($side, 0.5, $top, $right, $bottom, $left, $x, $y, $length, $r1, $r2);
 
         $this->_border_outset($x, $y, $length, $color, $half_widths, $side, $corner_style, $r1, $r2);
+
     }
 
     /**
@@ -702,6 +702,7 @@ abstract class AbstractRenderer {
         $this->_apply_ratio($side, 0.5, $top, $right, $bottom, $left, $x, $y, $length, $r1, $r2);
 
         $this->_border_inset($x, $y, $length, $color, $half_widths, $side, $corner_style, $r1, $r2);
+
     }
 
     /**
@@ -712,6 +713,7 @@ abstract class AbstractRenderer {
         if (!is_numeric($c)) {
             return $c;
         }
+
         return min(1, $c + 0.16);
     }
 
@@ -723,6 +725,7 @@ abstract class AbstractRenderer {
         if (!is_numeric($c)) {
             return $c;
         }
+
         return max(0, $c - 0.33);
     }
 
@@ -805,6 +808,7 @@ abstract class AbstractRenderer {
     protected function _border_line($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $pattern_name, $r1 = 0, $r2 = 0) {
         /** used by $$side */
         list($top, $right, $bottom, $left) = $widths;
+
         $width = $$side;
 
         $pattern = $this->_get_dash_pattern($pattern_name, $width);

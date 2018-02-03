@@ -34,11 +34,12 @@ class AdobeFontMetrics {
     if ($encoding) {
       $encoding = preg_replace("/[^a-z0-9-_]/", "", $encoding);
       $map_file = dirname(__FILE__) . "/../maps/$encoding.map";
+
       if (!file_exists($map_file)) {
         throw new \Exception("Unkown encoding ($encoding)");
       }
 
-      $map      = new EncodingMap($map_file);
+      $map = new EncodingMap($map_file);
       $map_data = $map->parse();
     }
 
@@ -51,9 +52,11 @@ class AdobeFontMetrics {
     $this->addPair("Comment", "https://github.com/PhenX/php-font-lib");
 
     $encoding_scheme = ($encoding ? $encoding : "FontSpecific");
+
     $this->addPair("EncodingScheme", $encoding_scheme);
 
     $records = $font->getData("name", "records");
+
     foreach ($records as $id => $record) {
       if (!isset(name::$nameIdCodes[$id]) || preg_match("/[\r\n]/", $record->string)) {
         continue;
@@ -63,9 +66,11 @@ class AdobeFontMetrics {
     }
 
     $os2 = $font->getData("OS/2");
+
     $this->addPair("Weight", ($os2["usWeightClass"] > 400 ? "Bold" : "Medium"));
 
     $post = $font->getData("post");
+
     $this->addPair("ItalicAngle", $post["italicAngle"]);
     $this->addPair("IsFixedPitch", ($post["isFixedPitch"] ? "true" : "false"));
     $this->addPair("UnderlineThickness", $font->normalizeFUnit($post["underlineThickness"]));
@@ -95,7 +100,7 @@ class AdobeFontMetrics {
     $glyphIndexArray = $font->getUnicodeCharMap();
 
     if ($glyphIndexArray) {
-      $hmtx  = $font->getData("hmtx");
+      $hmtx = $font->getData("hmtx");
       $names = $font->getData("post", "names");
 
       $this->startSection("CharMetrics", count($hmtx));
@@ -114,24 +119,16 @@ class AdobeFontMetrics {
             $hmtx[$g] = $hmtx[0];
           }
 
-          $this->addMetric(array(
-            "C"  => ($code > 255 ? -1 : $code),
-            "WX" => $font->normalizeFUnit($hmtx[$g][0]),
-            "N"  => $name,
-          ));
+          $this->addMetric(array("C" => ($code > 255 ? -1 : $code), "WX" => $font->normalizeFUnit($hmtx[$g][0]), "N" => $name));
         }
+
       } else {
         foreach ($glyphIndexArray as $c => $g) {
           if (!isset($hmtx[$g])) {
             $hmtx[$g] = $hmtx[0];
           }
 
-          $this->addMetric(array(
-            "U"  => $c,
-            "WX" => $font->normalizeFUnit($hmtx[$g][0]),
-            "N"  => (isset($names[$g]) ? $names[$g] : sprintf("uni%04x", $c)),
-            "G"  => $g,
-          ));
+          $this->addMetric(array("U" => $c, "WX" => $font->normalizeFUnit($hmtx[$g][0]), "N" => (isset($names[$g]) ? $names[$g] : sprintf("uni%04x", $c)), "G" => $g));
         }
       }
 
@@ -201,9 +198,11 @@ class AdobeFontMetrics {
 
   function addMetric($data) {
     $array = array();
+
     foreach ($data as $key => $value) {
       $array[] = "$key $value";
     }
+
     $this->addLine(implode(" ; ", $array));
   }
 

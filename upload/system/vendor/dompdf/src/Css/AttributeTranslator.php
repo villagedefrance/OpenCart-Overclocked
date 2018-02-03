@@ -6,6 +6,7 @@
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\Css;
 
 use Dompdf\Frame;
@@ -16,6 +17,7 @@ use Dompdf\Frame;
  * @package dompdf
  */
 class AttributeTranslator {
+
     static $_style_attr = "_html_style_attribute";
 
     // Munged data originally from
@@ -88,21 +90,21 @@ class AttributeTranslator {
         'h6' => array(
             'align' => 'text-align: %s;',
         ),
-        //TODO: translate more form element attributes
+        // translate more form element attributes
         'input' => array(
             'size' => '!set_input_width'
         ),
         'p' => array(
             'align' => 'text-align: %s;',
         ),
-//    'col' => array(
-//      'align'  => '',
-//      'valign' => '',
-//    ),
-//    'colgroup' => array(
-//      'align'  => '',
-//      'valign' => '',
-//    ),
+//     'col' => array(
+//       'align'  => '',
+//       'valign' => '',
+//     ),
+//     'colgroup' => array(
+//       'align'  => '',
+//       'valign' => '',
+//     ),
         'tbody' => array(
             'align' => '!set_table_row_align',
             'valign' => '!set_table_row_valign',
@@ -218,6 +220,7 @@ class AttributeTranslator {
 
         $valid_attrs = self::$__ATTRIBUTE_LOOKUP[$tag];
         $attrs = $node->attributes;
+
         $style = rtrim($node->getAttribute(self::$_style_attr), "; ");
 
         if ($style != "") {
@@ -233,7 +236,7 @@ class AttributeTranslator {
 
             $target = $valid_attrs[$attr];
 
-            // Look up $value in $target, if $target is an array:
+            // Look up $value in $target, if $target is an array
             if (is_array($target)) {
                 if (isset($target[$value])) {
                     $style .= " " . self::_resolve_target($node, $target[$value], $value);
@@ -248,7 +251,6 @@ class AttributeTranslator {
             $style = ltrim($style);
             $node->setAttribute(self::$_style_attr, $style);
         }
-
     }
 
     /**
@@ -266,7 +268,7 @@ class AttributeTranslator {
             return self::$func($node, $value);
         }
 
-        return $value ? sprintf($target, $value) : "";
+        return ($value) ? sprintf($target, $value) : "";
     }
 
     /**
@@ -278,7 +280,6 @@ class AttributeTranslator {
         $style .= $new_style;
 
         $style = ltrim($style, ";");
-
         $node->setAttribute(self::$_style_attr, $style);
     }
 
@@ -375,6 +376,7 @@ class AttributeTranslator {
         foreach ($cell_list as $cell) {
             $style = rtrim($cell->getAttribute(self::$_style_attr));
             $style .= "; border-width: " . ($value > 0 ? 1 : 0) . "pt; border-style: inset;";
+
             $style = ltrim($style, ";");
             $cell->setAttribute(self::$_style_attr, $style);
         }
@@ -418,7 +420,7 @@ class AttributeTranslator {
                 break;
 
             case "groups":
-                // FIXME: unsupported
+                // unsupported
                 return null;
 
             case "rows":
@@ -474,6 +476,7 @@ class AttributeTranslator {
      */
     static protected function _set_hr_align(\DOMElement $node, $value) {
         $style = rtrim($node->getAttribute(self::$_style_attr), ";");
+
         $width = $node->getAttribute("width");
 
         if ($width == "") {
@@ -593,7 +596,7 @@ class AttributeTranslator {
      * @return null
      */
     static protected function _set_basefont_size(\DOMElement $node, $value) {
-        // we don't actually set the font size of anything here, just
+        // ? we don't actually set the font size of anything here, just
         // the base size for later modification by <font> tags.
         self::$_last_basefont_size = $value;
 

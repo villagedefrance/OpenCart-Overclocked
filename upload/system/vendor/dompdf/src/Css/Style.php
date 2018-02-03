@@ -28,6 +28,7 @@ use Dompdf\Frame;
  * @package dompdf
  */
 class Style {
+
     const CSS_IDENTIFIER = "-?[_a-zA-Z]+[_a-zA-Z0-9-]*";
     const CSS_INTEGER = "-?\d+";
 
@@ -423,7 +424,6 @@ class Style {
      * "Destructor": forcibly free all references held by this object
      */
     function dispose() {
-
     }
 
     /**
@@ -505,6 +505,7 @@ class Style {
             if (isset($cache[$key])) {
                 return $cache[$key];
             }
+
             $length = array($length);
         } else {
             $key = implode("@", $length) . "/$ref_size";
@@ -532,7 +533,7 @@ class Style {
             }
 
             if ($l === "normal") {
-                $ret += $ref_size;
+                $ret += (float)$ref_size;
                 continue;
             }
 
@@ -564,7 +565,7 @@ class Style {
             }
 
             if (($i = mb_strpos($l, "%")) !== false) {
-                $ret += (float)mb_substr($l, 0, $i) / 100 * $ref_size;
+                $ret += (float)mb_substr($l, 0, $i) / 100 * (float)$ref_size;
                 continue;
             }
 
@@ -575,7 +576,6 @@ class Style {
                 } else {
                     $ret += (float)mb_substr($l, 0, $i) * $this->_stylesheet->get_dompdf()->getTree()->get_root()->get_style()->font_size;
                 }
-
                 continue;
             }
 
@@ -629,14 +629,14 @@ class Style {
         $this->_parent_font_size = $parent->get_font_size();
 
         foreach (self::$_inherited as $prop) {
-            // inherit the !important property also.
-            // if local property is also !important, don't inherit.
+            // inherit the !important property also. if local property is also !important, don't inherit.
             if (isset($parent->_props[$prop]) && (!isset($this->_props[$prop]) || (isset($parent->_important_props[$prop]) && !isset($this->_important_props[$prop])))) {
                 if (isset($parent->_important_props[$prop])) {
                     $this->_important_props[$prop] = true;
                 }
                 //see __set and __get, on all assignments clear cache!
                 $this->_prop_cache[$prop] = null;
+
                 $this->_props[$prop] = $parent->_props[$prop];
             }
         }
@@ -670,19 +670,35 @@ class Style {
      * @param Style $style
      */
     function merge(Style $style) {
+        $shorthand_properties = array("background", "border", "border_bottom", "border_color", "border_left", "border_radius", "border_right", "border_style", "border_top", "border_width", "flex", "font", "list_style", "margin", "padding", "transform");
         // treat the !important attribute
         // if old rule has !important attribute, override with new rule only if
         // the new rule is also !important
         foreach ($style->_props as $prop => $val) {
+            $can_merge = false;
+
             if (isset($style->_important_props[$prop])) {
                 $this->_important_props[$prop] = true;
-                //see __set and __get, on all assignments clear cache!
-                $this->_prop_cache[$prop] = null;
-                $this->_props[$prop] = $val;
+                $can_merge = true;
             } else if (!isset($this->_important_props[$prop])) {
+                $can_merge = true;
+            }
+
+            if ($can_merge) {
                 //see __set and __get, on all assignments clear cache!
                 $this->_prop_cache[$prop] = null;
                 $this->_props[$prop] = $val;
+
+                // Clear out "inherit" shorthand properties if specific properties have been set
+                $shorthands = array_filter($shorthand_properties, function($el) use ($prop) {
+                    return ( strpos($prop, $el."_") !== false );
+                });
+
+                foreach ($shorthands as $shorthand) {
+                    if (array_key_exists($shorthand, $this->_props) && $this->_props[$shorthand] === "inherit") {
+                        unset($this->_props[$shorthand]);
+                    }
+                } 
             }
         }
 
@@ -750,6 +766,7 @@ class Style {
      */
     function __set($prop, $val) {
         $prop = str_replace("-", "_", $prop);
+
         $this->_prop_cache[$prop] = null;
 
         if (!isset(self::$_defaults[$prop])) {
@@ -851,13 +868,7 @@ class Style {
             return $this->_computed_bottom_spacing;
         }
 
-        return $this->_computed_bottom_spacing = $this->length_in_pt(
-            array(
-                $this->margin_bottom,
-                $this->padding_bottom,
-                $this->border_bottom_width
-            )
-        );
+        return $this->_computed_bottom_spacing = $this->length_in_pt(array($this->margin_bottom, $this->padding_bottom, $this->border_bottom_width));
     }
 
     /**
@@ -884,9 +895,7 @@ class Style {
 
         $DEBUGCSS = $this->_stylesheet->get_dompdf()->getOptions()->getDebugCss();
 
-        // Select the appropriate font.  First determine the subtype, then check
-        // the specified font-families for a candidate.
-
+        // Select the appropriate font.  First determine the subtype, then check the specified font-families for a candidate.
         // Resolve font-weight
         $weight = $this->__get("font_weight");
 
@@ -926,8 +935,8 @@ class Style {
         $font = null;
 
         foreach ($families as $family) {
-            //remove leading and trailing string delimiters, e.g. on font names with spaces;
-            //remove leading and trailing whitespace
+            // remove leading and trailing string delimiters, e.g. on font names with spaces;
+            // remove leading and trailing whitespace
             $family = trim($family, " \t\n\r\x0B\"'");
 
             if ($DEBUGCSS) {
@@ -1017,7 +1026,7 @@ class Style {
             $fs = (float)$this->length_in_pt($fs);
         }
 
-        //see __set and __get, on all assignments clear cache!
+        // see __set and __get, on all assignments clear cache!
         $this->_prop_cache["font_size"] = null;
         $this->_props["font_size"] = $fs;
         $this->__font_size_calculated = true;
@@ -1165,7 +1174,6 @@ class Style {
                     $y = $tmp[1];
                     break;
             }
-
         } else {
             $y = "50%";
         }
@@ -1233,7 +1241,7 @@ class Style {
      */
     function get_border_top_color() {
         if ($this->_props["border_top_color"] === "") {
-            //see __set and __get, on all assignments clear cache!
+            // see __set and __get, on all assignments clear cache!
             $this->_prop_cache["border_top_color"] = null;
             $this->_props["border_top_color"] = $this->__get("color");
         }
@@ -1246,7 +1254,7 @@ class Style {
      */
     function get_border_right_color() {
         if ($this->_props["border_right_color"] === "") {
-            //see __set and __get, on all assignments clear cache!
+            // see __set and __get, on all assignments clear cache!
             $this->_prop_cache["border_right_color"] = null;
             $this->_props["border_right_color"] = $this->__get("color");
         }
@@ -1259,7 +1267,7 @@ class Style {
      */
     function get_border_bottom_color() {
         if ($this->_props["border_bottom_color"] === "") {
-            //see __set and __get, on all assignments clear cache!
+            // see __set and __get, on all assignments clear cache!
             $this->_prop_cache["border_bottom_color"] = null;
             $this->_props["border_bottom_color"] = $this->__get("color");
         }
@@ -1272,15 +1280,13 @@ class Style {
      */
     function get_border_left_color() {
         if ($this->_props["border_left_color"] === "") {
-            //see __set and __get, on all assignments clear cache!
+            // see __set and __get, on all assignments clear cache!
             $this->_prop_cache["border_left_color"] = null;
             $this->_props["border_left_color"] = $this->__get("color");
         }
 
         return $this->munge_color($this->_props["border_left_color"]);
     }
-
-    /**#@-*/
 
     /**#@+
      * Returns the border width, as it is currently stored
@@ -1316,7 +1322,6 @@ class Style {
         $style = $this->__get("border_left_style");
         return $style !== "none" && $style !== "hidden" ? $this->length_in_pt($this->_props["border_left_width"]) : 0;
     }
-    /**#@-*/
 
     /**
      * Return an array of all border properties.
@@ -1366,7 +1371,8 @@ class Style {
     protected function _get_border($side) {
         $color = $this->__get("border_" . $side . "_color");
 
-        return $this->__get("border_" . $side . "_width") . " " . $this->__get("border_" . $side . "_style") . " " . $color["hex"];
+        return $this->__get("border_" . $side . "_width") . " " .
+        $this->__get("border_" . $side . "_style") . " " . $color["hex"];
     }
 
     /**#@+
@@ -1461,7 +1467,7 @@ class Style {
      */
     function get_outline_color() {
         if ($this->_props["outline_color"] === "") {
-            //see __set and __get, on all assignments clear cache!
+            // see __set and __get, on all assignments clear cache!
             $this->_prop_cache["outline_color"] = null;
             $this->_props["outline_color"] = $this->__get("color");
         }
@@ -1475,7 +1481,7 @@ class Style {
      */
     function get_outline_width() {
         $style = $this->__get("outline_style");
-        return $style !== "none" && $style !== "hidden" ? $this->length_in_pt($this->_props["outline_width"]) : 0;
+        return ($style !== "none" && $style !== "hidden") ? $this->length_in_pt($this->_props["outline_width"]) : 0;
     }
 
     /**#@+
@@ -1490,10 +1496,7 @@ class Style {
      */
     function get_outline() {
         $color = $this->__get("outline_color");
-        return
-            $this->__get("outline_width") . " " .
-            $this->__get("outline_style") . " " .
-            $color["hex"];
+        return $this->__get("outline_width") . " " . $this->__get("outline_style") . " " . $color["hex"];
     }
     /**#@-*/
 
@@ -1507,13 +1510,13 @@ class Style {
      */
     function get_border_spacing() {
         $arr = explode(" ", $this->_props["border_spacing"]);
+
         if (count($arr) == 1) {
             $arr[1] = $arr[0];
         }
+
         return $arr;
     }
-
-    /*==============================*/
 
     /*
      !important attribute
@@ -1574,10 +1577,11 @@ class Style {
         $prop = $style . '_' . $side . $type;
 
         if (!isset($this->_important_props[$prop]) || $important) {
+            // reset computed cache, border style can disable/enable border calculations
             if ($side === "bottom") {
-                $this->_computed_bottom_spacing = null; //reset computed cache, border style can disable/enable border calculations
+                $this->_computed_bottom_spacing = null;
             }
-            //see __set and __get, on all assignments clear cache!
+            // see __set and __get, on all assignments clear cache!
             $this->_prop_cache[$prop] = null;
 
             if ($important) {
@@ -1611,7 +1615,9 @@ class Style {
      * @param $important
      */
     protected function _set_style_type($style, $type, $val, $important) {
-        $val = preg_replace("/\s*\,\s*/", ",", $val); // when rgb() has spaces
+        // when rgb() has spaces
+        $val = preg_replace("/\s*\,\s*/", ",", $val);
+
         $arr = explode(" ", $val);
 
         switch (count($arr)) {
@@ -1629,7 +1635,7 @@ class Style {
                 break;
         }
 
-        //see __set and __get, on all assignments clear cache!
+        // see __set and __get, on all assignments clear cache!
         $this->_prop_cache[$style . $type] = null;
         $this->_props[$style . $type] = $val;
     }
@@ -1655,7 +1661,8 @@ class Style {
         if ($side === "bottom") {
             $this->_computed_bottom_spacing = null; //reset cache for any bottom width changes
         }
-        //see __set and __get, on all assignments clear cache!
+
+        // see __set and __get, on all assignments clear cache!
         $this->_prop_cache[$style . '_' . $side] = null;
         $this->_props[$style . '_' . $side] = str_replace("none", "0px", $val);
     }
@@ -1670,7 +1677,8 @@ class Style {
             if ($important) {
                 $this->_important_props[$style] = true;
             }
-            //see __set and __get, on all assignments clear cache!
+
+            // see __set and __get, on all assignments clear cache!
             $this->_prop_cache[$style] = null;
             $this->_props[$style] = $val;
         }
@@ -1701,6 +1709,7 @@ class Style {
                 }
 
                 $path .= $parsed_url["path"] . $parsed_url["file"];
+
                 $path = realpath($path);
                 // If realpath returns FALSE then specifically state that there is no background image
                 if (!$path) {
@@ -1721,8 +1730,6 @@ class Style {
         return $path;
     }
 
-    /*======================*/
-
     /**
      * Sets color
      *
@@ -1740,7 +1747,7 @@ class Style {
             $color = $col["hex"];
         }
 
-        //see __set and __get, on all assignments clear cache, not needed on direct set through __set
+        // see __set and __get, on all assignments clear cache, not needed on direct set through __set
         $this->_prop_cache["color"] = null;
         $this->_props["color"] = $color;
     }
@@ -1756,10 +1763,9 @@ class Style {
 
         if (is_null($col)) {
             return;
-            //$col = self::$_defaults["background_color"];
         }
 
-        //see __set and __get, on all assignments clear cache, not needed on direct set through __set
+        // see __set and __get, on all assignments clear cache, not needed on direct set through __set
         $this->_prop_cache["background_color"] = null;
         $this->_props["background_color"] = is_array($col) ? $col["hex"] : $col;
     }
@@ -1771,7 +1777,7 @@ class Style {
      * @param string $val
      */
     function set_background_image($val) {
-        //see __set and __get, on all assignments clear cache, not needed on direct set through __set
+        // see __set and __get, on all assignments clear cache, not needed on direct set through __set
         $this->_prop_cache["background_image"] = null;
         $this->_props["background_image"] = $this->_image($val);
     }
@@ -1787,7 +1793,7 @@ class Style {
             $val = self::$_defaults["background_repeat"];
         }
 
-        //see __set and __get, on all assignments clear cache, not needed on direct set through __set
+        // see __set and __get, on all assignments clear cache, not needed on direct set through __set
         $this->_prop_cache["background_repeat"] = null;
         $this->_props["background_repeat"] = $val;
     }
@@ -1803,7 +1809,7 @@ class Style {
             $val = self::$_defaults["background_attachment"];
         }
 
-        //see __set and __get, on all assignments clear cache, not needed on direct set through __set
+        // see __set and __get, on all assignments clear cache, not needed on direct set through __set
         $this->_prop_cache["background_attachment"] = null;
         $this->_props["background_attachment"] = $val;
     }
@@ -1819,7 +1825,7 @@ class Style {
             $val = self::$_defaults["background_position"];
         }
 
-        //see __set and __get, on all assignments clear cache, not needed on direct set through __set
+        // see __set and __get, on all assignments clear cache, not needed on direct set through __set
         $this->_prop_cache["background_position"] = null;
         $this->_props["background_position"] = $val;
     }
@@ -1832,6 +1838,7 @@ class Style {
      */
     function set_background($val) {
         $val = trim($val);
+
         $important = isset($this->_important_props["background"]);
 
         if ($val === "none") {
@@ -1839,7 +1846,6 @@ class Style {
             $this->_set_style("background_color", "transparent", $important);
         } else {
             $pos = array();
-
             $tmp = preg_replace("/\s*\,\s*/", ",", $val); // when rgb() has spaces
             $tmp = preg_split("/\s+/", $tmp);
 
@@ -1862,7 +1868,7 @@ class Style {
             }
         }
 
-        //see __set and __get, on all assignments clear cache, not needed on direct set through __set
+        // see __set and __get, on all assignments clear cache, not needed on direct set through __set
         $this->_prop_cache["background"] = null;
         $this->_props["background"] = $val;
     }
@@ -1877,7 +1883,7 @@ class Style {
      */
     function set_font_size($size) {
         $this->__font_size_calculated = false;
-        //see __set and __get, on all assignments clear cache, not needed on direct set through __set
+        // see __set and __get, on all assignments clear cache, not needed on direct set through __set
         $this->_prop_cache["font_size"] = null;
         $this->_props["font_size"] = $size;
     }
@@ -1908,7 +1914,7 @@ class Style {
      */
     function set_font($val) {
         $this->__font_size_calculated = false;
-        //see __set and __get, on all assignments clear cache, not needed on direct set through __set
+        // see __set and __get, on all assignments clear cache, not needed on direct set through __set
         $this->_prop_cache["font"] = null;
         $this->_props["font"] = $val;
 
@@ -1928,10 +1934,8 @@ class Style {
             $this->_set_style("font_variant", self::$_defaults["font_variant"], $important);
         }
 
-        //matching numeric value followed by unit -> this is indeed a subsequent font size. Skip!
-        if (preg_match("/^(bold|bolder|lighter|100|200|300|400|500|600|700|800|900|normal)\s*(.*)$/i", $val, $match) &&
-            !preg_match("/^(?:pt|px|pc|em|ex|in|cm|mm|%)/", $match[2])
-        ) {
+        // matching numeric value followed by unit -> this is indeed a subsequent font size. Skip!
+        if (preg_match("/^(bold|bolder|lighter|100|200|300|400|500|600|700|800|900|normal)\s*(.*)$/i", $val, $match) && !preg_match("/^(?:pt|px|pc|em|ex|in|cm|mm|%)/", $match[2])) {
             $this->_set_style("font_weight", $match[1], $important);
             $val = $match[2];
         } else {
@@ -1941,6 +1945,7 @@ class Style {
         if (preg_match("/^(xx-small|x-small|small|medium|large|x-large|xx-large|smaller|larger|\d+\s*(?:pt|px|pc|em|ex|in|cm|mm|%))(?:\/|\s*)(.*)$/i", $val, $match)) {
             $this->_set_style("font_size", $match[1], $important);
             $val = $match[2];
+
             if (preg_match("/^(?:\/|\s*)(\d+\s*(?:pt|px|pc|em|ex|in|cm|mm|%)?)\s*(.*)$/i", $val, $match)) {
                 $this->_set_style("line_height", $match[1], $important);
                 $val = $match[2];
@@ -1970,7 +1975,7 @@ class Style {
             $break = "always";
         }
 
-        //see __set and __get, on all assignments clear cache, not needed on direct set through __set
+        // see __set and __get, on all assignments clear cache, not needed on direct set through __set
         $this->_prop_cache["page_break_before"] = null;
         $this->_props["page_break_before"] = $break;
     }
@@ -1983,7 +1988,7 @@ class Style {
             $break = "always";
         }
 
-        //see __set and __get, on all assignments clear cache, not needed on direct set through __set
+        // see __set and __get, on all assignments clear cache, not needed on direct set through __set
         $this->_prop_cache["page_break_after"] = null;
         $this->_props["page_break_after"] = $break;
     }
@@ -2008,7 +2013,8 @@ class Style {
     /**
      * @param $val
      */
-    function set_margin_bottom($val) {
+    function set_margin_bottom($val)
+    {
         $this->_set_style_side_width_important('margin', 'bottom', $val);
     }
 
@@ -2065,7 +2071,6 @@ class Style {
         $val = str_replace("none", "0px", $val);
         $this->_set_style_type_important('padding', '', $val);
     }
-    /**#@-*/
 
     /**
      * Sets a single border
@@ -2076,10 +2081,8 @@ class Style {
      */
     protected function _set_border($side, $border_spec, $important) {
         $border_spec = preg_replace("/\s*\,\s*/", ",", $border_spec);
-        //$border_spec = str_replace(",", " ", $border_spec); // Why did we have this ?? rbg(10, 102, 10) > rgb(10  102  10)
-        $arr = explode(" ", $border_spec);
 
-        // handle partial values
+        $arr = explode(" ", $border_spec);
 
         // For consistency of individal and combined properties, and with ie8 and firefox3
         // reset all attributes, even if only partially given
@@ -2092,7 +2095,7 @@ class Style {
 
             if (in_array($value, self::$BORDER_STYLES)) {
                 $this->_set_style_side_type('border', $side, '_style', $value, $important);
-            } else if (preg_match("/[.0-9]+(?:px|pt|pc|em|ex|%|in|mm|cm)|(?:thin|medium|thick)/", $value)) {
+            } elseif (preg_match("/[.0-9]+(?:px|pt|pc|em|ex|%|in|mm|cm)|(?:thin|medium|thick)/", $value)) {
                 $this->_set_style_side_type('border', $side, '_width', $value, $important);
             } else {
                 // must be color
@@ -2100,7 +2103,7 @@ class Style {
             }
         }
 
-        //see __set and __get, on all assignments clear cache!
+        // see __set and __get, on all assignments clear cache!
         $this->_prop_cache['border_' . $side] = null;
         $this->_props['border_' . $side] = $border_spec;
     }
@@ -2146,7 +2149,8 @@ class Style {
         $this->_set_border("right", $val, $important);
         $this->_set_border("bottom", $val, $important);
         $this->_set_border("left", $val, $important);
-        //see __set and __get, on all assignments clear cache, not needed on direct set through __set
+
+        // see __set and __get, on all assignments clear cache, not needed on direct set through __set
         $this->_prop_cache["border"] = null;
         $this->_props["border"] = $val;
     }
@@ -2208,7 +2212,8 @@ class Style {
      * @param $val
      */
     function set_border_radius($val) {
-        $val = preg_replace("/\s*\,\s*/", ",", $val); // when border-radius has spaces
+        // when border-radius has spaces
+        $val = preg_replace("/\s*\,\s*/", ",", $val);
         $arr = explode(" ", $val);
 
         switch (count($arr)) {
@@ -2247,7 +2252,7 @@ class Style {
     protected function _set_border_radius_corner($val, $corner) {
         $this->_has_border_radius = true;
 
-        //see __set and __get, on all assignments clear cache!
+        // see __set and __get, on all assignments clear cache!
         $this->_prop_cache["border_" . $corner . "_radius"] = null;
 
         $this->_props["border_" . $corner . "_radius"] = $val;
@@ -2312,7 +2317,7 @@ class Style {
             $_val = self::$_defaults[$prop];
 
             if (!isset($this->_important_props[$prop]) || $important) {
-                //see __set and __get, on all assignments clear cache!
+                // see __set and __get, on all assignments clear cache!
                 $this->_prop_cache[$prop] = null;
 
                 if ($important) {
@@ -2323,7 +2328,8 @@ class Style {
             }
         }
 
-        $val = preg_replace("/\s*\,\s*/", ",", $val); // when rgb() has spaces
+        // when rgb() has spaces
+        $val = preg_replace("/\s*\,\s*/", ",", $val);
         $arr = explode(" ", $val);
 
         foreach ($arr as $value) {
@@ -2378,7 +2384,7 @@ class Style {
             $arr[1] = $arr[0];
         }
 
-        //see __set and __get, on all assignments clear cache, not needed on direct set through __set
+        // see __set and __get, on all assignments clear cache, not needed on direct set through __set
         $this->_prop_cache["border_spacing"] = null;
         $this->_props["border_spacing"] = "$arr[0] $arr[1]";
     }
@@ -2390,7 +2396,7 @@ class Style {
      * @param $val
      */
     function set_list_style_image($val) {
-        //see __set and __get, on all assignments clear cache, not needed on direct set through __set
+        // see __set and __get, on all assignments clear cache, not needed on direct set through __set
         $this->_prop_cache["list_style_image"] = null;
         $this->_props["list_style_image"] = $this->_image($val);
     }
@@ -2446,7 +2452,7 @@ class Style {
             }
         }
 
-        //see __set and __get, on all assignments clear cache, not needed on direct set through __set
+        // see __set and __get, on all assignments clear cache, not needed on direct set through __set
         $this->_prop_cache["list_style"] = null;
         $this->_props["list_style"] = $val;
     }
@@ -2479,14 +2485,12 @@ class Style {
             if (isset($parts[2]) && $parts[2] === "landscape") {
                 $computed = array_reverse($computed);
             }
-
         } elseif (isset(CPDF::$PAPER_SIZES[$parts[0]])) {
             $computed = array_slice(CPDF::$PAPER_SIZES[$parts[0]], 2, 2);
 
             if (isset($parts[1]) && $parts[1] === "landscape") {
                 $computed = array_reverse($computed);
             }
-
         } else {
             return;
         }
@@ -2542,6 +2546,7 @@ class Style {
                         case "skew":
                         case "skewX":
                         case "skewY":
+
                             foreach ($values as $i => $value) {
                                 if (strpos($value, "rad")) {
                                     $values[$i] = rad2deg(floatval($value));
@@ -2569,10 +2574,10 @@ class Style {
 
                         // <translation-value> units
                         case "translate":
-                            $values[0] = $this->length_in_pt($values[0], $this->width);
+                            $values[0] = $this->length_in_pt($values[0], (float)$this->length_in_pt($this->width));
 
                             if (isset($values[1])) {
-                                $values[1] = $this->length_in_pt($values[1], $this->height);
+                                $values[1] = $this->length_in_pt($values[1], (float)$this->length_in_pt($this->height));
                             } else {
                                 $values[1] = 0;
                             }
@@ -2580,12 +2585,12 @@ class Style {
 
                         case "translateX":
                             $name = "translate";
-                            $values = array($this->length_in_pt($values[0], $this->width), 0);
+                            $values = array($this->length_in_pt($values[0], (float)$this->length_in_pt($this->width)), 0);
                             break;
 
                         case "translateY":
                             $name = "translate";
-                            $values = array(0, $this->length_in_pt($values[0], $this->height));
+                            $values = array(0, $this->length_in_pt($values[0], (float)$this->length_in_pt($this->height)));
                             break;
 
                         // <number> units
@@ -2606,7 +2611,10 @@ class Style {
                             break;
                     }
 
-                    $transforms[] = array($name, $values);
+                    $transforms[] = array(
+                        $name,
+                        $values,
+                    );
                 }
             }
         }
@@ -2618,7 +2626,7 @@ class Style {
      * @param $val
      */
     function set_transform($val) {
-        //see __set and __get, on all assignments clear cache, not needed on direct set through __set
+        // see __set and __get, on all assignments clear cache, not needed on direct set through __set
         $this->_prop_cache["transform"] = null;
         $this->_props["transform"] = $val;
     }
@@ -2644,7 +2652,7 @@ class Style {
      * @param string $val
      */
     function set_transform_origin($val) {
-        //see __set and __get, on all assignments clear cache, not needed on direct set through __set
+        // see __set and __get, on all assignments clear cache, not needed on direct set through __set
         $this->_prop_cache["transform_origin"] = null;
         $this->_props["transform_origin"] = $val;
     }
@@ -2665,7 +2673,7 @@ class Style {
         $values = array_map(function($value) {
             if (in_array($value, array("top", "left"))) {
                 return 0;
-            } else if (in_array($value, array("bottom", "right"))) {
+            } elseif (in_array($value, array("bottom", "right"))) {
                 return "100%";
             } else {
                 return $value;
@@ -2686,7 +2694,6 @@ class Style {
     protected function parse_image_resolution($val) {
         // If exif data could be get:
         // $re = '/^\s*(\d+|normal|auto)(?:\s*,\s*(\d+|normal))?\s*$/';
-
         $re = '/^\s*(\d+|normal|auto)\s*$/';
 
         if (!preg_match($re, $val, $matches)) {
@@ -2795,8 +2802,7 @@ class Style {
      */
     /*DEBUGCSS print: see below additional debugging util*/
     function __toString() {
-        return print_r(array_merge(array("parent_font_size" => $this->_parent_font_size),
-            $this->_props), true);
+        return print_r(array_merge(array("parent_font_size" => $this->_parent_font_size), $this->_props), true);
     }
 
     /*DEBUGCSS*/

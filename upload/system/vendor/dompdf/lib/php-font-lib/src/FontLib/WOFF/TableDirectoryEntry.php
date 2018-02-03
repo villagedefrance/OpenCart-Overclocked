@@ -26,6 +26,7 @@ class TableDirectoryEntry extends DirectoryEntry {
     parent::parse();
 
     $font = $this->font;
+
     $this->offset = $font->readUInt32();
     $this->length = $font->readUInt32();
     $this->origLength = $font->readUInt32();

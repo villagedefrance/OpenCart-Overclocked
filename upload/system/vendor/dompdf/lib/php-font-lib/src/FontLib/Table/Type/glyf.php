@@ -19,7 +19,6 @@ use FontLib\Glyph\OutlineSimple;
  * @property Outline[] $data
  */
 class glyf extends Table {
-
   protected function _parse() {
     $font = $this->getFont();
     $offset = $font->pos();
@@ -42,7 +41,7 @@ class glyf extends Table {
     $glyphIDs = array();
 
     foreach ($gids as $_gid) {
-      $_glyph   = $this->data[$_gid];
+      $_glyph = $this->data[$_gid];
       $glyphIDs = array_merge($glyphIDs, $_glyph->getGlyphIDs());
     }
 
@@ -71,8 +70,8 @@ class glyf extends Table {
     $ratio = 1;
 
     if ($width > $max || $height > $max) {
-      $ratio  = max($width, $height) / $max;
-      $width  = round($width / $ratio);
+      $ratio = max($width, $height) / $max;
+      $width = round($width / $ratio);
       $height = round($height / $ratio);
     }
 
@@ -99,12 +98,12 @@ class glyf extends Table {
 
       $glyph->parseData();
 
-      $shape      = array(
+      $shape = array(
         "SVGContours" => $glyph->getSVGContours(),
-        "xMin"        => $glyph->xMin,
-        "yMin"        => $glyph->yMin,
-        "xMax"        => $glyph->xMax,
-        "yMax"        => $glyph->yMax,
+        "xMin" => $glyph->xMin,
+        "yMin" => $glyph->yMin,
+        "xMax" => $glyph->xMax,
+        "yMax" => $glyph->yMax,
       );
 
       $shape_json = json_encode($shape);
@@ -149,7 +148,7 @@ class glyf extends Table {
       $length += $data[$gid]->encode();
     }
 
-    $loca[] = $length; // dummy loca
+    $loca[] = $length;
     $font->getTableObject("loca")->data = $loca;
 
     return $length;

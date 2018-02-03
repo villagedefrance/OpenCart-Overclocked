@@ -41,8 +41,8 @@ class OutlineSimple extends Outline {
     }
 
     $endPtsOfContours = $font->r(array(self::uint16, $noc));
-
     $instructionLength  = $font->readUInt16();
+
     $this->instructions = $font->r(array(self::uint8, $instructionLength));
 
     $count = $endPtsOfContours[$noc - 1] + 1;
@@ -67,7 +67,7 @@ class OutlineSimple extends Outline {
     $points = array();
 
     foreach ($flags as $i => $flag) {
-      $points[$i]["onCurve"]      = $flag & self::ON_CURVE;
+      $points[$i]["onCurve"] = $flag & self::ON_CURVE;
       $points[$i]["endOfContour"] = in_array($i, $endPtsOfContours);
     }
 
@@ -136,9 +136,9 @@ class OutlineSimple extends Outline {
         // moveTo
         case "M":
           $points[] = array(
-            "onCurve"      => true,
-            "x"            => $path[++$i],
-            "y"            => $path[++$i],
+            "onCurve" => true,
+            "x" => $path[++$i],
+            "y" => $path[++$i],
             "endOfContour" => false,
           );
           break;
@@ -146,9 +146,9 @@ class OutlineSimple extends Outline {
         // lineTo
         case "L":
           $points[] = array(
-            "onCurve"      => true,
-            "x"            => $path[++$i],
-            "y"            => $path[++$i],
+            "onCurve" => true,
+            "x" => $path[++$i],
+            "y" => $path[++$i],
             "endOfContour" => false,
           );
           break;
@@ -156,21 +156,20 @@ class OutlineSimple extends Outline {
         // quadraticCurveTo
         case "Q":
           $points[] = array(
-            "onCurve"      => false,
-            "x"            => $path[++$i],
-            "y"            => $path[++$i],
+            "onCurve" => false,
+            "x" => $path[++$i],
+            "y" => $path[++$i],
             "endOfContour" => false,
           );
           $points[] = array(
-            "onCurve"      => true,
-            "x"            => $path[++$i],
-            "y"            => $path[++$i],
+            "onCurve" => true,
+            "x" => $path[++$i],
+            "y" => $path[++$i],
             "endOfContour" => false,
           );
           break;
 
         // closePath
-        /** @noinspection PhpMissingBreakStatementInspection */
         case "z":
           $points[count($points) - 1]["endOfContour"] = true;
 
@@ -199,6 +198,7 @@ class OutlineSimple extends Outline {
 
     $last_x = 0;
     $last_y = 0;
+
     $xMin = $yMin = 0xFFFF;
     $xMax = $yMax = -0xFFFF;
 
@@ -234,6 +234,7 @@ class OutlineSimple extends Outline {
       }
 
       $flags[] = $flag;
+
       $last_x = $point["x"];
       $last_y = $point["y"];
     }
@@ -241,6 +242,7 @@ class OutlineSimple extends Outline {
     $font = $this->getFont();
 
     $l = 0;
+
     $l += $font->writeInt16(count($endPtsOfContours)); // endPtsOfContours
     $l += $font->writeFWord(isset($this->xMin) ? $this->xMin : $xMin); // xMin
     $l += $font->writeFWord(isset($this->yMin) ? $this->yMin : $yMin); // yMin
@@ -277,6 +279,7 @@ class OutlineSimple extends Outline {
 
       if ($points[$i]["endOfContour"]) {
         $path .= $this->getSVGPath($points, $firstIndex, $count);
+
         $firstIndex = $i + 1;
         $count = 0;
       }
@@ -316,7 +319,8 @@ class OutlineSimple extends Outline {
       } else {
         if ($point_p1["onCurve"]) {
           $path .= "Q{$point['x']},{$point['y']},{$point_p1['x']},{$point_p1['y']} ";
-        } else {
+        }
+        else {
           $path .= "Q{$point['x']},{$point['y']}," . $this->midValue($point['x'], $point_p1['x']) . "," . $this->midValue($point['y'], $point_p1['y']) . " ";
         }
 

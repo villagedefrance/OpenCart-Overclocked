@@ -169,7 +169,6 @@ class name extends Table {
   protected function _encode() {
     $font = $this->getFont();
 
-    /** @var nameRecord[] $records */
     $records = $this->data["records"];
     $count_records = count($records);
 
@@ -183,6 +182,7 @@ class name extends Table {
     foreach ($records as $record) {
       $record->length = mb_strlen($record->getUTF16(), "8bit");
       $record->offset = $offset;
+
       $offset += $record->length;
       $length += $font->pack(nameRecord::$format, (array)$record);
     }

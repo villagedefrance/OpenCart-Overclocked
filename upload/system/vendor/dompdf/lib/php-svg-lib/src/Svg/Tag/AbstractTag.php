@@ -70,11 +70,9 @@ abstract class AbstractTag {
     }
 
     protected function before($attributes) { }
-
     protected function start($attributes) { }
 
     protected function end() { }
-
     protected function after() { }
 
     public function getAttributes() {
@@ -105,6 +103,7 @@ abstract class AbstractTag {
      */
     protected function makeStyle($attributes) {
         $style = new Style();
+
         $style->inherit($this);
         $style->fromStyleSheets($this, $attributes);
         $style->fromAttributes($attributes);
@@ -120,12 +119,7 @@ abstract class AbstractTag {
 
             $match = array();
 
-            preg_match_all(
-                '/(matrix|translate|scale|rotate|skewX|skewY)\((.*?)\)/is',
-                $transform,
-                $match,
-                PREG_SET_ORDER
-            );
+            preg_match_all('/(matrix|translate|scale|rotate|skewX|skewY)\((.*?)\)/is', $transform, $match, PREG_SET_ORDER);
 
             $transformations = array();
 
@@ -133,6 +127,7 @@ abstract class AbstractTag {
                 foreach ($match as $_match) {
                     $arguments = preg_split('/[ ,]+/', $_match[2]);
                     array_unshift($arguments, $_match[1]);
+
                     $transformations[] = $arguments;
                 }
             }

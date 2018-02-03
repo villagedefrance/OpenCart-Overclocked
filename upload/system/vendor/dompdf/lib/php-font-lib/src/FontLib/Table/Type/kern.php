@@ -23,7 +23,6 @@ class kern extends Table {
     $data = $font->unpack(array(
       "version" => self::uint16,
       "nTables" => self::uint16,
-
       // only the first subtable will be parsed
       "subtableVersion" => self::uint16,
       "length" => self::uint16,
@@ -49,7 +48,7 @@ class kern extends Table {
         $values = $font->readUInt16Many($subtable["nPairs"] * 3);
 
         for ($i = 0, $idx = 0; $i < $subtable["nPairs"]; $i++) {
-          $left  = $values[$idx++];
+          $left = $values[$idx++];
           $right = $values[$idx++];
           $value = $values[$idx++];
 
@@ -58,7 +57,7 @@ class kern extends Table {
           }
 
           $pairs[] = array(
-            "left"  => $left,
+            "left" => $left,
             "right" => $right,
             "value" => $value,
           );
@@ -66,7 +65,6 @@ class kern extends Table {
           $tree[$left][$right] = $value;
         }
 
-        //$subtable["pairs"] = $pairs;
         $subtable["tree"] = $tree;
         break;
 

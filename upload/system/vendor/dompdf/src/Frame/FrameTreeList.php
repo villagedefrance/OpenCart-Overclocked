@@ -1,4 +1,5 @@
 <?php
+
 namespace Dompdf\Frame;
 
 use IteratorAggregate;
@@ -11,6 +12,7 @@ use Dompdf\Frame;
  * @package dompdf
  */
 class FrameTreeList implements IteratorAggregate {
+
     /**
      * @var \Dompdf\Frame
      */

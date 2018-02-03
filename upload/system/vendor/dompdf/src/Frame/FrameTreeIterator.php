@@ -1,4 +1,5 @@
 <?php
+
 namespace Dompdf\Frame;
 
 use Iterator;
@@ -78,6 +79,7 @@ class FrameTreeIterator implements Iterator {
         // Push all children onto the stack in reverse order
         if ($c = $b->get_last_child()) {
             $this->_stack[] = $c;
+
             while ($c = $c->get_prev_sibling()) {
                 $this->_stack[] = $c;
             }

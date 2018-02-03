@@ -1,4 +1,5 @@
 <?php
+
 namespace Dompdf\Frame;
 
 use Dompdf\Frame;

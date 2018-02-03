@@ -24,7 +24,7 @@ class Header extends \FontLib\Header {
     "numTables" => self::uint16,
     "searchRange" => self::uint16,
     "entrySelector" => self::uint16,
-    "rangeShift" => self::uint16,
+    "rangeShift" => self::uint16
   );
 
   public function parse() {
@@ -51,7 +51,7 @@ class Header extends \FontLib\Header {
       "Reserved1" => self::uint32,
       "Reserved2" => self::uint32,
       "Reserved3" => self::uint32,
-      "Reserved4" => self::uint32,
+      "Reserved4" => self::uint32
     ));
 
     $this->data["Padding1"] = $font->readUInt16();
@@ -84,12 +84,12 @@ class Header extends \FontLib\Header {
         $this->readString("RootString");
 
         $this->data["RootStringCheckSum"] = $font->readUInt32();
-        $this->data["EUDCCodePage"] = $font->readUInt32();
+        $this->data["EUDCCodePage"]       = $font->readUInt32();
 
         $this->data["Padding6"] = $font->readUInt16();
         $this->readString("Signature");
 
-        $this->data["EUDCFlags"] = $font->readUInt32();
+        $this->data["EUDCFlags"]    = $font->readUInt32();
         $this->data["EUDCFontSize"] = $font->readUInt32();
         break;
     }
@@ -104,7 +104,7 @@ class Header extends \FontLib\Header {
     $size = $font->readUInt16();
 
     $this->data["{$name}Size"] = $size;
-    $this->data[$name]         = Font::UTF16ToUTF8($font->read($size));
+    $this->data[$name] = Font::UTF16ToUTF8($font->read($size));
   }
 
   public function encode() {

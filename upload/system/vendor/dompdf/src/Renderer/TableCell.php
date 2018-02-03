@@ -4,9 +4,8 @@
  * @link    http://dompdf.github.com/
  * @author  Benj Carson <benjcarson@digitaljunkies.ca>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- *
- * Overclocked Edition © 2018 | Villagedefrance
  */
+
 namespace Dompdf\Renderer;
 
 use Dompdf\Frame;
@@ -18,6 +17,7 @@ use Dompdf\FrameDecorator\Table;
  * @package dompdf
  */
 class TableCell extends Block {
+
     /**
      * @param Frame $frame
      */
@@ -50,10 +50,13 @@ class TableCell extends Block {
         }
 
         // The collapsed case is slightly complicated...
-        // @todo Add support for outlines here
-
         $cellmap = $table->get_cellmap();
         $cells = $cellmap->get_spanned_cells($frame);
+
+        if (is_null($cells)) {
+            return;
+        }
+
         $num_rows = $cellmap->get_num_rows();
         $num_cols = $cellmap->get_num_cols();
 
@@ -62,8 +65,9 @@ class TableCell extends Block {
         $top_row = $cellmap->get_row($i);
 
         // Determine if this cell borders on the bottom of the table.  If so,
-        // then we draw its bottom border.  Otherwise the next row down will
+        // then we draw its bottom border. Otherwise the next row down will
         // draw its top border instead.
+
         if (in_array($num_rows - 1, $cells["rows"])) {
             $draw_bottom = true;
             $bottom_row = $cellmap->get_row($num_rows - 1);
@@ -88,12 +92,15 @@ class TableCell extends Block {
                     (float)$bp["bottom"]["width"],
                     (float)$bp["left"]["width"]
                 );
+
                 $method = "_border_" . $bp["top"]["style"];
+
                 $this->$method($x, $y, $w, $bp["top"]["color"], $widths, "top", "square");
             }
 
             if ($draw_bottom) {
                 $bp = $cellmap->get_border_properties($num_rows - 1, $j);
+
                 if ($bp["bottom"]["style"] === "none" || $bp["bottom"]["width"] <= 0) {
                     continue;
                 }
@@ -106,7 +113,9 @@ class TableCell extends Block {
                     (float)$bp["bottom"]["width"],
                     (float)$bp["left"]["width"]
                 );
+
                 $method = "_border_" . $bp["bottom"]["style"];
+
                 $this->$method($x, $y, $w, $bp["bottom"]["color"], $widths, "bottom", "square");
 
             }
@@ -143,11 +152,13 @@ class TableCell extends Block {
                 );
 
                 $method = "_border_" . $bp["left"]["style"];
+
                 $this->$method($x, $y, $h, $bp["left"]["color"], $widths, "left", "square");
             }
 
             if ($draw_right) {
                 $bp = $cellmap->get_border_properties($i, $num_cols - 1);
+
                 if ($bp["right"]["style"] === "none" || $bp["right"]["width"] <= 0) {
                     continue;
                 }
@@ -162,13 +173,14 @@ class TableCell extends Block {
                 );
 
                 $method = "_border_" . $bp["right"]["style"];
+
                 $this->$method($x, $y, $h, $bp["right"]["color"], $widths, "right", "square");
             }
         }
 
         $id = $frame->get_node()->getAttribute("id");
 
-        if (strlen($id) > 0) {
+        if (strlen($id) > 0)  {
             $this->_canvas->add_named_dest($id);
         }
     }

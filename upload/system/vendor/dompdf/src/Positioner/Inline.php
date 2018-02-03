@@ -10,7 +10,6 @@ namespace Dompdf\Positioner;
 
 use Dompdf\FrameDecorator\AbstractFrameDecorator;
 use Dompdf\FrameDecorator\Inline as InlineFrameDecorator;
-use Dompdf\FrameDecorator\Block as BlockFrameDecorator;
 use Dompdf\Exception;
 
 /**
@@ -30,14 +29,6 @@ class Inline extends AbstractPositioner {
          * @var BlockFrameDecorator
          */
         $p = $frame->find_block_parent();
-
-        // Debugging code:
-
-        // Helpers::pre_r("\nPositioning:");
-        // Helpers::pre_r("Me: " . $frame->get_node()->nodeName . " (" . spl_object_hash($frame->get_node()) . ")");
-        // Helpers::pre_r("Parent: " . $p->get_node()->nodeName . " (" . spl_object_hash($p->get_node()) . ")");
-
-        // End debugging
 
         if (!$p) {
             throw new Exception("No block-level parent found.  Not good.");

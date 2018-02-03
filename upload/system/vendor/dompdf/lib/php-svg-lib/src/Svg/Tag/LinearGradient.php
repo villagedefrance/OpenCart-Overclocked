@@ -8,7 +8,6 @@
 
 namespace Svg\Tag;
 
-
 use Svg\Gradient\Stop;
 use Svg\Style;
 

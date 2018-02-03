@@ -19,7 +19,8 @@ class CanvasFactory {
     /**
      * Constructor is private: this is a static class
      */
-    private function __construct() { }
+    private function __construct() {
+    }
 
     /**
      * @param Dompdf $dompdf

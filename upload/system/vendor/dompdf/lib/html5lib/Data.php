@@ -1,12 +1,8 @@
 <?php
 // warning: this file is encoded in UTF-8!
-
 class HTML5_Data {
-    // at some point this should be moved to a .ser file. Another
-    // possible optimization is to give UTF-8 bytes, not Unicode
-    // codepoints
-    // XXX: Not quite sure why it's named this; this is
-    // actually the numeric entity dereference table.
+    // at some point this should be moved to a .ser file. Another possible optimization is to give UTF-8 bytes, not Unicode codepoints
+    // XXX: Not quite sure why it's named this; this is actually the numeric entity dereference table.
     protected static $realCodepointTable = array(
         0x00 => 0xFFFD, // REPLACEMENT CHARACTER
         0x0D => 0x000A, // LINE FEED (LF)
@@ -45,7 +41,6 @@ class HTML5_Data {
     );
 
     protected static $namedCharacterReferences;
-
     protected static $namedCharacterReferenceMaxLength;
 
     /**
@@ -62,7 +57,7 @@ class HTML5_Data {
 
     public static function getNamedCharacterReferences() {
         if (!self::$namedCharacterReferences) {
-            self::$namedCharacterReferences = unserialize( file_get_contents(dirname(__FILE__) . '/named-character-references.ser') );
+            self::$namedCharacterReferences = unserialize(file_get_contents(dirname(__FILE__) . '/named-character-references.ser'));
         }
 
         return self::$namedCharacterReferences;
@@ -70,19 +65,10 @@ class HTML5_Data {
 
     /**
      * Converts a Unicode codepoint to sequence of UTF-8 bytes.
-     * @note Shamelessly stolen from HTML Purifier, which is also
-     *       shamelessly stolen from Feyd (which is in public domain).
+     * @note Shamelessly stolen from HTML Purifier, which is also shamelessly stolen from Feyd (which is in public domain).
      */
     public static function utf8chr($code) {
-        /* We don't care: we live dangerously
-         * if($code > 0x10FFFF or $code < 0x0 or
-          ($code >= 0xD800 and $code <= 0xDFFF) ) {
-            // bits are set outside the "valid" range as defined
-            // by UNICODE 4.1.0
-            return "\xEF\xBF\xBD";
-          }*/
-
-        $x = $y = $z = $w = 0;
+        $y = $z = $w = 0;
 
         if ($code < 0x80) {
             // regular ASCII character
@@ -95,6 +81,7 @@ class HTML5_Data {
                $y = (($code & 0x7FF) >> 6) | 0xC0;
             } else {
                 $y = (($code & 0xFC0) >> 6) | 0x80;
+
                 if ($code < 0x10000) {
                     $z = (($code >> 12) & 0x0F) | 0xE0;
                 } else {
@@ -109,9 +96,11 @@ class HTML5_Data {
         if ($w) {
             $ret .= chr($w);
         }
+
         if ($z) {
             $ret .= chr($z);
         }
+
         if ($y) {
             $ret .= chr($y);
         }

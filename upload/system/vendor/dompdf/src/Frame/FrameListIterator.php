@@ -1,4 +1,5 @@
 <?php
+
 namespace Dompdf\Frame;
 
 use Iterator;
@@ -51,7 +52,7 @@ class FrameListIterator implements Iterator {
      * @return bool
      */
     public function valid() {
-        return isset($this->_cur); // && ($this->_cur->get_prev_sibling() === $this->_prev);
+        return isset($this->_cur);
     }
 
     /**
@@ -80,6 +81,7 @@ class FrameListIterator implements Iterator {
 
         $this->_cur = $this->_cur->get_next_sibling();
         $this->_num++;
+
         return $ret;
     }
 }
