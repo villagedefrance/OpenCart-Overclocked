@@ -3,6 +3,9 @@ machine:
     Europe/Dublin
   php:
     version: 7.0.4
+  environment:
+    foo: bar
+    baz: 123
 
   jobs:
   build:
