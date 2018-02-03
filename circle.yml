@@ -1,0 +1,5 @@
+machine:
+  timezone:
+    Europe/Dublin
+  php:
+    version: 7.0.4
