@@ -8,7 +8,6 @@ dependencies:
   pre:
     - gem install bundler
   override:
-    - php composer.phar install
     - bundle install
 
 test:
