@@ -698,7 +698,7 @@ class Style {
                     if (array_key_exists($shorthand, $this->_props) && $this->_props[$shorthand] === "inherit") {
                         unset($this->_props[$shorthand]);
                     }
-                } 
+                }
             }
         }
 

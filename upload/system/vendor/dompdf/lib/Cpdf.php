@@ -1189,9 +1189,11 @@ EOT;
                 if (isset($o['info']['fontFileName']) && isset($this->fonts[$o['info']['fontFileName']]['CIDWidths'])) {
                     $cid_widths = &$this->fonts[$o['info']['fontFileName']]['CIDWidths'];
                     $w = '';
+
                     foreach ($cid_widths as $cid => $width) {
                         $w .= "$cid [$width] ";
                     }
+
                     $res .= "/W [$w]\n";
                 }
 
@@ -1230,7 +1232,6 @@ EOT;
                     $ordering = $this->ARC4($ordering);
                     $registry = $this->ARC4($registry);
                 }
-
 
                 $res = "\n$id 0 obj\n";
                 $res .= '<</Registry ' . $registry . "\n"; // A string identifying an issuer of character collections

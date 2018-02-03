@@ -81,7 +81,7 @@ class Factory {
         $display = $style->display;
 
         switch ($display) {
-            case "flex": // display type not yet supported 
+            case "flex": // display type not yet supported
             case "table-caption": // display type not yet supported
             case "block":
                 $positioner = "Block";
@@ -89,7 +89,7 @@ class Factory {
                 $reflower = "Block";
                 break;
 
-            case "inline-flex": // display type not yet supported 
+            case "inline-flex": // display type not yet supported
             case "inline-block":
                 $positioner = "Inline";
                 $decorator = "Block";
@@ -98,6 +98,7 @@ class Factory {
 
             case "inline":
                 $positioner = "Inline";
+
                 if ($frame->is_text_node()) {
                     $decorator = "Text";
                     $reflower = "Text";

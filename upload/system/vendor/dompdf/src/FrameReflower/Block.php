@@ -93,8 +93,8 @@ class Block extends AbstractFrameReflower {
                         $rm = 0;
                     }
 
-                    // Technically, the width should be "shrink-to-fit" i.e. based on the preferred width of the content...  
-                    // a little too costly here as a special case. Just get the width to take up the slack:
+                    // Technically, the width should be "shrink-to-fit" i.e. based on the preferred width of the content...
+                    // a little too costly here as a special case. Just get the width to take up the slack
                     $left = 0;
                     $right = 0;
                     $width = $diff;
@@ -202,9 +202,9 @@ class Block extends AbstractFrameReflower {
 
         $margin_left = $calculate_width['margin_left'];
         $margin_right = $calculate_width['margin_right'];
-        $width =  $calculate_width['width'];
-        $left =  $calculate_width['left'];
-        $right =  $calculate_width['right'];
+        $width = $calculate_width['width'];
+        $left = $calculate_width['left'];
+        $right = $calculate_width['right'];
 
         // Handle min/max width
         $min_width = $style->length_in_pt($style->min_width, $cb["w"]);
