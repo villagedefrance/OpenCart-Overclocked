@@ -159,3 +159,31 @@ img {
 	font-weight: bold;
 	margin: 30px 0 0 50px;
 }
+span .branding {
+	float: right;
+	font-size: 12px;
+	padding: 10px 10px 0 0;
+	color: #269BC6;
+}
+
+/* Tablets */
+@media only screen and (min-width: 640px) and (max-width: 790px) {
+	.filemanager-button {
+		padding: 7px 4px 7px 24px;
+	}
+	/* General */
+	.hide-mobile {
+		display: none;
+	}
+}
+/* Phones */
+@media only screen and (max-width: 640px) {
+	.filemanager-button {
+		padding: 7px 2px 7px 22px;
+	}
+	/* General */
+	.hide-mobile {
+		display: none;
+	}
+}
+

@@ -31,7 +31,7 @@
     <a id="upload" class="filemanager-button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_upload; ?></a>
     <a id="uploadmulti" class="filemanager-button" style="background-image: url('view/image/filemanager/upload-plus.png');"><?php echo $button_uploads; ?>+</a>
     <a id="refresh" class="filemanager-button" style="background-image: url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
-    <a id="information" class="filemanager-button" style="background-image: url('view/image/filemanager/information.png');"><?php echo $button_info; ?></a>
+    <a id="information" class="filemanager-button hide-mobile" style="background-image: url('view/image/filemanager/information.png');"><?php echo $button_info; ?></a>
   </div>
   <div id="column-right"></div>
   <div id="column-left"></div>
@@ -45,7 +45,7 @@
     <button id="btnListView" class="btn"><?php echo $button_view_list; ?></button>
     <button id="btnThumbView" class="btn"><?php echo $button_view_thumb; ?></button>
   </div>
-  <span style="float:right; font-size:12px; padding:10px 10px 0px 0px; color:#269BC6;">
+  <span class="branding hide-mobile">
     <a onclick="window.open('https://villagedefrance.net');" title="villagedefrance" style="text-decoration:none;">Overclocked Edition</a>
   </span>
   <div id="information-dialog" style="display:none;"></div>

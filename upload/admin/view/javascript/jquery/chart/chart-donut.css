@@ -141,3 +141,14 @@
 .chart.donut .pie-chart h2, .chart.donut .pie-chart h2 span {
 	color: #FCFCFC;
 }
+
+/* Tablets */
+@media only screen and (min-width: 640px) and (max-width: 790px) {
+	.chart.donut{width:160px;height:160px}
+	.donut-chart h6,.donut-chart.fill h6{font-size:24px}
+}
+/* Phones */
+@media only screen and (max-width: 640px) {
+	.chart.donut{width:140px;height:140px}
+	.donut-chart h6,.donut-chart.fill h6{font-size:22px}
+}

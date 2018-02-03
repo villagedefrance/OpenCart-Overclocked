@@ -24,7 +24,7 @@
     </div>
     <div class="content-body">
       <div class="report">
-        <div class="left"><img src="view/image/product-add.png" alt="" /></div>
+        <div class="left hide-mobile"><img src="view/image/product-add.png" alt="" /></div>
         <div class="left"><a id="price-button" class="button-filter"><?php echo $button_update_price; ?></a></div>
         <div class="left"><a id="quantity-button" class="button-filter"><?php echo $button_update_quantity; ?></a></div>
         <div class="left"><a id="special-button" class="button-filter"><?php echo $button_update_special; ?></a></div>
@@ -62,12 +62,12 @@
           <?php } else { ?>
             <a href="<?php echo $sort_quantity; ?>"><?php echo $column_quantity; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
-          <td class="left"><?php if ($sort == 'p.date_added') { ?>
+          <td class="left hide-mobile"><?php if ($sort == 'p.date_added') { ?>
             <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
           <?php } else { ?>
             <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
-          <td class="left"><?php if ($sort == 'p.date_modified') { ?>
+          <td class="left hide-mobile"><?php if ($sort == 'p.date_modified') { ?>
             <a href="<?php echo $sort_date_modified; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_modified; ?></a>
           <?php } else { ?>
             <a href="<?php echo $sort_date_modified; ?>"><?php echo $column_date_modified; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
@@ -143,8 +143,8 @@
               <?php } else { ?>
                 <span style="color:#5DC15E;"><?php echo $product['quantity']; ?></span>
               <?php } ?></td>
-              <td class="center"><?php echo $product['date_added']; ?></td>
-              <td class="center"><?php echo $product['date_modified']; ?></td>
+              <td class="center hide-mobile"><?php echo $product['date_added']; ?></td>
+              <td class="center hide-mobile"><?php echo $product['date_modified']; ?></td>
               <?php if ($product['status'] == 1) { ?>
                 <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
               <?php } else { ?>

@@ -184,7 +184,7 @@
         <div id="tab-latest-map" class="htabs-content">
           <div style="width:100%;">
           <?php if ($top_countries) { ?>
-            <div  style="width:26%; float:right;">
+            <div style="width:26%; float:right;">
               <h2><?php echo $text_topcountry; ?> &nbsp; <?php echo (!empty($top_flag)) ? "<img src='" . $top_flag . "' alt='' />" : ''; ?></h2>
               <br /><br />
               <div class="chart">
