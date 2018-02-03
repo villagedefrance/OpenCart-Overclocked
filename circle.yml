@@ -3,3 +3,14 @@ machine:
     Europe/Dublin
   php:
     version: 7.0.4
+
+  workflows:
+  build-workflow:
+    jobs:
+      - build:
+      filters:
+        tags:
+          only: /.*/
+        branches:
+          only:
+            - master
