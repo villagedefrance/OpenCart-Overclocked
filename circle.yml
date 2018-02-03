@@ -4,7 +4,13 @@ machine:
   php:
     version: 7.0.4
 
+  test:
+  override:
+    - mkdir -p $CIRCLE_TEST_REPORTS/cucumber
+    - bundle exec cucumber --format pretty --format json --out $CIRCLE_TEST_REPORTS/cucumber/tests.cucumber
+
   workflows:
-  build-workflow:
+  build_and_test:
     jobs:
       - build:
+      - test:
