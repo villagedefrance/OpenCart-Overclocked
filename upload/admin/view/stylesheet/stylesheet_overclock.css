@@ -1911,6 +1911,9 @@ table.tool tr td {
 	.breadcrumb, .breadcrumb a {
 		font-size: 11px;
 	}
+	table.form > tbody > tr > td:first-child, table.form-slim > tbody > tr > td:first-child {
+		width: 200px;
+	}
 	.tops .tiers .dashboard-content-left, .tops .tiers .dashboard-heading-left {
 		margin-right: 3px;
 	}
@@ -1923,9 +1926,9 @@ table.tool tr td {
 	}
 	.htabs a {
 		font-size: 12px;
+		padding: 7px 12px 6px 12px;
 	}
 	.vtabs a, .vtabs span {
-		width: 150px;
 		font-size: 12px;
 	}
 	.dashboard-heading, .dashboard-heading-left, .dashboard-heading-middle, .dashboard-heading-right {
@@ -1969,6 +1972,9 @@ table.tool tr td {
 	.breadcrumb, .breadcrumb a {
 		font-size: 11px;
 	}
+	table.form > tbody > tr > td:first-child, table.form-slim > tbody > tr > td:first-child {
+		width: 160px;
+	}
 	.tops .tiers .dashboard-content-left, .tops .tiers .dashboard-heading-left {
 		margin-right: 3px;
 	}
@@ -1981,9 +1987,9 @@ table.tool tr td {
 	}
 	.htabs a {
 		font-size: 11px;
+		padding: 7px 9px 6px 9px;
 	}
 	.vtabs a, .vtabs span {
-		width: 140px;
 		font-size: 11px;
 	}
 	.dashboard-heading, .dashboard-heading-left, .dashboard-heading-middle, .dashboard-heading-right {

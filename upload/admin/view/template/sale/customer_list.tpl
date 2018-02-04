@@ -60,7 +60,7 @@
             <?php } else { ?>
               <a href="<?php echo $sort_ip; ?>"><?php echo $column_ip; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
-            <td class="left hide-mobile"><?php if ($sort == 'c.date_added') { ?>
+            <td class="left"><?php if ($sort == 'c.date_added') { ?>
               <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
@@ -111,7 +111,7 @@
               <?php } ?>
             </select></td>
             <td class="center"><input type="text" name="filter_ip" value="<?php echo $filter_ip; ?>" /></td>
-            <td class="center hide-mobile"><input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" size="12" id="date" /></td>
+            <td class="center"><input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" size="12" id="date" /></td>
             <td></td>
             <td style="text-align:right;"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
           </tr>
@@ -135,7 +135,7 @@
             <?php } ?>
             <td class="center"><?php echo $customer['approved'] ? '<img src="view/image/success.png" alt="'.$text_yes.'" />' : '<img src="view/image/warning.png" alt="'.$text_no.'" />'; ?></td>
             <td class="center"><?php echo $customer['ip']; ?>&nbsp;<?php echo $customer['blocked_ip']; ?></td>
-            <td class="center hide-mobile"><?php echo $customer['date_added']; ?></td>
+            <td class="center"><?php echo $customer['date_added']; ?></td>
             <td class="left"><select onchange="((this.value !== '') ? window.open('index.php?route=sale/customer/login&token=<?php echo $token; ?>&customer_id=<?php echo $customer['customer_id']; ?>&store_id=' + this.value) : null); this.value = '';">
               <option value=""><?php echo $text_select; ?></option>
               <option value="0"><?php echo $text_default; ?></option>

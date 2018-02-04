@@ -18,7 +18,7 @@
 }
 .chart {
 	width: auto;
-	display: block;
+	display: flex;
 	position: relative;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px;
@@ -26,8 +26,8 @@
 }
 /* Donut chart */
 .chart.donut {
-	width: 180px;
-	height: 180px;
+	width: 220px;
+	height: 220px;
 }
 .donut-chart {
 	width: 100%;
@@ -71,7 +71,7 @@
 	top: 50%;
 	z-index: 500;
 	pointer-events: none;
-	font-size: 26px;
+	font-size: 30px;
 	font-weight: 400;
 	color: rgb(255,128,43);
 }
@@ -111,10 +111,18 @@
 	box-shadow: 0 0 0 3px #0072C4;
 }
 
-@-webkit-keyframes rotateDonut {0% {transform: rotate(0deg);}}
-@-moz-keyframes rotateDonut {0% {transform: rotate(0deg);}}
-@-o-keyframes rotateDonut {0% {transform: rotate(0deg);}}
-@keyframes rotateDonut {0% {transform: rotate(0deg);}}
+@-webkit-keyframes rotateDonut {
+	0%{-webkit-transform:rotate(0turn);-moz-transform:rotate(0turn);-ms-transform:rotate(0turn);-o-transform:rotate(0turn);transform:rotate(0turn)}
+}
+@-moz-keyframes rotateDonut {
+	0%{-webkit-transform:rotate(0turn);-moz-transform:rotate(0turn);-ms-transform:rotate(0turn);-o-transform:rotate(0turn);transform:rotate(0turn)}
+}
+@-o-keyframes rotateDonut {
+	0%{-webkit-transform:rotate(0turn);-moz-transform:rotate(0turn);-ms-transform:rotate(0turn);-o-transform:rotate(0turn);transform:rotate(0turn)}
+}
+@keyframes rotateDonut {
+	0%{-webkit-transform:rotate(0turn);-moz-transform:rotate(0turn);-ms-transform:rotate(0turn);-o-transform:rotate(0turn);transform:rotate(0turn)}
+}
 
 .donut-chart .spinner.temp {
 	display: none;
@@ -142,6 +150,16 @@
 	color: #FCFCFC;
 }
 
+/* Desktops */
+@media only screen and (min-width: 940px) and (max-width: 1240px) {
+	.chart.donut{width:200px;height:200px}
+	.donut-chart h6,.donut-chart.fill h6{font-size:28px}
+}
+/* Laptops */
+@media only screen and (min-width: 790px) and (max-width: 940px) {
+	.chart.donut{width:180px;height:180px}
+	.donut-chart h6,.donut-chart.fill h6{font-size:26px}
+}
 /* Tablets */
 @media only screen and (min-width: 640px) and (max-width: 790px) {
 	.chart.donut{width:160px;height:160px}
