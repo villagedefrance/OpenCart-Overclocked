@@ -155,6 +155,7 @@ $mobiles = array(
 	'3ds'            => 'Nintendo 3DS',
 	'open web'       => 'Open Web',
 	'openweb'        => 'OpenWeb',
+	'ruggex'         => 'Ruggex',
 
 	// Operating Systems
 	'symbian'        => 'Symbian',
@@ -181,8 +182,10 @@ $mobiles = array(
 	'chrome'         => 'Chrome Mobile',
 	'iemobile'       => 'IE Mobile',
 	'fennec'         => 'Fennec',
-	'Firefox'        => 'Firefox',
-	'Android'        => 'Android Browser',
+	'firefox'        => 'Firefox',
+	'android'        => 'Android Browser',
+	'dorothy'        => 'Dorothy Browser',
+	'gobrowser'      => 'Go Browser',
 
 	// Other
 	'digital paths'  => 'Digital Paths',
