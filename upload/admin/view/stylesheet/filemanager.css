@@ -159,10 +159,11 @@ img {
 	font-weight: bold;
 	margin: 30px 0 0 50px;
 }
-span .branding {
+span.branding a {
 	float: right;
 	font-size: 12px;
 	padding: 10px 10px 0 0;
+	text-decoration: none;
 	color: #269BC6;
 }
 

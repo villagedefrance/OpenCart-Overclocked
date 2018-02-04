@@ -46,7 +46,7 @@
     <button id="btnThumbView" class="btn"><?php echo $button_view_thumb; ?></button>
   </div>
   <span class="branding hide-mobile">
-    <a onclick="window.open('https://villagedefrance.net');" title="villagedefrance" style="text-decoration:none;">Overclocked Edition</a>
+    <a onclick="window.open('https://villagedefrance.net');" title="villagedefrance">Overclocked Edition</a>
   </span>
   <div id="information-dialog" style="display:none;"></div>
 </div>
@@ -701,8 +701,8 @@ $(document).ready(function() {
 		$('#column-left').prepend(html);
 
 		$('#uploadMulti').dialog({
-			height: '355',
-			width: '730',
+			height: 355,
+			width: <?php echo ($this->browser->checkMobile()) ? 600 : 730; ?>,
 			modal: true,
 			resizable: false,
 			create: function(event, ui) {

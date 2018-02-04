@@ -271,6 +271,19 @@ class Browser {
 		}
 	}
 
+	// Check if Mobile
+	public function checkMobile() {
+		if ($this->isRobot) {
+			return false;
+		} elseif ($this->isPad) {
+			return true;
+		} elseif ($this->isMobile) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	// Is this a referral from another site?
 	public function isReferral() {
 		if (!isset($_SERVER['HTTP_REFERER']) || $_SERVER['HTTP_REFERER'] == '') {

@@ -257,7 +257,7 @@ $('#allowed-ips img').click(function() {
 });
 
 $('input[name="amazon_checkout_cron_job_token"]').keyup(function() {
-	$('#cron-job-url').html('<?php echo HTTPS_CATALOG ?>index.php?route=payment/amazon_checkout/cron&token=' + $(this).val());
+	$('#cron-job-url').html('<?php echo HTTPS_CATALOG; ?>index.php?route=payment/amazon_checkout/cron&token=' + $(this).val());
 });
 //--></script>
 
