@@ -168,25 +168,6 @@ $mobiles = array(
 	'webos'          => 'WebOS',
 	'android'        => 'Android',
 
-	// Browsers
-	'obigo'          => 'Obigo',
-	'netfront'       => 'Netfront Browser',
-	'openwave'       => 'Openwave Browser',
-	'mobilexplorer'  => 'Mobile Explorer',
-	'mobile safari'  => 'Mobile Safari',
-	'operamini'      => 'Opera Mini',
-	'opera mini'     => 'Opera Mini',
-	'opera mobi'     => 'Opera Mobile',
-	'crmo'           => 'Chrome Mobile',
-	'crios'          => 'Chrome Mobile iOS',
-	'chrome'         => 'Chrome Mobile',
-	'iemobile'       => 'IE Mobile',
-	'fennec'         => 'Fennec',
-	'firefox'        => 'Firefox',
-	'android'        => 'Android Browser',
-	'dorothy'        => 'Dorothy Browser',
-	'gobrowser'      => 'Go Browser',
-
 	// Other
 	'digital paths'  => 'Digital Paths',
 	'avantgo'        => 'AvantGo',
