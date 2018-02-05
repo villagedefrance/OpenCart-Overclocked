@@ -46,7 +46,8 @@
               </div>
             <?php } ?>
           </div>
-          <a onclick="$(this).parent().find(':checkbox').attr('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').attr('checked', false);" class="button-unselect"></a></td>
+          <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
+          </td>
         </tr>
         <tr>
           <td><?php echo $entry_modify; ?></td>
@@ -65,7 +66,8 @@
               </div>
             <?php } ?>
           </div>
-          <a onclick="$(this).parent().find(':checkbox').attr('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').attr('checked', false);" class="button-unselect"></a></td>
+          <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
+          </td>
         </tr>
       </table>
     </form>
