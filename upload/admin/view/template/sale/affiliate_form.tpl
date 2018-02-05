@@ -308,7 +308,7 @@
             <?php } ?>
           <?php } else { ?>
             <tr>
-              <td colspan="3"><?php echo $text_no_results; ?></td>
+              <td class="center" colspan="3"><?php echo $text_no_results; ?></td>
             </tr>
           <?php } ?>
         </tbody>

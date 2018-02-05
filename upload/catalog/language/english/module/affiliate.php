@@ -16,7 +16,7 @@ $_['text_tracking']       = 'Product Tracking';
 $_['text_transaction']    = 'Transactions';
 
 // Entry
-$_['entry_email_address'] = 'E-Mail Address:';
+$_['entry_email_address'] = 'Email Address:';
 $_['entry_password']      = 'Password:';
 
 // Buttons

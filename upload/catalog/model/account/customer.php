@@ -221,6 +221,16 @@ class ModelAccountCustomer extends Model {
 		return $query->rows;
 	}
 
+	public function checkCustomerPassword($password, $customer_id, $email) {
+		$query = $this->db->query("SELECT CASE WHEN (password = SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('" . $this->db->escape($password) . "'))))) OR password = '" . $this->db->escape(md5($password)) . "') THEN 0 ELSE 1 END AS result FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "' AND LOWER(email) = '" . $this->db->escape(utf8_strtolower($email)) . "' AND status = '1' AND approved = '1'");
+
+		if ($query->row['result']) {
+			return $query->row['result'];
+		} else {
+			return false;
+		}
+	}
+
 	public function getCustomerDateOfBirth($customer_id) {
 		$query = $this->db->query("SELECT date_of_birth FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "'");
 

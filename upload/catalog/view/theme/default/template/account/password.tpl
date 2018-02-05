@@ -15,6 +15,21 @@
   <div class="content">
     <table class="form">
       <tr>
+        <td><span class="required">*</span> <?php echo $entry_old_password; ?></td>
+        <td><input type="password" name="old_password" value="<?php echo $old_password; ?>" autocomplete="off" />
+        <?php if ($error_password_required) { ?>
+          <span class="error"><?php echo $error_password_required; ?></span>
+        <?php } ?>
+        <?php if ($error_old_password) { ?>
+          <span class="error"><?php echo $error_old_password; ?></span>
+        <?php } ?>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><a href="<?php echo $forgotten; ?>" title="" class="button"><?php echo $text_forgotten; ?></a></td>
+      </tr>
+      <tr>
         <td><span class="required">*</span> <?php echo $entry_password; ?></td>
         <td><input type="password" name="password" id="password1" value="<?php echo $password; ?>" />
         <span id="check" class="hidden"></span>

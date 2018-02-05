@@ -23,7 +23,7 @@ $_['text_recurring']      = 'Recurring payments';
 $_['text_newsletter']     = 'Modify Newsletter';
 
 // Entry
-$_['entry_email_address'] = 'E-Mail Address:';
+$_['entry_email_address'] = 'Email Address:';
 $_['entry_password']      = 'Password:';
 
 // Buttons

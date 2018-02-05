@@ -66,12 +66,26 @@ class ControllerAccountPassword extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_password'] = $this->language->get('text_password');
+		$this->data['text_forgotten'] = $this->language->get('text_forgotten');
 
+		$this->data['entry_old_password'] = $this->language->get('entry_old_password');
 		$this->data['entry_password'] = $this->language->get('entry_password');
 		$this->data['entry_confirm'] = $this->language->get('entry_confirm');
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 		$this->data['button_back'] = $this->language->get('button_back');
+
+		if (isset($this->error['old_password'])) {
+			$this->data['error_old_password'] = $this->error['old_password'];
+		} else {
+			$this->data['error_old_password'] = '';
+		}
+
+		if (isset($this->error['password_required'])) {
+			$this->data['error_password_required'] = $this->error['password_required'];
+		} else {
+			$this->data['error_password_required'] = '';
+		}
 
 		if (isset($this->error['password'])) {
 			$this->data['error_password'] = $this->error['password'];
@@ -86,6 +100,14 @@ class ControllerAccountPassword extends Controller {
 		}
 
 		$this->data['action'] = $this->url->link('account/password', 'customer_token=' . $this->session->data['customer_token'], 'SSL');
+
+		if (isset($this->request->post['old_password'])) {
+			$this->data['old_password'] = $this->request->post['old_password'];
+		} else {
+			$this->data['old_password'] = '';
+		}
+
+		$this->data['forgotten'] = $this->url->link('account/forgotten', '', 'SSL');
 
 		if (isset($this->request->post['password'])) {
 			$this->data['password'] = $this->request->post['password'];
@@ -125,6 +147,19 @@ class ControllerAccountPassword extends Controller {
 	}
 
 	protected function validate() {
+		$this->load->model('account/customer');
+
+		if ($this->request->post['old_password']) {
+			$password_match = $this->model_account_customer->checkCustomerPassword($this->request->post['old_password'], $this->customer->getId(), $this->customer->getEmail());
+
+			if ($password_match) {
+				$this->error['old_password'] = $this->language->get('error_old_password');
+			}
+
+		} else {
+			$this->error['password_required'] = $this->language->get('error_password_required');
+		}
+
 		if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
 			$this->error['password'] = $this->language->get('error_password');
 		}

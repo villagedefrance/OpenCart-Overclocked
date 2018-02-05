@@ -13,9 +13,9 @@ $_['text_i_am_returning_customer'] = '<b>I am a returning customer</b>';
 $_['text_forgotten']               = 'Forgotten Password';
 
 // Entry
-$_['entry_email']                  = 'E-Mail Address:';
+$_['entry_email']                  = 'Email Address:';
 $_['entry_password']               = 'Password:';
 
 // Error
-$_['error_login']                  = 'Warning: No match for E-Mail Address and/or Password.';
+$_['error_login']                  = 'Warning: No match for Email Address and/or Password.';
 $_['error_approved']               = 'Warning: Your account requires approval before you can login.';
