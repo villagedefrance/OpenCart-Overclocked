@@ -320,6 +320,7 @@ class ControllerUserUser extends Controller {
 		$this->data['text_clear'] = $this->language->get('text_clear');
 
 		$this->data['entry_username'] = $this->language->get('entry_username');
+		$this->data['entry_old_password'] = $this->language->get('entry_old_password');
 		$this->data['entry_password'] = $this->language->get('entry_password');
 		$this->data['entry_confirm'] = $this->language->get('entry_confirm');
 		$this->data['entry_firstname'] = $this->language->get('entry_firstname');
@@ -347,6 +348,12 @@ class ControllerUserUser extends Controller {
 			$this->data['error_username'] = $this->error['username'];
 		} else {
 			$this->data['error_username'] = '';
+		}
+
+		if (isset($this->error['old_password'])) {
+			$this->data['error_old_password'] = $this->error['old_password'];
+		} else {
+			$this->data['error_old_password'] = '';
 		}
 
 		if (isset($this->error['password'])) {
@@ -443,6 +450,12 @@ class ControllerUserUser extends Controller {
 		}
 
 		$this->data['is_required'] = isset($this->request->get['user_id']) ? 'advised' : 'required';
+
+		if (isset($this->request->post['old_password'])) {
+			$this->data['old_password'] = $this->request->post['old_password'];
+		} else {
+			$this->data['old_password'] = '';
+		}
 
 		if (isset($this->request->post['password'])) {
 			$this->data['password'] = $this->request->post['password'];
@@ -574,7 +587,18 @@ class ControllerUserUser extends Controller {
 			}
 		}
 
-		if (!empty($this->request->post['password']) || (!isset($this->request->get['user_id']))) {
+		if (($this->request->post['password'] != "") || (!isset($this->request->get['user_id']))) {
+			if ($user_info && $this->request->post['old_password']) {
+				$password_match = $this->model_user_user->checkUserPassword($this->request->post['old_password'], $user_info['user_id'], $this->request->post['username']);
+
+				if ($password_match) {
+					$this->error['old_password'] = $this->language->get('error_old_password');
+				}
+
+			} else {
+				$this->error['old_password'] = $this->language->get('error_old_password');
+			}
+
 			if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
 				$this->error['password'] = $this->language->get('error_password');
 			}

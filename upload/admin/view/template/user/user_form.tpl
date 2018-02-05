@@ -76,13 +76,22 @@
           </select></td>
         </tr>
         <tr>
+          <td><span class="<?php echo $is_required; ?>">*</span> <?php echo $entry_old_password; ?></td>
+          <td><?php if ($error_old_password) { ?>
+            <input type="password" name="old_password" value="<?php echo $old_password; ?>" class="input-error" />
+            <span class="error"><?php echo $error_old_password; ?></span>
+          <?php } else { ?>
+            <input type="password" name="old_password" value="<?php echo $old_password; ?>" />
+          <?php } ?></td>
+        </tr>
+        <tr>
           <td><span class="<?php echo $is_required; ?>">*</span> <?php echo $entry_password; ?></td>
           <td><?php if ($error_password) { ?>
             <input type="password" name="password" value="<?php echo $password; ?>" class="input-error" />
             <span class="error"><?php echo $error_password; ?></span>
           <?php } else { ?>
             <input type="password" name="password" value="<?php echo $password; ?>" />
-          <?php  } ?></td>
+          <?php } ?></td>
         </tr>
         <tr>
           <td><span class="<?php echo $is_required; ?>">*</span> <?php echo $entry_confirm; ?></td>
@@ -91,7 +100,7 @@
             <span class="error"><?php echo $error_confirm; ?></span>
           <?php } else { ?>
             <input type="password" name="confirm" value="<?php echo $confirm; ?>" />
-          <?php  } ?></td>
+          <?php } ?></td>
         </tr>
         <tr>
           <td><?php echo $entry_status; ?></td>

@@ -115,6 +115,17 @@ class ModelUserUser extends Model {
 		return $query->row['name'];
 	}
 
+	// Checks
+	public function checkUserPassword($password, $user_id, $username) {
+		$query = $this->db->query("SELECT CASE WHEN (password = SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('" . $this->db->escape($password) . "')))))) THEN 0 ELSE 1 END AS result FROM `" . DB_PREFIX . "user` WHERE user_id = '" . (int)$user_id . "' AND username = '" . $this->db->escape($username) . "' AND status = '1'");
+
+		if ($query->row['result']) {
+			return $query->row['result'];
+		} else {
+			return false;
+		}
+	}
+
 	// Totals
 	public function getTotalUsers() {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "user`");
