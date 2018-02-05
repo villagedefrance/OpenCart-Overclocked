@@ -17,7 +17,7 @@
       <div class="buttons">
         <a onclick="location = '<?php echo $insert; ?>'" class="button-save"><?php echo $button_insert; ?></a>
         <a onclick="$('#form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
-        <a onclick="location = '<?php echo $cancel; ?>';" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content-body">

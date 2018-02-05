@@ -322,7 +322,7 @@ class ControllerModificationEutaxes extends Controller {
 		$this->data['insert'] = $this->url->link('modification/eutaxes/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('modification/eutaxes/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
-		$this->data['cancel'] = $this->url->link('modification/eutaxes', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['close'] = $this->url->link('modification/eutaxes', 'token=' . $this->session->data['token'], 'SSL');
 
 		// Pagination
 		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
@@ -388,7 +388,7 @@ class ControllerModificationEutaxes extends Controller {
 
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
+		$this->data['button_close'] = $this->language->get('button_close');
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];

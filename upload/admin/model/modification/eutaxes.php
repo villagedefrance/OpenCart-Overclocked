@@ -2,7 +2,7 @@
 class ModelModificationEutaxes extends Model {
 
 	public function addEUCountries($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "eucountry SET code = '" . $this->db->escape($data['code']) . "', rate = '" . $this->db->escape($data['rate']) . "', status = '" . (int)$data['status'] . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "eucountry SET `code` = '" . $this->db->escape($data['code']) . "', `rate` = '" . $this->db->escape($data['rate']) . "', status = '" . (int)$data['status'] . "'");
 
 		$eucountry_id = $this->db->getLastId();
 
@@ -24,7 +24,7 @@ class ModelModificationEutaxes extends Model {
 	}
 
 	public function editEUCountries($eucountry_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "eucountry SET code = '" . $this->db->escape($data['code']) . "', rate = '" . $this->db->escape($data['rate']) . "', status = '" . (int)$data['status'] . "' WHERE eucountry_id = '" . (int)$eucountry_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "eucountry SET `code` = '" . $this->db->escape($data['code']) . "', `rate` = '" . $this->db->escape($data['rate']) . "', status = '" . (int)$data['status'] . "' WHERE eucountry_id = '" . (int)$eucountry_id . "'");
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "eucountry_description WHERE eucountry_id = '" . (int)$eucountry_id . "'");
 
@@ -54,14 +54,14 @@ class ModelModificationEutaxes extends Model {
 	}
 
 	public function getEUCountryStory($eucountry_id) {
-		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "eucountry ec LEFT JOIN " . DB_PREFIX . "eucountry_description ecd ON (ecd.eucountry_id = ec.eucountry_id) WHERE ec.eucountry_id = '" . (int)$eucountry_id . "' AND ecd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT * FROM `" . DB_PREFIX . "eucountry` ec LEFT JOIN " . DB_PREFIX . "eucountry_description ecd ON (ecd.eucountry_id = ec.eucountry_id) WHERE ec.eucountry_id = '" . (int)$eucountry_id . "' AND ecd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}
 
 	public function getEUCountries($data = array()) {
 		if ($data) {
-			$sql = "SELECT * FROM " . DB_PREFIX . "eucountry ec LEFT JOIN " . DB_PREFIX . "eucountry_description ecd ON (ecd.eucountry_id = ec.eucountry_id) WHERE ecd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+			$sql = "SELECT * FROM `" . DB_PREFIX . "eucountry` ec LEFT JOIN " . DB_PREFIX . "eucountry_description ecd ON (ecd.eucountry_id = ec.eucountry_id) WHERE ecd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 			$sort_data = array(
 				'ecd.eucountry',
@@ -102,7 +102,7 @@ class ModelModificationEutaxes extends Model {
 			$eucountry_data = $this->cache->get('eucountry.' . (int)$this->config->get('config_language_id'));
 
 			if (!$eucountry_data) {
-				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "eucountry ec LEFT JOIN " . DB_PREFIX . "eucountry_description ecd ON (ec.eucountry_id = ecd.eucountry_id) WHERE ecd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY ecd.eucountry");
+				$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "eucountry` ec LEFT JOIN " . DB_PREFIX . "eucountry_description ecd ON (ec.eucountry_id = ecd.eucountry_id) WHERE ecd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY ecd.eucountry");
 
 				$eucountry_data = $query->rows;
 
@@ -116,7 +116,7 @@ class ModelModificationEutaxes extends Model {
 	public function getEUCountryDescriptions($eucountry_id) {
 		$eucountry_description_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "eucountry_description WHERE eucountry_id = '" . (int)$eucountry_id . "'");
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "eucountry_description` WHERE eucountry_id = '" . (int)$eucountry_id . "'");
 
 		foreach ($query->rows as $result) {
 			$eucountry_description_data[$result['language_id']] = array(
@@ -131,7 +131,7 @@ class ModelModificationEutaxes extends Model {
 	public function getEUCountryStores($eucountry_id) {
 		$eucountry_store_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "eucountry_to_store WHERE eucountry_id = '" . (int)$eucountry_id . "'");
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "eucountry_to_store` WHERE eucountry_id = '" . (int)$eucountry_id . "'");
 
 		foreach ($query->rows as $result) {
 			$eucountry_store_data[] = $result['store_id'];
@@ -141,7 +141,7 @@ class ModelModificationEutaxes extends Model {
 	}
 
 	public function getTotalEUCountries() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "eucountry");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "eucountry`");
 
 		return $query->row['total'];
 	}
@@ -170,7 +170,7 @@ class ModelModificationEutaxes extends Model {
 		}
 
 		if (in_array('EU VAT Zone', $geo_zone_name)) {
-			$query = $this->db->query("SELECT DISTINCT geo_zone_id AS geo_zone_id FROM " . DB_PREFIX . "geo_zone WHERE name LIKE 'EU VAT Zone'");
+			$query = $this->db->query("SELECT DISTINCT geo_zone_id AS geo_zone_id FROM " . DB_PREFIX . "geo_zone WHERE `name` LIKE 'EU VAT Zone'");
 
 			return $query->row['geo_zone_id'];
 		} else {
@@ -191,7 +191,7 @@ class ModelModificationEutaxes extends Model {
 		}
 
 		if (in_array('EU Members VAT', $tax_rate_name)) {
-			$query = $this->db->query("SELECT DISTINCT tax_rate_id AS tax_rate_id FROM " . DB_PREFIX . "tax_rate WHERE name LIKE 'EU Members VAT'");
+			$query = $this->db->query("SELECT DISTINCT tax_rate_id AS tax_rate_id FROM " . DB_PREFIX . "tax_rate WHERE `name` LIKE 'EU Members VAT'");
 
 			return $query->row['tax_rate_id'];
 		} else {
@@ -215,7 +215,7 @@ class ModelModificationEutaxes extends Model {
 		if (in_array('EU VAT Zone', $geo_zone_name)) {
 			return;
 		} else {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "geo_zone SET name = 'EU VAT Zone', description = 'EU VAT Zone', date_added = NOW(), date_modified = NOW()");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "geo_zone SET `name` = 'EU VAT Zone', description = 'EU VAT Zone', date_added = NOW(), date_modified = NOW()");
 
 			$geo_zone_id = $this->db->getLastId();
 
@@ -268,7 +268,7 @@ class ModelModificationEutaxes extends Model {
 		} else {
 			$geo_zone_id = $this->getEUGeoZoneId();
 
-			$this->db->query("INSERT INTO " . DB_PREFIX . "tax_rate SET geo_zone_id = '" . $geo_zone_id . "', name = 'EU Members VAT', rate = '20', type = 'P', date_added = NOW(), date_modified = NOW()");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "tax_rate SET geo_zone_id = '" . $geo_zone_id . "', `name` = 'EU Members VAT', `rate` = '20', `type` = 'P', date_added = NOW(), date_modified = NOW()");
 
 			$tax_rate_id = $this->db->getLastId();
 
