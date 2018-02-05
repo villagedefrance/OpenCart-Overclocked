@@ -124,10 +124,28 @@ class ControllerAffiliateForgotten extends Controller {
 	}
 
 	protected function validate() {
-		if (!isset($this->request->post['email']) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
-			$this->error['warning'] = $this->language->get('error_email');
-		} elseif (!$this->model_affiliate_affiliate->getTotalAffiliatesByEmail($this->request->post['email'])) {
-			$this->error['warning'] = $this->language->get('error_email');
+		if (!isset($this->request->post['email']) || (utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
+			$this->error['email'] = $this->language->get('error_email');
+		}
+
+		$this->load->model('affiliate/affiliate');
+
+		if (isset($this->request->post['email'])) {
+			// Email exists check
+			$email_unknown = $this->model_affiliate_affiliate->getTotalAffiliatesByEmail($this->request->post['email']) ? false : true;
+
+			if ($email_unknown) {
+				$this->error['warning'] = $this->language->get('error_unknown');
+			}
+
+			// Email MX Record check
+			$this->load->model('tool/email');
+
+			$email_valid = $this->model_tool_email->verifyMail($this->request->post['email']);
+
+			if (!$email_valid) {
+				$this->error['email'] = $this->language->get('error_email');
+			}
 		}
 
 		$affiliate_info = $this->model_affiliate_affiliate->getAffiliateByEmail($this->request->post['email']);
