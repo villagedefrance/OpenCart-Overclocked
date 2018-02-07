@@ -775,11 +775,21 @@ ul.menu ul {
 	padding: 0;
 }
 /* Box Login */
+#world-map {
+	position: absolute;
+	width: auto;
+	height: auto;
+	padding: 0;
+	z-index: 0;
+}
 .box-login {
+	position: relative;
+	display: block;
 	width: 360px;
-	min-height: 300px;
+	min-height: 260px;
 	margin: 50px auto;
 	padding: 0;
+	z-index: 99;
 }
 .box-login > .content-login {
 	color: #E5E5E5;
@@ -798,24 +808,10 @@ ul.menu ul {
 	border-radius: 2px;
 	overflow: hidden;
 }
-.box-login > .content-login h1 {
-	margin: 0 0 10px 0;
-	padding: 10px 8px;
-	color: #E5E5E5;
-	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
-	font-size: 16px;
-	float: left;
-}
-.box-login > .content-login h1 img {
-	margin-top: -1px;
-	margin-left: 3px;
-	margin-right: 8px;
-	float: left;
-}
 .box-login > .content-login > form {
 	width: 100%;
 	min-height: 180px;
-	padding: 15px 10px;
+	padding: 25px 10px 10px 10px;
 }
 .box-login > .content-login > form .leftside {
 	float: left;
@@ -830,7 +826,7 @@ ul.menu ul {
 .box-login > .content-login > form .validate {
 	clear: both;
 	float: right;
-	margin: 10px 20px 15px 0;
+	margin: 15px 30px 10px 0;
 }
 /* Button */
 a.button, .list a.button, a.button-save, .list a.button-save, a.button-delete, .list a.button-delete, a.button-repair, .list a.button-repair, a.button-cancel, .list a.button-cancel {

@@ -31,7 +31,6 @@ class ControllerCommonLogin extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->data['text_login'] = $this->language->get('text_login');
 		$this->data['text_forgotten'] = $this->language->get('text_forgotten');
 
 		$this->data['entry_username'] = $this->language->get('entry_username');
@@ -102,8 +101,8 @@ class ControllerCommonLogin extends Controller {
 
 		$this->template = 'common/login.tpl';
 		$this->children = array(
-			'common/header',
-			'common/footer'
+			'common/header_login',
+			'common/footer_login'
 		);
 
 		$this->response->setOutput($this->render());
