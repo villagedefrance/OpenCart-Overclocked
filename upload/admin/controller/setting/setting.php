@@ -227,7 +227,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_cookie_privacy'] = $this->language->get('entry_cookie_privacy');
 		$this->data['entry_cookie_age'] = $this->language->get('entry_cookie_age');
 		$this->data['entry_news_addthis'] = $this->language->get('entry_news_addthis');
-		$this->data['entry_news_style'] = $this->language->get('entry_news_style');
 		$this->data['entry_news_chars'] = $this->language->get('entry_news_chars');
 		$this->data['entry_logo'] = $this->language->get('entry_logo');
 		$this->data['entry_icon'] = $this->language->get('entry_icon');
@@ -1530,12 +1529,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_news_addthis'] = $this->request->post['config_news_addthis'];
 		} else {
 			$this->data['config_news_addthis'] = $this->config->get('config_news_addthis');
-		}
-
-		if (isset($this->request->post['config_news_style'])) {
-			$this->data['config_news_style'] = $this->request->post['config_news_style'];
-		} else {
-			$this->data['config_news_style'] = $this->config->get('config_news_style');
 		}
 
 		if (isset($this->request->post['config_news_chars'])) {

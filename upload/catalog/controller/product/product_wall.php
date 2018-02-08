@@ -424,7 +424,7 @@ class ControllerProductProductWall extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('text_error'),
-				'href'      => $this->url->link('product/manufacturer/info', $url, 'SSL'),
+				'href'      => $this->url->link('product/product_wall', $url, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 

@@ -575,7 +575,7 @@ class ControllerCatalogNews extends Controller {
 		} elseif (!empty($news_info)) {
 			$this->data['lightbox'] = $news_info['lightbox'];
 		} else {
-			$this->data['lightbox'] = 'colorbox';
+			$this->data['lightbox'] = 'magnific';
 		}
 
 		if (isset($this->request->post['sort_order'])) {

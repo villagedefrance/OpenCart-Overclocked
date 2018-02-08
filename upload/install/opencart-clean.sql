@@ -3345,7 +3345,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (129, 0, 'config', 'config_captcha_font', 'Recaptcha', 0),
 (130, 0, 'config', 'config_price_free', '1', 0),
 (131, 0, 'config', 'config_share_addthis', '0', 0),
-(132, 0, 'config', 'config_lightbox', 'colorbox', 0),
+(132, 0, 'config', 'config_lightbox', 'magnific', 0),
 (133, 0, 'config', 'config_buy_now', '0', 0),
 (134, 0, 'config', 'config_barcode_type', 'TYPE_CODE_128', 0),
 (135, 0, 'config', 'config_admin_barcode', '0', 0),

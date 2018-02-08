@@ -134,14 +134,14 @@
             <td><?php echo $entry_lightbox; ?><span class="help"><?php echo $help_lightbox; ?></span></td>
             <td><select name="lightbox">
               <?php if (isset($lightbox)) { $selected = "selected"; ?>
-                <option value="colorbox" <?php if ($lightbox == 'colorbox') { echo $selected; } ?>>ColorBox (<?php echo $text_default; ?>)</option>
+                <option value="magnific" <?php if ($lightbox == 'magnific') { echo $selected; } ?>>Magnific (<?php echo $text_default; ?>)</option>
+                <option value="colorbox" <?php if ($lightbox == 'colorbox') { echo $selected; } ?>>ColorBox</option>
                 <option value="fancybox" <?php if ($lightbox == 'fancybox') { echo $selected; } ?>>FancyBox</option>
-                <option value="magnific" <?php if ($lightbox == 'magnific') { echo $selected; } ?>>Magnific</option>
                 <option value="swipebox" <?php if ($lightbox == 'swipebox') { echo $selected; } ?>>SwipeBox</option>
               <?php } else { ?>
-                <option value="colorbox">Colorbox (<?php echo $text_default; ?>)</option>
+                <option value="magnific">Magnific (<?php echo $text_default; ?>)</option>
+                <option value="colorbox">Colorbox</option>
                 <option value="fancybox">FancyBox</option>
-                <option value="magnific">Magnific</option>
                 <option value="swipebox">SwipeBox</option>
               <?php } ?>
             </select></td>

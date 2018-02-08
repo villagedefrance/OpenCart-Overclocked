@@ -12,19 +12,6 @@ $_['text_viewed']           = '(%s views) ';
 $_['text_views']            = 'Views';
 $_['text_from']             = 'From';
 
-// Pagination
-$_['text_display']          = 'Display:';
-$_['text_list']             = 'List';
-$_['text_grid']             = 'Grid';
-$_['text_sort']             = 'Sort By:';
-$_['text_name_asc']         = 'Title (A - Z)';
-$_['text_name_desc']        = 'Title (Z - A)';
-$_['text_date_asc']         = 'Date (oldest)';
-$_['text_date_desc']        = 'Date (latest)';
-$_['text_view_asc']         = 'Views (less)';
-$_['text_view_desc']        = 'Views (more)';
-$_['text_limit']            = 'Show:';
-
 // Button
 $_['button_download']       = 'Download';
 

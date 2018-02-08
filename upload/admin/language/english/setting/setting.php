@@ -178,7 +178,6 @@ $_['entry_cookie_position']        = 'Select Cookie Bar Position:';
 $_['entry_cookie_privacy']         = 'Select Cookie Policy page:';
 $_['entry_cookie_age']             = 'Enter Cookie Duration:';
 $_['entry_news_addthis']           = 'Show AddThis on News Pages:';
-$_['entry_news_style']             = 'Headlines News Collapsible:';
 $_['entry_news_chars']             = 'Headlines News Character Limit:';
 $_['entry_logo']                   = 'Store Logo:';
 $_['entry_icon']                   = 'Store Icon:';

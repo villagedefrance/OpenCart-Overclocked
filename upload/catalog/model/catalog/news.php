@@ -12,9 +12,7 @@ class ModelCatalogNews extends Model {
 	}
 
 	public function getNews($data = array()) {
-		$sql = "SELECT * FROM `" . DB_PREFIX . "news` n LEFT JOIN " . DB_PREFIX . "news_description nd ON (n.news_id = nd.news_id) LEFT JOIN " . DB_PREFIX . "news_to_store n2s ON (n.news_id = n2s.news_id) WHERE nd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND n2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND n.status = '1'";
-
-		$sql .= " GROUP BY n.date_added";
+		$sql = "SELECT *, nd.title AS title FROM `" . DB_PREFIX . "news` n LEFT JOIN " . DB_PREFIX . "news_description nd ON (nd.news_id = n.news_id) LEFT JOIN " . DB_PREFIX . "news_to_store n2s ON (n2s.news_id = n.news_id) WHERE n2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND nd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND n.status = '1'";
 
 		$sort_data = array(
 			'nd.title',
@@ -27,7 +25,7 @@ class ModelCatalogNews extends Model {
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 			$sql .= " ORDER BY " . $data['sort'];
 		} else {
-			$sql .= " ORDER BY n.sort_order";
+			$sql .= " ORDER BY n.date_added";
 		}
 
 		if (isset($data['order']) && ($data['order'] == 'DESC')) {
@@ -66,6 +64,24 @@ class ModelCatalogNews extends Model {
 			}
 
 			$this->cache->set('news.short.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$limit, $news_data);
+		}
+
+		return $news_data;
+	}
+
+	public function getNewsAll() {
+		$news_data = $this->cache->get('news.all.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id'));
+
+		if (!$news_data) {
+			$news_data = array();
+
+			$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "news` n LEFT JOIN " . DB_PREFIX . "news_description nd ON (n.news_id = nd.news_id) LEFT JOIN " . DB_PREFIX . "news_to_store n2s ON (n.news_id = n2s.news_id) WHERE nd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND n2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND n.status = '1'  GROUP BY n.date_added ORDER BY n.date_added DESC, n.sort_order ASC");
+
+			foreach ($query->rows as $result) {
+				$news_data[$result['news_id']] = $this->getNewsStory($result['news_id']);
+			}
+
+			$this->cache->set('news.all.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id'), $news_data);
 		}
 
 		return $news_data;
