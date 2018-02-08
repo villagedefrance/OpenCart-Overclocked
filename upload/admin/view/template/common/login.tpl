@@ -196,27 +196,27 @@
     <?php if ($error_warning) { ?>
       <div class="warning"><?php echo $error_warning; ?></div>
     <?php } ?>
-    <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
-      <div class="leftside">
+    <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="login">
+      <div class="leftside animated fadeIn">
         <img src="view/image/theme-<?php echo $admin_css; ?>/login.png" alt="" />
       </div>
-      <div class="rightside">
-        <div style="margin:5px 0px;"><?php echo $entry_username; ?></div>
+      <div class="rightside animated fadeIn">
+        <div style="margin:5px 0;"><?php echo $entry_username; ?></div>
         <div>
-          <input type="text" name="username" value="<?php echo $username; ?>" autofocus />
+          <input type="text" name="username" value="<?php echo $username; ?>" />
         </div>
-        <div style="margin:5px 0px;"><?php echo $entry_password; ?></div>
+        <div style="margin:5px 0;"><?php echo $entry_password; ?></div>
         <div>
           <input type="password" name="password" value="<?php echo $password; ?>" />
         </div>
         <?php if ($forgotten) { ?>
-          <div style="margin:5px 0px;">
+          <div style="margin:5px 0;">
             <a href="<?php echo $forgotten; ?>"><?php echo $text_forgotten; ?></a>
           </div>
         <?php } ?>
       </div>
-      <div class="validate">
-        <a onclick="$('form').submit();" class="button-filter"><?php echo $button_login; ?></a>
+      <div class="validate animated fadeIn">
+        <a onclick="$('#login').submit();" class="button-filter"><?php echo $button_login; ?></a>
       </div>
     <?php if ($redirect) { ?>
       <input type="hidden" name="redirect" value="<?php echo $redirect; ?>" />

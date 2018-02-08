@@ -1,4 +1,5 @@
-<?php echo $header; ?>
+<?php echo $header_login; ?>
+<?php if ($logged) { ?>
 <div id="content">
   <div class="breadcrumb">
   <?php foreach ($breadcrumbs as $breadcrumb) { ?>
@@ -17,8 +18,8 @@
       </div>
     </div>
     <div class="content">
+    <div class="tooltip" style="margin:15px 0 5px 0;"><?php echo $text_email; ?></div>
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="forgotten">
-      <p><?php echo $text_email; ?></p>
       <table class="form">
         <tr>
           <td><?php echo $entry_email; ?></td>
@@ -29,4 +30,27 @@
     </div>
   </div>
 </div>
-<?php echo $footer; ?>
+<?php } else { ?>
+<div id="content">
+  <div class="box-login animated fadeIn">
+    <div class="content-login">
+    <h2 style="margin:20px 0 30px 15px;"><?php echo $heading_title; ?></h2>
+    <?php if ($error_warning) { ?>
+      <div class="warning" style="margin:10px;"><?php echo $error_warning; ?></div>
+    <?php } ?>
+    <div class="tooltip" style="margin:15px 10px 5px 10px;"><?php echo $text_email; ?></div>
+    <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="forgotten">
+      <div style="margin:10px 0 10px 0;"><?php echo $entry_email; ?></div>
+      <div style="margin:0 0 30px 0;">
+        <input type="text" name="email" value="<?php echo $email; ?>" size="50" />
+      </div>
+      <div class="validate animated fadeIn">
+        <a onclick="$('#forgotten').submit();" class="button-save"><?php echo $button_reset; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+<?php } ?>
+<?php echo $footer_login; ?>

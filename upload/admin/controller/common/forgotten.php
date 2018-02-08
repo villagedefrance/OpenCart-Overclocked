@@ -48,6 +48,12 @@ class ControllerCommonForgotten extends Controller {
 			$this->redirect($this->url->link('common/login', '', 'SSL'));
 		}
 
+		if ($this->user->isLogged() && isset($this->request->get['token']) && ($this->request->get['token'] == $this->session->data['token'])) {
+			$this->data['logged'] = true;
+		} else {
+			$this->data['logged'] = false;
+		}
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -90,18 +96,18 @@ class ControllerCommonForgotten extends Controller {
 
 		$this->template = 'common/forgotten.tpl';
 		$this->children = array(
-			'common/header',
-			'common/footer'
+			'common/header_login',
+			'common/footer_login'
 		);
 
 		$this->response->setOutput($this->render());
 	}
 
 	protected function validate() {
-		if (!isset($this->request->post['email'])) {
+		if (!isset($this->request->post['email']) || ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email']))) {
 			$this->error['warning'] = $this->language->get('error_email');
 		} elseif (!$this->model_user_user->getTotalUsersByEmail($this->request->post['email'])) {
-			$this->error['warning'] = $this->language->get('error_email');
+			$this->error['warning'] = $this->language->get('error_record');
 		}
 
 		return empty($this->error);

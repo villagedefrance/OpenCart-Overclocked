@@ -785,7 +785,7 @@ ul.menu ul {
 .box-login {
 	position: relative;
 	display: block;
-	width: 360px;
+	width: 300px;
 	min-height: 260px;
 	margin: 50px auto;
 	padding: 0;
@@ -806,6 +806,10 @@ ul.menu ul {
 	-moz-border-radius: 2px;
 	-khtml-border-radius: 2px;
 	border-radius: 2px;
+	filter: alpha(opacity=80);
+	-khtml-opacity: 0.8;
+	-moz-opacity: 0.8;
+	opacity: 0.8;
 	overflow: hidden;
 }
 .box-login > .content-login > form {

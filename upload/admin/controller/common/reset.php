@@ -82,8 +82,8 @@ class ControllerCommonReset extends Controller {
 
 			$this->template = 'common/reset.tpl';
 			$this->children = array(
-				'common/header',
-				'common/footer'
+				'common/header_login',
+				'common/footer_login'
 			);
 
 			$this->response->setOutput($this->render());
