@@ -8,6 +8,9 @@
   <?php if ($error_warning) { ?>
     <div class="warning"><?php echo $error_warning; ?></div>
   <?php } ?>
+  <?php if ($success) { ?>
+    <div class="success"><?php echo $success; ?></div>
+  <?php } ?>
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/user.png" alt="" /> <?php echo $user_title; ?></h1>
@@ -75,6 +78,7 @@
           <?php } ?>
           </select></td>
         </tr>
+      <?php if ($user_exist) { ?>
         <tr>
           <td><span class="<?php echo $is_required; ?>">*</span> <?php echo $entry_old_password; ?></td>
           <td><?php if ($error_old_password) { ?>
@@ -84,6 +88,7 @@
             <input type="password" name="old_password" value="<?php echo $old_password; ?>" />
           <?php } ?></td>
         </tr>
+      <?php } ?>
         <tr>
           <td><span class="<?php echo $is_required; ?>">*</span> <?php echo $entry_password; ?></td>
           <td><?php if ($error_password) { ?>
