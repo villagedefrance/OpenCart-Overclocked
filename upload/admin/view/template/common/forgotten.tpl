@@ -31,7 +31,7 @@
   </div>
 </div>
 <?php } else { ?>
-<div id="content">
+<div id="content-login">
   <div class="box-login animated fadeIn">
     <div class="content-login">
     <h2 style="margin:20px 0 30px 15px;"><?php echo $heading_title; ?></h2>
@@ -42,7 +42,7 @@
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="forgotten">
       <div style="margin:10px 0 10px 0;"><?php echo $entry_email; ?></div>
       <div style="margin:0 0 30px 0;">
-        <input type="text" name="email" value="<?php echo $email; ?>" size="50" />
+        <input type="text" name="email" value="<?php echo $email; ?>" size="40" />
       </div>
       <div class="validate animated fadeIn">
         <a onclick="$('#forgotten').submit();" class="button-save"><?php echo $button_reset; ?></a>

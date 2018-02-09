@@ -1,5 +1,5 @@
 <?php echo $header_login; ?>
-<div id="content">
+<div id="content-login">
   <div class="box-login animated fadeIn">
     <div class="content-login">
     <h2 style="margin:20px 0 30px 15px;"><?php echo $heading_title; ?></h2>

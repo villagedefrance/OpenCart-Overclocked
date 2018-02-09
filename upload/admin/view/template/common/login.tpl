@@ -1,5 +1,5 @@
 <?php echo $header_login; ?>
-<div id="content">
+<div id="content-login">
 <svg viewBox="0 0 960 450" id="world-map" xmlns="http://www.w3.org/2000/svg" version="1.1">
   <defs>
     <style type="text/css">

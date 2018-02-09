@@ -571,6 +571,11 @@ ul.menu ul {
 	padding: 10px 30px 128px 30px;
 	min-width: 640px;
 }
+#content-login {
+	background: #FFF url('../image/theme-classic/background.png') 0 1px repeat-x;
+	padding: 40px 10px 128px 10px;
+	min-width: 300px;
+}
 /* Breadcrumbs */
 .breadcrumb {
 	display: inline-block;
@@ -803,7 +808,7 @@ ul.menu ul {
 	display: block;
 	width: 300px;
 	min-height: 260px;
-	margin: 50px auto;
+	margin: 60px auto 0 auto;
 	padding: 0;
 	z-index: 99;
 }
