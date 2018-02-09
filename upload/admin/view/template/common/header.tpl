@@ -126,52 +126,6 @@ $(document).ready(function() {
           <li><a href="<?php echo $information; ?>"><?php echo ($icons) ? '<i class="fa fa-info-circle"></i>' : ''; ?><?php echo $text_information; ?></a></li>
         </ul>
       </li>
-      <li id="extension"><a class="top"><?php echo $text_extension; ?></a>
-        <ul>
-          <li><a href="<?php echo $module; ?>"><?php echo ($icons) ? '<i class="fa fa-puzzle-piece"></i>' : ''; ?><?php echo $text_module; ?></a></li>
-          <li><a href="<?php echo $modification; ?>"><?php echo ($icons) ? '<i class="fa fa-terminal"></i>' : ''; ?><?php echo $text_modification; ?></a></li>
-          <li><a href="<?php echo $payment; ?>"><?php echo ($icons) ? '<i class="fa fa-credit-card"></i>' : ''; ?><?php echo $text_payment; ?></a></li>
-          <li><a href="<?php echo $shipping; ?>"><?php echo ($icons) ? '<i class="fa fa-truck"></i>' : ''; ?><?php echo $text_shipping; ?></a></li>
-          <li><a href="<?php echo $theme; ?>"><?php echo ($icons) ? '<i class="fa fa-magic"></i>' : ''; ?><?php echo $text_theme; ?></a></li>
-          <li><a href="<?php echo $total; ?>"><?php echo ($icons) ? '<i class="fa fa-calculator"></i>' : ''; ?><?php echo $text_total; ?></a></li>
-          <li><a href="<?php echo $fraud; ?>"><?php echo ($icons) ? '<i class="fa fa-shield"></i>' : ''; ?><?php echo $text_fraud; ?></a></li>
-          <li><a href="<?php echo $feed; ?>"><?php echo ($icons) ? '<i class="fa fa-feed"></i>' : ''; ?><?php echo $text_feed; ?></a></li>
-          <?php if ($openbay_show_menu == 1) { ?>
-          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-desktop"></i>' : ''; ?><?php echo $text_openbay_extension; ?></a>
-            <ul>
-              <li><a href="<?php echo $openbay_link_extension; ?>"><?php echo ($icons) ? '<i class="fa fa-dashboard"></i>' : ''; ?><?php echo $text_openbay_dashboard; ?></a></li>
-              <li><a href="<?php echo $openbay_link_orders; ?>"><?php echo ($icons) ? '<i class="fa fa-first-order"></i>' : ''; ?><?php echo $text_openbay_orders; ?></a></li>
-              <li><a href="<?php echo $openbay_link_items; ?>"><?php echo ($icons) ? '<i class="fa fa-folder"></i>' : ''; ?><?php echo $text_openbay_items; ?></a></li>
-              <?php if ($openbay_markets['ebay'] == 1) { ?>
-              <li><a class="arrow" href="<?php echo $openbay_link_ebay; ?>"><?php echo ($icons) ? '<i class="fa fa-folder-open"></i>' : ''; ?><?php echo $text_openbay_ebay; ?></a>
-                <ul>
-                  <li><a href="<?php echo $openbay_link_ebay_settings; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_openbay_settings; ?></a></li>
-                  <li><a href="<?php echo $openbay_link_ebay_links; ?>"><?php echo ($icons) ? '<i class="fa fa-chain"></i>' : ''; ?><?php echo $text_openbay_links; ?></a></li>
-                  <li><a href="<?php echo $openbay_link_ebay_orderimport; ?>"><?php echo ($icons) ? '<i class="fa fa-upload"></i>' : ''; ?><?php echo $text_openbay_order_import; ?></a></li>
-                </ul>
-              </li>
-              <?php } ?>
-              <?php if ($openbay_markets['amazon'] == 1) { ?>
-              <li><a class="arrow" href="<?php echo $openbay_link_amazon; ?>"><?php echo ($icons) ? '<i class="fa fa-amazon"></i>' : ''; ?><?php echo $text_openbay_amazon; ?></a>
-                <ul>
-                  <li><a href="<?php echo $openbay_link_amazon_settings; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_openbay_settings; ?></a></li>
-                  <li><a href="<?php echo $openbay_link_amazon_links; ?>"><?php echo ($icons) ? '<i class="fa fa-chain"></i>' : ''; ?><?php echo $text_openbay_links; ?></a></li>
-                </ul>
-              </li>
-              <?php } ?>
-              <?php if ($openbay_markets['amazonus'] == 1) { ?>
-              <li><a class="arrow" href="<?php echo $openbay_link_amazonus; ?>"><?php echo ($icons) ? '<i class="fa fa-amazon"></i>' : ''; ?><?php echo $text_openbay_amazonus; ?></a>
-                <ul>
-                  <li><a href="<?php echo $openbay_link_amazonus_settings; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_openbay_settings; ?></a></li>
-                  <li><a href="<?php echo $openbay_link_amazonus_links; ?>"><?php echo ($icons) ? '<i class="fa fa-chain"></i>' : ''; ?><?php echo $text_openbay_links; ?></a></li>
-                </ul>
-              </li>
-              <?php } ?>
-            </ul>
-          </li>
-          <?php } ?>
-        </ul>
-      </li>
       <li id="sale"><a class="top"><?php echo $text_sale; ?></a>
         <ul>
           <li><a href="<?php echo $order; ?>"><?php echo ($icons) ? '<i class="fa fa-shopping-cart"></i>' : ''; ?><?php echo $text_order; ?></a></li>
@@ -222,6 +176,47 @@ $(document).ready(function() {
           <li><a href="<?php echo $upload; ?>"><?php echo ($icons) ? '<i class="fa fa-upload"></i>' : ''; ?><?php echo $text_upload; ?></a></li>
         </ul>
       </li>
+      <li id="reports"><a class="top"><?php echo $text_reports; ?></a>
+        <ul>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-shopping-cart"></i>' : ''; ?><?php echo $text_sale; ?></a>
+            <ul>
+              <li><a href="<?php echo $report_sale_order; ?>"><?php echo ($icons) ? '<i class="fa fa-shopping-basket"></i>' : ''; ?><?php echo $text_report_sale_order; ?></a></li>
+              <li><a href="<?php echo $report_sale_profit; ?>"><?php echo ($icons) ? '<i class="fa fa-line-chart"></i>' : ''; ?><?php echo $text_report_sale_profit; ?></a></li>
+              <li><a href="<?php echo $report_sale_tax; ?>"><?php echo ($icons) ? '<i class="fa fa-briefcase"></i>' : ''; ?><?php echo $text_report_sale_tax; ?></a></li>
+              <li><a href="<?php echo $report_sale_shipping; ?>"><?php echo ($icons) ? '<i class="fa fa-truck"></i>' : ''; ?><?php echo $text_report_sale_shipping; ?></a></li>
+              <li><a href="<?php echo $report_sale_return; ?>"><?php echo ($icons) ? '<i class="fa fa-history"></i>' : ''; ?><?php echo $text_report_sale_return; ?></a></li>
+              <li><a href="<?php echo $report_sale_coupon; ?>"><?php echo ($icons) ? '<i class="fa fa-tags"></i>' : ''; ?><?php echo $text_report_sale_coupon; ?></a></li>
+            </ul>
+          </li>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-cube"></i>' : ''; ?><?php echo $text_product; ?></a>
+            <ul>
+              <li><a href="<?php echo $report_product_viewed; ?>"><?php echo ($icons) ? '<i class="fa fa-eye"></i>' : ''; ?><?php echo $text_report_product_viewed; ?></a></li>
+              <li><a href="<?php echo $report_product_label; ?>"><?php echo ($icons) ? '<i class="fa fa-leaf"></i>' : ''; ?><?php echo $text_report_product_label; ?></a></li>
+              <li><a href="<?php echo $report_product_quantity; ?>"><?php echo ($icons) ? '<i class="fa fa-cubes"></i>' : ''; ?><?php echo $text_report_product_quantity; ?></a></li>
+              <li><a href="<?php echo $report_product_markup; ?>"><?php echo ($icons) ? '<i class="fa fa-bar-chart"></i>' : ''; ?><?php echo $text_report_product_markup; ?></a></li>
+              <li><a href="<?php echo $report_product_purchased; ?>"><?php echo ($icons) ? '<i class="fa fa-dollar"></i>' : ''; ?><?php echo $text_report_product_purchased; ?></a></li>
+            </ul>
+          </li>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-user"></i>' : ''; ?><?php echo $text_customer; ?></a>
+            <ul>
+              <li><a href="<?php echo $report_customer_order; ?>"><?php echo ($icons) ? '<i class="fa fa-shopping-bag"></i>' : ''; ?><?php echo $text_report_customer_order; ?></a></li>
+              <li><a href="<?php echo $report_customer_reward; ?>"><?php echo ($icons) ? '<i class="fa fa-gift"></i>' : ''; ?><?php echo $text_report_customer_reward; ?></a></li>
+              <li><a href="<?php echo $report_customer_credit; ?>"><?php echo ($icons) ? '<i class="fa fa-money"></i>' : ''; ?><?php echo $text_report_customer_credit; ?></a></li>
+              <li><a href="<?php echo $report_customer_country; ?>"><?php echo ($icons) ? '<i class="fa fa-globe"></i>' : ''; ?><?php echo $text_report_customer_country; ?></a></li>
+              <li><a href="<?php echo $report_customer_online; ?>"><?php echo ($icons) ? '<i class="fa fa-feed"></i>' : ''; ?><?php echo $text_report_customer_online; ?></a></li>
+            </ul>
+          </li>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-street-view"></i>' : ''; ?><?php echo $text_affiliate; ?></a>
+            <ul>
+              <li><a href="<?php echo $report_affiliate_activity; ?>"><?php echo ($icons) ? '<i class="fa fa-spinner"></i>' : ''; ?><?php echo $text_report_affiliate_activity; ?></a></li>
+              <li><a href="<?php echo $report_affiliate_commission; ?>"><?php echo ($icons) ? '<i class="fa fa-percent"></i>' : ''; ?><?php echo $text_report_affiliate_commission; ?></a></li>
+            </ul>
+          </li>
+        <?php if ($track_robots) { ?>
+          <li><a href="<?php echo $report_robot_online; ?>"><?php echo ($icons) ? '<i class="fa fa-wifi"></i>' : ''; ?><?php echo $text_report_robot_online; ?></a></li>
+        <?php } ?>
+        </ul>
+      </li>
       <li id="tools"><a class="top"><?php echo $text_tool; ?></a>
         <ul>
           <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-compress"></i>' : ''; ?><?php echo $text_export_import; ?></a>
@@ -240,6 +235,52 @@ $(document).ready(function() {
           <li><a href="<?php echo $api_key_manager; ?>"><?php echo ($icons) ? '<i class="fa fa-key"></i>' : ''; ?><?php echo $text_api_key_manager; ?></a></li>
           <li><a href="<?php echo $file_manager; ?>"><?php echo ($icons) ? '<i class="fa fa-image"></i>' : ''; ?><?php echo $text_file_manager; ?></a></li>
           <li><a href="<?php echo $contact; ?>"><?php echo ($icons) ? '<i class="fa fa-mail-forward"></i>' : ''; ?><?php echo $text_contact; ?></a></li>
+        </ul>
+      </li>
+      <li id="extension"><a class="top"><?php echo $text_extension; ?></a>
+        <ul>
+          <li><a href="<?php echo $module; ?>"><?php echo ($icons) ? '<i class="fa fa-puzzle-piece"></i>' : ''; ?><?php echo $text_module; ?></a></li>
+          <li><a href="<?php echo $modification; ?>"><?php echo ($icons) ? '<i class="fa fa-terminal"></i>' : ''; ?><?php echo $text_modification; ?></a></li>
+          <li><a href="<?php echo $payment; ?>"><?php echo ($icons) ? '<i class="fa fa-credit-card"></i>' : ''; ?><?php echo $text_payment; ?></a></li>
+          <li><a href="<?php echo $shipping; ?>"><?php echo ($icons) ? '<i class="fa fa-truck"></i>' : ''; ?><?php echo $text_shipping; ?></a></li>
+          <li><a href="<?php echo $theme; ?>"><?php echo ($icons) ? '<i class="fa fa-magic"></i>' : ''; ?><?php echo $text_theme; ?></a></li>
+          <li><a href="<?php echo $total; ?>"><?php echo ($icons) ? '<i class="fa fa-calculator"></i>' : ''; ?><?php echo $text_total; ?></a></li>
+          <li><a href="<?php echo $fraud; ?>"><?php echo ($icons) ? '<i class="fa fa-shield"></i>' : ''; ?><?php echo $text_fraud; ?></a></li>
+          <li><a href="<?php echo $feed; ?>"><?php echo ($icons) ? '<i class="fa fa-feed"></i>' : ''; ?><?php echo $text_feed; ?></a></li>
+          <?php if ($openbay_show_menu == 1) { ?>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-desktop"></i>' : ''; ?><?php echo $text_openbay_extension; ?></a>
+            <ul>
+              <li><a href="<?php echo $openbay_link_extension; ?>"><?php echo ($icons) ? '<i class="fa fa-dashboard"></i>' : ''; ?><?php echo $text_openbay_dashboard; ?></a></li>
+              <li><a href="<?php echo $openbay_link_orders; ?>"><?php echo ($icons) ? '<i class="fa fa-first-order"></i>' : ''; ?><?php echo $text_openbay_orders; ?></a></li>
+              <li><a href="<?php echo $openbay_link_items; ?>"><?php echo ($icons) ? '<i class="fa fa-folder"></i>' : ''; ?><?php echo $text_openbay_items; ?></a></li>
+              <?php if ($openbay_markets['ebay'] == 1) { ?>
+              <li><a class="arrow" href="<?php echo $openbay_link_ebay; ?>"><?php echo ($icons) ? '<i class="fa fa-folder-open"></i>' : ''; ?><?php echo $text_openbay_ebay; ?></a>
+                <ul>
+                  <li><a href="<?php echo $openbay_link_ebay_settings; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_openbay_settings; ?></a></li>
+                  <li><a href="<?php echo $openbay_link_ebay_links; ?>"><?php echo ($icons) ? '<i class="fa fa-chain"></i>' : ''; ?><?php echo $text_openbay_links; ?></a></li>
+                  <li><a href="<?php echo $openbay_link_ebay_orderimport; ?>"><?php echo ($icons) ? '<i class="fa fa-upload"></i>' : ''; ?><?php echo $text_openbay_order_import; ?></a></li>
+                </ul>
+              </li>
+              <?php } ?>
+              <?php if ($openbay_markets['amazon'] == 1) { ?>
+              <li><a class="arrow" href="<?php echo $openbay_link_amazon; ?>"><?php echo ($icons) ? '<i class="fa fa-amazon"></i>' : ''; ?><?php echo $text_openbay_amazon; ?></a>
+                <ul>
+                  <li><a href="<?php echo $openbay_link_amazon_settings; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_openbay_settings; ?></a></li>
+                  <li><a href="<?php echo $openbay_link_amazon_links; ?>"><?php echo ($icons) ? '<i class="fa fa-chain"></i>' : ''; ?><?php echo $text_openbay_links; ?></a></li>
+                </ul>
+              </li>
+              <?php } ?>
+              <?php if ($openbay_markets['amazonus'] == 1) { ?>
+              <li><a class="arrow" href="<?php echo $openbay_link_amazonus; ?>"><?php echo ($icons) ? '<i class="fa fa-amazon"></i>' : ''; ?><?php echo $text_openbay_amazonus; ?></a>
+                <ul>
+                  <li><a href="<?php echo $openbay_link_amazonus_settings; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_openbay_settings; ?></a></li>
+                  <li><a href="<?php echo $openbay_link_amazonus_links; ?>"><?php echo ($icons) ? '<i class="fa fa-chain"></i>' : ''; ?><?php echo $text_openbay_links; ?></a></li>
+                </ul>
+              </li>
+              <?php } ?>
+            </ul>
+          </li>
+          <?php } ?>
         </ul>
       </li>
       <li id="system"><a class="top"><?php echo $text_system; ?></a>
@@ -316,47 +357,6 @@ $(document).ready(function() {
               <li><a onclick="window.open('http://docs.opencart.com/');" title=""><?php echo ($icons) ? '<i class="fa fa-book"></i>' : ''; ?><?php echo $text_documentation; ?></a></li>
             </ul>
           </li>
-        </ul>
-      </li>
-      <li id="reports"><a class="top"><?php echo $text_reports; ?></a>
-        <ul>
-          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-shopping-cart"></i>' : ''; ?><?php echo $text_sale; ?></a>
-            <ul>
-              <li><a href="<?php echo $report_sale_order; ?>"><?php echo ($icons) ? '<i class="fa fa-shopping-basket"></i>' : ''; ?><?php echo $text_report_sale_order; ?></a></li>
-              <li><a href="<?php echo $report_sale_profit; ?>"><?php echo ($icons) ? '<i class="fa fa-line-chart"></i>' : ''; ?><?php echo $text_report_sale_profit; ?></a></li>
-              <li><a href="<?php echo $report_sale_tax; ?>"><?php echo ($icons) ? '<i class="fa fa-briefcase"></i>' : ''; ?><?php echo $text_report_sale_tax; ?></a></li>
-              <li><a href="<?php echo $report_sale_shipping; ?>"><?php echo ($icons) ? '<i class="fa fa-truck"></i>' : ''; ?><?php echo $text_report_sale_shipping; ?></a></li>
-              <li><a href="<?php echo $report_sale_return; ?>"><?php echo ($icons) ? '<i class="fa fa-history"></i>' : ''; ?><?php echo $text_report_sale_return; ?></a></li>
-              <li><a href="<?php echo $report_sale_coupon; ?>"><?php echo ($icons) ? '<i class="fa fa-tags"></i>' : ''; ?><?php echo $text_report_sale_coupon; ?></a></li>
-            </ul>
-          </li>
-          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-cube"></i>' : ''; ?><?php echo $text_product; ?></a>
-            <ul>
-              <li><a href="<?php echo $report_product_viewed; ?>"><?php echo ($icons) ? '<i class="fa fa-eye"></i>' : ''; ?><?php echo $text_report_product_viewed; ?></a></li>
-              <li><a href="<?php echo $report_product_label; ?>"><?php echo ($icons) ? '<i class="fa fa-leaf"></i>' : ''; ?><?php echo $text_report_product_label; ?></a></li>
-              <li><a href="<?php echo $report_product_quantity; ?>"><?php echo ($icons) ? '<i class="fa fa-cubes"></i>' : ''; ?><?php echo $text_report_product_quantity; ?></a></li>
-              <li><a href="<?php echo $report_product_markup; ?>"><?php echo ($icons) ? '<i class="fa fa-bar-chart"></i>' : ''; ?><?php echo $text_report_product_markup; ?></a></li>
-              <li><a href="<?php echo $report_product_purchased; ?>"><?php echo ($icons) ? '<i class="fa fa-dollar"></i>' : ''; ?><?php echo $text_report_product_purchased; ?></a></li>
-            </ul>
-          </li>
-          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-user"></i>' : ''; ?><?php echo $text_customer; ?></a>
-            <ul>
-              <li><a href="<?php echo $report_customer_order; ?>"><?php echo ($icons) ? '<i class="fa fa-shopping-bag"></i>' : ''; ?><?php echo $text_report_customer_order; ?></a></li>
-              <li><a href="<?php echo $report_customer_reward; ?>"><?php echo ($icons) ? '<i class="fa fa-gift"></i>' : ''; ?><?php echo $text_report_customer_reward; ?></a></li>
-              <li><a href="<?php echo $report_customer_credit; ?>"><?php echo ($icons) ? '<i class="fa fa-money"></i>' : ''; ?><?php echo $text_report_customer_credit; ?></a></li>
-              <li><a href="<?php echo $report_customer_country; ?>"><?php echo ($icons) ? '<i class="fa fa-globe"></i>' : ''; ?><?php echo $text_report_customer_country; ?></a></li>
-              <li><a href="<?php echo $report_customer_online; ?>"><?php echo ($icons) ? '<i class="fa fa-feed"></i>' : ''; ?><?php echo $text_report_customer_online; ?></a></li>
-            </ul>
-          </li>
-          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-street-view"></i>' : ''; ?><?php echo $text_affiliate; ?></a>
-            <ul>
-              <li><a href="<?php echo $report_affiliate_activity; ?>"><?php echo ($icons) ? '<i class="fa fa-spinner"></i>' : ''; ?><?php echo $text_report_affiliate_activity; ?></a></li>
-              <li><a href="<?php echo $report_affiliate_commission; ?>"><?php echo ($icons) ? '<i class="fa fa-percent"></i>' : ''; ?><?php echo $text_report_affiliate_commission; ?></a></li>
-            </ul>
-          </li>
-        <?php if ($track_robots) { ?>
-          <li><a href="<?php echo $report_robot_online; ?>"><?php echo ($icons) ? '<i class="fa fa-wifi"></i>' : ''; ?><?php echo $text_report_robot_online; ?></a></li>
-        <?php } ?>
         </ul>
       </li>
       <?php if ($connection_exist) { ?>
