@@ -5,8 +5,8 @@
     <style type="text/css">
       .land {
         fill: #CCC;
-        fill-opacity: 0.5;
-        stroke: #888;
+        fill-opacity: 0.55;
+        stroke: #777;
         stroke-opacity: 0.5;
         stroke-width: 0.4;
       }

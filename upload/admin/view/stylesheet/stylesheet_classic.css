@@ -572,7 +572,7 @@ ul.menu ul {
 	min-width: 640px;
 }
 #content-login {
-	background: #FFF url('../image/theme-classic/background.png') 0 1px repeat-x;
+	background: #FFF;
 	padding: 40px 10px 128px 10px;
 	min-width: 300px;
 }
@@ -800,6 +800,7 @@ ul.menu ul {
 	position: absolute;
 	width: auto;
 	height: auto;
+	margin-left: 20px;
 	padding: 0;
 	z-index: 0;
 }
@@ -824,10 +825,10 @@ ul.menu ul {
 	-moz-border-radius: 2px;
 	-khtml-border-radius: 2px;
 	border-radius: 2px;
-	filter: alpha(opacity=80);
-	-khtml-opacity: 0.8;
-	-moz-opacity: 0.8;
-	opacity: 0.8;
+	filter: alpha(opacity=85);
+	-khtml-opacity: 0.85;
+	-moz-opacity: 0.85;
+	opacity: 0.85;
 	-webkit-box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
 	-moz-box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
 	box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
