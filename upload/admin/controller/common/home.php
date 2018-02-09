@@ -1030,7 +1030,6 @@ class ControllerCommonHome extends Controller {
 			}
 
 			$ignore = array(
-				'common/home',
 				'common/login',
 				'common/logout',
 				'common/forgotten',
