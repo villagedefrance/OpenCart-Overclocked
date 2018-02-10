@@ -649,6 +649,7 @@
                     <?php } ?>
                     <table id="payment-lock" class="radio" style="margin-bottom:2px;">
                     <?php foreach ($payment_methods as $payment_method) { ?>
+                      <?php $apply_paypal_fee = ((substr($payment_method['code'], 0, 3) == "pp_") || ($payment_method['code'] == "paypal_email")) ? true : false; ?>
                       <tr class="highlight">
                         <td><?php if ($payment_method['code'] == $payment_method_code) { ?>
                           <?php $code = $payment_method['code']; ?>
@@ -661,9 +662,9 @@
                             <?php if ($payment_image['payment'] == strtolower($payment_method['code'])) { ?>
                               <?php if ($payment_image['status']) { ?>
                                 <label for="<?php echo $payment_method['code']; ?>"><img src="<?php echo $payment_image['image']; ?>" title="<?php echo $payment_method['title']; ?>" alt="<?php echo $payment_method['title']; ?>" />
-                                  <?php if ($paypal_fee) { ?>
-                                    <span> + <?php echo $paypal_fee; ?></span>
-                                  <?php } ?>
+                                <?php if ($paypal_fee && $apply_paypal_fee) { ?>
+                                  <span> + <?php echo $paypal_fee; ?></span>
+                                <?php } ?>
                                 </label>
                               <?php } else { ?>
                                 <label for="<?php echo $payment_method['code']; ?>"><?php echo $payment_method['title']; ?>
