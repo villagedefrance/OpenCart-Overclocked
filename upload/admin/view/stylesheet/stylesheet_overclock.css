@@ -560,7 +560,7 @@ ul.menu ul {
 }
 #content-login {
 	background: #191919;
-	padding: 40px 10px 128px 10px;
+	padding: 3% 10px;
 	min-width: 300px;
 }
 /* Breadcrumbs */
@@ -793,7 +793,7 @@ ul.menu ul {
 	display: block;
 	width: 300px;
 	min-height: 260px;
-	margin: 60px auto 0 auto;
+	margin: 5% auto 0 auto;
 	padding: 0;
 	z-index: 99;
 }
