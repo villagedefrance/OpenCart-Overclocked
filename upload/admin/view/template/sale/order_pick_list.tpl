@@ -65,7 +65,6 @@
     <tr>
       <td>
         <?php echo $order['payment_address']; ?><br/><br/>
-        <?php echo $order['email']; ?><br/>
         <?php echo $order['telephone']; ?>
         <?php if ($order['payment_company_id']) { ?>
           <br/>

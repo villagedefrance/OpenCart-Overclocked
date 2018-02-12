@@ -27,7 +27,6 @@
     <tr>
       <td>
         <b><?php echo $order['shipping_address']; ?></b><br /><br />
-        <?php echo $text_email; ?> <?php echo $order['email']; ?><br/>
         <?php echo $text_phone; ?> <?php echo $order['telephone']; ?><br /><br />
         <?php if ($order['shipping_method']) { ?>
           <b><?php echo $order['shipping_method']; ?></b>

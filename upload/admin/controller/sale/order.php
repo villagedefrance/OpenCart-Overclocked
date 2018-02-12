@@ -2393,7 +2393,6 @@ class ControllerSaleOrder extends Controller {
 				$this->data['orders'][] = array(
 					'order_id'         => $order_id,
 					'store_url'        => rtrim($order_info['store_url'], '/'),
-					'email'            => $order_info['email'],
 					'telephone'        => $order_info['telephone'],
 					'shipping_address' => $shipping_address,
 					'shipping_method'  => $order_info['shipping_method'],
@@ -2638,7 +2637,6 @@ class ControllerSaleOrder extends Controller {
 					'store_email'        => $store_email,
 					'store_telephone'    => $store_telephone,
 					'store_fax'          => $store_fax,
-					'email'              => $order_info['email'],
 					'telephone'          => $order_info['telephone'],
 					'shipping_address'   => ($same_address) ? '' : $shipping_address,
 					'shipping_method'    => $order_info['shipping_method'],
@@ -2889,7 +2887,6 @@ class ControllerSaleOrder extends Controller {
 					'store_fax'            => $store_fax,
 					'store_company_id'     => $store_company_id,
 					'store_company_tax_id' => $store_company_tax_id,
-					'email'                => $order_info['email'],
 					'telephone'            => $order_info['telephone'],
 					'shipping_address'     => ($same_address) ? '' : $shipping_address,
 					'shipping_method'      => $order_info['shipping_method'],
