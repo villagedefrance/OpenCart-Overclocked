@@ -2331,7 +2331,7 @@ class ControllerSaleOrder extends Controller {
 
 		$this->data['text_deliver_to'] = $this->language->get('text_deliver_to');
 		$this->data['text_email'] = $this->language->get('text_email');
-		$this->data['text_phone'] = $this->language->get('text_phone');
+		$this->data['text_telephone'] = $this->language->get('text_telephone');
 
 		$this->data['column_comment'] = $this->language->get('column_comment');
 
