@@ -193,8 +193,8 @@ $('#tabs a').tabs();
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('.colorbox').colorbox({
-		width: 640,
-		height: 480
+		width: <?php echo ($this->browser->checkMobile()) ? 630 : 760; ?>,
+		height: 400
 	});
 });
 //--></script>

@@ -29,7 +29,7 @@
         <div class="left"><a id="quantity-button" class="button-filter"><?php echo $button_update_quantity; ?></a></div>
         <div class="left"><a id="special-button" class="button-filter"><?php echo $button_update_special; ?></a></div>
         <div class="left"><a id="discount-button" class="button-filter"><?php echo $button_update_discount; ?></a></div>
-        <div class="right"><a onclick="location = '<?php echo $refresh; ?>';" class="button-filter"><?php echo $button_refresh; ?></a></div>
+        <div class="right"><a onclick="location = '<?php echo $refresh; ?>';" class="button"><?php echo $button_refresh; ?></a></div>
       </div>
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
@@ -283,7 +283,7 @@ $('#price-button').bind('click', function() {
 				$('#update-price-dialog').html(json['html']);
 				$('#update-price-dialog').dialog({
 					title: '<?php echo $text_price_title; ?>',
-					width: 760,
+					width: <?php echo ($this->browser->checkMobile()) ? 630 : 760; ?>,
 					height: 400,
 					resizable: false,
 					modal: true
@@ -310,7 +310,7 @@ $('#quantity-button').bind('click', function() {
 				$('#update-quantity-dialog').html(json['html']);
 				$('#update-quantity-dialog').dialog({
 					title: '<?php echo $text_quantity_title; ?>',
-					width: 760,
+					width: <?php echo ($this->browser->checkMobile()) ? 630 : 760; ?>,
 					height: 400,
 					resizable: false,
 					modal: true
@@ -337,7 +337,7 @@ $('#special-button').bind('click', function() {
 				$('#update-special-dialog').html(json['html']);
 				$('#update-special-dialog').dialog({
 					title: '<?php echo $text_special_title; ?>',
-					width: 760,
+					width: <?php echo ($this->browser->checkMobile()) ? 630 : 760; ?>,
 					height: 400,
 					resizable: false,
 					modal: true
@@ -364,7 +364,7 @@ $('#discount-button').bind('click', function() {
 				$('#update-discount-dialog').html(json['html']);
 				$('#update-discount-dialog').dialog({
 					title: '<?php echo $text_discount_title; ?>',
-					width: 760,
+					width: <?php echo ($this->browser->checkMobile()) ? 630 : 760; ?>,
 					height: 400,
 					resizable: false,
 					modal: true
