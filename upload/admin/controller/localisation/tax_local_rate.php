@@ -221,6 +221,8 @@ class ControllerLocalisationTaxLocalRate extends Controller {
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_info'] = $this->language->get('text_info');
+		$this->data['text_confirm'] = $this->language->get('text_confirm');
+		$this->data['text_confirm_delete'] = $this->language->get('text_confirm_delete');
 
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_rate'] = $this->language->get('column_rate');

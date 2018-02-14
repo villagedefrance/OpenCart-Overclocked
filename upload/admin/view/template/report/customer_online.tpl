@@ -14,12 +14,12 @@
     </div>
     <div class="content-body">
     <?php if (!$tracking) { ?>
-      <div class="tooltip" style="margin:0px 0px 10px 0px;"><?php echo $text_tracking; ?></div>
+      <div class="tooltip" style="margin:0 0 10px 0;"><?php echo $text_tracking; ?></div>
     <?php } ?>
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
-      <table class="list">
+      <table id="customer-online" class="list">
         <thead>
           <tr>
             <td class="left"><?php echo $column_ip; ?></td>
@@ -91,6 +91,12 @@ function filter() {
 
 	location = url;
 }
+//--></script>
+
+<script type="text/javascript"><!--
+$('#customer-online input').keydown(function(e) {
+	if (e.which == 13) { filter(); }
+});
 //--></script>
 
 <?php echo $footer; ?>

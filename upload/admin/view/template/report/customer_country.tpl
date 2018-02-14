@@ -16,7 +16,7 @@
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
-      <table id="form" class="list">
+      <table id="customer-country" class="list">
         <thead>
           <tr>
             <td class="left"><?php echo $column_country_id; ?></td>
@@ -77,8 +77,8 @@ function filter() {
 //--></script>
 
 <script type="text/javascript"><!--
-$('#form input').keydown(function(e) {
-	if (e.keyCode == 13) { filter(); }
+$('#customer-country input').keydown(function(e) {
+	if (e.which == 13) { filter(); }
 });
 //--></script>
 

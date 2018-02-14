@@ -17,7 +17,7 @@
       <div class="buttons">
         <a href="<?php echo $refresh; ?>" class="button-save"><?php echo $button_refresh; ?></a> 
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
-        <a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
+        <a id="delete" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div class="content-body">
@@ -97,4 +97,27 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+$('#delete').on('click', function() {
+	$.confirm({
+		title: '<?php echo $text_confirm_delete; ?>',
+		content: '<?php echo $text_confirm; ?>',
+		icon: 'fa fa-question-circle',
+		theme: 'light',
+		useBootstrap: false,
+		boxWidth: <?php echo ($this->browser->checkMobile()) ? 630 : 760; ?>,
+		animation: 'zoom',
+		closeAnimation: 'scale',
+		opacity: 0.1,
+		buttons: {
+			confirm: function() {
+				$('form').submit();
+			},
+			cancel: function() { }
+		}
+	});
+});
+//--></script>
+
 <?php echo $footer; ?>

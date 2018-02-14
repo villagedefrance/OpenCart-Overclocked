@@ -19,7 +19,7 @@
         <a onclick="$('#form').attr('action','<?php echo $disabled; ?>'); $('#form').submit();" class="button-cancel"><?php echo $button_disable; ?></a>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('#form').attr('action','<?php echo $copy; ?>'); $('#form').submit();" class="button"><?php echo $button_copy; ?></a>
-        <a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
+        <a id="delete" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div class="content-body">
@@ -34,7 +34,7 @@
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
-    <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
+    <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form" name="product">
       <table class="list">
         <thead>
         <tr>
@@ -214,7 +214,29 @@ function filter() {
 
 <script type="text/javascript"><!--
 $('#form input').keydown(function(e) {
-	if (e.keyCode == 13) { filter(); }
+	if (e.which == 13) { filter(); }
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$('#delete').on('click', function() {
+	$.confirm({
+		title: '<?php echo $text_confirm_delete; ?>',
+		content: '<?php echo $text_confirm; ?>',
+		icon: 'fa fa-question-circle',
+		theme: 'light',
+		useBootstrap: false,
+		boxWidth: <?php echo ($this->browser->checkMobile()) ? 630 : 760; ?>,
+		animation: 'zoom',
+		closeAnimation: 'scale',
+		opacity: 0.1,
+		buttons: {
+			confirm: function() {
+				$('form').submit();
+			},
+			cancel: function() { }
+		}
+	});
 });
 //--></script>
 

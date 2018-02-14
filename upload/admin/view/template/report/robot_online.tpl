@@ -19,7 +19,7 @@
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
-      <table class="list">
+      <table id="robot-online" class="list">
         <thead>
           <tr>
             <td class="left"><?php echo $column_ip; ?></td>
@@ -81,6 +81,12 @@ function filter() {
 
 	location = url;
 }
+//--></script>
+
+<script type="text/javascript"><!--
+$('#robot-online input').keydown(function(e) {
+	if (e.which == 13) { filter(); }
+});
 //--></script>
 
 <?php echo $footer; ?>

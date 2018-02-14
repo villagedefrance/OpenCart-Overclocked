@@ -364,6 +364,8 @@ class ControllerSaleSupplier extends Controller {
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_confirm'] = $this->language->get('text_confirm');
+		$this->data['text_confirm_delete'] = $this->language->get('text_confirm_delete');
 		$this->data['text_select'] = $this->language->get('text_select');
 		$this->data['text_default'] = $this->language->get('text_default');
 

@@ -2,9 +2,6 @@
 // Heading
 $_['heading_title']                    = 'Administration';
 
-// Confirm
-$_['text_confirm']                     = 'Delete/Uninstall cannot be undone! Are you sure you want to do this ?';
-
 // Text
 $_['text_affiliate']                   = 'Affiliates';
 $_['text_administration']              = 'Administration';

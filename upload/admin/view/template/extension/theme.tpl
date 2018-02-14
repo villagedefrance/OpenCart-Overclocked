@@ -33,7 +33,11 @@
           <tr>
             <td class="left"><?php echo $extension['name']; ?> <?php echo $extension['active']; ?></td>
             <td class="right"><?php foreach ($extension['action'] as $action) { ?>
-              <a href="<?php echo $action['href']; ?>" class="button-form-<?php echo $action['type']; ?>"><?php echo $action['text']; ?></a>
+              <?php if ($action['type'] == 'uninstall') { ?>
+                <a class="button-form-<?php echo $action['type']; ?>" data-title="<?php echo $action['text']; ?>" href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a>
+              <?php } else { ?>
+                <a href="<?php echo $action['href']; ?>" class="button-form-<?php echo $action['type']; ?>"><?php echo $action['text']; ?></a>
+              <?php } ?>
             <?php } ?></td>
           </tr>
           <?php } ?>
@@ -47,4 +51,37 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+$('a.button-form-uninstall').confirm({
+	content: '',
+	icon: 'fa fa-question-circle',
+	theme: 'light',
+	useBootstrap: false,
+	boxWidth: <?php echo ($this->browser->checkMobile()) ? 630 : 760; ?>,
+	animation: 'zoom',
+	closeAnimation: 'scale',
+	opacity: 0.1
+});
+$('a.button-form-uninstall').on('click', function() {
+	$.dialog({
+		title: '<?php echo $text_confirm_uninstall; ?>',
+		content: '<?php echo $text_confirm; ?>',
+		icon: 'fa fa-exclamation-circle',
+		theme: 'light',
+		useBootstrap: false,
+		boxWidth: <?php echo ($this->browser->checkMobile()) ? 630 : 760; ?>,
+		animation: 'zoom',
+		closeAnimation: 'scale',
+		opacity: 0.1,
+		buttons: {
+			confirm: function() {
+				location.href = this.$target.attr('href');
+			},
+			cancel: function() { }
+		}
+	});
+});
+//--></script>
+
 <?php echo $footer; ?>

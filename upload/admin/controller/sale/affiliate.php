@@ -478,6 +478,8 @@ class ControllerSaleAffiliate extends Controller {
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_confirm'] = $this->language->get('text_confirm');
+		$this->data['text_confirm_delete'] = $this->language->get('text_confirm_delete');
 
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_email'] = $this->language->get('column_email');

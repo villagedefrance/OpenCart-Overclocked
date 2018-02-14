@@ -39,6 +39,11 @@ $_['text_content_footer']           = 'Content Footer';
 $_['text_column_left']              = 'Column Left';
 $_['text_column_right']             = 'Column Right';
 
+// Confirm Delete/Uninstall
+$_['text_confirm']                  = 'Delete/Uninstall cannot be undone! Are you sure you want to do this?';
+$_['text_confirm_delete']           = 'Confirm Delete';
+$_['text_confirm_uninstall']        = 'Confirm Uninstall';
+
 // Button
 $_['button_enable']                 = 'Enable';
 $_['button_disable']                = 'Disable';

@@ -16,7 +16,7 @@
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
-      <table class="list">
+      <table id="product-label" class="list">
         <thead>
           <tr>
             <td class="left"><?php echo $column_product_id; ?></td>
@@ -93,8 +93,8 @@ function filter() {
 //--></script>
 
 <script type="text/javascript"><!--
-$('#form input').keydown(function(e) {
-	if (e.keyCode == 13) { filter(); }
+$('#product-label input').keydown(function(e) {
+	if (e.which == 13) { filter(); }
 });
 //--></script>
 

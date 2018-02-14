@@ -44,6 +44,9 @@ class ControllerExtensionOpenbay extends Controller {
 			unset($this->session->data['error']);
 		}
 
+		$this->data['text_confirm'] = $this->language->get('text_confirm');
+		$this->data['text_confirm_uninstall'] = $this->language->get('text_confirm_uninstall');
+
 		$extensions = $this->model_setting_extension->getInstalled('openbay');
 
 		foreach ($extensions as $key => $value) {
@@ -72,16 +75,20 @@ class ControllerExtensionOpenbay extends Controller {
 			if (!in_array($extension, $extensions)) {
 				$action[] = array(
 					'text' => $this->language->get('text_install'),
+					'type' => 'install',
 					'href' => $this->url->link('extension/openbay/install', 'token=' . $this->session->data['token'] . '&extension=' . $extension, 'SSL')
 				);
+
 			} else {
 				$action[] = array(
 					'text' => $this->language->get('text_edit'),
+					'type' => 'edit',
 					'href' => $this->url->link('openbay/' . $extension, 'token=' . $this->session->data['token'], 'SSL')
 				);
 
 				$action[] = array(
 					'text' => $this->language->get('text_uninstall'),
+					'type' => 'uninstall',
 					'href' => $this->url->link('extension/openbay/uninstall', 'token=' . $this->session->data['token'] . '&extension=' . $extension, 'SSL')
 				);
 			}

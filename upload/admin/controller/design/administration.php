@@ -182,7 +182,6 @@ class ControllerDesignAdministration extends Controller {
 		$this->data['settings'] = $this->url->link('setting/store', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['insert'] = $this->url->link('design/administration/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
-
 		$this->data['delete'] = $this->url->link('design/administration/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
 		// Pagination
@@ -226,6 +225,8 @@ class ControllerDesignAdministration extends Controller {
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_present'] = $this->language->get('text_present');
 		$this->data['text_missing'] = $this->language->get('text_missing');
+		$this->data['text_confirm'] = $this->language->get('text_confirm');
+		$this->data['text_confirm_delete'] = $this->language->get('text_confirm_delete');
 
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_status'] = $this->language->get('column_status');

@@ -53,7 +53,7 @@
       </table>
     </form>
     </div>
-    <div style="height:24px;">
+    <div style="height:24px; margin-top:10px;">
       <a onclick="window.open('https://console.developers.google.com/apis/library');" title="" class="button"><?php echo $link_google; ?></a>
       <a onclick="window.open('https://developers.facebook.com/');" title="" class="button"><?php echo $link_facebook; ?></a>
       <a onclick="window.open('https://dev.twitter.com/products/web');" title="" class="button"><?php echo $link_twitter; ?></a>

@@ -218,6 +218,8 @@ class ControllerLocalisationWeightClass extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_confirm'] = $this->language->get('text_confirm');
+		$this->data['text_confirm_delete'] = $this->language->get('text_confirm_delete');
 
 		$this->data['column_title'] = $this->language->get('column_title');
 		$this->data['column_unit'] = $this->language->get('column_unit');

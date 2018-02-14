@@ -248,6 +248,8 @@ class ControllerLocalisationZone extends Controller {
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_confirm'] = $this->language->get('text_confirm');
+		$this->data['text_confirm_delete'] = $this->language->get('text_confirm_delete');
 
 		$this->data['column_country'] = $this->language->get('column_country');
 		$this->data['column_name'] = $this->language->get('column_name');

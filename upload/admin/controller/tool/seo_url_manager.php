@@ -245,6 +245,7 @@ class ControllerToolSeoUrlManager extends Controller {
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_confirm'] = $this->language->get('text_confirm');
+		$this->data['text_confirm_delete'] = $this->language->get('text_confirm_delete');
 
 		$this->data['column_url_alias_id'] = $this->language->get('column_url_alias_id');
 		$this->data['column_query'] = $this->language->get('column_query');

@@ -288,6 +288,8 @@ class ControllerDesignMenuItems extends Controller {
 		$this->data['text_menu'] = $this->language->get('text_menu');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_confirm'] = $this->language->get('text_confirm');
+		$this->data['text_confirm_delete'] = $this->language->get('text_confirm_delete');
 
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_external'] = $this->language->get('column_external');

@@ -18,7 +18,7 @@
         <a onclick="$('#form').attr('action','<?php echo $enabled; ?>'); $('#form').submit();" class="button-save"><?php echo $button_enable; ?></a>
         <a onclick="$('#form').attr('action','<?php echo $disabled; ?>'); $('#form').submit();" class="button-cancel"><?php echo $button_disable; ?></a>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
-        <a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
+        <a id="delete" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div class="content-body">
@@ -124,7 +124,29 @@ function filter() {
 
 <script type="text/javascript"><!--
 $('#form input').keydown(function(e) {
-	if (e.keyCode == 13) { filter(); }
+	if (e.which == 13) { filter(); }
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$('#delete').on('click', function() {
+	$.confirm({
+		title: '<?php echo $text_confirm_delete; ?>',
+		content: '<?php echo $text_confirm; ?>',
+		icon: 'fa fa-question-circle',
+		theme: 'light',
+		useBootstrap: false,
+		boxWidth: <?php echo ($this->browser->checkMobile()) ? 630 : 760; ?>,
+		animation: 'zoom',
+		closeAnimation: 'scale',
+		opacity: 0.1,
+		buttons: {
+			confirm: function() {
+				$('form').submit();
+			},
+			cancel: function() { }
+		}
+	});
 });
 //--></script>
 

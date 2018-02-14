@@ -18,7 +18,7 @@
         <a onclick="$('form').attr('action','<?php echo $unlock; ?>'); $('form').submit();" class="button-repair"><?php echo $button_unlock; ?></a>
         <a onclick="$('form').attr('action','<?php echo $approve; ?>'); $('form').submit();" class="button-save"><?php echo $button_approve; ?></a>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
-        <a onclick="$('form').attr('action','<?php echo $delete; ?>'); $('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
+        <a id="delete" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div class="content-body">
@@ -232,6 +232,28 @@ $('input[name=\'filter_email\']').autocomplete({
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('#date').datepicker({dateFormat: 'yy-mm-dd'});
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$('#delete').on('click', function() {
+	$.confirm({
+		title: '<?php echo $text_confirm_delete; ?>',
+		content: '<?php echo $text_confirm; ?>',
+		icon: 'fa fa-question-circle',
+		theme: 'light',
+		useBootstrap: false,
+		boxWidth: <?php echo ($this->browser->checkMobile()) ? 630 : 760; ?>,
+		animation: 'zoom',
+		closeAnimation: 'scale',
+		opacity: 0.1,
+		buttons: {
+			confirm: function() {
+				$('form').submit();
+			},
+			cancel: function() { }
+		}
+	});
 });
 //--></script>
 

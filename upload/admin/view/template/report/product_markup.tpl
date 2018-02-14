@@ -17,9 +17,9 @@
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
       <div id="show-tooltip" style="display:block;">
-        <div id="tooltip" class="tooltip" style="margin:0px 0px 10px 0px;"><?php echo $text_free_products; ?></div>
+        <div id="tooltip" class="tooltip" style="margin:0 0 10px 0;"><?php echo $text_free_products; ?></div>
       </div>
-      <table class="list">
+      <table id="product-markup" class="list">
         <thead>
           <tr>
             <td class="left"><?php echo $column_product_id; ?></td>
@@ -103,8 +103,8 @@ function filter() {
 //--></script>
 
 <script type="text/javascript"><!--
-$('#form input').keydown(function(e) {
-	if (e.keyCode == 13) { filter(); }
+$('#product-markup input').keydown(function(e) {
+	if (e.which == 13) { filter(); }
 });
 //--></script>
 
