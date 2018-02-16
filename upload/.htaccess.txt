@@ -128,6 +128,15 @@ FileETag MTime Size
   ExpiresByType font/opentype            "access plus 6 months"
 </IfModule>
 
+## To further protect your Admin login, use the ".htpasswd.txt" file located in the Admin folder,
+## Rename it ".htpasswd", then uncomment and configure (if necessary) the following settings:
+
+# AuthType Basic
+# AuthName "Restricted Area"
+# AuthUserFile path_to_file/admin/.htpasswd
+# Require valid-user
+# ErrorDocument 401 "<H1>Error 401</H1> Access to this page is restricted. Please enter valid credentials."
+
 ### Additional Settings that may need to be enabled for some servers.
 ### Uncomment the commands by removing the # sign in front of it.
 ### If you get an "Internal Server Error 500" after enabling any of the following settings, restore the # as this means your host doesn't allow that.
