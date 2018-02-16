@@ -66,7 +66,7 @@ $('a.button-form-uninstall').confirm({
 	icon: 'fa fa-question-circle',
 	theme: 'light',
 	useBootstrap: false,
-	boxWidth: <?php echo ($this->browser->checkMobile()) ? 630 : 760; ?>,
+	boxWidth: 580,
 	animation: 'zoom',
 	closeAnimation: 'scale',
 	opacity: 0.1
@@ -78,7 +78,7 @@ $('a.button-form-uninstall').on('click', function() {
 		icon: 'fa fa-exclamation-circle',
 		theme: 'light',
 		useBootstrap: false,
-		boxWidth: <?php echo ($this->browser->checkMobile()) ? 630 : 760; ?>,
+		boxWidth: 580,
 		animation: 'zoom',
 		closeAnimation: 'scale',
 		opacity: 0.1,
