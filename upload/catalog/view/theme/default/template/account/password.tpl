@@ -16,7 +16,7 @@
     <table class="form">
       <tr>
         <td><span class="required">*</span> <?php echo $entry_old_password; ?></td>
-        <td><input type="password" name="old_password" value="<?php echo $old_password; ?>" autocomplete="off" />
+        <td><input type="password" name="old_password" readonly value="<?php echo $old_password; ?>" onfocus="this.removeAttribute('readonly');" />
         <?php if ($error_password_required) { ?>
           <span class="error"><?php echo $error_password_required; ?></span>
         <?php } ?>

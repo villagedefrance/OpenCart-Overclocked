@@ -80,12 +80,12 @@
         </tr>
       <?php if ($user_exist) { ?>
         <tr>
-          <td><span class="<?php echo $is_required; ?>">*</span> <?php echo $entry_old_password; ?></td>
+          <td><span class="required">*</span> <?php echo $entry_old_password; ?></td>
           <td><?php if ($error_old_password) { ?>
-            <input type="password" name="old_password" value="<?php echo $old_password; ?>" class="input-error" />
+            <input type="password" name="old_password" readonly value="<?php echo $old_password; ?>" onfocus="this.removeAttribute('readonly');" class="input-error" />
             <span class="error"><?php echo $error_old_password; ?></span>
           <?php } else { ?>
-            <input type="password" name="old_password" value="<?php echo $old_password; ?>" />
+            <input type="password" name="old_password" readonly value="<?php echo $old_password; ?>" onfocus="this.removeAttribute('readonly');" />
           <?php } ?></td>
         </tr>
       <?php } ?>
@@ -145,7 +145,7 @@ function image_upload(field, thumb) {
 			}
 		},
 		bgiframe: false,
-		width: <?php echo ($this->browser->checkMobile()) ? 630 : 760; ?>,
+		width: <?php echo ($this->browser->checkMobile()) ? 600 : 760; ?>,
 		height: 400,
 		resizable: false,
 		modal: false

@@ -598,9 +598,22 @@ class ControllerUserUser extends Controller {
 			}
 		}
 
+		if ($this->request->post['old_password'] && (utf8_strlen($this->request->post['old_password']) > 3) && (utf8_strlen($this->request->post['old_password']) < 21)) {
+			if (isset($this->request->get['user_id']) && $user_info) {
+				$password_match = $this->model_user_user->checkUserPassword($this->request->post['old_password'], $user_info['user_id'], $this->request->post['username']);
+
+				if ($password_match) {
+					$this->error['old_password'] = $this->language->get('error_old_password');
+				}
+			}
+
+		} else {
+			$this->error['old_password'] = $this->language->get('error_old_password');
+		}
+
 		if ($this->request->post['password'] != "") {
 			if (isset($this->request->get['user_id']) && $user_info) {
-				if ($this->request->post['old_password']) {
+				if ($this->request->post['old_password'] && (utf8_strlen($this->request->post['old_password']) > 3) && (utf8_strlen($this->request->post['old_password']) < 21)) {
 					$password_match = $this->model_user_user->checkUserPassword($this->request->post['old_password'], $user_info['user_id'], $this->request->post['username']);
 
 					if ($password_match) {
