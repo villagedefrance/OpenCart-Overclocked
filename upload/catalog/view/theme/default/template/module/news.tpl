@@ -10,7 +10,7 @@
         <?php } ?>
         <h4><?php echo $news_story['title']; ?></h4>
         <?php echo $news_story['description']; ?>
-        <a href="<?php echo $news_story['href']; ?>"><?php echo $text_more; ?></a><br /><br />
+        <a href="<?php echo $news_story['href']; ?>" class="button"><?php echo $text_more; ?></a><br /><br />
         <span><i class="fa fa-calendar"></i> &nbsp; <?php echo $news_story['posted']; ?></span>
       </div>
     <?php } ?>
@@ -30,7 +30,7 @@
       <?php } ?>
       <h4><?php echo $news_story['title']; ?></h4>
       <?php echo $news_story['description']; ?>
-      <a href="<?php echo $news_story['href']; ?>"><?php echo $text_more; ?></a><br /><br />
+      <a href="<?php echo $news_story['href']; ?>" class="button"><?php echo $text_more; ?></a><br /><br />
       <span><i class="fa fa-calendar"></i> &nbsp; <?php echo $news_story['posted']; ?></span>
     </div>
   <?php } ?>
