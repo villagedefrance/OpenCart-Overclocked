@@ -152,9 +152,21 @@ function filter() {
 	location = url;
 }
 
-$('#form input').keydown(function(e) {
-	if (e.keyCode == 13) { filter(); }
-});
+<script type="text/javascript"><!--
+window.addEventListener("keydown", function(event) {
+	if (event.defaultPrevented) {
+		return;
+	}
+
+	switch (event.key) {
+	case "Enter": filter();
+		break;
+	default:
+		return;
+	}
+
+	event.preventDefault();
+}, true);
 //--></script>
 
 <script type="text/javascript"><!--

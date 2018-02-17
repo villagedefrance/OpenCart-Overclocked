@@ -189,6 +189,23 @@ function filter() {
 //--></script>
 
 <script type="text/javascript"><!--
+window.addEventListener("keydown", function(event) {
+	if (event.defaultPrevented) {
+		return;
+	}
+
+	switch (event.key) {
+	case "Enter": filter();
+		break;
+	default:
+		return;
+	}
+
+	event.preventDefault();
+}, true);
+//--></script>
+
+<script type="text/javascript"><!--
 $.widget('custom.catcomplete', $.ui.autocomplete, {
 	_renderMenu: function(ul, items) {
 		var self = this, currentCategory = '';

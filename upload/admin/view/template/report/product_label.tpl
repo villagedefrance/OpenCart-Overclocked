@@ -93,9 +93,20 @@ function filter() {
 //--></script>
 
 <script type="text/javascript"><!--
-$('#product-label input').keydown(function(e) {
-	if (e.which == 13) { filter(); }
-});
+window.addEventListener("keydown", function(event) {
+	if (event.defaultPrevented) {
+		return;
+	}
+
+	switch (event.key) {
+	case "Enter": filter();
+		break;
+	default:
+		return;
+	}
+
+	event.preventDefault();
+}, true);
 //--></script>
 
 <script type="text/javascript"><!--

@@ -168,14 +168,25 @@ function filter() {
 //--></script>
 
 <script type="text/javascript"><!--
-$(document).ready(function() {
-	$('.date').datepicker({dateFormat: 'yy-mm-dd'});
-});
+window.addEventListener("keydown", function(event) {
+	if (event.defaultPrevented) {
+		return;
+	}
+
+	switch (event.key) {
+	case "Enter": filter();
+		break;
+	default:
+		return;
+	}
+
+	event.preventDefault();
+}, true);
 //--></script>
 
 <script type="text/javascript"><!--
-$('#form input').keydown(function(e) {
-	if (e.which == 13) { filter(); }
+$(document).ready(function() {
+	$('.date').datepicker({dateFormat: 'yy-mm-dd'});
 });
 //--></script>
 
