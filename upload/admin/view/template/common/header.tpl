@@ -201,6 +201,40 @@
       </li>
       <li id="tools"><a class="top"><?php echo $text_tool; ?></a>
         <ul>
+          <?php if ($openbay_show_menu == 1) { ?>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-desktop"></i>' : ''; ?><?php echo $text_openbay_extension; ?></a>
+            <ul>
+              <li><a href="<?php echo $openbay_link_extension; ?>"><?php echo ($icons) ? '<i class="fa fa-dashboard"></i>' : ''; ?><?php echo $text_openbay_dashboard; ?></a></li>
+              <li><a href="<?php echo $openbay_link_orders; ?>"><?php echo ($icons) ? '<i class="fa fa-first-order"></i>' : ''; ?><?php echo $text_openbay_orders; ?></a></li>
+              <li><a href="<?php echo $openbay_link_items; ?>"><?php echo ($icons) ? '<i class="fa fa-folder"></i>' : ''; ?><?php echo $text_openbay_items; ?></a></li>
+              <?php if ($openbay_markets['ebay'] == 1) { ?>
+              <li><a class="arrow" href="<?php echo $openbay_link_ebay; ?>"><?php echo ($icons) ? '<i class="fa fa-folder-open"></i>' : ''; ?><?php echo $text_openbay_ebay; ?></a>
+                <ul>
+                  <li><a href="<?php echo $openbay_link_ebay_settings; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_openbay_settings; ?></a></li>
+                  <li><a href="<?php echo $openbay_link_ebay_links; ?>"><?php echo ($icons) ? '<i class="fa fa-chain"></i>' : ''; ?><?php echo $text_openbay_links; ?></a></li>
+                  <li><a href="<?php echo $openbay_link_ebay_orderimport; ?>"><?php echo ($icons) ? '<i class="fa fa-upload"></i>' : ''; ?><?php echo $text_openbay_order_import; ?></a></li>
+                </ul>
+              </li>
+              <?php } ?>
+              <?php if ($openbay_markets['amazon'] == 1) { ?>
+              <li><a class="arrow" href="<?php echo $openbay_link_amazon; ?>"><?php echo ($icons) ? '<i class="fa fa-amazon"></i>' : ''; ?><?php echo $text_openbay_amazon; ?></a>
+                <ul>
+                  <li><a href="<?php echo $openbay_link_amazon_settings; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_openbay_settings; ?></a></li>
+                  <li><a href="<?php echo $openbay_link_amazon_links; ?>"><?php echo ($icons) ? '<i class="fa fa-chain"></i>' : ''; ?><?php echo $text_openbay_links; ?></a></li>
+                </ul>
+              </li>
+              <?php } ?>
+              <?php if ($openbay_markets['amazonus'] == 1) { ?>
+              <li><a class="arrow" href="<?php echo $openbay_link_amazonus; ?>"><?php echo ($icons) ? '<i class="fa fa-amazon"></i>' : ''; ?><?php echo $text_openbay_amazonus; ?></a>
+                <ul>
+                  <li><a href="<?php echo $openbay_link_amazonus_settings; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_openbay_settings; ?></a></li>
+                  <li><a href="<?php echo $openbay_link_amazonus_links; ?>"><?php echo ($icons) ? '<i class="fa fa-chain"></i>' : ''; ?><?php echo $text_openbay_links; ?></a></li>
+                </ul>
+              </li>
+              <?php } ?>
+            </ul>
+          </li>
+          <?php } ?>
           <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-compress"></i>' : ''; ?><?php echo $text_export_import; ?></a>
             <ul>
               <li><a href="<?php echo $export_import_tool; ?>"><?php echo ($icons) ? '<i class="fa fa-file-excel-o"></i>' : ''; ?><?php echo $text_export_import_tool; ?></a></li>
@@ -305,40 +339,6 @@
           <li><a href="<?php echo $total; ?>"><?php echo ($icons) ? '<i class="fa fa-calculator"></i>' : ''; ?><?php echo $text_total; ?></a></li>
           <li><a href="<?php echo $fraud; ?>"><?php echo ($icons) ? '<i class="fa fa-shield"></i>' : ''; ?><?php echo $text_fraud; ?></a></li>
           <li><a href="<?php echo $feed; ?>"><?php echo ($icons) ? '<i class="fa fa-feed"></i>' : ''; ?><?php echo $text_feed; ?></a></li>
-          <?php if ($openbay_show_menu == 1) { ?>
-          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-desktop"></i>' : ''; ?><?php echo $text_openbay_extension; ?></a>
-            <ul>
-              <li><a href="<?php echo $openbay_link_extension; ?>"><?php echo ($icons) ? '<i class="fa fa-dashboard"></i>' : ''; ?><?php echo $text_openbay_dashboard; ?></a></li>
-              <li><a href="<?php echo $openbay_link_orders; ?>"><?php echo ($icons) ? '<i class="fa fa-first-order"></i>' : ''; ?><?php echo $text_openbay_orders; ?></a></li>
-              <li><a href="<?php echo $openbay_link_items; ?>"><?php echo ($icons) ? '<i class="fa fa-folder"></i>' : ''; ?><?php echo $text_openbay_items; ?></a></li>
-              <?php if ($openbay_markets['ebay'] == 1) { ?>
-              <li><a class="arrow" href="<?php echo $openbay_link_ebay; ?>"><?php echo ($icons) ? '<i class="fa fa-folder-open"></i>' : ''; ?><?php echo $text_openbay_ebay; ?></a>
-                <ul>
-                  <li><a href="<?php echo $openbay_link_ebay_settings; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_openbay_settings; ?></a></li>
-                  <li><a href="<?php echo $openbay_link_ebay_links; ?>"><?php echo ($icons) ? '<i class="fa fa-chain"></i>' : ''; ?><?php echo $text_openbay_links; ?></a></li>
-                  <li><a href="<?php echo $openbay_link_ebay_orderimport; ?>"><?php echo ($icons) ? '<i class="fa fa-upload"></i>' : ''; ?><?php echo $text_openbay_order_import; ?></a></li>
-                </ul>
-              </li>
-              <?php } ?>
-              <?php if ($openbay_markets['amazon'] == 1) { ?>
-              <li><a class="arrow" href="<?php echo $openbay_link_amazon; ?>"><?php echo ($icons) ? '<i class="fa fa-amazon"></i>' : ''; ?><?php echo $text_openbay_amazon; ?></a>
-                <ul>
-                  <li><a href="<?php echo $openbay_link_amazon_settings; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_openbay_settings; ?></a></li>
-                  <li><a href="<?php echo $openbay_link_amazon_links; ?>"><?php echo ($icons) ? '<i class="fa fa-chain"></i>' : ''; ?><?php echo $text_openbay_links; ?></a></li>
-                </ul>
-              </li>
-              <?php } ?>
-              <?php if ($openbay_markets['amazonus'] == 1) { ?>
-              <li><a class="arrow" href="<?php echo $openbay_link_amazonus; ?>"><?php echo ($icons) ? '<i class="fa fa-amazon"></i>' : ''; ?><?php echo $text_openbay_amazonus; ?></a>
-                <ul>
-                  <li><a href="<?php echo $openbay_link_amazonus_settings; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_openbay_settings; ?></a></li>
-                  <li><a href="<?php echo $openbay_link_amazonus_links; ?>"><?php echo ($icons) ? '<i class="fa fa-chain"></i>' : ''; ?><?php echo $text_openbay_links; ?></a></li>
-                </ul>
-              </li>
-              <?php } ?>
-            </ul>
-          </li>
-          <?php } ?>
         </ul>
       </li>
       <?php if ($connection_exist) { ?>
