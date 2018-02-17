@@ -40,6 +40,7 @@ $_['error_exists']            = 'Warning: Username is already in use!';
 $_['error_email']             = 'Email Address does not appear to be valid!';
 $_['error_email_exists']      = 'Warning: Email Address is already in use!';
 $_['error_username']          = 'Username must be between 3 and 20 characters!';
+$_['error_syntax']            = 'Warning: Username should only contain alphanumeric characters!';
 $_['error_old_password']      = 'Current Password is required and does not match our records!';
 $_['error_password']          = 'Password must be between 4 and 20 characters!';
 $_['error_confirm']           = 'Password and password confirmation do not match!';

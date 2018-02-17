@@ -558,8 +558,14 @@ class ControllerUserUser extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if ((utf8_strlen($this->request->post['username']) < 3) || (utf8_strlen($this->request->post['username']) > 20)) {
-			$this->error['username'] = $this->language->get('error_username');
+		if ($this->request->post['username']) {
+			if ((utf8_strlen($this->request->post['username']) < 3) || (utf8_strlen($this->request->post['username']) > 20)) {
+				$this->error['username'] = $this->language->get('error_username');
+			}
+
+			if (!$this->user->checkUsername($this->request->post['username'])) {
+				$this->error['username'] = $this->language->get('error_syntax');
+			}
 		}
 
 		$user_info = $this->model_user_user->getUserByUsername($this->request->post['username']);

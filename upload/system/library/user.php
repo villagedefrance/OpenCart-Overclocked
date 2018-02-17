@@ -39,6 +39,8 @@ class User {
 	}
 
 	public function login($username, $password) {
+		$username = $this->sanitize($username);
+
 		$user_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "user` WHERE username = '" . $this->db->escape($username) . "' AND (password = SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('" . $this->db->escape($password) . "'))))) OR password = '" . $this->db->escape(md5($password)) . "') AND status = '1'");
 
 		if ($user_query->num_rows) {
@@ -96,5 +98,34 @@ class User {
 
 	public function getUserGroupId() {
 		return $this->user_group_id;
+	}
+
+	// Security functions
+	public function sanitize($string) {
+		// Strips HTML and PHP tags
+		$string = strip_tags($string);
+		// Removes any # from string
+		$string = str_replace('#', '', $string);
+		// Trims default ASCII characters
+		$string = trim($string);
+
+		return $string;
+	}
+
+	public function checkUsername($username) {
+		$username = strtolower($username);
+
+		// Strips HTML and PHP tags
+		$check_name = strip_tags($username);
+		// Removes any # from string
+		$check_name = str_replace('#', '', $check_name);
+		// Trims default ASCII characters
+		$check_name = trim($check_name);
+
+		if ($username === $check_name) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
