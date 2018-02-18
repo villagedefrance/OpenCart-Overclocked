@@ -1,6 +1,8 @@
-## SEO Friendly INDEX (Single Store)
-## Use RewriteRule ^index\.php$ http://%{HTTP_HOST}/folder_name? [R=301,L] if your website is located within a folder inside the web root.
+## To further protect your Admin login, use the ".htpasswd.txt" file located in the Admin folder,
+## Rename it ".htpasswd", then uncomment and configure (if necessary) the following settings:
 
-# RewriteCond %{QUERY_STRING} ^route=common/home$
-# RewriteCond %{REQUEST_METHOD} !^POST$
-# RewriteRule ^index\.php$ http://%{HTTP_HOST}? [R=301,L]
+# AuthType Basic
+# AuthName "Restricted Area"
+# AuthUserFile path_to_file/admin/.htpasswd
+# Require valid-user
+# ErrorDocument 401 "<H1>Error 401</H1> Access to this page is restricted. Please enter valid credentials."

@@ -79,6 +79,13 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !.*\.(js|css|ico|gif|jpg|jpeg|png)
 RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
 
+## SEO Friendly INDEX (Single Store)
+## Use RewriteRule ^index\.php$ http://%{HTTP_HOST}/folder_name? [R=301,L] if your website is located within a folder inside the web root.
+
+# RewriteCond %{QUERY_STRING} ^route=common/home$
+# RewriteCond %{REQUEST_METHOD} !^POST$
+# RewriteRule ^index\.php$ http://%{HTTP_HOST}? [R=301,L]
+
 ## Enable Apache Gzip.
 <ifModule mod_gzip.c>
   mod_gzip_on Yes
@@ -127,15 +134,6 @@ FileETag MTime Size
   ExpiresByType application/x-font-ttf   "access plus 6 months"
   ExpiresByType font/opentype            "access plus 6 months"
 </IfModule>
-
-## To further protect your Admin login, use the ".htpasswd.txt" file located in the Admin folder,
-## Rename it ".htpasswd", then uncomment and configure (if necessary) the following settings:
-
-# AuthType Basic
-# AuthName "Restricted Area"
-# AuthUserFile path_to_file/admin/.htpasswd
-# Require valid-user
-# ErrorDocument 401 "<H1>Error 401</H1> Access to this page is restricted. Please enter valid credentials."
 
 ### Additional Settings that may need to be enabled for some servers.
 ### Uncomment the commands by removing the # sign in front of it.
