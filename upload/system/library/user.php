@@ -1,5 +1,6 @@
 <?php
 class User {
+	private $config;
 	private $user_id;
 	private $username;
 	private $user_group_id;
@@ -8,6 +9,7 @@ class User {
 	protected $registry;
 
     public function __construct(Registry $registry) {
+		$this->config = $registry->get('config');
 		$this->db = $registry->get('db');
 		$this->request = $registry->get('request');
 		$this->session = $registry->get('session');
@@ -41,6 +43,9 @@ class User {
 	public function login($username, $password) {
 		$username = $this->sanitize($username);
 
+		$url = $this->request->server['REQUEST_URI'];
+		$ip = $this->request->server['REMOTE_ADDR'];
+
 		$user_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "user` WHERE username = '" . $this->db->escape($username) . "' AND (password = SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('" . $this->db->escape($password) . "'))))) OR password = '" . $this->db->escape(md5($password)) . "') AND status = '1'");
 
 		if ($user_query->num_rows) {
@@ -60,13 +65,32 @@ class User {
 				}
 			}
 
+			// User Log
+			if ($this->config->get('user_log_enable') && $this->config->get('user_log_login')) {
+				$this->db->query("INSERT INTO `" . DB_PREFIX . "user_log` SET user_id = '" . (int)$this->user_id . "', username = '" . $this->username . "', `action` = 'login', `allowed` = '1', `url` = '" . $this->db->escape($url) . "', `ip` = '" . $this->db->escape($ip) . "', `date` = NOW()");
+			}
+
 			return true;
+
 		} else {
+			// User Log
+			if ($this->config->get('user_log_enable') && $this->config->get('user_log_hacklog')) {
+				$this->db->query("INSERT INTO `" . DB_PREFIX . "user_log` SET user_id = '" . (int)$this->user_id . "', username = '" . $this->db->escape($username) . "', `action` = 'login', `allowed` = '0', `url` = '" . $this->db->escape($url) . "', `ip` = '" . $this->db->escape($ip) . "', `date` = NOW()");
+			}
+
 			return false;
 		}
 	}
 
 	public function logout() {
+		// User Log
+		if ($this->config->get('user_log_enable') && $this->config->get('user_log_logout')) {
+			$url = $this->request->server['REQUEST_URI'];
+			$ip = $this->request->server['REMOTE_ADDR'];
+
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "user_log` SET user_id = '" . (int)$this->user_id . "', username = '" . $this->username . "', `action` = 'logout', `allowed` = '1', `url` = '" . $this->db->escape($url) . "', `ip` = '" . $this->db->escape($ip) . "', `date` = NOW()");
+		}
+
 		unset($this->session->data['user_id']);
 
 		$this->user_id = '';
@@ -77,9 +101,27 @@ class User {
 	}
 
 	public function hasPermission($key, $value) {
+		$url = $this->request->server['REQUEST_URI'];
+		$ip = $this->request->server['REMOTE_ADDR'];
+
 		if (isset($this->permission[$key])) {
+			// User Log
+			if ($this->config->get('user_log_enable')) {
+				if ((($this->config->get('user_log_allowed') == 1 || $this->config->get('user_log_allowed') == 2) && (in_array($value, $this->permission[$key]))) || (($this->config->get('user_log_allowed') == 0 || $this->config->get('user_log_allowed') == 2) && !(in_array($value, $this->permission[$key])))) {
+					if (($this->config->get('user_log_access') && $key == "access") || ($this->config->get('user_log_modify') && $key == "modify")) {
+						$this->db->query("INSERT INTO `" . DB_PREFIX . "user_log` SET user_id = '" . (int)$this->user_id . "', username = '" . $this->username . "', `action` = '" . $key . "', `allowed` = '" . in_array($value, $this->permission[$key]) . "', `url` = '" . $this->db->escape($url) . "', `ip` = '" . $this->db->escape($ip) . "', `date` = NOW()");
+					}
+				}
+			}
+
 			return in_array($value, $this->permission[$key]);
+
 		} else {
+			// User Log
+			if ($this->config->get('user_log_enable') && ($this->config->get('user_log_allowed') == 0 || $this->config->get('user_log_allowed') == 2)) {
+				$this->db->query("INSERT INTO `" . DB_PREFIX . "user_log` SET user_id = '" . (int)$this->user_id . "', username = '" . $this->username . "', `action` = '" . $key . "', `allowed` = '0', `url` = '" . $this->db->escape($url) . "', `ip` = '" . $this->db->escape($ip) . "', `date` = NOW()");
+			}
+
 			return false;
 		}
 	}
@@ -115,12 +157,7 @@ class User {
 	public function checkUsername($username) {
 		$username = strtolower($username);
 
-		// Strips HTML and PHP tags
-		$check_name = strip_tags($username);
-		// Removes any # from string
-		$check_name = str_replace('#', '', $check_name);
-		// Trims default ASCII characters
-		$check_name = trim($check_name);
+		$check_name = $this->sanitize($username);
 
 		if ($username === $check_name) {
 			return true;

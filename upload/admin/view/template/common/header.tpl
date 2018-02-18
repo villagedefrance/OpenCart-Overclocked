@@ -272,6 +272,7 @@
             <ul>
               <li><a href="<?php echo $user; ?>"><?php echo ($icons) ? '<i class="fa fa-user"></i>' : ''; ?><?php echo $text_user; ?></a></li>
               <li><a href="<?php echo $user_group; ?>"><?php echo ($icons) ? '<i class="fa fa-group"></i>' : ''; ?><?php echo $text_user_group; ?></a></li>
+              <li><a href="<?php echo $user_log; ?>"><?php echo ($icons) ? '<i class="fa fa-user-secret"></i>' : ''; ?><?php echo $text_user_log; ?></a></li>
             </ul>
           </li>
           <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-map-marker"></i>' : ''; ?><?php echo $text_localisation; ?></a>
@@ -316,6 +317,7 @@
               <li><a href="<?php echo $error_log; ?>"><?php echo ($icons) ? '<i class="fa fa-warning"></i>' : ''; ?><?php echo $text_error_log; ?></a></li>
               <li><a href="<?php echo $email_log; ?>"><?php echo ($icons) ? '<i class="fa fa-envelope"></i>' : ''; ?><?php echo $text_email_log; ?></a></li>
               <li><a href="<?php echo $quote_log; ?>"><?php echo ($icons) ? '<i class="fa fa-quote-left"></i>' : ''; ?><?php echo $text_quote_log; ?></a></li>
+              <li><a href="<?php echo $user_log; ?>"><?php echo ($icons) ? '<i class="fa fa-user-secret"></i>' : ''; ?><?php echo $text_user_log; ?></a></li>
             </ul>
           </li>
           <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-support"></i>' : ''; ?><?php echo $text_help; ?></a>

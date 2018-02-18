@@ -1144,8 +1144,6 @@ a.button-print:hover {
 	margin-bottom: 20px;
 }
 .list td {
-	color: #111;
-	text-shadow: 0 0 1px rgba(17, 17, 17, 0.05);
 	border-right: 1px solid #CFCFCF;
 	border-bottom: 1px solid #CFCFCF;
 }
@@ -1160,8 +1158,8 @@ a.button-print:hover {
 	padding: 0 5px;
 }
 .list thead td a, .list thead td {
-	font-weight: bold;
 	color: #222;
+	font-weight: bold;
 	text-shadow: 0 0 1px rgba(34, 34, 34, 0.05);
 	text-decoration: none;
 }
@@ -1169,6 +1167,8 @@ a.button-print:hover {
 	text-decoration: underline;
 }
 .list tbody td {
+	color: #111;
+	text-shadow: 0 0 1px rgba(17, 17, 17, 0.05);
 	vertical-align: middle;
 	background: #FFF;
 	padding: 0 5px;
@@ -1282,6 +1282,31 @@ a.button-print:hover {
 	background: url('../image/warning.png') center no-repeat;
 	margin: 0 auto;
 	width: 22px;
+}
+/* Admin Log */
+.list tbody.log .denied, .list tbody.log .denied td, .list tbody.log .clear, .list tbody.log .clear td {
+	background-color: #FFBABA;
+}
+.list tbody.log .login, .list tbody.log .login td {
+	background-color: #ACE8A7;
+}
+.list tbody.log .logout, .list tbody.log .logout td {
+	background-color: #D1D1D1;
+}
+.list tbody.log .access, .list tbody.log .access td {
+	background-color: #B2DCFF;
+}
+.list tbody.log .modify, .list tbody.log .modify td {
+	background-color: #FFE699;
+}
+.list tbody.log td, .list tbody.log td a {
+	color: #333;
+}
+.list tbody.log td a {
+	text-decoration: underline;
+}
+.list tbody.log td a:hover {
+	color: #000;
 }
 /* Table Form */
 table.form {
@@ -1577,7 +1602,7 @@ table.tool tr td {
 .pagination .results {
 	float: right;
 	font-size: 12px;
-	padding-top: 6px;
+	padding: 6px 3px 0 0;
 }
 /* Dashboard */
 .dashboard-heading, .dashboard-heading-left, .dashboard-heading-middle, .dashboard-heading-right {

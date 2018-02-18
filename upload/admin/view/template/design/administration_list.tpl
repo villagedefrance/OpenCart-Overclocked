@@ -24,7 +24,7 @@
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
-      <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form" name="administration>
+      <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form" name="administration">
         <table class="list">
         <thead>
           <tr>

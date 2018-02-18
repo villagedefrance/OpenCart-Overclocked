@@ -125,6 +125,7 @@ $_['text_tool']                        = 'Tools';
 $_['text_total']                       = 'Totals';
 $_['text_upload']                      = 'Uploads';
 $_['text_user']                        = 'User';
+$_['text_user_log']                    = 'User Logs';
 $_['text_user_group']                  = 'User Groups';
 $_['text_users']                       = 'Users';
 $_['text_voucher']                     = 'Gift Vouchers';

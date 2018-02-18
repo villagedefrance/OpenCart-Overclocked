@@ -184,6 +184,17 @@ class ControllerCommonHome extends Controller {
 			unlink($file);
 		}
 
+		// Check user log number of entries
+		$this->load->model('user/user_log');
+
+		$entries_total = $this->model_user_user_log->getTotalDataLog(0);
+
+		if ($entries_total > 499) {
+			$this->data['error_user_log'] = sprintf($this->language->get('error_user_log'), (int)$entries_total);
+		} else {
+			$this->data['error_user_log'] = '';
+		}
+
 		// Error log
 		$error_filename = $this->config->get('config_error_filename');
 

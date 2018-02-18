@@ -23,6 +23,9 @@
   <?php if ($error_logs) { ?>
     <div class="warning"><?php echo $error_logs; ?></div>
   <?php } ?>
+  <?php if ($error_user_log) { ?>
+    <div class="attention"><?php echo $error_user_log; ?></div>
+  <?php } ?>
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/home.png" alt="" /> <?php echo $heading_title; ?></h1>

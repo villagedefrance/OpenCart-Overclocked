@@ -280,7 +280,7 @@
                 </label>
               </td>
             </tr>
-            <tr>
+            <tr class="highlighted">
               <td class="buttons"><a onclick="updateSettings();" class="button-filter animated fadeIn"><i class="fa fa-gears"></i> &nbsp;&nbsp; <?php echo $button_settings; ?></a></td>
             </tr>
           </table>
@@ -310,7 +310,7 @@
           </tr>
           <tr>
             <td><?php echo $text_export_import_website; ?></td>
-            <td><a class="about" onclick="window.open('http://villagedefrance.net');" title="">http://villagedefrance.net</a></td>
+            <td><a class="about" onclick="window.open('https://villagedefrance.net');" title="">https://villagedefrance.net</a></td>
           </tr>
           <tr>
             <td><?php echo $text_export_import_support; ?></td>

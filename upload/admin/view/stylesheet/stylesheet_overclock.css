@@ -1120,8 +1120,6 @@ a.button-print:hover {
 	margin-bottom: 20px;
 }
 .list td {
-	color: #E5E5E5;
-	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 	border-right: 1px solid #252A2F;
 	border-bottom: 1px solid #252A2F;
 }
@@ -1136,8 +1134,8 @@ a.button-print:hover {
 	padding: 0 5px;
 }
 .list thead td a, .list thead td {
-	font-weight: bold;
 	color: #E5E5E5;
+	font-weight: bold;
 	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 	text-decoration: none;
 }
@@ -1145,6 +1143,8 @@ a.button-print:hover {
 	text-decoration: underline;
 }
 .list tbody td {
+	color: #E5E5E5;
+	font-weight: bold;
 	vertical-align: middle;
 	background: #4B515A;
 	padding: 0 5px;
@@ -1265,6 +1265,31 @@ a.button-print:hover {
 	background: url('../image/warning.png') center no-repeat;
 	margin: 0 auto;
 	width: 22px;
+}
+/* Admin Log */
+.list tbody.log .denied, .list tbody.log .denied td, .list tbody.log .clear, .list tbody.log .clear td {
+	background-color: #DE5954;
+}
+.list tbody.log .login, .list tbody.log .login td {
+	background-color: #5DC15E;
+}
+.list tbody.log .logout, .list tbody.log .logout td {
+	background-color: #B1B1B1;
+}
+.list tbody.log .access, .list tbody.log .access td {
+	background-color: #4691D2;
+}
+.list tbody.log .modify, .list tbody.log .modify td {
+	background-color: #F2B155;
+}
+.list tbody.log td, .list tbody.log td a {
+	color: #222;
+}
+.list tbody.log td a {
+	text-decoration: underline;
+}
+.list tbody.log td a:hover {
+	color: #FFF;
 }
 /* Table Form */
 table.form {
@@ -1537,7 +1562,7 @@ table.tool tr td {
 	text-transform: uppercase;
 	padding-top: 6px;
 	margin-bottom: 3px;
-	border-top: 1px solid #313841;
+	border-top: 1px solid #444E59;
 }
 .pagination .links {
 	float: left;
@@ -1557,7 +1582,7 @@ table.tool tr td {
 	background-image: -ms-linear-gradient(top, #3C4044, #171C19);
 	background-image: -o-linear-gradient(top, #3C4044, #171C19);
 	background-image: linear-gradient(to bottom, #3C4044, #171C19);
-	border: 1px solid #313841;
+	border: 1px solid #444E59;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	-khtml-border-radius: 2px;
@@ -1587,7 +1612,7 @@ table.tool tr td {
 .pagination .results {
 	float: right;
 	font-size: 12px;
-	padding-top: 6px;
+	padding: 6px 3px 0 0;
 }
 /* Dashboard */
 .dashboard-heading, .dashboard-heading-left, .dashboard-heading-middle, .dashboard-heading-right {
