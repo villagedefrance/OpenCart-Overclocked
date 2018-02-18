@@ -172,19 +172,11 @@ span.branding a {
 	.filemanager-button {
 		padding: 7px 4px 7px 24px;
 	}
-	/* General */
-	.hide-mobile {
-		display: none;
-	}
 }
 /* Phones */
 @media only screen and (max-width: 640px) {
 	.filemanager-button {
 		padding: 7px 2px 7px 22px;
-	}
-	/* General */
-	.hide-mobile {
-		display: none;
 	}
 }
 

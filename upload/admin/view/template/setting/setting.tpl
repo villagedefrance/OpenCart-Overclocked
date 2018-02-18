@@ -2298,7 +2298,7 @@ function image_upload(field, thumb) {
 			}
 		},
 		bgiframe: false,
-		width: <?php echo ($this->browser->checkMobile()) ? 630 : 760; ?>,
+		width: <?php echo ($this->browser->checkMobile()) ? 580 : 760; ?>,
 		height: 400,
 		resizable: false,
 		modal: false

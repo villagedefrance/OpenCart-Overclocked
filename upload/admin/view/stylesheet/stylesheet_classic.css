@@ -1957,7 +1957,7 @@ table.tool tr td {
 		height: 260px;
 	}
 	/* General */
-	.hide-mobile {
+	.hide-tablet {
 		display: none;
 	}
 }
@@ -2018,7 +2018,7 @@ table.tool tr td {
 		height: 220px;
 	}
 	/* General */
-	.hide-mobile {
+	.hide-phone {
 		display: none;
 	}
 }
