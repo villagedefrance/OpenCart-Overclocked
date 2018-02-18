@@ -37,6 +37,22 @@ class ModelCatalogReview extends Model {
 			$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
 		}
 
+		if (!empty($data['filter_product'])) {
+			$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_product']) . "%'";
+		}
+
+		if (!empty($data['filter_author'])) {
+			$sql .= " AND r.author LIKE '" . $this->db->escape($data['filter_author']) . "%'";
+		}
+
+		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
+			$sql .= " AND r.status = '" . (int)$data['filter_status'] . "'";
+		}
+
+		if (!empty($data['filter_date_added'])) {
+			$sql .= " AND DATE(r.date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
+		}
+
 		$sort_data = array(
 			'pd.name',
 			'r.author',
@@ -80,6 +96,22 @@ class ModelCatalogReview extends Model {
 
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+		}
+
+		if (!empty($data['filter_product'])) {
+			$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_product']) . "%'";
+		}
+
+		if (!empty($data['filter_author'])) {
+			$sql .= " AND r.author LIKE '" . $this->db->escape($data['filter_author']) . "%'";
+		}
+
+		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
+			$sql .= " AND r.status = '" . (int)$data['filter_status'] . "'";
+		}
+
+		if (!empty($data['filter_date_added'])) {
+			$sql .= " AND DATE(r.date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
 		}
 
 		$query = $this->db->query($sql);
