@@ -504,10 +504,6 @@ class ControllerUserUser extends Controller {
 			$this->data['email'] = '';
 		}
 
-		$this->load->model('tool/image');
-
-		$this->data['no_image'] = $this->model_tool_image->resize('no_avatar.jpg', 100, 100);
-
 		if (isset($this->request->post['image'])) {
 			$this->data['image'] = $this->request->post['image'];
 		} elseif (!empty($user_info)) {
@@ -516,6 +512,8 @@ class ControllerUserUser extends Controller {
 			$this->data['image'] = '';
 		}
 
+		$this->load->model('tool/image');
+
 		if (isset($this->request->post['image']) && file_exists(DIR_IMAGE . $this->request->post['image'])) {
 			$this->data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
 		} elseif (!empty($user_info) && $user_info['image'] && file_exists(DIR_IMAGE . $user_info['image'])) {
@@ -523,6 +521,8 @@ class ControllerUserUser extends Controller {
 		} else {
 			$this->data['thumb'] = $this->model_tool_image->resize('no_avatar.jpg', 100, 100);
 		}
+
+		$this->data['no_avatar'] = $this->model_tool_image->resize('no_avatar.jpg', 100, 100);
 
 		if (isset($this->request->post['user_group_id'])) {
 			$this->data['user_group_id'] = $this->request->post['user_group_id'];
@@ -602,19 +602,6 @@ class ControllerUserUser extends Controller {
 			if ($user_email && ($this->request->get['user_id'] != $user_email['user_id'])) {
 				$this->error['email'] = $this->language->get('error_email_exists');
 			}
-		}
-
-		if ($this->request->post['old_password'] && (utf8_strlen($this->request->post['old_password']) > 3) && (utf8_strlen($this->request->post['old_password']) < 21)) {
-			if (isset($this->request->get['user_id']) && $user_info) {
-				$password_match = $this->model_user_user->checkUserPassword($this->request->post['old_password'], $user_info['user_id'], $this->request->post['username']);
-
-				if ($password_match) {
-					$this->error['old_password'] = $this->language->get('error_old_password');
-				}
-			}
-
-		} else {
-			$this->error['old_password'] = $this->language->get('error_old_password');
 		}
 
 		if ($this->request->post['password'] != "") {
