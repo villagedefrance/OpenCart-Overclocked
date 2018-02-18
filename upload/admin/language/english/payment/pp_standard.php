@@ -12,7 +12,7 @@ $_['text_authorization']             = 'Authorization';
 $_['text_sale']                      = 'Sale';
 
 // Entry
-$_['entry_email']                    = 'E-Mail';
+$_['entry_email']                    = 'Email';
 $_['entry_test']                     = 'Sandbox Mode';
 $_['entry_transaction']              = 'Transaction Method';
 $_['entry_debug']                    = 'Debug Mode';
@@ -44,4 +44,4 @@ $_['help_transaction']               = 'Sale will charge customer immediately. A
 
 // Error
 $_['error_permission']               = 'Warning: You do not have permission to modify <b>PayPal Standard</b>!';
-$_['error_email']                    = 'E-Mail required!';
+$_['error_email']                    = 'Email is required!';

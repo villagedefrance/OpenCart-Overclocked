@@ -33,7 +33,7 @@ $_['text_all']               = 'all actions';
 // Text
 $_['text_success']           = 'Success: You have successfully cleared the <b>User Log</b>!';
 $_['text_success_settings']  = 'Success: You have successfully updated the <b>User Log</b> settings!';
-$_['text_description']       = '<p>The Administration User Log allows you to record actions performed by the administrators.</br>
+$_['text_description']       = '<p>The Administration User Log allows you to record actions performed by the administrators.<br />
   Setting options are available to select what is being recorded.</p>
 
   <p>Use the following options to configure your log:</p>
@@ -66,7 +66,7 @@ $_['text_description']       = '<p>The Administration User Log allows you to rec
     <li>A successful Logout will be highlighted in GRAY.</li>
   </ul>
 
-  <p>PERMISSIONS have two values: YES or NO.</p></br>';
+  <p>PERMISSIONS have two values: YES or NO.</p><br />';
 
 // Help
 $_['help_user_log_enable']   = 'Recommended!';

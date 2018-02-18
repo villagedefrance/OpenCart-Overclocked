@@ -5,7 +5,7 @@ $_['heading_title']     = 'Gift Voucher';
 // Text
 $_['text_send']         = 'Send';
 $_['text_success']      = 'Success: You have modified <b>Vouchers</b> !';
-$_['text_sent']         = 'Success: Gift Voucher e-mail has been sent!';
+$_['text_sent']         = 'Success: Gift Voucher email has been sent!';
 $_['text_wait']         = 'Please Wait!';
 
 // Column
@@ -38,7 +38,7 @@ $_['error_exists']      = 'Warning: Voucher code is already in use!';
 $_['error_code']        = 'Code must be between 3 and 10 characters!';
 $_['error_to_name']     = 'Recipient\'s Name must be between 1 and 64 characters!';
 $_['error_from_name']   = 'Your Name must be between 1 and 64 characters!';
-$_['error_email']       = 'E-Mail Address does not appear to be valid!';
+$_['error_email']       = 'Email Address does not appear to be valid!';
 $_['error_message']     = 'Message must contain between 3 and 128 characters!';
 $_['error_amount']      = 'Amount must be greater than or equal to 1.00!';
 $_['error_order']       = 'Warning: This voucher cannot be deleted as it is part of an <a href="%s">order</a>!';

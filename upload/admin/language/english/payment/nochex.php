@@ -12,7 +12,7 @@ $_['text_seller']        = 'Seller / Personal Account';
 $_['text_merchant']      = 'Merchant Account';
 
 // Entry
-$_['entry_email']        = 'E-Mail';
+$_['entry_email']        = 'Email';
 $_['entry_account']      = 'Account Type';
 $_['entry_merchant']     = 'Merchant ID';
 $_['entry_template']     = 'Pass Template';
@@ -30,5 +30,5 @@ $_['help_total_max']     = 'The maximum checkout total the order must reach befo
 
 // Error
 $_['error_permission']   = 'Warning: You do not have permission to modify payment <b>NOCHEX</b> !';
-$_['error_email']        = 'E-Mail Required!';
+$_['error_email']        = 'Email is Required!';
 $_['error_merchant']     = 'Merchant ID Required!';

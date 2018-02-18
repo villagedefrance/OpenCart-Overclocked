@@ -81,7 +81,7 @@ $_['entry_db_port']          = 'Port';
 $_['entry_db_prefix']        = 'Prefix';
 $_['entry_username']         = 'Username';
 $_['entry_password']         = 'Password';
-$_['entry_email']            = 'E-Mail';
+$_['entry_email']            = 'Email';
 $_['entry_rewrite']          = 'Activate Seo-url Rewrite ?';
 $_['entry_maintenance']      = 'Activate Maintenance mode ?';
 $_['entry_demo_data']        = 'Remove Demo Data ?';
@@ -121,7 +121,7 @@ $_['error_db_mysql']         = 'MySQL is not supported on your server! Try using
 $_['error_db_mysqli']        = 'MySQLi is not supported on your server! Try using PDO.';
 $_['error_username']         = 'Username is required!';
 $_['error_password']         = 'Password is required!';
-$_['error_email']            = 'Invalid E-mail address!';
+$_['error_email']            = 'Invalid Email address!';
 $_['error_config']           = 'Error: Could not write to config.php please check you have set the correct permissions on: ';
 
 // Buttons

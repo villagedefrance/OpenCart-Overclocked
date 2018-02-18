@@ -18,7 +18,7 @@ $_['text_transaction_removed']        = 'Success: Transaction removed !';
 
 // Column
 $_['column_name']                     = 'Affiliate Name';
-$_['column_email']                    = 'E-Mail';
+$_['column_email']                    = 'Email';
 $_['column_code']                     = 'Tracking Code';
 $_['column_balance']                  = 'Balance';
 $_['column_status']                   = 'Status';
@@ -33,7 +33,7 @@ $_['column_action']                   = 'Action';
 // Entry
 $_['entry_firstname']                 = 'First Name';
 $_['entry_lastname']                  = 'Last Name';
-$_['entry_email']                     = 'E-Mail';
+$_['entry_email']                     = 'Email';
 $_['entry_telephone']                 = 'Telephone';
 $_['entry_fax']                       = 'Fax';
 $_['entry_status']                    = 'Status';
@@ -75,11 +75,11 @@ $_['button_unlock']                    = 'Unlock';
 // Error
 $_['error_warning']                    = 'Warning: Please check the form carefully for errors!';
 $_['error_permission']                 = 'Warning: You do not have permission to modify <b>Affiliates</b> !';
-$_['error_exists']                     = 'Warning: E-Mail Address is already registered!';
+$_['error_exists']                     = 'Warning: Email Address is already registered!';
 $_['error_action']                     = 'Warning: Could not complete this action!';
 $_['error_firstname']                  = 'First Name must be between 1 and 32 characters!';
 $_['error_lastname']                   = 'Last Name must be between 1 and 32 characters!';
-$_['error_email']                      = 'E-Mail Address does not appear to be valid!';
+$_['error_email']                      = 'Email Address does not appear to be valid!';
 $_['error_cheque']                     = 'Cheque Payee Name required!';
 $_['error_paypal']                     = 'PayPal Email Address does not appear to be valid!';
 $_['error_bank_account_name']          = 'Account Name required!';

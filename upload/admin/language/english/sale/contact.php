@@ -25,6 +25,6 @@ $_['entry_subject']        = 'Subject:';
 $_['entry_message']        = 'Message:';
 
 // Error
-$_['error_permission']     = 'Warning: You do not have permission to send E-Mail\'s!';
-$_['error_subject']        = 'E-Mail Subject required!';
-$_['error_message']        = 'E-Mail Message required!';
+$_['error_permission']     = 'Warning: You do not have permission to send Emails!';
+$_['error_subject']        = 'Email Subject required!';
+$_['error_message']        = 'Email Message required!';
