@@ -47,7 +47,7 @@
           <tbody class="log">
           <?php if ($entries) { ?>
             <?php foreach ($entries as $entry) { ?>
-              <tr class="<?php if (!$entry['allowed']) { ?>denied <?php } ?><?php echo $entry['action']; ?>">
+              <tr class="<?php echo (!$entry['allowed'] || ($entry['allowed'] == 0)) ? 'denied' : $entry['action']; ?>">
                 <td style="text-align:center;"><?php if ($entry['selected']) { ?>
                   <input type="checkbox" name="selected[]" value="<?php echo $entry['log_id']; ?>" id="<?php echo $entry['log_id']; ?>" class="checkbox" checked />
                   <label for="<?php echo $entry['log_id']; ?>"><span></span></label>

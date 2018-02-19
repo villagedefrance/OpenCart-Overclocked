@@ -1284,19 +1284,19 @@ a.button-print:hover {
 	width: 22px;
 }
 /* Admin Log */
-.list tbody.log .denied, .list tbody.log .denied td, .list tbody.log .clear, .list tbody.log .clear td {
+.list tbody.log tr.denied td, .list tbody.log tr.clear td {
 	background-color: #FFBABA;
 }
-.list tbody.log .login, .list tbody.log .login td {
+.list tbody.log tr.login td {
 	background-color: #ACE8A7;
 }
-.list tbody.log .logout, .list tbody.log .logout td {
+.list tbody.log tr.logout td {
 	background-color: #D1D1D1;
 }
-.list tbody.log .access, .list tbody.log .access td {
+.list tbody.log tr.access td {
 	background-color: #B2DCFF;
 }
-.list tbody.log .modify, .list tbody.log .modify td {
+.list tbody.log tr.modify td {
 	background-color: #FFE699;
 }
 .list tbody.log td, .list tbody.log td a {
