@@ -862,7 +862,9 @@ class ControllerSaleCustomer extends Controller {
 				'separator' => ' :: '
 			);
 
-			$this->data['customer_title'] = $customer_name['firstname'] . ' ' . $customer_name['lastname'];
+			$total_customer_orders = $this->model_sale_customer->getTotalCustomersOrders($this->request->get['customer_id']);
+
+			$this->data['customer_title'] = $customer_name['firstname'] . ' ' . $customer_name['lastname'] . ' (' . $total_customer_orders . ')';
 
 		} else {
 			$this->data['breadcrumbs'][] = array(

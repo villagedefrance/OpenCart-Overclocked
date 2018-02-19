@@ -125,7 +125,7 @@
               <input type="checkbox" name="selected[]" value="<?php echo $customer['customer_id']; ?>" id="<?php echo $customer['customer_id']; ?>" class="checkbox" />
               <label for="<?php echo $customer['customer_id']; ?>"><span></span></label>
             <?php } ?></td>
-            <td class="left"><?php echo $customer['name']; ?><?php if ($show_dob) { echo '('.$customer['age'].')'; } ?></td>
+            <td class="left"><?php echo $customer['name']; ?><?php if ($show_dob) { echo '(' . $customer['age'] . ')'; } ?></td>
             <td class="left"><?php echo $customer['email']; ?></td>
             <td class="left"><?php echo $customer['customer_group']; ?></td>
             <?php if ($customer['status'] == 1) { ?>
@@ -133,7 +133,7 @@
             <?php } else { ?>
               <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
             <?php } ?>
-            <td class="center"><?php echo $customer['approved'] ? '<img src="view/image/success.png" alt="'.$text_yes.'" />' : '<img src="view/image/warning.png" alt="'.$text_no.'" />'; ?></td>
+            <td class="center"><?php echo $customer['approved'] ? '<img src="view/image/success.png" alt="' . $text_yes . '" />' : '<img src="view/image/warning.png" alt="' . $text_no . '" />'; ?></td>
             <td class="center"><?php echo $customer['ip']; ?>&nbsp;<?php echo $customer['blocked_ip']; ?></td>
             <td class="center"><?php echo $customer['date_added']; ?></td>
             <td class="left"><select onchange="((this.value !== '') ? window.open('index.php?route=sale/customer/login&token=<?php echo $token; ?>&customer_id=<?php echo $customer['customer_id']; ?>&store_id=' + this.value) : null); this.value = '';">
