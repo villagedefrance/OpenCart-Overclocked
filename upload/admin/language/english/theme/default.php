@@ -63,7 +63,7 @@ $_['button_settings']           = 'Settings';
 $_['text_info_theme']           = 'Default - OverClocked Edition';
 $_['text_info_author']          = 'OpenCart, OverClocked Edition by Villagedefrance';
 $_['text_info_license']         = '<a onclick="window.open(\'http://www.gnu.org/licenses/gpl-3.0.en.html\');">GPLv3 (GNU General Public License)</a>';
-$_['text_info_support']         = '<a onclick="window.open(\'http://villagedefrance.net/index.php\');">www.villagedefrance.net</a>';
+$_['text_info_support']         = '<a onclick="window.open(\'https://villagedefrance.net/index.php\');">www.villagedefrance.net</a>';
 
 // Error
 $_['error_permission']          = 'Warning: You do not have permission to modify Theme <b>Default</b> !';

@@ -4,7 +4,7 @@ $_['heading_title']     = 'Affiliate Commission Report';
 
 // Column
 $_['column_affiliate']  = 'Affiliate Name';
-$_['column_email']      = 'E-Mail';
+$_['column_email']      = 'Email';
 $_['column_status']     = 'Status';
 $_['column_commission'] = 'Commission';
 $_['column_orders']     = 'N&deg; Orders';

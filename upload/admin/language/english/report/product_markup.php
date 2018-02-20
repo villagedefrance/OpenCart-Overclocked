@@ -6,7 +6,7 @@ $_['heading_title']      = 'Product Profit Margins Report';
 $_['text_free_products'] = 'Please note that products with a zero price (Free) will not show in this report. Prices in <span style="color:#B00;">red</span> are special offer prices.';
 
 // Column
-$_['column_product_id']  = 'Id';
+$_['column_product_id']  = 'ID';
 $_['column_name']        = 'Name';
 $_['column_price']       = 'Price';
 $_['column_cost']        = 'Cost';

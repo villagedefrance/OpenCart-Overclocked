@@ -38,7 +38,7 @@ $_['text_guest']                    = 'Guest';
 $_['help_mail_log']                 = 'Mail log';
 $_['help_quote_log']                = 'Quote log';
 $_['help_error_log']                = 'Error log';
-$_['help_seo_url']                  = 'Seo Url status';
+$_['help_seo_url']                  = 'SEO URL status';
 
 // Tab
 $_['tab_map']                       = 'Map';
@@ -59,7 +59,7 @@ $_['column_total']                  = 'Total';
 $_['column_firstname']              = 'First Name';
 $_['column_lastname']               = 'Last Name';
 $_['column_name']                   = 'Name';
-$_['column_email']                  = 'E-Mail';
+$_['column_email']                  = 'Email';
 $_['column_customer_group']         = 'Customer Group';
 $_['column_orders_passed']          = 'Passed Orders';
 $_['column_orders_missed']          = 'Missed Orders';

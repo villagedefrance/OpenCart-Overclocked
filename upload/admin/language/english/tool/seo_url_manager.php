@@ -1,13 +1,13 @@
 <?php
 // Heading
-$_['heading_title']         = 'Seo Url Manager';
+$_['heading_title']         = 'SEO URL Manager';
 
 // Text
-$_['text_success']          = 'Success: You have modified <b>Seo Url Manager</b> !';
+$_['text_success']          = 'Success: You have modified <b>SEO URL Manager</b> !';
 $_['text_default']          = 'Default';
 
 // Column
-$_['column_url_alias_id']   = 'Url Alias Id';
+$_['column_url_alias_id']   = 'Url Alias ID';
 $_['column_query']          = 'Route';
 $_['column_keyword']        = 'Keyword';
 $_['column_action']         = 'Action';
@@ -28,7 +28,7 @@ $_['success_url_status']    = 'SEO URL\'s are activated in the Store Settings.';
 
 // Error
 $_['error_url_status']      = 'Attention: SEO URL\'s are Not activated in the Store Settings!';
-$_['error_permission']      = 'Warning: You do not have permission to modify <b>Seo Url Manager</b> !';
-$_['error_query']           = 'Query must be between 3 and 255 characters!';
-$_['error_keyword']         = 'Keyword must be between 3 and 255 characters!';
-$_['error_keyword_exist']   = 'Warning: Keyword already exists!';
+$_['error_permission']      = 'Warning: You do not have permission to modify <b>SEO URL Manager</b> !';
+$_['error_query']           = 'Query Route must be between 3 and 255 characters!';
+$_['error_keyword']         = 'SEO Keyword must be between 3 and 255 characters!';
+$_['error_keyword_exist']   = 'Warning: SEO Keyword already exists!';

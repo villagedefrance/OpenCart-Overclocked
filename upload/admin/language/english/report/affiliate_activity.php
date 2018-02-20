@@ -15,7 +15,7 @@ $_['text_edit_link']    = 'Edit';
 
 // Column
 $_['column_activity']   = 'Activity';
-$_['column_ip']         = 'Ip';
+$_['column_ip']         = 'IP';
 $_['column_date_added'] = 'Date Added';
 $_['column_action']     = 'Action';
 

@@ -10,7 +10,7 @@ $_['text_browse']        = 'Browse';
 $_['text_clear']         = 'Clear';
 
 // Column
-$_['column_id']          = 'Id';
+$_['column_id']          = 'ID';
 $_['column_image']       = 'Image';
 $_['column_name']        = 'Manufacturer\'s Name';
 $_['column_sort_order']  = 'Sort Order';

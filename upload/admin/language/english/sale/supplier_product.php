@@ -20,7 +20,7 @@ $_['column_price']            = 'Price';
 $_['column_image']            = 'Image';
 
 // Column List
-$_['column_id']               = 'Id';
+$_['column_id']               = 'ID';
 $_['column_name']             = 'Product Name';
 $_['column_model']            = 'Model';
 $_['column_supplier']         = 'Supplier';

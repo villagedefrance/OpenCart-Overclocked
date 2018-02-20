@@ -5,7 +5,7 @@ $_['heading_title']                    = 'Administration';
 // Text
 $_['text_affiliate']                   = 'Affiliates';
 $_['text_administration']              = 'Administration';
-$_['text_api_key_manager']             = 'Api Key Manager';
+$_['text_api_key_manager']             = 'API Key Manager';
 $_['text_attribute']                   = 'Attributes';
 $_['text_attribute_group']             = 'Attribute Groups';
 $_['text_backup']                      = 'Backup / Restore';
@@ -105,7 +105,7 @@ $_['text_return_action']               = 'Return Actions';
 $_['text_return_reason']               = 'Return Reasons';
 $_['text_return_status']               = 'Return Statuses';
 $_['text_sale']                        = 'Sales';
-$_['text_seo_url_manager']             = 'Seo Url Manager';
+$_['text_seo_url_manager']             = 'SEO URL Manager';
 $_['text_server']                      = 'Server';
 $_['text_setting']                     = 'Settings';
 $_['text_shipping']                    = 'Shipping';

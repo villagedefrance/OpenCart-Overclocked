@@ -21,9 +21,9 @@ $_['entry_remaining']  = 'Total Downloads Allowed:';
 $_['entry_update']     = 'Push to Previous Customers:';
 
 // Help
-$_['help_filename'] = 'You can upload via the upload button or use FTP to upload to the download directory and enter the details below.<br /><br />It is also recommended that the filename and the mask are different to stop people trying to directly link to your downloads.';
-$_['help_mask'] = 'The mask must end with a file type.<br />Example: myfile<b>.zip</b>';
-$_['help_update'] = 'Check this to update previously purchased versions as well.';
+$_['help_filename']    = 'You can upload via the upload button or use FTP to upload to the download directory and enter the details below.<br /><br />It is also recommended that the filename and the mask are different to stop people trying to directly link to your downloads.';
+$_['help_mask']        = 'The mask must end with a file type.<br />Example: myfile<b>.zip</b>';
+$_['help_update']      = 'Check this to update previously purchased versions as well.';
 
 // Error
 $_['error_permission'] = 'Warning: You do not have permission to modify <b>Downloads</b> !';

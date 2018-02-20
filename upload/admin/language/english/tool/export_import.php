@@ -32,9 +32,9 @@ $_['entry_credits']                                     = 'Export / Import Credi
 
 $_['entry_export_type']                                 = 'Select the data to export:';
 $_['entry_range_type']                                  = 'Select the data range to export:';
-$_['entry_start_id']                                    = 'Start id:';
+$_['entry_start_id']                                    = 'Start ID:';
 $_['entry_start_index']                                 = 'Counts per batch:';
-$_['entry_end_id']                                      = 'End id:';
+$_['entry_end_id']                                      = 'End ID:';
 $_['entry_end_index']                                   = 'The batch number:';
 $_['entry_incremental']                                 = 'Use incremental Import ?';
 $_['entry_upload']                                      = 'XLS, XLSX or ODS File';
@@ -52,7 +52,7 @@ $_['entry_settings_use_import_cache']                   = 'Use phpTemp cache for
 // Error
 $_['error_permission']                                  = 'Warning: You do not have permission to modify <b>Export / Import XLSX</b> !';
 $_['error_upload']                                      = 'Uploaded spreadsheet file has validation errors!';
-$_['error_worksheets'] = 'Export/Import: Invalid worksheet names';
+$_['error_worksheets']                                  = 'Export/Import: Invalid worksheet names';
 $_['error_customers_header']                            = 'Export/Import: Invalid header in the Customers worksheet';
 $_['error_categories_header']                           = 'Export/Import: Invalid header in the Categories worksheet';
 $_['error_category_filters_header']                     = 'Export/Import: Invalid header in the CategoryFilters worksheet';
@@ -89,13 +89,13 @@ $_['error_option_values_2']                             = 'Export/Import: Option
 $_['error_post_max_size']                               = 'File size is greater than %1 (see PHP setting \'post_max_size\')';
 $_['error_upload_max_filesize']                         = 'File size is greater than %1 (see PHP setting \'upload_max_filesize\')';
 $_['error_select_file']                                 = 'Please select a valid file before clicking \'Import\'';
-$_['error_id_no_data']                                  = 'No data between start-id and end-id.';
+$_['error_id_no_data']                                  = 'No data between Start ID and End ID.';
 $_['error_page_no_data']                                = 'No more data.';
 $_['error_param_not_number']                            = 'Values for data range must be whole numbers.';
 $_['error_upload_name']                                 = 'Missing file name for upload';
 $_['error_upload_ext']                                  = 'Uploaded file has not one of the \'.xls\', \'.xlsx\' or \'.ods\' file name extensions, it might not be a spreadsheet file!';
 $_['error_batch_number']                                = 'Batch number must be greater than 0 !';
-$_['error_min_item_id']                                 = 'Start id must be greater than 0 !';
+$_['error_min_item_id']                                 = 'Start ID must be greater than 0 !';
 
 $_['error_option_name'] = 'Option \'%1\' is defined multiple times!<br />';
 $_['error_option_name'] .= 'In the Settings-tab please activate the following:<br />';
@@ -161,17 +161,17 @@ $_['error_duplicate_product_id']                        = 'Export/Import: Duplic
 $_['error_unlisted_product_id']                         = 'Export/Import: Worksheet \'%1\' cannot use product_id \'%2\' because it is not listed in worksheet \'Products\'!';
 $_['error_wrong_order_product_id']                      = 'Export/Import: Worksheet \'%1\' uses product_id \'%2\' in the wrong order. Ascending order expected!';
 $_['error_filter_not_supported']                        = 'Export/Import: Filters are not supported in your OpenCart Overclocked version!';
-$_['error_missing_category_id'] = 'Export/Import: Missing category_ids in worksheet \'%1\'!';
-$_['error_invalid_category_id'] = 'Export/Import: Invalid category_id \'%2\' used in worksheet \'%1\'!';
-$_['error_duplicate_category_id'] = 'Export/Import: Duplicate category_id \'%2\' used in worksheet \'%1\'!';
-$_['error_wrong_order_category_id'] = 'Export/Import: Worksheet \'%1\' uses category_id \'%2\' in the wrong order. Ascending order expected!';
-$_['error_unlisted_category_id'] = 'Export/Import: Worksheet \'%1\' cannot use category_id \'%2\' because it is not listed in worksheet \'Categories\'!';
-$_['error_missing_customer_id'] = 'Export/Import: Missing customer_ids in worksheet \'%1\'!';
-$_['error_invalid_customer_id'] = 'Export/Import: Invalid customer_id \'%2\' used in worksheet \'%1\'!';
-$_['error_duplicate_customer_id'] = 'Export/Import: Duplicate customer_id \'%2\' used in worksheet \'%1\'!';
-$_['error_wrong_order_customer_id'] = 'Export/Import: Worksheet \'%1\' uses customer_id \'%2\' in the wrong order. Ascending order expected!';
-$_['error_unlisted_customer_id'] = 'Export/Import: Worksheet \'%1\' cannot use customer_id \'%2\' because it is not listed in worksheet \'Customers\'!';
-$_['error_incremental_only'] = 'Export/Import: Worksheet \'%1\' can only be imported in incremental mode for the time being!';
+$_['error_missing_category_id']                         = 'Export/Import: Missing category_ids in worksheet \'%1\'!';
+$_['error_invalid_category_id']                         = 'Export/Import: Invalid category_id \'%2\' used in worksheet \'%1\'!';
+$_['error_duplicate_category_id']                       = 'Export/Import: Duplicate category_id \'%2\' used in worksheet \'%1\'!';
+$_['error_wrong_order_category_id']                     = 'Export/Import: Worksheet \'%1\' uses category_id \'%2\' in the wrong order. Ascending order expected!';
+$_['error_unlisted_category_id']                        = 'Export/Import: Worksheet \'%1\' cannot use category_id \'%2\' because it is not listed in worksheet \'Categories\'!';
+$_['error_missing_customer_id']                         = 'Export/Import: Missing customer_ids in worksheet \'%1\'!';
+$_['error_invalid_customer_id']                         = 'Export/Import: Invalid customer_id \'%2\' used in worksheet \'%1\'!';
+$_['error_duplicate_customer_id']                       = 'Export/Import: Duplicate customer_id \'%2\' used in worksheet \'%1\'!';
+$_['error_wrong_order_customer_id']                     = 'Export/Import: Worksheet \'%1\' uses customer_id \'%2\' in the wrong order. Ascending order expected!';
+$_['error_unlisted_customer_id']                        = 'Export/Import: Worksheet \'%1\' cannot use customer_id \'%2\' because it is not listed in worksheet \'Customers\'!';
+$_['error_incremental_only']                            = 'Export/Import: Worksheet \'%1\' can only be imported in incremental mode for the time being!';
 
 // Tab
 $_['tab_import']                                        = 'Import';
@@ -185,7 +185,7 @@ $_['button_refresh']                                    = 'Refresh';
 $_['button_import']                                     = 'Import';
 $_['button_export']                                     = 'Export';
 $_['button_settings']                                   = 'Update Settings';
-$_['button_export_id']                                  = 'By id range';
+$_['button_export_id']                                  = 'By ID range';
 $_['button_export_page']                                = 'By batches';
 
 // Help
