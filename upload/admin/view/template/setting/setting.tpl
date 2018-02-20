@@ -1585,6 +1585,149 @@
             <td><input type="text" name="config_news_chars" value="<?php echo $config_news_chars; ?>" size="5" /> <?php echo $text_characters; ?></td>
           </tr>
         </table>
+        <h2><?php echo $text_notifications; ?></h2>
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_notifications; ?></td>
+            <td><?php if ($config_notifications) { ?>
+              <input type="radio" name="config_notifications" value="1" id="notifications-on" class="radio" checked />
+              <label for="notifications-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notifications" value="0" id="notifications-off" class="radio" />
+              <label for="notifications-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_notifications" value="1" id="notifications-on" class="radio" />
+              <label for="notifications-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notifications" value="0" id="notifications-off" class="radio" checked />
+              <label for="notifications-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_notification_pending; ?></td>
+            <td><?php if ($config_notification_pending) { ?>
+              <input type="radio" name="config_notification_pending" value="1" id="notification-pending-on" class="radio" checked />
+              <label for="notification-pending-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_pending" value="0" id="notification-pending-off" class="radio" />
+              <label for="notification-pending-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_notification_pending" value="1" id="notification-pending-on" class="radio" />
+              <label for="notification-pending-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_pending" value="0" id="notification-pending-off" class="radio" checked />
+              <label for="notification-pending-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_notification_complete; ?></td>
+            <td><?php if ($config_notification_complete) { ?>
+              <input type="radio" name="config_notification_complete" value="1" id="notification-complete-on" class="radio" checked />
+              <label for="notification-complete-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_complete" value="0" id="notification-complete-off" class="radio" />
+              <label for="notification-complete-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_notification_complete" value="1" id="notification-complete-on" class="radio" />
+              <label for="notification-complete-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_complete" value="0" id="notification-complete-off" class="radio" checked />
+              <label for="notification-complete-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_notification_return; ?><span class="help"><?php echo $help_notification_return; ?></span></td>
+            <td><?php if ($config_notification_return) { ?>
+              <input type="radio" name="config_notification_return" value="1" id="notification-return-on" class="radio" checked />
+              <label for="notification-return-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_return" value="0" id="notification-return-off" class="radio" />
+              <label for="notification-return-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_notification_return" value="1" id="notification-return-on" class="radio" />
+              <label for="notification-return-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_return" value="0" id="notification-return-off" class="radio" checked />
+              <label for="notification-return-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_notification_online; ?><span class="help"><?php echo $help_notification_online; ?></span></td>
+            <td><?php if ($config_notification_online) { ?>
+              <input type="radio" name="config_notification_online" value="1" id="notification-online-on" class="radio" checked />
+              <label for="notification-online-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_online" value="0" id="notification-online-off" class="radio" />
+              <label for="notification-online-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_notification_online" value="1" id="notification-online-on" class="radio" />
+              <label for="notification-online-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_online" value="0" id="notification-online-off" class="radio" checked />
+              <label for="notification-online-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_notification_approval; ?></td>
+            <td><?php if ($config_notification_approval) { ?>
+              <input type="radio" name="config_notification_approval" value="1" id="notification-approval-on" class="radio" checked />
+              <label for="notification-approval-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_approval" value="0" id="notification-approval-off" class="radio" />
+              <label for="notification-approval-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_notification_approval" value="1" id="notification-approval-on" class="radio" />
+              <label for="notification-approval-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_approval" value="0" id="notification-approval-off" class="radio" checked />
+              <label for="notification-approval-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_notification_stock; ?></td>
+            <td><?php if ($config_notification_stock) { ?>
+              <input type="radio" name="config_notification_stock" value="1" id="notification-stock-on" class="radio" checked />
+              <label for="notification-stock-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_stock" value="0" id="notification-stock-off" class="radio" />
+              <label for="notification-stock-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_notification_stock" value="1" id="notification-stock-on" class="radio" />
+              <label for="notification-stock-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_stock" value="0" id="notification-stock-off" class="radio" checked />
+              <label for="notification-stock-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_notification_low; ?></td>
+            <td><?php if ($config_notification_low) { ?>
+              <input type="radio" name="config_notification_low" value="1" id="notification-low-on" class="radio" checked />
+              <label for="notification-low-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_low" value="0" id="notification-low-off" class="radio" />
+              <label for="notification-low-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_notification_low" value="1" id="notification-low-on" class="radio" />
+              <label for="notification-low-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_low" value="0" id="notification-low-off" class="radio" checked />
+              <label for="notification-low-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_notification_review; ?><span class="help"><?php echo $help_notification_review; ?></span></td>
+            <td><?php if ($config_notification_review) { ?>
+              <input type="radio" name="config_notification_review" value="1" id="notification-review-on" class="radio" checked />
+              <label for="notification-review-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_review" value="0" id="notification-review-off" class="radio" />
+              <label for="notification-review-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_notification_review" value="1" id="notification-review-on" class="radio" />
+              <label for="notification-review-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_review" value="0" id="notification-review-off" class="radio" checked />
+              <label for="notification-review-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_notification_affiliate; ?><span class="help"><?php echo $help_notification_affiliate; ?></span></td>
+            <td><?php if ($config_notification_affiliate) { ?>
+              <input type="radio" name="config_notification_affiliate" value="1" id="notification-affiliate-on" class="radio" checked />
+              <label for="notification-affiliate-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_affiliate" value="0" id="notification-affiliate-off" class="radio" />
+              <label for="notification-affiliate-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_notification_affiliate" value="1" id="notification-affiliate-on" class="radio" />
+              <label for="notification-affiliate-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_affiliate" value="0" id="notification-affiliate-off" class="radio" checked />
+              <label for="notification-affiliate-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+        </table>
       </div>
       <div id="tab-image">
         <table class="form">

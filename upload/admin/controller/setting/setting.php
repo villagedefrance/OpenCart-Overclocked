@@ -74,6 +74,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_top'] = $this->language->get('text_top');
 		$this->data['text_bottom'] = $this->language->get('text_bottom');
 		$this->data['text_news'] = $this->language->get('text_news');
+		$this->data['text_notifications'] = $this->language->get('text_notifications');
 		$this->data['text_image_resize'] = $this->language->get('text_image_resize');
 		$this->data['text_image_labels'] = $this->language->get('text_image_labels');
 		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
@@ -228,6 +229,16 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_cookie_age'] = $this->language->get('entry_cookie_age');
 		$this->data['entry_news_addthis'] = $this->language->get('entry_news_addthis');
 		$this->data['entry_news_chars'] = $this->language->get('entry_news_chars');
+		$this->data['entry_notifications'] = $this->language->get('entry_notifications');
+		$this->data['entry_notification_pending'] = $this->language->get('entry_notification_pending');
+		$this->data['entry_notification_complete'] = $this->language->get('entry_notification_complete');
+		$this->data['entry_notification_return'] = $this->language->get('entry_notification_return');
+		$this->data['entry_notification_online'] = $this->language->get('entry_notification_online');
+		$this->data['entry_notification_approval'] = $this->language->get('entry_notification_approval');
+		$this->data['entry_notification_stock'] = $this->language->get('entry_notification_stock');
+		$this->data['entry_notification_low'] = $this->language->get('entry_notification_low');
+		$this->data['entry_notification_review'] = $this->language->get('entry_notification_review');
+		$this->data['entry_notification_affiliate'] = $this->language->get('entry_notification_affiliate');
 		$this->data['entry_logo'] = $this->language->get('entry_logo');
 		$this->data['entry_icon'] = $this->language->get('entry_icon');
 		$this->data['entry_image_category'] = $this->language->get('entry_image_category');
@@ -382,6 +393,10 @@ class ControllerSettingSetting extends Controller {
 		$this->data['help_news_addthis'] = $this->language->get('help_news_addthis');
 		$this->data['help_news_style'] = $this->language->get('help_news_style');
 		$this->data['help_news_chars'] = $this->language->get('help_news_chars');
+		$this->data['help_notification_return'] = $this->language->get('help_notification_return');
+		$this->data['help_notification_online'] = $this->language->get('help_notification_online');
+		$this->data['help_notification_review'] = $this->language->get('help_notification_review');
+		$this->data['help_notification_affiliate'] = $this->language->get('help_notification_affiliate');
 		$this->data['help_icon'] = $this->language->get('help_icon');
 		$this->data['help_image_category'] = $this->language->get('help_image_category');
 		$this->data['help_image_thumb'] = $this->language->get('help_image_thumb');
@@ -1535,6 +1550,66 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_news_chars'] = $this->request->post['config_news_chars'];
 		} else {
 			$this->data['config_news_chars'] = $this->config->get('config_news_chars');
+		}
+
+		if (isset($this->request->post['config_notifications'])) {
+			$this->data['config_notifications'] = $this->request->post['config_notifications'];
+		} else {
+			$this->data['config_notifications'] = $this->config->get('config_notifications');
+		}
+
+		if (isset($this->request->post['config_notification_pending'])) {
+			$this->data['config_notification_pending'] = $this->request->post['config_notification_pending'];
+		} else {
+			$this->data['config_notification_pending'] = $this->config->get('config_notification_pending');
+		}
+
+		if (isset($this->request->post['config_notification_complete'])) {
+			$this->data['config_notification_complete'] = $this->request->post['config_notification_complete'];
+		} else {
+			$this->data['config_notification_complete'] = $this->config->get('config_notification_complete');
+		}
+
+		if (isset($this->request->post['config_notification_return'])) {
+			$this->data['config_notification_return'] = $this->request->post['config_notification_return'];
+		} else {
+			$this->data['config_notification_return'] = $this->config->get('config_notification_return');
+		}
+
+		if (isset($this->request->post['config_notification_online'])) {
+			$this->data['config_notification_online'] = $this->request->post['config_notification_online'];
+		} else {
+			$this->data['config_notification_online'] = $this->config->get('config_notification_online');
+		}
+
+		if (isset($this->request->post['config_notification_approval'])) {
+			$this->data['config_notification_approval'] = $this->request->post['config_notification_approval'];
+		} else {
+			$this->data['config_notification_approval'] = $this->config->get('config_notification_approval');
+		}
+
+		if (isset($this->request->post['config_notification_stock'])) {
+			$this->data['config_notification_stock'] = $this->request->post['config_notification_stock'];
+		} else {
+			$this->data['config_notification_stock'] = $this->config->get('config_notification_stock');
+		}
+
+		if (isset($this->request->post['config_notification_low'])) {
+			$this->data['config_notification_low'] = $this->request->post['config_notification_low'];
+		} else {
+			$this->data['config_notification_low'] = $this->config->get('config_notification_low');
+		}
+
+		if (isset($this->request->post['config_notification_review'])) {
+			$this->data['config_notification_review'] = $this->request->post['config_notification_review'];
+		} else {
+			$this->data['config_notification_review'] = $this->config->get('config_notification_review');
+		}
+
+		if (isset($this->request->post['config_notification_affiliate'])) {
+			$this->data['config_notification_affiliate'] = $this->request->post['config_notification_affiliate'];
+		} else {
+			$this->data['config_notification_affiliate'] = $this->config->get('config_notification_affiliate');
 		}
 
 		// Image

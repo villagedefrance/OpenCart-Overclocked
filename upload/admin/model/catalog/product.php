@@ -1044,6 +1044,12 @@ class ModelCatalogProduct extends Model {
 		return $query->rows;
 	}
 
+	public function getTotalLowStockProducts() {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product WHERE status = 1 AND quantity BETWEEN 1 AND 10");
+
+		return $query->row['total'];
+	}
+
 	public function getTotalProductsByTaxClassId($tax_class_id) {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product WHERE tax_class_id = '" . (int)$tax_class_id . "'");
 

@@ -132,6 +132,7 @@ $_['text_voucher']                     = 'Gift Vouchers';
 $_['text_voucher_theme']               = 'Voucher Themes';
 $_['text_weight_class']                = 'Weight Classes';
 $_['text_zone']                        = 'Zones';
+
 $_['text_openbay_extension']           = 'OpenBay Pro';
 $_['text_openbay_dashboard']           = 'Dashboard';
 $_['text_openbay_orders']              = 'Bulk order update';

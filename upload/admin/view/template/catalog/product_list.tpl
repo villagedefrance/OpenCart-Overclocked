@@ -138,7 +138,7 @@
               <?php } ?></td>
               <td class="right"><?php if ($product['quantity'] <= 0) { ?>
                 <span style="color:#FF0000;"><?php echo $product['quantity']; ?></span>
-              <?php } elseif ($product['quantity'] <= 5) { ?>
+              <?php } elseif ($product['quantity'] <= 9) { ?>
                 <span style="color:#FFA500;"><?php echo $product['quantity']; ?></span>
               <?php } else { ?>
                 <span style="color:#5DC15E;"><?php echo $product['quantity']; ?></span>

@@ -493,10 +493,47 @@ ul.menu a {
 .menu ul a.arrow {
 	background: url('../image/theme-overclock/arrow-right.png') no-repeat 97% center;
 }
-/* Menu - Top-level item to the right */
+/* Menu Right - Top-level item to the right */
 .menu .right {
 	float: right;
-	margin-right: 0;
+	margin-right: 30px;
+	padding: 0;
+}
+.menu .right span.admin-notify {
+	text-shadow: none;
+	font-weight: bold;
+	padding: 1px 6px;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	-khtml-border-radius: 1px;
+	border-radius: 1px;
+	overflow: hidden;
+}
+.menu .right ul li {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+}
+.menu .right ul li a {
+	margin: 0 0 0 6px;
+	font-size: 12px;
+}
+.menu .right ul li span.admin-notify-li {
+	margin-right: 5px;
+	text-shadow: none;
+	font-size: 13px;
+	font-weight: bold;
+	padding: 1px 6px;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	-khtml-border-radius: 1px;
+	border-radius: 1px;
+	overflow: hidden;
+}
+.menu .right ul li:hover, .menu .right ul li.onhover {
+	margin: 0;
+	border: 1px solid transparent;
+	background: transparent;
 }
 /* Menu - Sub level */
 ul.menu ul {
@@ -1939,6 +1976,9 @@ table.tool tr td {
 		font-size: 12px;
 		padding: 0 12px 0 10px;
 	}
+	.menu .right {
+		margin-right: 25px;
+	}
 	#content {
 		padding: 10px 5px 128px 5px;
 	}
@@ -1999,6 +2039,9 @@ table.tool tr td {
 	.menu ul a {
 		font-size: 12px;
 		padding: 0 10px 0 10px;
+	}
+	.menu .right {
+		margin-right: 20px;
 	}
 	#content {
 		padding: 10px 0 128px 0;

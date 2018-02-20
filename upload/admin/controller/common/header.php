@@ -441,6 +441,13 @@ class ControllerCommonHeader extends Controller {
 				$this->data['connection_exist'] = false;
 			}
 
+			// Reviews
+			if ($this->config->get('config_review_status')) {
+				$this->data['allow_review'] = true;
+			} else {
+				$this->data['allow_review'] = false;
+			}
+
 			// Affiliates
 			if ($this->config->get('config_affiliate_disable')) {
 				$this->data['allow_affiliate'] = false;
@@ -464,9 +471,19 @@ class ControllerCommonHeader extends Controller {
 
 			// Robots
 			$this->data['track_robots'] = $this->config->get('config_robots_online');
+
+			// Notifications
+			$this->data['notifications'] = $this->config->get('config_notifications');
 		}
 
 		$this->template = 'common/header.tpl';
+
+		if ($this->user->isLogged() && $this->config->get('config_notifications')) {
+			$this->children = array(
+				'common/notification'
+			);
+		}
+
 		$this->render();
 	}
 }

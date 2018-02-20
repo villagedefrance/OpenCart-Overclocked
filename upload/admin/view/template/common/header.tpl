@@ -372,6 +372,9 @@
         </ul>
       </li>
       <?php } ?>
+      <?php if ($logged && $notifications) { ?>
+        <?php echo $notification; ?>
+      <?php } ?>
     </ul>
   </div>
   <?php } ?>

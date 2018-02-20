@@ -1044,6 +1044,7 @@ class ControllerCommonHome extends Controller {
 				'common/login',
 				'common/logout',
 				'common/forgotten',
+				'common/notification',
 				'common/reset',
 				'error/not_found',
 				'error/permission'
