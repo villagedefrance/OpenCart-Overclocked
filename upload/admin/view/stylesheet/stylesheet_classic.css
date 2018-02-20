@@ -513,21 +513,21 @@ ul.menu a {
 }
 /* Menu - Sub level */
 ul.menu ul {
-	width: 205px;
+	width: 200px;
 	position: absolute;
 	left: -9999px;
 	background: #32383D;
 	text-align: left;
 	list-style: none;
 	margin: 0;
-	padding: 1px;
+	padding: 1px 0 0 0;
 }
 .menu li li {
 	float: none;
 	white-space: nowrap;
 	margin: 0;
 	border: 1px solid transparent;
-	height: 28px;
+	height: 30px;
 }
 .menu li li:hover, .menu li li.onhover {
 	margin: 0;
@@ -536,7 +536,7 @@ ul.menu ul {
 }
 .menu ul a {
 	padding: 0 15px 0 10px;
-	line-height: 26px;
+	line-height: 28px;
 	font-size: 13px;
 	font-weight: normal;
 	color: #FFF;
@@ -559,7 +559,7 @@ ul.menu ul {
 }
 .menu li li:hover ul, .menu li li li:hover ul, .menu li li li li:hover ul,
 .menu li li.onhover ul, .menu li li li.onhover ul, .menu li li li li.onhover ul {
-	left: 204px;
+	left: 199px;
 	top: -2px;
 }
 .menu li a > .fa {
