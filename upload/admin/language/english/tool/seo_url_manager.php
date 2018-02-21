@@ -7,7 +7,7 @@ $_['text_success']          = 'Success: You have modified <b>SEO URL Manager</b>
 $_['text_default']          = 'Default';
 
 // Column
-$_['column_url_alias_id']   = 'Url Alias ID';
+$_['column_url_alias_id']   = 'URL Alias ID';
 $_['column_query']          = 'Route';
 $_['column_keyword']        = 'Keyword';
 $_['column_action']         = 'Action';
