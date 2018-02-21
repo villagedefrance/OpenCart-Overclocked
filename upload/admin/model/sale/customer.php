@@ -48,6 +48,16 @@ class ModelSaleCustomer extends Model {
 		$this->db->query("UPDATE " . DB_PREFIX . "customer SET token = '" . $this->db->escape($token) . "' WHERE customer_id = '" . (int)$customer_id . "'");
 	}
 
+	public function addDeletedCustomer($customer_id) {
+		$customer_info = $this->getCustomer($customer_id);
+
+		if ($customer_info) {
+			$orders = $this->getTotalCustomersOrders($customer_id);
+
+			$this->db->query("INSERT INTO " . DB_PREFIX . "customer_deleted SET customer_id = '" . (int)$customer_id . "', store_id = '" . (int)$customer_info['store_id'] . "', firstname = '" . $this->db->escape($customer_info['firstname']) . "', lastname = '" . $this->db->escape($customer_info['lastname']) . "', email = '" . $this->db->escape($customer_info['email']) . "', orders = '" . (int)$orders . "', date_added = NOW()");
+		}
+	}
+
 	public function deleteCustomer($customer_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_reward WHERE customer_id = '" . (int)$customer_id . "'");
@@ -117,6 +127,62 @@ class ModelSaleCustomer extends Model {
 			'c.approved',
 			'c.ip',
 			'c.date_added'
+		);
+
+		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+			$sql .= " ORDER BY " . $data['sort'];
+		} else {
+			$sql .= " ORDER BY name";
+		}
+
+		if (isset($data['order']) && ($data['order'] == 'DESC')) {
+			$sql .= " DESC";
+		} else {
+			$sql .= " ASC";
+		}
+
+		if (isset($data['start']) || isset($data['limit'])) {
+			if ($data['start'] < 0) {
+				$data['start'] = 0;
+			}
+
+			if ($data['limit'] < 1) {
+				$data['limit'] = 20;
+			}
+
+			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		}
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
+
+	public function getCustomersDeleted($data = array()) {
+		$sql = "SELECT *, CONCAT(firstname, ' ', lastname) AS name FROM `" . DB_PREFIX . "customer_deleted`";
+
+		$implode = array();
+
+		if (!empty($data['filter_name'])) {
+			$implode[] = "CONCAT(firstname, ' ', lastname) LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
+		}
+
+		if (!empty($data['filter_email'])) {
+			$implode[] = "email LIKE '" . $this->db->escape($data['filter_email']) . "%'";
+		}
+
+		if (isset($data['filter_orders']) && !is_null($data['filter_orders'])) {
+			$implode[] = "orders = '" . (int)$data['filter_orders'] . "'";
+		}
+
+		if (!empty($implode)) {
+			$sql .= " WHERE " . implode(" AND ", $implode);
+		}
+
+		$sort_data = array(
+			'name',
+			'email',
+			'orders'
 		);
 
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
@@ -678,6 +744,17 @@ class ModelSaleCustomer extends Model {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "return` WHERE customer_id = '" . (int)$customer_id . "'");
 
 		return $query->row['total'];
+	}
+
+	// Deleted
+	public function getDeletedByCustomerId($customer_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer_deleted WHERE customer_id = '" . (int)$customer_id . "'");
+
+		if ($query->row['total'] == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	// Ip

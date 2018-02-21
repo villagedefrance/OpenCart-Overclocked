@@ -10,6 +10,7 @@ $_['text_my_newsletter'] = 'Newsletter';
 $_['text_edit']          = 'Edit your account information';
 $_['text_password']      = 'Change your password';
 $_['text_address']       = 'Modify your address book';
+$_['text_no_address']    = 'There is no address linked to your account. Please provide at least one valid Address!';
 $_['text_wishlist']      = 'Modify your wish list';
 $_['text_order']         = 'View your order history';
 $_['text_download']      = 'Your downloads';

@@ -51,6 +51,7 @@ class ControllerAccountAccount extends Controller {
 		$this->data['text_edit'] = $this->language->get('text_edit');
 		$this->data['text_password'] = $this->language->get('text_password');
 		$this->data['text_address'] = $this->language->get('text_address');
+		$this->data['text_no_address'] = $this->language->get('text_no_address');
 		$this->data['text_wishlist'] = $this->language->get('text_wishlist');
 		$this->data['text_order'] = $this->language->get('text_order');
 		$this->data['text_download'] = $this->language->get('text_download');
@@ -76,6 +77,11 @@ class ControllerAccountAccount extends Controller {
 		$this->data['button_logout'] = $this->language->get('button_logout');
 
 		$this->data['logout'] = $this->url->link('account/logout', '', 'SSL');
+
+		// Check Addresses
+		$this->load->model('account/address');
+
+		$this->data['addresses'] = $this->model_account_address->getTotalAddresses();
 
 		// Rewards
 		if ($this->config->get('reward_status')) {

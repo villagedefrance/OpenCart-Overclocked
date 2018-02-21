@@ -94,6 +94,7 @@ $_['text_report_customer_order']       = 'Orders';
 $_['text_report_customer_reward']      = 'Rewards';
 $_['text_report_customer_credit']      = 'Credits';
 $_['text_report_customer_country']     = 'Countries';
+$_['text_report_customer_deleted']     = 'Deleted';
 $_['text_report_customer_online']      = 'Online';
 $_['text_report_affiliate']            = 'Affiliates';
 $_['text_report_affiliate_activity']   = 'Activity';

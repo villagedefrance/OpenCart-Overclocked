@@ -185,6 +185,7 @@
               <li><a href="<?php echo $report_customer_reward; ?>"><?php echo ($icons) ? '<i class="fa fa-gift"></i>' : ''; ?><?php echo $text_report_customer_reward; ?></a></li>
               <li><a href="<?php echo $report_customer_credit; ?>"><?php echo ($icons) ? '<i class="fa fa-money"></i>' : ''; ?><?php echo $text_report_customer_credit; ?></a></li>
               <li><a href="<?php echo $report_customer_country; ?>"><?php echo ($icons) ? '<i class="fa fa-globe"></i>' : ''; ?><?php echo $text_report_customer_country; ?></a></li>
+              <li><a href="<?php echo $report_customer_deleted; ?>"><?php echo ($icons) ? '<i class="fa fa-eraser"></i>' : ''; ?><?php echo $text_report_customer_deleted; ?></a></li>
               <li><a href="<?php echo $report_customer_online; ?>"><?php echo ($icons) ? '<i class="fa fa-feed"></i>' : ''; ?><?php echo $text_report_customer_online; ?></a></li>
             </ul>
           </li>

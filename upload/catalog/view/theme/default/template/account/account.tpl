@@ -18,13 +18,20 @@
     <div class="left"><h4><?php echo $firstname; ?> <?php echo $lastname; ?> &nbsp; (<?php echo $email; ?>)</h4></div>
     <div class="right"><a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a></div>
   </div>
+  <?php if (!$addresses) { ?>
+    <div class="attention"><?php echo $text_no_address; ?></div>
+  <?php } ?>
   <h2><?php echo $text_my_account; ?></h2>
   <div class="content">
     <div class="box-account">
       <ul>
         <li><a href="<?php echo $edit; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/account.png" alt="" /><?php echo $text_edit; ?></a></li>
         <li><a href="<?php echo $password; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/password.png" alt="" /><?php echo $text_password; ?></a></li>
+      <?php if (!$addresses) { ?>
+        <li><a href="<?php echo $address; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/address.png" alt="" /><?php echo $text_address; ?> &nbsp; <i class="fa fa-warning"></i></a></li>
+      <?php } else { ?>
         <li><a href="<?php echo $address; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/address.png" alt="" /><?php echo $text_address; ?></a></li>
+      <?php } ?>
         <li><a href="<?php echo $wishlist; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/wishlist.png" alt="" /><?php echo $text_wishlist; ?></a></li>
       </ul>
     </div>

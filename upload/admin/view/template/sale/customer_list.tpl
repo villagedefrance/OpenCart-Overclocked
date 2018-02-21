@@ -24,7 +24,7 @@
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
-    <form action="" method="post" enctype="multipart/form-data" id="form">
+    <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form" name="customer">
       <table class="list">
         <thead>
           <tr>
@@ -128,7 +128,9 @@
             <td class="left"><?php echo $customer['name']; ?><?php if ($show_dob) { echo '(' . $customer['age'] . ')'; } ?></td>
             <td class="left"><?php echo $customer['email']; ?></td>
             <td class="left"><?php echo $customer['customer_group']; ?></td>
-            <?php if ($customer['status'] == 1) { ?>
+            <?php if ($customer['status'] == 2) { ?>
+              <td class="center"><span class="deleted"><?php echo $text_deleted; ?></span></td>
+            <?php } elseif ($customer['status'] == 1) { ?>
               <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
             <?php } else { ?>
               <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>

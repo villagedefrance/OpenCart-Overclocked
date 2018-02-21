@@ -161,6 +161,7 @@ class ControllerSaleCustomer extends Controller {
 
 		if (isset($this->request->post['selected']) && $this->validateDelete()) {
 			foreach ($this->request->post['selected'] as $customer_id) {
+				$this->model_sale_customer->addDeletedCustomer($customer_id);
 				$this->model_sale_customer->deleteCustomer($customer_id);
 			}
 
@@ -434,10 +435,14 @@ class ControllerSaleCustomer extends Controller {
 		foreach ($results as $result) {
 			$action = array();
 
-			$action[] = array(
-				'text' => $this->language->get('text_edit'),
-				'href' => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'] . $url, 'SSL')
-			);
+			$customer_deleted = $this->model_sale_customer->getDeletedByCustomerId($result['customer_id']);
+
+			if (!$customer_deleted) {
+				$action[] = array(
+					'text' => $this->language->get('text_edit'),
+					'href' => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'] . $url, 'SSL')
+				);
+			}
 
 			if ($this->config->get('config_customer_dob')) {
 				$customer_age = date_diff(date_create($result['date_of_birth']), date_create('today'))->y;
@@ -451,7 +456,7 @@ class ControllerSaleCustomer extends Controller {
 				'email'          => $result['email'],
 				'age'            => $customer_age,
 				'customer_group' => $result['customer_group'],
-				'status'         => $result['status'],
+				'status'         => (!$customer_deleted) ? $result['status'] : 2,
 				'approved'       => $result['approved'],
 				'ip'             => $result['ip'],
 				'blocked_ip'     => $this->model_sale_customer->isBlockedIp($result['ip']) ? '<span style="color:#D80000;"><b>( ! )</b></span>' : '',
@@ -464,6 +469,7 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_deleted'] = $this->language->get('text_deleted');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_yes'] = $this->language->get('text_yes');
@@ -644,6 +650,7 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['text_male'] = $this->language->get('text_male');
 		$this->data['text_delete_transaction_confirm'] = $this->language->get('text_delete_transaction_confirm');
 		$this->data['text_delete_reward_confirm'] = $this->language->get('text_delete_reward_confirm');
+		$this->data['text_deleted_warning'] = $this->language->get('text_deleted_warning');
 
 		$this->data['column_ip'] = $this->language->get('column_ip');
 		$this->data['column_location'] = $this->language->get('column_location');

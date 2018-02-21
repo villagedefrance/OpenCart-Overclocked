@@ -15,12 +15,12 @@ $_['text_remove_ban_ip']              = 'Remove Ban IP';
 $_['text_female']                     = 'Female';
 $_['text_male']                       = 'Male';
 $_['text_no_purchases']               = 'No purchases!';
-$_['text_delete_transaction_confirm'] = 'Are you sure you want to delete this transaction ?';
-$_['text_transaction_added']          = 'Success: Transaction added !';
-$_['text_transaction_removed']        = 'Success: Transaction removed !';
-$_['text_delete_reward_confirm']      = 'Are you sure you want to delete this reward ?';
-$_['text_reward_added']               = 'Success: Reward added !';
-$_['text_reward_removed']             = 'Success: Reward removed !';
+$_['text_delete_transaction_confirm'] = 'Are you sure you want to delete this transaction?';
+$_['text_transaction_added']          = 'Success: Transaction added!';
+$_['text_transaction_removed']        = 'Success: Transaction removed!';
+$_['text_delete_reward_confirm']      = 'Are you sure you want to delete this reward?';
+$_['text_reward_added']               = 'Success: Reward added!';
+$_['text_reward_removed']             = 'Success: Reward removed!';
 
 // Column
 $_['column_name']                     = 'Customer Name';
