@@ -53,6 +53,12 @@ class ModelUserUser extends Model {
 	public function getUsers($data = array()) {
 		$sql = "SELECT * FROM `" . DB_PREFIX . "user`";
 
+		if (isset($data['filter_name'])) {
+			$sql .= " WHERE username LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+		}
+
+		$sql .= " GROUP BY user_id";
+
 		$sort_data = array(
 			'user_id',
 			'username',

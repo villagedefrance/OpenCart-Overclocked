@@ -61,6 +61,17 @@
         </tr>
         </thead>
         <tbody>
+          <tr class="filter">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" /></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+          </tr>
         <?php if ($users) { ?>
           <?php foreach ($users as $user) { ?>
           <tr>
@@ -99,6 +110,64 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+function filter() {
+	url = 'index.php?route=user/user&token=<?php echo $token; ?>';
+
+	var filter_name = $('input[name=\'filter_name\']').attr('value');
+
+	if (filter_name) {
+		url += '&filter_name=' + encodeURIComponent(filter_name);
+	}
+
+	location = url;
+}
+//--></script>
+
+<script type="text/javascript"><!--
+window.addEventListener("keydown", function(event) {
+	if (event.defaultPrevented) {
+		return;
+	}
+
+	switch (event.key) {
+	case "Enter": filter();
+		break;
+	default:
+		return;
+	}
+
+	event.preventDefault();
+}, true);
+//--></script>
+
+<script type="text/javascript"><!--
+$('input[name=\'filter_name\']').autocomplete({
+	delay: 10,
+	source: function(request, response) {
+		$.ajax({
+			url: 'index.php?route=user/user/autocomplete&token=<?php echo $token; ?>&filter_name=' + encodeURIComponent(request.term),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item.username,
+						value: item.user_id
+					}
+				}));
+			}
+		});
+	},
+	select: function(event, ui) {
+		$('input[name=\'filter_name\']').val(ui.item.label);
+		return false;
+	},
+	focus: function(event, ui) {
+		return false;
+	}
+});
+//--></script>
 
 <script type="text/javascript"><!--
 $('#delete').on('click', function() {
