@@ -254,6 +254,18 @@
           <li><a href="<?php echo $contact; ?>"><?php echo ($icons) ? '<i class="fa fa-mail-forward"></i>' : ''; ?><?php echo $text_contact; ?></a></li>
         </ul>
       </li>
+      <li id="extension"><a class="top"><?php echo $text_extension; ?></a>
+        <ul>
+          <li><a href="<?php echo $module; ?>"><?php echo ($icons) ? '<i class="fa fa-puzzle-piece"></i>' : ''; ?><?php echo $text_module; ?></a></li>
+          <li><a href="<?php echo $modification; ?>"><?php echo ($icons) ? '<i class="fa fa-terminal"></i>' : ''; ?><?php echo $text_modification; ?></a></li>
+          <li><a href="<?php echo $payment; ?>"><?php echo ($icons) ? '<i class="fa fa-credit-card"></i>' : ''; ?><?php echo $text_payment; ?></a></li>
+          <li><a href="<?php echo $shipping; ?>"><?php echo ($icons) ? '<i class="fa fa-truck"></i>' : ''; ?><?php echo $text_shipping; ?></a></li>
+          <li><a href="<?php echo $theme; ?>"><?php echo ($icons) ? '<i class="fa fa-magic"></i>' : ''; ?><?php echo $text_theme; ?></a></li>
+          <li><a href="<?php echo $total; ?>"><?php echo ($icons) ? '<i class="fa fa-calculator"></i>' : ''; ?><?php echo $text_total; ?></a></li>
+          <li><a href="<?php echo $fraud; ?>"><?php echo ($icons) ? '<i class="fa fa-shield"></i>' : ''; ?><?php echo $text_fraud; ?></a></li>
+          <li><a href="<?php echo $feed; ?>"><?php echo ($icons) ? '<i class="fa fa-feed"></i>' : ''; ?><?php echo $text_feed; ?></a></li>
+        </ul>
+      </li>
       <li id="system"><a class="top"><?php echo $text_system; ?></a>
         <ul>
           <li><a href="<?php echo $setting; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_setting; ?></a></li>
@@ -330,18 +342,6 @@
               <li><a onclick="window.open('http://docs.opencart.com/');" title=""><?php echo ($icons) ? '<i class="fa fa-book"></i>' : ''; ?><?php echo $text_documentation; ?></a></li>
             </ul>
           </li>
-        </ul>
-      </li>
-      <li id="extension"><a class="top"><?php echo $text_extension; ?></a>
-        <ul>
-          <li><a href="<?php echo $module; ?>"><?php echo ($icons) ? '<i class="fa fa-puzzle-piece"></i>' : ''; ?><?php echo $text_module; ?></a></li>
-          <li><a href="<?php echo $modification; ?>"><?php echo ($icons) ? '<i class="fa fa-terminal"></i>' : ''; ?><?php echo $text_modification; ?></a></li>
-          <li><a href="<?php echo $payment; ?>"><?php echo ($icons) ? '<i class="fa fa-credit-card"></i>' : ''; ?><?php echo $text_payment; ?></a></li>
-          <li><a href="<?php echo $shipping; ?>"><?php echo ($icons) ? '<i class="fa fa-truck"></i>' : ''; ?><?php echo $text_shipping; ?></a></li>
-          <li><a href="<?php echo $theme; ?>"><?php echo ($icons) ? '<i class="fa fa-magic"></i>' : ''; ?><?php echo $text_theme; ?></a></li>
-          <li><a href="<?php echo $total; ?>"><?php echo ($icons) ? '<i class="fa fa-calculator"></i>' : ''; ?><?php echo $text_total; ?></a></li>
-          <li><a href="<?php echo $fraud; ?>"><?php echo ($icons) ? '<i class="fa fa-shield"></i>' : ''; ?><?php echo $text_fraud; ?></a></li>
-          <li><a href="<?php echo $feed; ?>"><?php echo ($icons) ? '<i class="fa fa-feed"></i>' : ''; ?><?php echo $text_feed; ?></a></li>
         </ul>
       </li>
       <?php if ($connection_exist) { ?>
