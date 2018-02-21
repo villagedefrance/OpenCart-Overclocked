@@ -293,6 +293,12 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 				$this->load->model('account/customer');
 				$this->load->model('checkout/checkout_tools');
 
+				if ($this->config->get('config_one_page_newsletter') == 1) {
+					$newsletter = 1;
+				} else {
+					$newsletter = 0;
+				}
+
 				$customer_data = array();
 
 				$customer_data['customer_group_id'] = $customer_info['customer_group_id'];
@@ -304,20 +310,20 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 				$customer_data['gender'] = isset($customer_info['gender']) ? $customer_info['gender'] : 1;
 				$customer_data['date_of_birth'] = isset($customer_info['date_of_birth']) ? $customer_info['date_of_birth'] : '0000-00-00';
 				$customer_data['password'] = $this->model_checkout_checkout_tools->generatePassword();
-				$customer_data['newsletter'] = $this->config->get('config_one_page_newsletter');
+				$customer_data['newsletter'] = $newsletter;
 				$customer_data['company'] = $customer_info['company'];
 				$customer_data['company_id'] = $customer_info['company_id'];
 				$customer_data['tax_id'] = $customer_info['tax_id'];
 				$customer_data['address_1'] = $customer_info['address_1'];
 				$customer_data['address_2'] = $customer_info['address_2'];
-				$customer_data['city'] = $customer_info['city'];
 				$customer_data['postcode'] = $customer_info['postcode'];
-				$customer_data['country_id'] = $customer_info['country_id'];
+				$customer_data['city'] = $customer_info['city'];
 				$customer_data['zone_id'] = $customer_info['zone_id'];
+				$customer_data['country_id'] = $customer_info['country_id'];
 
 				$this->model_account_customer->addCustomer($customer_data);
 
-				$customer_status = $this->model_account_customer->getCustomerByEmail($this->request->post['email']);
+				$customer_status = $this->model_account_customer->getCustomerByEmail($customer_info['email']);
 
 				if ($customer_status && !$customer_status['approved']) {
 					$this->redirect($this->url->link('checkout/cart', '', 'SSL'));
@@ -338,6 +344,31 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 				$data['fax'] = $this->customer->getFax();
 				$data['gender'] = $this->customer->getGender();
 				$data['date_of_birth'] = $this->customer->getDateOfBirth();
+
+				// Check address
+				$default_address_id = $this->model_account_address->getDefaultAddressId($this->customer->getId());
+
+				if ($default_address_id) {
+					$customer_address = $this->model_account_address->getAddress($default_address_id);
+				} else {
+					$customer_address = array();
+
+					$customer_address['customer_id'] = $this->customer->getId();
+					$customer_address['firstname'] = $customer_info['firstname'];
+					$customer_address['lastname'] = $customer_info['lastname'];
+					$customer_address['company'] = $customer_info['company'];
+					$customer_address['company_id'] = $customer_info['company_id'];
+					$customer_address['tax_id'] = $customer_info['tax_id'];
+					$customer_address['address_1'] = $customer_info['address_1'];
+					$customer_address['address_2'] = $customer_info['address_2'];
+					$customer_address['postcode'] = $customer_info['postcode'];
+					$customer_address['city'] = $customer_info['city'];
+					$customer_address['zone_id'] = $customer_info['zone_id'];
+					$customer_address['country_id'] = $customer_info['country_id'];
+					$customer_address['default'] = 1;
+
+					$this->model_account_address->addAddress($customer_address);
+				}
 			}
 
 			// Get country name
@@ -811,7 +842,13 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 
 		// Customer options
 		if ($this->customer->isLogged() && $this->customer->isSecure()) {
-			$customer_address = $this->model_account_address->getAddress($this->customer->getAddressId());
+			$default_address_id = $this->model_account_address->getDefaultAddressId($this->customer->getId());
+
+			if ($default_address_id) {
+				$customer_address = $this->model_account_address->getAddress($default_address_id);
+			} else {
+				$customer_address = 0;
+			}
 		}
 
 		if (isset($this->session->data['order_id'])) {
@@ -1143,7 +1180,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 		$payment_address = $data;
 
 		if (isset($this->request->post['check_shipping_address'])) {
-			$data_shipping= array();
+			$data_shipping = array();
 
 			$data_shipping['firstname'] = $this->data['firstname'];
 			$data_shipping['lastname'] = $this->data['lastname'];
@@ -1161,7 +1198,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			$shipping_address = $data_shipping;
 
 		} else {
-			$data_shipping= array();
+			$data_shipping = array();
 
 			$data_shipping['firstname'] = $this->data['shipping_firstname'];
 			$data_shipping['lastname'] = $this->data['shipping_lastname'];

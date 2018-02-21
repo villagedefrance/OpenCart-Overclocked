@@ -147,6 +147,10 @@ class ModelAccountAddress extends Model {
 	public function getDefaultAddressId($customer_id) {
 		$query = $this->db->query("SELECT DISTINCT address_id AS address FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "'");
 
-		return $query->row['address'];
+		if ($query->row['address']) {
+			return $query->row['address'];
+		} else {
+			return false;
+		}
 	}
 }
