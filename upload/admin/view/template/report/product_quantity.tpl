@@ -89,10 +89,12 @@
               <?php } else { ?>
                 <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
               <?php } ?>
-              <td class="right"><?php if ($product['quantity'] < 10) { ?>
-                <span style="color:#B00;"><b><?php echo $product['quantity']; ?></b></span>
+              <td class="right"><?php if ($product['quantity'] <= 0) { ?>
+                <span style="color:#FF0000;"><?php echo $product['quantity']; ?></span>
+              <?php } elseif ($product['quantity'] <= 9) { ?>
+                <span style="color:#FFA500;"><?php echo $product['quantity']; ?></span>
               <?php } else { ?>
-                <b><?php echo $product['quantity']; ?></b>
+                <span style="color:#5DC15E;"><?php echo $product['quantity']; ?></span>
               <?php } ?></td>
               <td class="right"><?php foreach ($product['action'] as $action) { ?>
                 <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
