@@ -162,7 +162,7 @@ class ControllerCommonNotification extends Controller {
 
 		$this->data['product_total'] = $product_total;
 
-		$this->data['product_outstock'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&filter_quantity=0&filter_status=1', 'SSL');
+		$this->data['product_outstock'] = $this->url->link('report/product_quantity', 'token=' . $this->session->data['token'] . '&filter_quantity=0&filter_status=1', 'SSL');
 
 		if ($notification_low) {
 			$product_total_low = $this->model_catalog_product->getTotalLowStockProducts();
@@ -172,7 +172,7 @@ class ControllerCommonNotification extends Controller {
 
 		$this->data['product_total_low'] = $product_total_low;
 
-		$this->data['product_lowstock'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.quantity&order=ASC', 'SSL');
+		$this->data['product_lowstock'] = $this->url->link('report/product_quantity', 'token=' . $this->session->data['token'] . '&filter_status=1', 'SSL');
 
 		// Reviews
 		if ($this->config->get('config_review_status')) {
