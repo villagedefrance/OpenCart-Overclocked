@@ -10,5 +10,5 @@
 .sm li,.sm a{position:relative;}
 .sm a{display:block;}
 .sm a.disabled{cursor:default;}
-.sm::after{content:"";display:block;height:0;font:0px/0 serif;clear:both;overflow:hidden;}
+.sm::after{content:"";display:block;height:0;font:0 serif;clear:both;overflow:hidden;}
 .sm *,.sm *::before,.sm *::after{box-sizing:inherit;}
