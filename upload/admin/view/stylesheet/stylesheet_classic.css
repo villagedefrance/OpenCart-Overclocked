@@ -467,141 +467,6 @@ body > #container-normal, body > #container-limited {
 	background: #E4EEF7;
 	color: #547C96;
 }
-/* Menu */
-.menu {
-	position: relative;
-	float: none;
-	width: 100%;
-	height: 34px;
-	background: url('../image/theme-classic/menu.png') repeat-x;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	z-index: 4;
-}
-.menu li {
-	float: left;
-	position: relative;
-	height: 34px;
-	padding: 0;
-}
-.menu li a.top {
-	background: url('../image/theme-classic/split.png') center left no-repeat;
-}
-ul.menu a {
-	display: block;
-	color: #FFF;
-	font-size: 13px;
-	font-weight: normal;
-	text-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
-	text-decoration: none;
-	line-height: 34px;
-	padding: 0 25px;
-	outline: 0;
-}
-.menu a.arrow {
-	background: url('../image/theme-classic/arrow-right.png') no-repeat right center;
-}
-.menu ul a.arrow {
-	background: url('../image/theme-classic/arrow-right.png') no-repeat 97% center;
-}
-/* Menu Right - Top-level item to the right */
-.menu .right {
-	float: right;
-	margin-right: 30px;
-	padding: 0;
-}
-.menu .right span.admin-notify {
-	text-shadow: none;
-	font-weight: bold;
-	padding: 1px 6px;
-	-webkit-border-radius: 1px;
-	-moz-border-radius: 1px;
-	-khtml-border-radius: 1px;
-	border-radius: 1px;
-	overflow: hidden;
-}
-.menu .right ul li {
-	position: relative;
-	display: inline-block;
-	width: 100%;
-}
-.menu .right ul li a {
-	margin: 0 0 0 6px;
-	font-size: 12px;
-}
-.menu .right ul li span.admin-notify-li {
-	margin-right: 5px;
-	text-shadow: none;
-	font-size: 13px;
-	font-weight: bold;
-	padding: 1px 6px;
-	-webkit-border-radius: 1px;
-	-moz-border-radius: 1px;
-	-khtml-border-radius: 1px;
-	border-radius: 1px;
-	overflow: hidden;
-}
-.menu .right ul li:hover, .menu .right ul li.onhover {
-	margin: 0;
-	border: 1px solid transparent;
-	background: transparent;
-}
-/* Menu - Sub level */
-ul.menu ul {
-	width: 200px;
-	position: absolute;
-	left: -9999px;
-	background: #32383D;
-	text-align: left;
-	list-style: none;
-	margin: 0;
-	padding: 1px 0 0 0;
-}
-.menu li li {
-	float: none;
-	white-space: nowrap;
-	margin: 0;
-	border: 1px solid transparent;
-	height: 30px;
-}
-.menu li li:hover, .menu li li.onhover {
-	margin: 0;
-	border: 1px solid #BD4C14;
-	background: #391706;
-}
-.menu ul a {
-	padding: 0 15px 0 10px;
-	line-height: 28px;
-	font-size: 13px;
-	font-weight: normal;
-	color: #FFF;
-	text-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
-	text-align: left;
-}
-.menu li:hover ul, .menu li.onhover ul {
-	left: -1px;
-	top: auto;
-}
-.menu li:hover .droptoleft, .menu li.onhover .droptoleft {
-	left: auto;
-	right: -1px;
-	top: auto;
-}
-.menu li:hover ul ul, .menu li:hover ul ul ul, .menu li:hover ul ul ul ul,
-.menu li.onhover ul ul, .menu li.onhover ul ul ul, .menu li.onhover ul ul ul ul {
-	left: -9999px;
-	top: 0;
-}
-.menu li li:hover ul, .menu li li li:hover ul, .menu li li li li:hover ul,
-.menu li li.onhover ul, .menu li li li.onhover ul, .menu li li li li.onhover ul {
-	left: 199px;
-	top: -2px;
-}
-.menu li a > .fa {
-	width: 24px;
-}
 /* Content */
 #content {
 	background: #FFF url('../image/theme-classic/background.png') 0 1px repeat-x;
@@ -1947,17 +1812,6 @@ table.tool tr td {
 		font-size: 16px;
 		line-height: 11px;
 	}
-	ul.menu a {
-		font-size: 12px;
-		padding: 0 20px;
-	}
-	.menu ul a {
-		font-size: 12px;
-		padding: 0 12px 0 10px;
-	}
-	.menu .right {
-		margin-right: 25px;
-	}
 	#content {
 		padding: 10px 5px 128px 5px;
 	}
@@ -2010,17 +1864,6 @@ table.tool tr td {
 		width: 11px;
 		font-size: 15px;
 		line-height: 11px;
-	}
-	ul.menu a {
-		font-size: 12px;
-		padding: 0 15px;
-	}
-	.menu ul a {
-		font-size: 12px;
-		padding: 0 10px 0 10px;
-	}
-	.menu .right {
-		margin-right: 20px;
 	}
 	#content {
 		padding: 10px 0 128px 0;
