@@ -10,10 +10,10 @@
 </head>
 <body>
 <?php foreach ($orders as $order) { ?>
-<div style="page-break-after:always;">
-  <div style="width:420px; border:1px dotted #CCC; padding:18px 0px 0px 18px;">
+<div class="documents">
+  <div style="width:420px; border:1px dotted #CCC; padding:18px 0 0 18px;">
   <?php if ($logo) { ?>
-    <img src="<?php echo $logo; ?>" alt="" />
+    <img src="<?php echo $logo; ?>" alt="" style="padding-top:5px;" />
   <?php } ?>
   <table class="store" style="width:400px;">
     <tr>

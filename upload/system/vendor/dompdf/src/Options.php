@@ -179,7 +179,7 @@ class Options {
      *
      * @var bool
      */
-    private $isRemoteEnabled = false;
+    private $isRemoteEnabled = true;
 
     /**
      * Enable inline Javascript
@@ -208,7 +208,7 @@ class Options {
     /**
      * @var bool
      */
-    private $debugPng = true;
+    private $debugPng = false;
 
     /**
      * @var bool

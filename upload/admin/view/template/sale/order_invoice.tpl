@@ -10,9 +10,9 @@
 </head>
 <body>
 <?php foreach ($orders as $order) { ?>
-<div style="page-break-after:always;">
+<div class="documents">
   <?php if ($logo) { ?>
-    <img src="<?php echo $logo; ?>" alt="" />
+    <img src="<?php echo $logo; ?>" alt="" style="padding:15px 0 0 5px;" />
   <?php } ?>
   <h1><?php echo $text_invoice; ?></h1>
   <table class="store">

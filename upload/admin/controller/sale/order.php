@@ -2320,12 +2320,6 @@ class ControllerSaleOrder extends Controller {
 			$this->data['base'] = HTTP_SERVER;
 		}
 
-		if ($this->config->get('config_logo') && file_exists(DIR_IMAGE . $this->config->get('config_logo'))) {
-			$this->data['logo'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG . 'image/' . $this->config->get('config_logo') : HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
-		} else {
-			$this->data['logo'] = '';
-		}
-
 		$this->data['direction'] = $this->language->get('direction');
 		$this->data['language'] = $this->language->get('code');
 
@@ -2352,6 +2346,12 @@ class ControllerSaleOrder extends Controller {
 		} elseif (isset($this->request->get['order_id'])) {
 			$orders[] = $this->request->get['order_id'];
 			$pdf = (isset($this->request->get['pdf'])) ? true : false;
+		}
+
+		if ($this->config->get('config_logo') && file_exists(DIR_IMAGE . $this->config->get('config_logo'))) {
+			$this->data['logo'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG . 'image/' . $this->config->get('config_logo') : HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+		} else {
+			$this->data['logo'] = '';
 		}
 
 		foreach ($orders as $order_id) {
@@ -2427,12 +2427,6 @@ class ControllerSaleOrder extends Controller {
 			$this->data['base'] = HTTP_SERVER;
 		}
 
-		if ($this->config->get('config_logo') && file_exists(DIR_IMAGE . $this->config->get('config_logo'))) {
-			$this->data['logo'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG . 'image/' . $this->config->get('config_logo') : HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
-		} else {
-			$this->data['logo'] = '';
-		}
-
 		$this->data['direction'] = $this->language->get('direction');
 		$this->data['language'] = $this->language->get('code');
 
@@ -2490,6 +2484,12 @@ class ControllerSaleOrder extends Controller {
 		} elseif (isset($this->request->get['order_id'])) {
 			$orders[] = $this->request->get['order_id'];
 			$pdf = (isset($this->request->get['pdf'])) ? true : false;
+		}
+
+		if ($this->config->get('config_logo') && file_exists(DIR_IMAGE . $this->config->get('config_logo'))) {
+			$this->data['logo'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG . 'image/' . $this->config->get('config_logo') : HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+		} else {
+			$this->data['logo'] = '';
 		}
 
 		foreach ($orders as $order_id) {
@@ -2676,12 +2676,6 @@ class ControllerSaleOrder extends Controller {
 			$this->data['base'] = HTTP_SERVER;
 		}
 
-		if ($this->config->get('config_logo') && file_exists(DIR_IMAGE . $this->config->get('config_logo'))) {
-			$this->data['logo'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG . 'image/' . $this->config->get('config_logo') : HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
-		} else {
-			$this->data['logo'] = '';
-		}
-
 		$this->data['direction'] = $this->language->get('direction');
 		$this->data['language'] = $this->language->get('code');
 
@@ -2736,6 +2730,12 @@ class ControllerSaleOrder extends Controller {
 		} elseif (isset($this->request->get['order_id'])) {
 			$orders[] = $this->request->get['order_id'];
 			$pdf = (isset($this->request->get['pdf'])) ? true : false;
+		}
+
+		if ($this->config->get('config_logo') && file_exists(DIR_IMAGE . $this->config->get('config_logo'))) {
+			$this->data['logo'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG . 'image/' . $this->config->get('config_logo') : HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+		} else {
+			$this->data['logo'] = '';
 		}
 
 		foreach ($orders as $order_id) {
@@ -2926,12 +2926,6 @@ class ControllerSaleOrder extends Controller {
 			$this->data['base'] = HTTP_SERVER;
 		}
 
-		if ($this->config->get('config_logo') && file_exists(DIR_IMAGE . $this->config->get('config_logo'))) {
-			$this->data['logo'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG . 'image/' . $this->config->get('config_logo') : HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
-		} else {
-			$this->data['logo'] = '';
-		}
-
 		$this->data['direction'] = $this->language->get('direction');
 		$this->data['language'] = $this->language->get('code');
 
@@ -2974,6 +2968,12 @@ class ControllerSaleOrder extends Controller {
 		} elseif (isset($this->request->get['order_id'])) {
 			$orders[] = $this->request->get['order_id'];
 			$pdf = (isset($this->request->get['pdf'])) ? true : false;
+		}
+
+		if ($this->config->get('config_logo') && file_exists(DIR_IMAGE . $this->config->get('config_logo'))) {
+			$this->data['logo'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG . 'image/' . $this->config->get('config_logo') : HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+		} else {
+			$this->data['logo'] = '';
 		}
 
 		foreach ($orders as $order_id) {

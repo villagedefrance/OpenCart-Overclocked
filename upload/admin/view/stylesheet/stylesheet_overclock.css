@@ -1876,6 +1876,15 @@ table.tool tr td {
 	top: 3px;
 	cursor: pointer;
 }
+/* HTML/PDF Documents */
+.documents {
+	width: 99%;
+	height: 99%;
+	margin: 0 auto;
+	padding: 0;
+	page-break-after: always;
+	overflow: hidden;
+}
 /* Autocomplete */
 .ui-autocomplete {
 	max-height: 300px;
