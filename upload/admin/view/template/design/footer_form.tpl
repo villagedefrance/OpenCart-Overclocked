@@ -43,6 +43,7 @@
               <td><?php echo $text_info; ?></td>
             </tr>
           </table>
+          <h2><?php echo $heading_block; ?></h2>
           <table id="route" class="list">
             <thead>
               <tr>

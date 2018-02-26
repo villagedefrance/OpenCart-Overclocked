@@ -1,6 +1,7 @@
 <?php
 // Heading
 $_['heading_title']       = 'Footers';
+$_['heading_block']       = 'Block Items';
 
 // Text
 $_['text_success']        = 'Success: You have modified <b>Footers</b> !';
