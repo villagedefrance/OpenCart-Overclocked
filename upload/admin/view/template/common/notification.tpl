@@ -1,6 +1,6 @@
 <?php if ($notifications) { ?>
-	  <li id="admin-notification" class="hide-tablet"><a class="top"><?php echo $text_notification; ?> &nbsp; <span class="admin-notify" style="background-color:#5DC15E;"><?php echo $alerts_complete; ?></span> <span class="admin-notify" style="background-color:#F2B155;"><?php echo $alerts_attention; ?></span> <span class="admin-notify" style="background-color:#DE5954;"><?php echo $alerts_warning; ?></span></a>
-        <ul>
+	  <li id="admin-notification" class="right hide-tablet"><a class="top accordion"><?php echo $text_notification; ?> &nbsp; <span class="admin-notify" style="background-color:#5DC15E;"><?php echo $alerts_complete; ?></span> <span class="admin-notify" style="background-color:#F2B155;"><?php echo $alerts_attention; ?></span> <span class="admin-notify" style="background-color:#DE5954;"><?php echo $alerts_warning; ?></span></a>
+        <ul class="inner">
         <?php if ($notification_order) { ?>
           <li><a href="<?php echo $order; ?>" style="font-weight:bold; font-size:14px;"><?php echo ($icons) ? '<i class="fa fa-shopping-cart"></i>' : ''; ?><?php echo $text_order; ?></a></li>
         <?php } ?>

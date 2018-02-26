@@ -1,5 +1,5 @@
 /*
- Common v1.0.2 | @villagedefrance | Overclocked Edition | GNU GPL3 Licensed
+ Common v1.0.3 | @villagedefrance | Overclocked Edition | GNU GPL3 Licensed
  ---------------------------------------------------------------------------
  Common.js file for development. Use minified version for production.
  ---------------------------------------------------------------------------
@@ -22,27 +22,6 @@ function getURLVar(key) {
 		}
 	}
 }
-
-// Menu Route
-$(document).ready(function() {
-	route = getURLVar('route');
-	if (!route) {
-		$('#dashboard').addClass('selected');
-	} else {
-		part = route.split('/');
-		url = part[0];
-		if (part[1]) {
-			url += '/' + part[1];
-		}
-		$('a[href*=\'' + url + '\']').parents('li[id]').addClass('selected');
-	}
-	$('#menu ul li').on('click', function() {
-		$(this).addClass('hover');
-	});
-	$('#menu ul li').on('mouseout', function() {
-		$(this).removeClass('hover');
-	});
-});
 
 // Save and Continue
 function apply() {

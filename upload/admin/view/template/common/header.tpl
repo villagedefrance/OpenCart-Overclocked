@@ -20,8 +20,6 @@
 <link rel="stylesheet" type="text/css" href="view/javascript/jquery/ui/themes/start/jquery-ui-1.12.1.min.css" />
 <link rel="stylesheet" type="text/css" href="view/javascript/awesome/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="view/javascript/jquery/confirm/jquery-confirm.min.css" />
-<link rel="stylesheet" type="text/css" href="view/javascript/jquery/smartmenus/sm-core-css.css" />
-<link rel="stylesheet" type="text/css" href="view/javascript/jquery/smartmenus/sm-dark.min.css" />
 <link rel="stylesheet" type="text/css" href="view/stylesheet/animate-custom.min.css" />
 <?php foreach ($styles as $style) { ?>
 <link rel="<?php echo $style['rel']; ?>" type="text/css" href="<?php echo $style['href']; ?>" media="<?php echo $style['media']; ?>" />
@@ -32,7 +30,6 @@
 <script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-1.12.1.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ui/minified/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/confirm/jquery-confirm.min.js"></script>
-<script type="text/javascript" src="view/javascript/jquery/smartmenus/jquery.smartmenus.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/tabs.min.js"></script>
 <script type="text/javascript" src="view/javascript/common.min.js"></script>
 <?php foreach ($scripts as $script) { ?>
@@ -82,13 +79,13 @@
       <?php } ?>
     </div>
     <?php if ($logged) { ?>
-    <nav id="main-nav">
-	<ul id="main-menu" class="sm sm-dark">
-      <li id="dashboard"><a href="<?php echo $home; ?>"><?php echo $text_dashboard; ?></a></li>
-      <li id="catalog"><a><?php echo $text_catalog; ?></a>
+    <div id="menu">
+    <ul class="menu">
+      <li id="dashboard"><a class="dash" href="<?php echo $home; ?>" title=""><?php echo $text_dashboard; ?></a></li>
+      <li id="catalog"><a class="top"><?php echo $text_catalog; ?></a>
         <ul>
           <li><a href="<?php echo $category; ?>"><?php echo ($icons) ? '<i class="fa fa-sitemap"></i>' : ''; ?><?php echo $text_category; ?></a></li>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-cubes"></i>' : ''; ?><?php echo $text_product; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-cubes"></i>' : ''; ?><?php echo $text_product; ?></a>
             <ul>
               <li><a href="<?php echo $product; ?>"><?php echo ($icons) ? '<i class="fa fa-cube"></i>' : ''; ?><?php echo $text_product; ?></a></li>
               <li><a href="<?php echo $manufacturer; ?>"><?php echo ($icons) ? '<i class="fa fa-gear"></i>' : ''; ?><?php echo $text_manufacturer; ?></a></li>
@@ -97,7 +94,7 @@
               <li><a href="<?php echo $field; ?>"><?php echo ($icons) ? '<i class="fa fa-list-ul"></i>' : ''; ?><?php echo $text_field; ?></a></li>
             </ul>
           </li>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-columns"></i>' : ''; ?><?php echo $text_attribute; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-columns"></i>' : ''; ?><?php echo $text_attribute; ?></a>
             <ul>
               <li><a href="<?php echo $attribute; ?>"><?php echo ($icons) ? '<i class="fa fa-columns"></i>' : ''; ?><?php echo $text_attribute; ?></a></li>
               <li><a href="<?php echo $attribute_group; ?>"><?php echo ($icons) ? '<i class="fa fa-wrench"></i>' : ''; ?><?php echo $text_attribute_group; ?></a></li>
@@ -111,11 +108,11 @@
           <li><a href="<?php echo $information; ?>"><?php echo ($icons) ? '<i class="fa fa-info-circle"></i>' : ''; ?><?php echo $text_information; ?></a></li>
         </ul>
       </li>
-      <li id="sale"><a><?php echo $text_sale; ?></a>
+      <li id="sale"><a class="top"><?php echo $text_sale; ?></a>
         <ul>
           <li><a href="<?php echo $order; ?>"><?php echo ($icons) ? '<i class="fa fa-shopping-cart"></i>' : ''; ?><?php echo $text_order; ?></a></li>
           <li><a href="<?php echo $return; ?>"><?php echo ($icons) ? '<i class="fa fa-history"></i>' : ''; ?><?php echo $text_return; ?></a></li>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-user"></i>' : ''; ?><?php echo $text_customer; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-user"></i>' : ''; ?><?php echo $text_customer; ?></a>
             <ul>
               <li><a href="<?php echo $customer; ?>"><?php echo ($icons) ? '<i class="fa fa-user"></i>' : ''; ?><?php echo $text_customer; ?></a></li>
               <li><a href="<?php echo $customer_group; ?>"><?php echo ($icons) ? '<i class="fa fa-group"></i>' : ''; ?><?php echo $text_customer_group; ?></a></li>
@@ -125,7 +122,7 @@
           <?php if ($profile_exist) { ?>
           <li><a href="<?php echo $recurring_profile; ?>"><?php echo ($icons) ? '<i class="fa fa-refresh"></i>' : ''; ?><?php echo $text_recurring_profile; ?></a></li>
           <?php } ?>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-gear"></i>' : ''; ?><?php echo $text_supplier; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-gear"></i>' : ''; ?><?php echo $text_supplier; ?></a>
             <ul>
               <li><a href="<?php echo $supplier; ?>"><?php echo ($icons) ? '<i class="fa fa-gear"></i>' : ''; ?><?php echo $text_supplier; ?></a></li>
               <li><a href="<?php echo $supplier_group; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_supplier_group; ?></a></li>
@@ -136,7 +133,7 @@
           <li><a href="<?php echo $affiliate; ?>"><?php echo ($icons) ? '<i class="fa fa-street-view"></i>' : ''; ?><?php echo $text_affiliate; ?></a></li>
           <?php } ?>
           <li><a href="<?php echo $coupon; ?>"><?php echo ($icons) ? '<i class="fa fa-tags"></i>' : ''; ?><?php echo $text_coupon; ?></a></li>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-percent"></i>' : ''; ?><?php echo $text_offer; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-percent"></i>' : ''; ?><?php echo $text_offer; ?></a>
             <ul>
               <li><a href="<?php echo $offer; ?>"><?php echo ($icons) ? '<i class="fa fa-percent"></i>' : ''; ?><?php echo $text_offer_dashboard; ?></a></li>
               <li><a href="<?php echo $offer_product_product; ?>"><?php echo ($icons) ? '<i class="fa fa-dot-circle-o"></i>' : ''; ?><?php echo $text_offer_product_product; ?></a></li>
@@ -145,14 +142,14 @@
               <li><a href="<?php echo $offer_category_category; ?>"><?php echo ($icons) ? '<i class="fa fa-dot-circle-o"></i>' : ''; ?><?php echo $text_offer_category_category; ?></a></li>
             </ul>
           </li>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-ticket"></i>' : ''; ?><?php echo $text_voucher; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-ticket"></i>' : ''; ?><?php echo $text_voucher; ?></a>
             <ul>
               <li><a href="<?php echo $voucher; ?>"><?php echo ($icons) ? '<i class="fa fa-ticket"></i>' : ''; ?><?php echo $text_voucher; ?></a></li>
               <li><a href="<?php echo $voucher_theme; ?>"><?php echo ($icons) ? '<i class="fa fa-image"></i>' : ''; ?><?php echo $text_voucher_theme; ?></a></li>
             </ul>
           </li>
           <?php if ($pp_express_status) { ?>
-          <li><a href="<?php echo $paypal_express; ?>"><?php echo ($icons) ? '<i class="fa fa-paypal"></i>' : ''; ?><?php echo $text_paypal_express; ?></a>
+          <li><a class="arrow" href="<?php echo $paypal_express; ?>"><?php echo ($icons) ? '<i class="fa fa-paypal"></i>' : ''; ?><?php echo $text_paypal_express; ?></a>
             <ul>
               <li><a href="<?php echo $paypal_express_search; ?>"><?php echo ($icons) ? '<i class="fa fa-search"></i>' : ''; ?><?php echo $text_paypal_express_search; ?></a></li>
             </ul>
@@ -161,9 +158,9 @@
           <li><a href="<?php echo $upload; ?>"><?php echo ($icons) ? '<i class="fa fa-upload"></i>' : ''; ?><?php echo $text_upload; ?></a></li>
         </ul>
       </li>
-      <li id="reports"><a><?php echo $text_reports; ?></a>
+      <li id="reports"><a class="top"><?php echo $text_reports; ?></a>
         <ul>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-shopping-cart"></i>' : ''; ?><?php echo $text_sale; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-shopping-cart"></i>' : ''; ?><?php echo $text_sale; ?></a>
             <ul>
               <li><a href="<?php echo $report_sale_order; ?>"><?php echo ($icons) ? '<i class="fa fa-shopping-basket"></i>' : ''; ?><?php echo $text_report_sale_order; ?></a></li>
               <li><a href="<?php echo $report_sale_profit; ?>"><?php echo ($icons) ? '<i class="fa fa-line-chart"></i>' : ''; ?><?php echo $text_report_sale_profit; ?></a></li>
@@ -173,7 +170,7 @@
               <li><a href="<?php echo $report_sale_coupon; ?>"><?php echo ($icons) ? '<i class="fa fa-tags"></i>' : ''; ?><?php echo $text_report_sale_coupon; ?></a></li>
             </ul>
           </li>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-cube"></i>' : ''; ?><?php echo $text_product; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-cube"></i>' : ''; ?><?php echo $text_product; ?></a>
             <ul>
               <li><a href="<?php echo $report_product_viewed; ?>"><?php echo ($icons) ? '<i class="fa fa-eye"></i>' : ''; ?><?php echo $text_report_product_viewed; ?></a></li>
               <li><a href="<?php echo $report_product_label; ?>"><?php echo ($icons) ? '<i class="fa fa-leaf"></i>' : ''; ?><?php echo $text_report_product_label; ?></a></li>
@@ -182,7 +179,7 @@
               <li><a href="<?php echo $report_product_purchased; ?>"><?php echo ($icons) ? '<i class="fa fa-dollar"></i>' : ''; ?><?php echo $text_report_product_purchased; ?></a></li>
             </ul>
           </li>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-user"></i>' : ''; ?><?php echo $text_customer; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-user"></i>' : ''; ?><?php echo $text_customer; ?></a>
             <ul>
               <li><a href="<?php echo $report_customer_order; ?>"><?php echo ($icons) ? '<i class="fa fa-shopping-bag"></i>' : ''; ?><?php echo $text_report_customer_order; ?></a></li>
               <li><a href="<?php echo $report_customer_reward; ?>"><?php echo ($icons) ? '<i class="fa fa-gift"></i>' : ''; ?><?php echo $text_report_customer_reward; ?></a></li>
@@ -192,7 +189,7 @@
               <li><a href="<?php echo $report_customer_online; ?>"><?php echo ($icons) ? '<i class="fa fa-feed"></i>' : ''; ?><?php echo $text_report_customer_online; ?></a></li>
             </ul>
           </li>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-street-view"></i>' : ''; ?><?php echo $text_affiliate; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-street-view"></i>' : ''; ?><?php echo $text_affiliate; ?></a>
             <ul>
               <li><a href="<?php echo $report_affiliate_activity; ?>"><?php echo ($icons) ? '<i class="fa fa-spinner"></i>' : ''; ?><?php echo $text_report_affiliate_activity; ?></a></li>
               <li><a href="<?php echo $report_affiliate_commission; ?>"><?php echo ($icons) ? '<i class="fa fa-percent"></i>' : ''; ?><?php echo $text_report_affiliate_commission; ?></a></li>
@@ -203,16 +200,16 @@
         <?php } ?>
         </ul>
       </li>
-      <li id="tools"><a><?php echo $text_tool; ?></a>
+      <li id="tools"><a class="top"><?php echo $text_tool; ?></a>
         <ul>
           <?php if ($openbay_show_menu == 1) { ?>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-desktop"></i>' : ''; ?><?php echo $text_openbay_extension; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-desktop"></i>' : ''; ?><?php echo $text_openbay_extension; ?></a>
             <ul>
               <li><a href="<?php echo $openbay_link_extension; ?>"><?php echo ($icons) ? '<i class="fa fa-dashboard"></i>' : ''; ?><?php echo $text_openbay_dashboard; ?></a></li>
               <li><a href="<?php echo $openbay_link_orders; ?>"><?php echo ($icons) ? '<i class="fa fa-first-order"></i>' : ''; ?><?php echo $text_openbay_orders; ?></a></li>
               <li><a href="<?php echo $openbay_link_items; ?>"><?php echo ($icons) ? '<i class="fa fa-folder"></i>' : ''; ?><?php echo $text_openbay_items; ?></a></li>
               <?php if ($openbay_markets['ebay'] == 1) { ?>
-              <li><a href="<?php echo $openbay_link_ebay; ?>"><?php echo ($icons) ? '<i class="fa fa-folder-open"></i>' : ''; ?><?php echo $text_openbay_ebay; ?></a>
+              <li><a class="arrow" href="<?php echo $openbay_link_ebay; ?>"><?php echo ($icons) ? '<i class="fa fa-folder-open"></i>' : ''; ?><?php echo $text_openbay_ebay; ?></a>
                 <ul>
                   <li><a href="<?php echo $openbay_link_ebay_settings; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_openbay_settings; ?></a></li>
                   <li><a href="<?php echo $openbay_link_ebay_links; ?>"><?php echo ($icons) ? '<i class="fa fa-chain"></i>' : ''; ?><?php echo $text_openbay_links; ?></a></li>
@@ -221,7 +218,7 @@
               </li>
               <?php } ?>
               <?php if ($openbay_markets['amazon'] == 1) { ?>
-              <li><a href="<?php echo $openbay_link_amazon; ?>"><?php echo ($icons) ? '<i class="fa fa-amazon"></i>' : ''; ?><?php echo $text_openbay_amazon; ?></a>
+              <li><a class="arrow" href="<?php echo $openbay_link_amazon; ?>"><?php echo ($icons) ? '<i class="fa fa-amazon"></i>' : ''; ?><?php echo $text_openbay_amazon; ?></a>
                 <ul>
                   <li><a href="<?php echo $openbay_link_amazon_settings; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_openbay_settings; ?></a></li>
                   <li><a href="<?php echo $openbay_link_amazon_links; ?>"><?php echo ($icons) ? '<i class="fa fa-chain"></i>' : ''; ?><?php echo $text_openbay_links; ?></a></li>
@@ -229,7 +226,7 @@
               </li>
               <?php } ?>
               <?php if ($openbay_markets['amazonus'] == 1) { ?>
-              <li><a href="<?php echo $openbay_link_amazonus; ?>"><?php echo ($icons) ? '<i class="fa fa-amazon"></i>' : ''; ?><?php echo $text_openbay_amazonus; ?></a>
+              <li><a class="arrow" href="<?php echo $openbay_link_amazonus; ?>"><?php echo ($icons) ? '<i class="fa fa-amazon"></i>' : ''; ?><?php echo $text_openbay_amazonus; ?></a>
                 <ul>
                   <li><a href="<?php echo $openbay_link_amazonus_settings; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_openbay_settings; ?></a></li>
                   <li><a href="<?php echo $openbay_link_amazonus_links; ?>"><?php echo ($icons) ? '<i class="fa fa-chain"></i>' : ''; ?><?php echo $text_openbay_links; ?></a></li>
@@ -239,13 +236,13 @@
             </ul>
           </li>
           <?php } ?>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-compress"></i>' : ''; ?><?php echo $text_export_import; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-compress"></i>' : ''; ?><?php echo $text_export_import; ?></a>
             <ul>
               <li><a href="<?php echo $export_import_tool; ?>"><?php echo ($icons) ? '<i class="fa fa-file-excel-o"></i>' : ''; ?><?php echo $text_export_import_tool; ?></a></li>
               <li><a href="<?php echo $export_import_raw; ?>"><?php echo ($icons) ? '<i class="fa fa-file-code-o"></i>' : ''; ?><?php echo $text_export_import_raw; ?></a></li>
             </ul>
           </li>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-files-o"></i>' : ''; ?><?php echo $text_cache_manager; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-files-o"></i>' : ''; ?><?php echo $text_cache_manager; ?></a>
             <ul>
               <li><a href="<?php echo $cache_files; ?>"><?php echo ($icons) ? '<i class="fa fa-file-text-o"></i>' : ''; ?><?php echo $text_cache_files; ?></a></li>
               <li><a href="<?php echo $cache_images; ?>"><?php echo ($icons) ? '<i class="fa fa-file-photo-o"></i>' : ''; ?><?php echo $text_cache_images; ?></a></li>
@@ -257,7 +254,7 @@
           <li><a href="<?php echo $contact; ?>"><?php echo ($icons) ? '<i class="fa fa-mail-forward"></i>' : ''; ?><?php echo $text_contact; ?></a></li>
         </ul>
       </li>
-      <li id="extension"><a><?php echo $text_extension; ?></a>
+      <li id="extension"><a class="top"><?php echo $text_extension; ?></a>
         <ul>
           <li><a href="<?php echo $module; ?>"><?php echo ($icons) ? '<i class="fa fa-puzzle-piece"></i>' : ''; ?><?php echo $text_module; ?></a></li>
           <li><a href="<?php echo $modification; ?>"><?php echo ($icons) ? '<i class="fa fa-terminal"></i>' : ''; ?><?php echo $text_modification; ?></a></li>
@@ -269,10 +266,10 @@
           <li><a href="<?php echo $feed; ?>"><?php echo ($icons) ? '<i class="fa fa-feed"></i>' : ''; ?><?php echo $text_feed; ?></a></li>
         </ul>
       </li>
-      <li id="system"><a><?php echo $text_system; ?></a>
+      <li id="system"><a class="top"><?php echo $text_system; ?></a>
         <ul>
           <li><a href="<?php echo $setting; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_setting; ?></a></li>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-paint-brush"></i>' : ''; ?><?php echo $text_design; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-paint-brush"></i>' : ''; ?><?php echo $text_design; ?></a>
             <ul>
               <li><a href="<?php echo $administration; ?>"><?php echo ($icons) ? '<i class="fa fa-magic"></i>' : ''; ?><?php echo $text_administration; ?></a></li>
               <li><a href="<?php echo $banner; ?>"><?php echo ($icons) ? '<i class="fa fa-photo"></i>' : ''; ?><?php echo $text_banner; ?></a></li>
@@ -284,28 +281,28 @@
               <li><a href="<?php echo $payment_image; ?>"><?php echo ($icons) ? '<i class="fa fa-money"></i>' : ''; ?><?php echo $text_payment_image; ?></a></li>
             </ul>
           </li>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-user"></i>' : ''; ?><?php echo $text_users; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-user"></i>' : ''; ?><?php echo $text_users; ?></a>
             <ul>
               <li><a href="<?php echo $user; ?>"><?php echo ($icons) ? '<i class="fa fa-user"></i>' : ''; ?><?php echo $text_user; ?></a></li>
               <li><a href="<?php echo $user_group; ?>"><?php echo ($icons) ? '<i class="fa fa-group"></i>' : ''; ?><?php echo $text_user_group; ?></a></li>
               <li><a href="<?php echo $user_log; ?>"><?php echo ($icons) ? '<i class="fa fa-user-secret"></i>' : ''; ?><?php echo $text_user_log; ?></a></li>
             </ul>
           </li>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-map-marker"></i>' : ''; ?><?php echo $text_localisation; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-map-marker"></i>' : ''; ?><?php echo $text_localisation; ?></a>
             <ul>
               <li><a href="<?php echo $language; ?>"><?php echo ($icons) ? '<i class="fa fa-language"></i>' : ''; ?><?php echo $text_language; ?></a></li>
               <li><a href="<?php echo $currency; ?>"><?php echo ($icons) ? '<i class="fa fa-money"></i>' : ''; ?><?php echo $text_currency; ?></a></li>
               <li><a href="<?php echo $location; ?>"><?php echo ($icons) ? '<i class="fa fa-map-marker"></i>' : ''; ?><?php echo $text_location; ?></a></li>
               <li><a href="<?php echo $stock_status; ?>"><?php echo ($icons) ? '<i class="fa fa-adjust"></i>' : ''; ?><?php echo $text_stock_status; ?></a></li>
               <li><a href="<?php echo $order_status; ?>"><?php echo ($icons) ? '<i class="fa fa-random"></i>' : ''; ?><?php echo $text_order_status; ?></a></li>
-              <li><a><?php echo ($icons) ? '<i class="fa fa-history"></i>' : ''; ?><?php echo $text_return; ?></a>
+              <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-history"></i>' : ''; ?><?php echo $text_return; ?></a>
                 <ul>
                   <li><a href="<?php echo $return_status; ?>"><?php echo ($icons) ? '<i class="fa fa-history"></i>' : ''; ?><?php echo $text_return_status; ?></a></li>
                   <li><a href="<?php echo $return_action; ?>"><?php echo ($icons) ? '<i class="fa fa-play"></i>' : ''; ?><?php echo $text_return_action; ?></a></li>
                   <li><a href="<?php echo $return_reason; ?>"><?php echo ($icons) ? '<i class="fa fa-question-circle"></i>' : ''; ?><?php echo $text_return_reason; ?></a></li>
                 </ul>
               </li>
-              <li><a><?php echo ($icons) ? '<i class="fa fa-briefcase"></i>' : ''; ?><?php echo $text_tax; ?></a>
+              <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-briefcase"></i>' : ''; ?><?php echo $text_tax; ?></a>
                 <ul>
                   <li><a href="<?php echo $tax_class; ?>"><?php echo ($icons) ? '<i class="fa fa-briefcase"></i>' : ''; ?><?php echo $text_tax_class; ?></a></li>
                   <li><a href="<?php echo $tax_rate; ?>"><?php echo ($icons) ? '<i class="fa fa-percent"></i>' : ''; ?><?php echo $text_tax_rate; ?></a></li>
@@ -319,7 +316,7 @@
               <li><a href="<?php echo $weight_class; ?>"><?php echo ($icons) ? '<i class="fa fa-balance-scale"></i>' : ''; ?><?php echo $text_weight_class; ?></a></li>
             </ul>
           </li>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-server"></i>' : ''; ?><?php echo $text_server; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-server"></i>' : ''; ?><?php echo $text_server; ?></a>
             <ul>
               <li><a href="<?php echo $configuration; ?>"><?php echo ($icons) ? '<i class="fa fa-sliders"></i>' : ''; ?><?php echo $text_configuration; ?></a></li>
               <li><a href="<?php echo $database; ?>"><?php echo ($icons) ? '<i class="fa fa-database"></i>' : ''; ?><?php echo $text_database; ?></a></li>
@@ -328,7 +325,7 @@
               <li><a href="<?php echo $backup; ?>"><?php echo ($icons) ? '<i class="fa fa-hdd-o"></i>' : ''; ?><?php echo $text_backup; ?></a></li>
             </ul>
           </li>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-exclamation-circle"></i>' : ''; ?><?php echo $text_logs; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-exclamation-circle"></i>' : ''; ?><?php echo $text_logs; ?></a>
             <ul>
               <li><a href="<?php echo $error_log; ?>"><?php echo ($icons) ? '<i class="fa fa-warning"></i>' : ''; ?><?php echo $text_error_log; ?></a></li>
               <li><a href="<?php echo $email_log; ?>"><?php echo ($icons) ? '<i class="fa fa-envelope"></i>' : ''; ?><?php echo $text_email_log; ?></a></li>
@@ -336,7 +333,7 @@
               <li><a href="<?php echo $user_log; ?>"><?php echo ($icons) ? '<i class="fa fa-user-secret"></i>' : ''; ?><?php echo $text_user_log; ?></a></li>
             </ul>
           </li>
-          <li><a><?php echo ($icons) ? '<i class="fa fa-support"></i>' : ''; ?><?php echo $text_help; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-support"></i>' : ''; ?><?php echo $text_help; ?></a>
             <ul>
               <li><a onclick="window.open('https://villagedefrance.net');" title=""><?php echo ($icons) ? '<i class="fa fa-home"></i>' : ''; ?><?php echo $text_opencart_overclocked; ?></a></li>
               <li><a onclick="window.open('http://forum.villagedefrance.net');" title=""><?php echo ($icons) ? '<i class="fa fa-heart"></i>' : ''; ?><?php echo $text_forum; ?></a></li>
@@ -380,7 +377,7 @@
         <?php echo $notification; ?>
       <?php } ?>
     </ul>
-  </nav>
+  </div>
   <?php } ?>
 </div>
 

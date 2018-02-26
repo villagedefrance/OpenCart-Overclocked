@@ -454,6 +454,150 @@ body > #container-normal, body > #container-limited {
 	background: #E4EEF7;
 	color: #547C96;
 }
+/* Menu */
+.menu {
+	position: relative;
+	float: none;
+	width: 100%;
+	height: 38px;
+	background-color: #3C4044;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#3C4044), to(#171C19));
+	background-image: -webkit-linear-gradient(top, #3C4044, #171C19);
+	background-image: -moz-linear-gradient(top, #3C4044, #171C19);
+	background-image: -ms-linear-gradient(top, #3C4044, #171C19);
+	background-image: -o-linear-gradient(top, #3C4044, #171C19);
+	background-image: linear-gradient(to bottom, #3C4044, #171C19);
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	z-index: 4;
+}
+.menu li {
+	float: left;
+	position: relative;
+	height: 38px;
+	padding: 0;
+}
+.menu li a.dash {
+	padding: 0 23px 0 30px;
+}
+.menu li a.top {
+	background: url('../image/theme-overclock/split.png') center left no-repeat;
+	padding: 0 23px;
+}
+ul.menu a {
+	display: block;
+	color: #FCFCFC;
+	font-size: 14px;
+	font-weight: normal;
+	text-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
+	text-decoration: none;
+	line-height: 38px;
+	outline: 0;
+}
+.menu a.arrow {
+	background: url('../image/theme-overclock/arrow-right.png') no-repeat right center;
+}
+.menu ul a.arrow {
+	background: url('../image/theme-overclock/arrow-right.png') no-repeat 97% center;
+}
+/* Menu Right - Top-level item to the right */
+.menu .right {
+	float: right;
+	margin-right: 26px;
+	padding: 0;
+}
+.menu .right span.admin-notify {
+	text-shadow: none;
+	font-weight: bold;
+	padding: 1px 6px;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	-khtml-border-radius: 1px;
+	border-radius: 1px;
+	overflow: hidden;
+}
+.menu .right ul li {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+}
+.menu .right ul li a {
+	margin: 0 0 0 6px;
+	font-size: 13px;
+}
+.menu .right ul li span.admin-notify-li {
+	margin-right: 5px;
+	text-shadow: none;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 1px 6px;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	-khtml-border-radius: 1px;
+	border-radius: 1px;
+	overflow: hidden;
+}
+.menu .right ul li:hover, .menu .right ul li.onhover {
+	margin: 0;
+	border: 1px solid transparent;
+	background: transparent;
+}
+/* Menu - Sub level */
+ul.menu ul {
+	width: 200px;
+	position: absolute;
+	left: -9999px;
+	background: #202427;
+	text-align: left;
+	list-style: none;
+	margin: 0;
+	padding: 1px 0 0 0;
+}
+.menu li li {
+	float: none;
+	white-space: nowrap;
+	margin: 0;
+	border: 1px solid transparent;
+	height: 32px;
+}
+.menu li li:hover, .menu li li.onhover {
+	margin: 0;
+	border: 1px solid #36AAD8;
+	background: #106393;
+}
+.menu ul a {
+	padding: 0 15px 0 10px;
+	line-height: 30px;
+	font-size: 14px;
+	font-weight: normal;
+	color: #FCFCFC;
+	text-shadow: 0 0 1px rgba(52, 52, 52, 0.05);
+	text-align: left;
+}
+.menu li:hover ul, .menu li.onhover ul {
+	left: -1px;
+	top: auto;
+}
+.menu li:hover .droptoleft, .menu li.onhover .droptoleft {
+	left: auto;
+	right: -1px;
+	top: auto;
+}
+.menu li:hover ul ul, .menu li:hover ul ul ul, .menu li:hover ul ul ul ul,
+.menu li.onhover ul ul, .menu li.onhover ul ul ul, .menu li.onhover ul ul ul ul {
+	left: -9999px;
+	top: 0;
+}
+.menu li li:hover ul, .menu li li li:hover ul, .menu li li li li:hover ul,
+.menu li li.onhover ul, .menu li li li.onhover ul, .menu li li li li.onhover ul {
+	left: 199px;
+	top: -2px;
+}
+.menu li a > .fa {
+	width: 24px;
+}
 /* Content */
 #content {
 	background: #191919 url('../image/theme-overclock/background.png') 0 1px repeat-x;
@@ -1780,7 +1924,30 @@ table.tool tr td {
 	text-decoration: underline;
 }
 /* Desktops */
-@media only screen and (min-width: 940px) and (max-width: 1240px) {
+@media only screen and (min-width: 960px) and (max-width: 1280px) {
+	.menu li a.dash {
+		padding: 0 22px 0 20px;
+	}
+	.menu li a.top {
+		background: url('../image/theme-overclock/split.png') center left no-repeat;
+		padding: 0 22px;
+	}
+	ul.menu a {
+		font-size: 13px;
+	}
+	.menu .right {
+		margin-right: 20px;
+	}
+	.menu .right ul li a {
+		font-size: 13px;
+	}
+	.menu .right ul li span.admin-notify-li {
+		font-size: 14px;
+	}
+	.menu ul a {
+		line-height: 29px;
+		font-size: 13px;
+	}
 	#content {
 		padding: 10px 20px 128px 20px;
 	}
@@ -1799,7 +1966,30 @@ table.tool tr td {
 	}
 }
 /* Laptops */
-@media only screen and (min-width: 790px) and (max-width: 940px) {
+@media only screen and (min-width: 800px) and (max-width: 960px) {
+	.menu li a.dash {
+		padding: 0 21px 0 10px;
+	}
+	.menu li a.top {
+		background: url('../image/theme-overclock/split.png') center left no-repeat;
+		padding: 0 21px;
+	}
+	ul.menu a {
+		font-size: 12px;
+	}
+	.menu .right {
+		margin-right: 10px;
+	}
+	.menu .right ul li a {
+		font-size: 12px;
+	}
+	.menu .right ul li span.admin-notify-li {
+		font-size: 13px;
+	}
+	.menu ul a {
+		line-height: 28px;
+		font-size: 12px;
+	}
 	#content {
 		padding: 10px 10px 128px 10px;
 	}
@@ -1824,7 +2014,7 @@ table.tool tr td {
 	}
 }
 /* Tablets */
-@media only screen and (min-width: 640px) and (max-width: 790px) {
+@media only screen and (min-width: 640px) and (max-width: 800px) {
 	body, td, th, input, select, textarea, fieldset, option, optgroup {
 		font-size: 11px;
 	}
@@ -1832,6 +2022,30 @@ table.tool tr td {
 		width: 11px;
 		font-size: 16px;
 		line-height: 11px;
+	}
+	.menu li a.dash {
+		padding: 0 20px 0 10px;
+	}
+	.menu li a.top {
+		background: url('../image/theme-overclock/split.png') center left no-repeat;
+		padding: 0 20px;
+	}
+	ul.menu a {
+		font-size: 12px;
+	}
+	.menu .right {
+		margin-right: 5px;
+	}
+	.menu .right ul li a {
+		margin: 0 0 0 5px;
+		font-size: 12px;
+	}
+	.menu .right ul li span.admin-notify-li {
+		font-size: 13px;
+	}
+	.menu ul a {
+		line-height: 28px;
+		font-size: 12px;
 	}
 	#content {
 		padding: 10px 5px 128px 5px;
@@ -1886,6 +2100,30 @@ table.tool tr td {
 		font-size: 15px;
 		line-height: 11px;
 	}
+	.menu li a.dash {
+		padding: 0 19px 0 10px;
+	}
+	.menu li a.top {
+		background: url('../image/theme-overclock/split.png') center left no-repeat;
+		padding: 0 19px;
+	}
+	ul.menu a {
+		font-size: 11px;
+	}
+	.menu .right {
+		margin-right: 5px;
+	}
+	.menu .right ul li a {
+		margin: 0 0 0 5px;
+		font-size: 11px;
+	}
+	.menu .right ul li span.admin-notify-li {
+		font-size: 12px;
+	}
+	.menu ul a {
+		line-height: 27px;
+		font-size: 11px;
+	}
 	#content {
 		padding: 10px 0 128px 0;
 	}
@@ -1925,6 +2163,9 @@ table.tool tr td {
 		height: 220px;
 	}
 	/* General */
+	.hide-tablet {
+		display: none;
+	}
 	.hide-phone {
 		display: none;
 	}
