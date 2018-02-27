@@ -768,8 +768,8 @@ $(document).ready(function() {
 					$('#information-dialog').html(json['html']);
 					$('#information-dialog').dialog({
 						title: '<?php echo $heading_info; ?>',
-						width: 730,
-						height: 255,
+						width: 640,
+						height: 260,
 						resizable: false,
 						modal: true
 					});

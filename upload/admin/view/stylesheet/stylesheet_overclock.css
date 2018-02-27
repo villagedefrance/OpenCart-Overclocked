@@ -1876,6 +1876,10 @@ table.tool tr td {
 	top: 3px;
 	cursor: pointer;
 }
+/* Hidden */
+.hidden {
+	display: none;
+}
 /* HTML/PDF Documents */
 .documents {
 	width: 99%;

@@ -50,7 +50,7 @@
             </tr>
             <tr>
               <td><?php echo $entry_code; ?></td>
-              <td><textarea name="html_code<?php echo $i; ?>" cols="40" rows="10"><?php echo isset(${'html_code' . $i}) ? ${'html_code' . $i} : ''; ?></textarea></td>
+              <td><textarea id="editor<?php echo $i; ?>" class="hidden" name="html_code<?php echo $i; ?>"><?php echo isset(${'html_code' . $i}) ? ${'html_code' . $i} : ''; ?></textarea></td>
             </tr>
           </table>
         </div>
@@ -151,62 +151,24 @@
   </div>
 </div>
 
-<script type="text/javascript" src="view/javascript/ckeditor/ckeditor.js"></script>
-
 <script type="text/javascript"><!--
-<?php foreach ($languages as $language) { ?>
-CKEDITOR.replace('html_code1', {
-	filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
+$(document).ready(function() {
+	$('#tabs a').tabs();
 });
-CKEDITOR.replace('html_code2', {
-	filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
-});
-CKEDITOR.replace('html_code3', {
-	filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
-});
-CKEDITOR.replace('html_code4', {
-	filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
-});
-CKEDITOR.replace('html_code5', {
-	filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
-});
-CKEDITOR.replace('html_code6', {
-	filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
-});
-CKEDITOR.replace('html_code7', {
-	filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
-});
-CKEDITOR.replace('html_code8', {
-	filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
-});
-CKEDITOR.replace('html_code9', {
-	filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
-});
-CKEDITOR.replace('html_code10', {
-	filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
-});
-<?php } ?>
 //--></script>
+
+<script type="text/javascript" src="view/javascript/ckeditor5/ckeditor.js"></script>
+
+<?php for ($i = 1; $i <= 10; $i++) { ?>
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	ClassicEditor.create(document.querySelector('#editor<?php echo $i; ?>'))
+	.catch(error => {
+		console.error(error);
+	});
+});
+//--></script>
+<?php } ?>
 
 <script type="text/javascript"><!--
 var module_row = <?php echo $module_row; ?>;
@@ -245,10 +207,6 @@ function addModule() {
 
 	module_row++;
 }
-//--></script>
-
-<script type="text/javascript"><!--
-$(function() { $('#tabs a').tabs(); });
 //--></script>
 
 <?php echo $footer; ?>

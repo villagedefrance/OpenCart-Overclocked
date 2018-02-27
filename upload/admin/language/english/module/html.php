@@ -18,7 +18,7 @@ $_['tab_code']              = 'Code';
 // Entry
 $_['entry_theme']           = 'Complete Module:<span class="help">Show content with header.</span>';
 $_['entry_title']           = 'Custom Title:<span class="help">Overrides the default module title.</span>';
-$_['entry_code']            = 'HTML Code:<span class="help">Use "Source" to enter or paste a script. Enter any other content directly in the text editor.</span>';
+$_['entry_code']            = 'HTML Code:<span class="help">Enter any content directly in the text editor.</span>';
 
 $_['entry_tab_id']          = 'Code';
 $_['entry_layout']          = 'Layout';
