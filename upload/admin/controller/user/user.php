@@ -610,109 +610,156 @@ class ControllerUserUser extends Controller {
 			}
 		}
 
-		if ($this->request->post['username']) {
-			// Current Password Check
-			if ($this->request->post['old_password'] && (utf8_strlen($this->request->post['old_password']) > 3) && (utf8_strlen($this->request->post['old_password']) < 21)) {
-				$password_no_match = $this->model_user_user->checkUserPassword($this->request->post['old_password'], $user_info['user_id'], $this->request->post['username']);
-
-				if ($password_no_match) {
-					$this->error['old_password'] = $this->language->get('error_old_password');
-				}
-
-			} else {
-				$this->error['old_password'] = $this->language->get('error_old_password');
-			}
-
-			if ((utf8_strlen($this->request->post['username']) < 3) || (utf8_strlen($this->request->post['username']) > 20)) {
-				$this->error['username'] = $this->language->get('error_username');
-			}
-
-			if (!$this->user->checkUsername($this->request->post['username'])) {
-				$this->error['username'] = $this->language->get('error_syntax');
-			}
-		}
-
-		if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
-			// Current Password Check
-			if ($this->request->post['old_password'] && (utf8_strlen($this->request->post['old_password']) > 3) && (utf8_strlen($this->request->post['old_password']) < 21)) {
-				$password_no_match = $this->model_user_user->checkUserPassword($this->request->post['old_password'], $user_info['user_id'], $this->request->post['username']);
-
-				if ($password_no_match) {
-					$this->error['old_password'] = $this->language->get('error_old_password');
-				}
-
-			} else {
-				$this->error['old_password'] = $this->language->get('error_old_password');
-			}
-
-			$this->error['firstname'] = $this->language->get('error_firstname');
-		}
-
-		if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
-			// Current Password Check
-			if ($this->request->post['old_password'] && (utf8_strlen($this->request->post['old_password']) > 3) && (utf8_strlen($this->request->post['old_password']) < 21)) {
-				$password_no_match = $this->model_user_user->checkUserPassword($this->request->post['old_password'], $user_info['user_id'], $this->request->post['username']);
-
-				if ($password_no_match) {
-					$this->error['old_password'] = $this->language->get('error_old_password');
-				}
-
-			} else {
-				$this->error['old_password'] = $this->language->get('error_old_password');
-			}
-
-			$this->error['lastname'] = $this->language->get('error_lastname');
-		}
-
-		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
-			// Current Password Check
-			if ($this->request->post['old_password'] && (utf8_strlen($this->request->post['old_password']) > 3) && (utf8_strlen($this->request->post['old_password']) < 21)) {
-				$password_no_match = $this->model_user_user->checkUserPassword($this->request->post['old_password'], $user_info['user_id'], $this->request->post['username']);
-
-				if ($password_no_match) {
-					$this->error['old_password'] = $this->language->get('error_old_password');
-				}
-
-			} else {
-				$this->error['old_password'] = $this->language->get('error_old_password');
-			}
-
-			$this->error['email'] = $this->language->get('error_email');
-		}
-
-		$user_email = $this->model_user_user->getUserByEmail($this->request->post['email']);
-
-		if (!isset($this->request->get['user_id'])) {
-			if ($user_email) {
-				$this->error['email'] = $this->language->get('error_email_exists');
-			}
-		} else {
-			if ($user_email && ($this->request->get['user_id'] != $user_email['user_id'])) {
-				$this->error['email'] = $this->language->get('error_email_exists');
-			}
-		}
-
-		if ($this->request->post['password'] != "") {
-			// Current Password Check
-			if (isset($this->request->get['user_id']) && $user_info) {
+		if (isset($this->request->get['user_id']) && $user_info) {
+			// Existing user
+			if ($this->request->post['username']) {
+				// Current Password Check
 				if ($this->request->post['old_password'] && (utf8_strlen($this->request->post['old_password']) > 3) && (utf8_strlen($this->request->post['old_password']) < 21)) {
 					$password_no_match = $this->model_user_user->checkUserPassword($this->request->post['old_password'], $user_info['user_id'], $this->request->post['username']);
 
 					if ($password_no_match) {
 						$this->error['old_password'] = $this->language->get('error_old_password');
 					}
-
 				} else {
 					$this->error['old_password'] = $this->language->get('error_old_password');
 				}
+
+				if ((utf8_strlen($this->request->post['username']) < 3) || (utf8_strlen($this->request->post['username']) > 20)) {
+					$this->error['username'] = $this->language->get('error_username');
+				}
+
+				if (!$this->user->checkUsername($this->request->post['username'])) {
+					$this->error['username'] = $this->language->get('error_syntax');
+				}
 			}
 
-			if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
+			if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
+				// Current Password Check
+				if ($this->request->post['old_password'] && (utf8_strlen($this->request->post['old_password']) > 3) && (utf8_strlen($this->request->post['old_password']) < 21)) {
+					$password_no_match = $this->model_user_user->checkUserPassword($this->request->post['old_password'], $user_info['user_id'], $this->request->post['username']);
+
+					if ($password_no_match) {
+						$this->error['old_password'] = $this->language->get('error_old_password');
+					}
+				} else {
+					$this->error['old_password'] = $this->language->get('error_old_password');
+				}
+
+				$this->error['firstname'] = $this->language->get('error_firstname');
+			}
+
+			if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
+				// Current Password Check
+				if ($this->request->post['old_password'] && (utf8_strlen($this->request->post['old_password']) > 3) && (utf8_strlen($this->request->post['old_password']) < 21)) {
+					$password_no_match = $this->model_user_user->checkUserPassword($this->request->post['old_password'], $user_info['user_id'], $this->request->post['username']);
+
+					if ($password_no_match) {
+						$this->error['old_password'] = $this->language->get('error_old_password');
+					}
+				} else {
+					$this->error['old_password'] = $this->language->get('error_old_password');
+				}
+
+				$this->error['lastname'] = $this->language->get('error_lastname');
+			}
+
+			if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
+				// Current Password Check
+				if ($this->request->post['old_password'] && (utf8_strlen($this->request->post['old_password']) > 3) && (utf8_strlen($this->request->post['old_password']) < 21)) {
+					$password_no_match = $this->model_user_user->checkUserPassword($this->request->post['old_password'], $user_info['user_id'], $this->request->post['username']);
+
+					if ($password_no_match) {
+						$this->error['old_password'] = $this->language->get('error_old_password');
+					}
+				} else {
+					$this->error['old_password'] = $this->language->get('error_old_password');
+				}
+
+				$this->error['email'] = $this->language->get('error_email');
+			}
+
+			$user_email = $this->model_user_user->getUserByEmail($this->request->post['email']);
+
+			if (!isset($this->request->get['user_id'])) {
+				if ($user_email) {
+					$this->error['email'] = $this->language->get('error_email_exists');
+				}
+			} else {
+				if ($user_email && ($this->request->get['user_id'] != $user_email['user_id'])) {
+					$this->error['email'] = $this->language->get('error_email_exists');
+				}
+			}
+
+			if ($this->request->post['password'] != "") {
+				// Current Password Check
+				if (isset($this->request->get['user_id']) && $user_info) {
+					if ($this->request->post['old_password'] && (utf8_strlen($this->request->post['old_password']) > 3) && (utf8_strlen($this->request->post['old_password']) < 21)) {
+						$password_no_match = $this->model_user_user->checkUserPassword($this->request->post['old_password'], $user_info['user_id'], $this->request->post['username']);
+
+						if ($password_no_match) {
+							$this->error['old_password'] = $this->language->get('error_old_password');
+						}
+					} else {
+						$this->error['old_password'] = $this->language->get('error_old_password');
+					}
+				}
+
+				if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
+					$this->error['password'] = $this->language->get('error_password');
+				}
+
+				if ($this->request->post['confirm'] != $this->request->post['password']) {
+					$this->error['confirm'] = $this->language->get('error_confirm');
+				}
+			}
+
+		} else {
+			// New user
+			if ($this->request->post['username']) {
+				if ((utf8_strlen($this->request->post['username']) < 3) || (utf8_strlen($this->request->post['username']) > 20)) {
+					$this->error['username'] = $this->language->get('error_username');
+				}
+
+				if (!$this->user->checkUsername($this->request->post['username'])) {
+					$this->error['username'] = $this->language->get('error_syntax');
+				}
+			}
+
+			if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
+				$this->error['firstname'] = $this->language->get('error_firstname');
+			}
+
+			if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
+				$this->error['lastname'] = $this->language->get('error_lastname');
+			}
+
+			if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
+				$this->error['email'] = $this->language->get('error_email');
+			}
+
+			$user_email = $this->model_user_user->getUserByEmail($this->request->post['email']);
+
+			if (!isset($this->request->get['user_id'])) {
+				if ($user_email) {
+					$this->error['email'] = $this->language->get('error_email_exists');
+				}
+			} else {
+				if ($user_email && ($this->request->get['user_id'] != $user_email['user_id'])) {
+					$this->error['email'] = $this->language->get('error_email_exists');
+				}
+			}
+
+			if ($this->request->post['password'] != "") {
+				if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
+					$this->error['password'] = $this->language->get('error_password');
+				}
+
+				if ($this->request->post['confirm'] != $this->request->post['password']) {
+					$this->error['confirm'] = $this->language->get('error_confirm');
+				}
+
+			} else {
 				$this->error['password'] = $this->language->get('error_password');
-			}
-
-			if ($this->request->post['confirm'] != $this->request->post['password']) {
-				$this->error['confirm'] = $this->language->get('error_confirm');
 			}
 		}
 
