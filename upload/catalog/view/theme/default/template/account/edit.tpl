@@ -79,6 +79,36 @@
     <div class="right"><input type="submit" value="<?php echo $button_continue; ?>" class="button" /></div>
   </div>
   </form>
+  <h2><?php echo $heading_gdpr; ?></h2>
+  <div class="content-info">
+    <p><?php echo $help_gdpr; ?></p>
+    <ul>
+      <li><?php echo $gdpr_firstname; ?></li>
+      <li><?php echo $gdpr_lastname; ?></li>
+      <li><?php echo $gdpr_address; ?></li>
+      <li><?php echo $gdpr_email; ?></li>
+      <li><?php echo $gdpr_telephone; ?></li>
+    <?php if ($show_fax) { ?>
+      <li><?php echo $gdpr_fax; ?></li>
+    <?php } ?>
+    <?php if ($show_gender) { ?>
+      <li><?php echo $gdpr_gender; ?></li>
+    <?php } ?>
+    <?php if ($show_dob) { ?>
+      <li><?php echo $gdpr_date_of_birth; ?></li>
+    <?php } ?>
+      <li><?php echo $gdpr_password; ?></li>
+      <li><?php echo $gdpr_ip; ?></li>
+    </ul>
+  </div>
+  <h2><?php echo $heading_copying; ?></h2>
+  <div class="content-info">
+    <p><?php echo $help_copying; ?></p>
+  </div>
+  <h2><?php echo $heading_closing; ?></h2>
+  <div class="content-info">
+    <p><?php echo $help_closing; ?></p>
+  </div>
   <?php echo $content_bottom; ?>
 </div>
 <?php echo $content_footer; ?>

@@ -64,6 +64,9 @@ class ControllerAccountEdit extends Controller {
 		);
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_gdpr'] = $this->language->get('heading_gdpr');
+		$this->data['heading_copying'] = $this->language->get('heading_copying');
+		$this->data['heading_closing'] = $this->language->get('heading_closing');
 
 		$this->data['text_your_details'] = $this->language->get('text_your_details');
 		$this->data['text_female'] = $this->language->get('text_female');
@@ -76,6 +79,21 @@ class ControllerAccountEdit extends Controller {
 		$this->data['entry_fax'] = $this->language->get('entry_fax');
 		$this->data['entry_gender'] = $this->language->get('entry_gender');
 		$this->data['entry_date_of_birth'] = $this->language->get('entry_date_of_birth');
+
+		$this->data['gdpr_firstname'] = $this->language->get('gdpr_firstname');
+		$this->data['gdpr_lastname'] = $this->language->get('gdpr_lastname');
+		$this->data['gdpr_address'] = $this->language->get('gdpr_address');
+		$this->data['gdpr_email'] = $this->language->get('gdpr_email');
+		$this->data['gdpr_telephone'] = $this->language->get('gdpr_telephone');
+		$this->data['gdpr_fax'] = $this->language->get('gdpr_fax');
+		$this->data['gdpr_gender'] = $this->language->get('gdpr_gender');
+		$this->data['gdpr_date_of_birth'] = $this->language->get('gdpr_date_of_birth');
+		$this->data['gdpr_password'] = $this->language->get('gdpr_password');
+		$this->data['gdpr_ip'] = $this->language->get('gdpr_ip');
+
+		$this->data['help_gdpr'] = $this->language->get('help_gdpr');
+		$this->data['help_copying'] = $this->language->get('help_copying');
+		$this->data['help_closing'] = $this->language->get('help_closing');
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 		$this->data['button_back'] = $this->language->get('button_back');
