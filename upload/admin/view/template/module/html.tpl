@@ -50,7 +50,7 @@
             </tr>
             <tr>
               <td><?php echo $entry_code; ?></td>
-              <td><textarea id="editor<?php echo $i; ?>" class="hidden" name="html_code<?php echo $i; ?>"><?php echo isset(${'html_code' . $i}) ? ${'html_code' . $i} : ''; ?></textarea></td>
+              <td><textarea name="html_code<?php echo $i; ?>" cols="60" rows="12"><?php echo isset(${'html_code' . $i}) ? ${'html_code' . $i} : ''; ?></textarea></td>
             </tr>
           </table>
         </div>
@@ -152,25 +152,6 @@
 </div>
 
 <script type="text/javascript"><!--
-$(document).ready(function() {
-	$('#tabs a').tabs();
-});
-//--></script>
-
-<script type="text/javascript" src="view/javascript/ckeditor5/ckeditor.js"></script>
-
-<?php for ($i = 1; $i <= 10; $i++) { ?>
-<script type="text/javascript"><!--
-$(document).ready(function() {
-	ClassicEditor.create(document.querySelector('#editor<?php echo $i; ?>'))
-	.catch(error => {
-		console.error(error);
-	});
-});
-//--></script>
-<?php } ?>
-
-<script type="text/javascript"><!--
 var module_row = <?php echo $module_row; ?>;
 
 function addModule() {
@@ -207,6 +188,12 @@ function addModule() {
 
 	module_row++;
 }
+//--></script>
+
+<script type="text/javascript"><!--
+$(function() {
+	$('#tabs a').tabs();
+});
 //--></script>
 
 <?php echo $footer; ?>
