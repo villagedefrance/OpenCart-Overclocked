@@ -41,10 +41,14 @@ class ControllerCommonNotification extends Controller {
 		$notification_review = $this->config->get('config_notification_review');
 		$notification_affiliate = $this->config->get('config_notification_affiliate');
 
-		if (!$notification_pending && !$notification_complete && !$notification_return && !$notification_online && !$notification_approval && !$notification_stock && !$notification_low && !$notification_review && !$notification_affiliate) {
-			$this->data['notifications'] = false;
+		if ($notifications) {
+			if (!$notification_pending && !$notification_complete && !$notification_return && !$notification_online && !$notification_approval && !$notification_stock && !$notification_low && !$notification_review && !$notification_affiliate) {
+				$this->data['notifications'] = false;
+			} else {
+				$this->data['notifications'] = true;
+			}
 		} else {
-			$this->data['notifications'] = true;
+			$this->data['notifications'] = false;
 		}
 
 		if (!$notification_pending && !$notification_complete && !$notification_return) {
