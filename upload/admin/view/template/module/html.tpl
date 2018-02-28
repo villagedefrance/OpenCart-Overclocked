@@ -50,7 +50,7 @@
             </tr>
             <tr>
               <td><?php echo $entry_code; ?></td>
-              <td><textarea name="html_code<?php echo $i; ?>" cols="60" rows="12"><?php echo isset(${'html_code' . $i}) ? ${'html_code' . $i} : ''; ?></textarea></td>
+              <td><textarea name="html_code<?php echo $i; ?>" cols="55" rows="11"><?php echo isset(${'html_code' . $i}) ? ${'html_code' . $i} : ''; ?></textarea></td>
             </tr>
           </table>
         </div>
