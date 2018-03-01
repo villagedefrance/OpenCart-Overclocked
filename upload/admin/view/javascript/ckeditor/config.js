@@ -11,17 +11,15 @@ CKEDITOR.editorConfig = function(config) {
 	config.filebrowserWindowWidth = '640';
 	config.filebrowserWindowHeight = '440';
 
+	config.enterMode = CKEDITOR.ENTER_BR;
+	config.shiftEnterMode = CKEDITOR.ENTER_P;
+
 	config.allowedContent = true;
-	config.autoUpdateElement = false;
 	config.htmlEncodeOutput = false;
-	config.ignoreEmptyParagraph = true;
-	config.linkJavaScriptLinksAllowed = true;
 	config.resize_enabled = true;
 	config.scayt_autoStartup = false;
 	config.toolbarCanCollapse = true;
 	config.toolbarStartupExpanded = true;
-
-	config.extraAllowedContent = '*(*);*{*}';
 
 	config.extraPlugins = 'simplebutton';
 	config.extraPlugins = 'codemirror';
