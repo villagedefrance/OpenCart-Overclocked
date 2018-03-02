@@ -146,6 +146,16 @@ class ModelAccountCustomer extends Model {
 		return $query->row;
 	}
 
+	public function getCustomerUserAgent($customer_id) {
+		$query = $this->db->query("SELECT DISTINCT co.user_agent AS user_agent FROM " . DB_PREFIX . "customer_online co LEFT JOIN " . DB_PREFIX . "customer c ON (co.ip = c.ip) WHERE c.customer_id = '" . (int)$customer_id . "' LIMIT 0,1");
+
+		if ($query->row['user_agent']) {
+			return $query->row['user_agent'];
+		} else {
+			return false;
+		}
+	}
+
 	public function getCustomers($data = array()) {
 		$sql = "SELECT *, CONCAT(c.firstname, ' ', c.lastname) AS name, cgd.name AS customer_group FROM " . DB_PREFIX . "customer c LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (c.customer_group_id = cgd.customer_group_id) ";
 

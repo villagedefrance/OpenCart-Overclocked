@@ -1,0 +1,70 @@
+/* -----------------------------------
+* Overclocked Edition - Account Data
+* Copyright © 2018 - Villagedefrance
+* ------------------------------------
+*/
+html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+body {
+	background: #FFF;
+}
+body, td, th, input, select, textarea, option, optgroup {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #000;
+}
+h1 {
+	text-transform: uppercase;
+	color: #CCC;
+	text-align: right;
+	font-size: 24px;
+	font-weight: normal;
+	padding-bottom: 5px;
+	margin-top: 0;
+	margin-bottom: 15px;
+	border-bottom: 1px solid #CDDDDD;
+}
+/* General */
+.store {
+	width: 100%;
+	margin-bottom: 20px;
+}
+.top-right {
+	float: right;
+	text-align: left;
+	vertical-align: top;
+	margin-right: 10px;
+}
+/* Table */
+table.address, table.personal {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+table.personal > tbody {
+	border: 1px solid #CDDDDD;
+}
+table.personal > tbody > tr > td:first-child {
+	width: 180px;
+}
+table.personal > tbody > tr > td {
+	padding: 10px;
+	border-bottom: 1px dotted #CCC;
+}
+/* Address */
+.address {
+	width: 100%;
+	margin-bottom: 20px;
+	border-top: 1px solid #CDDDDD;
+	border-right: 1px solid #CDDDDD;
+}
+.address td {
+	padding: 5px;
+	border-left: 1px solid #CDDDDD;
+	border-bottom: 1px solid #CDDDDD;
+	vertical-align: text-bottom;
+	margin-bottom: 10px;
+}

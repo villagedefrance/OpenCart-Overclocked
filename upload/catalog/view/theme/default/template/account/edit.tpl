@@ -100,12 +100,20 @@
       <li><?php echo $gdpr_date_of_birth; ?></li>
     <?php } ?>
       <li><?php echo $gdpr_password; ?></li>
+    <?php if ($track_online) { ?>
+      <li><?php echo $gdpr_user_agent; ?></li>
+    <?php } ?>
       <li><?php echo $gdpr_ip; ?></li>
     </ul>
   </div>
   <h2><?php echo $heading_copying; ?></h2>
   <div class="content-info">
     <p><?php echo $help_copying; ?></p>
+    <p>
+      <a onclick="window.open('<?php echo $customer_data; ?>');" class="button"><i class="fa fa-eye"></i> &nbsp; <?php echo $button_view; ?></a> &nbsp;
+      <a onclick="window.open('<?php echo $customer_data; ?>&pdf=true');" class="button"><i class="fa fa-download"></i> &nbsp; <?php echo $button_download; ?></a> &nbsp;
+      <a href="<?php echo $customer_data; ?>" id="print-data" class="button"><i class="fa fa-print"></i> &nbsp; <?php echo $button_print; ?></a>
+    </p>
   </div>
   <h2><?php echo $heading_closing; ?></h2>
   <div class="content-info">
@@ -156,6 +164,18 @@ $('a.button-dob').confirm({
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('#date-of-birth').datepicker({dateFormat: 'yy-mm-dd'});
+});
+//--></script>
+
+<script type="text/javascript" src="catalog/view/javascript/jquery/jquery-printpage.min.js"></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('#print-data').printPage({
+		url: false,
+		attr: 'href',
+		message: '<?php echo $text_print_data; ?>'
+	});
 });
 //--></script>
 
