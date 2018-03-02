@@ -897,6 +897,10 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_customer_approval; ?></td>
+            <td><?php echo $help_customer_approval; ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_customer_group; ?><span class="help"><?php echo $help_customer_group; ?></span></td>
             <td><select name="config_customer_group_id">
             <?php foreach ($customer_groups as $customer_group) { ?>
@@ -906,7 +910,7 @@
                 <option value="<?php echo $customer_group['customer_group_id']; ?>"><?php echo $customer_group['name']; ?></option>
               <?php } ?>
             <?php } ?>
-            </select></td>
+            </select> &nbsp; <a href="<?php echo $customer_approval; ?>" class="button"><i class="fa fa-group"></i></a></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_customer_group_display; ?><span class="help"><?php echo $help_customer_group_display; ?></span></td>

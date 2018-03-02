@@ -177,6 +177,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_stock_checkout'] = $this->language->get('entry_stock_checkout');
 		$this->data['entry_stock_status'] = $this->language->get('entry_stock_status');
 		$this->data['entry_supplier_group'] = $this->language->get('entry_supplier_group');
+		$this->data['entry_customer_approval'] = $this->language->get('entry_customer_approval');
 		$this->data['entry_customer_online'] = $this->language->get('entry_customer_online');
 		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
 		$this->data['entry_customer_group_display'] = $this->language->get('entry_customer_group_display');
@@ -350,6 +351,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['help_stock_checkout'] = $this->language->get('help_stock_checkout');
 		$this->data['help_stock_status'] = $this->language->get('help_stock_status');
 		$this->data['help_supplier_group'] = $this->language->get('help_supplier_group');
+		$this->data['help_customer_approval'] = $this->language->get('help_customer_approval');
 		$this->data['help_customer_online'] = $this->language->get('help_customer_online');
 		$this->data['help_customer_group'] = $this->language->get('help_customer_group');
 		$this->data['help_customer_group_display'] = $this->language->get('help_customer_group_display');
@@ -444,6 +446,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['help_file_extension_allowed'] = $this->language->get('help_file_extension_allowed');
 		$this->data['help_file_mime_allowed'] = $this->language->get('help_file_mime_allowed');
 
+		$this->data['customer_approval'] = $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['themes'] = $this->url->link('extension/theme', 'token=' . $this->session->data['token'], 'SSL');
 
 		if (isset($this->error['warning'])) {
