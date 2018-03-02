@@ -95,6 +95,9 @@ class ControllerAccountEdit extends Controller {
 		$this->data['help_copying'] = $this->language->get('help_copying');
 		$this->data['help_closing'] = $this->language->get('help_closing');
 
+		$this->data['dialog_gender'] = $this->language->get('dialog_gender');
+		$this->data['dialog_date_of_birth'] = $this->language->get('dialog_date_of_birth');
+
 		$this->data['button_continue'] = $this->language->get('button_continue');
 		$this->data['button_back'] = $this->language->get('button_back');
 

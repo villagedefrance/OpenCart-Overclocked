@@ -13,7 +13,7 @@
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
   <h1><?php echo $heading_title; ?></h1>
-  <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+  <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" name="edit">
   <h2><?php echo $text_your_details; ?></h2>
   <div class="content">
     <table class="form">
@@ -60,16 +60,18 @@
         <?php } else { ?>
           <input type="radio" name="gender" value="1" /><?php echo $text_female; ?>
           <input type="radio" name="gender" value="0" checked="checked" /><?php echo $text_male; ?>
-        <?php } ?></td>
+        <?php } ?> &nbsp; <a class="button button-gender"><i class="fa fa-info-circle"></i></a>
+        </td>
       </tr>
       <?php } ?>
       <?php if ($show_dob) { ?>
       <tr>
         <td><span class="required">*</span> <?php echo $entry_date_of_birth; ?></td>
-        <td><input type="text" name="date_of_birth" value="<?php echo $date_of_birth; ?>" id="date-of-birth" size="12" />
+        <td><input type="text" name="date_of_birth" value="<?php echo $date_of_birth; ?>" id="date-of-birth" size="12" /> &nbsp; <a class="button button-dob"><i class="fa fa-info-circle"></i></a>
         <?php if ($error_date_of_birth) { ?>
           <span class="error"><?php echo $error_date_of_birth; ?></span>
-        <?php } ?></td>
+        <?php } ?>
+        </td>
       </tr>
       <?php } ?>
     </table>
@@ -112,6 +114,44 @@
   <?php echo $content_bottom; ?>
 </div>
 <?php echo $content_footer; ?>
+
+<link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/confirm/jquery-confirm.min.css" />
+
+<script type="text/javascript" src="catalog/view/javascript/jquery/confirm/jquery-confirm.min.js"></script>
+
+<script type="text/javascript"><!--
+$('a.button-gender').confirm({
+	title: '<?php echo $gdpr_gender; ?>',
+	content: '<?php echo $dialog_gender; ?>',
+	icon: 'fa fa-question-circle',
+	theme: 'light',
+	useBootstrap: false,
+	boxWidth: 300,
+	animation: 'zoom',
+	closeAnimation: 'scale',
+	opacity: 0.1,
+	buttons: {
+		ok: function() { }
+	}
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$('a.button-dob').confirm({
+	title: '<?php echo $gdpr_date_of_birth; ?>',
+	content: '<?php echo $dialog_date_of_birth; ?>',
+	icon: 'fa fa-question-circle',
+	theme: 'light',
+	useBootstrap: false,
+	boxWidth: 300,
+	animation: 'zoom',
+	closeAnimation: 'scale',
+	opacity: 0.1,
+	buttons: {
+		ok: function() { }
+	}
+});
+//--></script>
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
