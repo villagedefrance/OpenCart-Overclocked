@@ -9,7 +9,6 @@
 <?php } ?>
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
-  <h1><?php echo $heading_title; ?></h1>
   <div class="box">
     <div class="box-heading"><?php echo $heading_title; ?></div>
     <div class="box-content">
