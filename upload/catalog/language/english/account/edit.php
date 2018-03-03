@@ -37,7 +37,7 @@ $_['gdpr_user_agent']      = 'User Agent';
 
 // Help
 $_['help_gdpr']            = 'In order to provide you with the best service possible when using our website, we need to collect some information about yourself.<br />Your personal details are kept safe in accordance with our Privacy Policy.<br />Please find below a list of all the personal data we collect:';
-$_['help_copying']         = 'You can view, download or print a copy of your personal data at anytime. This document contains all the data you provided to us in order to benefit from our services.<br />If you have any questions regarding this data, feel free to call our customer service or send us an email.';
+$_['help_copying']         = 'You can view, download or print a copy of your personal data at anytime. This document contains all the data you provided to us in order to benefit from our services.<br />If you have any questions regarding the data we collect, feel free to call our customer service or send us an email.';
 $_['help_closing']         = 'If you wish to close your account with us, you can do so at anytime.<br />All your personal data will be deleted straight-away if you have never placed any orders with us.<br />However, if one or more orders are linked to your account, some key data will be preserved in order for us to comply with business and tax legislation.';
 
 // Dialog
