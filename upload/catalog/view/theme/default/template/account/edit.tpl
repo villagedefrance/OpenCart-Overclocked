@@ -118,6 +118,9 @@
   <h2><?php echo $heading_closing; ?></h2>
   <div class="content-info">
     <p><?php echo $help_closing; ?></p>
+    <p>
+      <a href="<?php echo $close_account; ?>" class="button-danger"><i class="fa fa-close"></i> &nbsp; <?php echo $button_delete; ?></a>
+    </p>
   </div>
   <?php echo $content_bottom; ?>
 </div>

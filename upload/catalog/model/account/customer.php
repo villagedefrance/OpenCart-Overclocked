@@ -114,6 +114,118 @@ class ModelAccountCustomer extends Model {
 		}
 	}
 
+	public function addDeletedCustomer($customer_id) {
+		$customer_info = $this->getCustomer($customer_id);
+
+		if ($customer_info) {
+			$orders = $this->getTotalCustomersOrders($customer_id);
+
+			$this->db->query("INSERT INTO " . DB_PREFIX . "customer_deleted SET customer_id = '" . (int)$customer_id . "', store_id = '" . (int)$customer_info['store_id'] . "', firstname = '" . $this->db->escape($customer_info['firstname']) . "', lastname = '" . $this->db->escape($customer_info['lastname']) . "', email = '" . $this->db->escape($customer_info['email']) . "', orders = '" . (int)$orders . "', date_added = NOW()");
+
+			// Send deleted customer email
+			$this->language->load('mail/delete');
+
+			$subject = sprintf($this->language->get('text_subject'), $this->config->get('config_name'));
+
+			$message = $this->language->get('text_sorry') . "\n\n";
+			$message .= $this->language->get('text_services') . "\n\n";
+			$message .= $this->language->get('text_thanks') . "\n";
+			$message .= $this->config->get('config_name');
+
+			// HTML Mail
+			$template = new Template();
+
+			$template->data['title'] = html_entity_decode($subject, ENT_QUOTES, 'UTF-8');
+			$template->data['logo'] = $this->config->get('config_url') . 'image/' . $this->config->get('config_logo');
+			$template->data['store_name'] = $this->config->get('config_name');
+			$template->data['store_url'] = $this->config->get('config_url');
+			$template->data['message'] = nl2br($message);
+
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/mail/delete.tpl')) {
+				$html = $template->fetch($this->config->get('config_template') . '/template/mail/delete.tpl');
+			} else {
+				$html = $template->fetch('default/template/mail/delete.tpl');
+			}
+
+			$mail = new Mail();
+			$mail->protocol = $this->config->get('config_mail_protocol');
+			$mail->parameter = $this->config->get('config_mail_parameter');
+			$mail->hostname = $this->config->get('config_smtp_host');
+			$mail->username = $this->config->get('config_smtp_username');
+			$mail->password = $this->config->get('config_smtp_password');
+			$mail->port = $this->config->get('config_smtp_port');
+			$mail->timeout = $this->config->get('config_smtp_timeout');
+
+			$mail->setTo($customer_info['email']);
+			$mail->setFrom($this->config->get('config_email'));
+			$mail->setSender(html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
+			$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
+			$mail->setHtml($html);
+			$mail->send();
+
+			// Send to main admin email if new account email is enabled
+			if ($this->config->get('config_account_mail')) {
+				$message = $this->language->get('text_cancellation') . "\n\n";
+				$message .= $this->language->get('text_website') . " " . $this->config->get('config_name') . "\n";
+				$message .= $this->language->get('text_firstname') . " " . $customer_info['firstname'] . "\n";
+				$message .= $this->language->get('text_lastname') . " " . $customer_info['lastname'] . "\n";
+
+				if ($customer_info['company']) {
+					$message .= $this->language->get('text_company') . " " . $customer_info['company'] . "\n";
+				}
+
+				$message .= $this->language->get('text_email') . " " . $customer_info['email'] . "\n";
+				$message .= $this->language->get('text_telephone') . " " . $customer_info['telephone'] . "\n";
+
+				$mail = new Mail();
+				$mail->protocol = $this->config->get('config_mail_protocol');
+				$mail->parameter = $this->config->get('config_mail_parameter');
+				$mail->hostname = $this->config->get('config_smtp_host');
+				$mail->username = $this->config->get('config_smtp_username');
+				$mail->password = $this->config->get('config_smtp_password');
+				$mail->port = $this->config->get('config_smtp_port');
+				$mail->timeout = $this->config->get('config_smtp_timeout');
+
+				$mail->setTo($this->config->get('config_email'));
+				$mail->setFrom($this->config->get('config_email_noreply'));
+				$mail->setSender(html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
+				$mail->setSubject(html_entity_decode($this->language->get('text_customer'), ENT_QUOTES, 'UTF-8'));
+				$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
+				$mail->send();
+
+				// Send to additional alert emails if new account email is enabled
+				$emails = explode(',', $this->config->get('config_alert_emails'));
+
+				foreach ($emails as $email) {
+					if (utf8_strlen($email) > 0 && preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $email)) {
+						$mail->setTo($email);
+						$mail->send();
+					}
+				}
+			}
+		}
+	}
+
+	public function deleteCustomer($customer_id) {
+		$this->db->query("DELETE FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_reward WHERE customer_id = '" . (int)$customer_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_transaction WHERE customer_id = '" . (int)$customer_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_ip WHERE customer_id = '" . (int)$customer_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "address WHERE customer_id = '" . (int)$customer_id . "'");
+	}
+
+	public function deleteCustomerWithOrders($customer_id) {
+		$password = '';
+
+		for ($i = 0; $i < 8; $i++) {
+			$password .= chr(rand(97, 122));
+		}
+
+		$this->db->query("UPDATE " . DB_PREFIX . "customer SET salt = '" . $this->db->escape($salt = substr(hash_rand('md5'), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($password)))) . "', fax = '0', gender = '0', date_of_birth = '0', newsletter = '0' WHERE customer_id = '" . (int)$customer_id . "'");
+
+		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_ip WHERE customer_id = '" . (int)$customer_id . "'");
+	}
+
 	public function editCustomer($data) {
 		$this->db->query("UPDATE " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . (isset($data['fax']) ? (int)$data['fax'] : 0) . "', gender = '" . (isset($data['gender']) ? (int)$data['gender'] : 0) . "', date_of_birth = '" . (isset($data['date_of_birth']) ? $data['date_of_birth'] : 0) . "' WHERE customer_id = '" . (int)$this->customer->getId() . "'");
 	}
@@ -241,6 +353,16 @@ class ModelAccountCustomer extends Model {
 		}
 	}
 
+	public function getDeletedByCustomerId($customer_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer_deleted WHERE customer_id = '" . (int)$customer_id . "'");
+
+		if ($query->row['total'] == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 	public function getCustomerDateOfBirth($customer_id) {
 		$query = $this->db->query("SELECT date_of_birth FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "'");
 
@@ -249,6 +371,12 @@ class ModelAccountCustomer extends Model {
 		} else {
 			return false;
 		}
+	}
+
+	public function getTotalCustomersOrders($customer_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE customer_id = '" . (int)$customer_id . "' AND order_status_id > '0'");
+
+		return $query->row['total'];
 	}
 
 	public function getTotalCustomersByEmail($email) {

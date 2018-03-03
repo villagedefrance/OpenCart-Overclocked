@@ -67,6 +67,7 @@ class ControllerReportCustomerOrder extends Controller {
 		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
 
 		$this->load->model('report/customer');
+		$this->load->model('sale/customer');
 
 		$this->data['customers'] = array();
 
@@ -85,16 +86,20 @@ class ControllerReportCustomerOrder extends Controller {
 		foreach ($results as $result) {
 			$action = array();
 
-			$action[] = array(
-				'text' => $this->language->get('text_edit'),
-				'href' => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'] . $url, 'SSL')
-			);
+			$customer_deleted = $this->model_sale_customer->getDeletedByCustomerId($result['customer_id']);
+
+			if (!$customer_deleted) {
+				$action[] = array(
+					'text' => $this->language->get('text_edit'),
+					'href' => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'] . $url, 'SSL')
+				);
+			}
 
 			$this->data['customers'][] = array(
 				'customer'       => $result['customer'],
 				'email'          => $result['email'],
 				'customer_group' => $result['customer_group'],
-				'status'         => $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+				'status'         => (!$customer_deleted) ? $result['status'] : 2,
 				'orders'         => $result['orders'],
 				'products'       => $result['products'],
 				'total'          => $this->currency->format($result['total'], $this->config->get('config_currency')),
@@ -106,6 +111,9 @@ class ControllerReportCustomerOrder extends Controller {
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_all_status'] = $this->language->get('text_all_status');
+		$this->data['text_enabled'] =$this->language->get('text_enabled');
+		$this->data['text_disabled'] =$this->language->get('text_disabled');
+		$this->data['text_deleted'] =$this->language->get('text_deleted');
 
 		$this->data['column_customer'] = $this->language->get('column_customer');
 		$this->data['column_email'] = $this->language->get('column_email');

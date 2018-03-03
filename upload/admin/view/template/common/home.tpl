@@ -268,11 +268,13 @@
                 <td class="left"><?php echo $customer['email']; ?></td>
                 <td class="center"><?php echo $customer['customer_group']; ?></td>
                 <td class="center"><?php echo $customer['approved']; ?></td>
-                <?php if ($customer['status'] == 1) { ?>
-                  <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
-                <?php } else { ?>
-                  <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
-                <?php } ?>
+              <?php if ($customer['status'] == 2) { ?>
+                <td class="center"><span class="deleted"><?php echo $text_deleted; ?></span></td>
+              <?php } elseif ($customer['status'] == 1) { ?>
+                <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+              <?php } else { ?>
+                <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+              <?php } ?>
                 <td class="center"><?php echo $customer['date_added']; ?></td>
                 <td class="center"><?php echo $customer['orders_passed']; ?>
                 <?php foreach ($customer['action_passed'] as $action_passed) { ?>

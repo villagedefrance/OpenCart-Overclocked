@@ -749,7 +749,21 @@ a.button, input.button, input.button-cart, input.button-wrap-add, input.button-w
 	outline: none;
 	cursor: pointer;
 }
-a.button {
+a.button-danger, input.button-danger {
+	color: #FFF;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background: #DE5954;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+	outline: none;
+	cursor: pointer;
+}
+a.button, a.button-danger {
 	display: inline-block;
 	text-decoration: none;
 	padding: 6px 12px;
@@ -757,7 +771,7 @@ a.button {
 	font-weight: bold;
 	line-height: 12px;
 }
-input.button {
+input.button, input.button-danger {
 	border: 0;
 	height: 24px;
 	padding: 0 12px;
@@ -807,6 +821,9 @@ a.button:hover, input.button:hover, input.button-cart:hover {
 	background-image: -ms-linear-gradient(top, #3782BF, #0D6D98);
 	background-image: -o-linear-gradient(top, #3782BF, #0D6D98);
 	background-image: linear-gradient(to bottom, #3782BF, #0D6D98);
+}
+a.button-danger:hover, input.button-danger:hover {
+	background: #E3726E;
 }
 /* Button Buy it Now */
 input.button-buy-now {

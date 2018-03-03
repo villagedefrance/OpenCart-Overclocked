@@ -105,6 +105,7 @@ class ControllerAccountEdit extends Controller {
 		$this->data['button_print'] = $this->language->get('button_print');
 		$this->data['button_download'] = $this->language->get('button_download');
 		$this->data['button_continue'] = $this->language->get('button_continue');
+		$this->data['button_delete'] = $this->language->get('button_delete');
 		$this->data['button_back'] = $this->language->get('button_back');
 
 		if (isset($this->error['warning'])) {
@@ -145,6 +146,7 @@ class ControllerAccountEdit extends Controller {
 
 		$this->data['action'] = $this->url->link('account/edit', 'customer_token=' . $this->session->data['customer_token'], 'SSL');
 
+		$this->data['close_account'] = $this->url->link('account/delete', '', 'SSL');
 		$this->data['customer_data'] = $this->url->link('account/edit/personal', '', 'SSL');
 
 		if ($this->request->server['REQUEST_METHOD'] != 'POST') {

@@ -920,7 +920,7 @@ class ControllerAccountOrder extends Controller {
 		}
 
 		if ($pdf) {
-			$document_type = $this->language->get('text_order_invoice');
+			$document_type = $this->language->get('text_order');
 
 			$document = str_replace(' ', '-', $document_type);
 

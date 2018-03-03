@@ -31,6 +31,9 @@
       <?php } ?>
       <a href="#tab-ip"><?php echo $tab_ip; ?></a>
     </div>
+  <?php if ($customer_deleted) { ?>
+    <div class="attention"><?php echo $customer_warning; ?></div>
+  <?php } ?>
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
       <div id="tab-general">
         <div id="vtabs" class="vtabs"><a href="#tab-customer"><?php echo $tab_general; ?></a>

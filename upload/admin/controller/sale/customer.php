@@ -90,7 +90,9 @@ class ControllerSaleCustomer extends Controller {
 
 		$this->load->model('sale/customer');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+		$customer_deleted = $this->model_sale_customer->getDeletedByCustomerId($this->request->get['customer_id']);
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && !$customer_deleted && $this->validateForm()) {
 			$this->model_sale_customer->editCustomer($this->request->get['customer_id'], $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -703,6 +705,11 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['tab_transaction'] = $this->language->get('tab_transaction');
 		$this->data['tab_reward'] = $this->language->get('tab_reward');
 		$this->data['tab_ip'] = $this->language->get('tab_ip');
+
+		// Customer deleted
+		$this->data['customer_deleted'] = $this->model_sale_customer->getDeletedByCustomerId($this->request->get['customer_id']);
+
+		$this->data['customer_warning'] = $this->language->get('customer_warning');
 
 		$this->data['token'] = $this->session->data['token'];
 

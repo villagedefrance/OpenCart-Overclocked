@@ -52,7 +52,13 @@
             <td class="left"><?php echo $customer['customer']; ?></td>
             <td class="left"><?php echo $customer['email']; ?></td>
             <td class="left"><?php echo $customer['customer_group']; ?></td>
-            <td class="left"><?php echo $customer['status']; ?></td>
+          <?php if ($customer['status'] == 2) { ?>
+            <td class="center"><span class="deleted"><?php echo $text_deleted; ?></span></td>
+          <?php } elseif ($customer['status'] == 1) { ?>
+            <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+          <?php } else { ?>
+            <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+          <?php } ?>
             <td class="right"><?php echo $customer['orders']; ?></td>
             <td class="right"><?php echo $customer['products']; ?></td>
             <td class="right"><?php echo $customer['total']; ?></td>

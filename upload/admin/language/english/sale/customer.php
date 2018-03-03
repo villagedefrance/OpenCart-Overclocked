@@ -79,6 +79,9 @@ $_['entry_description']               = 'Description:';
 $_['entry_amount']                    = 'Amount:<span class="help">Enter an amount without the currency symbol.</span>';
 $_['entry_points']                    = 'Points:<span class="help">Enter a negative number to remove points.</span>';
 
+// Warning
+$_['customer_warning']                = 'ATTENTION! this customer\'s account has been deleted and cannot be edited!';
+
 // Error
 $_['error_warning']                   = 'Warning: Please check the form carefully for errors!';
 $_['error_permission']                = 'Warning: You do not have permission to modify <b>Customers</b> !';

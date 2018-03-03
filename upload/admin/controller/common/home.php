@@ -47,6 +47,7 @@ class ControllerCommonHome extends Controller {
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_deleted'] = $this->language->get('text_deleted');
 
 		$this->data['help_mail_log'] = $this->language->get('help_mail_log');
 		$this->data['help_quote_log'] = $this->language->get('help_quote_log');
@@ -471,10 +472,14 @@ class ControllerCommonHome extends Controller {
 		foreach ($customer_results as $customer_result) {
 			$action = array();
 
-			$action[] = array(
-				'text' => $this->language->get('text_edit'),
-				'href' => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $customer_result['customer_id'], 'SSL')
-			);
+			$customer_deleted = $this->model_sale_customer->getDeletedByCustomerId($customer_result['customer_id']);
+
+			if (!$customer_deleted) {
+				$action[] = array(
+					'text' => $this->language->get('text_edit'),
+					'href' => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $customer_result['customer_id'], 'SSL')
+				);
+			}
 
 			$action_passed = array();
 
@@ -503,7 +508,7 @@ class ControllerCommonHome extends Controller {
 				'email'          => $customer_result['email'],
 				'customer_group' => $customer_result['customer_group'] ? $customer_result['customer_group'] : $this->language->get('text_guest'),
 				'approved'       => $customer_result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
-				'status'         => $customer_result['status'],
+				'status'         => (!$customer_deleted) ? $customer_result['status'] : 2,
 				'date_added'     => date($this->language->get('date_format_short'), strtotime($customer_result['date_added'])),
 				'orders_passed'  => $this->model_sale_customer->getTotalCustomersOrders($customer_result['customer_id']),
 				'orders_missed'  => $this->model_sale_customer->getTotalCustomersOrdersMissed($customer_result['customer_id']),
@@ -763,12 +768,20 @@ class ControllerCommonHome extends Controller {
 				$client = $client_result['customer'];
 			}
 
+			$customer_deleted = $this->model_sale_customer->getDeletedByCustomerId($client_result['customer_id']);
+
+			if (!$customer_deleted) {
+				$customer_href = $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $client_result['customer_id'], 'SSL');
+			} else {
+				$customer_href = $this->url->link('sale/customer', 'token=' . $this->session->data['token'], 'SSL');
+			}
+
 			$this->data['clients'][] = array(
 				'customer' => $client,
 				'orders'   => $client_result['orders'],
 				'products' => $client_result['products'],
 				'total'    => $this->currency->format($client_result['total'], $this->config->get('config_currency')),
-				'href'     => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $client_result['customer_id'], 'SSL')
+				'href'     => $customer_href
 			);
 		}
 
