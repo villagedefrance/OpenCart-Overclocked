@@ -13,7 +13,7 @@
   <?php if ($logo) { ?>
     <img src="<?php echo $logo; ?>" alt="" style="padding:15px 0 0 5px;" />
   <?php } ?>
-  <h1><?php echo $text_order; ?></h1>
+  <h1><?php echo $heading_order; ?></h1>
   <table class="store">
     <tr>
       <td>

@@ -22,6 +22,7 @@ $_['column_order_none']       = 'Pending';
 $_['text_account']            = 'Account';
 $_['text_order']              = 'Order Information';
 $_['text_order_detail']       = 'Order Details';
+$_['text_order_invoice']      = 'Invoice';
 $_['text_invoice_no']         = 'Invoice N&deg;:';
 $_['text_order_id']           = 'Order ID:';
 $_['text_status']             = 'Status:';

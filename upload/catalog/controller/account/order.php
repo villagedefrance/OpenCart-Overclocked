@@ -687,9 +687,8 @@ class ControllerAccountOrder extends Controller {
 		$this->data['direction'] = $this->language->get('direction');
 		$this->data['language'] = $this->language->get('code');
 
-		$this->data['text_order'] = $this->language->get('text_order');
-
 		$this->data['text_order_detail'] = $this->language->get('text_order_detail');
+		$this->data['text_order_invoice'] = $this->language->get('text_order_invoice');
 		$this->data['text_invoice_no'] = $this->language->get('text_invoice_no');
 		$this->data['text_order_id'] = $this->language->get('text_order_id');
 		$this->data['text_telephone'] = $this->language->get('text_telephone');
@@ -762,6 +761,12 @@ class ControllerAccountOrder extends Controller {
 			}
 
 			$this->data['order_id'] = $order_id;
+
+			if ($order_info['order_status_id'] == $this->config->get('config_complete_status_id')) {
+				$this->data['heading_order'] = $this->language->get('text_order_invoice');
+			} else {
+				$this->data['heading_order'] = $this->language->get('text_order_detail');
+			}
 
 			$this->data['date_added'] = date($this->language->get('date_format_time'), strtotime($order_info['date_added']));
 
@@ -915,7 +920,7 @@ class ControllerAccountOrder extends Controller {
 		}
 
 		if ($pdf) {
-			$document_type = $this->language->get('text_order');
+			$document_type = $this->language->get('text_order_invoice');
 
 			$document = str_replace(' ', '-', $document_type);
 
