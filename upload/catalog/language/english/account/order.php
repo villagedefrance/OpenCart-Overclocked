@@ -18,9 +18,6 @@ $_['column_comment']          = 'Comment';
 $_['column_order_picked']     = 'Picked';
 $_['column_order_none']       = 'Pending';
 
-// Button
-$_['button_pick']             = 'Pick List';
-
 // Text
 $_['text_account']            = 'Account';
 $_['text_order']              = 'Order Information';
@@ -28,6 +25,8 @@ $_['text_order_detail']       = 'Order Details';
 $_['text_invoice_no']         = 'Invoice N&deg;:';
 $_['text_order_id']           = 'Order ID:';
 $_['text_status']             = 'Status:';
+$_['text_telephone']          = 'Telephone:';
+$_['text_fax']                = 'Fax:';
 $_['text_date_added']         = 'Date Added:';
 $_['text_customer']           = 'Customer:';
 $_['text_shipping_address']   = 'Shipping Address';
@@ -42,3 +41,6 @@ $_['text_history']            = 'Order History';
 $_['text_success']            = 'You have successfully added the products from order ID #%s to your cart!';
 $_['text_empty']              = 'You have not made any previous orders!';
 $_['text_error']              = 'The order you requested could not be found!';
+
+// Button
+$_['button_pick']             = 'Pick List';

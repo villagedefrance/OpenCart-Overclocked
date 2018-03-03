@@ -153,4 +153,4 @@
   <?php echo $content_bottom; ?>
 </div>
 <?php echo $content_footer; ?>
-<?php echo $footer; ?> 
+<?php echo $footer; ?>
