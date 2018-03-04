@@ -439,12 +439,10 @@ class ControllerSaleCustomer extends Controller {
 
 			$customer_deleted = $this->model_sale_customer->getDeletedByCustomerId($result['customer_id']);
 
-			if (!$customer_deleted) {
-				$action[] = array(
-					'text' => $this->language->get('text_edit'),
-					'href' => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'] . $url, 'SSL')
-				);
-			}
+			$action[] = array(
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'] . $url, 'SSL')
+			);
 
 			if ($this->config->get('config_customer_dob')) {
 				$customer_age = date_diff(date_create($result['date_of_birth']), date_create('today'))->y;

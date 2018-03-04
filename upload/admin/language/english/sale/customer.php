@@ -80,7 +80,7 @@ $_['entry_amount']                    = 'Amount:<span class="help">Enter an amou
 $_['entry_points']                    = 'Points:<span class="help">Enter a negative number to remove points.</span>';
 
 // Warning
-$_['customer_warning']                = 'ATTENTION! this customer\'s account has been deleted and cannot be edited!';
+$_['customer_warning']                = 'ATTENTION! this customer\'s account contains one or more orders and has been cancelled! It can no longer be edited.';
 
 // Error
 $_['error_warning']                   = 'Warning: Please check the form carefully for errors!';

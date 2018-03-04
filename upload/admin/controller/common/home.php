@@ -472,14 +472,10 @@ class ControllerCommonHome extends Controller {
 		foreach ($customer_results as $customer_result) {
 			$action = array();
 
-			$customer_deleted = $this->model_sale_customer->getDeletedByCustomerId($customer_result['customer_id']);
-
-			if (!$customer_deleted) {
-				$action[] = array(
-					'text' => $this->language->get('text_edit'),
-					'href' => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $customer_result['customer_id'], 'SSL')
-				);
-			}
+			$action[] = array(
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $customer_result['customer_id'], 'SSL')
+			);
 
 			$action_passed = array();
 
@@ -500,6 +496,8 @@ class ControllerCommonHome extends Controller {
 			} else {
 				$customer_age = '';
 			}
+
+			$customer_deleted = $this->model_sale_customer->getDeletedByCustomerId($customer_result['customer_id']);
 
 			$this->data['customers'][] = array(
 				'customer_id'    => $customer_result['customer_id'],
@@ -768,20 +766,12 @@ class ControllerCommonHome extends Controller {
 				$client = $client_result['customer'];
 			}
 
-			$customer_deleted = $this->model_sale_customer->getDeletedByCustomerId($client_result['customer_id']);
-
-			if (!$customer_deleted) {
-				$customer_href = $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $client_result['customer_id'], 'SSL');
-			} else {
-				$customer_href = $this->url->link('sale/customer', 'token=' . $this->session->data['token'], 'SSL');
-			}
-
 			$this->data['clients'][] = array(
 				'customer' => $client,
 				'orders'   => $client_result['orders'],
 				'products' => $client_result['products'],
 				'total'    => $this->currency->format($client_result['total'], $this->config->get('config_currency')),
-				'href'     => $customer_href
+				'href'     => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $client_result['customer_id'], 'SSL')
 			);
 		}
 

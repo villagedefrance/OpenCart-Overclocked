@@ -86,14 +86,12 @@ class ControllerReportCustomerOrder extends Controller {
 		foreach ($results as $result) {
 			$action = array();
 
-			$customer_deleted = $this->model_sale_customer->getDeletedByCustomerId($result['customer_id']);
+			$action[] = array(
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'] . $url, 'SSL')
+			);
 
-			if (!$customer_deleted) {
-				$action[] = array(
-					'text' => $this->language->get('text_edit'),
-					'href' => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'] . $url, 'SSL')
-				);
-			}
+			$customer_deleted = $this->model_sale_customer->getDeletedByCustomerId($result['customer_id']);
 
 			$this->data['customers'][] = array(
 				'customer'       => $result['customer'],
