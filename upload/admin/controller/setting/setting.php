@@ -186,12 +186,13 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_customer_fax'] = $this->language->get('entry_customer_fax');
 		$this->data['entry_customer_gender'] = $this->language->get('entry_customer_gender');
 		$this->data['entry_customer_dob'] = $this->language->get('entry_customer_dob');
+		$this->data['entry_force_delete'] = $this->language->get('entry_force_delete');
 		$this->data['entry_picklist_status'] = $this->language->get('entry_picklist_status');
-		$this->data['entry_login_attempts'] = $this->language->get('entry_login_attempts');
 		$this->data['entry_account'] = $this->language->get('entry_account');
 		$this->data['entry_affiliate_approval'] = $this->language->get('entry_affiliate_approval');
 		$this->data['entry_affiliate_auto'] = $this->language->get('entry_affiliate_auto');
 		$this->data['entry_affiliate_commission'] = $this->language->get('entry_affiliate_commission');
+		$this->data['entry_login_attempts'] = $this->language->get('entry_login_attempts');
 		$this->data['entry_affiliate'] = $this->language->get('entry_affiliate');
 		$this->data['entry_affiliate_mail'] = $this->language->get('entry_affiliate_mail');
 		$this->data['entry_affiliate_fax'] = $this->language->get('entry_affiliate_fax');
@@ -359,6 +360,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['help_customer_price'] = $this->language->get('help_customer_price');
 		$this->data['help_customer_redirect'] = $this->language->get('help_customer_redirect');
 		$this->data['help_customer_dob'] = $this->language->get('help_customer_dob');
+		$this->data['help_force_delete'] = $this->language->get('help_force_delete');
 		$this->data['help_picklist_status'] = $this->language->get('help_picklist_status');
 		$this->data['help_account'] = $this->language->get('help_account');
 		$this->data['help_affiliate_approval'] = $this->language->get('help_affiliate_approval');
@@ -1253,12 +1255,10 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_picklist_status'] = $this->config->get('config_picklist_status');
 		}
 
-		if (isset($this->request->post['config_login_attempts'])) {
-			$this->data['config_login_attempts'] = $this->request->post['config_login_attempts'];
-		} elseif ($this->config->get('config_login_attempts')) {
-			$this->data['config_login_attempts'] = $this->config->get('config_login_attempts');
+		if (isset($this->request->post['config_force_delete'])) {
+			$this->data['config_force_delete'] = $this->request->post['config_force_delete'];
 		} else {
-			$this->data['config_login_attempts'] = 5;
+			$this->data['config_force_delete'] = $this->config->get('config_force_delete');
 		}
 
 		$this->load->model('catalog/information');
@@ -1289,6 +1289,14 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_affiliate_commission'] = $this->config->get('config_affiliate_commission');
 		} else {
 			$this->data['config_affiliate_commission'] = '5.00';
+		}
+
+		if (isset($this->request->post['config_login_attempts'])) {
+			$this->data['config_login_attempts'] = $this->request->post['config_login_attempts'];
+		} elseif ($this->config->get('config_login_attempts')) {
+			$this->data['config_login_attempts'] = $this->config->get('config_login_attempts');
+		} else {
+			$this->data['config_login_attempts'] = 5;
 		}
 
 		if (isset($this->request->post['config_affiliate_id'])) {

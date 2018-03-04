@@ -164,7 +164,16 @@ class ControllerSaleCustomer extends Controller {
 		if (isset($this->request->post['selected']) && $this->validateDelete()) {
 			foreach ($this->request->post['selected'] as $customer_id) {
 				$this->model_sale_customer->addDeletedCustomer($customer_id);
-				$this->model_sale_customer->deleteCustomer($customer_id);
+
+				$force_delete = $this->config->get('config_force_delete');
+
+				$orders_total = $this->model_sale_customer->getTotalCustomersOrders($customer_id);
+
+				if (!$force_delete && $orders_total > 0) {
+					$this->model_sale_customer->deleteCustomerWithOrders($customer_id);
+				} else {
+					$this->model_sale_customer->deleteCustomer($customer_id);
+				}
 			}
 
 			$this->session->data['success'] = $this->language->get('text_success');

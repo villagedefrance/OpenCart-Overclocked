@@ -1006,15 +1006,29 @@
           <tr>
             <td><?php echo $entry_picklist_status; ?><span class="help"><?php echo $help_picklist_status; ?></span></td>
             <td><?php if ($config_picklist_status) { ?>
-              <input type="radio" name="config_picklist_status" value="1" id="picklist_status-on" class="radio" checked />
-              <label for="picklist_status-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_picklist_status" value="0" id="picklist_status-off" class="radio" />
-              <label for="picklist_status-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <input type="radio" name="config_picklist_status" value="1" id="picklist-status-on" class="radio" checked />
+              <label for="picklist-status-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_picklist_status" value="0" id="picklist-status-off" class="radio" />
+              <label for="picklist-status-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="config_picklist_status" value="1" id="picklist_status-on" class="radio" />
-              <label for="picklist_status-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_picklist_status" value="0" id="picklist_status-off" class="radio" checked />
-              <label for="picklist_status-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <input type="radio" name="config_picklist_status" value="1" id="picklist-status-on" class="radio" />
+              <label for="picklist-status-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_picklist_status" value="0" id="picklist-status-off" class="radio" checked />
+              <label for="picklist-status-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_force_delete; ?><span class="help"><?php echo $help_force_delete; ?></span></td>
+            <td><?php if ($config_force_delete) { ?>
+              <input type="radio" name="config_force_delete" value="1" id="force-delete-on" class="radio" checked />
+              <label for="force-delete-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_force_delete" value="0" id="force-delete-off" class="radio" />
+              <label for="force-delete-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_force_delete" value="1" id="force-delete-on" class="radio" />
+              <label for="force-delete-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_force_delete" value="0" id="force-delete-off" class="radio" checked />
+              <label for="force-delete-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
