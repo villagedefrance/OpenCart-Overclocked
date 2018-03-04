@@ -195,7 +195,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 				$this->session->data['shipping_postcode'] = $response['PAYMENTREQUEST_0_SHIPTOZIP'];
 
-				$country_info = $this->db->query("SELECT * FROM `" . DB_PREFIX . "country` WHERE `iso_code_2` = '" . $this->db->escape($response['PAYMENTREQUEST_0_SHIPTOCOUNTRYCODE']) . "' AND `status` = '1' LIMIT 1")->row;
+				$country_info = $this->db->query("SELECT * FROM `" . DB_PREFIX . "country` WHERE `iso_code_2` = '" . $this->db->escape($response['PAYMENTREQUEST_0_SHIPTOCOUNTRYCODE']) . "' AND `status` = '1' LIMIT 0,1")->row;
 
 				if ($country_info) {
 					$this->session->data['guest']['shipping']['country_id'] = $country_info['country_id'];
@@ -229,7 +229,7 @@ class ControllerPaymentPPExpress extends Controller {
 					$returned_shipping_zone = '';
 				}
 
-				$zone_info = $this->db->query("SELECT * FROM `" . DB_PREFIX . "zone` WHERE (`name` = '" . $this->db->escape($returned_shipping_zone) . "' OR `code` = '" . $this->db->escape($returned_shipping_zone) . "') AND `status` = '1' AND `country_id` = '" . (int)$country_info['country_id'] . "' LIMIT 1")->row;
+				$zone_info = $this->db->query("SELECT * FROM `" . DB_PREFIX . "zone` WHERE (`name` = '" . $this->db->escape($returned_shipping_zone) . "' OR `code` = '" . $this->db->escape($returned_shipping_zone) . "') AND `status` = '1' AND `country_id` = '" . (int)$country_info['country_id'] . "' LIMIT 0,1")->row;
 
 				if ($zone_info) {
 					$this->session->data['guest']['shipping']['zone'] = $zone_info['name'];
@@ -312,7 +312,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 					$shipping_last_name = implode(' ', $shipping_name);
 
-					$country_info = $this->db->query("SELECT * FROM `" . DB_PREFIX . "country` WHERE `iso_code_2` = '" . $this->db->escape($response['PAYMENTREQUEST_0_SHIPTOCOUNTRYCODE']) . "' AND `status` = '1' LIMIT 1")->row;
+					$country_info = $this->db->query("SELECT * FROM `" . DB_PREFIX . "country` WHERE `iso_code_2` = '" . $this->db->escape($response['PAYMENTREQUEST_0_SHIPTOCOUNTRYCODE']) . "' AND `status` = '1' LIMIT 0,1")->row;
 					$zone_info = $this->db->query("SELECT * FROM `" . DB_PREFIX . "zone` WHERE (`name` = '" . $this->db->escape($response['PAYMENTREQUEST_0_SHIPTOSTATE']) . "' OR `code` = '" . $this->db->escape($response['PAYMENTREQUEST_0_SHIPTOSTATE']) . "') AND `status` = '1' AND `country_id` = '" . (int)$country_info['country_id'] . "'")->row;
 
 					$address_data= array(
@@ -556,8 +556,8 @@ class ControllerPaymentPPExpress extends Controller {
 				'model'               => $product['model'],
 				'option'              => $option_data,
 				'quantity'            => $product['quantity'],
-				'stock'               => $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
-				'reward'              => ($product['reward'] ? sprintf($this->language->get('text_points'), $product['reward']) : ''),
+				'stock'               => ($product['stock']) ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
+				'reward'              => ($product['reward']) ? sprintf($this->language->get('text_points'), $product['reward']) : '',
 				'price'               => $price,
 				'total'               => $total,
 				'href'                => $this->url->link('product/product', 'product_id=' . $product['product_id'], 'SSL'),
@@ -1231,7 +1231,7 @@ class ControllerPaymentPPExpress extends Controller {
 							);
 
 							$trial_amt = $this->currency->format($this->tax->calculate($item['recurring_trial_price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false) * $item['quantity'] . ' ' . $this->currency->getCode();
-							$trial_text =  sprintf($this->language->get('text_trial'), $trial_amt, $item['recurring_trial_cycle'], $item['recurring_trial_frequency'], $item['recurring_trial_duration']);
+							$trial_text = sprintf($this->language->get('text_trial'), $trial_amt, $item['recurring_trial_cycle'], $item['recurring_trial_frequency'], $item['recurring_trial_duration']);
 
 							$data = array_merge($data, $data_trial);
 
@@ -1263,7 +1263,7 @@ class ControllerPaymentPPExpress extends Controller {
 					}
 				}
 
-				$this->redirect($this->url->link('checkout/success'));
+				$this->redirect($this->url->link('checkout/success', '', 'SSL'));
 
 				// ??? Never pass here after a redirect. What is it for ?
 				if (isset($response['REDIRECTREQUIRED']) && $response['REDIRECTREQUIRED'] == true) {

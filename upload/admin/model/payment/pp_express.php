@@ -164,7 +164,8 @@ class ModelPaymentPPExpress extends Model {
 			'TWD',
 			'THB',
 			'TRY',
-			'USD'
+			'USD',
+			'INR'
 		);
 	}
 
