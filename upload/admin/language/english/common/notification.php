@@ -7,6 +7,7 @@ $_['text_complete_status'] = 'Complete';
 $_['text_return']          = 'Returns';
 $_['text_customer']        = 'Customers';
 $_['text_online']          = 'Customers online';
+$_['text_deleted'] = 'Deleted accounts';
 $_['text_approval']        = 'Pending approval';
 $_['text_product']         = 'Products';
 $_['text_stock']           = 'Out of stock';

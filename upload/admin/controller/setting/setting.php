@@ -235,6 +235,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_notification_complete'] = $this->language->get('entry_notification_complete');
 		$this->data['entry_notification_return'] = $this->language->get('entry_notification_return');
 		$this->data['entry_notification_online'] = $this->language->get('entry_notification_online');
+		$this->data['entry_notification_deleted'] = $this->language->get('entry_notification_deleted');
 		$this->data['entry_notification_approval'] = $this->language->get('entry_notification_approval');
 		$this->data['entry_notification_stock'] = $this->language->get('entry_notification_stock');
 		$this->data['entry_notification_low'] = $this->language->get('entry_notification_low');
@@ -1583,6 +1584,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_notification_online'] = $this->request->post['config_notification_online'];
 		} else {
 			$this->data['config_notification_online'] = $this->config->get('config_notification_online');
+		}
+
+		if (isset($this->request->post['config_notification_deleted'])) {
+			$this->data['config_notification_deleted'] = $this->request->post['config_notification_deleted'];
+		} else {
+			$this->data['config_notification_deleted'] = $this->config->get('config_notification_deleted');
 		}
 
 		if (isset($this->request->post['config_notification_approval'])) {

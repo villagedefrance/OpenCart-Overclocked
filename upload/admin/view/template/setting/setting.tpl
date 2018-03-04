@@ -1662,6 +1662,20 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_notification_deleted; ?></td>
+            <td><?php if ($config_notification_deleted) { ?>
+              <input type="radio" name="config_notification_deleted" value="1" id="notification-deleted-on" class="radio" checked />
+              <label for="notification-deleted-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_deleted" value="0" id="notification-deleted-off" class="radio" />
+              <label for="notification-deleted-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_notification_deleted" value="1" id="notification-deleted-on" class="radio" />
+              <label for="notification-deleted-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_notification_deleted" value="0" id="notification-deleted-off" class="radio" checked />
+              <label for="notification-deleted-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_notification_approval; ?></td>
             <td><?php if ($config_notification_approval) { ?>
               <input type="radio" name="config_notification_approval" value="1" id="notification-approval-on" class="radio" checked />

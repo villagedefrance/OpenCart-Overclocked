@@ -13,6 +13,7 @@ class ControllerCommonNotification extends Controller {
 		$this->data['text_return'] = $this->language->get('text_return');
 		$this->data['text_customer'] = $this->language->get('text_customer');
 		$this->data['text_online'] = $this->language->get('text_online');
+		$this->data['text_deleted'] = $this->language->get('text_deleted');
 		$this->data['text_approval'] = $this->language->get('text_approval');
 		$this->data['text_product'] = $this->language->get('text_product');
 		$this->data['text_stock'] = $this->language->get('text_stock');
@@ -35,6 +36,7 @@ class ControllerCommonNotification extends Controller {
 		$notification_complete = $this->config->get('config_notification_complete');
 		$notification_return = $this->config->get('config_notification_return');
 		$notification_online = $this->config->get('config_notification_online');
+		$notification_deleted = $this->config->get('config_notification_deleted');
 		$notification_approval = $this->config->get('config_notification_approval');
 		$notification_stock = $this->config->get('config_notification_stock');
 		$notification_low = $this->config->get('config_notification_low');
@@ -42,7 +44,7 @@ class ControllerCommonNotification extends Controller {
 		$notification_affiliate = $this->config->get('config_notification_affiliate');
 
 		if ($notifications) {
-			if (!$notification_pending && !$notification_complete && !$notification_return && !$notification_online && !$notification_approval && !$notification_stock && !$notification_low && !$notification_review && !$notification_affiliate) {
+			if (!$notification_pending && !$notification_complete && !$notification_return && !$notification_online && !$notification_deleted && !$notification_approval && !$notification_stock && !$notification_low && !$notification_review && !$notification_affiliate) {
 				$this->data['notifications'] = false;
 			} else {
 				$this->data['notifications'] = true;
@@ -61,13 +63,14 @@ class ControllerCommonNotification extends Controller {
 		$this->data['notification_complete'] = $notification_complete;
 		$this->data['notification_return'] = $notification_return;
 
-		if (!$notification_online && !$notification_approval) {
+		if (!$notification_online && !$notification_deleted && !$notification_approval) {
 			$this->data['notification_customer'] = false;
 		} else {
 			$this->data['notification_customer'] = true;
 		}
 
 		$this->data['notification_online'] = $notification_online;
+		$this->data['notification_deleted'] = $notification_deleted;
 		$this->data['notification_approval'] = $notification_approval;
 
 		if (!$notification_stock && !$notification_low && !$notification_review) {
@@ -145,6 +148,16 @@ class ControllerCommonNotification extends Controller {
 
 		$this->load->model('sale/customer');
 
+		if ($notification_deleted) {
+			$deleted_total = $this->model_sale_customer->getTotalCustomersDeleted(0);
+		} else {
+			$deleted_total = 0;
+		}
+
+		$this->data['deleted_total'] = $deleted_total;
+
+		$this->data['deleted'] = $this->url->link('report/customer_deleted', 'token=' . $this->session->data['token'], 'SSL');
+
 		if ($notification_approval) {
 			$customer_total = $this->model_sale_customer->getTotalCustomers(array('filter_approved' => false));
 		} else {
@@ -218,7 +231,7 @@ class ControllerCommonNotification extends Controller {
 
 		// Notification totals
 		$this->data['alerts_complete'] = number_format($complete_status_total + $online_total);
-		$this->data['alerts_attention'] = number_format($pending_status_total + $product_total_low + $review_total);
+		$this->data['alerts_attention'] = number_format($pending_status_total + $product_total_low + $deleted_total + $review_total);
 		$this->data['alerts_warning'] = number_format($return_total + $customer_total + $product_total + $affiliate_total);
 
 		$this->template = 'common/notification.tpl';

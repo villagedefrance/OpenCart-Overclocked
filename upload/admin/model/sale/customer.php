@@ -394,6 +394,32 @@ class ModelSaleCustomer extends Model {
 		return $query->row['total'];
 	}
 
+	public function getTotalCustomersDeleted($data = array()) {
+		$sql = "SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "customer_deleted`";
+
+		$implode = array();
+
+		if (!empty($data['filter_name'])) {
+			$implode[] = "CONCAT(firstname, ' ', lastname) LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
+		}
+
+		if (!empty($data['filter_email'])) {
+			$implode[] = "email LIKE '" . $this->db->escape($data['filter_email']) . "%'";
+		}
+
+		if (isset($data['filter_orders']) && !is_null($data['filter_orders'])) {
+			$implode[] = "orders = '" . (int)$data['filter_orders'] . "'";
+		}
+
+		if (!empty($implode)) {
+			$sql .= " WHERE " . implode(" AND ", $implode);
+		}
+
+		$query = $this->db->query($sql);
+
+		return $query->row['total'];
+	}
+
 	public function getTotalCustomersAwaitingApproval() {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer WHERE status = '0' OR approved = '0'");
 
