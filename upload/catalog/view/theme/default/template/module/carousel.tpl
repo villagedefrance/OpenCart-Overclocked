@@ -5,9 +5,9 @@
     <div class="slick_<?php echo $skin_color; ?>" id="carousel<?php echo $module; ?>">
       <?php foreach ($banners as $banner) { ?>
         <?php if ($banner['link']) { ?>
-          <div class="carousel-swipe"><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></a></div>
+          <div class="carousel-swipe"><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></a></div>
         <?php } else { ?>
-          <div class="carousel-swipe"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></div>
+          <div class="carousel-swipe"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></div>
         <?php } ?>
       <?php } ?>
     </div>
@@ -18,9 +18,9 @@
     <div class="slick_<?php echo $skin_color; ?>" id="carousel<?php echo $module; ?>">
       <?php foreach ($banners as $banner) { ?>
         <?php if ($banner['link']) { ?>
-          <div class="carousel-swipe"><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></a></div>
+          <div class="carousel-swipe"><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></a></div>
         <?php } else { ?>
-          <div class="carousel-swipe"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></div>
+          <div class="carousel-swipe"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></div>
         <?php } ?>
       <?php } ?>
     </div>

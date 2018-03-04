@@ -6,4 +6,10 @@ class ModelDesignBanner extends Model {
 
 		return $query->rows;
 	}
+
+	public function getBannerImage($banner_image_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "banner_image WHERE banner_image_id = '" . (int)$banner_image_id . "'");
+
+		return $query->rows;
+	}
 }

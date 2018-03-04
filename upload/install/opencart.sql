@@ -328,6 +328,7 @@ CREATE TABLE `oc_banner_image` (
   `link` varchar(255) NOT NULL,
   `external_link` tinyint(1) NOT NULL,
   `sort_order` int(3) NOT NULL,
+  `clicked` int(11) NOT NULL,
   PRIMARY KEY (`banner_image_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -335,23 +336,23 @@ CREATE TABLE `oc_banner_image` (
 -- Dumping data for table `oc_banner_image`
 --
 
-INSERT INTO `oc_banner_image` (`banner_image_id`, `banner_id`, `image`, `link`, `external_link`, `sort_order`) VALUES
-(78, 7, 'data/demo/banners/iPhone6.jpg', '', 0, 0),
-(79, 7, 'data/demo/banners/MacBookAir.jpg', '', 0, 0),
-(83, 6, 'data/demo/banners/SpecialOffer.png', '', 0, 0),
-(91, 8, 'data/demo/manufacturer/nintendo.png', '', 0, 0),
-(89, 8, 'data/demo/manufacturer/harley.png', '', 0, 0),
-(90, 8, 'data/demo/manufacturer/nfl.png', '', 0, 0),
-(88, 8, 'data/demo/manufacturer/disney.png', '', 0, 0),
-(86, 8, 'data/demo/manufacturer/cocacola.png', '', 0, 0),
-(87, 8, 'data/demo/manufacturer/dell.png', '', 0, 0),
-(84, 8, 'data/demo/manufacturer/burgerking.png', '', 0, 0),
-(85, 8, 'data/demo/manufacturer/canon.png', 'product/manufacturer/info&amp;manufacturer_id=9', 0, 0),
-(82, 6, 'data/demo/banners/FreeShipping.png', '', 0, 0),
-(92, 8, 'data/demo/manufacturer/redbull.png', '', 0, 0),
-(93, 8, 'data/demo/manufacturer/shell.png', '', 0, 0),
-(94, 8, 'data/demo/manufacturer/sony.png', 'product/manufacturer/info&amp;manufacturer_id=10', 0, 0),
-(95, 8, 'data/demo/manufacturer/starbucks.png', '', 0, 0);
+INSERT INTO `oc_banner_image` (`banner_image_id`, `banner_id`, `image`, `link`, `external_link`, `sort_order`, `clicked`) VALUES
+(78, 7, 'data/demo/banners/iPhone6.jpg', '', 0, 0, 0),
+(79, 7, 'data/demo/banners/MacBookAir.jpg', '', 0, 0, 0),
+(83, 6, 'data/demo/banners/SpecialOffer.png', '', 0, 0, 0),
+(91, 8, 'data/demo/manufacturer/nintendo.png', '', 0, 0, 0),
+(89, 8, 'data/demo/manufacturer/harley.png', '', 0, 0, 0),
+(90, 8, 'data/demo/manufacturer/nfl.png', '', 0, 0, 0),
+(88, 8, 'data/demo/manufacturer/disney.png', '', 0, 0, 0),
+(86, 8, 'data/demo/manufacturer/cocacola.png', '', 0, 0, 0),
+(87, 8, 'data/demo/manufacturer/dell.png', '', 0, 0, 0),
+(84, 8, 'data/demo/manufacturer/burgerking.png', '', 0, 0, 0),
+(85, 8, 'data/demo/manufacturer/canon.png', 'product/manufacturer/info&amp;manufacturer_id=9', 0, 0, 0),
+(82, 6, 'data/demo/banners/FreeShipping.png', '', 0, 0, 0),
+(92, 8, 'data/demo/manufacturer/redbull.png', '', 0, 0, 0),
+(93, 8, 'data/demo/manufacturer/shell.png', '', 0, 0, 0),
+(94, 8, 'data/demo/manufacturer/sony.png', 'product/manufacturer/info&amp;manufacturer_id=10', 0, 0, 0),
+(95, 8, 'data/demo/manufacturer/starbucks.png', '', 0, 0, 0);
 
 -- --------------------------------------------------------
 

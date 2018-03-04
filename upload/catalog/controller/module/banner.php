@@ -52,9 +52,10 @@ class ControllerModuleBanner extends Controller {
 				}
 
 				$this->data['banners'][] = array(
-					'title' => $result['title'],
-					'link'  => $image_link,
-					'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+					'banner_image_id'  => $result['banner_image_id'],
+					'title'            => $result['title'],
+					'link'             => $image_link,
+					'image'            => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
 				);
 			}
 		}
