@@ -58,6 +58,10 @@ $_['tab_offer']                               = 'Offers';
 $_['tab_review']                              = 'Reviews (%s)';
 $_['tab_related']                             = 'Related Products';
 
+// GDPR
+$_['gdpr_resource']                           = 'Embedded Resource';
+$_['dialog_resource']                         = 'Please be aware that this feature is from an external source and therefore we do not have complete control over its content.';
+
 // Button
 $_['button_buy_it_now']                       = 'Buy it Now!';
 

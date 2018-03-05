@@ -275,7 +275,7 @@ $_['help_store_address']           = 'Hide the Store Address on the Contact and 
 $_['help_store_latitude']          = '(optional)';
 $_['help_store_longitude']         = '(optional)';
 $_['help_store_location']          = 'Hide the Store Coordinates on the Contact and Quotation pages.';
-$_['help_map_code']                = 'Visit <a onclick="window.open(\'%s\');"><u>Google Maps Embed Code</u></a> page to create a map, then Copy and Paste the generated iframe script here. Click "Apply" to refresh the page and see a preview below.';
+$_['help_map_code']                = 'Visit Google Maps Developers to create a map, then Copy and Paste the generated iframe script here. Click "Apply" to refresh the page and see a preview below.';
 $_['help_map_display']             = 'Show Google Map on Contact page.';
 $_['help_guest_checkout']          = 'Allow customers to checkout without creating an account. This will not be available when a downloadable product is in the shopping cart.';
 $_['help_checkout']                = 'Forces people to agree to terms before an a customer can checkout.';

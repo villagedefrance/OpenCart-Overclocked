@@ -78,8 +78,10 @@ class ControllerInformationContact extends Controller {
 
 		// Google Map
 		$this->data['display_map'] = $this->config->get('config_map_display');
-
 		$this->data['google_map'] = $this->config->get('config_map_code');
+
+		$this->data['gdpr_resource'] = $this->language->get('gdpr_resource');
+		$this->data['dialog_resource'] = $this->language->get('dialog_resource');
 
 		if (isset($this->error['name'])) {
 			$this->data['error_name'] = $this->error['name'];

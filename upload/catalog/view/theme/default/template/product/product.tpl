@@ -163,6 +163,7 @@
         <div class="video">
           <iframe src="http://www.youtube.com/embed/<?php echo $video_code; ?>?html5=1" width="<?php echo $video_width; ?>" height="<?php echo $video_height; ?>"></iframe>
         </div>
+        <div><a class="button button-resource"><i class="fa fa-info-circle"></i></a></div>
       <?php } ?>
       </div>
     <?php } ?>
@@ -918,6 +919,27 @@ $('.review-rating input:radio').wrap('<span></span>').parent()
 			'background': 'transparent'
 		});
 	});
+});
+//--></script>
+
+<link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/confirm/jquery-confirm.min.css" />
+
+<script type="text/javascript" src="catalog/view/javascript/jquery/confirm/jquery-confirm.min.js"></script>
+
+<script type="text/javascript"><!--
+$('a.button-resource').confirm({
+	title: '<?php echo $gdpr_resource; ?>',
+	content: '<?php echo $dialog_resource; ?>',
+	icon: 'fa fa-question-circle',
+	theme: 'light',
+	useBootstrap: false,
+	boxWidth: 300,
+	animation: 'zoom',
+	closeAnimation: 'scale',
+	opacity: 0.1,
+	buttons: {
+		ok: function() { }
+	}
 });
 //--></script>
 

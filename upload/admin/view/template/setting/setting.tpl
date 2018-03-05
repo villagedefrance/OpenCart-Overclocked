@@ -317,7 +317,10 @@
           </tr>
           <tr>
             <td><?php echo $entry_map_code; ?><span class="help"><?php echo $help_map_code; ?></span></td>
-            <td><textarea name="config_map_code" cols="50" rows="7"><?php echo $config_map_code; ?></textarea></td>
+            <td><a onclick="window.open('https://developers.google.com/maps/documentation/embed/');" title="Google Maps" class="button-form"><i class="fa fa-map-marker"></i> &nbsp; Google Maps</a>
+              <br /><br />
+              <textarea name="config_map_code" cols="50" rows="7"><?php echo $config_map_code; ?></textarea>
+            </td>
           </tr>
           <?php if (!empty($config_map_code)) { ?>
           <tr>

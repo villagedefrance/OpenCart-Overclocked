@@ -290,6 +290,9 @@ class ControllerProductProduct extends Controller {
 			$this->data['tab_review'] = sprintf($this->language->get('tab_review'), $product_info['reviews']);
 			$this->data['tab_related'] = $this->language->get('tab_related');
 
+			$this->data['gdpr_resource'] = $this->language->get('gdpr_resource');
+			$this->data['dialog_resource'] = $this->language->get('dialog_resource');
+
 			$this->data['lang'] = $this->language->get('code');
 
 			// Buy it Now
@@ -411,7 +414,7 @@ class ControllerProductProduct extends Controller {
 				);
 			}
 
-			// Videos
+			// YouTube
 			if (isset($this->request->get['product_id'])) {
 				$this->data['video_code'] = $this->model_catalog_product->getProductVideos($this->request->get['product_id']);
 			} else {
@@ -421,14 +424,16 @@ class ControllerProductProduct extends Controller {
 			$this->data['video_width'] = $this->config->get('config_image_thumb_width');
 			$this->data['video_height'] = $this->config->get('config_image_thumb_height');
 
+			// Barcode
 			$this->load->model('tool/barcode');
 
 			$catalog_barcode = $this->config->get('config_catalog_barcode');
 			$barcode_type = $this->config->get('config_barcode_type');
 
+			$this->data['barcode'] = ($catalog_barcode) ? $this->model_tool_barcode->getBarcode($product_info['model'], strtoupper($barcode_type), 1, 20) : '';
+
 			$this->data['manufacturer'] = $product_info['manufacturer'];
 			$this->data['manufacturers'] = $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $product_info['manufacturer_id'], 'SSL');
-			$this->data['barcode'] = ($catalog_barcode) ? $this->model_tool_barcode->getBarcode($product_info['model'], strtoupper($barcode_type), 1, 20) : '';
 			$this->data['model'] = $product_info['model'];
 
 			// Fields
