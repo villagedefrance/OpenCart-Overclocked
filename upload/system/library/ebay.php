@@ -57,7 +57,7 @@ final class Ebay {
 			$this->lastmsg = '';
 
 			if (!in_array($call, $this->no_log)) {
-				$this->log('call('.$call.') - Data: '.  json_encode($post));
+				$this->log('call(' . $call . ') - Data: ' . json_encode($post));
 			}
 
 			if (defined("HTTPS_CATALOG")) {
@@ -360,7 +360,7 @@ final class Ebay {
 		if (!empty($product_id)) {
 			if ($sku == null) {
 				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "' LIMIT 0,1");
-				$this->log('ebaySaleStockReduce() - Send item ID: "' . $product_id . '", Stock: "' . $query->row['quantity'].'" to decideEbayStockAction()');
+				$this->log('ebaySaleStockReduce() - Send item ID: "' . $product_id . '", Stock: "' . $query->row['quantity'] . '" to decideEbayStockAction()');
 				$this->decideEbayStockAction($product_id, $query->row['quantity'], $query->row['subtract']);
 			} else {
 				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_option_relation WHERE product_id = '" . (int)$product_id . "' AND var = '" . $sku . "' LIMIT 0,1");
@@ -390,85 +390,16 @@ final class Ebay {
 		$mail->send();
 	}
 
-	public function encrypt($msg, $k, $base64 = false) {
-		if (!$td = mcrypt_module_open('rijndael-256', '', 'ctr', '')) {
-			return false;
-		}
+	public function encrypt($msg, $key, $iv) {
+		$encrypted = strtr(base64_encode(openssl_encrypt($msg, 'AES-128-CBC', hash('sha256', hex2bin($key), true), 0, hex2bin($iv))), '+/=', '-_,');
 
-		$msg = serialize($msg);
-
-		$iv = mcrypt_create_iv(32, MCRYPT_RAND);
-
-		if (mcrypt_generic_init($td, $k, $iv) !== 0) {
-			return false;
-		}
-
-		$msg = mcrypt_generic($td, $msg);
-		$msg = $iv . $msg;
-		$mac = $this->pbkdf2($msg, $k, 1000, 32);
-		$msg .= $mac;
-
-		mcrypt_generic_deinit($td);
-		mcrypt_module_close($td);
-
-		if ($base64) {
-			$msg = base64_encode($msg);
-		}
-
-		return $msg;
+		return $encrypted;
 	}
 
-	public function decrypt($msg, $k, $base64 = false) {
-		if ($base64) {
-			$msg = base64_decode($msg);
-		}
+	public function decrypt($msg, $key, $iv) {
+		$response = trim(openssl_decrypt(base64_decode(strtr($msg, '-_,', '+/=')), 'AES-128-CBC', hash('sha256', hex2bin($key), true), 0, hex2bin($iv)));
 
-		if (!$td = mcrypt_module_open('rijndael-256', '', 'ctr', '')) {
-			$this->log('decrypt() - Failed to open cipher');
-			return false;
-		}
-
-		$iv = substr($msg, 0, 32);
-		$mo = strlen($msg) - 32;
-		$em = substr($msg, $mo);
-		$msg = substr($msg, 32, strlen($msg)-64);
-		$mac = $this->pbkdf2($iv . $msg, $k, 1000, 32);
-
-		if ($em !== $mac) {
-			$this->log('decrypt() - Mac authenticate failed');
-			return false;
-		}
-
-		if (mcrypt_generic_init($td, $k, $iv) !== 0) {
-			$this->log('decrypt() - Buffer init failed');
-			return false;
-		}
-
-		$msg = mdecrypt_generic($td, $msg);
-		$msg = unserialize($msg);
-
-		mcrypt_generic_deinit($td);
-		mcrypt_module_close($td);
-
-		return $msg;
-	}
-
-	public function pbkdf2($p, $s, $c, $kl, $a = 'sha256') {
-		$hl = strlen(hash($a, null, true));
-		$kb = ceil($kl / $hl);
-		$dk = '';
-
-		for ($block = 1; $block <= $kb; $block ++) {
-			$ib = $b = hash_hmac($a, $s . pack('N', $block), $p, true);
-
-			for ($i = 1; $i < $c; $i ++) {
-				$ib ^= ($b = hash_hmac($a, $b, $p, true));
-			}
-
-			$dk .= $ib;
-		}
-
-		return substr($dk, 0, $kl);
+		return $response;
 	}
 
 	public function validateJsonDecode($data) {
@@ -534,7 +465,7 @@ final class Ebay {
 	}
 
 	public function isEbayOrder($id) {
-		$this->log('isEbayOrder() - Is eBay order? ID: '.$id);
+		$this->log('isEbayOrder() - Is eBay order? ID: ' . $id);
 
 		$qry = $this->db->query("SELECT `comment` FROM " . DB_PREFIX . "order_history WHERE `comment` LIKE '[eBay Import:%]' AND order_id = '" . (int)$id . "' LIMIT 0,1");
 
@@ -633,7 +564,7 @@ final class Ebay {
 	}
 
 	public function disableVariant($product_id, $sku) {
-		$this->db->query("UPDATE " . DB_PREFIX . "product_option_relation SET `active` = 0 WHERE product_id = '" . (int)$product_id . "' AND var = '" . $this->db->escape($sku) . "' LIMIT 0,1");
+		$this->db->query("UPDATE " . DB_PREFIX . "product_option_relation SET `active` = 0 WHERE product_id = '" . (int)$product_id . "' AND `var` = '" . $this->db->escape($sku) . "' LIMIT 0,1");
 	}
 
 	public function putStockUpdate($item_id, $stock, $sku = null) {
@@ -886,7 +817,7 @@ final class Ebay {
 
 			return array('quantity' => (int)$qry->row['quantity'], 'status' => ($qry->row['status']));
 		} else {
-			$qry = $this->db->query("SELECT stock, `active` FROM " . DB_PREFIX . "product_option_relation WHERE product_id = '" . (int)$product_id . "' AND var = '" . $this->db->escape($sku) . "' LIMIT 0,1");
+			$qry = $this->db->query("SELECT stock, `active` FROM " . DB_PREFIX . "product_option_relation WHERE product_id = '" . (int)$product_id . "' AND `var` = '" . $this->db->escape($sku) . "' LIMIT 0,1");
 
 			return array('quantity' => (int)$qry->row['stock'], 'status' => ($qry->row['active']));
 		}
@@ -1174,12 +1105,12 @@ final class Ebay {
 
 				if ($handle !== false) {
 					if (!@copy($img_used, $img['image_new'])) {
-						$this->log('getImages() - FAILED COPY: '.$img_used);
+						$this->log('getImages() - FAILED COPY: ' . $img_used);
 					} else {
-						$this->log('getImages() - Copy OK : '.$img_used);
+						$this->log('getImages() - Copy OK : ' . $img_used);
 					}
 				} else {
-					$this->log('getImages() - URL not found : '.$img_used);
+					$this->log('getImages() - URL not found : ' . $img_used);
 				}
 
 				if ($img['imgcount'] == 0) {
@@ -1224,7 +1155,7 @@ final class Ebay {
 	public function addReserve($data, $item_id, $variant) {
 		if ($variant == 1) {
 			foreach ($data['opt'] as $variation) {
-				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_option_relation WHERE product_id = '" . (int)$data['product_id'] . "' AND var = '" . $this->db->escape($variation['sku']) . "' LIMIT 0,1");
+				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_option_relation WHERE product_id = '" . (int)$data['product_id'] . "' AND `var` = '" . $this->db->escape($variation['sku']) . "' LIMIT 0,1");
 
 				if ($query->row['stock'] != $variation['qty']) {
 					$this->db->query("INSERT INTO " . DB_PREFIX . "ebay_stock_reserve SET product_id = '" . (int)$data['product_id'] . "', item_id = '" . $this->db->escape($item_id) . "', `variant_id` = '" . $this->db->escape($variation['sku']) . "', `reserve` = '" . (int)$variation['qty'] . "'");
@@ -1243,7 +1174,7 @@ final class Ebay {
 	public function getReserve($product_id, $item_id, $sku = '') {
 		$this->log('getReserve()');
 
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_stock_reserve` WHERE `product_id` = '" . (int)$product_id . "' AND `variant_id` = '" . $this->db->escape($sku) . "' AND `item_id` = '" . $this->db->escape($item_id) . "'  LIMIT 1");
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_stock_reserve` WHERE `product_id` = '" . (int)$product_id . "' AND `variant_id` = '" . $this->db->escape($sku) . "' AND `item_id` = '" . $this->db->escape($item_id) . "' LIMIT 0,1");
 
 		if ($query->num_rows > 0) {
 			$this->log('getReserve() - returning: ' . $query->row['reserve']);
@@ -1266,7 +1197,7 @@ final class Ebay {
 			$this->deleteReserve($product_id, $item_id, $sku);
 		} else {
 			if ($this->getReserve($product_id, $item_id, $sku) != false) {
-				$this->db->query("UPDATE " . DB_PREFIX . "ebay_stock_reserve SET `reserve` = '" . (int)$reserve . "' WHERE product_id = '" . (int)$product_id . "' AND `variant_id` = '" . $this->db->escape($sku) . "' AND item_id = '" . $this->db->escape($item_id) . "'  LIMIT 0,1");
+				$this->db->query("UPDATE " . DB_PREFIX . "ebay_stock_reserve SET `reserve` = '" . (int)$reserve . "' WHERE product_id = '" . (int)$product_id . "' AND `variant_id` = '" . $this->db->escape($sku) . "' AND item_id = '" . $this->db->escape($item_id) . "' LIMIT 0,1");
 			} else {
 				if ($variant == 0) {
 					$this->log('updateReserve() - not a variant');
@@ -1445,7 +1376,7 @@ final class Ebay {
 				$this->log('Emptied ebay_shipping_location table');
 
 				foreach ($response['shipping_location'] as $service) {
-					$this->db->query("INSERT INTO `" . DB_PREFIX . "ebay_shipping_location` SET `description` = '" . $this->db->escape((string)$service['Description']) . "', `detail_version` = '" . $this->db->escape($service['DetailVersion']) . "', `shipping_location` = '" . $this->db->escape((string)$service['ShippingLocation']) . "' , `update_time` = '" . (int)$service['UpdateTime'] . "'");
+					$this->db->query("INSERT INTO `" . DB_PREFIX . "ebay_shipping_location` SET `description` = '" . $this->db->escape((string)$service['Description']) . "', `detail_version` = '" . $this->db->escape($service['DetailVersion']) . "', `shipping_location` = '" . $this->db->escape((string)$service['ShippingLocation']) . "', `update_time` = '" . (int)$service['UpdateTime'] . "'");
 				}
 
 				$this->log('Populated ebay_shipping_location table');
@@ -1473,10 +1404,10 @@ final class Ebay {
 				$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_setting_option` WHERE `key` = 'dispatch_time_max' LIMIT 1");
 
 				if ($qry->num_rows > 0) {
-					$this->db->query("UPDATE `" . DB_PREFIX . "ebay_setting_option` SET `data` = '" . $this->db->escape(serialize($response['dispatch_time_max'])) . "', `last_updated` = NOW() WHERE `key` = 'dispatch_time_max' LIMIT 1");
+					$this->db->query("UPDATE `" . DB_PREFIX . "ebay_setting_option` SET `data` = '" . $this->db->escape(serialize($response['dispatch_time_max'])) . "', last_updated = NOW() WHERE `key` = 'dispatch_time_max' LIMIT 0,1");
 					$this->log('Updated dispatch_time_max into ebay_setting_option table');
 				} else {
-					$this->db->query("INSERT INTO `" . DB_PREFIX . "ebay_setting_option` SET `key` = 'dispatch_time_max', `data` = '" . $this->db->escape(serialize($response['dispatch_time_max'])) . "', `last_updated` = NOW()");
+					$this->db->query("INSERT INTO `" . DB_PREFIX . "ebay_setting_option` SET `key` = 'dispatch_time_max', `data` = '" . $this->db->escape(serialize($response['dispatch_time_max'])) . "', last_updated = NOW()");
 					$this->log('Inserted dispatch_time_max into ebay_setting_option table');
 				}
 
@@ -1486,13 +1417,13 @@ final class Ebay {
 
 			// countries
 			if (isset($response['countries'])) {
-				$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_setting_option` WHERE `key` = 'countries' LIMIT 1");
+				$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_setting_option` WHERE `key` = 'countries' LIMIT 0,1");
 
 				if ($qry->num_rows > 0) {
-					$this->db->query("UPDATE `" . DB_PREFIX . "ebay_setting_option` SET `data` = '" . $this->db->escape(serialize($response['countries'])) . "', `last_updated` = NOW() WHERE `key` = 'countries' LIMIT 1");
+					$this->db->query("UPDATE `" . DB_PREFIX . "ebay_setting_option` SET `data` = '" . $this->db->escape(serialize($response['countries'])) . "', last_updated = NOW() WHERE `key` = 'countries' LIMIT 0,1");
 					$this->log('Updated countries into ebay_setting_option table');
 				} else {
-					$this->db->query("INSERT INTO `" . DB_PREFIX . "ebay_setting_option` SET `key` = 'countries', `data` = '" . $this->db->escape(serialize($response['countries'])) . "', `last_updated` = NOW()");
+					$this->db->query("INSERT INTO `" . DB_PREFIX . "ebay_setting_option` SET `key` = 'countries', `data` = '" . $this->db->escape(serialize($response['countries'])) . "', last_updated = NOW()");
 					$this->log('Inserted countries into ebay_setting_option table');
 				}
 
@@ -1505,10 +1436,10 @@ final class Ebay {
 				$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_setting_option` WHERE `key` = 'returns' LIMIT 1");
 
 				if ($qry->num_rows > 0) {
-					$this->db->query("UPDATE `" . DB_PREFIX . "ebay_setting_option` SET `data` = '" . $this->db->escape(serialize($response['returns'])) . "', `last_updated` = NOW() WHERE `key` = 'returns' LIMIT 1");
+					$this->db->query("UPDATE `" . DB_PREFIX . "ebay_setting_option` SET `data` = '" . $this->db->escape(serialize($response['returns'])) . "', last_updated = NOW() WHERE `key` = 'returns' LIMIT 0,1");
 					$this->log('Updated returns info in to ebay_setting_option table');
 				} else {
-					$this->db->query("INSERT INTO `" . DB_PREFIX . "ebay_setting_option` SET `key` = 'returns', `data` = '" . $this->db->escape(serialize($response['returns'])) . "', `last_updated` = NOW()");
+					$this->db->query("INSERT INTO `" . DB_PREFIX . "ebay_setting_option` SET `key` = 'returns', `data` = '" . $this->db->escape(serialize($response['returns'])) . "', last_updated = NOW()");
 					$this->log('Inserted returns info in to ebay_setting_option table');
 				}
 
@@ -1518,13 +1449,13 @@ final class Ebay {
 
 			// measurement types
 			if (isset($response['measurement_types'])) {
-				$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_setting_option` WHERE `key` = 'measurement_types' LIMIT 1");
+				$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_setting_option` WHERE `key` = 'measurement_types' LIMIT 0,1");
 
 				if ($qry->num_rows > 0) {
-					$this->db->query("UPDATE `" . DB_PREFIX . "ebay_setting_option` SET `data` = '" . $this->db->escape(serialize($response['measurement_types'])) . "', `last_updated` = NOW() WHERE `key` = 'measurement_types' LIMIT 1");
+					$this->db->query("UPDATE `" . DB_PREFIX . "ebay_setting_option` SET `data` = '" . $this->db->escape(serialize($response['measurement_types'])) . "', last_updated = NOW() WHERE `key` = 'measurement_types' LIMIT 0,1");
 					$this->log('Updated measurement_types info in to ebay_setting_option table');
 				} else {
-					$this->db->query("INSERT INTO `" . DB_PREFIX . "ebay_setting_option` SET `key` = 'measurement_types', `data` = '" . $this->db->escape(serialize($response['measurement_types'])) . "', `last_updated` = NOW()");
+					$this->db->query("INSERT INTO `" . DB_PREFIX . "ebay_setting_option` SET `key` = 'measurement_types', `data` = '" . $this->db->escape(serialize($response['measurement_types'])) . "', last_updated = NOW()");
 					$this->log('Inserted measurement_types info in to ebay_setting_option table');
 				}
 
@@ -1599,7 +1530,7 @@ final class Ebay {
 	}
 
 	public function getShippingServiceInfo($service_code) {
-		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_shipping` WHERE `ShippingService` = '" . $this->db->escape($service_code) . "' LIMIT 1");
+		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_shipping` WHERE `ShippingService` = '" . $this->db->escape($service_code) . "' LIMIT 0,1");
 
 		if ($qry->num_rows) {
 			return $qry->row;

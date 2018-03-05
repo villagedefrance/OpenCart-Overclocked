@@ -262,7 +262,7 @@ class ModelOpenbayOpenbay extends Model {
 	}
 
 	public function ftpTestConnection() {
-		$this->load->language('extension/openbay');
+		$this->language->load('extension/openbay');
 
 		$data = $this->request->post;
 
@@ -628,10 +628,6 @@ class ModelOpenbayOpenbay extends Model {
 	public function requirementTest() {
 		$error = array();
 
-		if (!function_exists('mcrypt_encrypt')) {
-			$error[] = $this->language->get('lang_error_mcrypt');
-		}
-
 		if (!function_exists('mb_detect_encoding')) {
 			$error[] = $this->language->get('lang_error_mbstring');
 		}
@@ -735,7 +731,6 @@ class ModelOpenbayOpenbay extends Model {
 		$handle = fopen($file, 'w+');
 
 		fwrite($handle, "** Update started: " . date('Y-m-d G:i:s') . " **" . "\n");
-
 		fwrite($handle, $data);
 
 		fclose($handle);
@@ -749,18 +744,18 @@ class ModelOpenbayOpenbay extends Model {
 		}
 
 		if ($data['filter_market_name'] == 'ebay') {
-			$sql .= " LEFT JOIN `" . DB_PREFIX . "ebay_listing` `ebay` ON (`p`.`product_id` = `ebay`.`product_id`)";
+			$sql .= " LEFT JOIN " . DB_PREFIX . "ebay_listing `ebay` ON (p.product_id = `ebay`.product_id)";
 
 			if ($data['filter_market_id'] == 0) {
-				$sql .= " LEFT JOIN (SELECT product_id, IF( SUM( `status` ) = 0, 0, 1 ) AS 'listing_status' FROM " . DB_PREFIX . "ebay_listing GROUP BY product_id ) ebay2 ON (p.product_id = ebay2.product_id)";
+				$sql .= " LEFT JOIN (SELECT product_id, IF( SUM( status ) = 0, 0, 1 ) AS 'listing_status' FROM " . DB_PREFIX . "ebay_listing GROUP BY product_id ) ebay2 ON (p.product_id = ebay2.product_id)";
 			}
 		}
 
 		if ($data['filter_market_name'] == 'amazon') {
 			if ($data['filter_market_id'] <= 4) {
-				$sql .= " LEFT JOIN " . DB_PREFIX . "amazon_product ap ON p.product_id = ap.product_id";
+				$sql .= " LEFT JOIN " . DB_PREFIX . "amazon_product ap ON (p.product_id = ap.product_id)";
 			} else {
-				$sql .= " LEFT JOIN " . DB_PREFIX . "amazon_product_link apl ON p.product_id = apl.product_id";
+				$sql .= " LEFT JOIN " . DB_PREFIX . "amazon_product_link apl ON (p.product_id = apl.product_id)";
 			}
 
 			$amazon_status = array(
@@ -799,7 +794,7 @@ class ModelOpenbayOpenbay extends Model {
 			} elseif ($data['filter_market_id'] == 6) {
 				$sql .= " AND apl.id IS NULL";
 			} else {
-				$sql .= " AND FIND_IN_SET('" . $this->db->escape($amazon_status[$data['filter_market_id']]) . "', ap.`status`) != 0";
+				$sql .= " AND FIND_IN_SET('" . $this->db->escape($amazon_status[$data['filter_market_id']]) . "', ap.status) != 0";
 			}
 		}
 
@@ -856,18 +851,18 @@ class ModelOpenbayOpenbay extends Model {
 		}
 
 		if ($data['filter_market_name'] == 'ebay') {
-			$sql .= " LEFT JOIN `" . DB_PREFIX . "ebay_listing` `ebay` ON (`p`.`product_id` = `ebay`.`product_id`)";
+			$sql .= " LEFT JOIN " . DB_PREFIX . "ebay_listing `ebay` ON (p.product_id = `ebay`.product_id)";
 
 			if ($data['filter_market_id'] == 0) {
-				$sql .= " LEFT JOIN (SELECT product_id, IF( SUM( `status` ) = 0, 0, 1 ) AS 'listing_status' FROM " . DB_PREFIX . "ebay_listing GROUP BY product_id ) ebay2 ON (p.product_id = ebay2.product_id)";
+				$sql .= " LEFT JOIN (SELECT product_id, IF( SUM( status ) = 0, 0, 1 ) AS 'listing_status' FROM " . DB_PREFIX . "ebay_listing GROUP BY product_id ) ebay2 ON (p.product_id = ebay2.product_id)";
 			}
 		}
 
 		if ($data['filter_market_name'] == 'amazon') {
 			if ($data['filter_market_id'] <= 4) {
-				$sql .= " LEFT JOIN " . DB_PREFIX . "amazon_product ap ON p.product_id = ap.product_id";
+				$sql .= " LEFT JOIN " . DB_PREFIX . "amazon_product ap ON (p.product_id = ap.product_id)";
 			} elseif ($data['filter_market_id'] <= 6) {
-				$sql .= " LEFT JOIN " . DB_PREFIX . "amazon_product_link apl ON p.product_id = apl.product_id";
+				$sql .= " LEFT JOIN " . DB_PREFIX . "amazon_product_link apl ON (p.product_id = apl.product_id)";
 			}
 
 			$amazon_status = array(
@@ -880,9 +875,9 @@ class ModelOpenbayOpenbay extends Model {
 
 		if ($data['filter_market_name'] == 'amazonus') {
 			if ($data['filter_market_id'] <= 4) {
-				$sql .= " LEFT JOIN " . DB_PREFIX . "amazonus_product ap ON p.product_id = ap.product_id";
+				$sql .= " LEFT JOIN " . DB_PREFIX . "amazonus_product ap ON (p.product_id = ap.product_id)";
 			} elseif ($data['filter_market_id'] <= 6) {
-				$sql .= " LEFT JOIN " . DB_PREFIX . "amazonus_product_link apl ON p.product_id = apl.product_id";
+				$sql .= " LEFT JOIN " . DB_PREFIX . "amazonus_product_link apl ON (p.product_id = apl.product_id)";
 			}
 
 			$amazonus_status = array(
@@ -919,7 +914,7 @@ class ModelOpenbayOpenbay extends Model {
 			} elseif ($data['filter_market_id'] == 6) {
 				$sql .= " AND apl.id IS NULL";
 			} else {
-				$sql .= " AND FIND_IN_SET('" . $this->db->escape($amazon_status[$data['filter_market_id']]) . "', ap.`status`) != 0";
+				$sql .= " AND FIND_IN_SET('" . $this->db->escape($amazon_status[$data['filter_market_id']]) . "', ap.status) != 0";
 			}
 		}
 
@@ -931,7 +926,7 @@ class ModelOpenbayOpenbay extends Model {
 			} elseif ($data['filter_market_id'] == 6) {
 				$sql .= " AND apl.id IS NULL";
 			} else {
-				$sql .= " AND FIND_IN_SET('" . $this->db->escape($amazonus_status[$data['filter_market_id']]) . "', ap.`status`) != 0";
+				$sql .= " AND FIND_IN_SET('" . $this->db->escape($amazonus_status[$data['filter_market_id']]) . "', ap.status) != 0";
 			}
 		}
 

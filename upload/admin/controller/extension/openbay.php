@@ -5,7 +5,7 @@ class ControllerExtensionOpenbay extends Controller {
 		$this->load->model('openbay/openbay');
 		$this->load->model('setting/extension');
 
-		$this->data = array_merge($this->data, $this->load->language('extension/openbay'));
+		$this->data = array_merge($this->data, $this->language->load('extension/openbay'));
 
 		$this->document->setTitle($this->language->get('lang_heading_title'));
 
@@ -177,7 +177,7 @@ class ControllerExtensionOpenbay extends Controller {
 	public function manage() {
 		$this->load->model('setting/setting');
 
-		$this->data = array_merge($this->data, $this->load->language('extension/openbay'));
+		$this->data = array_merge($this->data, $this->language->load('extension/openbay'));
 
 		$this->document->addStyle('view/stylesheet/openbay.css');
 		$this->document->addScript('view/javascript/openbay/faq.js');
@@ -414,11 +414,13 @@ class ControllerExtensionOpenbay extends Controller {
 
 	public function getNotifications() {
 		$this->load->model('openbay/openbay');
+
 		$this->response->setOutput(json_encode($this->model_openbay_openbay->getNotifications()));
 	}
 
 	public function version() {
 		$this->load->model('openbay/openbay');
+
 		$this->response->setOutput(json_encode($this->model_openbay_openbay->version()));
 	}
 
@@ -495,7 +497,7 @@ class ControllerExtensionOpenbay extends Controller {
 
 					$this->template = 'openbay/ebay_ajax_shippinginfo.tpl';
 
-					$this->response->setOutput($this->render(true), $this->config->get('config_compression'));
+					$this->response->setOutput($this->render());
 				}
 			}
 		}
@@ -510,7 +512,7 @@ class ControllerExtensionOpenbay extends Controller {
 
 					$this->template = 'openbay/amazon_ajax_shippinginfo.tpl';
 
-					$this->response->setOutput($this->render(true), $this->config->get('config_compression'));
+					$this->response->setOutput($this->render());
 				}
 			}
 		}
@@ -525,7 +527,7 @@ class ControllerExtensionOpenbay extends Controller {
 
 					$this->template = 'openbay/amazonus_ajax_shippinginfo.tpl';
 
-					$this->response->setOutput($this->render(true), $this->config->get('config_compression'));
+					$this->response->setOutput($this->render());
 				}
 			}
 		}
@@ -898,7 +900,7 @@ class ControllerExtensionOpenbay extends Controller {
 	}
 
 	public function orderListUpdate() {
-		$this->data = array_merge($this->data, $this->load->language('extension/openbay_order'));
+		$this->data = array_merge($this->data, $this->language->load('extension/openbay_order'));
 
 		$this->document->setTitle($this->language->get('lang_title_order_update'));
 
@@ -1035,7 +1037,7 @@ class ControllerExtensionOpenbay extends Controller {
 		$this->load->model('sale/order');
 		$this->load->model('localisation/order_status');
 
-		$this->data = array_merge($this->data, $this->load->language('extension/openbay_order'));
+		$this->data = array_merge($this->data, $this->language->load('extension/openbay_order'));
 
 		$order_statuses = $this->model_localisation_order_status->getOrderStatuses();
 
@@ -1098,7 +1100,6 @@ class ControllerExtensionOpenbay extends Controller {
 
 			foreach ($this->request->post['order_id'] as $order_id) {
 				if ($this->request->post['channel'][$order_id] == 'Amazon US') {
-
 					if ($this->config->get('openbay_amazonus_order_status_shipped') == $this->request->post['order_status_id']) {
 						$carrier = '';
 
@@ -1164,7 +1165,7 @@ class ControllerExtensionOpenbay extends Controller {
 	public function linkStatus() {
 		$product_id = $this->request->get['product_id'];
 
-		$this->data = array_merge($this->data, $this->load->language('extension/default'));
+		$this->data = array_merge($this->data, $this->language->load('extension/default'));
 
 		$markets = array();
 
@@ -1697,7 +1698,7 @@ class ControllerExtensionOpenbay extends Controller {
 				'special'    => $special,
 				'image'      => $image,
 				'quantity'   => $result['quantity'],
-				'status'     => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
+				'status'     => ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 				'selected'   => isset($this->request->post['selected']) && in_array($result['product_id'], $this->request->post['selected']),
 				'edit'       => $edit,
 				'has_option' => $openstock_installed ? $result['has_option'] : 0,

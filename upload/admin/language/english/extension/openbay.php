@@ -92,7 +92,6 @@ $_['lang_tab_help']                  = 'Help';
 $_['lang_help_guide']                = 'User guides';
 $_['lang_help_guide_description']    = 'To download and view the eBay and Amazon user guides <a href="http://shop.openbaypro.com/index.php?route=information/faq&topic=37" title="OpenBay Pro user guides">click here</a>';
 
-$_['lang_error_mcrypt']              = 'PHP function "mcrypt_encrypt" is not enabled. Contact your hosting provider.';
 $_['lang_error_mbstring']            = 'PHP library "mb strings" is not enabled. Contact your hosting provider.';
 $_['lang_error_ftpconnect']          = 'PHP FTP functions are not enabled. Contact your hosting provider.';
 $_['lang_error_oc_version']          = 'Your version of OpenCart is not tested to work with this module. You may experience problems.';

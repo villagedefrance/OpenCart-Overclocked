@@ -15,9 +15,9 @@
   <?php } ?>
   <div class="box">
     <div class="heading">
-      <a href="http://www.openbaypro.com" target="_BLANK"><img src="https://uk.openbaypro.com/asset/OpenBayPro_30px_h.png" alt="OpenBay Pro" style="margin-top:5px; margin-left:5px; border: 0px;;" border="0"/></a>
+      <a href="http://www.openbaypro.com" target="_BLANK"><img src="https://uk.openbaypro.com/asset/OpenBayPro_30px_h.png" alt="OpenBay Pro" style="margin-top:5px; margin-left:5px; border: 0;" border="0"/></a>
     </div>
-    <div class="content-body" style="padding-right:0px;">
+    <div class="content-body" style="padding-right:0;">
       <div style="float:left; width:60%;">
         <div style="clear:both;"></div>
         <table class="list">
@@ -50,10 +50,12 @@
           <?php } ?>
           </tbody>
         </table>
-        <div class="openbayPod overviewPod" onclick="location='<?php echo $manage_link; ?>'">
-          <img src="<?php echo HTTPS_SERVER . 'view/image/openbay/openbay_icon1.png'; ?>" title="<?php echo $lang_title_manage; ?>" alt="Manage icon" border="0" />
-          <h3><?php echo $lang_pod_manage; ?></h3>
-        </div>
+        <a onclick="location='<?php echo $manage_link; ?>'" title="">
+          <div class="openbayPod overviewPod">
+            <img src="<?php echo HTTPS_SERVER . 'view/image/openbay/openbay_icon1.png'; ?>" title="<?php echo $lang_title_manage; ?>" alt="Manage icon" border="0" />
+            <h3><?php echo $lang_pod_manage; ?></h3>
+          </div>
+        </a>
         <a href="http://help.welfordmedia.co.uk/" target="_BLANK">
           <div class="openbayPod overviewPod">
             <img src="<?php echo HTTPS_SERVER . 'view/image/openbay/openbay_icon7.png'; ?>" title="<?php echo $lang_title_help; ?>" alt="Help icon" border="0" />
@@ -68,12 +70,12 @@
         </a>
       </div>
       <div style="float:right; width:40%; text-align:center;">
-        <div id="openbay_version" class="attention" style="background-image:none; margin:0px 20px 10px 20px; text-align:left;">
+        <div id="openbay_version" class="attention" style="background-image:none; margin:0 20px 10px 20px; text-align:left;">
           <div id="openbay_version_loading">
             <img src="view/image/loading.gif" alt="Loading" /> <?php echo $lang_checking_version; ?>
           </div>
         </div>
-        <div id="openbay_notification" class="attention" style="background-image:none; margin: 0px 20px; text-align:left;">
+        <div id="openbay_notification" class="attention" style="background-image:none; margin: 0 20px; text-align:left;">
           <div id="openbay_loading">
             <img src="view/image/loading.gif" alt="Loading" /> <?php echo $lang_getting_messages; ?>
           </div>
@@ -108,7 +110,7 @@ function getOpenbayVersion() {
 			failure: function() {
 				$('#openbay_version').html('<?php echo $lang_error_retry; ?><strong><span onclick="getOpenbayVersion();"><?php echo $lang_btn_retry; ?></span></strong>');
 			},
-			error: function (xhr, ajaxOptions, thrownError) {
+			error: function(xhr, ajaxOptions, thrownError) {
 				if (xhr.status != 0) {
 					alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 				}
@@ -128,7 +130,7 @@ function getOpenbayNotifications() {
 			url: 'index.php?route=extension/openbay/getNotifications&token=<?php echo $this->request->get['token']; ?>',
 			dataType: 'json',
 			success: function(json) {
-				html += '<h3 style="background: url(<?php echo HTTPS_SERVER; ?>/view/image/information.png) no-repeat top left;"><?php echo $lang_title_messages; ?></h3>';
+				html += '<h3 style="background:url(<?php echo HTTPS_SERVER; ?>/view/image/information.png) no-repeat top left; color:#222;"><?php echo $lang_title_messages; ?></h3>';
 				html += '<ul>';
 
 				$.each(json, function(key, val) {
