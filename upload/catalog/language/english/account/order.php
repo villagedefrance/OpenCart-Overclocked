@@ -44,4 +44,5 @@ $_['text_empty']              = 'You have not made any previous orders!';
 $_['text_error']              = 'The order you requested could not be found!';
 
 // Button
+$_['button_invoice']          = 'Download Invoice';
 $_['button_pick']             = 'Pick List';

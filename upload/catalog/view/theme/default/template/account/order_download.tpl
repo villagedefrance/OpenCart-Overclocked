@@ -119,32 +119,6 @@
     </tr>
   <?php } ?>
   </table>
-<?php if ($comment) { ?>
-  <table class="comment">
-    <tr class="heading">
-      <td><b><?php echo $column_comment; ?></b></td>
-    </tr>
-    <tr>
-      <td><?php echo $comment; ?></td>
-    </tr>
-  </table>
-<?php } ?>
-<?php if ($histories) { ?>
-  <table class="history">
-    <tr class="heading">
-      <td><b><?php echo $column_date_added; ?></b></td>
-      <td><b><?php echo $column_status; ?></b></td>
-      <td><b><?php echo $column_comment; ?></b></td>
-    </tr>
-  <?php foreach ($histories as $history) { ?>
-    <tr>
-      <td><?php echo $history['date_added']; ?></td>
-      <td><?php echo $history['status']; ?></td>
-      <td><?php echo $history['comment']; ?></td>
-    </tr>
-  <?php } ?>
-  </table>
-<?php } ?>
 </div>
 </body>
 </html>

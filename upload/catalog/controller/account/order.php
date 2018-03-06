@@ -92,7 +92,7 @@ class ControllerAccountOrder extends Controller {
 
 		$this->data['button_pick'] = $this->language->get('button_pick');
 		$this->data['button_view'] = $this->language->get('button_view');
-		$this->data['button_download'] = $this->language->get('button_download');
+		$this->data['button_invoice'] = $this->language->get('button_invoice');
 		$this->data['button_reorder'] = $this->language->get('button_reorder');
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
@@ -698,8 +698,6 @@ class ControllerAccountOrder extends Controller {
 		$this->data['text_shipping_address'] = $this->language->get('text_shipping_address');
 		$this->data['text_payment_method'] = $this->language->get('text_payment_method');
 		$this->data['text_payment_address'] = $this->language->get('text_payment_address');
-		$this->data['text_comment'] = $this->language->get('text_comment');
-		$this->data['text_history'] = $this->language->get('text_history');
 
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_model'] = $this->language->get('column_model');
@@ -708,10 +706,6 @@ class ControllerAccountOrder extends Controller {
 		$this->data['column_tax_value'] = $this->language->get('column_tax_value');
 		$this->data['column_tax_percent'] = $this->language->get('column_tax_percent');
 		$this->data['column_total'] = $this->language->get('column_total');
-
-		$this->data['column_date_added'] = $this->language->get('column_date_added');
-		$this->data['column_status'] = $this->language->get('column_status');
-		$this->data['column_comment'] = $this->language->get('column_comment');
 
 		$this->data['token'] = $this->session->data['token'];
 
@@ -879,8 +873,6 @@ class ControllerAccountOrder extends Controller {
 				);
 			}
 
-			$this->data['picklist_status'] = $this->config->get('config_picklist_status');
-
 			// Voucher
 			$this->data['vouchers'] = array();
 
@@ -894,20 +886,6 @@ class ControllerAccountOrder extends Controller {
 			}
 
 			$this->data['totals'] = $this->model_account_order->getOrderTotals($this->request->get['order_id']);
-
-			$this->data['comment'] = nl2br($order_info['comment']);
-
-			$this->data['histories'] = array();
-
-			$results = $this->model_account_order->getOrderHistories($this->request->get['order_id']);
-
-			foreach ($results as $result) {
-				$this->data['histories'][] = array(
-					'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-					'status'     => $result['status'],
-					'comment'    => nl2br($result['comment'])
-				);
-			}
 		}
 
 		// Theme

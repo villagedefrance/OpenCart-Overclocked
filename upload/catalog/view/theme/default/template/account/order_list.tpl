@@ -32,7 +32,7 @@
             <a href="<?php echo $order['href']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/info.png" alt="<?php echo $button_view; ?>" title="<?php echo $button_view; ?>" /></a>
             &nbsp;&nbsp;
           <?php $order_download = $order['download']; ?>
-            <a onclick="window.open('<?php echo $order_download; ?>&pdf=true');"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/download.png" alt="<?php echo $button_download; ?>" title="<?php echo $button_download; ?>" /></a>
+            <a onclick="window.open('<?php echo $order_download; ?>&pdf=true');"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/download.png" alt="<?php echo $button_invoice; ?>" title="<?php echo $button_invoice; ?>" /></a>
             &nbsp;&nbsp;
             <a href="<?php echo $order['reorder']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/reorder.png" alt="<?php echo $button_reorder; ?>" title="<?php echo $button_reorder; ?>" /></a>
           </div>
