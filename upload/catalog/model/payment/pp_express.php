@@ -262,55 +262,67 @@ class ModelPaymentPPExpress extends Model {
 	}
 
 	public function call($data) {
-		if ($this->config->get('pp_express_test')) {
-			$api_url = 'https://api-3t.sandbox.paypal.com/nvp';
-			$api_user = $this->config->get('pp_express_sandbox_username');
-			$api_password = $this->config->get('pp_express_sandbox_password');
-			$api_signature = $this->config->get('pp_express_sandbox_signature');
+		if ($this->config->get('pp_express_test') == 1) {
+			$api_endpoint = 'https://api-3t.sandbox.paypal.com/nvp';
+			$user = $this->config->get('pp_express_sandbox_username');
+			$password = $this->config->get('pp_express_sandbox_password');
+			$signature = $this->config->get('pp_express_sandbox_signature');
 		} else {
-			$api_url = 'https://api-3t.paypal.com/nvp';
-			$api_user = $this->config->get('pp_express_username');
-			$api_password = $this->config->get('pp_express_password');
-			$api_signature = $this->config->get('pp_express_signature');
+			$api_endpoint = 'https://api-3t.paypal.com/nvp';
+			$user = $this->config->get('pp_express_username');
+			$password = $this->config->get('pp_express_password');
+			$signature = $this->config->get('pp_express_signature');
 		}
 
-		$settings = array(
-			'USER'         => $api_user,
-			'PWD'          => $api_password,
-			'SIGNATURE'    => $api_signature,
+		$default_parameters = array(
+			'USER'         => $user,
+			'PWD'          => $password,
+			'SIGNATURE'    => $signature,
 			'VERSION'      => '109.0',
-			'BUTTONSOURCE' => 'OpenCart_2.0_EC'
+			'BUTTONSOURCE' => 'OpenCart_Cart_EC'
 		);
 
-		$this->log($data, 'Call data');
+		$call_parameters = array_merge($data, $default_parameters);
 
-		$defaults = array(
-			CURLOPT_POST           => 1,
-			CURLOPT_HEADER         => 0,
-			CURLOPT_URL            => $api_url,
+		$this->log($call_parameters, 'Call data');
+
+		$options = array(
+			CURLOPT_POST           => true,
+			CURLOPT_HEADER         => false,
+			CURLOPT_URL            => $api_endpoint,
 			CURLOPT_USERAGENT      => "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1",
-			CURLOPT_FRESH_CONNECT  => 1,
-			CURLOPT_RETURNTRANSFER => 1,
-			CURLOPT_FORBID_REUSE   => 1,
+			CURLOPT_FRESH_CONNECT  => true,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_FORBID_REUSE   => true,
 			CURLOPT_TIMEOUT        => 0,
-			CURLOPT_SSL_VERIFYPEER => 0,
-			CURLOPT_SSL_VERIFYHOST => 0,
-			CURLOPT_POSTFIELDS     => http_build_query(array_merge($data, $settings), '', "&")
+			CURLOPT_SSL_VERIFYPEER => false,
+			CURLOPT_SSL_VERIFYHOST => false,
+			CURLOPT_POSTFIELDS     => http_build_query($call_parameters, '', '&')
 		);
 
-		$curl = curl_init();
+		$ch = curl_init();
 
-		curl_setopt_array($curl, $defaults);
+		curl_setopt_array($ch, $options);
 
-		if (!$curl_response = curl_exec($curl)) {
-			$this->log(array('error' => curl_error($curl), 'errno' => curl_errno($curl)), 'cURL failed');
+		$response = curl_exec($ch);
+
+		if (curl_errno($ch) != CURLE_OK) {
+			$log_data = array(
+				'curl_error' => curl_error($ch),
+				'curl_errno' => curl_errno($ch)
+			);
+
+			$this->log($log_data, 'cURL failed');
+			return false;
 		}
 
-		$this->log($curl_response, 'Result');
+		curl_close($ch);
 
-		curl_close($curl);
+		$response = $this->cleanReturn($response);
 
-		return $this->cleanReturn($curl_response);
+		$this->log($response, 'Response');
+
+		return $response;
 	}
 
 	public function recurringPayments() {
