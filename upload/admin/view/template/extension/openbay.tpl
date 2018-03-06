@@ -15,7 +15,7 @@
   <?php } ?>
   <div class="box">
     <div class="heading">
-      <a href="http://www.openbaypro.com" target="_BLANK"><img src="https://uk.openbaypro.com/asset/OpenBayPro_30px_h.png" alt="OpenBay Pro" style="margin-top:5px; margin-left:5px; border: 0;" border="0"/></a>
+      <a onclick="window.open('https://www.openbaypro.com');" title=""><img src="https://uk.openbaypro.com/asset/OpenBayPro_30px_h.png" alt="OpenBay Pro" style="margin:5px 0 0 5px; border:0;" border="0" /></a>
     </div>
     <div class="content-body" style="padding-right:0;">
       <div style="float:left; width:60%;">
@@ -56,13 +56,13 @@
             <h3><?php echo $lang_pod_manage; ?></h3>
           </div>
         </a>
-        <a href="http://help.welfordmedia.co.uk/" target="_BLANK">
+        <a onclick="window.open('https://help.openbaypro.com/');" title="">
           <div class="openbayPod overviewPod">
             <img src="<?php echo HTTPS_SERVER . 'view/image/openbay/openbay_icon7.png'; ?>" title="<?php echo $lang_title_help; ?>" alt="Help icon" border="0" />
             <h3><?php echo $lang_pod_help; ?></h3>
           </div>
         </a>
-        <a href="http://shop.openbaypro.com/?utm_campaign=OpenBayModule&utm_medium=referral&utm_source=shopbutton" target="_BLANK">
+        <a onclick="window.open('http://shop.openbaypro.com/?utm_campaign=OpenBayModule&utm_medium=referral&utm_source=shopbutton');" title="">
           <div class="openbayPod overviewPod">
             <img src="<?php echo HTTPS_SERVER . 'view/image/openbay/openbay_icon11.png'; ?>" title="<?php echo $lang_title_shop; ?>" alt="Shop icon" border="0" />
             <h3><?php echo $lang_pod_shop; ?></h3>
@@ -75,7 +75,7 @@
             <img src="view/image/loading.gif" alt="Loading" /> <?php echo $lang_checking_version; ?>
           </div>
         </div>
-        <div id="openbay_notification" class="attention" style="background-image:none; margin: 0 20px; text-align:left;">
+        <div id="openbay_notification" class="attention" style="background-image:none; margin:0 20px; text-align:left;">
           <div id="openbay_loading">
             <img src="view/image/loading.gif" alt="Loading" /> <?php echo $lang_getting_messages; ?>
           </div>

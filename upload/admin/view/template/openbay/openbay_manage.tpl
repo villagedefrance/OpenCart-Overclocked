@@ -11,8 +11,8 @@
     <div class="heading">
       <h1><?php echo $lang_text_manager; ?></h1>
       <div class="buttons">
-        <a onclick="validateForm(); return false;" class="button"><span><?php echo $lang_btn_save; ?></span></a>
-        <a onclick="location = '<?php echo $cancel; ?>';" class="button"><span><?php echo $lang_btn_cancel; ?></span></a>
+        <a onclick="validateForm(); return false;" class="button-save"><?php echo $lang_btn_save; ?></a>
+        <a onclick="location='<?php echo $cancel; ?>';" class="button-cancel"><?php echo $lang_btn_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -23,7 +23,7 @@
         <a href="#tab-help"><?php echo $lang_tab_help; ?></a>
       </div>
       <div id="tab-updates">
-        <p><?php echo $lang_patch_notes1; ?> <a href="http://shop.openbaypro.com/index.php?route=information/information/changelog" title="OpenBay Pro change log" target="_BLANK"><?php echo $lang_patch_notes2; ?></a></p>
+        <div class="tooltip"><?php echo $lang_patch_notes1; ?> <a onclick="window.open('http://shop.openbaypro.com/index.php?route=information/information/changelog');" title="OpenBay Pro change log"><?php echo $lang_patch_notes2; ?></a></div>
         <div id="update-types" class="htabs">
           <a href="#v2-update-tab"><?php echo $tab_update_v2; ?></a>
           <a href="#v1-update-tab"><?php echo $tab_update_v1; ?></a>
@@ -52,7 +52,7 @@
         </div>
         <div id="v1-update-tab">
           <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
-            <p><?php echo $lang_patch_notes3; ?></p>
+            <div class="tooltip"><?php echo $lang_patch_notes3; ?></div>
             <table class="form">
               <tr>
                 <td><?php echo $lang_installed_version; ?>:</td>

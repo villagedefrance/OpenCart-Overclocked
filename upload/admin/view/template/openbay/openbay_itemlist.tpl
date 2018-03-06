@@ -29,14 +29,14 @@
         </thead>
         <tbody>
           <tr>
-            <td style="font-weight:bold;" class="left"><?php echo $text_title; ?></td>
+            <td class="left" style="font-weight:bold;"><?php echo $text_title; ?></td>
             <td class="left"><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" size="35" /></td>
-            <td style="font-weight:bold;" class="left"><?php echo $text_stock_range; ?></td>
+            <td class="left" style="font-weight:bold;"><?php echo $text_stock_range; ?></td>
             <td class="left">
-              <input type="text" name="filter_quantity" size="8" value="<?php echo $filter_quantity; ?>" style="text-align: left;" /> -
-              <input type="text" name="filter_quantity_to" size="8" value="<?php echo $filter_quantity_to; ?>" style="text-align: left;" />
+              <input type="text" name="filter_quantity" size="8" value="<?php echo $filter_quantity; ?>" style="text-align:left;" /> -
+              <input type="text" name="filter_quantity_to" size="8" value="<?php echo $filter_quantity_to; ?>" style="text-align:left;" />
             </td>
-            <td style="font-weight:bold;" class="left"><?php echo $text_status; ?></td>
+            <td class="left" style="font-weight:bold;"><?php echo $text_status; ?></td>
             <td class="left">
               <select name="filter_status">
                 <option value="*"></option>
@@ -54,7 +54,7 @@
             </td>
           </tr>
           <tr>
-            <td style="font-weight:bold;" class="left"><?php echo $text_status_marketplace; ?></td>
+            <td class="left" style="font-weight:bold;"><?php echo $text_status_marketplace; ?></td>
             <td class="left">
               <select name="filter_marketplace">
                 <option value="all" <?php echo (!isset($filter_marketplace) || $filter_marketplace == 'all' ? ' selected' : ''); ?>><?php echo $text_status_all; ?></option>
@@ -82,16 +82,16 @@
                 <?php } ?>
               </select>
             </td>
-            <td style="font-weight:bold;" class="left"><?php echo $text_price_range; ?></td>
+            <td class="left" style="font-weight:bold;"><?php echo $text_price_range; ?></td>
             <td class="left">
               <input type="text" name="filter_price" value="<?php echo $filter_price; ?>" size="8" /> -
               <input type="text" name="filter_price_to" value="<?php echo $filter_price_to; ?>" size="8" />
             </td>
-            <td style="font-weight:bold;" class="left"><?php echo $text_model; ?></td>
+            <td class="left" style="font-weight:bold;"><?php echo $text_model; ?></td>
             <td class="left"><input type="text" name="filter_model" value="<?php echo $filter_model; ?>" /></td>
           </tr>
           <tr>
-            <td style="font-weight:bold;" class="left"><?php echo $text_category; ?></td>
+            <td class="left" style="font-weight:bold;"><?php echo $text_category; ?></td>
             <td class="left">
               <select name="filter_category">
                 <option value=""></option>
@@ -101,7 +101,7 @@
                 <?php } ?>
               </select>
             </td>
-            <td style="font-weight:bold;" class="left"><?php echo $text_manufacturer; ?></td>
+            <td class="left" style="font-weight:bold;"><?php echo $text_manufacturer; ?></td>
             <td class="left">
               <select name="filter_manufacturer">
                 <option value=""></option>
@@ -110,7 +110,7 @@
                 <?php } ?>
               </select>
             </td>
-            <td style="font-weight:bold;" class="left"><?php echo $text_populated; ?></td>
+            <td class="left" style="font-weight:bold;"><?php echo $text_populated; ?></td>
             <td class="left">
               <label for="filter_sku"><?php echo $text_sku; ?></label>
               <input type="checkbox" name="filter_sku" id="filter_sku" value="1" <?php if ($filter_sku == 1) { echo 'checked="checked" ';} ?>/>
@@ -127,7 +127,7 @@
         <table class="list">
           <thead>
             <tr>
-              <td width="1" style="text-align: center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+              <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
               <td class="center"><?php echo $column_image; ?></td>
               <td class="left"><?php if ($sort == 'pd.name') { ?>
                 <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
@@ -161,7 +161,7 @@
             <?php if ($products) { ?>
               <?php foreach ($products as $product) { ?>
                 <tr>
-                <td style="text-align: center;">
+                <td style="text-align:center;">
                   <?php if ($product['selected']) { ?>
                     <input type="checkbox" name="selected[]" value="<?php echo $product['product_id']; ?>" checked="checked" />
                   <?php } else { ?>
@@ -173,8 +173,8 @@
                 <td class="left"><?php echo $product['model']; ?></td>
                 <td class="left">
                   <?php if ($product['special']) { ?>
-                    <span style="text-decoration: line-through;"><?php echo $product['price']; ?></span><br/>
-                    <span style="color: #b00;"><?php echo $product['special']; ?></span>
+                    <span style="text-decoration:line-through;"><?php echo $product['price']; ?></span><br/>
+                    <span style="color:#B00;"><?php echo $product['special']; ?></span>
                   <?php } else { ?>
                     <?php echo $product['price']; ?>
                   <?php } ?>
@@ -182,15 +182,15 @@
                 <td class="right">
                   <?php if ($product['has_option'] == 0) { ?>
                     <?php if ($product['quantity'] <= 0) { ?>
-                      <span style="color: #FF0000;"><?php echo $product['quantity']; ?></span>
+                      <span style="color:#FF0000;"><?php echo $product['quantity']; ?></span>
                     <?php } elseif ($product['quantity'] <= 5) { ?>
-                      <span style="color: #FFA500;"><?php echo $product['quantity']; ?></span>
+                      <span style="color:#FFA500;"><?php echo $product['quantity']; ?></span>
                     <?php } else { ?>
-                      <span style="color: #008000;"><?php echo $product['quantity']; ?></span>
+                      <span style="color:#008000;"><?php echo $product['quantity']; ?></span>
                     <?php } ?>
                   <?php } else { ?>
-                    <span style="color: #000000;"><?php echo $product['vCount']; ?> <?php echo $text_variations; ?></span><br />
-                    <span style="color: #000000;"><?php echo $product['vsCount']; ?> <?php echo $text_variations_stock; ?></span>
+                    <span style="color:#000000;"><?php echo $product['vCount']; ?> <?php echo $text_variations; ?></span><br />
+                    <span style="color:#000000;"><?php echo $product['vsCount']; ?> <?php echo $text_variations_stock; ?></span>
                   <?php } ?>
                 </td>
                 <td class="left"><?php echo $product['status']; ?></td>
@@ -200,7 +200,7 @@
                       <?php if ($market['href'] != '') { ?>
                         <a href="<?php echo $market['href']; ?>" title="<?php echo $market['text']; ?>"><img width="45" height="45" style="margin-right:8px;" src="<?php echo $market['img']; ?>" onMouseOut="hideTooltip('tooltip<?php echo $product['product_id']; ?>')" onMouseOver="showTooltip('tooltip<?php echo $product['product_id']; ?>', '<?php echo $market['name']; ?>', '<?php echo $market['text']; ?>')" /></a>
                       <?php } else { ?>
-                        <img width="45" height="45" style="margin-right:8px;" src="<?php echo $market['img']; ?>" onMouseOut="hideTooltip('tooltip<?php echo $product['product_id']; ?>')" onMouseOver="showTooltip('tooltip<?php echo $product['product_id']; ?>', '<?php echo $market['name']; ?>', '<?php echo $market['text']; ?>')"/>
+                        <img width="45" height="45" style="margin-right:8px;" src="<?php echo $market['img']; ?>" onMouseOut="hideTooltip('tooltip<?php echo $product['product_id']; ?>')" onMouseOver="showTooltip('tooltip<?php echo $product['product_id']; ?>', '<?php echo $market['name']; ?>', '<?php echo $market['text']; ?>')" />
                       <?php } ?>
                     <?php } ?>
                   </td>
@@ -301,7 +301,7 @@ function filter() {
 
 <?php if ($this->config->get('openbay_status') == '1') { ?>
 <script type="text/javascript"><!--
-	$('.buttons').prepend('<a onclick="bulkUpload();" class="button"><span><?php echo $lang_bulk_btn; ?></span></a>');
+	$('.buttons').prepend('<a onclick="bulkUpload();" class="button"><?php echo $lang_bulk_btn; ?></a>');
 
 	function bulkUpload() {
 		$('#form').attr('action', 'index.php?route=openbay/openbay/createBulk&token=<?php echo $this->request->get['token']; ?>');
