@@ -517,6 +517,7 @@
       <div class="panel-content">
         <div id="review"></div>
         <div id="add-review">
+        <?php if ($review_allowed) { ?>
           <h2 id="review-title"><?php echo $text_write; ?></h2>
           <div class="review-element">
             <input type="text" name="name" placeholder="<?php echo $entry_name; ?>" value="" size="30" />
@@ -549,6 +550,11 @@
           </div>
           <br />
           <div><a id="button-review" class="button"><?php echo $button_continue; ?></a></div>
+        <?php } else { ?>
+          <?php if ($help_review_logged) { ?>
+            <div class="attention"><?php echo $help_review_logged; ?></div>
+          <?php } ?>
+        <?php } ?>
         </div>
       </div>
     </div>
@@ -734,7 +740,7 @@ $('#button-cart').bind('click', function() {
 				}
 
 				if (json['error']['quantity']) {
-					$('#cart-warnings').after('<div class="warning" style="margin:5px 0px;">' + json['error']['quantity'] + '<img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>');
+					$('#cart-warnings').after('<div class="warning" style="margin:5px 0;">' + json['error']['quantity'] + '<img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>');
 				}
 
 				if (json['error']['profile']) {
@@ -776,7 +782,7 @@ $('#button-buy-it-now').bind('click', function() {
 				}
 
 				if (json['error']['quantity']) {
-					$('#cart-warnings').after('<div class="warning" style="margin:5px 0px;">' + json['error']['quantity'] + '<img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>');
+					$('#cart-warnings').after('<div class="warning" style="margin:5px 0;">' + json['error']['quantity'] + '<img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>');
 				}
 
 				if (json['error']['profile']) {

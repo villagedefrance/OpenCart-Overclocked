@@ -71,6 +71,9 @@ $_['text_G241D']                              = 'Buy 1 %s and Get 1 %s for %s!';
 $_['text_G242D']                              = 'Buy 1 %s and Get 1 %s for %s!';
 $_['text_G142D']                              = '%s %s when you buy 1 %s!';
 
+// Help
+$_['help_review_logged']                      = 'You must be logged-in to post a review.';
+
 // Error
 $_['error_name']                              = 'Warning: Review Name must be between 3 and 25 characters!';
 $_['error_text']                              = 'Warning: Review Text must be between 25 and 1000 characters!';

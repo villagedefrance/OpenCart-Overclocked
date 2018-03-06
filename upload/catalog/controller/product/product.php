@@ -722,7 +722,23 @@ class ControllerProductProduct extends Controller {
 				$this->data['offer_label_medium'] = '';
 			}
 
-			$this->data['review_status'] = $this->config->get('config_review_status');
+			// Reviews
+			$review_status = $this->config->get('config_review_status');
+			$review_login = $this->config->get('config_review_login');
+
+			if ($review_status && !$review_login) {
+				$this->data['review_allowed'] = true;
+				$this->data['help_review_logged'] = false;
+			} elseif ($review_status && $review_login && $this->customer->isLogged() && $this->customer->isSecure()) {
+				$this->data['review_allowed'] = true;
+				$this->data['help_review_logged'] = false;
+			} else {
+				$this->data['review_allowed'] = false;
+				$this->data['help_review_logged'] = $this->language->get('help_review_logged');
+			}
+
+			$this->data['review_status'] = $review_status;
+
 			$this->data['reviews'] = sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']);
 			$this->data['rating'] = (int)$product_info['rating'];
 			$this->data['captcha'] = ''; // Captcha required
