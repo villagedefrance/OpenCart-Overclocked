@@ -28,14 +28,16 @@ class ControllerModuleCarousel extends Controller {
 		$this->data['track_style'] = 'margin:0 30px 20px 30px;';
 
 		// Responsive
-		$show_max = round($setting['show'] + 1, 0);
+		$show_max = round($setting['show'], 0);
 
-		$show_1280 = ($show_max > 5) ? ($show_max - 2) : $show_max;
+		$show_1440 = ($show_max > 6) ? ($show_max - 1) : $show_max;
+		$show_1280 = ($show_1440 > 5) ? ($show_max - 1) : $show_1440;
 		$show_960 = ($show_1280 > 4) ? ($show_1280 - 1) : $show_1280;
 		$show_640 = ($show_960 > 3) ? ($show_960 - 1) : $show_960;
 		$show_480 = ($show_640 > 2) ? ($show_640 - 1) : $show_640;
 		$show_320 = ($show_480 > 1) ? ($show_480 - 1) : $show_480;
 
+		$this->data['show_1440'] = $show_1440;
 		$this->data['show_1280'] = $show_1280;
 		$this->data['show_960'] = $show_960;
 		$this->data['show_640'] = $show_640;

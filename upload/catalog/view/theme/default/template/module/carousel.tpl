@@ -43,6 +43,7 @@ jQuery(document).ready(function() {
 		rtl: false,
 		dots: false,
 		responsive: [
+		{ breakpoint: 1440, settings: { slidesToShow: <?php echo $show_1440; ?> } },
 		{ breakpoint: 1280, settings: { slidesToShow: <?php echo $show_1280; ?> } },
 		{ breakpoint: 960, settings: { slidesToShow: <?php echo $show_960; ?> } },
 		{ breakpoint: 640, settings: { slidesToShow: <?php echo $show_640; ?> } },

@@ -24,7 +24,6 @@ $_['entry_random']        = 'Shuffle Images:';
 
 $_['entry_banner']        = 'Banner';
 $_['entry_dimension']     = 'Dimension (W x H)';
-$_['entry_auto']          = 'Auto';
 $_['entry_layout']        = 'Layout';
 $_['entry_position']      = 'Position';
 $_['entry_status']        = 'Status';

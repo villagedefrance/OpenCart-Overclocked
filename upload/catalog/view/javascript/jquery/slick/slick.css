@@ -6,6 +6,13 @@
  * Development file. Use minified version for production.
  * ---------------------------------------------------
  */
+ @font-face {
+  font-family: 'flexslider-icon';
+  src: url('fonts/flexslider-icon.eot');
+  src: url('fonts/flexslider-icon.eot?#iefix') format('embedded-opentype'), url('fonts/flexslider-icon.woff') format('woff'), url('fonts/flexslider-icon.ttf') format('truetype'), url('fonts/flexslider-icon.svg#flexslider-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 .slick-slider {
 	position: relative;
 	display: block;
@@ -77,7 +84,7 @@
 	outline: 0;
 }
 .slick-slide img:first-child {
-	margin-left: 30px;
+	margin-left: 40px;
 }
 .slick-slide .slick-loading img {
 	display: none;
@@ -103,15 +110,15 @@
 
 /* --- Theme Overclocked Edition --- */
 .slick-loading .slick-list {
-	background: #FFF url('images/ajax-loader.gif') center center no-repeat;
+	background: #FFF url('ajax-loader.gif') center center no-repeat;
 }
 /* Arrows */
 .slick-prev, .slick-next {
 	position: absolute;
 	top: 50%;
 	display: block;
-	width: 20px;
-	height: 20px;
+	width: 30px;
+	height: 30px;
 	padding: 0;
 	font-size: 0;
 	font-weight: normal;
@@ -119,6 +126,7 @@
 	line-height: 0;
 	-webkit-transform: translate(0, -50%);
 	-ms-transform: translate(0, -50%);
+	-o-transform: translate(0, -50%);
 	transform: translate(0, -50%);
 	background: transparent;
 	color: transparent;
@@ -144,44 +152,43 @@
 	opacity: 0.25;
 }
 .slick-prev:before, .slick-next:before {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: "flexslider-icon";
 	font-size: 24px;
 	line-height: 1;
 	filter: alpha(opacity=75);
 	-khtml-opacity: 0.75;
 	-moz-opacity: 0.75;
 	opacity: 0.75;
-	color: #333;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+	color: rgba(0, 0, 0, 0.8);
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
 }
 /* Previous */
 .slick-prev {
-	left: -25px;
+	left: -30px;
 }
 [dir='rtl'] .slick-prev {
-	right: -25px;
+	right: -30px;
 	left: auto;
 }
 .slick-prev:before {
-	content: '\2329';
+	content: '\f001';
 }
 [dir='rtl'] .slick-prev:before {
-	content: '\232A';
+	content: '\f002';
 }
 /* Next */
 .slick-next {
-	right: -25px;
+	right: -30px;
 }
 [dir='rtl'] .slick-next {
 	right: auto;
-	left: -25px;
+	left: -30px;
 }
 .slick-next:before {
-	content: '\232A';
+	content: '\f002';
 }
 [dir='rtl'] .slick-next:before {
-	content: '\2329';
+	content: '\f001';
 }
 /* Dots */
 .slick-dotted.slick-slider {
@@ -244,8 +251,6 @@
 	-moz-opacity: 0.25;
 	opacity: 0.25;
 	color: #111;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 }
 .slick-dots li.slick-active button:before {
 	filter: alpha(opacity=75);

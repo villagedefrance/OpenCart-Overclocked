@@ -49,12 +49,12 @@
             <td><?php echo $entry_transition; ?></td>
             <td><select name="slideshow_transition">
               <?php if (isset($slideshow_transition)) { $selected = "selected"; ?>
-                <option value="left" <?php if ($slideshow_transition == 'left') { echo $selected; } ?>>Scroll Left</option>
-                <option value="vertical" <?php if ($slideshow_transition == 'vertical') { echo $selected; } ?>>Scroll Vertical</option>
+                <option value="horizontal" <?php if ($slideshow_transition == 'horizontal') { echo $selected; } ?>>Horizontal</option>
+                <option value="vertical" <?php if ($slideshow_transition == 'vertical') { echo $selected; } ?>>Vertical</option>
                 <option value="fade" <?php if ($slideshow_transition == 'fade') { echo $selected; } ?>>Fade</option>
               <?php } else { ?>
-                <option value="left">Scroll Left</option>
-                <option value="vertical">Scroll Vertical</option>
+                <option value="horizontal">Horizontal</option>
+                <option value="vertical">Vertical</option>
                 <option value="fade">Fade</option>
               <?php } ?>
             </select></td>
@@ -160,7 +160,6 @@
             <tr>
               <td class="left"><?php echo $entry_banner; ?></td>
               <td class="left"><span class="required">*</span> <?php echo $entry_dimension; ?></td>
-              <td class="left"><?php echo $entry_auto; ?></td>
               <td class="left"><?php echo $entry_layout; ?></td>
               <td class="left"><?php echo $entry_position; ?></td>
               <td class="left"><?php echo $entry_status; ?></td>
@@ -188,15 +187,6 @@
                   <span class="error"><?php echo $error_dimension[$module_row]; ?></span>
                 <?php } ?>
               </td>
-              <td class="left"><select name="slideshow_module[<?php echo $module_row; ?>][auto]">
-                <?php if ($module['auto']) { ?>
-                  <option value="1" selected="selected"><?php echo $text_yes; ?></option>
-                  <option value="0"><?php echo $text_no; ?></option>
-                <?php } else { ?>
-                  <option value="1"><?php echo $text_yes; ?></option>
-                  <option value="0" selected="selected"><?php echo $text_no; ?></option>
-                <?php } ?>
-              </select></td>
               <td class="left"><select name="slideshow_module[<?php echo $module_row; ?>][layout_id]">
                 <?php foreach ($layouts as $layout) { ?>
                   <?php if ($layout['layout_id'] == $module['layout_id']) { ?>
@@ -259,7 +249,7 @@
         <?php } ?>
           <tfoot>
             <tr>
-              <td colspan="7" class="script">Powered by <?php echo $slideshow_plugin; ?> <?php echo $slideshow_version; ?></td>
+              <td colspan="6" class="script">Powered by <?php echo $slideshow_plugin; ?> <?php echo $slideshow_version; ?></td>
               <td class="center"><a onclick="addModule();" class="button"><?php echo $button_add_module; ?></a></td>
             </tr>
           </tfoot>
@@ -284,10 +274,6 @@ function addModule() {
 	html += '      <input type="text" name="slideshow_module[' + module_row + '][width]" value="480" size="3" /> x ';
 	html += '      <input type="text" name="slideshow_module[' + module_row + '][height]" value="180" size="3" /> px';
 	html += '    </td>';
-	html += '    <td class="left"><select name="slideshow_module[' + module_row + '][auto]">';
-	html += '      <option value="1" selected="selected"><?php echo $text_yes; ?></option>';
-	html += '      <option value="0"><?php echo $text_no; ?></option>';
-	html += '    </select></td>';
 	html += '    <td class="left"><select name="slideshow_module[' + module_row + '][layout_id]">';
 	<?php foreach ($layouts as $layout) { ?>
 	html += '      <option value="<?php echo $layout['layout_id']; ?>"><?php echo addslashes($layout['name']); ?></option>';

@@ -2,8 +2,8 @@
 class ControllerModuleSlideshow extends Controller {
 	private $error = array();
 	private $_name = 'slideshow';
-	private $_plugin = 'Slick';
-	private $_version = 'v1.8.1';
+	private $_plugin = 'flexslider';
+	private $_version = 'v2.7.0';
 
 	public function index() {
 		$this->language->load('module/' . $this->_name);
@@ -48,7 +48,6 @@ class ControllerModuleSlideshow extends Controller {
 
 		$this->data['entry_banner'] = $this->language->get('entry_banner');
 		$this->data['entry_dimension'] = $this->language->get('entry_dimension');
-		$this->data['entry_auto'] = $this->language->get('entry_auto');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
 		$this->data['entry_position'] = $this->language->get('entry_position');
 		$this->data['entry_status'] = $this->language->get('entry_status');
@@ -99,15 +98,6 @@ class ControllerModuleSlideshow extends Controller {
 
 		// Manager
 		$this->data['manager'] = $this->url->link('design/banner', 'token=' . $this->session->data['token'], 'SSL');
-
-		// Stylesheet override
-		$template = $this->config->get('config_template');
-
-		if ($this->config->get($template . '_stylesheet')) {
-			$this->data['stylesheet_mode'] = true;
-		} else {
-			$this->data['stylesheet_mode'] = false;
-		}
 
 		// Plugin
 		$this->data[$this->_name . '_plugin'] = $this->_plugin;

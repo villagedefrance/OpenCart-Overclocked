@@ -9,10 +9,9 @@ class ControllerModuleSlideshow extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->document->addStyle('catalog/view/javascript/jquery/slick/slick.min.css');
+		$this->document->addStyle('catalog/view/javascript/jquery/flexslider/flexslider.min.css');
 
-		$this->document->addScript('catalog/view/javascript/jquery/slick/slick.min.js');
-		$this->document->addScript('catalog/view/javascript/jquery/jquery.easing.min.js');
+		$this->document->addScript('catalog/view/javascript/jquery/flexslider/jquery.flexslider-min.js');
 
 		// Module
 		$this->data['theme'] = $this->config->get($this->_name . '_theme');
@@ -22,36 +21,25 @@ class ControllerModuleSlideshow extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
-		$transition = $this->config->get($this->_name . '_transition');
+		$animation = $this->config->get($this->_name . '_transition');
 
-		if ($transition == 'vertical') {
-			$this->data['vertical'] = 'true';
-			$this->data['fade'] = 'false';
-		} elseif ($transition == 'fade') {
-			$this->data['vertical'] = 'false';
-			$this->data['fade'] = 'true';
+		if ($animation == 'fade') {
+			$this->data['animation'] = 'fade';
 		} else {
-			$this->data['vertical'] = 'false';
-			$this->data['fade'] = 'false';
+			$this->data['animation'] = 'slide';
+		}
+
+		if ($animation == 'horizontal') {
+			$this->data['direction'] = 'horizontal';
+		} else {
+			$this->data['direction'] = 'vertical';
 		}
 
 		$this->data['duration'] = ($this->config->get($this->_name . '_duration')) ? $this->config->get($this->_name . '_duration') : 3000;
 		$this->data['speed'] = ($this->config->get($this->_name . '_speed')) ? $this->config->get($this->_name . '_speed') : 300;
 
 		$this->data['dots'] = ($this->config->get($this->_name . '_dots')) ? 'true' : 'false';
-
-		$arrows = $this->config->get($this->_name . '_arrows');
-
-		if ($arrows) {
-			$this->data['track_style'] = 'margin:0 30px 20px 30px;';
-			$this->data['arrows'] = 'true';
-		} else {
-			$this->data['track_style'] = 'margin:0 0 20px 0;';
-			$this->data['arrows'] = 'false';
-		}
-
-		// Auto
-		$this->data['auto'] = $setting['auto'] ? 'true' : 'false';
+		$this->data['arrows'] = ($this->config->get($this->_name . '_arrows')) ? 'true' : 'false';
 
 		$this->load->model('design/banner');
 		$this->load->model('tool/image');
