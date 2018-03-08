@@ -40,7 +40,9 @@ class ControllerModuleCarousel extends Controller {
 
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
-		$this->data['entry_skin_color'] = $this->language->get('entry_skin_color');
+		$this->data['entry_duration'] = $this->language->get('entry_duration');
+		$this->data['entry_speed'] = $this->language->get('entry_speed');
+		$this->data['entry_random'] = $this->language->get('entry_random');
 
 		$this->data['entry_banner'] = $this->language->get('entry_banner');
 		$this->data['entry_image'] = $this->language->get('entry_image');
@@ -145,12 +147,22 @@ class ControllerModuleCarousel extends Controller {
 			$this->data[$this->_name . '_title'] = $this->config->get($this->_name . '_title');
 		}
 
-		$this->data['skins'] = $this->model_setting_setting->getColors();
-
-		if (isset($this->request->post[$this->_name . '_skin_color'])) {
-			$this->data[$this->_name . '_skin_color'] = $this->request->post[$this->_name . '_skin_color'];
+		if (isset($this->request->post[$this->_name . '_duration'])) {
+			$this->data[$this->_name . '_duration'] = $this->request->post[$this->_name . '_duration'];
 		} else {
-			$this->data[$this->_name . '_skin_color'] = $this->config->get($this->_name . '_skin_color');
+			$this->data[$this->_name . '_duration'] = $this->config->get($this->_name . '_duration');
+		}
+
+		if (isset($this->request->post[$this->_name . '_speed'])) {
+			$this->data[$this->_name . '_speed'] = $this->request->post[$this->_name . '_speed'];
+		} else {
+			$this->data[$this->_name . '_speed'] = $this->config->get($this->_name . '_speed');
+		}
+
+		if (isset($this->request->post[$this->_name . '_random'])) {
+			$this->data[$this->_name . '_random'] = $this->request->post[$this->_name . '_random'];
+		} else {
+			$this->data[$this->_name . '_random'] = $this->config->get($this->_name . '_random');
 		}
 
 		$this->data['modules'] = array();

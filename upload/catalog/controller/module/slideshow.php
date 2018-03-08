@@ -9,9 +9,9 @@ class ControllerModuleSlideshow extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->document->addStyle('catalog/view/javascript/jquery/camera/css/camera.min.css');
+		$this->document->addStyle('catalog/view/javascript/jquery/slick/slick.min.css');
 
-		$this->document->addScript('catalog/view/javascript/jquery/camera/camera.min.js');
+		$this->document->addScript('catalog/view/javascript/jquery/slick/slick.min.js');
 		$this->document->addScript('catalog/view/javascript/jquery/jquery.easing.min.js');
 
 		// Module
@@ -22,38 +22,36 @@ class ControllerModuleSlideshow extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
-		$skin_color = $this->config->get($this->_name . '_skin_color');
+		$transition = $this->config->get($this->_name . '_transition');
 
-		$this->data['camera_theme'] = ($skin_color) ? $skin_color . '_skin' : 'charcoal_skin';
-
-		$camera_transition = $this->config->get($this->_name . '_transition');
-
-		$this->data['camera_transition'] = ($camera_transition == 'scrollBoth') ? 'scrollRight, scrollBottom' : $camera_transition;
-
-		$option_playpause = $this->config->get($this->_name . '_playpause');
-		$option_pagination = $this->config->get($this->_name . '_pagination');
-		$option_thumbnails = $this->config->get($this->_name . '_thumbnails');
-
-		$this->data['camera_playpause'] = $option_playpause ? 'true' : 'false';
-		$this->data['camera_pagination'] = $option_pagination ? 'true' : 'false';
-
-		if ($option_pagination && $option_thumbnails) {
-			$this->data['camera_thumbnails'] = 'true';
+		if ($transition == 'vertical') {
+			$this->data['vertical'] = 'true';
+			$this->data['fade'] = 'false';
+		} elseif ($transition == 'fade') {
+			$this->data['vertical'] = 'false';
+			$this->data['fade'] = 'true';
 		} else {
-			$this->data['camera_thumbnails'] = 'false';
+			$this->data['vertical'] = 'false';
+			$this->data['fade'] = 'false';
 		}
 
-		$this->data['width'] = $setting['width'];
-		$this->data['height'] = $setting['height'];
+		$this->data['duration'] = ($this->config->get($this->_name . '_duration')) ? $this->config->get($this->_name . '_duration') : 3000;
+		$this->data['speed'] = ($this->config->get($this->_name . '_speed')) ? $this->config->get($this->_name . '_speed') : 300;
 
-		// Calculate image ratio
-		$image_ratio = ($setting['height'] * 100) / $setting['width'];
+		$this->data['dots'] = ($this->config->get($this->_name . '_dots')) ? 'true' : 'false';
 
-		if ($image_ratio > 0) {
-			$this->data['ratio'] = round($image_ratio, 0);
+		$arrows = $this->config->get($this->_name . '_arrows');
+
+		if ($arrows) {
+			$this->data['track_style'] = 'margin:0 30px 20px 30px;';
+			$this->data['arrows'] = 'true';
 		} else {
-			$this->data['ratio'] = '33';
+			$this->data['track_style'] = 'margin:0 0 20px 0;';
+			$this->data['arrows'] = 'false';
 		}
+
+		// Auto
+		$this->data['auto'] = $setting['auto'] ? 'true' : 'false';
 
 		$this->load->model('design/banner');
 		$this->load->model('tool/image');
@@ -83,6 +81,13 @@ class ControllerModuleSlideshow extends Controller {
 					);
 				}
 			}
+		}
+
+		// Shuffle
+		$random = $this->config->get($this->_name . '_random');
+
+		if ($random) {
+			shuffle($this->data['banners']);
 		}
 
 		$this->data['module'] = $module++;

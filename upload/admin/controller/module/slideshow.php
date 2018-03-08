@@ -2,8 +2,8 @@
 class ControllerModuleSlideshow extends Controller {
 	private $error = array();
 	private $_name = 'slideshow';
-	private $_plugin = 'Camera';
-	private $_version = 'v1.3.4';
+	private $_plugin = 'Slick';
+	private $_version = 'v1.8.1';
 
 	public function index() {
 		$this->language->load('module/' . $this->_name);
@@ -39,14 +39,16 @@ class ControllerModuleSlideshow extends Controller {
 
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
-		$this->data['entry_skin_color'] = $this->language->get('entry_skin_color');
 		$this->data['entry_transition'] = $this->language->get('entry_transition');
-		$this->data['entry_playpause'] = $this->language->get('entry_playpause');
-		$this->data['entry_pagination'] = $this->language->get('entry_pagination');
-		$this->data['entry_thumbnails'] = $this->language->get('entry_thumbnails');
+		$this->data['entry_duration'] = $this->language->get('entry_duration');
+		$this->data['entry_speed'] = $this->language->get('entry_speed');
+		$this->data['entry_random'] = $this->language->get('entry_random');
+		$this->data['entry_dots'] = $this->language->get('entry_dots');
+		$this->data['entry_arrows'] = $this->language->get('entry_arrows');
 
 		$this->data['entry_banner'] = $this->language->get('entry_banner');
 		$this->data['entry_dimension'] = $this->language->get('entry_dimension');
+		$this->data['entry_auto'] = $this->language->get('entry_auto');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
 		$this->data['entry_position'] = $this->language->get('entry_position');
 		$this->data['entry_status'] = $this->language->get('entry_status');
@@ -138,36 +140,40 @@ class ControllerModuleSlideshow extends Controller {
 			$this->data[$this->_name . '_title'] = $this->config->get($this->_name . '_title');
 		}
 
-		$this->data['skins'] = $this->model_setting_setting->getColors();
-
-		if (isset($this->request->post[$this->_name . '_skin_color'])) {
-			$this->data[$this->_name . '_skin_color'] = $this->request->post[$this->_name . '_skin_color'];
-		} else {
-			$this->data[$this->_name . '_skin_color'] = $this->config->get($this->_name . '_skin_color');
-		}
-
 		if (isset($this->request->post[$this->_name . '_transition'])) {
 			$this->data[$this->_name . '_transition'] = $this->request->post[$this->_name . '_transition'];
 		} else {
 			$this->data[$this->_name . '_transition'] = $this->config->get($this->_name . '_transition');
 		}
 
-		if (isset($this->request->post[$this->_name . '_playpause'])) {
-			$this->data[$this->_name . '_playpause'] = $this->request->post[$this->_name . '_playpause'];
+		if (isset($this->request->post[$this->_name . '_duration'])) {
+			$this->data[$this->_name . '_duration'] = $this->request->post[$this->_name . '_duration'];
 		} else {
-			$this->data[$this->_name . '_playpause'] = $this->config->get($this->_name . '_playpause');
+			$this->data[$this->_name . '_duration'] = $this->config->get($this->_name . '_duration');
 		}
 
-		if (isset($this->request->post[$this->_name . '_pagination'])) {
-			$this->data[$this->_name . '_pagination'] = $this->request->post[$this->_name . '_pagination'];
+		if (isset($this->request->post[$this->_name . '_speed'])) {
+			$this->data[$this->_name . '_speed'] = $this->request->post[$this->_name . '_speed'];
 		} else {
-			$this->data[$this->_name . '_pagination'] = $this->config->get($this->_name . '_pagination');
+			$this->data[$this->_name . '_speed'] = $this->config->get($this->_name . '_speed');
 		}
 
-		if (isset($this->request->post[$this->_name . '_thumbnails'])) {
-			$this->data[$this->_name . '_thumbnails'] = $this->request->post[$this->_name . '_thumbnails'];
+		if (isset($this->request->post[$this->_name . '_random'])) {
+			$this->data[$this->_name . '_random'] = $this->request->post[$this->_name . '_random'];
 		} else {
-			$this->data[$this->_name . '_thumbnails'] = $this->config->get($this->_name . '_thumbnails');
+			$this->data[$this->_name . '_random'] = $this->config->get($this->_name . '_random');
+		}
+
+		if (isset($this->request->post[$this->_name . '_dots'])) {
+			$this->data[$this->_name . '_dots'] = $this->request->post[$this->_name . '_dots'];
+		} else {
+			$this->data[$this->_name . '_dots'] = $this->config->get($this->_name . '_dots');
+		}
+
+		if (isset($this->request->post[$this->_name . '_arrows'])) {
+			$this->data[$this->_name . '_arrows'] = $this->request->post[$this->_name . '_arrows'];
+		} else {
+			$this->data[$this->_name . '_arrows'] = $this->config->get($this->_name . '_arrows');
 		}
 
 		$this->data['modules'] = array();

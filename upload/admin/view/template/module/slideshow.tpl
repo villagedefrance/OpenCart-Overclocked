@@ -46,75 +46,111 @@
         </tbody>
         <tbody>
           <tr>
-            <td><?php echo $entry_skin_color; ?></td>
-            <td><select name="slideshow_skin_color">
-              <?php foreach ($skins as $skin) { ?>
-                <?php if ($skin['skin'] == $slideshow_skin_color) { ?>
-                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
-                <?php } else { ?>
-                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
-                <?php } ?>
-              <?php } ?>
-            </select></td>
-          </tr>
-          <tr>
             <td><?php echo $entry_transition; ?></td>
             <td><select name="slideshow_transition">
               <?php if (isset($slideshow_transition)) { $selected = "selected"; ?>
-                <option value="random" <?php if ($slideshow_transition == 'random') { echo $selected; } ?>>Random</option>
-                <option value="simpleFade" <?php if ($slideshow_transition == 'simpleFade') { echo $selected; } ?>>simple Fade</option>
-                <option value="scrollRight" <?php if ($slideshow_transition == 'scrollRight') { echo $selected; } ?>>Scroll Horizontal</option>
-                <option value="scrollBottom" <?php if ($slideshow_transition == 'scrollBottom') { echo $selected; } ?>>Scroll Vertical</option>
-                <option value="scrollBoth" <?php if ($slideshow_transition == 'scrollBoth') { echo $selected; } ?>>Scroll Both</option>
+                <option value="left" <?php if ($slideshow_transition == 'left') { echo $selected; } ?>>Scroll Left</option>
+                <option value="vertical" <?php if ($slideshow_transition == 'vertical') { echo $selected; } ?>>Scroll Vertical</option>
+                <option value="fade" <?php if ($slideshow_transition == 'fade') { echo $selected; } ?>>Fade</option>
               <?php } else { ?>
-                <option value="random">Random</option>
-                <option value="simpleFade">simple Fade</option>
-                <option value="scrollRight">Scroll Horizontal</option>
-                <option value="scrollBottom">Scroll Vertical</option>
-                <option value="scrollBoth">Scroll Both</option>
+                <option value="left">Scroll Left</option>
+                <option value="vertical">Scroll Vertical</option>
+                <option value="fade">Fade</option>
               <?php } ?>
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_playpause; ?></td>
-            <td><?php if ($slideshow_playpause) { ?>
-              <input type="radio" name="slideshow_playpause" value="1" id="playpause-on" class="radio" checked />
-              <label for="playpause-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="slideshow_playpause" value="0" id="playpause-off" class="radio" />
-              <label for="playpause-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <td><?php echo $entry_duration; ?></td>
+            <td><select name="slideshow_duration">
+              <?php if (isset($slideshow_duration)) { $selected = "selected"; ?>
+                <option value="1000" <?php if ($slideshow_duration == 1000) { echo $selected; } ?>>1000</option>
+                <option value="2000" <?php if ($slideshow_duration == 2000) { echo $selected; } ?>>2000</option>
+                <option value="3000" <?php if ($slideshow_duration == 3000) { echo $selected; } ?>>3000</option>
+                <option value="4000" <?php if ($slideshow_duration == 4000) { echo $selected; } ?>>4000</option>
+                <option value="5000" <?php if ($slideshow_duration == 5000) { echo $selected; } ?>>5000</option>
+                <option value="6000" <?php if ($slideshow_duration == 6000) { echo $selected; } ?>>6000</option>
+                <option value="7000" <?php if ($slideshow_duration == 7000) { echo $selected; } ?>>7000</option>
+                <option value="8000" <?php if ($slideshow_duration == 8000) { echo $selected; } ?>>8000</option>
+                <option value="9000" <?php if ($slideshow_duration == 9000) { echo $selected; } ?>>9000</option>
+              <?php } else { ?>
+                <option value="1000">1000</option>
+                <option value="2000">2000</option>
+                <option value="3000">3000</option>
+                <option value="4000">4000</option>
+                <option value="5000">5000</option>
+                <option value="6000">6000</option>
+                <option value="7000">7000</option>
+                <option value="8000">8000</option>
+                <option value="9000">9000</option>
+              <?php } ?>
+            </select> ms</td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_speed; ?></td>
+            <td><select name="slideshow_speed">
+              <?php if (isset($slideshow_speed)) { $selected = "selected"; ?>
+                <option value="100" <?php if ($slideshow_speed == 100) { echo $selected; } ?>>100</option>
+                <option value="200" <?php if ($slideshow_speed == 200) { echo $selected; } ?>>200</option>
+                <option value="300" <?php if ($slideshow_speed == 300) { echo $selected; } ?>>300</option>
+                <option value="400" <?php if ($slideshow_speed == 400) { echo $selected; } ?>>400</option>
+                <option value="500" <?php if ($slideshow_speed == 500) { echo $selected; } ?>>500</option>
+                <option value="600" <?php if ($slideshow_speed == 600) { echo $selected; } ?>>600</option>
+                <option value="700" <?php if ($slideshow_speed == 700) { echo $selected; } ?>>700</option>
+                <option value="800" <?php if ($slideshow_speed == 800) { echo $selected; } ?>>800</option>
+                <option value="900" <?php if ($slideshow_speed == 900) { echo $selected; } ?>>900</option>
+              <?php } else { ?>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="300">300</option>
+                <option value="400">400</option>
+                <option value="500">500</option>
+                <option value="600">600</option>
+                <option value="700">700</option>
+                <option value="800">800</option>
+                <option value="900">900</option>
+              <?php } ?>
+            </select> ms</td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_random; ?></td>
+            <td><?php if ($slideshow_random) { ?>
+              <input type="radio" name="slideshow_random" value="1" id="random-on" class="radio" checked />
+              <label for="random-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="slideshow_random" value="0" id="random-off" class="radio" />
+              <label for="random-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="slideshow_playpause" value="1" id="playpause-on" class="radio" />
-              <label for="playpause-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="slideshow_playpause" value="0" id="playpause-off" class="radio" checked />
-              <label for="playpause-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <input type="radio" name="slideshow_random" value="1" id="random-on" class="radio" />
+              <label for="random-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="slideshow_random" value="0" id="random-off" class="radio" checked />
+              <label for="random-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_pagination; ?></td>
-            <td><?php if ($slideshow_pagination) { ?>
-              <input type="radio" name="slideshow_pagination" value="1" id="pagination-on" class="radio" checked />
-              <label for="pagination-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="slideshow_pagination" value="0" id="pagination-off" class="radio" />
-              <label for="pagination-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <td><?php echo $entry_dots; ?></td>
+            <td><?php if ($slideshow_dots) { ?>
+              <input type="radio" name="slideshow_dots" value="1" id="dots-on" class="radio" checked />
+              <label for="dots-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="slideshow_dots" value="0" id="dots-off" class="radio" />
+              <label for="dots-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="slideshow_pagination" value="1" id="pagination-on" class="radio" />
-              <label for="pagination-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="slideshow_pagination" value="0" id="pagination-off" class="radio" checked />
-              <label for="pagination-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <input type="radio" name="slideshow_dots" value="1" id="dots-on" class="radio" />
+              <label for="dots-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="slideshow_dots" value="0" id="dots-off" class="radio" checked />
+              <label for="dots-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_thumbnails; ?></td>
-            <td><?php if ($slideshow_thumbnails) { ?>
-              <input type="radio" name="slideshow_thumbnails" value="1" id="thumbnails-on" class="radio" checked />
-              <label for="thumbnails-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="slideshow_thumbnails" value="0" id="thumbnails-off" class="radio" />
-              <label for="thumbnails-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <td><?php echo $entry_arrows; ?></td>
+            <td><?php if ($slideshow_arrows) { ?>
+              <input type="radio" name="slideshow_arrows" value="1" id="arrows-on" class="radio" checked />
+              <label for="arrows-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="slideshow_arrows" value="0" id="arrows-off" class="radio" />
+              <label for="arrows-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="slideshow_thumbnails" value="1" id="thumbnails-on" class="radio" />
-              <label for="thumbnails-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="slideshow_thumbnails" value="0" id="thumbnails-off" class="radio" checked />
-              <label for="thumbnails-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <input type="radio" name="slideshow_arrows" value="1" id="arrows-on" class="radio" />
+              <label for="arrows-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="slideshow_arrows" value="0" id="arrows-off" class="radio" checked />
+              <label for="arrows-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
         </tbody>
@@ -124,6 +160,7 @@
             <tr>
               <td class="left"><?php echo $entry_banner; ?></td>
               <td class="left"><span class="required">*</span> <?php echo $entry_dimension; ?></td>
+              <td class="left"><?php echo $entry_auto; ?></td>
               <td class="left"><?php echo $entry_layout; ?></td>
               <td class="left"><?php echo $entry_position; ?></td>
               <td class="left"><?php echo $entry_status; ?></td>
@@ -151,6 +188,15 @@
                   <span class="error"><?php echo $error_dimension[$module_row]; ?></span>
                 <?php } ?>
               </td>
+              <td class="left"><select name="slideshow_module[<?php echo $module_row; ?>][auto]">
+                <?php if ($module['auto']) { ?>
+                  <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                  <option value="0"><?php echo $text_no; ?></option>
+                <?php } else { ?>
+                  <option value="1"><?php echo $text_yes; ?></option>
+                  <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                <?php } ?>
+              </select></td>
               <td class="left"><select name="slideshow_module[<?php echo $module_row; ?>][layout_id]">
                 <?php foreach ($layouts as $layout) { ?>
                   <?php if ($layout['layout_id'] == $module['layout_id']) { ?>
@@ -213,7 +259,7 @@
         <?php } ?>
           <tfoot>
             <tr>
-              <td colspan="6" class="script">Powered by <?php echo $slideshow_plugin; ?> <?php echo $slideshow_version; ?></td>
+              <td colspan="7" class="script">Powered by <?php echo $slideshow_plugin; ?> <?php echo $slideshow_version; ?></td>
               <td class="center"><a onclick="addModule();" class="button"><?php echo $button_add_module; ?></a></td>
             </tr>
           </tfoot>
@@ -238,6 +284,10 @@ function addModule() {
 	html += '      <input type="text" name="slideshow_module[' + module_row + '][width]" value="480" size="3" /> x ';
 	html += '      <input type="text" name="slideshow_module[' + module_row + '][height]" value="180" size="3" /> px';
 	html += '    </td>';
+	html += '    <td class="left"><select name="slideshow_module[' + module_row + '][auto]">';
+	html += '      <option value="1" selected="selected"><?php echo $text_yes; ?></option>';
+	html += '      <option value="0"><?php echo $text_no; ?></option>';
+	html += '    </select></td>';
 	html += '    <td class="left"><select name="slideshow_module[' + module_row + '][layout_id]">';
 	<?php foreach ($layouts as $layout) { ?>
 	html += '      <option value="<?php echo $layout['layout_id']; ?>"><?php echo addslashes($layout['name']); ?></option>';

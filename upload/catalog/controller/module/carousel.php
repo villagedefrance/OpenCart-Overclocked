@@ -9,7 +9,7 @@ class ControllerModuleCarousel extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->document->addStyle('catalog/view/javascript/jquery/slick/slick.css');
+		$this->document->addStyle('catalog/view/javascript/jquery/slick/slick.min.css');
 
 		$this->document->addScript('catalog/view/javascript/jquery/slick/slick.min.js');
 		$this->document->addScript('catalog/view/javascript/jquery/jquery.easing.min.js');
@@ -22,14 +22,15 @@ class ControllerModuleCarousel extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
-		$skin_color = $this->config->get($this->_name . '_skin_color');
+		$this->data['duration'] = ($this->config->get($this->_name . '_duration')) ? $this->config->get($this->_name . '_duration') : 3000;
+		$this->data['speed'] = ($this->config->get($this->_name . '_speed')) ? $this->config->get($this->_name . '_speed') : 300;
 
-		$this->data['skin_color'] = ($skin_color) ? $skin_color . '_skin' : 'charcoal_skin';
+		$this->data['track_style'] = 'margin:0 30px 20px 30px;';
 
 		// Responsive
-		$show_max = round($setting['show'], 0);
+		$show_max = round($setting['show'] + 1, 0);
 
-		$show_1280 = ($show_max > 5) ? ($show_max - 1) : $show_max;
+		$show_1280 = ($show_max > 5) ? ($show_max - 2) : $show_max;
 		$show_960 = ($show_1280 > 4) ? ($show_1280 - 1) : $show_1280;
 		$show_640 = ($show_960 > 3) ? ($show_960 - 1) : $show_960;
 		$show_480 = ($show_640 > 2) ? ($show_640 - 1) : $show_640;
@@ -70,6 +71,13 @@ class ControllerModuleCarousel extends Controller {
 					'image'            => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
 				);
 			}
+		}
+
+		// Shuffle
+		$random = $this->config->get($this->_name . '_random');
+
+		if ($random) {
+			shuffle($this->data['banners']);
 		}
 
 		$this->data['module'] = $module++;

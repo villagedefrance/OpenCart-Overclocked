@@ -1,26 +1,26 @@
 <?php if ($theme) { ?>
 <div class="box">
   <div class="box-heading"><?php echo $title; ?></div>
-  <div style="margin:0; padding:0; overflow:hidden;">
-    <div class="camera_<?php echo $camera_theme; ?> camera_wrap" id="camera_wrap<?php echo $module; ?>">
+  <div style="<?php echo $track_style; ?>">
+    <div class="slick_skin" id="slideshow<?php echo $module; ?>">
     <?php foreach ($banners as $banner) { ?>
       <?php if ($banner['link']) { ?>
-        <div id="<?php echo $banner['banner_image_id']; ?>" data-src="<?php echo $banner['image']; ?>" data-thumb="<?php echo $banner['image']; ?>" data-link="<?php echo $banner['link']; ?>"></div>
+        <div class="carousel-swipe tracked"><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></a></div>
       <?php } else { ?>
-        <div id="<?php echo $banner['banner_image_id']; ?>" data-src="<?php echo $banner['image']; ?>" data-thumb="<?php echo $banner['image']; ?>"></div>
+        <div class="carousel-swipe tracked"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></div>
       <?php } ?>
     <?php } ?>
     </div>
   </div>
 </div>
 <?php } else { ?>
-<div style="margin-bottom:20px; padding:0; overflow:hidden;">
-  <div class="camera_<?php echo $camera_theme; ?> camera_wrap" id="camera_wrap<?php echo $module; ?>">
+<div style="<?php echo $track_style; ?>">
+  <div class="slick_skin" id="slideshow<?php echo $module; ?>">
     <?php foreach ($banners as $banner) { ?>
       <?php if ($banner['link']) { ?>
-        <div id="<?php echo $banner['banner_image_id']; ?>" data-src="<?php echo $banner['image']; ?>" data-thumb="<?php echo $banner['image']; ?>" data-link="<?php echo $banner['link']; ?>"></div>
+        <div class="carousel-swipe tracked"><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></a></div>
       <?php } else { ?>
-        <div id="<?php echo $banner['banner_image_id']; ?>" data-src="<?php echo $banner['image']; ?>" data-thumb="<?php echo $banner['image']; ?>"></div>
+        <div class="carousel-swipe tracked"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></div>
       <?php } ?>
     <?php } ?>
   </div>
@@ -29,17 +29,23 @@
 
 <script type="text/javascript"><!--
 jQuery(document).ready(function() {
-	$('#camera_wrap<?php echo $module; ?>').camera({
-		height: '<?php echo $ratio; ?>%',
-		fx: '<?php echo $camera_transition; ?>',
-		playPause: <?php echo $camera_playpause; ?>,
-		pagination: <?php echo $camera_pagination; ?>,
-		thumbnails: <?php echo $camera_thumbnails; ?>,
-		overlayer: true,
-		loader: true,
-		hover: true,
-		time: 6000,
-		transPeriod: 1000
+	$('#slideshow<?php echo $module; ?>').slick({
+		arrows: <?php echo $arrows; ?>,
+		autoplay: <?php echo $auto; ?>,
+		autoplaySpeed: <?php echo $duration; ?>,
+		pauseOnHover: true,
+		slidesToScroll: 1,
+		infinite: true,
+		speed: <?php echo $speed; ?>,
+		easing: 'easeInOutExpo',
+		vertical: <?php echo $vertical; ?>,
+		fade: <?php echo $fade; ?>,
+		dots: <?php echo $dots; ?>,
+		mobileFirst: true,
+		swipe: true
+	});
+	$('.carousel-swipe').on('swipe', function(event, slick, direction) {
+		console.log(direction);
 	});
 })(jQuery);
 --></script>

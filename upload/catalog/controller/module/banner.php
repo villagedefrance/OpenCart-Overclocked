@@ -9,7 +9,10 @@ class ControllerModuleBanner extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->document->addScript('catalog/view/javascript/jquery/cycle/jquery.cycle.min.js');
+		$this->document->addStyle('catalog/view/javascript/jquery/slick/slick.min.css');
+
+		$this->document->addScript('catalog/view/javascript/jquery/slick/slick.min.js');
+		$this->document->addScript('catalog/view/javascript/jquery/jquery.easing.min.js');
 
 		// Module
 		$this->data['theme'] = $this->config->get($this->_name . '_theme');
@@ -19,18 +22,26 @@ class ControllerModuleBanner extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
-		$this->data['timeout'] = $this->config->get($this->_name . '_timeout');
-		$this->data['speed'] = $this->config->get($this->_name . '_speed');
+		$transition = $this->config->get($this->_name . '_transition');
 
-		if (!$this->data['timeout']) {
-			$this->data['timeout'] = 4000;
+		if ($transition == 'vertical') {
+			$this->data['vertical'] = 'true';
+			$this->data['fade'] = 'false';
+		} elseif ($transition == 'fade') {
+			$this->data['vertical'] = 'false';
+			$this->data['fade'] = 'true';
+		} else {
+			$this->data['vertical'] = 'false';
+			$this->data['fade'] = 'false';
 		}
+		
+		$this->data['duration'] = ($this->config->get($this->_name . '_duration')) ? $this->config->get($this->_name . '_duration') : 3000;
+		$this->data['speed'] = ($this->config->get($this->_name . '_speed')) ? $this->config->get($this->_name . '_speed') : 300;
 
-		if (!$this->data['speed']) {
-			$this->data['speed'] = 1000;
-		}
+		$this->data['track_style'] = 'margin:0 0 20px 0;';
 
-		$this->data['pause'] = $setting['pause'];
+		// Auto
+		$this->data['auto'] = $setting['auto'] ? 'true' : 'false';
 
 		$this->load->model('design/banner');
 		$this->load->model('tool/image');
@@ -52,12 +63,19 @@ class ControllerModuleBanner extends Controller {
 				}
 
 				$this->data['banners'][] = array(
-					'banner_image_id'  => $result['banner_image_id'],
-					'title'            => $result['title'],
-					'link'             => $image_link,
-					'image'            => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+					'banner_image_id' => $result['banner_image_id'],
+					'title'           => $result['title'],
+					'link'            => $image_link,
+					'image'           => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
 				);
 			}
+		}
+
+		// Shuffle
+		$random = $this->config->get($this->_name . '_random');
+
+		if ($random) {
+			shuffle($this->data['banners']);
 		}
 
 		$this->data['module'] = $module++;

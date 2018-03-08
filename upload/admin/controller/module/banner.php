@@ -2,8 +2,8 @@
 class ControllerModuleBanner extends Controller {
 	private $error = array();
 	private $_name = 'banner';
-	private $_plugin = 'Cycle Lite';
-	private $_version = 'v1.0.0';
+	private $_plugin = 'Slick';
+	private $_version = 'v1.8.1';
 
 	public function index() {
 		$this->language->load('module/' . $this->_name);
@@ -30,6 +30,8 @@ class ControllerModuleBanner extends Controller {
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_horizontal'] = $this->language->get('text_horizontal');
+		$this->data['text_vertical'] = $this->language->get('text_vertical');
 		$this->data['text_content_header'] = $this->language->get('text_content_header');
 		$this->data['text_content_top'] = $this->language->get('text_content_top');
 		$this->data['text_content_bottom'] = $this->language->get('text_content_bottom');
@@ -39,12 +41,14 @@ class ControllerModuleBanner extends Controller {
 
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
-		$this->data['entry_timeout'] = $this->language->get('entry_timeout');
+		$this->data['entry_transition'] = $this->language->get('entry_transition');
+		$this->data['entry_duration'] = $this->language->get('entry_duration');
 		$this->data['entry_speed'] = $this->language->get('entry_speed');
+		$this->data['entry_random'] = $this->language->get('entry_random');
 
 		$this->data['entry_banner'] = $this->language->get('entry_banner');
 		$this->data['entry_dimension'] = $this->language->get('entry_dimension');
-		$this->data['entry_pause'] = $this->language->get('entry_pause');
+		$this->data['entry_auto'] = $this->language->get('entry_auto');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
 		$this->data['entry_position'] = $this->language->get('entry_position');
 		$this->data['entry_status'] = $this->language->get('entry_status');
@@ -136,16 +140,28 @@ class ControllerModuleBanner extends Controller {
 			$this->data[$this->_name . '_title'] = $this->config->get($this->_name . '_title');
 		}
 
-		if (isset($this->request->post[$this->_name . '_timeout'])) {
-			$this->data[$this->_name . '_timeout'] = $this->request->post[$this->_name . '_timeout'];
+		if (isset($this->request->post[$this->_name . '_transition'])) {
+			$this->data[$this->_name . '_transition'] = $this->request->post[$this->_name . '_transition'];
 		} else {
-			$this->data[$this->_name . '_timeout'] = $this->config->get($this->_name . '_timeout');
+			$this->data[$this->_name . '_transition'] = $this->config->get($this->_name . '_transition');
+		}
+
+		if (isset($this->request->post[$this->_name . '_duration'])) {
+			$this->data[$this->_name . '_duration'] = $this->request->post[$this->_name . '_duration'];
+		} else {
+			$this->data[$this->_name . '_duration'] = $this->config->get($this->_name . '_duration');
 		}
 
 		if (isset($this->request->post[$this->_name . '_speed'])) {
 			$this->data[$this->_name . '_speed'] = $this->request->post[$this->_name . '_speed'];
 		} else {
 			$this->data[$this->_name . '_speed'] = $this->config->get($this->_name . '_speed');
+		}
+
+		if (isset($this->request->post[$this->_name . '_random'])) {
+			$this->data[$this->_name . '_random'] = $this->request->post[$this->_name . '_random'];
+		} else {
+			$this->data[$this->_name . '_random'] = $this->config->get($this->_name . '_random');
 		}
 
 		$this->data['modules'] = array();

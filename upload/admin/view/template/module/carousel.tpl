@@ -44,16 +44,70 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_skin_color; ?></td>
-            <td><select name="carousel_skin_color">
-              <?php foreach ($skins as $skin) { ?>
-                <?php if ($skin['skin'] == $carousel_skin_color) { ?>
-                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
-                <?php } else { ?>
-                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
-                <?php } ?>
+            <td><?php echo $entry_duration; ?></td>
+            <td><select name="carousel_duration">
+              <?php if (isset($carousel_duration)) { $selected = "selected"; ?>
+                <option value="1000" <?php if ($carousel_duration == 1000) { echo $selected; } ?>>1000</option>
+                <option value="2000" <?php if ($carousel_duration == 2000) { echo $selected; } ?>>2000</option>
+                <option value="3000" <?php if ($carousel_duration == 3000) { echo $selected; } ?>>3000</option>
+                <option value="4000" <?php if ($carousel_duration == 4000) { echo $selected; } ?>>4000</option>
+                <option value="5000" <?php if ($carousel_duration == 5000) { echo $selected; } ?>>5000</option>
+                <option value="6000" <?php if ($carousel_duration == 6000) { echo $selected; } ?>>6000</option>
+                <option value="7000" <?php if ($carousel_duration == 7000) { echo $selected; } ?>>7000</option>
+                <option value="8000" <?php if ($carousel_duration == 8000) { echo $selected; } ?>>8000</option>
+                <option value="9000" <?php if ($carousel_duration == 9000) { echo $selected; } ?>>9000</option>
+              <?php } else { ?>
+                <option value="1000">1000</option>
+                <option value="2000">2000</option>
+                <option value="3000">3000</option>
+                <option value="4000">4000</option>
+                <option value="5000">5000</option>
+                <option value="6000">6000</option>
+                <option value="7000">7000</option>
+                <option value="8000">8000</option>
+                <option value="9000">9000</option>
               <?php } ?>
-            </select></td>
+            </select> ms</td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_speed; ?></td>
+            <td><select name="carousel_speed">
+              <?php if (isset($carousel_speed)) { $selected = "selected"; ?>
+                <option value="100" <?php if ($carousel_speed == 100) { echo $selected; } ?>>100</option>
+                <option value="200" <?php if ($carousel_speed == 200) { echo $selected; } ?>>200</option>
+                <option value="300" <?php if ($carousel_speed == 300) { echo $selected; } ?>>300</option>
+                <option value="400" <?php if ($carousel_speed == 400) { echo $selected; } ?>>400</option>
+                <option value="500" <?php if ($carousel_speed == 500) { echo $selected; } ?>>500</option>
+                <option value="600" <?php if ($carousel_speed == 600) { echo $selected; } ?>>600</option>
+                <option value="700" <?php if ($carousel_speed == 700) { echo $selected; } ?>>700</option>
+                <option value="800" <?php if ($carousel_speed == 800) { echo $selected; } ?>>800</option>
+                <option value="900" <?php if ($carousel_speed == 900) { echo $selected; } ?>>900</option>
+              <?php } else { ?>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="300">300</option>
+                <option value="400">400</option>
+                <option value="500">500</option>
+                <option value="600">600</option>
+                <option value="700">700</option>
+                <option value="800">800</option>
+                <option value="900">900</option>
+              <?php } ?>
+            </select> ms</td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_random; ?></td>
+            <td><?php if ($carousel_random) { ?>
+              <input type="radio" name="carousel_random" value="1" id="random-on" class="radio" checked />
+              <label for="random-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="carousel_random" value="0" id="random-off" class="radio" />
+              <label for="random-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="carousel_random" value="1" id="random-on" class="radio" />
+              <label for="random-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="carousel_random" value="0" id="random-off" class="radio" checked />
+              <label for="random-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
           </tr>
         </tbody>
         </table>

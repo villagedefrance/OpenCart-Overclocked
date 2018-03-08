@@ -1,26 +1,26 @@
 <?php if ($theme) { ?>
 <div class="box">
   <div class="box-heading"><?php echo $title; ?></div>
-  <div class="box-content">
-    <div class="slick_<?php echo $skin_color; ?>" id="carousel<?php echo $module; ?>">
+  <div style="<?php echo $track_style; ?>">
+    <div class="slick_skin" id="carousel<?php echo $module; ?>">
       <?php foreach ($banners as $banner) { ?>
         <?php if ($banner['link']) { ?>
-          <div class="carousel-swipe"><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></a></div>
+          <div class="carousel-swipe tracked"><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></a></div>
         <?php } else { ?>
-          <div class="carousel-swipe"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></div>
+          <div class="carousel-swipe tracked"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></div>
         <?php } ?>
       <?php } ?>
     </div>
   </div>
 </div>
 <?php } else { ?>
-  <div style="margin-bottom:20px;">
-    <div class="slick_<?php echo $skin_color; ?>" id="carousel<?php echo $module; ?>">
+  <div style="<?php echo $track_style; ?>">
+    <div class="slick_skin" id="carousel<?php echo $module; ?>">
       <?php foreach ($banners as $banner) { ?>
         <?php if ($banner['link']) { ?>
-          <div class="carousel-swipe"><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></a></div>
+          <div class="carousel-swipe tracked"><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></a></div>
         <?php } else { ?>
-          <div class="carousel-swipe"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></div>
+          <div class="carousel-swipe tracked"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></div>
         <?php } ?>
       <?php } ?>
     </div>
@@ -31,18 +31,17 @@
 jQuery(document).ready(function() {
 	$('#carousel<?php echo $module; ?>').slick({
 		arrows: true,
-		prevArrow: '<p class="slick-prev"><span></span></p>',
-		nextArrow: '<p class="slick-next"><span></span></p>',
 		autoplay: <?php echo $auto; ?>,
-		autoplaySpeed: 5000,
+		autoplaySpeed: <?php echo $duration; ?>,
 		pauseOnHover: true,
 		slidesToScroll: 1,
 		infinite: true,
-		speed: 800,
+		speed: <?php echo $speed; ?>,
 		easing: 'easeInOutExpo',
 		mobileFirst: true,
 		swipe: true,
 		rtl: false,
+		dots: false,
 		responsive: [
 		{ breakpoint: 1280, settings: { slidesToShow: <?php echo $show_1280; ?> } },
 		{ breakpoint: 960, settings: { slidesToShow: <?php echo $show_960; ?> } },

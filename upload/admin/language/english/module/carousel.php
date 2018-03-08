@@ -16,7 +16,9 @@ $_['text_auto']           = 'Auto:';
 // Entry
 $_['entry_theme']         = 'Complete Module:<span class="help">Show content with header.</span>';
 $_['entry_title']         = 'Custom Title:<span class="help">Overrides the default module title.</span>';
-$_['entry_skin_color']    = 'Select Controls Color:';
+$_['entry_duration']      = 'Frame Duration:';
+$_['entry_speed']         = 'Animation Speed:';
+$_['entry_random']        = 'Shuffle Images:';
 
 $_['entry_banner']        = 'Banner';
 $_['entry_image']         = 'Image (W x H)';

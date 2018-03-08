@@ -2821,15 +2821,6 @@ table.order-options tr td > div.division {
 	padding: 0;
 	z-index: 9;
 }
-/* Banner */
-.banner div {
-	text-align: center;
-	width: 100%;
-	display: none;
-}
-.banner div img {
-	margin-bottom: 0;
-}
 /* Autocomplete */
 .ui-autocomplete {
 	max-height: 300px;
