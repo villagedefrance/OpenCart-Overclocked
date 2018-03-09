@@ -39,10 +39,12 @@ COMING SOON in v1.11.0!
 - Added Animate CSS for Admin pages.
 - Added Administration event Notifications.
 - Added Administration User Logs.
+- Added FlexSlider for "Slideshow" and "Banner".
 - New Responsive Administration Login page.
+- Paypal Express update. (Thanks Gob33!)
 - Paypal Payflow Iframe update. (Thanks Gob33!)
 - Piwik changed to new Matomo Analytics.
-- Currency rates auto-update fixed.
+- Currency rates auto-update fixed (ECB).
 - PHP 7.2+ improved support.
 - GDPR compliance.
 - ...
