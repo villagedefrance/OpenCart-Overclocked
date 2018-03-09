@@ -277,7 +277,11 @@ html[xmlns] .flexslider .slides {
   -moz-opacity: 0.7;
   opacity: 0.7;
   cursor: pointer;
+  -webkit-user-select: none;
   -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -ms-transition: all 1s ease;
