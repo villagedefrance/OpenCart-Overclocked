@@ -102,15 +102,6 @@ class ControllerModuleMediaPlayer extends Controller {
 		// Library
 		$this->data['library'] = $this->url->link('design/media', 'token=' . $this->session->data['token'], 'SSL');
 
-		// Stylesheet override
-		$template = $this->config->get('config_template');
-
-		if ($this->config->get($template . '_stylesheet')) {
-			$this->data['stylesheet_mode'] = true;
-		} else {
-			$this->data['stylesheet_mode'] = false;
-		}
-
 		// Plugin
 		$this->data[$this->_name . '_plugin'] = $this->_plugin;
 		$this->data[$this->_name . '_version'] = $this->_version;

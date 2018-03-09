@@ -1,30 +1,28 @@
 <?php if ($theme) { ?>
 <div class="box">
   <div class="box-heading"><?php echo $title; ?></div>
-  <div class="box-content" style="text-align:center;">
-    <select name="manufacturer" onchange="location=this.value">
-      <option value="0"><?php echo $text_select; ?></option>
-      <?php foreach ($manufacturers as $manufacturer) { ?>
-        <?php if ($manufacturer['manufacturer_id'] == $manufacturer_id) { ?>
-          <option value="<?php echo $manufacturer['href']; ?>" selected="selected"><?php echo $manufacturer['name']; ?></option>
-        <?php } else { ?>
-          <option value="<?php echo $manufacturer['href']; ?>"><?php echo $manufacturer['name']; ?></option>
-        <?php } ?>
+  <div class="box-content">
+    <div class="box-manufacturer" style="text-align:center;">
+    <?php foreach ($manufacturers as $manufacturer) { ?>
+      <?php if ($manufacturer['image']) { ?>
+        <div class="image"><a href="<?php echo $manufacturer['href']; ?>" title="<?php echo $manufacturer['name']; ?>"><img src="<?php echo $manufacturer['image']; ?>" alt="<?php echo $manufacturer['name']; ?>" /></a></div>
+      <?php } else { ?>
+        <div><a href="<?php echo $manufacturer['href']; ?>" title="<?php echo $manufacturer['name']; ?>"><?php echo $manufacturer['name']; ?></a></div>
       <?php } ?>
-    </select>
+    <?php } ?>
+    </div>
   </div>
 </div>
 <?php } else { ?>
-  <div style="margin-bottom:20px; text-align:center; padding:12px 0px;">
-    <select name="manufacturer" onchange="location=this.value">
-      <option value="0"><?php echo $text_select; ?></option>
-      <?php foreach ($manufacturers as $manufacturer) { ?>
-        <?php if ($manufacturer['manufacturer_id'] == $manufacturer_id) { ?>
-          <option value="<?php echo $manufacturer['href']; ?>" selected="selected"><?php echo $manufacturer['name']; ?></option>
-        <?php } else { ?>
-          <option value="<?php echo $manufacturer['href']; ?>"><?php echo $manufacturer['name']; ?></option>
-        <?php } ?>
+  <div style="margin-bottom:20px;">
+    <div class="box-manufacturer" style="text-align:center;">
+    <?php foreach ($manufacturers as $manufacturer) { ?>
+      <?php if ($manufacturer['image']) { ?>
+        <div class="image"><a href="<?php echo $manufacturer['href']; ?>" title="<?php echo $manufacturer['name']; ?>"><img src="<?php echo $manufacturer['image']; ?>" alt="<?php echo $manufacturer['name']; ?>" /></a></div>
+      <?php } else { ?>
+        <div><a href="<?php echo $manufacturer['href']; ?>" title="<?php echo $manufacturer['name']; ?>"><?php echo $manufacturer['name']; ?></a></div>
       <?php } ?>
-    </select>
+    <?php } ?>
+    </div>
   </div>
 <?php } ?>

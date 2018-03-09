@@ -93,15 +93,6 @@ class ControllerModuleNews extends Controller {
 		// Manager
 		$this->data['news'] = $this->url->link('catalog/news', 'token=' . $this->session->data['token'], 'SSL');
 
-		// Stylesheet override
-		$template = $this->config->get('config_template');
-
-		if ($this->config->get($template . '_stylesheet')) {
-			$this->data['stylesheet_mode'] = true;
-		} else {
-			$this->data['stylesheet_mode'] = false;
-		}
-
 		// Module
 		if (isset($this->request->post[$this->_name . '_theme'])) {
 			$this->data[$this->_name . '_theme'] = $this->request->post[$this->_name . '_theme'];

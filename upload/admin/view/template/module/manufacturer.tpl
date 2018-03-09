@@ -22,6 +22,10 @@
         <table class="form">
         <tbody>
           <tr>
+            <td><a href="<?php echo $manager; ?>" class="button"><i class="fa fa-gear"></i> &nbsp; <?php echo $button_manager; ?></a></td>
+            <td><b><i><?php echo $text_manage_brands; ?></i></b></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_theme; ?></td>
             <td><?php if ($manufacturer_theme) { ?>
               <input type="radio" name="manufacturer_theme" value="1" id="theme-on" class="radio" checked />
@@ -47,6 +51,7 @@
         <table id="module" class="list">
           <thead>
             <tr>
+              <td class="left"><?php echo $entry_limit; ?></td>
               <td class="left"><?php echo $entry_layout; ?></td>
               <td class="left"><?php echo $entry_position; ?></td>
               <td class="left"><?php echo $entry_status; ?></td>
@@ -58,6 +63,9 @@
         <?php foreach ($modules as $module) { ?>
           <tbody id="module-row<?php echo $module_row; ?>">
             <tr>
+              <td class="left">
+                <input type="text" name="manufacturer_module[<?php echo $module_row; ?>][limit]" value="<?php echo $module['limit']; ?>" size="1" />
+              </td>
               <td class="left"><select name="manufacturer_module[<?php echo $module_row; ?>][layout_id]">
                 <?php foreach ($layouts as $layout) { ?>
                   <?php if ($layout['layout_id'] == $module['layout_id']) { ?>
@@ -120,7 +128,7 @@
         <?php } ?>
           <tfoot>
             <tr>
-              <td colspan="4"></td>
+              <td colspan="5"></td>
               <td class="center"><a onclick="addModule();" class="button"><?php echo $button_add_module; ?></a></td>
             </tr>
           </tfoot>
@@ -136,6 +144,7 @@ var module_row = <?php echo $module_row; ?>;
 function addModule() {
 	html  = '<tbody id="module-row' + module_row + '">';
 	html += '  <tr>';
+	html += '    <td class="left"><input type="text" name="manufacturer_module[' + module_row + '][limit]" value="6" size="1" /></td>';
 	html += '    <td class="left"><select name="manufacturer_module[' + module_row + '][layout_id]">';
 	<?php foreach ($layouts as $layout) { ?>
 	html += '       <option value="<?php echo $layout['layout_id']; ?>"><?php echo addslashes($layout['name']); ?></option>';

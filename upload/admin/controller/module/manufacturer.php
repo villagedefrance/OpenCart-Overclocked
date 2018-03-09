@@ -30,6 +30,7 @@ class ControllerModuleManufacturer extends Controller {
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_manage_brands'] = $this->language->get('text_manage_brands');
 		$this->data['text_content_header'] = $this->language->get('text_content_header');
 		$this->data['text_content_top'] = $this->language->get('text_content_top');
 		$this->data['text_content_bottom'] = $this->language->get('text_content_bottom');
@@ -40,7 +41,8 @@ class ControllerModuleManufacturer extends Controller {
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 
-        $this->data['entry_layout'] = $this->language->get('entry_layout');
+		$this->data['entry_limit'] = $this->language->get('entry_limit');
+		$this->data['entry_layout'] = $this->language->get('entry_layout');
 		$this->data['entry_position'] = $this->language->get('entry_position');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
@@ -49,6 +51,7 @@ class ControllerModuleManufacturer extends Controller {
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 		$this->data['button_add_module'] = $this->language->get('button_add_module');
+		$this->data['button_manager'] = $this->language->get('button_manager');
 		$this->data['button_remove'] = $this->language->get('button_remove');
 
 		if (isset($this->error['warning'])) {
@@ -81,14 +84,8 @@ class ControllerModuleManufacturer extends Controller {
 
 		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
 
-		// Stylesheet override
-		$template = $this->config->get('config_template');
-
-		if ($this->config->get($template . '_stylesheet')) {
-			$this->data['stylesheet_mode'] = true;
-		} else {
-			$this->data['stylesheet_mode'] = false;
-		}
+		// Manager
+		$this->data['manager'] = $this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'], 'SSL');
 
 		// Module
 		if (isset($this->request->post[$this->_name . '_theme'])) {

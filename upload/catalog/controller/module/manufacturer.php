@@ -17,25 +17,30 @@ class ControllerModuleManufacturer extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
-		$this->data['text_select'] = $this->language->get('text_select');
-
-		if (isset($this->request->get['manufacturer_id'])) {
-			$this->data['manufacturer_id'] = $this->request->get['manufacturer_id'];
-		} else {
-			$this->data['manufacturer_id'] = 0;
-		}
-
+		$this->load->model('tool/image');
 		$this->load->model('catalog/manufacturer');
 
 		$this->data['manufacturers'] = array();
 
-		$results = $this->model_catalog_manufacturer->getManufacturers(0);
+		$data = array(
+			'order' => 'ASC',
+			'start' => 0,
+			'limit' => $setting['limit']
+		);
+
+		$results = $this->model_catalog_manufacturer->getManufacturers($data);
 
 		foreach ($results as $result) {
+			if ($result['image']) {
+				$image = $this->model_tool_image->resize($result['image'], 48, 48);
+			} else {
+				$image = $this->model_tool_image->resize('no_image.jpg', 48, 48);
+			}
+
 			$this->data['manufacturers'][] = array(
 				'manufacturer_id' => $result['manufacturer_id'],
+				'image'           => $image,
 				'name'            => $result['name'],
-				'status'          => $result['status'],
 				'href'            => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $result['manufacturer_id'], 'SSL')
 			);
 		}
