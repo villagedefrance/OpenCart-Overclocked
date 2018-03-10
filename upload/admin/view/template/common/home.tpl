@@ -80,7 +80,7 @@
               <?php if ($total_pending_orders > 0) { ?>
                 <a href="<?php echo $view_orders; ?>" title=""><span class="color animated bounceIn" style="background-color:#F2B155; color:#FFF;"><?php echo $total_pending_orders; ?></span></a>
               <?php } else { ?>
-                <a href="<?php echo $view_orders; ?>" title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
+                <a href="<?php echo $view_orders; ?>" title=""><span class="color" style="background-color:#AAA; color:#FFF;"><i class="fa fa-eye"></i></span></a>
               <?php } ?>
               </td>
               <td class="right"><?php echo $total_order; ?></td>
@@ -90,7 +90,7 @@
               <?php if ($total_customer_approval > 0) { ?>
                 <a href="<?php echo $view_customers; ?>" title=""><span class="color animated bounceIn" style="background-color:#DE5954; color:#FFF;"><?php echo $total_customer_approval; ?></span></a>
               <?php } else { ?>
-                <a href="<?php echo $view_customers; ?>" title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
+                <a href="<?php echo $view_customers; ?>" title=""><span class="color" style="background-color:#AAA; color:#FFF;"><i class="fa fa-eye"></i></span></a>
               <?php } ?>
               </td>
               <td class="right"><?php echo $total_customer; ?></td>
@@ -100,7 +100,7 @@
               <?php if ($total_review_approval > 0) { ?>
                 <a href="<?php echo $view_reviews; ?>" title=""><span class="color animated bounceIn" style="background-color:#DE5954; color:#FFF;"><?php echo $total_review_approval; ?></span></a>
               <?php } else { ?>
-                <a href="<?php echo $view_reviews; ?>" title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
+                <a href="<?php echo $view_reviews; ?>" title=""><span class="color" style="background-color:#AAA; color:#FFF;"><i class="fa fa-eye"></i></span></a>
               <?php } ?>
               </td>
               <td class="right"><?php echo $total_review; ?></td>
@@ -111,7 +111,7 @@
               <?php if ($total_affiliate_approval > 0) { ?>
                 <a href="<?php echo $view_affiliates; ?>" title=""><span class="color animated bounceIn" style="background-color:#DE5954; color:#FFF;"><?php echo $total_affiliate_approval; ?></span></a>
               <?php } else { ?>
-                <a href="<?php echo $view_affiliates; ?>" title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
+                <a href="<?php echo $view_affiliates; ?>" title=""><span class="color" style="background-color:#AAA; color:#FFF;"><i class="fa fa-eye"></i></span></a>
               <?php } ?>
               </td>
               <td class="right"><?php echo $total_affiliate; ?></td>
@@ -279,18 +279,18 @@
                 <td class="center"><?php echo $customer['orders_passed']; ?>
                 <?php foreach ($customer['action_passed'] as $action_passed) { ?>
                   <?php if ($customer['orders_passed'] > 0) { ?>
-                    <a href="<?php echo $action_passed['href']; ?>" title="<?php echo $action_passed['text']; ?>"><span class="color" style="background-color:#4691D2; color:#FFF;">&gt;</span></a>
+                    <a href="<?php echo $action_passed['href']; ?>" title="<?php echo $action_passed['text']; ?>"><span class="color" style="background-color:#4691D2; color:#FFF;"><i class="fa fa-eye"></i></span></a>
                   <?php } else { ?>
-                    <a title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
+                    <a title=""><span class="color" style="background-color:#AAA; color:#FFF;"><i class="fa fa-eye-slash"></i></span></a>
                   <?php } ?>
                 <?php } ?>
                 </td>
                 <td class="center"><?php echo $customer['orders_missed']; ?> &nbsp;&nbsp;
                 <?php foreach ($customer['action_missed'] as $action_missed) { ?>
                   <?php if ($customer['orders_missed'] > 0) { ?>
-                    <a href="<?php echo $action_missed['href']; ?>" title="<?php echo $action_missed['text']; ?>"><span class="color" style="background-color:#4691D2; color:#FFF;">&gt;</span></a>
+                    <a href="<?php echo $action_missed['href']; ?>" title="<?php echo $action_missed['text']; ?>"><span class="color" style="background-color:#4691D2; color:#FFF;"><i class="fa fa-eye"></i></span></a>
                   <?php } else { ?>
-                    <a title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
+                    <a title=""><span class="color" style="background-color:#AAA; color:#FFF;"><i class="fa fa-eye-slash"></i></span></a>
                   <?php } ?>
                 <?php } ?>
                 </td>
@@ -338,9 +338,9 @@
                 <td class="center"><?php echo $review['rating_total']; ?>
                 <?php foreach ($review['action_rated'] as $action_rated) { ?>
                   <?php if ($review['rating_total'] > 0) { ?>
-                    <a href="<?php echo $action_rated['href']; ?>" title="<?php echo $action_rated['text']; ?>"><span class="color" style="background-color:#4691D2; color:#FFF;">&gt;</span></a>
+                    <a href="<?php echo $action_rated['href']; ?>" title="<?php echo $action_rated['text']; ?>"><span class="color" style="background-color:#4691D2; color:#FFF;"><i class="fa fa-eye"></i></span></a>
                   <?php } else { ?>
-                    <a title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
+                    <a title=""><span class="color" style="background-color:#AAA; color:#FFF;"><i class="fa fa-eye-slash"></i></span></a>
                   <?php } ?>
                   <?php } ?>
                 </td>
@@ -430,9 +430,9 @@
                 <td class="center"><?php echo $return['return_history']; ?>
                 <?php foreach ($return['action_return'] as $action_return) { ?>
                   <?php if ($return['return_history'] > 0) { ?>
-                    <a href="<?php echo $action_return['href']; ?>" title="<?php echo $action_return['text']; ?>"><span class="color" style="background-color:#4691D2; color:#FFF;">&gt;</span></a>
+                    <a href="<?php echo $action_return['href']; ?>" title="<?php echo $action_return['text']; ?>"><span class="color" style="background-color:#4691D2; color:#FFF;"><i class="fa fa-eye"></i></span></a>
                   <?php } else { ?>
-                    <a title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
+                    <a title=""><span class="color" style="background-color:#AAA; color:#FFF;"><i class="fa fa-eye-slash"></i></span></a>
                   <?php } ?>
                 <?php } ?>
                 </td>

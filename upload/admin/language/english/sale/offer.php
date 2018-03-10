@@ -16,10 +16,10 @@ $_['text_total_c2c']      = 'C2C &#8211; Category :: Category:';
 $_['text_total_discount'] = 'N&deg; of products with Discounts';
 $_['text_total_special']  = 'N&deg; of products with Specials';
 
-$_['text_p2p']            = '<b>Product :: Product</b>';
-$_['text_p2c']            = '<b>Product :: Category</b>';
-$_['text_c2p']            = '<b>Category :: Product</b>';
-$_['text_c2c']            = '<b>Category :: Category</b>';
+$_['text_p2p']            = 'Product :: Product';
+$_['text_p2c']            = 'Product :: Category';
+$_['text_c2p']            = 'Category :: Product';
+$_['text_c2c']            = 'Category :: Category';
 
 $_['text_offer_expired']  = '<span style="color:#DE5954; font-weight:bold;">Offer has expired!</span>';
 $_['text_offer_expiring'] = '<span style="color:#F2B155; font-weight:bold;">Offer is about to expire!</span>';

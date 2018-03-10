@@ -42,12 +42,12 @@
           </table>
           <table class="list" style="margin-bottom:9px;">
             <tr>
-              <td class="left"><b><?php echo $text_total_discount; ?></b></td>
-              <td class="right" style="width:36px;"><b><?php echo $total_discount; ?></b></td>
+              <td class="left"><?php echo $text_total_discount; ?></td>
+              <td class="right" style="width:36px;"><?php echo $total_discount; ?></td>
             </tr>
             <tr>
-              <td class="left"><b><?php echo $text_total_special; ?></b></td>
-              <td class="right" style="width:36px;"><b><?php echo $total_special; ?></b></td>
+              <td class="left"><?php echo $text_total_special; ?></td>
+              <td class="right" style="width:36px;"><?php echo $total_special; ?></td>
             </tr>
           </table>
         </div>
@@ -74,10 +74,10 @@
             </tr>
           </table>
           <?php if ($error_offers) { ?>
-            <div class="attention" style="margin:5px 0px 0px 0px;"><?php echo $error_offers; ?></div>
+            <div class="attention" style="margin:5px 0 0 0;"><?php echo $error_offers; ?></div>
           <?php } ?>
           <?php if ($success_offers) { ?>
-            <div class="tooltip" style="margin:5px 0px 0px 0px;"><?php echo $success_offers; ?></div>
+            <div class="tooltip" style="margin:5px 0 0 0;"><?php echo $success_offers; ?></div>
           <?php } ?>
         </div>
       </div>
