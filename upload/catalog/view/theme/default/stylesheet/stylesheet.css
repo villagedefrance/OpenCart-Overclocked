@@ -962,11 +962,11 @@ a.button-add:hover {
 	font-weight: normal;
 	line-height: 30px;
 	border-bottom: 1px solid #606060;
-	padding: 8px 10px 4px 10px;
+	padding: 8px 5px 4px 5px;
 	margin: 0;
 }
 .box .box-content {
-	padding: 10px 7px;
+	padding: 10px 5px;
 	margin: 0;
 }
 /* Box product */
@@ -1143,7 +1143,6 @@ a.button-add:hover {
 }
 /* Box Manufacturer */
 .box-manufacturer {
-	width: 100%;
 	margin: 0;
 	padding: 0;
 	overflow: auto;
@@ -1155,14 +1154,7 @@ a.button-add:hover {
 	vertical-align: top;
 	text-align: center;
 	position: relative;
-}
-#column-left .box-manufacturer > div, #column-right .box-manufacturer > div {
 	width: 100%;
-	min-width: 180px;
-}
-#content .box-manufacturer > div {
-	width: 22%;
-	min-width: 170px;
 }
 .box-manufacturer .image {
 	clear: left;
@@ -1174,7 +1166,7 @@ a.button-add:hover {
 .box-manufacturer .image a {
 	float: left;
 	display: block;
-	margin: 0 7px 7px 0;
+	margin: 0 6px 6px 0;
 }
 .box-manufacturer .image img {
 	border: 1px solid #E7E7E7;

@@ -22,9 +22,11 @@ class ControllerModuleBestSeller extends Controller {
 
 		$this->data['lang'] = $this->language->get('code');
 
+		$this->data['button_cart'] = $this->language->get('button_cart');
 		$this->data['button_view'] = $this->language->get('button_view');
 		$this->data['button_quote'] = $this->language->get('button_quote');
-		$this->data['button_cart'] = $this->language->get('button_cart');
+		$this->data['button_compare'] = $this->language->get('button_compare');
+		$this->data['button_wishlist'] = $this->language->get('button_wishlist');
 
 		$this->data['viewproduct'] = $this->config->get($this->_name . '_viewproduct');
 		$this->data['addproduct'] = $this->config->get($this->_name . '_addproduct');

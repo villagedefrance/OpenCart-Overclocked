@@ -64,6 +64,7 @@ $_['dialog_resource']                         = 'Please be aware that this featu
 
 // Button
 $_['button_buy_it_now']                       = 'Buy it Now!';
+$_['button_view']                             = 'View Product';
 
 // Offer
 $_['text_G241']                               = 'Buy 1 Get 1 %s!';
