@@ -470,7 +470,7 @@ class ControllerToolExportImport extends Controller {
 	}
 
 	protected function validateDownloadForm() {
-		if (!$this->user->hasPermission('access', 'tool/export_import')) {
+		if (!$this->user->hasPermission('modify', 'tool/export_import')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 			return false;
 		}
@@ -582,7 +582,7 @@ class ControllerToolExportImport extends Controller {
 	}
 
 	protected function validateSettingsForm() {
-		if (!$this->user->hasPermission('access', 'tool/export_import')) {
+		if (!$this->user->hasPermission('modify', 'tool/export_import')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 			return false;
 		}
