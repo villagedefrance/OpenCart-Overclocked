@@ -108,7 +108,7 @@ class ControllerToolExportImportRaw extends Controller {
 	}
 
 	public function export() {
-		if ($this->request->server['REQUEST_METHOD'] == 'POST' && $this->validate() && isset($this->request->post['csv_export'])) {
+		if ($this->request->server['REQUEST_METHOD'] == 'POST' && $this->validate()) {
 			$ReflectionResponse = new ReflectionClass($this->response);
 
 			if ($ReflectionResponse->getMethod('addheader')->getNumberOfParameters() == 2) {
@@ -132,6 +132,13 @@ class ControllerToolExportImportRaw extends Controller {
 			$this->load->model('tool/export_import_raw');
 
 			$this->response->setOutput($this->model_tool_export_import_raw->csvExportRaw($this->request->post['csv_export']));
+
+		} elseif (!$this->user->hasPermission('modify', 'tool/export_import_raw')) {
+			$this->language->load('tool/export_import_raw');
+
+			$this->session->data['error'] = $this->language->get('error_permission');
+
+			$this->redirect($this->url->link('tool/export_import_raw', 'token=' . $this->session->data['token'], 'SSL'));
 
 		} else {
 			$this->language->load('tool/export_import_raw');

@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="content-body">
-      <div class="tooltip" style="margin:5px 0px 15px 0px;"><?php echo $help_function; ?></div>
+      <div class="tooltip" style="margin:5px 0 15px 0;"><?php echo $help_function; ?></div>
       <form action="<?php echo $csv_import; ?>" method="post" enctype="multipart/form-data" id="import-raw">
         <h2><?php echo $heading_import; ?></h2>
         <table class="tool">
@@ -77,7 +77,7 @@
           </tr>
         </table>
       </form>
-      <div class="attention" style="margin:35px 0px 5px 0px;"><?php echo $help_caution; ?></div>
+      <div class="attention" style="margin:35px 0 5px 0;"><?php echo $help_caution; ?></div>
     </div>
   </div>
 </div>

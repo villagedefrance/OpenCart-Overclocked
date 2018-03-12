@@ -23,7 +23,9 @@
       <div id="tabs" class="htabs">
         <a href="#tab-export"><?php echo $tab_export; ?></a>
         <a href="#tab-import"><?php echo $tab_import; ?></a>
+      <?php if ($show_settings) { ?>
         <a href="#tab-settings"><?php echo $tab_settings; ?></a>
+      <?php } ?>
         <a href="#tab-notes"><?php echo $tab_notes; ?></a>
         <a href="#tab-credits"><?php echo $tab_credits; ?></a>
       </div>
@@ -142,8 +144,9 @@
             </tr>
           </table>
         </form>
-        <div class="tooltip" style="margin:15px 0px 5px 0px;"><?php echo $help_format; ?></div>
+        <div class="tooltip" style="margin:15px 0 5px 0;"><?php echo $help_format; ?></div>
       </div>
+    <?php if ($show_settings) { ?>
       <div id="tab-settings">
         <form action="<?php echo $settings; ?>" method="post" enctype="multipart/form-data" id="settings">
           <table class="form">
@@ -286,6 +289,7 @@
           </table>
         </form>
       </div>
+    <?php } ?>
       <div id="tab-notes">
         <h3><?php echo $entry_notes; ?></h3>
         <table class="form">

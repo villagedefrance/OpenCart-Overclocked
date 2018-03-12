@@ -360,6 +360,14 @@ class ControllerToolExportImport extends Controller {
 			$this->data['incremental'] = '1';
 		}
 
+		// Hide Settings if Permission Modify not allowed.
+		if ($this->user->hasPermission('modify', 'tool/export_import')) {
+			$this->data['show_settings'] = true;
+		} else{
+			$this->data['show_settings'] = false;
+		}
+
+		// Settings
 		if (isset($this->request->post['export_import_settings_use_option_id'])) {
 			$this->data['settings_use_option_id'] = $this->request->post['export_import_settings_use_option_id'];
 		} elseif ($this->config->get('export_import_settings_use_option_id')) {
@@ -470,191 +478,180 @@ class ControllerToolExportImport extends Controller {
 	}
 
 	protected function validateDownloadForm() {
-		if (!$this->user->hasPermission('modify', 'tool/export_import')) {
-			$this->error['warning'] = $this->language->get('error_permission');
-			return false;
-		}
+		if ($this->user->hasPermission('modify', 'tool/export_import')) {
+			if (!$this->config->get('export_import_settings_use_option_id')) {
+				$option_names = $this->model_tool_export_import->getOptionNameCounts();
 
-		if (!$this->config->get('export_import_settings_use_option_id')) {
-			$option_names = $this->model_tool_export_import->getOptionNameCounts();
-
-			foreach ($option_names as $option_name) {
-				if ($option_name['count'] > 1) {
-					$this->error['warning'] = str_replace('%1', $option_name['name'], $this->language->get('error_option_name'));
-					return false;
-				}
-			}
-		}
-
-		if (!$this->config->get('export_import_settings_use_option_value_id')) {
-			$option_value_names = $this->model_tool_export_import->getOptionValueNameCounts();
-
-			foreach ($option_value_names as $option_value_name) {
-				if ($option_value_name['count'] > 1) {
-					$this->error['warning'] = str_replace('%1', $option_value_name['name'], $this->language->get('error_option_value_name'));
-					return false;
-				}
-			}
-		}
-
-		if (!$this->config->get('export_import_settings_use_attribute_group_id')) {
-			$attribute_group_names = $this->model_tool_export_import->getAttributeGroupNameCounts();
-
-			foreach ($attribute_group_names as $attribute_group_name) {
-				if ($attribute_group_name['count'] > 1) {
-					$this->error['warning'] = str_replace('%1', $attribute_group_name['name'], $this->language->get('error_attribute_group_name'));
-					return false;
-				}
-			}
-		}
-
-		if (!$this->config->get('export_import_settings_use_attribute_id')) {
-			$attribute_names = $this->model_tool_export_import->getAttributeNameCounts();
-
-			foreach ($attribute_names as $attribute_name) {
-				if ($attribute_name['count'] > 1) {
-					$this->error['warning'] = str_replace('%1', $attribute_name['name'], $this->language->get('error_attribute_name'));
-					return false;
-				}
-			}
-		}
-
-		if ($this->model_tool_export_import->existFilter()) {
-			if (!$this->config->get('export_import_settings_use_filter_group_id')) {
-				$filter_group_names = $this->model_tool_export_import->getFilterGroupNameCounts();
-
-				foreach ($filter_group_names as $filter_group_name) {
-					if ($filter_group_name['count'] > 1) {
-						$this->error['warning'] = str_replace('%1', $filter_group_name['name'], $this->language->get('error_filter_group_name'));
-						return false;
+				foreach ($option_names as $option_name) {
+					if ($option_name['count'] > 1) {
+						$this->error['warning'] = str_replace('%1', $option_name['name'], $this->language->get('error_option_name'));
 					}
 				}
 			}
 
-			if (!$this->config->get('export_import_settings_use_filter_id')) {
-				$filter_names = $this->model_tool_export_import->getFilterNameCounts();
+			if (!$this->config->get('export_import_settings_use_option_value_id')) {
+				$option_value_names = $this->model_tool_export_import->getOptionValueNameCounts();
 
-				foreach ($filter_names as $filter_name) {
-					if ($filter_name['count'] > 1) {
-						$this->error['warning'] = str_replace('%1', $filter_name['name'], $this->language->get('error_filter_name'));
-						return false;
+				foreach ($option_value_names as $option_value_name) {
+					if ($option_value_name['count'] > 1) {
+						$this->error['warning'] = str_replace('%1', $option_value_name['name'], $this->language->get('error_option_value_name'));
 					}
 				}
 			}
-		}
 
-		return true;
-	}
+			if (!$this->config->get('export_import_settings_use_attribute_group_id')) {
+				$attribute_group_names = $this->model_tool_export_import->getAttributeGroupNameCounts();
 
-	protected function validateUploadForm() {
-		if (!$this->user->hasPermission('modify', 'tool/export_import')) {
-			$this->error['warning'] = $this->language->get('error_permission');
-		}
-
-		if (!isset($this->request->post['incremental'])) {
-			$this->error['warning'] = $this->language->get('error_incremental');
-		} elseif ($this->request->post['incremental'] != '0') {
-			if ($this->request->post['incremental'] != '1') {
-				$this->error['warning'] = $this->language->get('error_incremental');
+				foreach ($attribute_group_names as $attribute_group_name) {
+					if ($attribute_group_name['count'] > 1) {
+						$this->error['warning'] = str_replace('%1', $attribute_group_name['name'], $this->language->get('error_attribute_group_name'));
+					}
+				}
 			}
-		}
 
-		if (!isset($this->request->files['upload']['name'])) {
-			if (isset($this->error['warning'])) {
-				$this->error['warning'] .= "<br /\n" . $this->language->get('error_upload_name');
-			} else {
-				$this->error['warning'] = $this->language->get('error_upload_name');
+			if (!$this->config->get('export_import_settings_use_attribute_id')) {
+				$attribute_names = $this->model_tool_export_import->getAttributeNameCounts();
+
+				foreach ($attribute_names as $attribute_name) {
+					if ($attribute_name['count'] > 1) {
+						$this->error['warning'] = str_replace('%1', $attribute_name['name'], $this->language->get('error_attribute_name'));
+					}
+				}
+			}
+
+			if ($this->model_tool_export_import->existFilter()) {
+				if (!$this->config->get('export_import_settings_use_filter_group_id')) {
+					$filter_group_names = $this->model_tool_export_import->getFilterGroupNameCounts();
+
+					foreach ($filter_group_names as $filter_group_name) {
+						if ($filter_group_name['count'] > 1) {
+							$this->error['warning'] = str_replace('%1', $filter_group_name['name'], $this->language->get('error_filter_group_name'));
+						}
+					}
+				}
+
+				if (!$this->config->get('export_import_settings_use_filter_id')) {
+					$filter_names = $this->model_tool_export_import->getFilterNameCounts();
+
+					foreach ($filter_names as $filter_name) {
+						if ($filter_name['count'] > 1) {
+							$this->error['warning'] = str_replace('%1', $filter_name['name'], $this->language->get('error_filter_name'));
+						}
+					}
+				}
 			}
 
 		} else {
-			$ext = strtolower(pathinfo($this->request->files['upload']['name'], PATHINFO_EXTENSION));
+			$this->error['warning'] = $this->language->get('error_permission');
+		}
 
-			if (($ext != 'xls') && ($ext != 'xlsx') && ($ext != 'ods') && ($ext != 'zip')) {
-				if (isset($this->error['warning'])) {
-					$this->error['warning'] .= "<br /\n" . $this->language->get('error_upload_ext');
-				} else {
-					$this->error['warning'] = $this->language->get('error_upload_ext');
+		return empty($this->error);
+	}
+
+	protected function validateUploadForm() {
+		if ($this->user->hasPermission('modify', 'tool/export_import')) {
+			if (!isset($this->request->post['incremental'])) {
+				$this->error['warning'] = $this->language->get('error_incremental');
+			} elseif ($this->request->post['incremental'] != '0') {
+				if ($this->request->post['incremental'] != '1') {
+					$this->error['warning'] = $this->language->get('error_incremental');
 				}
 			}
+
+			if (!isset($this->request->files['upload']['name'])) {
+				if (isset($this->error['warning'])) {
+					$this->error['warning'] .= "<br /\n" . $this->language->get('error_upload_name');
+				} else {
+					$this->error['warning'] = $this->language->get('error_upload_name');
+				}
+
+			} else {
+				$ext = strtolower(pathinfo($this->request->files['upload']['name'], PATHINFO_EXTENSION));
+
+				if (($ext != 'xls') && ($ext != 'xlsx') && ($ext != 'ods') && ($ext != 'zip')) {
+					if (isset($this->error['warning'])) {
+						$this->error['warning'] .= "<br /\n" . $this->language->get('error_upload_ext');
+					} else {
+						$this->error['warning'] = $this->language->get('error_upload_ext');
+					}
+				}
+			}
+
+		} else {
+			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
 		return empty($this->error);
 	}
 
 	protected function validateSettingsForm() {
-		if (!$this->user->hasPermission('modify', 'tool/export_import')) {
+		if ($this->user->hasPermission('modify', 'tool/export_import')) {
+			if (empty($this->request->post['export_import_settings_use_option_id'])) {
+				$option_names = $this->model_tool_export_import->getOptionNameCounts();
+
+				foreach ($option_names as $option_name) {
+					if ($option_name['count'] > 1) {
+						$this->error['warning'] = str_replace('%1', $option_name['name'], $this->language->get('error_option_name'));
+					}
+				}
+			}
+
+			if (empty($this->request->post['export_import_settings_use_option_value_id'])) {
+				$option_value_names = $this->model_tool_export_import->getOptionValueNameCounts();
+
+				foreach ($option_value_names as $option_value_name) {
+					if ($option_value_name['count'] > 1) {
+						$this->error['warning'] = str_replace('%1', $option_value_name['name'], $this->language->get('error_option_value_name'));
+					}
+				}
+			}
+
+			if (empty($this->request->post['export_import_settings_use_attribute_group_id'])) {
+				$attribute_group_names = $this->model_tool_export_import->getAttributeGroupNameCounts();
+
+				foreach ($attribute_group_names as $attribute_group_name) {
+					if ($attribute_group_name['count'] > 1) {
+						$this->error['warning'] = str_replace('%1', $attribute_group_name['name'], $this->language->get('error_attribute_group_name'));
+					}
+				}
+			}
+
+			if (empty($this->request->post['export_import_settings_use_attribute_id'])) {
+				$attribute_names = $this->model_tool_export_import->getAttributeNameCounts();
+
+				foreach ($attribute_names as $attribute_name) {
+					if ($attribute_name['count'] > 1) {
+						$this->error['warning'] = str_replace('%1', $attribute_name['name'], $this->language->get('error_attribute_name'));
+					}
+				}
+			}
+
+			if ($this->model_tool_export_import->existFilter()) {
+				if (empty($this->request->post['export_import_settings_use_filter_group_id'])) {
+					$filter_group_names = $this->model_tool_export_import->getFilterGroupNameCounts();
+
+					foreach ($filter_group_names as $filter_group_name) {
+						if ($filter_group_name['count'] > 1) {
+							$this->error['warning'] = str_replace('%1', $filter_group_name['name'], $this->language->get('error_filter_group_name'));
+						}
+					}
+				}
+
+				if (empty($this->request->post['export_import_settings_use_filter_id'])) {
+					$filter_names = $this->model_tool_export_import->getFilterNameCounts();
+
+					foreach ($filter_names as $filter_name) {
+						if ($filter_name['count'] > 1) {
+							$this->error['warning'] = str_replace('%1', $filter_name['name'], $this->language->get('error_filter_name'));
+						}
+					}
+				}
+			}
+
+		} else  {
 			$this->error['warning'] = $this->language->get('error_permission');
-			return false;
 		}
 
-		if (empty($this->request->post['export_import_settings_use_option_id'])) {
-			$option_names = $this->model_tool_export_import->getOptionNameCounts();
-
-			foreach ($option_names as $option_name) {
-				if ($option_name['count'] > 1) {
-					$this->error['warning'] = str_replace('%1', $option_name['name'], $this->language->get('error_option_name'));
-					return false;
-				}
-			}
-		}
-
-		if (empty($this->request->post['export_import_settings_use_option_value_id'])) {
-			$option_value_names = $this->model_tool_export_import->getOptionValueNameCounts();
-
-			foreach ($option_value_names as $option_value_name) {
-				if ($option_value_name['count'] > 1) {
-					$this->error['warning'] = str_replace('%1', $option_value_name['name'], $this->language->get('error_option_value_name'));
-					return false;
-				}
-			}
-		}
-
-		if (empty($this->request->post['export_import_settings_use_attribute_group_id'])) {
-			$attribute_group_names = $this->model_tool_export_import->getAttributeGroupNameCounts();
-
-			foreach ($attribute_group_names as $attribute_group_name) {
-				if ($attribute_group_name['count'] > 1) {
-					$this->error['warning'] = str_replace('%1', $attribute_group_name['name'], $this->language->get('error_attribute_group_name'));
-					return false;
-				}
-			}
-		}
-
-		if (empty($this->request->post['export_import_settings_use_attribute_id'])) {
-			$attribute_names = $this->model_tool_export_import->getAttributeNameCounts();
-
-			foreach ($attribute_names as $attribute_name) {
-				if ($attribute_name['count'] > 1) {
-					$this->error['warning'] = str_replace('%1', $attribute_name['name'], $this->language->get('error_attribute_name'));
-					return false;
-				}
-			}
-		}
-
-		if ($this->model_tool_export_import->existFilter()) {
-			if (empty($this->request->post['export_import_settings_use_filter_group_id'])) {
-				$filter_group_names = $this->model_tool_export_import->getFilterGroupNameCounts();
-
-				foreach ($filter_group_names as $filter_group_name) {
-					if ($filter_group_name['count'] > 1) {
-						$this->error['warning'] = str_replace('%1', $filter_group_name['name'], $this->language->get('error_filter_group_name'));
-						return false;
-					}
-				}
-			}
-
-			if (empty($this->request->post['export_import_settings_use_filter_id'])) {
-				$filter_names = $this->model_tool_export_import->getFilterNameCounts();
-
-				foreach ($filter_names as $filter_name) {
-					if ($filter_name['count'] > 1) {
-						$this->error['warning'] = str_replace('%1', $filter_name['name'], $this->language->get('error_filter_name'));
-						return false;
-					}
-				}
-			}
-		}
-
-		return true;
+		return empty($this->error);
 	}
 }
