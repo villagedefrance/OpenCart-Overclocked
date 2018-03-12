@@ -47,6 +47,10 @@ class ControllerInformationNews extends Controller {
 			$this->data['text_related_product'] = $this->language->get('text_related_product');
 			$this->data['text_from'] = $this->language->get('text_from');
 
+			$this->data['button_cart'] = $this->language->get('button_cart');
+			$this->data['button_view'] = $this->language->get('button_view');
+			$this->data['button_quote'] = $this->language->get('button_quote');
+			$this->data['button_wishlist'] = $this->language->get('button_wishlist');
 			$this->data['button_news'] = $this->language->get('button_news');
 			$this->data['button_continue'] = $this->language->get('button_continue');
 			$this->data['button_download'] = $this->language->get('button_download');
