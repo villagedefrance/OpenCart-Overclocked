@@ -21,7 +21,7 @@ class ControllerToolExportImport extends Controller {
 
 		$this->load->model('tool/export_import');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && ($this->validateUploadForm())) {
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateUploadForm()) {
 			if ((isset($this->request->files['upload'])) && (is_uploaded_file($this->request->files['upload']['tmp_name']))) {
 				$file = $this->request->files['upload']['tmp_name'];
 
@@ -549,7 +549,9 @@ class ControllerToolExportImport extends Controller {
 	protected function validateUploadForm() {
 		if (!$this->user->hasPermission('modify', 'tool/export_import')) {
 			$this->error['warning'] = $this->language->get('error_permission');
-		} elseif (!isset( $this->request->post['incremental'] )) {
+		}
+
+		if (!isset($this->request->post['incremental'])) {
 			$this->error['warning'] = $this->language->get('error_incremental');
 		} elseif ($this->request->post['incremental'] != '0') {
 			if ($this->request->post['incremental'] != '1') {

@@ -62,7 +62,7 @@
           <?php } ?>
         </tbody>
         <tfoot>
-          <tr class="highlighted">
+          <tr>
             <td class="left" colspan="2"></td>
             <td class="right"><b><?php echo $text_total; ?> <?php echo $column_price; ?> :</b> <?php echo $total_price; ?></td>
             <td class="right"><b><?php echo $text_total; ?> <?php echo $column_cost; ?> :</b> <?php echo $total_cost; ?></td>

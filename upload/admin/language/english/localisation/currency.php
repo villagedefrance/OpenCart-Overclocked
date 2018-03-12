@@ -22,8 +22,8 @@ $_['entry_symbol_right']   = 'Symbol Right:';
 $_['entry_decimal_place']  = 'Decimal Places:';
 $_['entry_status']         = 'Status:';
 
-// Button
-$_['button_refresh']       = 'Update Rates';
+// Help
+$_['help_currencies']      = 'Latest currency rates will be available daily at 12:01 GMT.';
 
 // Error
 $_['error_permission']     = 'Warning: You do not have permission to modify <b>Currencies</b> !';

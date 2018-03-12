@@ -15,12 +15,12 @@
     <div class="heading">
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a href="<?php echo $refresh; ?>" class="button-save"><?php echo $button_refresh; ?></a> 
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
         <a id="delete" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div class="content-body">
+      <div class="tooltip" style="margin:5px 0 15px 0;"><?php echo $help_currencies; ?></div>
 	<?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>

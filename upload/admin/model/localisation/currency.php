@@ -115,6 +115,25 @@ class ModelLocalisationCurrency extends Model {
 		}
 	}
 
+//----------------------------------------------------------------------------------
+// FloatRates follows 148 currencies using 19 data sources.
+//
+// Example USD: http://www.floatrates.com/daily/usd.xml
+//
+// Example XML Response:
+// <item>
+//	<title>1 USD = 0.81253219 EUR</title>
+//	<link>http://www.floatrates.com/usd/eur/</link>
+//	<description>1 U.S. Dollar = 0.81253219 Euro</description>
+//	<pubDate>Mon, 12 Mar 2018 12:00:01 GMT</pubDate>
+//	<baseCurrency>USD</baseCurrency>
+//	<baseName>U.S. Dollar</baseName>
+//	<targetCurrency>EUR</targetCurrency>
+//	<targetName>Euro</targetName>
+//	<exchangeRate>0.81253219</exchangeRate>
+// </item>
+//----------------------------------------------------------------------------------
+
 	public function updateCurrencies($default = '') {
 		$currencies = array();
 
@@ -136,76 +155,12 @@ class ModelLocalisationCurrency extends Model {
 			}
 
 			if ($currencies) {
-				$curl = curl_init();
+				$xml = simplexml_load_file('http://www.floatrates.com/daily/' . strtolower($default) . '.xml');
 
-				curl_setopt($curl, CURLOPT_URL, 'https://api.fixer.io/latest?base=' . trim($default));
-				curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($curl, CURLOPT_HEADER, false);
-				curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-				curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
-				curl_setopt($curl, CURLOPT_TIMEOUT, 30);
-
-				$response = curl_exec($curl);
-
-				curl_close($curl);
-
-				$response_info = json_decode($response, true);
-
-				if (isset($response_info['rates'])) {
-					foreach ($currencies as $currency) {
-						if (isset($response_info['rates'][$currency['code']])) {
-							$this->editValueByCode($currency['code'], $response_info['rates'][$currency['code']]);
-						}
-					}
-				}
-
-				$this->cache->delete('currency');
-			}
-
-			$this->editValueByCode($default, '1.00000');
-		}
-	}
-
-	public function updateCurrenciesHourly($default = '') {
-		$currencies = array();
-
-		$default = $this->config->get('config_currency');
-
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "currency WHERE code != '" . $this->db->escape(trim($default)) . "' AND date_modified < '" . $this->db->escape(date('Y-m-d H:i:s', strtotime('-2 hour'))) . "' AND status = '1'");
-
-		if ($query->num_rows === 0) {
-			return;
-		}
-
-		$results = $this->getCurrencies();
-
-		if ($results) {
-			foreach ($results as $result) {
-				if (($result['code'] != $default)) {
-					$currencies[] = $result;
-				}
-			}
-
-			if ($currencies) {
-				$curl = curl_init();
-
-				curl_setopt($curl, CURLOPT_URL, 'https://api.fixer.io/latest?base=' . trim($default));
-				curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($curl, CURLOPT_HEADER, false);
-				curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-				curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
-				curl_setopt($curl, CURLOPT_TIMEOUT, 30);
-
-				$response = curl_exec($curl);
-
-				curl_close($curl);
-
-				$response_info = json_decode($response, true);
-
-				if (isset($response_info['rates'])) {
-					foreach ($currencies as $currency) {
-						if (isset($response_info['rates'][$currency['code']])) {
-							$this->editValueByCode($currency['code'], $response_info['rates'][$currency['code']]);
+				foreach ($xml->item as $response) {
+					if (isset($response['exchangeRate']) && isset($response['targetCurrency'])) {
+						foreach ($currencies as $currency) {
+							$this->editValueByCode($currency['code'], $response['exchangeRate'][$response['targetCurrency']]);
 						}
 					}
 				}

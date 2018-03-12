@@ -96,18 +96,6 @@ class ControllerLocalisationCurrency extends Controller {
 		$this->getForm();
 	}
 
-	public function refresh() {
-		$this->language->load('localisation/currency');
-
-		$this->document->setTitle($this->language->get('heading_title'));
-
-		$this->load->model('localisation/currency');
-
-		$this->model_localisation_currency->updateCurrenciesHourly();
-
-		$this->getList();
-	}
-
 	public function delete() {
 		$this->language->load('localisation/currency');
 
@@ -189,7 +177,6 @@ class ControllerLocalisationCurrency extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->data['refresh'] = $this->url->link('localisation/currency/refresh', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['insert'] = $this->url->link('localisation/currency/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('localisation/currency/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
@@ -245,7 +232,8 @@ class ControllerLocalisationCurrency extends Controller {
 		$this->data['column_date_modified'] = $this->language->get('column_date_modified');
 		$this->data['column_action'] = $this->language->get('column_action');
 
-		$this->data['button_refresh'] = $this->language->get('button_refresh');
+		$this->data['help_currencies'] = $this->language->get('help_currencies');
+
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
 
