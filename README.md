@@ -44,7 +44,7 @@ COMING SOON in v1.11.0!
 - Paypal Express update. (Thanks Gob33!)
 - Paypal Payflow Iframe update. (Thanks Gob33!)
 - Piwik changed to new Matomo Analytics.
-- Currency rates auto-update fixed (ECB).
+- Currency rates auto-update fixed.
 - PHP 7.2+ improved support.
 - GDPR compliance.
 - ...
