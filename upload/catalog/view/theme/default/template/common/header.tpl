@@ -40,9 +40,6 @@
 <script type="text/javascript" src="catalog/view/javascript/jquery/ui/minified/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/livesearch.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/common.min.js"></script>
-<?php foreach ($scripts as $script) { ?>
-<script type="text/javascript" src="<?php echo $script; ?>"></script>
-<?php } ?>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="catalog/view/javascript/html5shiv.min.js"></script>
 <![endif]-->

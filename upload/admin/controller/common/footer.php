@@ -6,6 +6,8 @@ class ControllerCommonFooter extends Controller {
 
 		$this->data['text_footer'] = sprintf($this->language->get('text_footer'), VERSION);
 
+		$this->data['scripts'] = $this->document->getScripts();
+
 		// Display Limit
 		$display_limit = $this->config->get('config_admin_width_limit');
 

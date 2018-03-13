@@ -4,6 +4,8 @@ class ControllerCommonFooter extends Controller {
 	protected function index() {
 		$this->language->load('common/footer');
 
+		$this->data['scripts'] = $this->document->getScripts();
+
 		// Footer
 		$this->load->model('design/footer');
 

@@ -110,6 +110,10 @@
 </div>
 </div>
 
+<?php foreach ($scripts as $script) { ?>
+<script type="text/javascript" src="<?php echo $script; ?>"></script>
+<?php } ?>
+
 <?php if ($this->config->get($template . '_right_click')) { ?>
 <script type="text/javascript"><!--
 document.onselectstart = new Function('return false');

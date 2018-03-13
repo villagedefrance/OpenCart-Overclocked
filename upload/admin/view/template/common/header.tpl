@@ -32,9 +32,6 @@
 <script type="text/javascript" src="view/javascript/jquery/confirm/jquery-confirm.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/tabs.min.js"></script>
 <script type="text/javascript" src="view/javascript/common.min.js"></script>
-<?php foreach ($scripts as $script) { ?>
-<script type="text/javascript" src="<?php echo $script; ?>"></script>
-<?php } ?>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="view/javascript/html5shiv.min.js"></script>
 <![endif]-->

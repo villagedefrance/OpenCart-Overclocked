@@ -50,7 +50,6 @@ class ControllerCommonHeader extends Controller {
 		$this->data['metas'] = ($metas) ? $this->document->getMetas() : null;
 		$this->data['links'] = $this->document->getLinks();
 		$this->data['styles'] = $this->document->getStyles();
-		$this->data['scripts'] = $this->document->getScripts();
 		$this->data['lang'] = $this->language->get('code');
 		$this->data['direction'] = $this->language->get('direction');
 		$this->data['name'] = $this->config->get('config_name');
