@@ -5317,6 +5317,46 @@ class ModelToolExportImport extends Model {
 		return $ok;
 	}
 
+	protected function validateWorksheetNames(&$reader) {
+		$allowed_worksheets = array(
+			'Customers',
+			'Categories',
+			'CategoryFilters',
+			'Products',
+			'AdditionalImages',
+			'Specials',
+			'Discounts',
+			'Rewards',
+			'ProductOptions',
+			'ProductOptionValues',
+			'ProductAttributes',
+			'ProductFilters',
+			'Options',
+			'OptionValues',
+			'AttributeGroups',
+			'Attributes',
+			'FilterGroups',
+			'Filters'
+		);
+
+		$all_worksheets_ignored = true;
+
+		$worksheets = $reader->getSheetNames();
+
+		foreach ($worksheets as $worksheet) {
+			if (in_array($worksheet, $allowed_worksheets)) {
+				$all_worksheets_ignored = false;
+				break;
+			}
+		}
+
+		if ($all_worksheets_ignored) {
+			return false;
+		}
+
+		return true;
+	}
+
 	protected function validateUpload(&$reader) {
 		$ok = true;
 

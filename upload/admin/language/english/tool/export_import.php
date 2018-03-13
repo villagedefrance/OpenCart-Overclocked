@@ -7,7 +7,7 @@ $_['header_phpexcel']                                   = 'PHPExcel';
 
 // Text
 $_['text_success']                                      = 'Success: You have successfully imported your data!';
-$_['text_success_settings']                             = 'Success: You have successfully updated the <b>Export / Import XLSX</b> settings !';
+$_['text_success_settings']                             = 'Success: You have successfully updated the <b>Export / Import (XLSX)</b> settings !';
 $_['text_export_type_customer']                         = 'Customers (including default address)';
 $_['text_export_type_category']                         = 'Categories (including category data and filters)';
 $_['text_export_type_category_old']                     = 'Categories';
@@ -50,7 +50,7 @@ $_['entry_settings_use_export_cache']                   = 'Use phpTemp cache for
 $_['entry_settings_use_import_cache']                   = 'Use phpTemp cache for large Imports (will be slightly slower)';
 
 // Error
-$_['error_permission']                                  = 'Warning: You do not have permission to modify <b>Export / Import XLSX</b> !';
+$_['error_permission']                                  = 'Warning: You do not have permission to modify <b>Export / Import (XLSX)</b> !';
 $_['error_upload']                                      = 'Uploaded spreadsheet file has validation errors!';
 $_['error_worksheets']                                  = 'Export/Import: Invalid worksheet names';
 $_['error_customers_header']                            = 'Export/Import: Invalid header in the Customers worksheet';
@@ -193,7 +193,7 @@ $_['help_range_type']                                   = '(Optional, leave empt
 $_['help_incremental_yes']                              = '(Update and/or add data)';
 $_['help_incremental_no']                               = '(Delete all old data before Import)';
 $_['help_format']                                       = 'Tip: Do an Export first to see the exact format of the worksheets!';
-$_['help_notes']                                        = '<b>The Export/Import Tool is designed to work with the default Opencart Overclocked Edition files only.</b><br /><br />If you are using third party Category, Product, Options, Specials, Discounts, Rewards, Attributes or Filters extensions, under your administration, who are modifying the default files, then unpredictable results may happen during Export and Import.<br /><br />If you have a very large number of Products in your store, and you are experiencing server memory issues, please use the range filters.<br /><br /><br />';
+$_['help_notes']                                        = '<b>The Export/Import (XLSX) is designed to work with the default Opencart Overclocked Edition files only.</b><br /><br />If you are using third party Category, Product, Options, Specials, Discounts, Rewards, Attributes or Filters extensions, under your administration, who are modifying the default files, then unpredictable results may happen during Export and Import.<br /><br />If you have a very large number of Products in your store, and you are experiencing server memory issues, please use the range filters.<br /><br /><br />';
 
 // About
 $_['text_export_import_version']                        = 'Export / Import Version:';
@@ -201,10 +201,10 @@ $_['text_export_import_author']                         = 'Export / Import Autho
 $_['text_export_import_website']                        = 'Export / Import Website:';
 $_['text_export_import_support']                        = 'Export / Import Support:';
 $_['text_export_import_license']                        = 'Export / Import License:';
-$_['text_export_tool_version']                          = 'Export/Import Tool Version:';
-$_['text_export_tool_author']                           = 'Export/Import Tool Author:';
-$_['text_export_tool_website']                          = 'Export/Import Tool Website:';
-$_['text_export_tool_license']                          = 'Export/Import Tool License:';
+$_['text_export_tool_version']                          = 'Export/Import (XLSX) Version:';
+$_['text_export_tool_author']                           = 'Export/Import (XLSX) Author:';
+$_['text_export_tool_website']                          = 'Export/Import (XLSX) Website:';
+$_['text_export_tool_license']                          = 'Export/Import (XLSX) License:';
 $_['text_phpexcel_version']                             = 'PHPExcel Version:';
 $_['text_phpexcel_author']                              = 'PHPExcel Authors:';
 $_['text_phpexcel_website']                             = 'PHPExcel GitHub:';
