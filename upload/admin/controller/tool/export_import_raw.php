@@ -108,7 +108,7 @@ class ControllerToolExportImportRaw extends Controller {
 	}
 
 	public function export() {
-		if ($this->request->server['REQUEST_METHOD'] == 'POST' && $this->validate()) {
+		if ($this->request->server['REQUEST_METHOD'] == 'POST' && isset($this->request->post['csv_export']) && $this->validate()) {
 			$ReflectionResponse = new ReflectionClass($this->response);
 
 			if ($ReflectionResponse->getMethod('addheader')->getNumberOfParameters() == 2) {
