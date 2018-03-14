@@ -485,12 +485,13 @@ class ModelToolExportImport extends Model {
 		$firstname = $this->db->escape($customer['firstname']);
 		$lastname = $this->db->escape($customer['lastname']);
 		$email = $this->db->escape($customer['email']);
-		$telephone = $this->db->escape($customer['telephone']);
+		$telephone = ($customer['telephone']) ? $this->db->escape($customer['telephone']) : '000';
 		$fax = ($customer['fax']) ? $this->db->escape($customer['fax']) : '';
-		$gender = ($customer['gender']) ? $this->db->escape($customer['gender']) : 0;
-		$date_of_birth = ($customer['date_of_birth']) ? $customer['date_of_birth'] : '0000-00-00';
-		$password = ($customer['password']) ? $customer['password'] : '';
-		$salt = ($customer['salt']) ? $customer['salt'] : '';
+		$gender = $customer['gender'];
+		$gender = (strtoupper($gender) == "FEMALE") ? 1 : 0;
+		$date_of_birth = $customer['date_of_birth'];
+		$password = $customer['password'];
+		$salt = $customer['salt'];
 		$cart = $customer['cart'];
 		$wishlist = $customer['wishlist'];
 		$newsletter = $customer['newsletter'];
@@ -505,8 +506,8 @@ class ModelToolExportImport extends Model {
 		$postcode = $this->db->escape($customer['postcode']);
 		$country_id = $this->db->escape($customer['country_id']);
 		$zone_id = $this->db->escape($customer['zone_id']);
-		$customer_group_id = ($customer['customer_group_id']) ? $customer['customer_group_id'] : 1;
-		$ip = ($customer['ip']) ? $customer['ip'] : '127.0.0.1';
+		$customer_group_id = ($customer['customer_group_id']) ? $customer['customer_group_id'] : $this->config->get('config_customer_group_id');
+		$ip = $this->db->escape($customer['ip']);
 		$status = $customer['status'];
 		$status = ((strtoupper($status) == "TRUE") || (strtoupper($status) == "YES") || (strtoupper($status) == "ENABLED")) ? 1 : 0;
 		$approved = $customer['approved'];
@@ -544,11 +545,11 @@ class ModelToolExportImport extends Model {
 
 	protected function deleteCustomer($customer_id) {
 		$sql = "DELETE FROM `" . DB_PREFIX . "customer` WHERE customer_id = '" . (int)$customer_id . "';\n";
-		$sql .= "DELETE FROM `" . DB_PREFIX . "customer_history` WHERE customer_id = '" . (int)$customer_id . "';\n";
 		$sql .= "DELETE FROM `" . DB_PREFIX . "customer_ip` WHERE customer_id = '" . (int)$customer_id . "';\n";
 		$sql .= "DELETE FROM `" . DB_PREFIX . "customer_online` WHERE customer_id = '" . (int)$customer_id . "';\n";
 		$sql .= "DELETE FROM `" . DB_PREFIX . "customer_reward` WHERE customer_id = '" . (int)$customer_id . "';\n";
 		$sql .= "DELETE FROM `" . DB_PREFIX . "customer_transaction` WHERE customer_id = '" . (int)$customer_id . "';\n";
+		$sql .= "DELETE FROM `" . DB_PREFIX . "customer_history` WHERE customer_id = '" . (int)$customer_id . "';\n";
 
 		$this->multiquery($sql);
 
@@ -561,11 +562,11 @@ class ModelToolExportImport extends Model {
 
 	protected function deleteCustomers($address_ids) {
 		$sql = "TRUNCATE TABLE `" . DB_PREFIX . "customer`;\n";
-		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "customer_history`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "customer_ip`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "customer_online`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "customer_reward`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "customer_transaction`;\n";
+		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "customer_history`;\n";
 
 		$this->multiquery($sql);
 
@@ -599,7 +600,7 @@ class ModelToolExportImport extends Model {
 		return;
 	}
 
-	protected function uploadCustomers(&$reader, $incremental, &$available_customer_ids = array()) {
+	protected function uploadCustomers(&$reader, $incremental, &$available_customer_ids) {
 		// Get worksheet if present
 		$data = $reader->getSheetByName('Customers');
 
@@ -607,14 +608,16 @@ class ModelToolExportImport extends Model {
 			return;
 		}
 
+		$available_customer_ids = array();
+
 		// Get old address_ids
 		$address_ids = $this->getCustomerAddressIds();
 
 		// If incremental, then find current customer ids, else delete all old customers
-		$available_customer_ids = array();
+		$old_customer_ids = array();
 
 		if ($incremental) {
-			$available_customer_ids = $this->getAvailableCustomerIds();
+			$old_customer_ids = $this->getAvailableCustomerIds();
 		} else {
 			$this->deleteCustomers($address_ids);
 		}
@@ -648,26 +651,25 @@ class ModelToolExportImport extends Model {
 				continue;
 			}
 
+			$new_salt = substr(md5(uniqid(rand(), true)), 0, 9);
+			$new_password = sha1($new_salt . sha1($new_salt . sha1('overclocked')));
+
 			$store_id = $this->getCell($data, $i, $j++, '0');
 			$firstname = $this->getCell($data, $i, $j++);
 			$lastname = $this->getCell($data, $i, $j++);
 			$email = $this->getCell($data, $i, $j++);
-			$telephone = $this->getCell($data, $i, $j++);
-			$telephone = (is_string($telephone) && utf8_strlen($telephone) > 0) ? $telephone : '';
+			$telephone = trim($this->getCell($data, $i, $j++));
 			$fax = trim($this->getCell($data, $i, $j++));
-			$fax = (is_string($fax) && utf8_strlen($fax) > 0) ? $fax : '';
-			$gender = $this->getCell($data, $i, $j++);
-			$gender = ($gender) ? '1' : '0';
+			$gender = trim($this->getCell($data, $i, $j++));
 			$date_of_birth = trim($this->getCell($data, $i, $j++));
 			$date_of_birth = (is_string($date_of_birth) && utf8_strlen($date_of_birth) > 0) ? $date_of_birth : "0000-00-00";
 			$password = trim($this->getCell($data, $i, $j++));
-			$password = (is_string($password) && utf8_strlen($password) > 0) ? $password : '';
+			$password = (is_string($password) && utf8_strlen($password) > 0) ? $password : $new_password;
 			$salt = trim($this->getCell($data, $i, $j++));
-			$salt = (is_string($salt) && utf8_strlen($salt) == 9) ? $salt : '';
+			$salt = (is_string($salt) && utf8_strlen($salt) == 9) ? $salt : $new_salt;
 			$cart = $this->getCell($data, $i, $j++);
 			$wishlist = $this->getCell($data, $i, $j++);
 			$newsletter = trim($this->getCell($data, $i, $j++));
-			$newsletter = ($newsletter) ? 'true' : 'false';
 			$address_id = $this->getCell($data, $i, $j++);
 			$company = $this->getCell($data, $i, $j++);
 			$company_id = $this->getCell($data, $i, $j++);
@@ -681,13 +683,10 @@ class ModelToolExportImport extends Model {
 			$customer_group_id = $this->getCell($data, $i, $j++);
 			$ip = $this->getCell($data, $i, $j++);
 			$ip = (is_string($ip)) ? $ip : '127.0.0.1';
-			$status = $this->getCell($data, $i, $j++);
-			$status = ($status) ? 'true' : 'false';
-			$approved = $this->getCell($data, $i, $j++);
-			$approved = ($approved) ? 'true' : 'false';
+			$status = trim($this->getCell($data, $i, $j++));
+			$approved = trim($this->getCell($data, $i, $j++));
 			$token = $this->getCell($data, $i, $j++);
 			$date_added = trim($this->getCell($data, $i, $j++));
-			$date_added = (is_string($date_added) && utf8_strlen($date_added) > 0) ? $date_added : date('Y-m-d');
 
 			$customer = array();
 
@@ -723,12 +722,14 @@ class ModelToolExportImport extends Model {
 			$customer['date_added'] = $date_added;
 
 			if ($incremental) {
-				if ($available_customer_ids) {
-					if (in_array((int)$customer_id, $available_customer_ids)) {
+				if ($old_customer_ids) {
+					if (in_array((int)$customer_id, $old_customer_ids)) {
 						$this->deleteCustomer($customer_id);
 					}
 				}
 			}
+
+			$available_customer_ids[$customer_id] = $customer_id;
 
 			$this->moreCustomerCells($i, $j, $data, $customer);
 
@@ -771,10 +772,10 @@ class ModelToolExportImport extends Model {
 		$layout = $category['layout'];
 		$status = $category['status'];
 		$status = ((strtoupper($status) == "TRUE") || (strtoupper($status) == "YES") || (strtoupper($status) == "ENABLED")) ? 1 : 0;
-		$names = htmlspecialchars($category['names']);
-		$descriptions = htmlspecialchars($category['descriptions']);
-		$meta_descriptions = htmlspecialchars($category['meta_descriptions']);
-		$meta_keywords = htmlspecialchars($category['meta_keywords']);
+		$names = $category['names'];
+		$descriptions = $category['descriptions'];
+		$meta_descriptions = $category['meta_descriptions'];
+		$meta_keywords = $category['meta_keywords'];
 
 		// Generate and execute SQL for inserting the category
 		$sql = "INSERT INTO `" . DB_PREFIX . "category` (`category_id`,`image`,`parent_id`,`top`,`column`,`sort_order`,`date_added`,`date_modified`,`status`) VALUES";
@@ -967,7 +968,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars( $name );
+				$name = htmlspecialchars($name);
 				$names[$language_code] = $name;
 			}
 
@@ -986,7 +987,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "description(")) {
 				$language_code = substr($first_row[$j-1], strlen("description("), strlen($first_row[$j-1])-strlen("description(")-1);
 				$description = $this->getCell($data, $i, $j++);
-				$description = htmlspecialchars( $description );
+				$description = htmlspecialchars($description);
 				$descriptions[$language_code] = $description;
 			}
 
@@ -995,7 +996,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "meta_description(")) {
 				$language_code = substr($first_row[$j-1], strlen("meta_description("), strlen($first_row[$j-1])-strlen("meta_description(")-1);
 				$meta_description = $this->getCell($data, $i, $j++);
-				$meta_description = htmlspecialchars( $meta_description );
+				$meta_description = htmlspecialchars($meta_description);
 				$meta_descriptions[$language_code] = $meta_description;
 			}
 
@@ -1004,7 +1005,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "meta_keywords(")) {
 				$language_code = substr($first_row[$j-1], strlen("meta_keywords("), strlen($first_row[$j-1])-strlen("meta_keywords(")-1);
 				$meta_keyword = $this->getCell($data, $i, $j++);
-				$meta_keyword = htmlspecialchars( $meta_keyword );
+				$meta_keyword = htmlspecialchars($meta_keyword);
 				$meta_keywords[$language_code] = $meta_keyword;
 			}
 
@@ -1226,7 +1227,7 @@ class ModelToolExportImport extends Model {
 	// Extract and Insert the product details
 	protected function storeProductIntoDatabase(&$product, $languages, &$product_fields, &$layout_ids, &$available_store_ids, &$manufacturers, &$weight_class_ids, &$length_class_ids, &$url_alias_ids) {
 		$product_id = $product['product_id'];
-		$names = htmlspecialchars($product['names']);
+		$names = $product['names'];
 		$categories = $product['categories'];
 		$quantity = $product['quantity'];
 		$model = $this->db->escape($product['model']);
@@ -1252,9 +1253,9 @@ class ModelToolExportImport extends Model {
 		$status = ((strtoupper($status) == "TRUE") || (strtoupper($status) == "YES") || (strtoupper($status) == "ENABLED")) ? 1 : 0;
 		$tax_class_id = $product['tax_class_id'];
 		$viewed = $product['viewed'];
-		$descriptions = htmlspecialchars($product['descriptions']);
+		$descriptions = $product['descriptions'];
 		$stock_status_id = $product['stock_status_id'];
-		$meta_descriptions = htmlspecialchars($product['meta_descriptions']);
+		$meta_descriptions = $product['meta_descriptions'];
 		$length = $product['length'];
 		$width = $product['width'];
 		$height = $product['height'];
@@ -1282,8 +1283,8 @@ class ModelToolExportImport extends Model {
 		$subtract = $product['subtract'];
 		$subtract = ((strtoupper($subtract) == "TRUE") || (strtoupper($subtract) == "YES") || (strtoupper($subtract) == "ENABLED")) ? 1 : 0;
 		$minimum = $product['minimum'];
-		$meta_keywords = htmlspecialchars($product['meta_keywords']);
-		$tags = htmlspecialchars($product['tags']);
+		$meta_keywords = $product['meta_keywords'];
+		$tags = $product['tags'];
 		$sort_order = $product['sort_order'];
 
 		if ($manufacturer_name) {
@@ -3750,7 +3751,8 @@ class ModelToolExportImport extends Model {
 		}
 
 		$expected_heading = array(
-			"customer_id", "store_id", "firstname", "lastname", "email", "telephone", "fax", "gender", "date_of_birth", "password", "salt", "cart", "wishlist", "newsletter", "address_id", "company", "company_id", "tax_id", "address_1", "address_2", "city", "postcode", "country_id", "zone_id", "customer_group_id", "ip", "status", "approved", "token", "date_added"
+			"customer_id", "store_id", "firstname", "lastname", "email", "telephone", "fax", "gender", "date_of_birth", "password", "salt", "cart", "wishlist", "newsletter", "address_id",
+			"company", "company_id", "tax_id", "address_1", "address_2", "city", "postcode", "country_id", "zone_id", "customer_group_id", "ip", "status", "approved", "token", "date_added"
 		);
 
 		$expected_multilingual = array();
@@ -4206,7 +4208,7 @@ class ModelToolExportImport extends Model {
 				}
 
 				if ($product_id < $previous_product_id) {
-					$msg = str_replace( '%2', $product_id, str_replace('%1', $worksheet, $this->language->get('error_wrong_order_product_id')));
+					$msg = str_replace('%2', $product_id, str_replace('%1', $worksheet, $this->language->get('error_wrong_order_product_id')));
 					$this->log->write($msg);
 					$ok = false;
 				}
@@ -4307,7 +4309,7 @@ class ModelToolExportImport extends Model {
 				}
 
 				if (!$this->isInteger($category_id)) {
-					$msg = str_replace( '%2', $category_id, str_replace('%1', $worksheet, $this->language->get('error_invalid_category_id')));
+					$msg = str_replace('%2', $category_id, str_replace('%1', $worksheet, $this->language->get('error_invalid_category_id')));
 					$this->log->write( $msg );
 					$ok = false;
 					continue;
@@ -4324,7 +4326,7 @@ class ModelToolExportImport extends Model {
 				}
 
 				if ($category_id < $previous_category_id) {
-					$msg = str_replace( '%2', $category_id, str_replace('%1', $worksheet, $this->language->get('error_wrong_order_category_id')));
+					$msg = str_replace('%2', $category_id, str_replace('%1', $worksheet, $this->language->get('error_wrong_order_category_id')));
 					$this->log->write( $msg );
 					$ok = false;
 				}
@@ -4384,18 +4386,20 @@ class ModelToolExportImport extends Model {
 			$customer_ids[] = $customer_id;
 
 			if ($customer_id < $previous_customer_id) {
-				$msg = str_replace( '%2', $customer_id, str_replace('%1', 'Customers', $this->language->get('error_wrong_order_customer_id')));
+				$msg = str_replace('%2', $customer_id, str_replace('%1', 'Customers', $this->language->get('error_wrong_order_customer_id')));
 				$this->log->write( $msg );
 				$ok = false;
 			}
 
 			$previous_customer_id = $customer_id;
 		}
+
+		return $ok;
 	}
 
 	protected function validateCustomerGroupColumns(&$reader) {
 		// All customer_groups mentioned in the worksheets must be defined
-		$worksheets = array('Specials', 'Discounts', 'Rewards', 'Customers');
+		$worksheets = array('Specials', 'Discounts', 'Rewards');
 
 		$ok = true;
 
@@ -5299,7 +5303,7 @@ class ModelToolExportImport extends Model {
 		// certain worksheets can only be imported in incremental mode for the time being
 		$ok = true;
 
-		$worksheets = array('Customers', 'Addresses');
+		$worksheets = array('Customers');
 
 		foreach ($worksheets as $worksheet) {
 			$data = $reader->getSheetByName($worksheet);
@@ -5784,7 +5788,7 @@ class ModelToolExportImport extends Model {
 
 			// Memory Optimization
 			if ($this->config->get('export_import_settings_use_import_cache')) {
-				$cacheMethod = PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
+				$cacheMethod = PHPExcel_CachedObjectStorageFactory::CACHETOPHPTEMP;
 
 				$cacheSettings = array('memoryCacheSize' => '16MB');
 
@@ -5886,14 +5890,16 @@ class ModelToolExportImport extends Model {
 	}
 
 	// Customers
-	protected function getCustomers($offset = null, $rows = null, $min_id = null, $max_id = null) {
-		$sql = "SELECT * FROM `" . DB_PREFIX . "customer` c";
+	protected function getCustomers($language_id, $offset = null, $rows = null, $min_id = null, $max_id = null) {
+		$language_id = $this->getDefaultLanguageId();
+
+		$sql = "SELECT c.*, a.* FROM `" . DB_PREFIX . "customer` c";
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "address` a ON (a.address_id = c.address_id)";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " WHERE c.customer_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 		}
 		$sql .= " GROUP BY c.customer_id";
-		$sql .= " ORDER BY c.lastname, c.firstname";
+		$sql .= " ORDER BY c.customer_id";
 		if (isset($offset) && isset($rows)) {
 			$sql .= " ASC LIMIT '" . (int)$offset . "','" . (int)$rows . "'";
 		} else {
@@ -5933,7 +5939,7 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('postcode'), 12)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('country_id'), 5)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('zone_id'), 5)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('customer_group_id'), 5)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('customer_group_id')+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('ip'), 12)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('status'), 5)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('approved'), 5)+1);
@@ -5994,7 +6000,9 @@ class ModelToolExportImport extends Model {
 		$i += 1;
 		$j = 0;
 
-		$customers = $this->getCustomers($offset, $rows, $min_id, $max_id);
+		$language_id = $this->getDefaultLanguageId();
+
+		$customers = $this->getCustomers($language_id, $offset, $rows, $min_id, $max_id);
 
 		$length = count($customers);
 
@@ -6013,15 +6021,15 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['firstname'];
 			$data[$j++] = $row['lastname'];
 			$data[$j++] = $row['email'];
-			$data[$j++] = $row['telephone'];
-			$data[$j++] = $row['fax'];
-			$data[$j++] = ($row['gender'] == 0) ? '0' : '1';
+			$data[$j++] = ($row['telephone']) ? $row['telephone'] : '000';
+			$data[$j++] = ($row['fax']) ? $row['fax'] : '000';
+			$data[$j++] = ($row['gender'] == 0) ? 'Male' : 'Female';
 			$data[$j++] = ($row['date_of_birth']) ? $row['date_of_birth'] : '0000-00-00';
 			$data[$j++] = $row['password'];
 			$data[$j++] = $row['salt'];
 			$data[$j++] = $row['cart'];
 			$data[$j++] = $row['wishlist'];
-			$data[$j++] = ($row['newsletter'] == 0) ? 'false' : 'true';
+			$data[$j++] = ($row['newsletter'] == 0) ? 'no' : 'yes';
 			$data[$j++] = $row['address_id'];
 			$data[$j++] = html_entity_decode($row['company'], ENT_QUOTES, 'UTF-8');
 			$data[$j++] = $row['company_id'];
@@ -6034,8 +6042,8 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['zone_id'];
 			$data[$j++] = $row['customer_group_id'];
 			$data[$j++] = $row['ip'];
-			$data[$j++] = ($row['status'] == 0) ? 'false' : 'true';
-			$data[$j++] = ($row['approved'] == 0) ? 'false' : 'true';
+			$data[$j++] = ($row['status'] == 0) ? 'disabled' : 'enabled';
+			$data[$j++] = ($row['approved'] == 0) ? 'no' : 'yes';
 			$data[$j++] = $row['token'];
 			$data[$j++] = $row['date_added'];
 
@@ -6465,7 +6473,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	// Manufacturers
-	protected function getManufacturerDescriptions(&$language_id, $offset = null, $rows = null, $min_id = null, $max_id = null) {
+	protected function getManufacturerDescriptions(&$languages, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		// Manufacturer description table for each language
 		$manufacturer_descriptions = array();
 
@@ -7039,7 +7047,7 @@ class ModelToolExportImport extends Model {
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " AND ps.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 		}
-		$sql .= " ORDER BY ps.product_id, cgd.name, ps.priority";
+		$sql .= " ORDER BY ps.product_id ASC, cgd.name ASC, ps.priority ASC";
 
 		$result = $this->db->query($sql);
 
@@ -8472,7 +8480,7 @@ class ModelToolExportImport extends Model {
 
 		// Memory Optimization
 		if ($this->config->get('export_import_settings_use_export_cache')) {
-			$cacheMethod = PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
+			$cacheMethod = PHPExcel_CachedObjectStorageFactory::CACHETOPHPTEMP;
 
 			$cacheSettings = array('memoryCacheSize' => '16MB');
 

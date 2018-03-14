@@ -51,7 +51,9 @@ class ModelSaleCustomer extends Model {
 	public function addDeletedCustomer($customer_id) {
 		$customer_info = $this->getCustomer($customer_id);
 
-		if ($customer_info) {
+		$customers_deleted = $this->checkCustomersDeletedId($customer_id);
+
+		if (!$customers_deleted && $customer_info) {
 			$orders = $this->getTotalCustomersOrders($customer_id);
 
 			$this->db->query("INSERT INTO " . DB_PREFIX . "customer_deleted SET customer_id = '" . (int)$customer_id . "', store_id = '" . (int)$customer_info['store_id'] . "', firstname = '" . $this->db->escape($customer_info['firstname']) . "', lastname = '" . $this->db->escape($customer_info['lastname']) . "', email = '" . $this->db->escape($customer_info['email']) . "', orders = '" . (int)$orders . "', date_added = NOW()");
@@ -224,6 +226,16 @@ class ModelSaleCustomer extends Model {
 		$query = $this->db->query($sql);
 
 		return $query->rows;
+	}
+
+	public function checkCustomersDeletedId($customer_id) {
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "customer_deleted` WHERE customer_id = '" . (int)$customer_id . "'");
+
+		if ($query->rows) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function approve($customer_id) {

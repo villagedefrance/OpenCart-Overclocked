@@ -363,7 +363,7 @@ class ControllerToolExportImport extends Controller {
 		// Hide Settings if Permission Modify not allowed.
 		if ($this->user->hasPermission('modify', 'tool/export_import')) {
 			$this->data['show_settings'] = true;
-		} else{
+		} else {
 			$this->data['show_settings'] = false;
 		}
 
