@@ -648,7 +648,7 @@ class ControllerToolExportImport extends Controller {
 				}
 			}
 
-		} else  {
+		} else {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
