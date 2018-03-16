@@ -1,9 +1,8 @@
 <?php
-
 /**
- *  PHPExcel_Writer_PDF
+ *  PHPExcel
  *
- *  Copyright (c) 2006 - 2015 PHPExcel
+ *  Copyright (c) 2006 - 2014 PHPExcel
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
@@ -21,11 +20,18 @@
  *
  *  @category    PHPExcel
  *  @package     PHPExcel_Writer_PDF
- *  @copyright   Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- *  @license     http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- *  @version     ##VERSION##, ##DATE##
+ *  @copyright   Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    v1.8.1, released: 01-05-2015
+ * @edition     Overclocked Edition
+ */
+
+/**
+ *  PHPExcel_Writer_PDF
  *
- * Overclocked Edition © 2018 | Villagedefrance
+ *  @category    PHPExcel
+ *  @package     PHPExcel_Writer_PDF
+ *  @copyright   Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_Writer_PDF implements PHPExcel_Writer_IWriter {
     /**
@@ -33,7 +39,7 @@ class PHPExcel_Writer_PDF implements PHPExcel_Writer_IWriter {
      *
      * @var PHPExcel_Writer_PDF_Core
      */
-    private $renderer = null;
+    private $_renderer = null;
 
     /**
      *  Instantiate a new renderer of the configured type within this container class
@@ -62,7 +68,8 @@ class PHPExcel_Writer_PDF implements PHPExcel_Writer_IWriter {
         }
 
         $rendererName = 'PHPExcel_Writer_PDF_' . $pdfLibraryName;
-        $this->renderer = new $rendererName($phpExcel);
+
+        $this->_renderer = new $rendererName($phpExcel);
     }
 
     /**
@@ -73,17 +80,17 @@ class PHPExcel_Writer_PDF implements PHPExcel_Writer_IWriter {
      *  @return  mixed    Returned data from the PDF renderer wrapper method
      */
     public function __call($name, $arguments) {
-        if ($this->renderer === null) {
+        if ($this->_renderer === null) {
             throw new PHPExcel_Writer_Exception("PDF Rendering library has not been defined.");
         }
 
-        return call_user_func_array(array($this->renderer, $name), $arguments);
+        return call_user_func_array(array($this->_renderer, $name), $arguments);
     }
 
     /**
      * {@inheritdoc}
      */
     public function save($pFilename = null) {
-        $this->renderer->save($pFilename);
+        $this->_renderer->save($pFilename);
     }
 }

@@ -1,9 +1,8 @@
 <?php
-
 /**
- *  PHPExcel_Writer_PDF_Core
+ *  PHPExcel
  *
- *  Copyright (c) 2006 - 2015 PHPExcel
+ *  Copyright (c) 2006 - 2014 PHPExcel
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
@@ -21,54 +20,63 @@
  *
  *  @category    PHPExcel
  *  @package     PHPExcel_Writer_PDF
- *  @copyright   Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- *  @license     http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- *  @version     ##VERSION##, ##DATE##
- *
- * Overclocked Edition © 2018 | Villagedefrance
+ *  @copyright   Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    v1.8.1, released: 01-05-2015
+ * @edition     Overclocked Edition
  */
-abstract class PHPExcel_Writer_PDF_Core extends PHPExcel_Writer_HTML {
+
+/**
+ *  PHPExcel_Writer_PDF_Core
+ *
+ *  @category    PHPExcel
+ *  @package     PHPExcel_Writer_PDF
+ *  @copyright   Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
+ */
+abstract class PHPExcel_Writer_PDF_Core extends PHPExcel_Writer_HTML
+{
     /**
      * Temporary storage directory
      *
      * @var string
      */
-    protected $tempDir = '';
+    protected $_tempDir = '';
 
     /**
      * Font
      *
      * @var string
      */
-    protected $font = 'freesans';
+    protected $_font = 'freesans';
 
     /**
      * Orientation (Over-ride)
      *
      * @var string
      */
-    protected $orientation;
+    protected $_orientation = NULL;
 
     /**
      * Paper size (Over-ride)
      *
      * @var int
      */
-    protected $paperSize;
+    protected $_paperSize = NULL;
+
 
     /**
      * Temporary storage for Save Array Return type
      *
      * @var string
      */
-    private $saveArrayReturnType;
+	private $_saveArrayReturnType;
 
     /**
      * Paper Sizes xRef List
      *
      * @var array
      */
-    protected static $paperSizes = array(
+    protected static $_paperSizes = array(
         PHPExcel_Worksheet_PageSetup::PAPERSIZE_LETTER
             => 'LETTER',                 //    (8.5 in. by 11 in.)
         PHPExcel_Worksheet_PageSetup::PAPERSIZE_LETTER_SMALL
@@ -208,12 +216,11 @@ abstract class PHPExcel_Writer_PDF_Core extends PHPExcel_Writer_HTML {
      *
      *  @param     PHPExcel    $phpExcel    PHPExcel object
      */
-    public function __construct(PHPExcel $phpExcel) {
+    public function __construct(PHPExcel $phpExcel)
+    {
         parent::__construct($phpExcel);
-
-        $this->setUseInlineCss(true);
-
-        $this->tempDir = PHPExcel_Shared_File::sys_get_temp_dir();
+        $this->setUseInlineCss(TRUE);
+        $this->_tempDir = PHPExcel_Shared_File::sys_get_temp_dir();
     }
 
     /**
@@ -221,8 +228,9 @@ abstract class PHPExcel_Writer_PDF_Core extends PHPExcel_Writer_HTML {
      *
      *  @return string
      */
-    public function getFont() {
-        return $this->font;
+    public function getFont()
+    {
+        return $this->_font;
     }
 
     /**
@@ -234,9 +242,9 @@ abstract class PHPExcel_Writer_PDF_Core extends PHPExcel_Writer_HTML {
      *
      *  @param    string    $fontName
      */
-    public function setFont($fontName) {
-        $this->font = $fontName;
-
+    public function setFont($fontName)
+    {
+        $this->_font = $fontName;
         return $this;
     }
 
@@ -245,8 +253,9 @@ abstract class PHPExcel_Writer_PDF_Core extends PHPExcel_Writer_HTML {
      *
      *  @return int
      */
-    public function getPaperSize() {
-        return $this->paperSize;
+    public function getPaperSize()
+    {
+        return $this->_paperSize;
     }
 
     /**
@@ -255,9 +264,9 @@ abstract class PHPExcel_Writer_PDF_Core extends PHPExcel_Writer_HTML {
      *  @param  string  $pValue Paper size
      *  @return PHPExcel_Writer_PDF
      */
-    public function setPaperSize($pValue = PHPExcel_Worksheet_PageSetup::PAPERSIZE_LETTER) {
-        $this->paperSize = $pValue;
-
+    public function setPaperSize($pValue = PHPExcel_Worksheet_PageSetup::PAPERSIZE_LETTER)
+    {
+        $this->_paperSize = $pValue;
         return $this;
     }
 
@@ -266,8 +275,9 @@ abstract class PHPExcel_Writer_PDF_Core extends PHPExcel_Writer_HTML {
      *
      *  @return string
      */
-    public function getOrientation() {
-        return $this->orientation;
+    public function getOrientation()
+    {
+        return $this->_orientation;
     }
 
     /**
@@ -276,9 +286,9 @@ abstract class PHPExcel_Writer_PDF_Core extends PHPExcel_Writer_HTML {
      *  @param string $pValue  Page orientation
      *  @return PHPExcel_Writer_PDF
      */
-    public function setOrientation($pValue = PHPExcel_Worksheet_PageSetup::ORIENTATION_DEFAULT) {
-        $this->orientation = $pValue;
-
+    public function setOrientation($pValue = PHPExcel_Worksheet_PageSetup::ORIENTATION_DEFAULT)
+    {
+        $this->_orientation = $pValue;
         return $this;
     }
 
@@ -287,8 +297,9 @@ abstract class PHPExcel_Writer_PDF_Core extends PHPExcel_Writer_HTML {
      *
      *  @return string
      */
-    public function getTempDir() {
-        return $this->tempDir;
+    public function getTempDir()
+    {
+        return $this->_tempDir;
     }
 
     /**
@@ -298,13 +309,13 @@ abstract class PHPExcel_Writer_PDF_Core extends PHPExcel_Writer_HTML {
      *  @throws    PHPExcel_Writer_Exception    when directory does not exist
      *  @return    PHPExcel_Writer_PDF
      */
-    public function setTempDir($pValue = '') {
+    public function setTempDir($pValue = '')
+    {
         if (is_dir($pValue)) {
-            $this->tempDir = $pValue;
+            $this->_tempDir = $pValue;
         } else {
             throw new PHPExcel_Writer_Exception("Directory does not exist: $pValue");
         }
-
         return $this;
     }
 
@@ -314,24 +325,24 @@ abstract class PHPExcel_Writer_PDF_Core extends PHPExcel_Writer_HTML {
      *  @param     string     $pFilename   Name of the file to save as
      *  @throws    PHPExcel_Writer_Exception
      */
-    protected function prepareForSave($pFilename = null) {
+    protected function prepareForSave($pFilename = NULL)
+    {
         //  garbage collect
-        $this->phpExcel->garbageCollect();
+        $this->_phpExcel->garbageCollect();
 
-        $this->saveArrayReturnType = PHPExcel_Calculation::getArrayReturnType();
-
+        $this->_saveArrayReturnType = PHPExcel_Calculation::getArrayReturnType();
         PHPExcel_Calculation::setArrayReturnType(PHPExcel_Calculation::RETURN_ARRAY_AS_VALUE);
 
         //  Open file
         $fileHandle = fopen($pFilename, 'w');
-
-        if ($fileHandle === false) {
+        if ($fileHandle === FALSE) {
             throw new PHPExcel_Writer_Exception("Could not open file $pFilename for writing.");
         }
+
         //  Set PDF
-        $this->isPdf = true;
+        $this->_isPdf = TRUE;
         //  Build CSS
-        $this->buildCSS(true);
+        $this->buildCSS(TRUE);
 
         return $fileHandle;
     }
@@ -342,10 +353,11 @@ abstract class PHPExcel_Writer_PDF_Core extends PHPExcel_Writer_HTML {
      *  @param     resource      $fileHandle
      *  @throws    PHPExcel_Writer_Exception
      */
-    protected function restoreStateAfterSave($fileHandle) {
+    protected function restoreStateAfterSave($fileHandle)
+    {
         //  Close file
         fclose($fileHandle);
 
-        PHPExcel_Calculation::setArrayReturnType($this->saveArrayReturnType);
+        PHPExcel_Calculation::setArrayReturnType($this->_saveArrayReturnType);
     }
 }

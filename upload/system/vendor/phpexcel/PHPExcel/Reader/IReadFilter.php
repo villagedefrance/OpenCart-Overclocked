@@ -1,9 +1,8 @@
 <?php
-
 /**
- * PHPExcel_Reader_IReadFilter
+ * PHPExcel
  *
- * Copyright (c) 2006 - 2015 PHPExcel
+ * Copyright (c) 2006 - 2014 PHPExcel
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -21,20 +20,27 @@
  *
  * @category   PHPExcel
  * @package    PHPExcel_Reader
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @version    v1.8.1, released: 01-05-2015
+ * @edition     Overclocked Edition
+ */
+
+/**
+ * PHPExcel_Reader_IReadFilter
  *
- * Overclocked Edition © 2018 | Villagedefrance
+ * @category   PHPExcel
+ * @package    PHPExcel_Reader
+ * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 interface PHPExcel_Reader_IReadFilter {
-    /**
-     * Should this cell be read?
-     *
-     * @param    $column           Column address (as a string value like "A", or "IV")
-     * @param    $row              Row number
-     * @param    $worksheetName    Optional worksheet name
-     * @return   boolean
-     */
-    public function readCell($column, $row, $worksheetName = '');
+	/**
+	 * Should this cell be read?
+	 *
+	 * @param 	$column		String column index
+	 * @param 	$row			Row index
+	 * @param	$worksheetName	Optional worksheet name
+	 * @return	boolean
+	 */
+	public function readCell($column, $row, $worksheetName = '');
 }

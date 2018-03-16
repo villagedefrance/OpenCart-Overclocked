@@ -1,18 +1,8 @@
 <?php
-
-/** PHPExcel root directory */
-if (!defined('PHPEXCEL_ROOT')) {
-    /**
-     * @ignore
-     */
-    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
-    require(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
-}
-
 /**
- * PHPExcel_Calculation_Database
+ * PHPExcel
  *
- * Copyright (c) 2006 - 2015 PHPExcel
+ * Copyright (c) 2006 - 2014 PHPExcel
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -28,634 +18,700 @@ if (!defined('PHPEXCEL_ROOT')) {
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *
- * @category    PHPExcel
- * @package        PHPExcel_Calculation
- * @copyright    Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license        http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version        ##VERSION##, ##DATE##
+ * @category	PHPExcel
+ * @package		PHPExcel_Calculation
+ * @copyright	Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    v1.8.1, released: 01-05-2015
+ * @edition     Overclocked Edition
+ */
+
+/** PHPExcel root directory */
+if (!defined('PHPEXCEL_ROOT')) {
+	/**
+	 * @ignore
+	 */
+	define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
+	require(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
+}
+
+/**
+ * PHPExcel_Calculation_Database
  *
- * Overclocked Edition © 2018 | Villagedefrance
+ * @category	PHPExcel
+ * @package		PHPExcel_Calculation
+ * @copyright	Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_Calculation_Database {
-    /**
-     * fieldExtract
-     *
-     * Extracts the column ID to use for the data field.
-     *
-     * @access    private
-     * @param    mixed[]        $database        The range of cells that makes up the list or database.
-     *                                        A database is a list of related data in which rows of related
-     *                                        information are records, and columns of data are fields. The
-     *                                        first row of the list contains labels for each column.
-     * @param    mixed        $field            Indicates which column is used in the function. Enter the
-     *                                        column label enclosed between double quotation marks, such as
-     *                                        "Age" or "Yield," or a number (without quotation marks) that
-     *                                        represents the position of the column within the list: 1 for
-     *                                        the first column, 2 for the second column, and so on.
-     * @return    string|NULL
-     *
-     */
-    private static function fieldExtract($database, $field) {
-        $field = strtoupper(PHPExcel_Calculation_Functions::flattenSingleValue($field));
+	/**
+	 * __fieldExtract
+	 *
+	 * Extracts the column ID to use for the data field.
+	 *
+	 * @access	private
+	 * @param	mixed[]		$database		The range of cells that makes up the list or database.
+	 *										A database is a list of related data in which rows of related
+	 *										information are records, and columns of data are fields. The
+	 *										first row of the list contains labels for each column.
+	 * @param	mixed		$field			Indicates which column is used in the function. Enter the
+	 *										column label enclosed between double quotation marks, such as
+	 *										"Age" or "Yield," or a number (without quotation marks) that
+	 *										represents the position of the column within the list: 1 for
+	 *										the first column, 2 for the second column, and so on.
+	 * @return	string|NULL
+	 *
+	 */
+	private static function __fieldExtract($database, $field) {
+		$field = strtoupper(PHPExcel_Calculation_Functions::flattenSingleValue($field));
 
-        $fieldNames = array_map('strtoupper', array_shift($database));
+		$fieldNames = array_map('strtoupper', array_shift($database));
 
-        if (is_numeric($field)) {
-            $keys = array_keys($fieldNames);
-            return $keys[$field-1];
-        }
+		if (is_numeric($field)) {
+			$keys = array_keys($fieldNames);
+			return $keys[$field-1];
+		}
 
-        $key = array_search($field, $fieldNames);
+		$key = array_search($field, $fieldNames);
 
-        return ($key) ? $key : null;
-    }
+		return ($key) ? $key : null;
+	}
 
-    /**
-     * filter
-     *
-     * Parses the selection criteria, extracts the database rows that match those criteria, and
-     * returns that subset of rows.
-     *
-     * @access    private
-     * @param    mixed[]        $database        The range of cells that makes up the list or database.
-     *                                        A database is a list of related data in which rows of related
-     *                                        information are records, and columns of data are fields. The
-     *                                        first row of the list contains labels for each column.
-     * @param    mixed[]        $criteria        The range of cells that contains the conditions you specify.
-     *                                        You can use any range for the criteria argument, as long as it
-     *                                        includes at least one column label and at least one cell below
-     *                                        the column label in which you specify a condition for the
-     *                                        column.
-     * @return    array of mixed
-     *
-     */
-    private static function filter($database, $criteria) {
-        $fieldNames = array_shift($database);
-        $criteriaNames = array_shift($criteria);
+	/**
+	 * __filter
+	 *
+	 * Parses the selection criteria, extracts the database rows that match those criteria, and
+	 * returns that subset of rows.
+	 *
+	 * @access	private
+	 * @param	mixed[]		$database		The range of cells that makes up the list or database.
+	 *										A database is a list of related data in which rows of related
+	 *										information are records, and columns of data are fields. The
+	 *										first row of the list contains labels for each column.
+	 * @param	mixed[]		$criteria		The range of cells that contains the conditions you specify.
+	 *										You can use any range for the criteria argument, as long as it
+	 *										includes at least one column label and at least one cell below
+	 *										the column label in which you specify a condition for the
+	 *										column.
+	 * @return	array of mixed
+	 *
+	 */
+	private static function __filter($database, $criteria) {
+		$fieldNames = array_shift($database);
+		$criteriaNames = array_shift($criteria);
 
-        // Convert the criteria into a set of AND/OR conditions with [:placeholders]
-        $testConditions = $testValues = array();
-        $testConditionsCount = 0;
+		//	Convert the criteria into a set of AND/OR conditions with [:placeholders]
+		$testConditions = $testValues = array();
+		$testConditionsCount = 0;
 
-        foreach ($criteriaNames as $key => $criteriaName) {
-            $testCondition = array();
-            $testConditionCount = 0;
+		foreach ($criteriaNames as $key => $criteriaName) {
+			$testCondition = array();
+			$testConditionCount = 0;
 
-            foreach ($criteria as $row => $criterion) {
-                if ($criterion[$key] > '') {
-                    $testCondition[] = '[:'.$criteriaName.']'.PHPExcel_Calculation_Functions::ifCondition($criterion[$key]);
-                    $testConditionCount++;
-                }
-            }
+			foreach ($criteria as $row => $criterion) {
+				if ($criterion[$key] > '') {
+					$testCondition[] = '[:' . $criteriaName . ']' . PHPExcel_Calculation_Functions::_ifCondition($criterion[$key]);
+					$testConditionCount++;
+				}
+			}
 
-            if ($testConditionCount > 1) {
-                $testConditions[] = 'OR(' . implode(',', $testCondition) . ')';
-                $testConditionsCount++;
-            } elseif ($testConditionCount == 1) {
-                $testConditions[] = $testCondition[0];
-                $testConditionsCount++;
-            }
-        }
+			if ($testConditionCount > 1) {
+				$testConditions[] = 'OR(' . implode(',', $testCondition) . ')';
+				$testConditionsCount++;
+			} elseif ($testConditionCount == 1) {
+				$testConditions[] = $testCondition[0];
+				$testConditionsCount++;
+			}
+		}
 
-        if ($testConditionsCount > 1) {
-            $testConditionSet = 'AND(' . implode(',', $testConditions) . ')';
-        } elseif ($testConditionsCount == 1) {
-            $testConditionSet = $testConditions[0];
-        }
+		if ($testConditionsCount > 1) {
+			$testConditionSet = 'AND(' . implode(',', $testConditions) . ')';
+		} elseif ($testConditionsCount == 1) {
+			$testConditionSet = $testConditions[0];
+		}
 
-        // Loop through each row of the database
-        foreach ($database as $dataRow => $dataValues) {
-            // Substitute actual values from the database row for our [:placeholders]
-            $testConditionList = $testConditionSet;
+		//	Loop through each row of the database
+		foreach ($database as $dataRow => $dataValues) {
+			//	Substitute actual values from the database row for our [:placeholders]
+			$testConditionList = $testConditionSet;
 
-            foreach ($criteriaNames as $key => $criteriaName) {
-                $k = array_search($criteriaName, $fieldNames);
+			foreach ($criteriaNames as $key => $criteriaName) {
+				$k = array_search($criteriaName, $fieldNames);
 
-                if (isset($dataValues[$k])) {
-                    $dataValue = $dataValues[$k];
-                    $dataValue = (is_string($dataValue)) ? PHPExcel_Calculation::wrapResult(strtoupper($dataValue)) : $dataValue;
-                    $testConditionList = str_replace('[:' . $criteriaName . ']', $dataValue, $testConditionList);
-                }
-            }
-            // evaluate the criteria against the row data
-            $result = PHPExcel_Calculation::getInstance()->_calculateFormulaValue('='.$testConditionList);
-            // If the row failed to meet the criteria, remove it from the database
-            if (!$result) {
-                unset($database[$dataRow]);
-            }
-        }
+				if (isset($dataValues[$k])) {
+					$dataValue = $dataValues[$k];
+					$dataValue = (is_string($dataValue)) ? PHPExcel_Calculation::_wrapResult(strtoupper($dataValue)) : $dataValue;
+					$testConditionList = str_replace('[:' . $criteriaName . ']', $dataValue, $testConditionList);
+				}
+			}
+			//	evaluate the criteria against the row data
+			$result = PHPExcel_Calculation::getInstance()->_calculateFormulaValue('=' . $testConditionList);
+			//	If the row failed to meet the criteria, remove it from the database
+			if (!$result) {
+				unset($database[$dataRow]);
+			}
+		}
 
-        return $database;
-    }
+		return $database;
+	}
 
-    private static function getFilteredColumn($database, $field, $criteria) {
-        // reduce the database to a set of rows that match all the criteria
-        $database = self::filter($database, $criteria);
-        // extract an array of values for the requested column
-        $colData = array();
+	/**
+	 * DAVERAGE
+	 *
+	 * Averages the values in a column of a list or database that match conditions you specify.
+	 *
+	 * Excel Function:
+	 *		DAVERAGE(database,field,criteria)
+	 *
+	 * @access	public
+	 * @category Database Functions
+	 * @param	mixed[]			$database	The range of cells that makes up the list or database.
+	 *										A database is a list of related data in which rows of related
+	 *										information are records, and columns of data are fields. The
+	 *										first row of the list contains labels for each column.
+	 * @param	string|integer	$field		Indicates which column is used in the function. Enter the
+	 *										column label enclosed between double quotation marks, such as
+	 *										"Age" or "Yield," or a number (without quotation marks) that
+	 *										represents the position of the column within the list: 1 for
+	 *										the first column, 2 for the second column, and so on.
+	 * @param	mixed[]			$criteria	The range of cells that contains the conditions you specify.
+	 *										You can use any range for the criteria argument, as long as it
+	 *										includes at least one column label and at least one cell below
+	 *										the column label in which you specify a condition for the
+	 *										column.
+	 * @return	float
+	 *
+	 */
+	public static function DAVERAGE($database, $field, $criteria) {
+		$field = self::__fieldExtract($database, $field);
 
-        foreach ($database as $row) {
-            $colData[] = $row[$field];
-        }
+		if (is_null($field)) {
+			return null;
+		}
+		//	reduce the database to a set of rows that match all the criteria
+		$database = self::__filter($database, $criteria);
+		//	extract an array of values for the requested column
+		$colData = array();
 
-        return $colData;
-    }
+		foreach ($database as $row) {
+			$colData[] = $row[$field];
+		}
 
-    /**
-     * DAVERAGE
-     *
-     * Averages the values in a column of a list or database that match conditions you specify.
-     *
-     * Excel Function:
-     *        DAVERAGE(database,field,criteria)
-     *
-     * @access    public
-     * @category Database Functions
-     * @param    mixed[]            $database    The range of cells that makes up the list or database.
-     *                                        A database is a list of related data in which rows of related
-     *                                        information are records, and columns of data are fields. The
-     *                                        first row of the list contains labels for each column.
-     * @param    string|integer    $field        Indicates which column is used in the function. Enter the
-     *                                        column label enclosed between double quotation marks, such as
-     *                                        "Age" or "Yield," or a number (without quotation marks) that
-     *                                        represents the position of the column within the list: 1 for
-     *                                        the first column, 2 for the second column, and so on.
-     * @param    mixed[]            $criteria    The range of cells that contains the conditions you specify.
-     *                                        You can use any range for the criteria argument, as long as it
-     *                                        includes at least one column label and at least one cell below
-     *                                        the column label in which you specify a condition for the
-     *                                        column.
-     * @return    float
-     *
-     */
-    public static function DAVERAGE($database, $field, $criteria) {
-        $field = self::fieldExtract($database, $field);
+		return PHPExcel_Calculation_Statistical::AVERAGE($colData);
+	}
 
-        if (is_null($field)) {
-            return null;
-        }
-        // Return
-        return PHPExcel_Calculation_Statistical::AVERAGE(
-            self::getFilteredColumn($database, $field, $criteria)
-        );
-    }
+	/**
+	 * DCOUNT
+	 *
+	 * Counts the cells that contain numbers in a column of a list or database that match conditions
+	 * that you specify.
+	 *
+	 * Excel Function:
+	 *		DCOUNT(database,[field],criteria)
+	 *
+	 * Excel Function:
+	 *		DAVERAGE(database,field,criteria)
+	 *
+	 * @access	public
+	 * @category Database Functions
+	 * @param	mixed[]			$database	The range of cells that makes up the list or database.
+	 *										A database is a list of related data in which rows of related
+	 *										information are records, and columns of data are fields. The
+	 *										first row of the list contains labels for each column.
+	 * @param	string|integer	$field		Indicates which column is used in the function. Enter the
+	 *										column label enclosed between double quotation marks, such as
+	 *										"Age" or "Yield," or a number (without quotation marks) that
+	 *										represents the position of the column within the list: 1 for
+	 *										the first column, 2 for the second column, and so on.
+	 * @param	mixed[]			$criteria	The range of cells that contains the conditions you specify.
+	 *										You can use any range for the criteria argument, as long as it
+	 *										includes at least one column label and at least one cell below
+	 *										the column label in which you specify a condition for the
+	 *										column.
+	 * @return	integer
+	 *
+	 * @TODO	The field argument is optional. If field is omitted, DCOUNT counts all records in the
+	 *			database that match the criteria.
+	 *
+	 */
+	public static function DCOUNT($database, $field, $criteria) {
+		$field = self::__fieldExtract($database, $field);
 
-    /**
-     * DCOUNT
-     *
-     * Counts the cells that contain numbers in a column of a list or database that match conditions
-     * that you specify.
-     *
-     * Excel Function:
-     *        DCOUNT(database,[field],criteria)
-     *
-     * Excel Function:
-     *        DAVERAGE(database,field,criteria)
-     *
-     * @access    public
-     * @category Database Functions
-     * @param    mixed[]            $database    The range of cells that makes up the list or database.
-     *                                        A database is a list of related data in which rows of related
-     *                                        information are records, and columns of data are fields. The
-     *                                        first row of the list contains labels for each column.
-     * @param    string|integer    $field        Indicates which column is used in the function. Enter the
-     *                                        column label enclosed between double quotation marks, such as
-     *                                        "Age" or "Yield," or a number (without quotation marks) that
-     *                                        represents the position of the column within the list: 1 for
-     *                                        the first column, 2 for the second column, and so on.
-     * @param    mixed[]            $criteria    The range of cells that contains the conditions you specify.
-     *                                        You can use any range for the criteria argument, as long as it
-     *                                        includes at least one column label and at least one cell below
-     *                                        the column label in which you specify a condition for the
-     *                                        column.
-     * @return    integer
-     *
-     * @TODO    The field argument is optional. If field is omitted, DCOUNT counts all records in the
-     *            database that match the criteria.
-     *
-     */
-    public static function DCOUNT($database, $field, $criteria) {
-        $field = self::fieldExtract($database, $field);
+		if (is_null($field)) {
+			return null;
+		}
+		//	reduce the database to a set of rows that match all the criteria
+		$database = self::__filter($database, $criteria);
+		//	extract an array of values for the requested column
+		$colData = array();
 
-        if (is_null($field)) {
-            return null;
-        }
-        // Return
-        return PHPExcel_Calculation_Statistical::COUNT(
-            self::getFilteredColumn($database, $field, $criteria)
-        );
-    }
+		foreach ($database as $row) {
+			$colData[] = $row[$field];
+		}
 
-    /**
-     * DCOUNTA
-     *
-     * Counts the nonblank cells in a column of a list or database that match conditions that you specify.
-     *
-     * Excel Function:
-     *        DCOUNTA(database,[field],criteria)
-     *
-     * @access    public
-     * @category Database Functions
-     * @param    mixed[]            $database    The range of cells that makes up the list or database.
-     *                                        A database is a list of related data in which rows of related
-     *                                        information are records, and columns of data are fields. The
-     *                                        first row of the list contains labels for each column.
-     * @param    string|integer    $field        Indicates which column is used in the function. Enter the
-     *                                        column label enclosed between double quotation marks, such as
-     *                                        "Age" or "Yield," or a number (without quotation marks) that
-     *                                        represents the position of the column within the list: 1 for
-     *                                        the first column, 2 for the second column, and so on.
-     * @param    mixed[]            $criteria    The range of cells that contains the conditions you specify.
-     *                                        You can use any range for the criteria argument, as long as it
-     *                                        includes at least one column label and at least one cell below
-     *                                        the column label in which you specify a condition for the
-     *                                        column.
-     * @return    integer
-     *
-     * @TODO    The field argument is optional. If field is omitted, DCOUNTA counts all records in the
-     *            database that match the criteria.
-     *
-     */
-    public static function DCOUNTA($database, $field, $criteria) {
-        $field = self::fieldExtract($database, $field);
+		return PHPExcel_Calculation_Statistical::COUNT($colData);
+	}
 
-        if (is_null($field)) {
-            return null;
-        }
+	/**
+	 * DCOUNTA
+	 *
+	 * Counts the nonblank cells in a column of a list or database that match conditions that you specify.
+	 *
+	 * Excel Function:
+	 *		DCOUNTA(database,[field],criteria)
+	 *
+	 * @access	public
+	 * @category Database Functions
+	 * @param	mixed[]			$database	The range of cells that makes up the list or database.
+	 *										A database is a list of related data in which rows of related
+	 *										information are records, and columns of data are fields. The
+	 *										first row of the list contains labels for each column.
+	 * @param	string|integer	$field		Indicates which column is used in the function. Enter the
+	 *										column label enclosed between double quotation marks, such as
+	 *										"Age" or "Yield," or a number (without quotation marks) that
+	 *										represents the position of the column within the list: 1 for
+	 *										the first column, 2 for the second column, and so on.
+	 * @param	mixed[]			$criteria	The range of cells that contains the conditions you specify.
+	 *										You can use any range for the criteria argument, as long as it
+	 *										includes at least one column label and at least one cell below
+	 *										the column label in which you specify a condition for the
+	 *										column.
+	 * @return	integer
+	 *
+	 * @TODO	The field argument is optional. If field is omitted, DCOUNTA counts all records in the
+	 *			database that match the criteria.
+	 *
+	 */
+	public static function DCOUNTA($database, $field, $criteria) {
+		$field = self::__fieldExtract($database, $field);
 
-        // reduce the database to a set of rows that match all the criteria
-        $database = self::filter($database, $criteria);
-        // extract an array of values for the requested column
-        $colData = array();
+		if (is_null($field)) {
+			return null;
+		}
+		//	reduce the database to a set of rows that match all the criteria
+		$database = self::__filter($database, $criteria);
+		//	extract an array of values for the requested column
+		$colData = array();
 
-        foreach ($database as $row) {
-            $colData[] = $row[$field];
-        }
-        // Return
-        return PHPExcel_Calculation_Statistical::COUNTA(
-            self::getFilteredColumn($database, $field, $criteria)
-        );
-    }
+		foreach ($database as $row) {
+			$colData[] = $row[$field];
+		}
 
-    /**
-     * DGET
-     *
-     * Extracts a single value from a column of a list or database that matches conditions that you
-     * specify.
-     *
-     * Excel Function:
-     *        DGET(database,field,criteria)
-     *
-     * @access    public
-     * @category Database Functions
-     * @param    mixed[]            $database    The range of cells that makes up the list or database.
-     *                                        A database is a list of related data in which rows of related
-     *                                        information are records, and columns of data are fields. The
-     *                                        first row of the list contains labels for each column.
-     * @param    string|integer    $field        Indicates which column is used in the function. Enter the
-     *                                        column label enclosed between double quotation marks, such as
-     *                                        "Age" or "Yield," or a number (without quotation marks) that
-     *                                        represents the position of the column within the list: 1 for
-     *                                        the first column, 2 for the second column, and so on.
-     * @param    mixed[]            $criteria    The range of cells that contains the conditions you specify.
-     *                                        You can use any range for the criteria argument, as long as it
-     *                                        includes at least one column label and at least one cell below
-     *                                        the column label in which you specify a condition for the
-     *                                        column.
-     * @return    mixed
-     *
-     */
-    public static function DGET($database, $field, $criteria) {
-        $field = self::fieldExtract($database, $field);
+		return PHPExcel_Calculation_Statistical::COUNTA($colData);
+	}
 
-        if (is_null($field)) {
-            return null;
-        }
-        // Return
-        $colData = self::getFilteredColumn($database, $field, $criteria);
+	/**
+	 * DGET
+	 *
+	 * Extracts a single value from a column of a list or database that matches conditions that you
+	 * specify.
+	 *
+	 * Excel Function:
+	 *		DGET(database,field,criteria)
+	 *
+	 * @access	public
+	 * @category Database Functions
+	 * @param	mixed[]			$database	The range of cells that makes up the list or database.
+	 *										A database is a list of related data in which rows of related
+	 *										information are records, and columns of data are fields. The
+	 *										first row of the list contains labels for each column.
+	 * @param	string|integer	$field		Indicates which column is used in the function. Enter the
+	 *										column label enclosed between double quotation marks, such as
+	 *										"Age" or "Yield," or a number (without quotation marks) that
+	 *										represents the position of the column within the list: 1 for
+	 *										the first column, 2 for the second column, and so on.
+	 * @param	mixed[]			$criteria	The range of cells that contains the conditions you specify.
+	 *										You can use any range for the criteria argument, as long as it
+	 *										includes at least one column label and at least one cell below
+	 *										the column label in which you specify a condition for the
+	 *										column.
+	 * @return	mixed
+	 *
+	 */
+	public static function DGET($database, $field, $criteria) {
+		$field = self::__fieldExtract($database, $field);
 
-        if (count($colData) > 1) {
-            return PHPExcel_Calculation_Functions::NaN();
-        }
+		if (is_null($field)) {
+			return null;
+		}
+		//	reduce the database to a set of rows that match all the criteria
+		$database = self::__filter($database, $criteria);
+		//	extract an array of values for the requested column
+		$colData = array();
 
-        return $colData[0];
-    }
+		foreach ($database as $row) {
+			$colData[] = $row[$field];
+		}
 
-    /**
-     * DMAX
-     *
-     * Returns the largest number in a column of a list or database that matches conditions you that
-     * specify.
-     *
-     * Excel Function:
-     *        DMAX(database,field,criteria)
-     *
-     * @access    public
-     * @category Database Functions
-     * @param    mixed[]            $database    The range of cells that makes up the list or database.
-     *                                        A database is a list of related data in which rows of related
-     *                                        information are records, and columns of data are fields. The
-     *                                        first row of the list contains labels for each column.
-     * @param    string|integer    $field        Indicates which column is used in the function. Enter the
-     *                                        column label enclosed between double quotation marks, such as
-     *                                        "Age" or "Yield," or a number (without quotation marks) that
-     *                                        represents the position of the column within the list: 1 for
-     *                                        the first column, 2 for the second column, and so on.
-     * @param    mixed[]            $criteria    The range of cells that contains the conditions you specify.
-     *                                        You can use any range for the criteria argument, as long as it
-     *                                        includes at least one column label and at least one cell below
-     *                                        the column label in which you specify a condition for the
-     *                                        column.
-     * @return    float
-     *
-     */
-    public static function DMAX($database, $field, $criteria) {
-        $field = self::fieldExtract($database, $field);
+		if (count($colData) > 1) {
+			return PHPExcel_Calculation_Functions::NaN();
+		}
 
-        if (is_null($field)) {
-            return null;
-        }
-        // Return
-        return PHPExcel_Calculation_Statistical::MAX(
-            self::getFilteredColumn($database, $field, $criteria)
-        );
-    }
+		return $colData[0];
+	}
 
-    /**
-     * DMIN
-     *
-     * Returns the smallest number in a column of a list or database that matches conditions you that
-     * specify.
-     *
-     * Excel Function:
-     *        DMIN(database,field,criteria)
-     *
-     * @access    public
-     * @category Database Functions
-     * @param    mixed[]            $database    The range of cells that makes up the list or database.
-     *                                        A database is a list of related data in which rows of related
-     *                                        information are records, and columns of data are fields. The
-     *                                        first row of the list contains labels for each column.
-     * @param    string|integer    $field        Indicates which column is used in the function. Enter the
-     *                                        column label enclosed between double quotation marks, such as
-     *                                        "Age" or "Yield," or a number (without quotation marks) that
-     *                                        represents the position of the column within the list: 1 for
-     *                                        the first column, 2 for the second column, and so on.
-     * @param    mixed[]            $criteria    The range of cells that contains the conditions you specify.
-     *                                        You can use any range for the criteria argument, as long as it
-     *                                        includes at least one column label and at least one cell below
-     *                                        the column label in which you specify a condition for the
-     *                                        column.
-     * @return    float
-     *
-     */
-    public static function DMIN($database, $field, $criteria) {
-        $field = self::fieldExtract($database, $field);
+	/**
+	 * DMAX
+	 *
+	 * Returns the largest number in a column of a list or database that matches conditions you that
+	 * specify.
+	 *
+	 * Excel Function:
+	 *		DMAX(database,field,criteria)
+	 *
+	 * @access	public
+	 * @category Database Functions
+	 * @param	mixed[]			$database	The range of cells that makes up the list or database.
+	 *										A database is a list of related data in which rows of related
+	 *										information are records, and columns of data are fields. The
+	 *										first row of the list contains labels for each column.
+	 * @param	string|integer	$field		Indicates which column is used in the function. Enter the
+	 *										column label enclosed between double quotation marks, such as
+	 *										"Age" or "Yield," or a number (without quotation marks) that
+	 *										represents the position of the column within the list: 1 for
+	 *										the first column, 2 for the second column, and so on.
+	 * @param	mixed[]			$criteria	The range of cells that contains the conditions you specify.
+	 *										You can use any range for the criteria argument, as long as it
+	 *										includes at least one column label and at least one cell below
+	 *										the column label in which you specify a condition for the
+	 *										column.
+	 * @return	float
+	 *
+	 */
+	public static function DMAX($database, $field, $criteria) {
+		$field = self::__fieldExtract($database, $field);
 
-        if (is_null($field)) {
-            return null;
-        }
-        // Return
-        return PHPExcel_Calculation_Statistical::MIN(
-            self::getFilteredColumn($database, $field, $criteria)
-        );
-    }
+		if (is_null($field)) {
+			return null;
+		}
+		//	reduce the database to a set of rows that match all the criteria
+		$database = self::__filter($database, $criteria);
+		//	extract an array of values for the requested column
+		$colData = array();
 
-    /**
-     * DPRODUCT
-     *
-     * Multiplies the values in a column of a list or database that match conditions that you specify.
-     *
-     * Excel Function:
-     *        DPRODUCT(database,field,criteria)
-     *
-     * @access    public
-     * @category Database Functions
-     * @param    mixed[]            $database    The range of cells that makes up the list or database.
-     *                                        A database is a list of related data in which rows of related
-     *                                        information are records, and columns of data are fields. The
-     *                                        first row of the list contains labels for each column.
-     * @param    string|integer    $field        Indicates which column is used in the function. Enter the
-     *                                        column label enclosed between double quotation marks, such as
-     *                                        "Age" or "Yield," or a number (without quotation marks) that
-     *                                        represents the position of the column within the list: 1 for
-     *                                        the first column, 2 for the second column, and so on.
-     * @param    mixed[]            $criteria    The range of cells that contains the conditions you specify.
-     *                                        You can use any range for the criteria argument, as long as it
-     *                                        includes at least one column label and at least one cell below
-     *                                        the column label in which you specify a condition for the
-     *                                        column.
-     * @return    float
-     *
-     */
-    public static function DPRODUCT($database, $field, $criteria) {
-        $field = self::fieldExtract($database, $field);
+		foreach ($database as $row) {
+			$colData[] = $row[$field];
+		}
 
-        if (is_null($field)) {
-            return null;
-        }
-        // Return
-        return PHPExcel_Calculation_MathTrig::PRODUCT(
-            self::getFilteredColumn($database, $field, $criteria)
-        );
-    }
+		return PHPExcel_Calculation_Statistical::MAX($colData);
+	}
 
-    /**
-     * DSTDEV
-     *
-     * Estimates the standard deviation of a population based on a sample by using the numbers in a
-     * column of a list or database that match conditions that you specify.
-     *
-     * Excel Function:
-     *        DSTDEV(database,field,criteria)
-     *
-     * @access    public
-     * @category Database Functions
-     * @param    mixed[]            $database    The range of cells that makes up the list or database.
-     *                                        A database is a list of related data in which rows of related
-     *                                        information are records, and columns of data are fields. The
-     *                                        first row of the list contains labels for each column.
-     * @param    string|integer    $field        Indicates which column is used in the function. Enter the
-     *                                        column label enclosed between double quotation marks, such as
-     *                                        "Age" or "Yield," or a number (without quotation marks) that
-     *                                        represents the position of the column within the list: 1 for
-     *                                        the first column, 2 for the second column, and so on.
-     * @param    mixed[]            $criteria    The range of cells that contains the conditions you specify.
-     *                                        You can use any range for the criteria argument, as long as it
-     *                                        includes at least one column label and at least one cell below
-     *                                        the column label in which you specify a condition for the
-     *                                        column.
-     * @return    float
-     *
-     */
-    public static function DSTDEV($database, $field, $criteria) {
-        $field = self::fieldExtract($database, $field);
+	/**
+	 * DMIN
+	 *
+	 * Returns the smallest number in a column of a list or database that matches conditions you that
+	 * specify.
+	 *
+	 * Excel Function:
+	 *		DMIN(database,field,criteria)
+	 *
+	 * @access	public
+	 * @category Database Functions
+	 * @param	mixed[]			$database	The range of cells that makes up the list or database.
+	 *										A database is a list of related data in which rows of related
+	 *										information are records, and columns of data are fields. The
+	 *										first row of the list contains labels for each column.
+	 * @param	string|integer	$field		Indicates which column is used in the function. Enter the
+	 *										column label enclosed between double quotation marks, such as
+	 *										"Age" or "Yield," or a number (without quotation marks) that
+	 *										represents the position of the column within the list: 1 for
+	 *										the first column, 2 for the second column, and so on.
+	 * @param	mixed[]			$criteria	The range of cells that contains the conditions you specify.
+	 *										You can use any range for the criteria argument, as long as it
+	 *										includes at least one column label and at least one cell below
+	 *										the column label in which you specify a condition for the
+	 *										column.
+	 * @return	float
+	 *
+	 */
+	public static function DMIN($database, $field, $criteria) {
+		$field = self::__fieldExtract($database, $field);
 
-        if (is_null($field)) {
-            return null;
-        }
-        // Return
-        return PHPExcel_Calculation_Statistical::STDEV(
-            self::getFilteredColumn($database, $field, $criteria)
-        );
-    }
+		if (is_null($field)) {
+			return null;
+		}
+		//	reduce the database to a set of rows that match all the criteria
+		$database = self::__filter($database, $criteria);
+		//	extract an array of values for the requested column
+		$colData = array();
 
-    /**
-     * DSTDEVP
-     *
-     * Calculates the standard deviation of a population based on the entire population by using the
-     * numbers in a column of a list or database that match conditions that you specify.
-     *
-     * Excel Function:
-     *        DSTDEVP(database,field,criteria)
-     *
-     * @access    public
-     * @category Database Functions
-     * @param    mixed[]            $database    The range of cells that makes up the list or database.
-     *                                        A database is a list of related data in which rows of related
-     *                                        information are records, and columns of data are fields. The
-     *                                        first row of the list contains labels for each column.
-     * @param    string|integer    $field        Indicates which column is used in the function. Enter the
-     *                                        column label enclosed between double quotation marks, such as
-     *                                        "Age" or "Yield," or a number (without quotation marks) that
-     *                                        represents the position of the column within the list: 1 for
-     *                                        the first column, 2 for the second column, and so on.
-     * @param    mixed[]            $criteria    The range of cells that contains the conditions you specify.
-     *                                        You can use any range for the criteria argument, as long as it
-     *                                        includes at least one column label and at least one cell below
-     *                                        the column label in which you specify a condition for the
-     *                                        column.
-     * @return    float
-     *
-     */
-    public static function DSTDEVP($database, $field, $criteria) {
-        $field = self::fieldExtract($database, $field);
+		foreach ($database as $row) {
+			$colData[] = $row[$field];
+		}
 
-        if (is_null($field)) {
-            return null;
-        }
-        // Return
-        return PHPExcel_Calculation_Statistical::STDEVP(
-            self::getFilteredColumn($database, $field, $criteria)
-        );
-    }
+		return PHPExcel_Calculation_Statistical::MIN($colData);
+	}
 
-    /**
-     * DSUM
-     *
-     * Adds the numbers in a column of a list or database that match conditions that you specify.
-     *
-     * Excel Function:
-     *        DSUM(database,field,criteria)
-     *
-     * @access    public
-     * @category Database Functions
-     * @param    mixed[]            $database    The range of cells that makes up the list or database.
-     *                                        A database is a list of related data in which rows of related
-     *                                        information are records, and columns of data are fields. The
-     *                                        first row of the list contains labels for each column.
-     * @param    string|integer    $field        Indicates which column is used in the function. Enter the
-     *                                        column label enclosed between double quotation marks, such as
-     *                                        "Age" or "Yield," or a number (without quotation marks) that
-     *                                        represents the position of the column within the list: 1 for
-     *                                        the first column, 2 for the second column, and so on.
-     * @param    mixed[]            $criteria    The range of cells that contains the conditions you specify.
-     *                                        You can use any range for the criteria argument, as long as it
-     *                                        includes at least one column label and at least one cell below
-     *                                        the column label in which you specify a condition for the
-     *                                        column.
-     * @return    float
-     *
-     */
-    public static function DSUM($database, $field, $criteria) {
-        $field = self::fieldExtract($database, $field);
+	/**
+	 * DPRODUCT
+	 *
+	 * Multiplies the values in a column of a list or database that match conditions that you specify.
+	 *
+	 * Excel Function:
+	 *		DPRODUCT(database,field,criteria)
+	 *
+	 * @access	public
+	 * @category Database Functions
+	 * @param	mixed[]			$database	The range of cells that makes up the list or database.
+	 *										A database is a list of related data in which rows of related
+	 *										information are records, and columns of data are fields. The
+	 *										first row of the list contains labels for each column.
+	 * @param	string|integer	$field		Indicates which column is used in the function. Enter the
+	 *										column label enclosed between double quotation marks, such as
+	 *										"Age" or "Yield," or a number (without quotation marks) that
+	 *										represents the position of the column within the list: 1 for
+	 *										the first column, 2 for the second column, and so on.
+	 * @param	mixed[]			$criteria	The range of cells that contains the conditions you specify.
+	 *										You can use any range for the criteria argument, as long as it
+	 *										includes at least one column label and at least one cell below
+	 *										the column label in which you specify a condition for the
+	 *										column.
+	 * @return	float
+	 *
+	 */
+	public static function DPRODUCT($database, $field, $criteria) {
+		$field = self::__fieldExtract($database, $field);
 
-        if (is_null($field)) {
-            return null;
-        }
-        // Return
-        return PHPExcel_Calculation_MathTrig::SUM(
-            self::getFilteredColumn($database, $field, $criteria)
-        );
-    }
+		if (is_null($field)) {
+			return null;
+		}
+		//	reduce the database to a set of rows that match all the criteria
+		$database = self::__filter($database, $criteria);
+		//	extract an array of values for the requested column
+		$colData = array();
 
-    /**
-     * DVAR
-     *
-     * Estimates the variance of a population based on a sample by using the numbers in a column
-     * of a list or database that match conditions that you specify.
-     *
-     * Excel Function:
-     *        DVAR(database,field,criteria)
-     *
-     * @access    public
-     * @category Database Functions
-     * @param    mixed[]            $database    The range of cells that makes up the list or database.
-     *                                        A database is a list of related data in which rows of related
-     *                                        information are records, and columns of data are fields. The
-     *                                        first row of the list contains labels for each column.
-     * @param    string|integer    $field        Indicates which column is used in the function. Enter the
-     *                                        column label enclosed between double quotation marks, such as
-     *                                        "Age" or "Yield," or a number (without quotation marks) that
-     *                                        represents the position of the column within the list: 1 for
-     *                                        the first column, 2 for the second column, and so on.
-     * @param    mixed[]            $criteria    The range of cells that contains the conditions you specify.
-     *                                        You can use any range for the criteria argument, as long as it
-     *                                        includes at least one column label and at least one cell below
-     *                                        the column label in which you specify a condition for the
-     *                                        column.
-     * @return    float
-     *
-     */
-    public static function DVAR($database, $field, $criteria) {
-        $field = self::fieldExtract($database, $field);
+		foreach ($database as $row) {
+			$colData[] = $row[$field];
+		}
 
-        if (is_null($field)) {
-            return null;
-        }
-        // Return
-        return PHPExcel_Calculation_Statistical::VARFunc(
-            self::getFilteredColumn($database, $field, $criteria)
-        );
-    }
+		return PHPExcel_Calculation_MathTrig::PRODUCT($colData);
+	}
 
-    /**
-     * DVARP
-     *
-     * Calculates the variance of a population based on the entire population by using the numbers
-     * in a column of a list or database that match conditions that you specify.
-     *
-     * Excel Function:
-     *        DVARP(database,field,criteria)
-     *
-     * @access    public
-     * @category Database Functions
-     * @param    mixed[]            $database    The range of cells that makes up the list or database.
-     *                                        A database is a list of related data in which rows of related
-     *                                        information are records, and columns of data are fields. The
-     *                                        first row of the list contains labels for each column.
-     * @param    string|integer    $field        Indicates which column is used in the function. Enter the
-     *                                        column label enclosed between double quotation marks, such as
-     *                                        "Age" or "Yield," or a number (without quotation marks) that
-     *                                        represents the position of the column within the list: 1 for
-     *                                        the first column, 2 for the second column, and so on.
-     * @param    mixed[]            $criteria    The range of cells that contains the conditions you specify.
-     *                                        You can use any range for the criteria argument, as long as it
-     *                                        includes at least one column label and at least one cell below
-     *                                        the column label in which you specify a condition for the
-     *                                        column.
-     * @return    float
-     *
-     */
-    public static function DVARP($database, $field, $criteria) {
-        $field = self::fieldExtract($database, $field);
+	/**
+	 * DSTDEV
+	 *
+	 * Estimates the standard deviation of a population based on a sample by using the numbers in a
+	 * column of a list or database that match conditions that you specify.
+	 *
+	 * Excel Function:
+	 *		DSTDEV(database,field,criteria)
+	 *
+	 * @access	public
+	 * @category Database Functions
+	 * @param	mixed[]			$database	The range of cells that makes up the list or database.
+	 *										A database is a list of related data in which rows of related
+	 *										information are records, and columns of data are fields. The
+	 *										first row of the list contains labels for each column.
+	 * @param	string|integer	$field		Indicates which column is used in the function. Enter the
+	 *										column label enclosed between double quotation marks, such as
+	 *										"Age" or "Yield," or a number (without quotation marks) that
+	 *										represents the position of the column within the list: 1 for
+	 *										the first column, 2 for the second column, and so on.
+	 * @param	mixed[]			$criteria	The range of cells that contains the conditions you specify.
+	 *										You can use any range for the criteria argument, as long as it
+	 *										includes at least one column label and at least one cell below
+	 *										the column label in which you specify a condition for the
+	 *										column.
+	 * @return	float
+	 *
+	 */
+	public static function DSTDEV($database, $field, $criteria) {
+		$field = self::__fieldExtract($database, $field);
 
-        if (is_null($field)) {
-            return null;
-        }
-        // Return
-        return PHPExcel_Calculation_Statistical::VARP(
-            self::getFilteredColumn($database, $field, $criteria)
-        );
-    }
+		if (is_null($field)) {
+			return null;
+		}
+		//	reduce the database to a set of rows that match all the criteria
+		$database = self::__filter($database, $criteria);
+		//	extract an array of values for the requested column
+		$colData = array();
+
+		foreach ($database as $row) {
+			$colData[] = $row[$field];
+		}
+
+		return PHPExcel_Calculation_Statistical::STDEV($colData);
+	}
+
+	/**
+	 * DSTDEVP
+	 *
+	 * Calculates the standard deviation of a population based on the entire population by using the
+	 * numbers in a column of a list or database that match conditions that you specify.
+	 *
+	 * Excel Function:
+	 *		DSTDEVP(database,field,criteria)
+	 *
+	 * @access	public
+	 * @category Database Functions
+	 * @param	mixed[]			$database	The range of cells that makes up the list or database.
+	 *										A database is a list of related data in which rows of related
+	 *										information are records, and columns of data are fields. The
+	 *										first row of the list contains labels for each column.
+	 * @param	string|integer	$field		Indicates which column is used in the function. Enter the
+	 *										column label enclosed between double quotation marks, such as
+	 *										"Age" or "Yield," or a number (without quotation marks) that
+	 *										represents the position of the column within the list: 1 for
+	 *										the first column, 2 for the second column, and so on.
+	 * @param	mixed[]			$criteria	The range of cells that contains the conditions you specify.
+	 *										You can use any range for the criteria argument, as long as it
+	 *										includes at least one column label and at least one cell below
+	 *										the column label in which you specify a condition for the
+	 *										column.
+	 * @return	float
+	 *
+	 */
+	public static function DSTDEVP($database, $field, $criteria) {
+		$field = self::__fieldExtract($database, $field);
+
+		if (is_null($field)) {
+			return null;
+		}
+		//	reduce the database to a set of rows that match all the criteria
+		$database = self::__filter($database, $criteria);
+		//	extract an array of values for the requested column
+		$colData = array();
+
+		foreach ($database as $row) {
+			$colData[] = $row[$field];
+		}
+
+		return PHPExcel_Calculation_Statistical::STDEVP($colData);
+	}
+
+	/**
+	 * DSUM
+	 *
+	 * Adds the numbers in a column of a list or database that match conditions that you specify.
+	 *
+	 * Excel Function:
+	 *		DSUM(database,field,criteria)
+	 *
+	 * @access	public
+	 * @category Database Functions
+	 * @param	mixed[]			$database	The range of cells that makes up the list or database.
+	 *										A database is a list of related data in which rows of related
+	 *										information are records, and columns of data are fields. The
+	 *										first row of the list contains labels for each column.
+	 * @param	string|integer	$field		Indicates which column is used in the function. Enter the
+	 *										column label enclosed between double quotation marks, such as
+	 *										"Age" or "Yield," or a number (without quotation marks) that
+	 *										represents the position of the column within the list: 1 for
+	 *										the first column, 2 for the second column, and so on.
+	 * @param	mixed[]			$criteria	The range of cells that contains the conditions you specify.
+	 *										You can use any range for the criteria argument, as long as it
+	 *										includes at least one column label and at least one cell below
+	 *										the column label in which you specify a condition for the
+	 *										column.
+	 * @return	float
+	 *
+	 */
+	public static function DSUM($database, $field, $criteria) {
+		$field = self::__fieldExtract($database, $field);
+
+		if (is_null($field)) {
+			return null;
+		}
+		//	reduce the database to a set of rows that match all the criteria
+		$database = self::__filter($database, $criteria);
+		//	extract an array of values for the requested column
+		$colData = array();
+
+		foreach ($database as $row) {
+			$colData[] = $row[$field];
+		}
+
+		return PHPExcel_Calculation_MathTrig::SUM($colData);
+	}
+
+	/**
+	 * DVAR
+	 *
+	 * Estimates the variance of a population based on a sample by using the numbers in a column
+	 * of a list or database that match conditions that you specify.
+	 *
+	 * Excel Function:
+	 *		DVAR(database,field,criteria)
+	 *
+	 * @access	public
+	 * @category Database Functions
+	 * @param	mixed[]			$database	The range of cells that makes up the list or database.
+	 *										A database is a list of related data in which rows of related
+	 *										information are records, and columns of data are fields. The
+	 *										first row of the list contains labels for each column.
+	 * @param	string|integer	$field		Indicates which column is used in the function. Enter the
+	 *										column label enclosed between double quotation marks, such as
+	 *										"Age" or "Yield," or a number (without quotation marks) that
+	 *										represents the position of the column within the list: 1 for
+	 *										the first column, 2 for the second column, and so on.
+	 * @param	mixed[]			$criteria	The range of cells that contains the conditions you specify.
+	 *										You can use any range for the criteria argument, as long as it
+	 *										includes at least one column label and at least one cell below
+	 *										the column label in which you specify a condition for the
+	 *										column.
+	 * @return	float
+	 *
+	 */
+	public static function DVAR($database, $field, $criteria) {
+		$field = self::__fieldExtract($database, $field);
+
+		if (is_null($field)) {
+			return null;
+		}
+		//	reduce the database to a set of rows that match all the criteria
+		$database = self::__filter($database, $criteria);
+		//	extract an array of values for the requested column
+		$colData = array();
+
+		foreach ($database as $row) {
+			$colData[] = $row[$field];
+		}
+
+		return PHPExcel_Calculation_Statistical::VARFunc($colData);
+	}
+
+	/**
+	 * DVARP
+	 *
+	 * Calculates the variance of a population based on the entire population by using the numbers
+	 * in a column of a list or database that match conditions that you specify.
+	 *
+	 * Excel Function:
+	 *		DVARP(database,field,criteria)
+	 *
+	 * @access	public
+	 * @category Database Functions
+	 * @param	mixed[]			$database	The range of cells that makes up the list or database.
+	 *										A database is a list of related data in which rows of related
+	 *										information are records, and columns of data are fields. The
+	 *										first row of the list contains labels for each column.
+	 * @param	string|integer	$field		Indicates which column is used in the function. Enter the
+	 *										column label enclosed between double quotation marks, such as
+	 *										"Age" or "Yield," or a number (without quotation marks) that
+	 *										represents the position of the column within the list: 1 for
+	 *										the first column, 2 for the second column, and so on.
+	 * @param	mixed[]			$criteria	The range of cells that contains the conditions you specify.
+	 *										You can use any range for the criteria argument, as long as it
+	 *										includes at least one column label and at least one cell below
+	 *										the column label in which you specify a condition for the
+	 *										column.
+	 * @return	float
+	 *
+	 */
+	public static function DVARP($database, $field, $criteria) {
+		$field = self::__fieldExtract($database, $field);
+
+		if (is_null($field)) {
+			return null;
+		}
+		//	reduce the database to a set of rows that match all the criteria
+		$database = self::__filter($database, $criteria);
+		//	extract an array of values for the requested column
+		$colData = array();
+
+		foreach ($database as $row) {
+			$colData[] = $row[$field];
+		}
+
+		return PHPExcel_Calculation_Statistical::VARP($colData);
+	}
 }

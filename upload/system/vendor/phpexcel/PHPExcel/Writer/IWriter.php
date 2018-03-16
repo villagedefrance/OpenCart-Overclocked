@@ -1,9 +1,8 @@
 <?php
-
 /**
- *  PHPExcel_Writer_IWriter
+ *  PHPExcel
  *
- *  Copyright (c) 2006 - 2015 PHPExcel
+ *  Copyright (c) 2006 - 2014 PHPExcel
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
@@ -21,11 +20,18 @@
  *
  *  @category   PHPExcel
  *  @package    PHPExcel_Writer
- *  @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- *  @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- *  @version    ##VERSION##, ##DATE##
+ *  @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    v1.8.1, released: 01-05-2015
+ * @edition     Overclocked Edition
+ */
+
+/**
+ *  PHPExcel_Writer_IWriter
  *
- * Overclocked Edition © 2018 | Villagedefrance
+ *  @category   PHPExcel
+ *  @package    PHPExcel_Writer
+ *  @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 interface PHPExcel_Writer_IWriter {
     /**
