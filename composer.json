@@ -11,6 +11,9 @@
   "require": {
     "php": ">=5.4.0"
   },
+  "require-dev": {
+    "codacy/coverage": "dev-master"
+  }
   "authors": [
     {
       "name": "Philippe Marion",
