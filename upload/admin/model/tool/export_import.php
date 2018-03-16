@@ -5449,12 +5449,6 @@ class ModelToolExportImport extends Model {
 				$string_out .= '';
 			} else {
 				switch ($stripped_string[$i]) {
-				case '<':
-					$string_out .= '&lt;';
-					break;
-				case '>':
-					$string_out .= '&gt;';
-					break;
 				case '&':
 					$string_out .= '&amp;';
 					break;
@@ -5496,7 +5490,7 @@ class ModelToolExportImport extends Model {
 
 			// Memory Optimization
 			if ($this->config->get('export_import_settings_use_import_cache')) {
-				$cacheMethod = PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
+				$cacheMethod = PHPExcel_CachedObjectStorageFactory::CACHETOPHPTEMP;
 
 				$cacheSettings = array('memoryCacheSize' => '16MB');
 
@@ -8175,7 +8169,7 @@ class ModelToolExportImport extends Model {
 
 		// Memory Optimization
 		if ($this->config->get('export_import_settings_use_export_cache')) {
-			$cacheMethod = PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
+			$cacheMethod = PHPExcel_CachedObjectStorageFactory::CACHETOPHPTEMP;
 
 			$cacheSettings = array('memoryCacheSize' => '16MB');
 
