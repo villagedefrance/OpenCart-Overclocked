@@ -371,6 +371,19 @@ class ControllerCatalogProduct extends Controller {
 			'limit'           => $this->config->get('config_admin_limit')
 		);
 
+		// Admin user extra permissions
+		$this->data['user_allowed'] = false;
+
+		if (is_array($this->config->get('config_user_group_display'))) {
+			$allowed_user = $this->user->getUserGroupId();
+
+			if (in_array($allowed_user, $this->config->get('config_user_group_display'))) {
+				$this->data['user_allowed'] = true;
+			} else {
+				$this->data['user_allowed'] = false;
+			}
+		}
+
 		$this->load->model('tool/image');
 		$this->load->model('tool/barcode');
 
@@ -1826,7 +1839,7 @@ class ControllerCatalogProduct extends Controller {
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
 			$selected = false;
 			$append = false;
-			$date_start = '0000-00-00';
+			$date_start = date('Y-m-d');
 			$date_end = '';
 			$customer_group = $this->config->get('config_customer_group_id');
 			$discount = 0;
@@ -1938,7 +1951,7 @@ class ControllerCatalogProduct extends Controller {
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
 			$selected = false;
 			$append = false;
-			$date_start = '0000-00-00';
+			$date_start = date('Y-m-d');
 			$date_end = '';
 			$customer_group = $this->config->get('config_customer_group_id');
 			$discount = 0;

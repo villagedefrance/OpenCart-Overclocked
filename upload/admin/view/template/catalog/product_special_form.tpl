@@ -37,7 +37,7 @@
   <tr>
     <td><?php echo $entry_sp_discount; ?></td>
     <td><select name="sp_discount">
-      <?php for ($i = 0; $i < 100; $i = $i+5) { ?>
+      <?php for ($i = 0; $i < 100; $i = $i+1) { ?>
         <option value="<?php echo $i; ?>">-<?php echo $i; ?>%</option>
       <?php } ?>
     </select></td>

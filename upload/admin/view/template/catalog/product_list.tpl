@@ -23,6 +23,7 @@
       </div>
     </div>
     <div class="content-body">
+    <?php if ($user_allowed) { ?>
       <div class="report">
         <div class="left hide-mobile"><img src="view/image/product-add.png" alt="" /></div>
         <div class="left"><a id="price-button" class="button-filter"><?php echo $button_update_price; ?></a></div>
@@ -31,6 +32,7 @@
         <div class="left"><a id="discount-button" class="button-filter"><?php echo $button_update_discount; ?></a></div>
         <div class="right"><a onclick="location = '<?php echo $refresh; ?>';" class="button"><?php echo $button_refresh; ?></a></div>
       </div>
+    <?php } ?>
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>

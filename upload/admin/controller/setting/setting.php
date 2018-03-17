@@ -217,6 +217,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_autocomplete_category'] = $this->language->get('entry_autocomplete_category');
 		$this->data['entry_autocomplete_product'] = $this->language->get('entry_autocomplete_product');
 		$this->data['entry_autocomplete_offer'] = $this->language->get('entry_autocomplete_offer');
+		$this->data['entry_user_group_display'] = $this->language->get('entry_user_group_display');
 		$this->data['entry_catalog_barcode'] = $this->language->get('entry_catalog_barcode');
 		$this->data['entry_admin_barcode'] = $this->language->get('entry_admin_barcode');
 		$this->data['entry_barcode_type'] = $this->language->get('entry_barcode_type');
@@ -389,6 +390,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['help_autocomplete_category'] = $this->language->get('help_autocomplete_category');
 		$this->data['help_autocomplete_product'] = $this->language->get('help_autocomplete_product');
 		$this->data['help_autocomplete_offer'] = $this->language->get('help_autocomplete_offer');
+		$this->data['help_user_group_display'] = $this->language->get('help_user_group_display');
 		$this->data['help_catalog_barcode'] = $this->language->get('help_catalog_barcode');
 		$this->data['help_admin_barcode'] = $this->language->get('help_admin_barcode');
 		$this->data['help_buy_now'] = $this->language->get('help_buy_now');
@@ -1467,6 +1469,18 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_autocomplete_offer'] = $this->request->post['config_autocomplete_offer'];
 		} else {
 			$this->data['config_autocomplete_offer'] = $this->config->get('config_autocomplete_offer');
+		}
+
+		$this->load->model('user/user_group');
+
+		$this->data['user_groups'] = $this->model_user_user_group->getUserGroups(0);
+
+		if (isset($this->request->post['config_user_group_display'])) {
+			$this->data['config_user_group_display'] = $this->request->post['config_user_group_display'];
+		} elseif ($this->config->get('config_user_group_display')) {
+			$this->data['config_user_group_display'] = $this->config->get('config_user_group_display');
+		} else {
+			$this->data['config_user_group_display'] = array();
 		}
 
 		if (isset($this->request->post['config_catalog_barcode'])) {
