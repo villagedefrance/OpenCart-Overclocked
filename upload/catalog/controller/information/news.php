@@ -26,6 +26,8 @@ class ControllerInformationNews extends Controller {
 			$this->document->setTitle($news_info['title']);
 			$this->document->setDescription($news_info['meta_description']);
 
+			$this->model_catalog_news->updateViewed($news_id);
+
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('heading_title'),
 				'href'      => $this->url->link('information/news_list', '', 'SSL'),
@@ -60,8 +62,6 @@ class ControllerInformationNews extends Controller {
 
 			$this->data['news'] = $this->url->link('information/news_list', '', 'SSL');
 			$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
-
-			$this->model_catalog_news->updateViewed($news_id);
 
 			// Image
 			$this->load->model('tool/image');

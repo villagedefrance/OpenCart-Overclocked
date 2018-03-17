@@ -139,7 +139,7 @@ class ModelLocalisationCurrency extends Model {
 
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "currency WHERE code != '" . trim($default) . "' AND date_modified < '" . date('Y-m-d H:i:s', strtotime('-1 day')) . "' AND status = '1'");
 
-		if ($query->num_rows) {
+		if ($query->rows) {
 			$currencies = array();
 
 			$results = $this->getCurrencies(0);
