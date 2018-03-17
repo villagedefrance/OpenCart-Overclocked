@@ -779,7 +779,11 @@ class ControllerCommonHome extends Controller {
 		if ($this->config->get('config_currency_auto') && extension_loaded('curl')) {
 			$this->load->model('localisation/currency');
 
-			$this->model_localisation_currency->updateCurrencies();
+			if ($this->config->get('config_alpha_vantage')) {
+				$this->model_localisation_currency->updateAlphaVantageCurrencies();
+			} else {
+				$this->model_localisation_currency->updateCurrencies();
+			}
 		}
 
 		$this->template = 'common/home.tpl';

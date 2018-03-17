@@ -135,32 +135,31 @@ class ModelLocalisationCurrency extends Model {
 //----------------------------------------------------------------------------------
 
 	public function updateCurrencies($default = '') {
-		$currencies = array();
-
 		$default = $this->config->get('config_currency');
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "currency WHERE code != '" . $this->db->escape(trim($default)) . "' AND date_modified < '" . $this->db->escape(date('Y-m-d H:i:s', strtotime('-1 day'))) . "' AND status = '1'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "currency WHERE code != '" . trim($default) . "' AND date_modified < '" . date('Y-m-d H:i:s', strtotime('-1 day')) . "' AND status = '1'");
 
-		if ($query->num_rows === 0) {
-			return;
-		}
+		if ($query->num_rows) {
+			$currencies = array();
 
-		$results = $this->getCurrencies();
+			$results = $this->getCurrencies(0);
 
-		if ($results) {
-			foreach ($results as $result) {
-				if (($result['code'] != $default)) {
-					$currencies[] = $result;
+			if ($results) {
+				foreach ($results as $result) {
+					if ($result['code'] != strtoupper($default)) {
+						$currencies[] = $result;
+					}
 				}
-			}
 
-			if ($currencies) {
-				$xml = simplexml_load_file('http://www.floatrates.com/daily/' . strtolower($default) . '.xml');
+				if ($currencies) {
+					$xml = simplexml_load_file('http://www.floatrates.com/daily/' . strtolower($default) . '.xml') or die();
 
-				foreach ($xml->item as $response) {
-					if (isset($response['exchangeRate']) && isset($response['targetCurrency'])) {
-						foreach ($currencies as $currency) {
-							$this->editValueByCode($currency['code'], $response['exchangeRate'][$response['targetCurrency']]);
+					foreach ($xml->children() as $response) {
+						if (in_array($response->targetCurrency, $currencies)) {
+							$currency_code = strtoupper($response->targetCurrency);
+							$currency_value = round($response->exchangeRate, 8);
+
+							$this->db->query("UPDATE " . DB_PREFIX . "currency SET `value` = '" . $currency_value . "', date_modified = NOW() WHERE code = '" . $currency_code . "'");
 						}
 					}
 				}
@@ -168,7 +167,52 @@ class ModelLocalisationCurrency extends Model {
 				$this->cache->delete('currency');
 			}
 
-			$this->editValueByCode($default, '1.00000');
+			$this->editValueByCode($default, '1.000000');
+		} else {
+			return;
+		}
+	}
+
+	public function updateAlphaVantageCurrencies() {
+		$default = $this->config->get('config_currency');
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "currency WHERE code != '" . $default . "' AND date_modified < '" . date('Y-m-d H:i:s', strtotime('-1 day')) . "' AND status = '1'");
+
+		if ($query->rows) {
+			$api_key = $this->config->get('config_alpha_vantage');
+
+			$api_key = (isset($api_key) && $api_key) ? strtoupper($api_key) : 'P6WGY9G9LB22GMBJ';
+
+			foreach ($query->rows as $result) {
+				$url = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=' . strtoupper($default) . '&to_currency=' . strtoupper($result['code']) . '&apikey=' . $api_key;
+
+				$curl = curl_init();
+
+				curl_setopt($curl, CURLOPT_URL, $url);
+				curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($curl, CURLOPT_HEADER, false);
+				curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+				curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
+				curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+
+				$response = curl_exec($curl);
+
+				curl_close($curl);
+
+				$response_info = json_decode($response, true);
+
+				if (isset($response_info)) {
+					$value = (float) $response_info["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+
+					$this->db->query("UPDATE " . DB_PREFIX . "currency SET `value` = '" . $value . "', date_modified = NOW() WHERE code = '" . $this->db->escape($result['code']) . "'");
+				}
+			}
+
+			$this->editValueByCode($default, '1.000000');
+
+			$this->cache->delete('currency');
+		} else {
+			return;
 		}
 	}
 

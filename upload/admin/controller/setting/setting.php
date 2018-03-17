@@ -45,6 +45,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_automatic'] = $this->language->get('text_automatic');
 		$this->data['text_hide'] = $this->language->get('text_hide');
 		$this->data['text_characters'] = $this->language->get('text_characters');
+		$this->data['text_currencies'] = $this->language->get('text_currencies');
 		$this->data['text_datetime'] = $this->language->get('text_datetime');
 		$this->data['text_product'] = $this->language->get('text_product');
 		$this->data['text_location'] = $this->language->get('text_location');
@@ -107,8 +108,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['tab_media'] = $this->language->get('tab_media');
 		$this->data['tab_server'] = $this->language->get('tab_server');
 
-		$google_api_link = 'https://developers.google.com/maps/documentation/embed/start';
-
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_owner'] = $this->language->get('entry_owner');
 		$this->data['entry_address'] = $this->language->get('entry_address');
@@ -127,17 +126,18 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_zone'] = $this->language->get('entry_zone');
 		$this->data['entry_language'] = $this->language->get('entry_language');
 		$this->data['entry_admin_language'] = $this->language->get('entry_admin_language');
-		$this->data['entry_currency'] = $this->language->get('entry_currency');
-		$this->data['entry_currency_auto'] = $this->language->get('entry_currency_auto');
 		$this->data['entry_length_class'] = $this->language->get('entry_length_class');
 		$this->data['entry_weight_class'] = $this->language->get('entry_weight_class');
+		$this->data['entry_currency'] = $this->language->get('entry_currency');
+		$this->data['entry_currency_auto'] = $this->language->get('entry_currency_auto');
+		$this->data['entry_alpha_vantage'] = $this->language->get('entry_alpha_vantage');
 		$this->data['entry_date_format'] = $this->language->get('entry_date_format');
 		$this->data['entry_time_offset'] = $this->language->get('entry_time_offset');
 		$this->data['entry_store_address'] = $this->language->get('entry_store_address');
 		$this->data['entry_store_latitude'] = $this->language->get('entry_store_latitude');
 		$this->data['entry_store_longitude'] = $this->language->get('entry_store_longitude');
 		$this->data['entry_store_location'] = $this->language->get('entry_store_location');
-		$this->data['entry_map_code'] = sprintf($this->language->get('entry_map_code'), html_entity_decode($google_api_link, ENT_QUOTES, 'UTF-8'));
+		$this->data['entry_map_code'] = $this->language->get('entry_map_code');
 		$this->data['entry_map_display'] = $this->language->get('entry_map_display');
 		$this->data['entry_checkout'] = $this->language->get('entry_checkout');
 		$this->data['entry_invoice_prefix'] = $this->language->get('entry_invoice_prefix');
@@ -320,6 +320,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['help_meta_keyword'] = $this->language->get('help_meta_keyword');
 		$this->data['help_currency'] = $this->language->get('help_currency');
 		$this->data['help_currency_auto'] = $this->language->get('help_currency_auto');
+		$this->data['help_alpha_vantage'] = $this->language->get('help_alpha_vantage');
 		$this->data['help_date_format'] = $this->language->get('help_date_format');
 		$this->data['help_time_offset'] = $this->language->get('help_time_offset');
 		$this->data['help_store_address'] = $this->language->get('help_file_extension_allowed');
@@ -849,24 +850,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_admin_language'] = $this->config->get('config_admin_language');
 		}
 
-		$this->load->model('localisation/currency');
-
-		$this->data['currencies'] = $this->model_localisation_currency->getCurrencies();
-
-		if (isset($this->request->post['config_currency'])) {
-			$this->data['config_currency'] = $this->request->post['config_currency'];
-		} else {
-			$this->data['config_currency'] = $this->config->get('config_currency');
-		}
-
-		$this->data['configure_currency'] = $this->url->link('localisation/currency', 'token=' . $this->session->data['token'], 'SSL');
-
-		if (isset($this->request->post['config_currency_auto'])) {
-			$this->data['config_currency_auto'] = $this->request->post['config_currency_auto'];
-		} else {
-			$this->data['config_currency_auto'] = $this->config->get('config_currency_auto');
-		}
-
 		$this->load->model('localisation/length_class');
 
 		$this->data['length_classes'] = $this->model_localisation_length_class->getLengthClasses();
@@ -890,6 +873,30 @@ class ControllerSettingSetting extends Controller {
 		}
 
 		$this->data['configure_weight_class'] = $this->url->link('localisation/weight_class', 'token=' . $this->session->data['token'], 'SSL');
+
+		$this->load->model('localisation/currency');
+
+		$this->data['currencies'] = $this->model_localisation_currency->getCurrencies();
+
+		if (isset($this->request->post['config_currency'])) {
+			$this->data['config_currency'] = $this->request->post['config_currency'];
+		} else {
+			$this->data['config_currency'] = $this->config->get('config_currency');
+		}
+
+		$this->data['configure_currency'] = $this->url->link('localisation/currency', 'token=' . $this->session->data['token'], 'SSL');
+
+		if (isset($this->request->post['config_currency_auto'])) {
+			$this->data['config_currency_auto'] = $this->request->post['config_currency_auto'];
+		} else {
+			$this->data['config_currency_auto'] = $this->config->get('config_currency_auto');
+		}
+
+		if (isset($this->request->post['config_alpha_vantage'])) {
+			$this->data['config_alpha_vantage'] = $this->request->post['config_alpha_vantage'];
+		} else {
+			$this->data['config_alpha_vantage'] = $this->config->get('config_alpha_vantage');
+		}
 
 		$this->data['date_formats'] = array();
 

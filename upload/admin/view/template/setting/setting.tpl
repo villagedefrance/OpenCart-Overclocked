@@ -200,6 +200,33 @@
             </select></td>
           </tr>
           <tr>
+            <td><?php echo $entry_length_class; ?></td>
+            <td><select name="config_length_class_id">
+            <?php foreach ($length_classes as $length_class) { ?>
+              <?php if ($length_class['length_class_id'] == $config_length_class_id) { ?>
+                <option value="<?php echo $length_class['length_class_id']; ?>" selected="selected"><?php echo $length_class['title']; ?></option>
+              <?php } else { ?>
+                <option value="<?php echo $length_class['length_class_id']; ?>"><?php echo $length_class['title']; ?></option>
+              <?php } ?>
+            <?php } ?>
+            </select> &nbsp; <a href="<?php echo $configure_length_class; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_weight_class; ?></td>
+            <td><select name="config_weight_class_id">
+            <?php foreach ($weight_classes as $weight_class) { ?>
+              <?php if ($weight_class['weight_class_id'] == $config_weight_class_id) { ?>
+                <option value="<?php echo $weight_class['weight_class_id']; ?>" selected="selected"><?php echo $weight_class['title']; ?></option>
+              <?php } else { ?>
+                <option value="<?php echo $weight_class['weight_class_id']; ?>"><?php echo $weight_class['title']; ?></option>
+              <?php } ?>
+            <?php } ?>
+            </select> &nbsp; <a href="<?php echo $configure_weight_class; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
+          </tr>
+        </table>
+        <h2><?php echo $text_currencies; ?></h2>
+        <table class="form">
+          <tr>
             <td><?php echo $entry_currency; ?><span class="help"><?php echo $help_currency; ?></span></td>
             <td><select name="config_currency">
             <?php foreach ($currencies as $currency) { ?>
@@ -226,28 +253,10 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_length_class; ?></td>
-            <td><select name="config_length_class_id">
-            <?php foreach ($length_classes as $length_class) { ?>
-              <?php if ($length_class['length_class_id'] == $config_length_class_id) { ?>
-                <option value="<?php echo $length_class['length_class_id']; ?>" selected="selected"><?php echo $length_class['title']; ?></option>
-              <?php } else { ?>
-                <option value="<?php echo $length_class['length_class_id']; ?>"><?php echo $length_class['title']; ?></option>
-              <?php } ?>
-            <?php } ?>
-            </select> &nbsp; <a href="<?php echo $configure_length_class; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_weight_class; ?></td>
-            <td><select name="config_weight_class_id">
-            <?php foreach ($weight_classes as $weight_class) { ?>
-              <?php if ($weight_class['weight_class_id'] == $config_weight_class_id) { ?>
-                <option value="<?php echo $weight_class['weight_class_id']; ?>" selected="selected"><?php echo $weight_class['title']; ?></option>
-              <?php } else { ?>
-                <option value="<?php echo $weight_class['weight_class_id']; ?>"><?php echo $weight_class['title']; ?></option>
-              <?php } ?>
-            <?php } ?>
-            </select> &nbsp; <a href="<?php echo $configure_weight_class; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
+            <td><?php echo $entry_alpha_vantage; ?><span class="help"><?php echo $help_alpha_vantage; ?></span></td>
+            <td><input id="key_alpha_vantage" name="config_alpha_vantage" value="<?php echo isset($config_alpha_vantage) ? $config_alpha_vantage : ''; ?>" size="30" /> &nbsp;
+              <a onclick="window.open('https://www.alphavantage.co/');" title="Google Maps" class="button-form"><i class="fa fa-play-circle"></i> &nbsp; Alpha Vantage</a>
+            </td>
           </tr>
         </table>
         <h2><?php echo $text_datetime; ?></h2>
