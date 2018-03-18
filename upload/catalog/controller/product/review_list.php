@@ -116,6 +116,9 @@ class ControllerProductReviewList extends Controller {
 			}
 
 			$this->data['text_empty'] = $this->language->get('text_empty');
+			$this->data['text_from'] = $this->language->get('text_from');
+			$this->data['text_price'] = $this->language->get('text_price');
+			$this->data['text_tax'] = $this->language->get('text_tax');
 			$this->data['text_display'] = $this->language->get('text_display');
 			$this->data['text_list'] = $this->language->get('text_list');
 			$this->data['text_grid'] = $this->language->get('text_grid');
@@ -127,25 +130,25 @@ class ControllerProductReviewList extends Controller {
 			$this->data['lang'] = $this->language->get('code');
 
 			$this->data['button_cart'] = $this->language->get('button_cart');
+			$this->data['button_view'] = $this->language->get('button_view');
 			$this->data['button_login'] = $this->language->get('button_login');
 			$this->data['button_quote'] = $this->language->get('button_quote');
 			$this->data['button_wishlist'] = $this->language->get('button_wishlist');
 			$this->data['button_compare'] = $this->language->get('button_compare');
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
+			$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
 			$this->data['compare'] = $this->url->link('product/compare', '', 'SSL');
 			$this->data['login_register'] = $this->url->link('account/login', '', 'SSL');
 
 			$this->data['dob'] = $this->config->get('config_customer_dob');
 
+			$this->load->model('tool/image');
 			$this->load->model('catalog/offer');
+			$this->load->model('catalog/product');
 			$this->load->model('account/customer');
 
 			$offers = $this->model_catalog_offer->getListProductOffers(0);
-
-			$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
-
-			$this->load->model('tool/image');
 
 			foreach ($review_results as $result) {
 				if ($result['image']) {
@@ -164,12 +167,28 @@ class ControllerProductReviewList extends Controller {
 					$label_style = '';
 				}
 
+				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
+					if (($result['price'] == '0.0000') && $this->config->get('config_price_free')) {
+						$price = $this->language->get('text_free');
+					} else {
+						$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
+					}
+				} else {
+					$price = false;
+				}
+
 				if ((float)$result['special']) {
 					$special_label = $this->model_tool_image->resize($this->config->get('config_label_special'), $label_ratio, $label_ratio);
 					$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
 				} else {
 					$special_label = false;
 					$special = false;
+				}
+
+				if ($this->config->get('config_tax')) {
+					$tax = $this->currency->format((float)$result['special'] ? $result['special'] : $result['price']);
+				} else {
+					$tax = false;
 				}
 
 				if ($this->config->get('config_review_status')) {
@@ -236,8 +255,11 @@ class ControllerProductReviewList extends Controller {
 					'stock_status'    => $result['stock_status'],
 					'stock_quantity'  => $result['quantity'],
 					'stock_remaining' => ($result['subtract']) ? sprintf($this->language->get('text_remaining'), $result['quantity']) : '',
-					'special'         => $special,
 					'quote'           => $quote,
+					'price'           => $price,
+					'price_option'    => $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),
+					'special'         => $special,
+					'tax'             => $tax,
 					'rating'          => $rating,
 					'author'          => $result['author'],
 					'date_added'      => date($this->language->get('date_format_short'), strtotime($result['date_added'])),

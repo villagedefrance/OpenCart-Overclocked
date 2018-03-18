@@ -37,7 +37,7 @@
         </select>
       </div>
     </div>
-    <div class="review-list">	
+    <div class="product-list">	
       <?php foreach ($reviews as $review) { ?>
         <div>
           <?php if ($review['thumb']) { ?>
@@ -57,13 +57,52 @@
             <?php } ?>
             <div class="image"><a href="<?php echo $review['href']; ?>"><img src="<?php echo $review['thumb']; ?>" alt="<?php echo $review['name']; ?>" /></a></div>
           <?php } ?>
+        <?php if ($review['price']) { ?>
+          <div class="price">
+          <?php if ($review['price_option']) { ?>
+            <span class="from"><?php echo $text_from; ?></span><br />
+          <?php } ?>
+          <?php if (!$review['special']) { ?>
+            <?php echo $review['price']; ?>
+          <?php } else { ?>
+            <span class="price-old"><?php echo $review['price']; ?></span> <span class="price-new"><?php echo $review['special']; ?></span>
+          <?php } ?>
+          <?php if ($review['tax']) { ?>
+            <br />
+            <span class="price-tax"><?php echo $text_tax; ?> <?php echo $review['tax']; ?></span>
+          <?php } ?>
+          <?php if ($review['age_minimum']) { ?>
+            <span class="help">(<?php echo $review['age_minimum']; ?>+)</span>
+          <?php } ?>
+          </div>
+        <?php } ?>
+          <div class="addons">
+            <a onclick="addToWishList('<?php echo $review['product_id']; ?>');" title="<?php echo $button_wishlist; ?>" class="button-add"><i class="fa fa-heart"></i></a>
+            <a onclick="addToCompare('<?php echo $review['product_id']; ?>');" title="<?php echo $button_compare; ?>" class="button-add"><i class="fa fa-random"></i></a>
+            <a href="<?php echo $review['href']; ?>" title="<?php echo $button_view; ?>" class="button-add"><i class="fa fa-search"></i></a>
+          </div>
+          <div class="cart">
+          <?php if ($dob && $review['age_minimum'] && !$review['age_logged']) { ?>
+            <a href="<?php echo $login_register; ?>" class="button"><?php echo $button_login; ?></a>
+          <?php } elseif ($dob && $review['age_minimum'] && !$review['age_checked']) { ?>
+            <p class="hidden"></p>
+          <?php } else { ?>
+            <?php if ($review['quote']) { ?>
+              <a href="<?php echo $review['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a>
+            <?php } elseif (!$review['quote'] && $review['stock_quantity'] <= 0) { ?>
+              <span class="stock-status"><?php echo $review['stock_status']; ?></span>
+            <?php } else { ?>
+              <input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $review['product_id']; ?>');" class="button" />
+            <?php } ?>
+          <?php } ?>
+          </div>
           <div class="name">
             <a href="<?php echo $review['href']; ?>"><?php echo $review['name']; ?></a>
             <?php if ($review['age_minimum']) { ?>
               <span class="help">(<?php echo $review['age_minimum']; ?>+)</span>
             <?php } ?>
           </div>
-          <div class="text">&#8220;<?php echo $review['text']; ?>&#8221;</div>
+          <div class="description">&#8220;<?php echo $review['text']; ?>&#8221;</div>
           <div class="author"><?php echo $review['author']; ?></div>
           <div class="date"><?php echo $review['date_added']; ?></div>
           <div class="rating">
@@ -72,26 +111,6 @@
           <?php if ($review['stock_remaining'] && $this->config->get($template . '_product_stock_low') && ($review['stock_quantity'] > 0) && ($review['stock_quantity'] <= $this->config->get($template . '_product_stock_limit'))) { ?>
             <div class="remaining"><?php echo $review['stock_remaining']; ?></div>
           <?php } ?>
-          <div class="addons">
-            <a onclick="addToWishList('<?php echo $review['product_id']; ?>');" title="<?php echo $button_wishlist; ?>" class="button-add"><i class="fa fa-heart"></i></a>
-            <a onclick="addToCompare('<?php echo $review['product_id']; ?>');" title="<?php echo $button_compare; ?>" class="button-add"><i class="fa fa-random"></i></a>
-            <a href="<?php echo $review['href']; ?>" title="<?php echo $review['name']; ?>" class="button-add"><i class="fa fa-search"></i></a>
-          </div>
-          <div class="cart">
-            <?php if ($dob && $review['age_minimum'] && !$review['age_logged']) { ?>
-              <a href="<?php echo $login_register; ?>" class="button"><?php echo $button_login; ?></a>
-            <?php } elseif ($dob && $review['age_minimum'] && !$review['age_checked']) { ?>
-              <p class="hidden"></p>
-            <?php } else { ?>
-              <?php if ($review['quote']) { ?>
-                <a href="<?php echo $review['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a>
-              <?php } elseif (!$review['quote'] && $review['stock_quantity'] <= 0) { ?>
-                <span class="stock-status"><?php echo $review['stock_status']; ?></span>
-              <?php } else { ?>
-                <input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $review['product_id']; ?>');" class="button" />
-              <?php } ?>
-            <?php } ?>
-          </div>
         </div>
       <?php } ?>
     </div>
@@ -109,22 +128,10 @@
 <script type="text/javascript"><!--
 function display(view) {
 	if (view == 'list') {
-		$('.review-grid').attr('class', 'review-list');
+		$('.product-grid').attr('class', 'product-list');
 
-		$('.review-list > div').each(function(index, element) {
-			html  = '<div class="right">';
-
-			var rating = $(element).find('.rating').html();
-
-			if (rating != null) {
-				html += '<div class="rating">' + rating + '</div>';
-			}
-
-			html += '  <div class="addons">' + $(element).find('.addons').html() + '</div>';
-			html += '  <div class="cart">' + $(element).find('.cart').html() + '</div>';
-			html += '</div>';
-
-			html += '<div class="left">';
+		$('.product-list > div').each(function(index, element) {
+			html = '<div>';
 
 			var image = $(element).find('.image').html();
 
@@ -156,11 +163,20 @@ function display(view) {
 				html += '<div class="image">' + image + '</div>';
 			}
 
+			var price = $(element).find('.price').html();
+
+			if (price != null) {
+				html += '<div class="price">' + price + '</div>';
+			}
+
+			html += '<div class="addons">' + $(element).find('.addons').html() + '</div>';
+			html += '<div class="cart">' + $(element).find('.cart').html() + '</div>';
+			
 			html += '<div class="name">' + $(element).find('.name').html() + '</div>';
 
-			var text = $(element).find('.text').html();
+			var text = $(element).find('.description').html();
 
-			html += '<div class="text">' + text + '</div>';
+			html += '<div class="description">' + text + '</div>';
 
 			var author = $(element).find('.author').html();
 
@@ -180,6 +196,12 @@ function display(view) {
 				html += '<div class="remaining">' + remaining + '</div>';
 			}
 
+			var rating = $(element).find('.rating').html();
+
+			if (rating != null) {
+				html += '<div class="rating">' + rating + '</div>';
+			}
+
 			html += '</div>';
 
 			$(element).html(html);
@@ -190,10 +212,10 @@ function display(view) {
 		$.totalStorage('display', 'list');
 
 	} else {
-		$('.review-list').attr('class', 'review-grid');
+		$('.product-list').attr('class', 'product-grid');
 
-		$('.review-grid > div').each(function(index, element) {
-			html = '';
+		$('.product-grid > div').each(function(index, element) {
+			html = '<div>';
 
 			var image = $(element).find('.image').html();
 
@@ -227,9 +249,9 @@ function display(view) {
 
 			html += '<div class="name">' + $(element).find('.name').html() + '</div>';
 
-			var text = $(element).find('.text').html();
+			var text = $(element).find('.description').html();
 
-			html += '<div class="text">' + text + '</div>';
+			html += '<div class="description">' + text + '</div>';
 
 			var author = $(element).find('.author').html();
 
@@ -243,20 +265,28 @@ function display(view) {
 				html += '<div class="date">' + date + '</div>';
 			}
 
-			var rating = $(element).find('.rating').html();
-
-			if (rating != null) {
-				html += '<div class="rating">' + rating + '</div>';
-			}
-
 			var remaining = $(element).find('.remaining').html();
 
 			if (remaining != null) {
 				html += '<div class="remaining">' + remaining + '</div>';
 			}
 
+			var rating = $(element).find('.rating').html();
+
+			if (rating != null) {
+				html += '<div class="rating">' + rating + '</div>';
+			}
+
+			var price = $(element).find('.price').html();
+
+			if (price != null) {
+				html += '<div class="price">' + price + '</div>';
+			}
+
 			html += '<div class="addons">' + $(element).find('.addons').html() + '</div>';
 			html += '<div class="cart">' + $(element).find('.cart').html() + '</div>';
+
+			html += '</div>';
 
 			$(element).html(html);
 		});

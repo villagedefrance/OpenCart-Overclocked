@@ -200,6 +200,7 @@ class ControllerProductManufacturer extends Controller {
 			$this->data['lang'] = $this->language->get('code');
 
 			$this->data['button_cart'] = $this->language->get('button_cart');
+			$this->data['button_view'] = $this->language->get('button_view');
 			$this->data['button_login'] = $this->language->get('button_login');
 			$this->data['button_quote'] = $this->language->get('button_quote');
 			$this->data['button_wishlist'] = $this->language->get('button_wishlist');
