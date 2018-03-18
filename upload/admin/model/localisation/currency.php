@@ -142,24 +142,26 @@ class ModelLocalisationCurrency extends Model {
 		if ($query->rows) {
 			$currencies = array();
 
-			$results = $this->getCurrencies(0);
+			$data = array(
+				'sort'  => 'code',
+				'order' => 'ASC'
+			);
+
+			$results = $this->getCurrencies($data);
 
 			if ($results) {
 				foreach ($results as $result) {
 					if ($result['code'] != strtoupper($default)) {
-						$currencies[] = $result;
+						$currencies[] = $result['code'];
 					}
 				}
 
-				if ($currencies) {
-					$xml = simplexml_load_file('http://www.floatrates.com/daily/' . strtolower($default) . '.xml') or die();
+				if (!empty($currencies)) {
+					$xml = simplexml_load_file('http://www.floatrates.com/daily/' . strtolower($default) . '.xml');
 
 					foreach ($xml->children() as $response) {
 						if (in_array($response->targetCurrency, $currencies)) {
-							$currency_code = strtoupper($response->targetCurrency);
-							$currency_value = round($response->exchangeRate, 8);
-
-							$this->db->query("UPDATE " . DB_PREFIX . "currency SET `value` = '" . $currency_value . "', date_modified = NOW() WHERE code = '" . $currency_code . "'");
+							$this->db->query("UPDATE " . DB_PREFIX . "currency SET `value` = '" . $response->exchangeRate . "', date_modified = NOW() WHERE code = '" . strtoupper($response->targetCurrency) . "'");
 						}
 					}
 				}
