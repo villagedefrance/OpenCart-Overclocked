@@ -37,7 +37,7 @@
 .footer-light #footer > .column-one a, .footer-light #footer > .column-two a, .footer-light #footer > .column-three a, .footer-light #footer > .column-four a {
 	text-decoration: none;
 	color: #EFEFEF;
-	font-size: 13px;
+	font-size: 14px;
 }
 .footer-light #footer > .column-one a:hover, .footer-light #footer > .column-two a:hover, .footer-light #footer > .column-three a:hover, .footer-light #footer > .column-four a:hover {}
 .footer-light #footer > .big-column {
@@ -83,7 +83,7 @@
 .footer-dark #footer > .column-one > ul > li:hover, .footer-dark #footer > .column-two > ul > li:hover, .footer-dark #footer > .column-three > ul > li:hover, .footer-dark #footer > .column-four > ul > li:hover {}
 .footer-dark #footer > .column-one a, .footer-dark #footer > .column-two a, .footer-dark #footer > .column-three a, .footer-dark #footer > .column-four a {
 	text-decoration: none;
-	font-size: 13px;
+	font-size: 14px;
 }
 .footer-dark #footer > .column-one a:hover, .footer-dark #footer > .column-two a:hover, .footer-dark #footer > .column-three a:hover, .footer-dark #footer > .column-four a:hover { }
 .footer-dark #footer > .big-column {

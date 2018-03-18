@@ -19,7 +19,7 @@ body {
 	padding: 0;
 }
 body, td, th, input, textarea, select, a {
-	font-size: 12px;
+	font-size: 13px;
 }
 h1, .welcome {
 	color: #636E75;
@@ -992,8 +992,8 @@ a.button-add:hover {
 	min-width: 170px;
 }
 #content .box-product > div {
-	width: 22%;
-	min-width: 160px;
+	width: 21%;
+	min-width: 150px;
 }
 .box-product .image {
 	display: block;
@@ -1243,9 +1243,9 @@ ul.box-filter, ul.box-filter ul {
 	padding: 0;
 }
 ul.box-filter span {
+	display: block;
 	font-weight: bold;
 	border-bottom: 1px solid #E7E7E7;
-	display: block;
 	padding-bottom: 5px;
 	margin-bottom: 8px;
 }
@@ -1303,6 +1303,7 @@ ul.box-filter > li ul {
 .content-info .info .image {
 	float: right;
 	border: 1px solid #E7E7E7;
+	margin: 5px 5px 15px 15px;
 	padding: 5px;
 }
 .content-info .info .article {
