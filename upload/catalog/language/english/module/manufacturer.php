@@ -1,3 +1,3 @@
 <?php
 // Heading
-$_['heading_title'] = 'Shop by Brands';
+$_['heading_title'] = 'Shop by Brand';
