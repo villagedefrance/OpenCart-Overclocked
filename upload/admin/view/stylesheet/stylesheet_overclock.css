@@ -652,9 +652,9 @@ ul.menu ul {
 	color: #333;
 }
 .tooltip {
-	background: transparent url('../image/tooltip.png') 10px center no-repeat;
-	border: 1px solid #36AAD8;
-	color: #EEE;
+	background: rgba(88, 154, 181, 0.6) url('../image/tooltip.png') 10px center no-repeat;
+	border: 1px solid #589AB5;
+	color: #FCFCFC;
 }
 .close, .success .close, .warning .close, .attention .close, .tooltip .close {
 	float: right;
