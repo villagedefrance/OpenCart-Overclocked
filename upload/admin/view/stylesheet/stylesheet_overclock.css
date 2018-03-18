@@ -1353,10 +1353,13 @@ table.form > tbody > tr > td:first-child, table.form-slim > tbody > tr > td:firs
 	width: 240px;
 }
 table.form > tbody > tr.highlighted, table.form-slim > tbody > tr.highlighted {
-	background: #30353A;
-	-webkit-box-shadow: inset 0 1px 1px 0 #629BB2;
-	-moz-box-shadow: inset 0 1px 1px 0 #629BB2;
-	box-shadow: inset 0 1px 1px 0 #629BB2;
+	background-color: #30353A;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#32383D), to(#2A2E33));
+	background-image: -webkit-linear-gradient(top, #32383D, #2A2E33);
+	background-image: -moz-linear-gradient(top, #32383D, #2A2E33);
+	background-image: -ms-linear-gradient(top, #32383D, #2A2E33);
+	background-image: -o-linear-gradient(top, #32383D, #2A2E33);
+	background-image: linear-gradient(to bottom, #32383D, #2A2E33);
 }
 table.form > tbody > tr > td, table.form-slim > tbody > tr > td {
 	color: #E5E5E5;
