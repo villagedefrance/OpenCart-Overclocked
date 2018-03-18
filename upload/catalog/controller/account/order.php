@@ -691,13 +691,11 @@ class ControllerAccountOrder extends Controller {
 		$this->data['text_order_invoice'] = $this->language->get('text_order_invoice');
 		$this->data['text_invoice_no'] = $this->language->get('text_invoice_no');
 		$this->data['text_order_id'] = $this->language->get('text_order_id');
-		$this->data['text_telephone'] = $this->language->get('text_telephone');
-		$this->data['text_fax'] = $this->language->get('text_fax');
 		$this->data['text_date_added'] = $this->language->get('text_date_added');
-		$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
-		$this->data['text_shipping_address'] = $this->language->get('text_shipping_address');
 		$this->data['text_payment_method'] = $this->language->get('text_payment_method');
 		$this->data['text_payment_address'] = $this->language->get('text_payment_address');
+		$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
+		$this->data['text_shipping_address'] = $this->language->get('text_shipping_address');
 
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_model'] = $this->language->get('column_model');
@@ -732,17 +730,23 @@ class ControllerAccountOrder extends Controller {
 			$store_info = $this->model_setting_setting->getSetting('config', $order_info['store_id']);
 
 			if ($store_info) {
-				$this->data['store_name'] = $store_info['config_name'];
-				$this->data['store_address'] = $store_info['config_address'];
+				$this->data['store_address'] = nl2br($store_info['config_address']);
 				$this->data['store_email'] = $store_info['config_email'];
 				$this->data['store_telephone'] = $store_info['config_telephone'];
 				$this->data['store_fax'] = $store_info['config_fax'];
 			} else {
-				$this->data['store_name'] = $this->config->get('config_name');
-				$this->data['store_address'] = $this->config->get('config_address');
+				$this->data['store_address'] = nl2br($this->config->get('config_address'));
 				$this->data['store_email'] = $this->config->get('config_email');
 				$this->data['store_telephone'] = $this->config->get('config_telephone');
 				$this->data['store_fax'] = $this->config->get('config_fax');
+			}
+
+			$this->data['store_name'] = $order_info['store_name'];
+
+			if ($order_info['store_id'] == 0) {
+				$this->data['store_url'] = $this->request->server['HTTPS'] ? rtrim(HTTPS_SERVER, '/') : rtrim(HTTP_SERVER, '/');
+			} else {
+				$this->data['store_url'] = rtrim($order_info['store_url'], '/');
 			}
 
 			$this->data['store_company_id'] = $this->config->get('config_company_id') ? $this->config->get('config_company_id') : '';

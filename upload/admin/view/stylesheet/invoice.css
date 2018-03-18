@@ -13,19 +13,25 @@ body {
 }
 body, td, th, input, select, textarea, option, optgroup {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 16px;
+	font-size: 14px;
 	color: #000;
+}
+td > span {
+	font-size: 12px;
+}
+td > img {
+	margin: 2px 2px 0 0;
 }
 h1 {
 	text-transform: uppercase;
-	color: #CCC;
+	color: #BBB;
 	text-align: right;
 	font-size: 24px;
 	font-weight: normal;
 	padding-bottom: 5px;
 	margin-top: 0;
 	margin-bottom: 15px;
-	border-bottom: 1px solid #CDDDDD;
+	border-bottom: 1px solid #DDD;
 }
 /* General */
 .store {
@@ -42,7 +48,7 @@ h1 {
 	padding: 5px;
 }
 .heading td {
-	background: #E7EFEF;
+	background: #F2F2F2;
 }
 /* Table */
 table.address, table.product, table.comment, table.delivery {
@@ -68,12 +74,12 @@ table.address, table.product, table.comment, table.delivery {
 .address {
 	width: 100%;
 	margin-bottom: 20px;
-	border-top: 1px solid #CDDDDD;
-	border-right: 1px solid #CDDDDD;
+	border-top: 1px solid #DDD;
+	border-right: 1px solid #DDD;
 }
 .address th, .address td {
-	border-left: 1px solid #CDDDDD;
-	border-bottom: 1px solid #CDDDDD;
+	border-left: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
 	padding: 5px;
 	vertical-align: text-bottom;
 }
@@ -84,36 +90,36 @@ table.address, table.product, table.comment, table.delivery {
 .product {
 	width: 100%;
 	margin-bottom: 20px;
-	border-top: 1px solid #CDDDDD;
-	border-right: 1px solid #CDDDDD;
+	border-top: 1px solid #DDD;
+	border-right: 1px solid #DDD;
 }
 .product td {
-	border-left: 1px solid #CDDDDD;
-	border-bottom: 1px solid #CDDDDD;
+	border-left: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
 	padding: 5px;
 }
 /* Comment */
 .comment {
 	width: 100%;
 	margin-bottom: 20px;
-	border-top: 1px solid #CDDDDD;
-	border-right: 1px solid #CDDDDD;
+	border-top: 1px solid #DDD;
+	border-right: 1px solid #DDD;
 }
 .comment td {
-	border-left: 1px solid #CDDDDD;
-	border-bottom: 1px solid #CDDDDD;
+	border-left: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
 	padding: 5px;
 }
 /* Delivery */
 .delivery {
 	width: 100%;
 	margin-bottom: 20px;
-	border-top: 1px solid #CDDDDD;
-	border-right: 1px solid #CDDDDD;
+	border-top: 1px solid #DDD;
+	border-right: 1px solid #DDD;
 }
 .delivery th, .delivery td {
-	border-left: 1px solid #CDDDDD;
-	border-bottom: 1px solid #CDDDDD;
+	border-left: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
 	padding: 5px;
 	vertical-align: text-bottom;
 }

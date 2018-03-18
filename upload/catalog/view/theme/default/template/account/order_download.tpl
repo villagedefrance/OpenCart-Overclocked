@@ -17,18 +17,19 @@
   <table class="store">
     <tr>
       <td>
-        <?php echo $store_name; ?><br />
-        <?php echo $store_address; ?><br />
-        <?php echo $text_telephone; ?> <?php echo $store_telephone; ?><br />
+        <b><?php echo $store_name; ?></b><br />
+        <?php echo $store_address; ?><br /><br />
+        <img src="catalog/view/theme/<?php echo $template; ?>/image/location/phone.png" alt="" height="14" width="14" /> <?php echo $store_telephone; ?><br />
       <?php if ($store_fax) { ?>
-        <?php echo $text_fax; ?> <?php echo $store_fax; ?><br />
+        <img src="catalog/view/theme/<?php echo $template; ?>/image/location/fax.png" alt="" height="14" width="14" /> <?php echo $store_fax; ?><br />
       <?php } ?>
-        <?php echo $store_email; ?><br />
+        <img src="catalog/view/theme/<?php echo $template; ?>/image/location/mail.png" alt="" height="14" width="14" /> <?php echo $store_email; ?><br />
+        <img src="catalog/view/theme/<?php echo $template; ?>/image/location/global.png" alt="" height="14" width="14" /> <?php echo $store_url; ?><br />
       <?php if ($store_company_id) { ?>
-        <span style="font-size:12px;"><?php echo $store_company_id; ?></span><br />
+        <span><?php echo $store_company_id; ?></span><br />
       <?php } ?>
       <?php if ($store_company_tax_id) { ?>
-        <span style="font-size:12px;"><?php echo $store_company_tax_id; ?></span><br />
+        <span><?php echo $store_company_tax_id; ?></span><br />
       <?php } ?>
       </td>
       <td class="top-right">
@@ -69,8 +70,8 @@
     <tr>
       <td>
         <?php echo $payment_address; ?><br/><br/>
-        <?php echo $email; ?><br/>
-        <?php echo $text_telephone; ?>&nbsp;<?php echo $telephone; ?>
+        <img src="catalog/view/theme/<?php echo $template; ?>/image/location/phone.png" alt="" height="14" width="14" /> <?php echo $telephone; ?><br />
+        <img src="catalog/view/theme/<?php echo $template; ?>/image/location/mail.png" alt="" height="14" width="14" /> <?php echo $email; ?>
       </td>
       <td><?php echo $shipping_address; ?></td>
     </tr>

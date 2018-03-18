@@ -2436,11 +2436,9 @@ class ControllerSaleOrder extends Controller {
 		$this->data['text_invoice_no'] = $this->language->get('text_invoice_no');
 		$this->data['text_invoice_date'] = $this->language->get('text_invoice_date');
 		$this->data['text_date_added'] = $this->language->get('text_date_added');
-		$this->data['text_telephone'] = $this->language->get('text_telephone');
-		$this->data['text_fax'] = $this->language->get('text_fax');
-		$this->data['text_to'] = $this->language->get('text_to');
 		$this->data['text_company_id'] = $this->language->get('text_company_id');
 		$this->data['text_tax_id'] = $this->language->get('text_tax_id');
+		$this->data['text_to'] = $this->language->get('text_to');
 		$this->data['text_ship_to'] = $this->language->get('text_ship_to');
 		$this->data['text_payment_method'] = $this->language->get('text_payment_method');
 		$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
@@ -2619,10 +2617,12 @@ class ControllerSaleOrder extends Controller {
 						);
 					}
 
+					$bin_location = $this->model_sale_order->getOrderProductLocation($product['product_id']);
+
 					$product_data[] = array(
 						'name'     => $product['name'],
 						'barcode'  => ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], strtoupper($barcode_type), 1, 20) : '',
-						'location' => $this->model_sale_order->getOrderProductLocation($product['product_id']),
+						'location' => ($bin_location) ? $bin_location : null,
 						'model'    => $product['model'],
 						'option'   => $option_data,
 						'quantity' => $product['quantity']
@@ -2634,11 +2634,11 @@ class ControllerSaleOrder extends Controller {
 					'invoice_no'         => $invoice_no,
 					'date_added'         => date($this->language->get('date_format_short'), strtotime($order_info['date_added'])),
 					'store_name'         => $order_info['store_name'],
-					'store_url'          => rtrim($order_info['store_url'], '/'),
 					'store_address'      => nl2br($store_address),
 					'store_email'        => $store_email,
 					'store_telephone'    => $store_telephone,
 					'store_fax'          => $store_fax,
+					'store_url'          => rtrim($order_info['store_url'], '/'),
 					'telephone'          => $order_info['telephone'],
 					'shipping_address'   => ($same_address) ? '' : $shipping_address,
 					'shipping_method'    => $order_info['shipping_method'],
@@ -2685,11 +2685,9 @@ class ControllerSaleOrder extends Controller {
 		$this->data['text_invoice_no'] = $this->language->get('text_invoice_no');
 		$this->data['text_invoice_date'] = $this->language->get('text_invoice_date');
 		$this->data['text_date_added'] = $this->language->get('text_date_added');
-		$this->data['text_telephone'] = $this->language->get('text_telephone');
-		$this->data['text_fax'] = $this->language->get('text_fax');
-		$this->data['text_to'] = $this->language->get('text_to');
 		$this->data['text_company_id'] = $this->language->get('text_company_id');
 		$this->data['text_tax_id'] = $this->language->get('text_tax_id');
+		$this->data['text_to'] = $this->language->get('text_to');
 		$this->data['text_ship_to'] = $this->language->get('text_ship_to');
 		$this->data['text_payment_method'] = $this->language->get('text_payment_method');
 		$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
@@ -2882,11 +2880,11 @@ class ControllerSaleOrder extends Controller {
 					'invoice_no'           => $invoice_no,
 					'date_added'           => date($this->language->get('date_format_short'), strtotime($order_info['date_added'])),
 					'store_name'           => $order_info['store_name'],
-					'store_url'            => rtrim($order_info['store_url'], '/'),
 					'store_address'        => nl2br($store_address),
 					'store_email'          => $store_email,
 					'store_telephone'      => $store_telephone,
 					'store_fax'            => $store_fax,
+					'store_url'            => rtrim($order_info['store_url'], '/'),
 					'store_company_id'     => $store_company_id,
 					'store_company_tax_id' => $store_company_tax_id,
 					'telephone'            => $order_info['telephone'],
@@ -2935,14 +2933,12 @@ class ControllerSaleOrder extends Controller {
 		$this->data['text_invoice_no'] = $this->language->get('text_invoice_no');
 		$this->data['text_invoice_date'] = $this->language->get('text_invoice_date');
 		$this->data['text_date_added'] = $this->language->get('text_date_added');
-		$this->data['text_telephone'] = $this->language->get('text_telephone');
-		$this->data['text_fax'] = $this->language->get('text_fax');
-		$this->data['text_to'] = $this->language->get('text_to');
 		$this->data['text_company_id'] = $this->language->get('text_company_id');
 		$this->data['text_tax_id'] = $this->language->get('text_tax_id');
-		$this->data['text_ship_to'] = $this->language->get('text_ship_to');
 		$this->data['text_payment_method'] = $this->language->get('text_payment_method');
+		$this->data['text_payment_address'] = $this->language->get('text_payment_address');
 		$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
+		$this->data['text_shipping_address'] = $this->language->get('text_shipping_address');
 
 		$this->data['column_product'] = $this->language->get('column_product');
 		$this->data['column_model'] = $this->language->get('column_model');
@@ -3071,19 +3067,6 @@ class ControllerSaleOrder extends Controller {
 
 				$payment_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
 
-				if (!empty($payment_address)) {
-					$similar_address = similar_text(strtoupper($payment_address), strtoupper($shipping_address), $similarity);
-
-					if ($similar_address && number_format($similarity, 0) > 95) {
-						$same_address = true;
-					} else {
-						$same_address = false;
-					}
-
-				} else {
-					$same_address = true;
-				}
-
 				$product_data = array();
 
 				$products = $this->model_sale_order->getOrderProducts($order_id);
@@ -3136,18 +3119,18 @@ class ControllerSaleOrder extends Controller {
 					'invoice_no'           => $invoice_no,
 					'date_added'           => date($this->language->get('date_format_time'), strtotime($order_info['date_added'])),
 					'store_name'           => $order_info['store_name'],
-					'store_url'            => rtrim($order_info['store_url'], '/'),
 					'store_address'        => nl2br($store_address),
 					'store_email'          => $store_email,
 					'store_telephone'      => $store_telephone,
 					'store_fax'            => $store_fax,
+					'store_url'            => rtrim($order_info['store_url'], '/'),
 					'store_company_id'     => $store_company_id,
 					'store_company_tax_id' => $store_company_tax_id,
 					'email'                => $order_info['email'],
 					'telephone'            => $order_info['telephone'],
-					'shipping_address'     => ($same_address) ? '' : $shipping_address,
+					'shipping_address'     => $shipping_address,
 					'shipping_method'      => $order_info['shipping_method'],
-					'payment_address'      => ($same_address) ? $shipping_address : $payment_address,
+					'payment_address'      => $payment_address,
 					'payment_company_id'   => $order_info['payment_company_id'],
 					'payment_tax_id'       => $order_info['payment_tax_id'],
 					'payment_method'       => $order_info['payment_method'],

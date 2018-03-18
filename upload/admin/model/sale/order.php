@@ -783,18 +783,19 @@ class ModelSaleOrder extends Model {
 	}
 
 	public function getOrderProductLocation($product_id) {
-		$query = $this->db->query("SELECT DISTINCT location FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "'");
+		$query = $this->db->query("SELECT location FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "' LIMIT 0,1");
 
-		if (!empty($query->row)) {
+		if ($query->row) {
 			return $query->row;
 		} else {
-			return 0;
+			return false;
 		}
 	}
 
 	public function setPicked($order_product_id, $pick_status) {
 		if ($pick_status) {
 			$this->db->query("UPDATE " . DB_PREFIX . "order_product SET picked = '1' WHERE order_product_id = '" . (int)$order_product_id . "'");
+
 			$this->setBackOrdered($order_product_id, "");
 		} else {
 			$this->db->query("UPDATE " . DB_PREFIX . "order_product SET picked = '0' WHERE order_product_id = '" . (int)$order_product_id . "'");
@@ -804,7 +805,7 @@ class ModelSaleOrder extends Model {
 	public function setBackOrdered($order_product_id, $backorder) {
 		$this->db->query("UPDATE  " . DB_PREFIX . "order_product SET backordered = '" . $this->db->escape($backorder) . "' WHERE order_product_id = '" . (int)$order_product_id . "'");
 
-		if (!empty($backorder) || strlen($backorder) > 0) {
+		if ($backorder || strlen($backorder) > 0) {
 			$this->setPicked($order_product_id, false);
 		}
 	}

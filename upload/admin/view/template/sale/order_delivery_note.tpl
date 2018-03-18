@@ -18,19 +18,19 @@
   <table class="store">
     <tr>
       <td>
-        <?php echo $order['store_name']; ?><br />
-        <?php echo $order['store_address']; ?><br />
-        <?php echo $text_telephone; ?> <?php echo $order['store_telephone']; ?><br />
+        <b><?php echo $order['store_name']; ?></b><br />
+        <?php echo $order['store_address']; ?><br /><br />
+        <img src="view/image/location/phone.png" alt="" height="14" width="14" /> <?php echo $order['store_telephone']; ?><br />
         <?php if ($order['store_fax']) { ?>
-          <?php echo $text_fax; ?> <?php echo $order['store_fax']; ?><br />
+          <img src="view/image/location/fax.png" alt="" height="14" width="14" /> <?php echo $text_fax; ?> <?php echo $order['store_fax']; ?><br />
         <?php } ?>
-        <?php echo $order['store_email']; ?><br />
-        <?php echo $order['store_url']; ?><br />
+        <img src="view/image/location/mail.png" alt="" height="14" width="14" /> <?php echo $order['store_email']; ?><br />
+        <img src="view/image/location/global.png" alt="" height="14" width="14" /> <?php echo $order['store_url']; ?><br />
         <?php if ($order['store_company_id']) { ?>
-          <span style="font-size:12px;"><?php echo $order['store_company_id']; ?></span><br />
+          <span><?php echo $order['store_company_id']; ?></span><br />
         <?php } ?>
         <?php if ($order['store_company_tax_id']) { ?>
-          <span style="font-size:12px;"><?php echo $order['store_company_tax_id']; ?></span><br />
+          <span><?php echo $order['store_company_tax_id']; ?></span><br />
         <?php } ?>
       </td>
       <td class="top-right">
@@ -71,7 +71,7 @@
     <tr>
       <td>
         <?php echo $order['payment_address']; ?><br/><br/>
-        <?php echo $text_telephone; ?>&nbsp;<?php echo $order['telephone']; ?>
+        <img src="view/image/location/phone.png" alt="" height="14" width="14" /> <?php echo $order['telephone']; ?>
         <?php if ($order['payment_company_id']) { ?>
           <br/>
           <br/>

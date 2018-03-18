@@ -17,7 +17,7 @@
   <?php } ?>
   <table class="store" style="width:400px;">
     <tr>
-      <td><?php echo $order['store_url']; ?></td>
+      <td><img src="view/image/location/global.png" alt="" height="14" width="14" /> <?php echo $order['store_url']; ?></td>
     </tr>
   </table>
   <table class="address" style="width:400px;">
@@ -27,7 +27,7 @@
     <tr>
       <td>
         <b><?php echo $order['shipping_address']; ?></b><br /><br />
-        <?php echo $text_telephone; ?>&nbsp;<?php echo $order['telephone']; ?><br /><br />
+        <img src="view/image/location/phone.png" alt="" height="14" width="14" /> <?php echo $order['telephone']; ?><br /><br />
         <?php if ($order['shipping_method']) { ?>
           <b><?php echo $order['shipping_method']; ?></b>
         <?php } ?>

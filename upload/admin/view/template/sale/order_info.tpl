@@ -376,7 +376,7 @@
         <?php foreach ($totals as $totals) { ?>
         <tbody id="totals">
           <tr>
-            <td colspan="6" class="right"><b><?php echo $totals['title']; ?>:</b></td>
+            <td colspan="6" class="right"><?php echo $totals['title']; ?>:</td>
             <td class="right"><?php echo $totals['text']; ?></td>
           </tr>
         </tbody>

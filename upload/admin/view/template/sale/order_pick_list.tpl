@@ -18,14 +18,14 @@
   <table class="store">
     <tr>
       <td>
-        <?php echo $order['store_name']; ?><br />
-        <?php echo $order['store_address']; ?><br />
-        <?php echo $text_telephone; ?> <?php echo $order['store_telephone']; ?><br />
+        <b><?php echo $order['store_name']; ?></b><br />
+        <?php echo $order['store_address']; ?><br /><br />
+        <img src="view/image/location/phone.png" alt="" height="14" width="14" /> <?php echo $order['store_telephone']; ?><br />
         <?php if ($order['store_fax']) { ?>
-          <?php echo $text_fax; ?> <?php echo $order['store_fax']; ?><br />
+          <img src="view/image/location/fax.png" alt="" height="14" width="14" /> <?php echo $text_fax; ?> <?php echo $order['store_fax']; ?><br />
         <?php } ?>
-        <?php echo $order['store_email']; ?><br />
-        <?php echo $order['store_url']; ?>
+        <img src="view/image/location/mail.png" alt="" height="14" width="14" /> <?php echo $order['store_email']; ?><br />
+        <img src="view/image/location/global.png" alt="" height="14" width="14" /> <?php echo $order['store_url']; ?>
       </td>
       <td class="top-right">
         <table>
@@ -65,7 +65,7 @@
     <tr>
       <td>
         <?php echo $order['payment_address']; ?><br/><br/>
-        <?php echo $text_telephone; ?>&nbsp;<?php echo $order['telephone']; ?>
+        <img src="view/image/location/phone.png" alt="" height="14" width="14" /> <?php echo $order['telephone']; ?>
         <?php if ($order['payment_company_id']) { ?>
           <br/>
           <br/>
@@ -90,9 +90,9 @@
     </tr>
     <?php foreach ($order['product'] as $product) { ?>
     <tr>
-      <td class="left"><?php foreach ($product['location'] as $location) { ?>
-        <?php echo ($location) ? $location : '--'; ?>
-      <?php } ?></td>
+      <td class="left">
+        <?php echo (isset($product['location'])) ? $product['location'] : '--'; ?>
+      </td>
       <td class="left"><?php echo $product['name']; ?>
         <?php foreach ($product['option'] as $option) { ?>
           <br />
