@@ -16,7 +16,7 @@
   <h1><?php echo $heading_order; ?></h1>
   <table class="store">
     <tr>
-      <td>
+      <td class="top-left">
         <b><?php echo $store_name; ?></b><br />
         <?php echo $store_address; ?><br /><br />
         <img src="catalog/view/theme/<?php echo $template; ?>/image/location/phone.png" alt="" height="14" width="14" /> <?php echo $store_telephone; ?><br />
@@ -26,10 +26,10 @@
         <img src="catalog/view/theme/<?php echo $template; ?>/image/location/mail.png" alt="" height="14" width="14" /> <?php echo $store_email; ?><br />
         <img src="catalog/view/theme/<?php echo $template; ?>/image/location/global.png" alt="" height="14" width="14" /> <?php echo $store_url; ?><br />
       <?php if ($store_company_id) { ?>
-        <span><?php echo $store_company_id; ?></span><br />
+        <img src="catalog/view/theme/<?php echo $template; ?>/image/location/company.png" alt="" height="14" width="14" /> <?php echo $store_company_id; ?><br />
       <?php } ?>
       <?php if ($store_company_tax_id) { ?>
-        <span><?php echo $store_company_tax_id; ?></span><br />
+        <img src="catalog/view/theme/<?php echo $template; ?>/image/location/tax.png" alt="" height="14" width="14" /> <?php echo $store_company_tax_id; ?><br />
       <?php } ?>
       </td>
       <td class="top-right">
@@ -71,7 +71,13 @@
       <td>
         <?php echo $payment_address; ?><br/><br/>
         <img src="catalog/view/theme/<?php echo $template; ?>/image/location/phone.png" alt="" height="14" width="14" /> <?php echo $telephone; ?><br />
-        <img src="catalog/view/theme/<?php echo $template; ?>/image/location/mail.png" alt="" height="14" width="14" /> <?php echo $email; ?>
+        <img src="catalog/view/theme/<?php echo $template; ?>/image/location/mail.png" alt="" height="14" width="14" /> <?php echo $email; ?><br/>
+        <?php if ($payment_company) { ?>
+          <img src="catalog/view/theme/<?php echo $template; ?>/image/location/company.png" alt="" height="14" width="14" /> <?php echo $payment_company; ?><br/>
+        <?php } ?>
+        <?php if ($payment_company_id) { ?>
+          <img src="catalog/view/theme/<?php echo $template; ?>/image/location/tax.png" alt="" height="14" width="14" /> <?php echo $payment_company_id; ?><br/>
+        <?php } ?>
       </td>
       <td><?php echo $shipping_address; ?></td>
     </tr>

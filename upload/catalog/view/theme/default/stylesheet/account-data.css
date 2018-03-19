@@ -16,27 +16,36 @@ body, td, th, input, select, textarea, option, optgroup {
 	font-size: 16px;
 	color: #000;
 }
+td > span {
+	font-size: 12px;
+}
+td > img {
+	margin: 2px 2px 0 0;
+}
 h1 {
 	text-transform: uppercase;
-	color: #CCC;
+	color: #BBB;
 	text-align: right;
 	font-size: 24px;
 	font-weight: normal;
 	padding-bottom: 5px;
 	margin-top: 0;
 	margin-bottom: 15px;
-	border-bottom: 1px solid #CDDDDD;
+	border-bottom: 1px solid #DDD;
 }
 /* General */
 .store {
 	width: 100%;
 	margin-bottom: 20px;
 }
+.top-left {
+	width: 50%;
+}
 .top-right {
 	float: right;
+	width: 50%;
 	text-align: left;
 	vertical-align: top;
-	margin-right: 10px;
 }
 /* Table */
 table.address, table.personal {
@@ -45,7 +54,7 @@ table.address, table.personal {
 	margin-bottom: 20px;
 }
 table.personal > tbody {
-	border: 1px solid #CDDDDD;
+	border: 1px solid #DDD;
 }
 table.personal > tbody > tr > td:first-child {
 	width: 180px;
@@ -58,13 +67,13 @@ table.personal > tbody > tr > td {
 .address {
 	width: 100%;
 	margin-bottom: 20px;
-	border-top: 1px solid #CDDDDD;
-	border-right: 1px solid #CDDDDD;
+	border-top: 1px solid #DDD;
+	border-right: 1px solid #DDD;
 }
 .address td {
 	padding: 5px;
-	border-left: 1px solid #CDDDDD;
-	border-bottom: 1px solid #CDDDDD;
+	border-left: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
 	vertical-align: text-bottom;
 	margin-bottom: 10px;
 }

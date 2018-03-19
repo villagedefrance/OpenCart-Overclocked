@@ -17,19 +17,20 @@
   <h1><?php echo $text_customer_data; ?></h1>
   <table class="store">
     <tr>
-      <td>
-        <?php echo $customer['store_name']; ?><br />
-        <?php echo $customer['store_address']; ?><br />
-        <?php echo $text_telephone; ?> <?php echo $customer['store_telephone']; ?><br />
+      <td class="top-left">
+        <b><?php echo $customer['store_name']; ?></b><br />
+        <?php echo $customer['store_address']; ?><br /><br />
+        <img src="catalog/view/theme/<?php echo $template; ?>/image/location/phone.png" alt="" height="14" width="14" /> <?php echo $customer['store_telephone']; ?><br />
         <?php if ($customer['store_fax']) { ?>
-          <?php echo $text_fax; ?> <?php echo $customer['store_fax']; ?><br />
+          <img src="catalog/view/theme/<?php echo $template; ?>/image/location/fax.png" alt="" height="14" width="14" /> <?php echo $customer['store_fax']; ?><br />
         <?php } ?>
-        <?php echo $customer['store_email']; ?><br />
+        <img src="catalog/view/theme/<?php echo $template; ?>/image/location/mail.png" alt="" height="14" width="14" /> <?php echo $customer['store_email']; ?><br />
+		<img src="catalog/view/theme/<?php echo $template; ?>/image/location/global.png" alt="" height="14" width="14" /> <?php echo $customer['store_url']; ?><br />
         <?php if ($customer['store_company_id']) { ?>
-          <span style="font-size:12px;"><?php echo $customer['store_company_id']; ?></span><br />
+          <img src="catalog/view/theme/<?php echo $template; ?>/image/location/company.png" alt="" height="14" width="14" /> <?php echo $customer['store_company_id']; ?><br />
         <?php } ?>
         <?php if ($customer['store_company_tax_id']) { ?>
-          <span style="font-size:12px;"><?php echo $customer['store_company_tax_id']; ?></span><br />
+          <img src="catalog/view/theme/<?php echo $template; ?>/image/location/tax.png" alt="" height="14" width="14" /> <?php echo $customer['store_company_tax_id']; ?><br />
         <?php } ?>
       </td>
       <td class="top-right">

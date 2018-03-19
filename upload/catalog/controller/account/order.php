@@ -843,6 +843,9 @@ class ControllerAccountOrder extends Controller {
 
 			$this->data['shipping_method'] = $order_info['shipping_method'];
 
+			$this->data['payment_company'] = ($order_info['payment_company']) ? $order_info['payment_company'] : false;
+			$this->data['payment_company_id'] = ($order_info['payment_company_id']) ? $order_info['payment_company_id'] : false;
+
 			$this->data['products'] = array();
 
 			$products = $this->model_account_order->getOrderProducts($this->request->get['order_id']);

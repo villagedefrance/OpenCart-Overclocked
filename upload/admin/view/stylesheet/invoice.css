@@ -65,8 +65,12 @@ table.address, table.product, table.comment, table.delivery {
 .center {
 	text-align: center;
 }
+.top-left {
+	width: 50%;
+}
 .top-right {
 	float: right;
+	width: 50%;
 	text-align: left;
 	vertical-align: top;
 }

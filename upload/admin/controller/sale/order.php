@@ -2436,8 +2436,6 @@ class ControllerSaleOrder extends Controller {
 		$this->data['text_invoice_no'] = $this->language->get('text_invoice_no');
 		$this->data['text_invoice_date'] = $this->language->get('text_invoice_date');
 		$this->data['text_date_added'] = $this->language->get('text_date_added');
-		$this->data['text_company_id'] = $this->language->get('text_company_id');
-		$this->data['text_tax_id'] = $this->language->get('text_tax_id');
 		$this->data['text_to'] = $this->language->get('text_to');
 		$this->data['text_ship_to'] = $this->language->get('text_ship_to');
 		$this->data['text_payment_method'] = $this->language->get('text_payment_method');
@@ -2461,252 +2459,6 @@ class ControllerSaleOrder extends Controller {
 		$this->data['column_quantity'] = $this->language->get('column_quantity');
 		$this->data['column_status_picked'] = $this->language->get('column_status_picked');
 		$this->data['column_status_backordered'] = $this->language->get('column_status_backordered');
-		$this->data['column_comment'] = $this->language->get('column_comment');
-
-		$this->load->model('sale/order');
-		$this->load->model('setting/setting');
-		$this->load->model('tool/barcode');
-
-		$admin_barcode = $this->config->get('config_admin_barcode');
-		$barcode_type = $this->config->get('config_barcode_type');
-
-		$pdf = false;
-
-		$this->data['orders'] = array();
-
-		$orders = array();
-
-		if (isset($this->request->post['selected'])) {
-			$orders = $this->request->post['selected'];
-			$pdf = (isset($this->request->get['pdf'])) ? true : false;
-		} elseif (isset($this->request->get['order_id'])) {
-			$orders[] = $this->request->get['order_id'];
-			$pdf = (isset($this->request->get['pdf'])) ? true : false;
-		}
-
-		if ($this->config->get('config_logo') && file_exists(DIR_IMAGE . $this->config->get('config_logo'))) {
-			$this->data['logo'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG . 'image/' . $this->config->get('config_logo') : HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
-		} else {
-			$this->data['logo'] = '';
-		}
-
-		foreach ($orders as $order_id) {
-			$order_info = $this->model_sale_order->getOrder($order_id);
-
-			if ($order_info) {
-				$store_info = $this->model_setting_setting->getSetting('config', $order_info['store_id']);
-
-				if ($store_info) {
-					$store_address = $store_info['config_address'];
-					$store_email = $store_info['config_email'];
-					$store_telephone = $store_info['config_telephone'];
-					$store_fax = $store_info['config_fax'];
-				} else {
-					$store_address = $this->config->get('config_address');
-					$store_email = $this->config->get('config_email');
-					$store_telephone = $this->config->get('config_telephone');
-					$store_fax = $this->config->get('config_fax');
-				}
-
-				if ($order_info['invoice_no']) {
-					$invoice_no = $order_info['invoice_prefix'] . $order_info['invoice_no'];
-				} else {
-					$invoice_no = '';
-				}
-
-				if ($order_info['shipping_address_format']) {
-					$format = $order_info['shipping_address_format'];
-				} else {
-					$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
-				}
-
-				$find = array(
-					'{firstname}',
-					'{lastname}',
-					'{company}',
-					'{address_1}',
-					'{address_2}',
-					'{city}',
-					'{postcode}',
-					'{zone}',
-					'{zone_code}',
-					'{country}'
-				);
-
-				$replace = array(
-					'firstname' => $order_info['shipping_firstname'],
-					'lastname'  => $order_info['shipping_lastname'],
-					'company'   => $order_info['shipping_company'],
-					'address_1' => $order_info['shipping_address_1'],
-					'address_2' => $order_info['shipping_address_2'],
-					'city'      => $order_info['shipping_city'],
-					'postcode'  => $order_info['shipping_postcode'],
-					'zone'      => $order_info['shipping_zone'],
-					'zone_code' => $order_info['shipping_zone_code'],
-					'country'   => $order_info['shipping_country']
-				);
-
-				$shipping_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
-
-				if ($order_info['payment_address_format']) {
-					$format = $order_info['payment_address_format'];
-				} else {
-					$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
-				}
-
-				$find = array(
-					'{firstname}',
-					'{lastname}',
-					'{company}',
-					'{address_1}',
-					'{address_2}',
-					'{city}',
-					'{postcode}',
-					'{zone}',
-					'{zone_code}',
-					'{country}'
-				);
-
-				$replace = array(
-					'firstname' => $order_info['payment_firstname'],
-					'lastname'  => $order_info['payment_lastname'],
-					'company'   => $order_info['payment_company'],
-					'address_1' => $order_info['payment_address_1'],
-					'address_2' => $order_info['payment_address_2'],
-					'city'      => $order_info['payment_city'],
-					'postcode'  => $order_info['payment_postcode'],
-					'zone'      => $order_info['payment_zone'],
-					'zone_code' => $order_info['payment_zone_code'],
-					'country'   => $order_info['payment_country']
-				);
-
-				$payment_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
-
-				if (!empty($payment_address)) {
-					$similar_address = similar_text(strtoupper($payment_address), strtoupper($shipping_address), $similarity);
-
-					if ($similar_address && number_format($similarity, 0) > 95) {
-						$same_address = true;
-					} else {
-						$same_address = false;
-					}
-
-				} else {
-					$same_address = true;
-				}
-
-				$product_data = array();
-
-				$products = $this->model_sale_order->getOrderProducts($order_id);
-
-				foreach ($products as $product) {
-					$option_data = array();
-
-					$options = $this->model_sale_order->getOrderOptions($order_id, $product['order_product_id']);
-
-					foreach ($options as $option) {
-						if ($option['type'] != 'file') {
-							$value = $option['value'];
-						} else {
-							$value = utf8_substr($option['value'], 0, utf8_strrpos($option['value'], '.'));
-						}
-
-						$option_data[] = array(
-							'name'  => $option['name'],
-							'value' => $value
-						);
-					}
-
-					$bin_location = $this->model_sale_order->getOrderProductLocation($product['product_id']);
-
-					$product_data[] = array(
-						'name'     => $product['name'],
-						'barcode'  => ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], strtoupper($barcode_type), 1, 20) : '',
-						'location' => ($bin_location) ? $bin_location : null,
-						'model'    => $product['model'],
-						'option'   => $option_data,
-						'quantity' => $product['quantity']
-					);
-				}
-
-				$this->data['orders'][] = array(
-					'order_id'           => $order_id,
-					'invoice_no'         => $invoice_no,
-					'date_added'         => date($this->language->get('date_format_short'), strtotime($order_info['date_added'])),
-					'store_name'         => $order_info['store_name'],
-					'store_address'      => nl2br($store_address),
-					'store_email'        => $store_email,
-					'store_telephone'    => $store_telephone,
-					'store_fax'          => $store_fax,
-					'store_url'          => rtrim($order_info['store_url'], '/'),
-					'telephone'          => $order_info['telephone'],
-					'shipping_address'   => ($same_address) ? '' : $shipping_address,
-					'shipping_method'    => $order_info['shipping_method'],
-					'payment_address'    => ($same_address) ? $shipping_address : $payment_address,
-					'payment_company_id' => $order_info['payment_company_id'],
-					'payment_tax_id'     => $order_info['payment_tax_id'],
-					'payment_method'     => $order_info['payment_method'],
-					'product'            => $product_data,
-					'comment'            => nl2br($order_info['comment'])
-				);
-			}
-		}
-
-		$this->template = 'sale/order_pick_list.tpl';
-
-		if ($pdf) {
-			$document_type = $this->language->get('text_pick_list');
-
-			$this->response->setOutput(pdf($this->render(), $document_type, $this->request->get['order_id']));
-		} else {
-			$this->response->setOutput($this->render());
-		}
-	}
-
-	public function deliveryNote() {
-		$this->language->load('sale/order');
-
-		$this->data['title'] = $this->language->get('heading_title');
-
-		if ((isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) || ($this->request->server['HTTPS'] == '443')) {
-			$this->data['base'] = HTTPS_SERVER;
-		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
-			$this->data['base'] = HTTPS_SERVER;
-		} else {
-			$this->data['base'] = HTTP_SERVER;
-		}
-
-		$this->data['direction'] = $this->language->get('direction');
-		$this->data['language'] = $this->language->get('code');
-
-		$this->data['text_delivery_note'] = $this->language->get('text_delivery_note');
-
-		$this->data['text_order_id'] = $this->language->get('text_order_id');
-		$this->data['text_invoice_no'] = $this->language->get('text_invoice_no');
-		$this->data['text_invoice_date'] = $this->language->get('text_invoice_date');
-		$this->data['text_date_added'] = $this->language->get('text_date_added');
-		$this->data['text_company_id'] = $this->language->get('text_company_id');
-		$this->data['text_tax_id'] = $this->language->get('text_tax_id');
-		$this->data['text_to'] = $this->language->get('text_to');
-		$this->data['text_ship_to'] = $this->language->get('text_ship_to');
-		$this->data['text_payment_method'] = $this->language->get('text_payment_method');
-		$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
-
-		$this->data['text_shipping_collection'] = $this->language->get('text_shipping_collection');
-		$this->data['text_customer_reception'] = $this->language->get('text_customer_reception');
-		$this->data['text_collection_reference'] = $this->language->get('text_collection_reference');
-		$this->data['text_collection_date'] = $this->language->get('text_collection_date');
-		$this->data['text_collection_time'] = $this->language->get('text_collection_time');
-		$this->data['text_collection_name'] = $this->language->get('text_collection_name');
-		$this->data['text_collection_sign'] = $this->language->get('text_collection_sign');
-		$this->data['text_reception_name'] = $this->language->get('text_reception_name');
-		$this->data['text_reception_sign'] = $this->language->get('text_reception_sign');
-		$this->data['text_reception_date'] = $this->language->get('text_reception_date');
-		$this->data['text_reception_condition'] = $this->language->get('text_reception_condition');
-
-		$this->data['column_product'] = $this->language->get('column_product');
-		$this->data['column_model'] = $this->language->get('column_model');
-		$this->data['column_quantity'] = $this->language->get('column_quantity');
 		$this->data['column_comment'] = $this->language->get('column_comment');
 
 		$this->load->model('sale/order');
@@ -2866,6 +2618,242 @@ class ControllerSaleOrder extends Controller {
 						);
 					}
 
+					$bin_location = $this->model_sale_order->getOrderProductLocation($product['product_id']);
+
+					$product_data[] = array(
+						'name'     => $product['name'],
+						'barcode'  => ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], strtoupper($barcode_type), 1, 20) : '',
+						'location' => ($bin_location) ? $bin_location : false,
+						'model'    => $product['model'],
+						'option'   => $option_data,
+						'quantity' => $product['quantity']
+					);
+				}
+
+				$this->data['orders'][] = array(
+					'order_id'             => $order_id,
+					'invoice_no'           => $invoice_no,
+					'date_added'           => date($this->language->get('date_format_short'), strtotime($order_info['date_added'])),
+					'store_name'           => $this->config->get('config_name'),
+					'store_address'        => nl2br($store_address),
+					'store_email'          => $store_email,
+					'store_telephone'      => $store_telephone,
+					'store_fax'            => $store_fax,
+					'store_url'            => rtrim($order_info['store_url'], '/'),
+					'store_company_id'     => $store_company_id,
+					'store_company_tax_id' => $store_company_tax_id,
+					'telephone'            => $order_info['telephone'],
+					'shipping_address'     => ($same_address) ? '' : $shipping_address,
+					'shipping_method'      => $order_info['shipping_method'],
+					'payment_address'      => ($same_address) ? $shipping_address : $payment_address,
+					'payment_company'      => $order_info['payment_company'],
+					'payment_company_id'   => $order_info['payment_company_id'],
+					'payment_method'       => $order_info['payment_method'],
+					'product'              => $product_data,
+					'comment'              => nl2br($order_info['comment'])
+				);
+			}
+		}
+
+		$this->template = 'sale/order_pick_list.tpl';
+
+		if ($pdf) {
+			$document_type = $this->language->get('text_pick_list');
+
+			$this->response->setOutput(pdf($this->render(), $document_type, $this->request->get['order_id']));
+		} else {
+			$this->response->setOutput($this->render());
+		}
+	}
+
+	public function deliveryNote() {
+		$this->language->load('sale/order');
+
+		$this->data['title'] = $this->language->get('heading_title');
+
+		if ((isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) || ($this->request->server['HTTPS'] == '443')) {
+			$this->data['base'] = HTTPS_SERVER;
+		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
+			$this->data['base'] = HTTPS_SERVER;
+		} else {
+			$this->data['base'] = HTTP_SERVER;
+		}
+
+		$this->data['direction'] = $this->language->get('direction');
+		$this->data['language'] = $this->language->get('code');
+
+		$this->data['text_delivery_note'] = $this->language->get('text_delivery_note');
+
+		$this->data['text_order_id'] = $this->language->get('text_order_id');
+		$this->data['text_invoice_no'] = $this->language->get('text_invoice_no');
+		$this->data['text_invoice_date'] = $this->language->get('text_invoice_date');
+		$this->data['text_date_added'] = $this->language->get('text_date_added');
+		$this->data['text_payment_method'] = $this->language->get('text_payment_method');
+		$this->data['text_payment_address'] = $this->language->get('text_payment_address');
+		$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
+		$this->data['text_shipping_address'] = $this->language->get('text_shipping_address');
+
+		$this->data['text_shipping_collection'] = $this->language->get('text_shipping_collection');
+		$this->data['text_customer_reception'] = $this->language->get('text_customer_reception');
+		$this->data['text_collection_reference'] = $this->language->get('text_collection_reference');
+		$this->data['text_collection_date'] = $this->language->get('text_collection_date');
+		$this->data['text_collection_time'] = $this->language->get('text_collection_time');
+		$this->data['text_collection_name'] = $this->language->get('text_collection_name');
+		$this->data['text_collection_sign'] = $this->language->get('text_collection_sign');
+		$this->data['text_reception_name'] = $this->language->get('text_reception_name');
+		$this->data['text_reception_sign'] = $this->language->get('text_reception_sign');
+		$this->data['text_reception_date'] = $this->language->get('text_reception_date');
+		$this->data['text_reception_condition'] = $this->language->get('text_reception_condition');
+
+		$this->data['column_product'] = $this->language->get('column_product');
+		$this->data['column_model'] = $this->language->get('column_model');
+		$this->data['column_quantity'] = $this->language->get('column_quantity');
+		$this->data['column_comment'] = $this->language->get('column_comment');
+
+		$this->load->model('sale/order');
+		$this->load->model('setting/setting');
+		$this->load->model('tool/barcode');
+
+		$admin_barcode = $this->config->get('config_admin_barcode');
+		$barcode_type = $this->config->get('config_barcode_type');
+
+		$pdf = false;
+
+		$this->data['orders'] = array();
+
+		$orders = array();
+
+		if (isset($this->request->post['selected'])) {
+			$orders = $this->request->post['selected'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
+		} elseif (isset($this->request->get['order_id'])) {
+			$orders[] = $this->request->get['order_id'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
+		}
+
+		if ($this->config->get('config_logo') && file_exists(DIR_IMAGE . $this->config->get('config_logo'))) {
+			$this->data['logo'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG . 'image/' . $this->config->get('config_logo') : HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+		} else {
+			$this->data['logo'] = '';
+		}
+
+		foreach ($orders as $order_id) {
+			$order_info = $this->model_sale_order->getOrder($order_id);
+
+			if ($order_info) {
+				$store_info = $this->model_setting_setting->getSetting('config', $order_info['store_id']);
+
+				if ($store_info) {
+					$store_address = $store_info['config_address'];
+					$store_email = $store_info['config_email'];
+					$store_telephone = $store_info['config_telephone'];
+					$store_fax = $store_info['config_fax'];
+				} else {
+					$store_address = $this->config->get('config_address');
+					$store_email = $this->config->get('config_email');
+					$store_telephone = $this->config->get('config_telephone');
+					$store_fax = $this->config->get('config_fax');
+				}
+
+				$store_company_id = $this->config->get('config_company_id') ? $this->config->get('config_company_id') : '';
+				$store_company_tax_id = $this->config->get('config_company_tax_id') ? $this->config->get('config_company_tax_id') : '';
+
+				if ($order_info['invoice_no']) {
+					$invoice_no = $order_info['invoice_prefix'] . $order_info['invoice_no'];
+				} else {
+					$invoice_no = '';
+				}
+
+				if ($order_info['shipping_address_format']) {
+					$format = $order_info['shipping_address_format'];
+				} else {
+					$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+				}
+
+				$find = array(
+					'{firstname}',
+					'{lastname}',
+					'{company}',
+					'{address_1}',
+					'{address_2}',
+					'{city}',
+					'{postcode}',
+					'{zone}',
+					'{zone_code}',
+					'{country}'
+				);
+
+				$replace = array(
+					'firstname' => $order_info['shipping_firstname'],
+					'lastname'  => $order_info['shipping_lastname'],
+					'company'   => $order_info['shipping_company'],
+					'address_1' => $order_info['shipping_address_1'],
+					'address_2' => $order_info['shipping_address_2'],
+					'city'      => $order_info['shipping_city'],
+					'postcode'  => $order_info['shipping_postcode'],
+					'zone'      => $order_info['shipping_zone'],
+					'zone_code' => $order_info['shipping_zone_code'],
+					'country'   => $order_info['shipping_country']
+				);
+
+				$shipping_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
+
+				if ($order_info['payment_address_format']) {
+					$format = $order_info['payment_address_format'];
+				} else {
+					$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+				}
+
+				$find = array(
+					'{firstname}',
+					'{lastname}',
+					'{company}',
+					'{address_1}',
+					'{address_2}',
+					'{city}',
+					'{postcode}',
+					'{zone}',
+					'{zone_code}',
+					'{country}'
+				);
+
+				$replace = array(
+					'firstname' => $order_info['payment_firstname'],
+					'lastname'  => $order_info['payment_lastname'],
+					'company'   => $order_info['payment_company'],
+					'address_1' => $order_info['payment_address_1'],
+					'address_2' => $order_info['payment_address_2'],
+					'city'      => $order_info['payment_city'],
+					'postcode'  => $order_info['payment_postcode'],
+					'zone'      => $order_info['payment_zone'],
+					'zone_code' => $order_info['payment_zone_code'],
+					'country'   => $order_info['payment_country']
+				);
+
+				$payment_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
+
+				$product_data = array();
+
+				$products = $this->model_sale_order->getOrderProducts($order_id);
+
+				foreach ($products as $product) {
+					$option_data = array();
+
+					$options = $this->model_sale_order->getOrderOptions($order_id, $product['order_product_id']);
+
+					foreach ($options as $option) {
+						if ($option['type'] != 'file') {
+							$value = $option['value'];
+						} else {
+							$value = utf8_substr($option['value'], 0, utf8_strrpos($option['value'], '.'));
+						}
+
+						$option_data[] = array(
+							'name'  => $option['name'],
+							'value' => $value
+						);
+					}
+
 					$product_data[] = array(
 						'name'     => $product['name'],
 						'barcode'  => ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], strtoupper($barcode_type), 1, 20) : '',
@@ -2879,7 +2867,7 @@ class ControllerSaleOrder extends Controller {
 					'order_id'             => $order_id,
 					'invoice_no'           => $invoice_no,
 					'date_added'           => date($this->language->get('date_format_short'), strtotime($order_info['date_added'])),
-					'store_name'           => $order_info['store_name'],
+					'store_name'           => $this->config->get('config_name'),
 					'store_address'        => nl2br($store_address),
 					'store_email'          => $store_email,
 					'store_telephone'      => $store_telephone,
@@ -2888,11 +2876,11 @@ class ControllerSaleOrder extends Controller {
 					'store_company_id'     => $store_company_id,
 					'store_company_tax_id' => $store_company_tax_id,
 					'telephone'            => $order_info['telephone'],
-					'shipping_address'     => ($same_address) ? '' : $shipping_address,
+					'shipping_address'     => $shipping_address,
 					'shipping_method'      => $order_info['shipping_method'],
-					'payment_address'      => ($same_address) ? $shipping_address : $payment_address,
+					'payment_address'      => $payment_address,
+					'payment_company'      => $order_info['payment_company'],
 					'payment_company_id'   => $order_info['payment_company_id'],
-					'payment_tax_id'       => $order_info['payment_tax_id'],
 					'payment_method'       => $order_info['payment_method'],
 					'product'              => $product_data,
 					'comment'              => nl2br($order_info['comment'])
@@ -2933,8 +2921,6 @@ class ControllerSaleOrder extends Controller {
 		$this->data['text_invoice_no'] = $this->language->get('text_invoice_no');
 		$this->data['text_invoice_date'] = $this->language->get('text_invoice_date');
 		$this->data['text_date_added'] = $this->language->get('text_date_added');
-		$this->data['text_company_id'] = $this->language->get('text_company_id');
-		$this->data['text_tax_id'] = $this->language->get('text_tax_id');
 		$this->data['text_payment_method'] = $this->language->get('text_payment_method');
 		$this->data['text_payment_address'] = $this->language->get('text_payment_address');
 		$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
@@ -3118,7 +3104,7 @@ class ControllerSaleOrder extends Controller {
 					'order_id'             => $order_id,
 					'invoice_no'           => $invoice_no,
 					'date_added'           => date($this->language->get('date_format_time'), strtotime($order_info['date_added'])),
-					'store_name'           => $order_info['store_name'],
+					'store_name'           => $this->config->get('config_name'),
 					'store_address'        => nl2br($store_address),
 					'store_email'          => $store_email,
 					'store_telephone'      => $store_telephone,
@@ -3131,8 +3117,8 @@ class ControllerSaleOrder extends Controller {
 					'shipping_address'     => $shipping_address,
 					'shipping_method'      => $order_info['shipping_method'],
 					'payment_address'      => $payment_address,
+					'payment_company'      => $order_info['payment_company'],
 					'payment_company_id'   => $order_info['payment_company_id'],
-					'payment_tax_id'       => $order_info['payment_tax_id'],
 					'payment_method'       => $order_info['payment_method'],
 					'product'              => $product_data,
 					'voucher'              => $voucher_data,

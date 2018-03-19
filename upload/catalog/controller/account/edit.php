@@ -354,6 +354,8 @@ class ControllerAccountEdit extends Controller {
 					$store_fax = $this->config->get('config_fax');
 				}
 
+				$store_url = $this->request->server['HTTPS'] ? rtrim(HTTPS_SERVER, '/') : rtrim(HTTP_SERVER, '/');
+
 				$store_company_id = $this->config->get('config_company_id') ? $this->config->get('config_company_id') : '';
 				$store_company_tax_id = $this->config->get('config_company_tax_id') ? $this->config->get('config_company_tax_id') : '';
 
@@ -397,6 +399,7 @@ class ControllerAccountEdit extends Controller {
 					'store_email'          => $store_email,
 					'store_telephone'      => $store_telephone,
 					'store_fax'            => $store_fax,
+					'store_url'            => $store_url,
 					'store_company_id'     => $store_company_id,
 					'store_company_tax_id' => $store_company_tax_id,
 					'firstname'            => $customer_info['firstname'],

@@ -17,7 +17,7 @@
   <h1><?php echo $text_invoice; ?></h1>
   <table class="store">
     <tr>
-      <td>
+      <td class="top-left">
         <b><?php echo $order['store_name']; ?></b><br />
         <?php echo $order['store_address']; ?><br /><br />
         <img src="view/image/location/phone.png" alt="" height="14" width="14" /> <?php echo $order['store_telephone']; ?><br />
@@ -27,10 +27,10 @@
         <img src="view/image/location/mail.png" alt="" height="14" width="14" /> <?php echo $order['store_email']; ?><br />
         <img src="view/image/location/global.png" alt="" height="14" width="14" /> <?php echo $order['store_url']; ?><br />
         <?php if ($order['store_company_id']) { ?>
-          <span><?php echo $order['store_company_id']; ?></span><br />
+          <img src="view/image/location/company.png" alt="" height="14" width="14" /> <?php echo $order['store_company_id']; ?><br />
         <?php } ?>
         <?php if ($order['store_company_tax_id']) { ?>
-          <span><?php echo $order['store_company_tax_id']; ?></span><br />
+          <img src="view/image/location/tax.png" alt="" height="14" width="14" /> <?php echo $order['store_company_tax_id']; ?><br />
         <?php } ?>
       </td>
       <td class="top-right">
@@ -72,15 +72,12 @@
       <td>
         <?php echo $order['payment_address']; ?><br/><br/>
         <img src="view/image/location/phone.png" alt="" height="14" width="14" /> <?php echo $order['telephone']; ?><br/>
-        <img src="view/image/location/mail.png" alt="" height="14" width="14" /> <?php echo $order['email']; ?>
-        <?php if ($order['payment_company_id']) { ?>
-          <br/>
-          <br/>
-          <?php echo $text_company_id; ?> <?php echo $order['payment_company_id']; ?>
+        <img src="view/image/location/mail.png" alt="" height="14" width="14" /> <?php echo $order['email']; ?><br/>
+        <?php if ($order['payment_company']) { ?>
+          <img src="view/image/location/company.png" alt="" height="14" width="14" /> <?php echo $order['payment_company']; ?><br/>
         <?php } ?>
-        <?php if ($order['payment_tax_id']) { ?>
-          <br/>
-          <?php echo $text_tax_id; ?> <?php echo $order['payment_tax_id']; ?>
+        <?php if ($order['payment_company_id']) { ?>
+          <img src="view/image/location/tax.png" alt="" height="14" width="14" /> <?php echo $order['payment_company_id']; ?><br/>
         <?php } ?>
       </td>
       <td><?php echo $order['shipping_address']; ?></td>
