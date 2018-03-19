@@ -100,6 +100,11 @@
     </tr>
   </table>
 <?php } ?>
+  <table class="bank">
+    <tr>
+      <td class="center"><span><?php echo $customer['store_name']; ?> <?php echo $text_copyrights; ?></span></td>
+    </tr>
+  <table>
 </div>
 <?php } ?>
 </body>

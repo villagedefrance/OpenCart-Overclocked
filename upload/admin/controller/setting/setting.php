@@ -117,6 +117,9 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_fax'] = $this->language->get('entry_fax');
 		$this->data['entry_company_id'] = $this->language->get('entry_company_id');
 		$this->data['entry_company_tax_id'] = $this->language->get('entry_company_tax_id');
+		$this->data['entry_bank_name'] = $this->language->get('entry_bank_name');
+		$this->data['entry_bank_sort_code'] = $this->language->get('entry_bank_sort_code');
+		$this->data['entry_bank_account'] = $this->language->get('entry_bank_account');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_meta_description'] = $this->language->get('entry_meta_description');
 		$this->data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
@@ -768,6 +771,24 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_company_tax_id'] = $this->request->post['config_company_tax_id'];
 		} else {
 			$this->data['config_company_tax_id'] = $this->config->get('config_company_tax_id');
+		}
+
+		if (isset($this->request->post['config_bank_name'])) {
+			$this->data['config_bank_name'] = $this->request->post['config_bank_name'];
+		} else {
+			$this->data['config_bank_name'] = $this->config->get('config_bank_name');
+		}
+
+		if (isset($this->request->post['config_bank_sort_code'])) {
+			$this->data['config_bank_sort_code'] = $this->request->post['config_bank_sort_code'];
+		} else {
+			$this->data['config_bank_sort_code'] = $this->config->get('config_bank_sort_code');
+		}
+
+		if (isset($this->request->post['config_bank_account'])) {
+			$this->data['config_bank_account'] = $this->request->post['config_bank_account'];
+		} else {
+			$this->data['config_bank_account'] = $this->config->get('config_bank_account');
 		}
 
 		// Store

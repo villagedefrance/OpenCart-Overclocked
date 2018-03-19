@@ -9,6 +9,9 @@ $_['text_order_id']              = 'Order ID:';
 $_['text_amazon_order_id']       = 'Amazon Order ID:';
 $_['text_invoice_no']            = 'Invoice N&deg;:';
 $_['text_invoice_date']          = 'Invoice Date:';
+$_['text_bank_name']             = 'Registered Bank:';
+$_['text_bank_account']          = 'Account N&deg;:';
+$_['text_copyrights']            = '&copy; ' . date('Y') . ' All Rights Reserved';
 $_['text_store_name']            = 'Store Name:';
 $_['text_store_url']             = 'Store Url:';
 $_['text_customer']              = 'Customer:';
@@ -17,10 +20,10 @@ $_['text_email']                 = 'Email:';
 $_['text_phone']                 = 'Phone:';
 $_['text_telephone']             = 'Telephone:';
 $_['text_fax']                   = 'Fax:';
-$_['text_shipping_address'] = 'Shipping Address';
-$_['text_shipping_method'] = 'Shipping Method:';
-$_['text_payment_address'] = 'Payment Address';
-$_['text_payment_method'] = 'Payment Method:';
+$_['text_shipping_address']      = 'Shipping Address';
+$_['text_shipping_method']       = 'Shipping Method:';
+$_['text_payment_address']       = 'Payment Address';
+$_['text_payment_method']        = 'Payment Method:';
 $_['text_total']                 = 'Total:';
 $_['text_reward']                = 'Reward Points:';
 $_['text_order_status']          = 'Order Status:';
@@ -166,7 +169,7 @@ $_['button_update']              = 'Update History';
 $_['tab_pick_list']              = 'Pick List';
 
 // Help
-$_['help_autocomplete'] = '(Autocomplete)';
+$_['help_autocomplete']          = '(Autocomplete)';
 
 // Error
 $_['error_warning']              = 'Warning: Please check the form carefully for errors!';

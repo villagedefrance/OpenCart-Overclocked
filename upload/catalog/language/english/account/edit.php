@@ -56,6 +56,7 @@ $_['text_gender']          = 'Gender:';
 $_['text_date_of_birth']   = 'Date of birth:';
 $_['text_ip']              = 'IP address:';
 $_['text_user_agent']      = 'User agent:';
+$_['text_copyrights']      = '&copy; ' . date('Y') . ' All Rights Reserved';
 
 $_['text_firstname']       = 'First name:';
 $_['text_lastname']        = 'Last name:';

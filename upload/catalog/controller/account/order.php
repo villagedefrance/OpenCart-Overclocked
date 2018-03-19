@@ -692,6 +692,9 @@ class ControllerAccountOrder extends Controller {
 		$this->data['text_invoice_no'] = $this->language->get('text_invoice_no');
 		$this->data['text_order_id'] = $this->language->get('text_order_id');
 		$this->data['text_date_added'] = $this->language->get('text_date_added');
+		$this->data['text_bank_name'] = $this->language->get('text_bank_name');
+		$this->data['text_bank_account'] = $this->language->get('text_bank_account');
+		$this->data['text_copyrights'] = $this->language->get('text_copyrights');
 		$this->data['text_payment_method'] = $this->language->get('text_payment_method');
 		$this->data['text_payment_address'] = $this->language->get('text_payment_address');
 		$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
@@ -717,6 +720,10 @@ class ControllerAccountOrder extends Controller {
 		} else {
 			$this->data['logo'] = '';
 		}
+
+		$this->data['bank_name'] = $this->config->get('config_bank_name') ? $this->config->get('config_bank_name') : '';
+		$this->data['bank_sort_code'] = $this->config->get('config_bank_sort_code') ? $this->config->get('config_bank_sort_code') : '';
+		$this->data['bank_account'] = $this->config->get('config_bank_account') ? $this->config->get('config_bank_account') : '';
 
 		if (isset($this->request->get['order_id'])) {
 			$order_id = $this->request->get['order_id'];

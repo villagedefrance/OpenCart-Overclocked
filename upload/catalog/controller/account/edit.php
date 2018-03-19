@@ -303,6 +303,7 @@ class ControllerAccountEdit extends Controller {
 		$this->data['text_date_of_birth'] = $this->language->get('text_date_of_birth');
 		$this->data['text_ip'] = $this->language->get('text_ip');
 		$this->data['text_user_agent'] = $this->language->get('text_user_agent');
+		$this->data['text_copyrights'] = $this->language->get('text_copyrights');
 
 		$this->data['text_firstname'] = $this->language->get('text_firstname');
 		$this->data['text_lastname'] = $this->language->get('text_lastname');

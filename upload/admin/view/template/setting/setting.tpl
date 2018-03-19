@@ -104,6 +104,18 @@
             <td><?php echo $entry_company_tax_id; ?></td>
             <td><input type="text" name="config_company_tax_id" value="<?php echo $config_company_tax_id; ?>" size="40" /></td>
           </tr>
+          <tr>
+            <td><?php echo $entry_bank_name; ?></td>
+            <td><input type="text" name="config_bank_name" value="<?php echo $config_bank_name; ?>" size="40" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_bank_sort_code; ?></td>
+            <td><input type="text" name="config_bank_sort_code" value="<?php echo $config_bank_sort_code; ?>" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_bank_account; ?></td>
+            <td><input type="text" name="config_bank_account" value="<?php echo $config_bank_account; ?>" /></td>
+          </tr>
         </table>
       </div>
       <div id="tab-store">

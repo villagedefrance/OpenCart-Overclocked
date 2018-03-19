@@ -126,6 +126,16 @@
     </tr>
   <?php } ?>
   </table>
+  <table class="bank">
+  <?php if (isset($bank_name) && isset($bank_sort_code) && isset($bank_account)) { ?>
+    <tr>
+      <td class="center"><span><?php echo $text_bank_name; ?> <?php echo $bank_name; ?> - <?php echo $text_bank_account; ?> <?php echo $bank_sort_code; ?> <?php echo $bank_account; ?></span></td>
+    </tr>
+  <?php } ?>
+    <tr>
+      <td class="center"><span><?php echo $store_name; ?> <?php echo $text_copyrights; ?></span></td>
+    </tr>
+  <table>
 </div>
 </body>
 </html>

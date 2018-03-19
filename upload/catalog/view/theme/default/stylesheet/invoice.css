@@ -16,8 +16,8 @@ body, td, th, input, select, textarea, option, optgroup {
 	font-size: 14px;
 	color: #000;
 }
-td > span {
-	font-size: 12px;
+td span {
+	font-size: 10px;
 }
 td > img {
 	margin: 2px 2px 0 0;
@@ -55,6 +55,10 @@ table.address, table.product, table.comment, table.history {
 	width: 100%;
 	border-collapse: collapse;
 	margin-bottom: 20px;
+}
+table.bank {
+	width: 100%;
+	margin-top: 20px;
 }
 .left {
 	text-align: left;
