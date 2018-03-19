@@ -1,5 +1,5 @@
 div.cke_dialog_ui_scaytItemList {
-	border: 1px solid #c9cccf;
+	border: 1px solid #C9CCCF;
 }
 .cke_scaytItemList-child {
 	position: relative;
@@ -9,7 +9,7 @@ div.cke_dialog_ui_scaytItemList {
 	white-space: nowrap;
 }
 .cke_scaytItemList-child:hover {
-	background: #ebebeb;
+	background: #EBEBEB;
 }
 .cke_scaytItemList-child .cke_scaytItemList_remove {
 	position: absolute;

@@ -1,14 +1,14 @@
 /* Taken from the popular Visual Studio Vibrant Ink Schema */
 
 .cm-s-vibrant-ink.CodeMirror { background: black; color: white; }
-.cm-s-vibrant-ink div.CodeMirror-selected { background: #35493c; }
+.cm-s-vibrant-ink div.CodeMirror-selected { background: #35493C; }
 .cm-s-vibrant-ink .CodeMirror-line::selection, .cm-s-vibrant-ink .CodeMirror-line > span::selection, .cm-s-vibrant-ink .CodeMirror-line > span > span::selection { background: rgba(53, 73, 60, 0.99); }
 .cm-s-vibrant-ink .CodeMirror-line::-moz-selection, .cm-s-vibrant-ink .CodeMirror-line > span::-moz-selection, .cm-s-vibrant-ink .CodeMirror-line > span > span::-moz-selection { background: rgba(53, 73, 60, 0.99); }
 
-.cm-s-vibrant-ink .CodeMirror-gutters { background: #002240; border-right: 1px solid #aaa; }
+.cm-s-vibrant-ink .CodeMirror-gutters { background: #002240; border-right: 1px solid #AAA; }
 .cm-s-vibrant-ink .CodeMirror-guttermarker { color: white; }
-.cm-s-vibrant-ink .CodeMirror-guttermarker-subtle { color: #d0d0d0; }
-.cm-s-vibrant-ink .CodeMirror-linenumber { color: #d0d0d0; }
+.cm-s-vibrant-ink .CodeMirror-guttermarker-subtle { color: #D0D0D0; }
+.cm-s-vibrant-ink .CodeMirror-linenumber { color: #D0D0D0; }
 .cm-s-vibrant-ink .CodeMirror-cursor { border-left: 1px solid white; }
 
 .cm-s-vibrant-ink .cm-keyword { color: #CC7832; }

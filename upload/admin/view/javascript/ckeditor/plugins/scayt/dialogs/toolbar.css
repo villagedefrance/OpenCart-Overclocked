@@ -10,37 +10,37 @@ a.cke_scayt_toogle:hover,
 a.cke_scayt_toogle:focus,
 a.cke_scayt_toogle:active {
 	border-color: #316ac5;
-	background-color: #dff1ff;
-	color: #000;
+	background-color: #DFF1FF;
+	color : #000;
 	cursor: pointer;
 	margin: 0;
 }
 a.cke_scayt_toogle {
-	color: #316ac5;
-	border-color: #fff;
+	color: #316AC5;
+	border-color: #FFF;
 }
 .scayt_enabled a.cke_scayt_item {
-	color: #316ac5;
-	border-color: #fff;
+	color: #316AC5;
+	border-color: #FFF;
 	margin: 0;
 }
 .scayt_disabled a.cke_scayt_item {
 	color: gray;
-	border-color: #fff;
+	border-color: #FFF;
 }
 .scayt_enabled a.cke_scayt_item:hover,
 .scayt_enabled a.cke_scayt_item:focus,
 .scayt_enabled a.cke_scayt_item:active {
-	border-color: #316ac5;
-	background-color: #dff1ff;
-	color: #000;
+	border-color: #316AC5;
+	background-color: #DFF1FF;
+	color : #000;
 	cursor: pointer;
 }
 .scayt_disabled a.cke_scayt_item:hover,
 .scayt_disabled a.cke_scayt_item:focus,
 .scayt_disabled a.cke_scayt_item:active {
 	border-color: gray;
-	background-color: #dff1ff;
+	background-color: #DFF1FF;
 	color: gray;
 	cursor: no-drop;
 }

@@ -1,6 +1,6 @@
 ﻿/**
- * Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md or https://ckeditor.com/legal/terms-of-use/#open-source-licences
+ * Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
 // This file contains style definitions that can be used by CKEditor plugins.
@@ -80,6 +80,7 @@ CKEDITOR.stylesSet.add('default', [
 	{ name: 'Language: LTR', element: 'span', attributes: { 'dir': 'ltr' } },
 
 	/* Object styles */
+
 	{
 		name: 'Styled Image (left)',
 		element: 'img',
@@ -121,8 +122,8 @@ CKEDITOR.stylesSet.add('default', [
 	{ name: '720p', type: 'widget', widget: 'embedSemantic', attributes: { 'class': 'embed-720p' }, group: 'size' },
 	{ name: '1080p', type: 'widget', widget: 'embedSemantic', attributes: { 'class': 'embed-1080p' }, group: 'size' },
 
-	// Adding space after the style name is an intended workaround. For now, there is no option
-	// to create two styles with the same name for different widget types. See https://dev.ckeditor.com/ticket/16664.
+	// Adding space after the style name is an intended workaround. For now, there
+	// is no option to create two styles with the same name for different widget types. See https://dev.ckeditor.com/ticket/16664.
 	{ name: '240p ', type: 'widget', widget: 'embed', attributes: { 'class': 'embed-240p' }, group: 'size' },
 	{ name: '360p ', type: 'widget', widget: 'embed', attributes: { 'class': 'embed-360p' }, group: 'size' },
 	{ name: '480p ', type: 'widget', widget: 'embed', attributes: { 'class': 'embed-480p' }, group: 'size' },
