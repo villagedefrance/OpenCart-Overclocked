@@ -106,7 +106,7 @@ class ModelCatalogNews extends Model {
 	public function getDownloads() {
 		$news_download_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "news_download");
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "news_download`");
 
 		foreach ($query->rows as $result) {
 			$news_download_data[] = array(
@@ -123,7 +123,7 @@ class ModelCatalogNews extends Model {
 	public function getNewsDownloads($news_id) {
 		$news_downloads_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "news_to_download WHERE news_id = '" . (int)$news_id . "'");
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "news_to_download` WHERE news_id = '" . (int)$news_id . "'");
 
 		foreach ($query->rows as $result) {
 			$news_downloads_data [] = array('news_download_id' => $result['news_download_id']);
@@ -135,7 +135,7 @@ class ModelCatalogNews extends Model {
 	public function getNewsDownloadDescription($news_download_id) {
 		$news_download_description_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "news_download_description WHERE news_download_id = '" . (int)$news_download_id . "'");
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "news_download_description` WHERE news_download_id = '" . (int)$news_download_id . "'");
 
 		foreach ($query->rows as $result) {
 			$news_download_description_data[$result['language_id']] = array('name' => $result['name']);
@@ -145,19 +145,19 @@ class ModelCatalogNews extends Model {
 	}
 
 	public function getDownloadByDownloadId($news_download_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "news_download WHERE news_download_id = '" . (int)$news_download_id . "'");
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "news_download` WHERE news_download_id = '" . (int)$news_download_id . "'");
 
 		return $query->row;
 	}
 
 	public function getTotalDownloads() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "news_download");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "news_download`");
 
 		return $query->row['total'];
 	}
 
 	public function getTotalNewsDownloads() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "news_to_download");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "news_to_download`");
 
 		return $query->row['total'];
 	}

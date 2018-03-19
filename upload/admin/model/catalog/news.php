@@ -195,7 +195,7 @@ class ModelCatalogNews extends Model {
 	}
 
 	public function resetViews($news_id) {
-		$this->db->query("UPDATE " . DB_PREFIX . "news SET viewed = '0' WHERE news_id = '" . (int)$news_id . "'");
+		$this->db->query("UPDATE `" . DB_PREFIX . "news` SET viewed = '0' WHERE news_id = '" . (int)$news_id . "'");
 
 		$this->cache->delete('seo_url_map');
 		$this->cache->delete('news');
@@ -210,7 +210,7 @@ class ModelCatalogNews extends Model {
 
 	public function getNews($data = array()) {
 		if ($data) {
-			$sql = "SELECT * FROM " . DB_PREFIX . "news n LEFT JOIN " . DB_PREFIX . "news_description nd ON (n.news_id = nd.news_id) WHERE nd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+			$sql = "SELECT * FROM `" . DB_PREFIX . "news` n LEFT JOIN " . DB_PREFIX . "news_description nd ON (n.news_id = nd.news_id) WHERE nd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 			$sort_data = array(
 				'nd.title',
@@ -223,7 +223,7 @@ class ModelCatalogNews extends Model {
 			if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 				$sql .= " ORDER BY " . $data['sort'];
 			} else {
-				$sql .= " ORDER BY nd.title";
+				$sql .= " ORDER BY n.date_added";
 			}
 
 			if (isset($data['order']) && ($data['order'] == 'DESC')) {
@@ -252,7 +252,7 @@ class ModelCatalogNews extends Model {
 			$news_data = $this->cache->get('news.' . (int)$this->config->get('config_language_id'));
 
 			if (!$news_data) {
-				$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "news` n LEFT JOIN " . DB_PREFIX . "news_description nd ON (n.news_id = nd.news_id) WHERE nd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY nd.title");
+				$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "news` n LEFT JOIN " . DB_PREFIX . "news_description nd ON (n.news_id = nd.news_id) WHERE nd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY n.date_added ASC");
 
 				$news_data = $query->rows;
 
@@ -266,7 +266,7 @@ class ModelCatalogNews extends Model {
 	public function getNewsDescriptions($news_id) {
 		$news_description_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "news_description WHERE news_id = '" . (int)$news_id . "'");
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "news_description` WHERE news_id = '" . (int)$news_id . "'");
 
 		foreach ($query->rows as $result) {
 			$news_description_data[$result['language_id']] = array(
@@ -282,7 +282,7 @@ class ModelCatalogNews extends Model {
 	public function getNewsDownloads($news_id) {
 		$news_download_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "news_to_download WHERE news_id = '" . (int)$news_id . "'");
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "news_to_download` WHERE news_id = '" . (int)$news_id . "'");
 
 		foreach ($query->rows as $result) {
 			$news_download_data[] = $result['news_download_id'];
@@ -300,7 +300,7 @@ class ModelCatalogNews extends Model {
 	public function getNewsStores($news_id) {
 		$newspage_store_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "news_to_store WHERE news_id = '" . (int)$news_id . "'");
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "news_to_store` WHERE news_id = '" . (int)$news_id . "'");
 
 		foreach ($query->rows as $result) {
 			$newspage_store_data[] = $result['store_id'];
@@ -322,7 +322,7 @@ class ModelCatalogNews extends Model {
 	}
 
 	public function getTotalNewsDownloads() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "news_to_download");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "news_to_download`");
 
 		return $query->row['total'];
 	}
