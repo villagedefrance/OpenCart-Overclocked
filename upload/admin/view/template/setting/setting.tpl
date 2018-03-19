@@ -255,7 +255,7 @@
           <tr>
             <td><?php echo $entry_alpha_vantage; ?><span class="help"><?php echo $help_alpha_vantage; ?></span></td>
             <td><input id="key_alpha_vantage" name="config_alpha_vantage" value="<?php echo isset($config_alpha_vantage) ? $config_alpha_vantage : ''; ?>" size="30" /> &nbsp;
-              <a onclick="window.open('https://www.alphavantage.co/');" title="Google Maps" class="button-form"><i class="fa fa-play-circle"></i> &nbsp; Alpha Vantage</a>
+              <a onclick="window.open('https://www.alphavantage.co/');" title="Alpha Vantage" class="button-form"><i class="fa fa-play-circle"></i> &nbsp; Alpha Vantage</a>
             </td>
           </tr>
         </table>
