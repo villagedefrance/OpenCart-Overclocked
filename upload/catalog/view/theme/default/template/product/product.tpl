@@ -163,7 +163,7 @@
         <div class="video">
           <iframe src="http://www.youtube.com/embed/<?php echo $video_code; ?>?html5=1" width="<?php echo $video_width; ?>" height="<?php echo $video_height; ?>"></iframe>
         </div>
-        <div><a class="button button-resource"><i class="fa fa-info-circle"></i></a></div>
+        <div><a class="button button-resource"><i class="fa fa-info-circle"></i></a><br /></div>
       <?php } ?>
       </div>
     <?php } ?>
