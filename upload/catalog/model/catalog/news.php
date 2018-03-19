@@ -3,6 +3,8 @@ class ModelCatalogNews extends Model {
 
 	public function updateViewed($news_id) {
 		$this->db->query("UPDATE `" . DB_PREFIX . "news` SET viewed = (viewed + 1) WHERE news_id = '" . (int)$news_id . "'");
+
+		$this->cache->delete('news_all');
 	}
 
 	public function getNewsStory($news_id) {
@@ -52,7 +54,7 @@ class ModelCatalogNews extends Model {
 	}
 
 	public function getNewsShort($limit) {
-		$news_data = $this->cache->get('news.short.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$limit);
+		$news_data = $this->cache->get('news_short.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$limit);
 
 		if (!$news_data) {
 			$news_data = array();
@@ -63,14 +65,14 @@ class ModelCatalogNews extends Model {
 				$news_data[$result['news_id']] = $this->getNewsStory($result['news_id']);
 			}
 
-			$this->cache->set('news.short.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$limit, $news_data);
+			$this->cache->set('news_short.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$limit, $news_data);
 		}
 
 		return $news_data;
 	}
 
 	public function getNewsAll() {
-		$news_data = $this->cache->get('news.all.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id'));
+		$news_data = $this->cache->get('news_all.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id'));
 
 		if (!$news_data) {
 			$news_data = array();
@@ -81,7 +83,7 @@ class ModelCatalogNews extends Model {
 				$news_data[$result['news_id']] = $this->getNewsStory($result['news_id']);
 			}
 
-			$this->cache->set('news.all.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id'), $news_data);
+			$this->cache->set('news_all.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id'), $news_data);
 		}
 
 		return $news_data;

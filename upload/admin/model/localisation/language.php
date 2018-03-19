@@ -301,12 +301,14 @@ class ModelLocalisationLanguage extends Model {
 		$this->cache->delete('product.popular');
 		$this->cache->delete('footer.total');
 		$this->cache->delete('seo_url_map');
+		$this->cache->delete('news_short');
+		$this->cache->delete('news_all');
 		$this->cache->delete('countries');
 		$this->cache->delete('store');
 	}
 
 	public function editLanguage($language_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "language SET name = '" . $this->db->escape($data['name']) . "', code = '" . $this->db->escape($data['code']) . "', locale = '" . $this->db->escape($data['locale']) . "', directory = '" . $this->db->escape($data['directory']) . "', filename = '" . $this->db->escape($data['filename']) . "', image = '" . $this->db->escape($data['image']) . "', sort_order = '" . $this->db->escape($data['sort_order']) . "', status = '" . (int)$data['status'] . "' WHERE language_id = '" . (int)$language_id . "'");
+		$this->db->query("UPDATE `" . DB_PREFIX . "language` SET name = '" . $this->db->escape($data['name']) . "', code = '" . $this->db->escape($data['code']) . "', locale = '" . $this->db->escape($data['locale']) . "', directory = '" . $this->db->escape($data['directory']) . "', filename = '" . $this->db->escape($data['filename']) . "', image = '" . $this->db->escape($data['image']) . "', sort_order = '" . $this->db->escape($data['sort_order']) . "', status = '" . (int)$data['status'] . "' WHERE language_id = '" . (int)$language_id . "'");
 
 		$this->cache->delete('language');
 	}
@@ -409,6 +411,8 @@ class ModelLocalisationLanguage extends Model {
 		$this->cache->delete('product.popular');
 		$this->cache->delete('footer.total');
 		$this->cache->delete('seo_url_map');
+		$this->cache->delete('news_short');
+		$this->cache->delete('news_all');
 		$this->cache->delete('countries');
 		$this->cache->delete('store');
 	}
