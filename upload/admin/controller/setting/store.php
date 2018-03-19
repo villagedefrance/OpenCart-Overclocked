@@ -240,6 +240,7 @@ class ControllerSettingStore extends Controller {
 		$this->data['entry_owner'] = $this->language->get('entry_owner');
 		$this->data['entry_address'] = $this->language->get('entry_address');
 		$this->data['entry_email'] = $this->language->get('entry_email');
+		$this->data['entry_email_noreply'] = $this->language->get('entry_email_noreply');
 		$this->data['entry_telephone'] = $this->language->get('entry_telephone');
 		$this->data['entry_fax'] = $this->language->get('entry_fax');
 		$this->data['entry_title'] = $this->language->get('entry_title');
@@ -356,6 +357,12 @@ class ControllerSettingStore extends Controller {
 			$this->data['error_email'] = $this->error['email'];
 		} else {
 			$this->data['error_email'] = '';
+		}
+
+		if (isset($this->error['email_noreply'])) {
+			$this->data['error_email_noreply'] = $this->error['email_noreply'];
+		} else {
+			$this->data['error_email_noreply'] = '';
 		}
 
 		if (isset($this->error['telephone'])) {
@@ -520,7 +527,7 @@ class ControllerSettingStore extends Controller {
 		} elseif (isset($store_info['config_name'])) {
 			$this->data['config_name'] = $store_info['config_name'];
 		} else {
-			$this->data['config_name'] = '';
+			$this->data['config_name'] = $this->config->get('config_name');
 		}
 
 		if (isset($this->request->post['config_owner'])) {
@@ -528,7 +535,7 @@ class ControllerSettingStore extends Controller {
 		} elseif (isset($store_info['config_owner'])) {
 			$this->data['config_owner'] = $store_info['config_owner'];
 		} else {
-			$this->data['config_owner'] = '';
+			$this->data['config_owner'] = $this->config->get('config_owner');
 		}
 
 		if (isset($this->request->post['config_address'])) {
@@ -536,7 +543,7 @@ class ControllerSettingStore extends Controller {
 		} elseif (isset($store_info['config_address'])) {
 			$this->data['config_address'] = $store_info['config_address'];
 		} else {
-			$this->data['config_address'] = '';
+			$this->data['config_address'] = $this->config->get('config_address');
 		}
 
 		if (isset($this->request->post['config_email'])) {
@@ -544,7 +551,15 @@ class ControllerSettingStore extends Controller {
 		} elseif (isset($store_info['config_email'])) {
 			$this->data['config_email'] = $store_info['config_email'];
 		} else {
-			$this->data['config_email'] = '';
+			$this->data['config_email'] = $this->config->get('config_email');
+		}
+
+		if (isset($this->request->post['config_email_noreply'])) {
+			$this->data['config_email_noreply'] = $this->request->post['config_email_noreply'];
+		} elseif (isset($store_info['config_email_noreply'])) {
+			$this->data['config_email_noreply'] = $store_info['config_email_noreply'];
+		} else {
+			$this->data['config_email_noreply'] = 'noreply@' . $this->request->server['SERVER_NAME'];
 		}
 
 		if (isset($this->request->post['config_telephone'])) {
@@ -552,7 +567,7 @@ class ControllerSettingStore extends Controller {
 		} elseif (isset($store_info['config_telephone'])) {
 			$this->data['config_telephone'] = $store_info['config_telephone'];
 		} else {
-			$this->data['config_telephone'] = '';
+			$this->data['config_telephone'] = $this->config->get('config_telephone');
 		}
 
 		if (isset($this->request->post['config_fax'])) {
@@ -560,7 +575,7 @@ class ControllerSettingStore extends Controller {
 		} elseif (isset($store_info['config_fax'])) {
 			$this->data['config_fax'] = $store_info['config_fax'];
 		} else {
-			$this->data['config_fax'] = '';
+			$this->data['config_fax'] = $this->config->get('config_fax');
 		}
 
 		// Store
@@ -1078,6 +1093,10 @@ class ControllerSettingStore extends Controller {
 
 		if ((utf8_strlen($this->request->post['config_email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['config_email'])) {
 			$this->error['email'] = $this->language->get('error_email');
+		}
+
+		if ((utf8_strlen($this->request->post['config_email_noreply']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['config_email_noreply'])) {
+			$this->error['email_noreply'] = $this->language->get('error_email_noreply');
 		}
 
 		if ((utf8_strlen($this->request->post['config_telephone']) < 3) || (utf8_strlen($this->request->post['config_telephone']) > 32)) {

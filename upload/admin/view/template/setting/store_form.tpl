@@ -84,6 +84,15 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><span class="required">*</span> <?php echo $entry_email_noreply; ?></td>
+            <td><?php if ($error_email_noreply) { ?>
+              <input type="text" name="config_email_noreply" value="<?php echo $config_email_noreply; ?>" size="40" class="input-error" />
+              <span class="error"><?php echo $error_email_noreply; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_email_noreply" value="<?php echo $config_email_noreply; ?>" size="40" />
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><span class="required">*</span> <?php echo $entry_telephone; ?></td>
             <td><?php if ($error_telephone) { ?>
               <input type="text" name="config_telephone" value="<?php echo $config_telephone; ?>" class="input-error" />
