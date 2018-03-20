@@ -3,4 +3,4 @@
 $_['heading_title'] = 'Tag Cloud';
 
 // Text
-$_['text_notags']   = 'No tags found !';
+$_['text_no_tags']  = 'No tags found!';

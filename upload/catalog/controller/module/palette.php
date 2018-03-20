@@ -1,11 +1,11 @@
 <?php
-class ControllerModuleTagCloud extends Controller {
-	private $_name = 'tagcloud';
+class ControllerModulePalette extends Controller {
+	private $_name = 'palette';
 
 	protected function index($setting) {
 		static $module = 0;
 
-		$this->language->load('module/' . $this->_name);
+		$this->language->load('module/palette');
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
@@ -17,11 +17,12 @@ class ControllerModuleTagCloud extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
-		$this->data['text_no_tags'] = $this->language->get('text_no_tags');
+		$this->data['text_no_colors'] = $this->language->get('text_no_colors');
 
-		$this->load->model('catalog/tagcloud');
+		$this->load->model('tool/image');
+		$this->load->model('design/palette');
 
-		$this->data['tagcloud'] = $this->model_catalog_tagcloud->getRandomTags($setting['limit'], $setting['min_font_size'], $setting['max_font_size'], $setting['font_weight'], $setting['random']);
+		$this->data['colorcloud'] = $this->model_design_palette->getPaletteColorGroups();
 
 		$this->data['module'] = $module++;
 

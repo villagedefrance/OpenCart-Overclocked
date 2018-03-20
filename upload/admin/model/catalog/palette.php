@@ -11,7 +11,7 @@ class ModelCatalogPalette extends Model {
 
 		if (isset($data['palette_color'])) {
 			foreach ($data['palette_color'] as $palette_color) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "palette_color SET palette_id = '" . (int)$palette_id . "', color = '" . $this->db->escape($palette_color['color']) . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "palette_color SET palette_id = '" . (int)$palette_id . "', color = '" . $this->db->escape($palette_color['color']) . "', skin = '" . $this->db->escape($palette_color['skin']) . "'");
 
 				$palette_color_id = $this->db->getLastId();
 
@@ -22,6 +22,7 @@ class ModelCatalogPalette extends Model {
 		}
 
 		$this->cache->delete('palette');
+		$this->cache->delete('palette.total');
 	}
 
 	public function editPalette($palette_id, $data) {
@@ -32,7 +33,7 @@ class ModelCatalogPalette extends Model {
 
 		if (isset($data['palette_color'])) {
 			foreach ($data['palette_color'] as $palette_color) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "palette_color SET palette_id = '" . (int)$palette_id . "', color = '" . $this->db->escape($palette_color['color']) . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "palette_color SET palette_id = '" . (int)$palette_id . "', color = '" . $this->db->escape($palette_color['color']) . "', skin = '" . $this->db->escape($palette_color['skin']) . "'");
 
 				$palette_color_id = $this->db->getLastId();
 
@@ -43,6 +44,7 @@ class ModelCatalogPalette extends Model {
 		}
 
 		$this->cache->delete('palette');
+		$this->cache->delete('palette.total');
 	}
 
 	public function deletePalette($palette_id) {
@@ -51,6 +53,7 @@ class ModelCatalogPalette extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "palette_color_description WHERE palette_id = '" . (int)$palette_id . "'");
 
 		$this->cache->delete('palette');
+		$this->cache->delete('palette.total');
 	}
 
 	public function getPalette($palette_id) {
@@ -131,7 +134,8 @@ class ModelCatalogPalette extends Model {
 				$color_data[] = array(
 					'palette_color_id'  => $color['palette_color_id'],
 					'color_description' => $color_description_data,
-					'color'             => $color['color']
+					'color'             => $color['color'],
+					'skin'              => $color['skin']
 				);
 			}
 
@@ -152,6 +156,7 @@ class ModelCatalogPalette extends Model {
 			$colors_data[] = array(
 				'palette_color_id' => $result['palette_color_id'],
 				'color'            => $result['color'],
+				'skin'             => $result['skin'],
 				'title'            => $result['title']
 			);
 		}
@@ -168,6 +173,7 @@ class ModelCatalogPalette extends Model {
 			$colors_data[] = array(
 				'palette_color_id' => $result['palette_color_id'],
 				'color'            => $result['color'],
+				'skin'             => $result['skin'],
 				'title'            => $result['title']
 			);
 		}
@@ -184,6 +190,7 @@ class ModelCatalogPalette extends Model {
 			$palette_colors_data[] = array(
 				'palette_color_id' => $result['palette_color_id'],
 				'color'            => $result['color'],
+				'skin'             => $result['skin'],
 				'title'            => $result['title']
 			);
 		}

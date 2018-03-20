@@ -16,6 +16,7 @@ $_['column_action']    = 'Action';
 $_['entry_name']       = 'Palette Name:';
 $_['entry_title']      = 'Color Title';
 $_['entry_color']      = 'Hexadecimal Color';
+$_['entry_skin']       = 'Color Group';
 
 // Button
 $_['button_info']      = 'Information';

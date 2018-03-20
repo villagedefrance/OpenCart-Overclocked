@@ -121,15 +121,19 @@ class ControllerProductProduct extends Controller {
 			}
 		}
 
-		if (isset($this->request->get['search']) || isset($this->request->get['tag'])) {
+		if (isset($this->request->get['search']) || isset($this->request->get['tag']) || isset($this->request->get['color'])) {
 			$url = '';
 
 			if (isset($this->request->get['search'])) {
-				$url .= '&search=' . $this->request->get['search'];
+				$url .= '&search=' . urlencode(html_entity_decode($this->request->get['search'], ENT_QUOTES, 'UTF-8'));
 			}
 
 			if (isset($this->request->get['tag'])) {
-				$url .= '&tag=' . $this->request->get['tag'];
+				$url .= '&tag=' . urlencode(html_entity_decode($this->request->get['tag'], ENT_QUOTES, 'UTF-8'));
+			}
+
+			if (isset($this->request->get['color'])) {
+				$url .= '&color=' . urlencode(html_entity_decode($this->request->get['color'], ENT_QUOTES, 'UTF-8'));
 			}
 
 			if (isset($this->request->get['description'])) {
@@ -193,11 +197,15 @@ class ControllerProductProduct extends Controller {
 			}
 
 			if (isset($this->request->get['search'])) {
-				$url .= '&search=' . $this->request->get['search'];
+				$url .= '&search=' . urlencode(html_entity_decode($this->request->get['search'], ENT_QUOTES, 'UTF-8'));
 			}
 
 			if (isset($this->request->get['tag'])) {
-				$url .= '&tag=' . $this->request->get['tag'];
+				$url .= '&tag=' . urlencode(html_entity_decode($this->request->get['tag'], ENT_QUOTES, 'UTF-8'));
+			}
+
+			if (isset($this->request->get['color'])) {
+				$url .= '&color=' . urlencode(html_entity_decode($this->request->get['color'], ENT_QUOTES, 'UTF-8'));
 			}
 
 			if (isset($this->request->get['description'])) {
@@ -493,19 +501,22 @@ class ControllerProductProduct extends Controller {
 			}
 
 			// Colors
+			$this->load->model('design/palette');
+
 			$this->data['product_colors'] = array();
 
-			$product_colors = $this->model_catalog_product->getProductColors($this->request->get['product_id']);
+			$product_colors = $this->model_design_palette->getProductColors($this->request->get['product_id']);
 
 			if ($product_colors) {
 				foreach ($product_colors as $product_color_id) {
-					$palette_colors = $this->model_catalog_product->getPaletteColorsByColorId($product_color_id);
+					$palette_colors = $this->model_design_palette->getPaletteColorsByColorId($product_color_id);
 
 					if ($palette_colors) {
 						foreach ($palette_colors as $palette_color) {
 							$this->data['product_colors'][] = array(
 								'palette_color_id' => $palette_color['palette_color_id'],
 								'color'            => $palette_color['color'],
+								'skin'             => $palette_color['skin'],
 								'title'            => $palette_color['title']
 							);
 						}
@@ -904,11 +915,15 @@ class ControllerProductProduct extends Controller {
 			}
 
 			if (isset($this->request->get['search'])) {
-				$url .= '&search=' . $this->request->get['search'];
+				$url .= '&search=' . urlencode(html_entity_decode($this->request->get['search'], ENT_QUOTES, 'UTF-8'));
 			}
 
 			if (isset($this->request->get['tag'])) {
-				$url .= '&tag=' . $this->request->get['tag'];
+				$url .= '&tag=' . urlencode(html_entity_decode($this->request->get['tag'], ENT_QUOTES, 'UTF-8'));
+			}
+
+			if (isset($this->request->get['color'])) {
+				$url .= '&color=' . urlencode(html_entity_decode($this->request->get['color'], ENT_QUOTES, 'UTF-8'));
 			}
 
 			if (isset($this->request->get['description'])) {

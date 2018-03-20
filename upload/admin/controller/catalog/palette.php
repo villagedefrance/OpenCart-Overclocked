@@ -332,6 +332,7 @@ class ControllerCatalogPalette extends Controller {
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_color'] = $this->language->get('entry_color');
+		$this->data['entry_skin'] = $this->language->get('entry_skin');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
@@ -420,6 +421,10 @@ class ControllerCatalogPalette extends Controller {
 		} else {
 			$this->data['name'] = '';
 		}
+
+		$this->load->model('setting/setting');
+
+		$this->data['skins'] = $this->model_setting_setting->getColors();
 
 		if (isset($this->request->post['palette_color'])) {
 			$this->data['palette_colors'] = $this->request->post['palette_color'];

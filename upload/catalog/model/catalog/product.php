@@ -113,6 +113,7 @@ class ModelCatalogProduct extends Model {
 		$sql .= " LEFT OUTER JOIN " . DB_PREFIX . "manufacturer_description md ON (p.manufacturer_id = md.manufacturer_id)";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id)";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id)";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "palette_color pc ON (p.palette_id = pc.palette_id)";
 		$sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 		$sql .= " AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
 
@@ -136,7 +137,7 @@ class ModelCatalogProduct extends Model {
 			}
 		}
 
-		if (!empty($data['filter_name']) || !empty($data['filter_tag'])) {
+		if (!empty($data['filter_name']) || !empty($data['filter_tag']) || !empty($data['filter_color'])) {
 			$sql .= " AND (";
 
 			if (!empty($data['filter_name'])) {
@@ -163,12 +164,16 @@ class ModelCatalogProduct extends Model {
 				}
 			}
 
-			if (!empty($data['filter_name']) && !empty($data['filter_tag'])) {
+			if (!empty($data['filter_name']) && !empty($data['filter_tag'])  && !empty($data['filter_color'])) {
 				$sql .= " OR ";
 			}
 
 			if (!empty($data['filter_tag'])) {
-				$sql .= "pd.tag LIKE '%" . $this->db->escape($data['filter_tag']) . "%'";
+				$sql .= "pd.tag LIKE '%" . $this->db->escape(utf8_strtolower($data['filter_tag'])) . "%'";
+			}
+
+			if (!empty($data['filter_color'])) {
+				$sql .= " OR pc.skin LIKE '%" . $this->db->escape(utf8_strtolower($data['filter_color'])) . "%'";
 			}
 
 			if (!empty($data['filter_name'])) {
@@ -551,38 +556,27 @@ class ModelCatalogProduct extends Model {
 		return $query->rows;
 	}
 
-	public function getProductColors($product_id) {
-		$product_color_data = array();
-
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_color WHERE product_id = '" . (int)$product_id . "'");
-
-		foreach ($query->rows as $result) {
-			$product_color_data[] = $result['palette_color_id'];
-		}
-
-		return $product_color_data;
-	}
-
-	public function getPaletteColorsByColorId($palette_color_id) {
-		$palette_colors_data = array();
-
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "palette_color pc LEFT JOIN " . DB_PREFIX . "palette_color_description pcd ON (pc.palette_color_id = pcd.palette_color_id) WHERE pcd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND pc.palette_color_id = '" . (int)$palette_color_id . "' GROUP BY pc.palette_color_id ORDER BY pcd.title ASC");
-
-		foreach ($query->rows as $result) {
-			$palette_colors_data[] = array(
-				'palette_color_id' => $result['palette_color_id'],
-				'color'            => $result['color'],
-				'title'            => $result['title']
-			);
-		}
-
-		return $palette_colors_data;
-	}
-
 	public function getProductImages($product_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "' ORDER BY sort_order ASC");
 
 		return $query->rows;
+	}
+
+	public function getProductColorsByPaletteId($palette_id) {
+		$colors_data = array();
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "palette p LEFT JOIN " . DB_PREFIX . "palette_color pc ON (p.palette_id = pc.palette_id) LEFT JOIN " . DB_PREFIX . "palette_color_description pcd ON (p.palette_id = pcd.palette_id) WHERE pcd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND pcd.palette_id = '" . (int)$palette_id . "' GROUP BY pcd.palette_color_id ORDER BY p.palette_id, pcd.title ASC");
+
+		foreach ($query->rows as $result) {
+			$colors_data[] = array(
+				'palette_color_id' => $result['palette_color_id'],
+				'color'            => $result['color'],
+				'skin'             => $result['skin'],
+				'title'            => $result['title']
+			);
+		}
+
+		return $colors_data;
 	}
 
 	public function getProductImagesByColor($product_id, $palette_color_id) {
@@ -707,6 +701,7 @@ class ModelCatalogProduct extends Model {
 		$sql .= " LEFT OUTER JOIN " . DB_PREFIX . "manufacturer_description md ON (p.manufacturer_id = md.manufacturer_id)";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id)";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id)";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "palette_color pc ON (p.palette_id = pc.palette_id)";
 		$sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 		$sql .= " AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
 
@@ -730,7 +725,7 @@ class ModelCatalogProduct extends Model {
 			}
 		}
 
-		if (!empty($data['filter_name']) || !empty($data['filter_tag'])) {
+		if (!empty($data['filter_name']) || !empty($data['filter_tag']) || !empty($data['filter_color'])) {
 			$sql .= " AND (";
 
 			if (!empty($data['filter_name'])) {
@@ -757,12 +752,16 @@ class ModelCatalogProduct extends Model {
 				}
 			}
 
-			if (!empty($data['filter_name']) && !empty($data['filter_tag'])) {
+			if (!empty($data['filter_name']) && !empty($data['filter_tag']) && !empty($data['filter_color'])) {
 				$sql .= " OR ";
 			}
 
 			if (!empty($data['filter_tag'])) {
 				$sql .= "pd.tag LIKE '%" . $this->db->escape(utf8_strtolower($data['filter_tag'])) . "%'";
+			}
+
+			if (!empty($data['filter_color'])) {
+				$sql .= " OR pc.skin LIKE '%" . $this->db->escape(utf8_strtolower($data['filter_color'])) . "%'";
 			}
 
 			if (!empty($data['filter_name'])) {

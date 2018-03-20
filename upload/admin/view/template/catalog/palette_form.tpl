@@ -36,6 +36,7 @@
         <tr>
           <td class="left"><span class="required">*</span> <?php echo $entry_title; ?></td>
           <td class="left"><span class="required">*</span> <?php echo $entry_color; ?></td>
+          <td class="left"><?php echo $entry_skin; ?></td>
           <td></td>
         </tr>
       </thead>
@@ -59,6 +60,15 @@
           <?php } else { ?>
             #<input type="text" name="palette_color[<?php echo $color_row; ?>][color]" value="<?php echo $palette_color['color']; ?>" size="7" maxlength="6" /><span class="color" style="background-color:#<?php echo $palette_color['color']; ?>;"></span>
           <?php } ?></td>
+          <td class="left"><select name="palette_color[<?php echo $color_row; ?>][skin]">
+          <?php foreach ($skins as $skin) { ?>
+            <?php if ($skin['skin'] == $palette_color['skin']) { ?>
+              <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
+            <?php } else { ?>
+              <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
+            <?php } ?>
+            <?php } ?>
+          </select></td>
           <td class="center"><a onclick="$('#color-row<?php echo $color_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
         </tr>
       </tbody>
@@ -66,7 +76,7 @@
       <?php } ?>
       <tfoot>
         <tr>
-          <td colspan="2"></td>
+          <td colspan="3"></td>
           <td class="center"><a onclick="addColor();" class="button"><?php echo $button_add_color; ?></a></td>
         </tr>
       </tfoot>
@@ -91,6 +101,11 @@ function addColor() {
 	html += '    <td class="left">';
 	html += '      #<input type="text" name="palette_color[' + color_row + '][color]" value="" size="7" maxlength="6" /><span class="color" style="background-color:#F8F8F8;">?</span>';
 	html += '    </td>';
+	html += '    <td class="left"><select name="palette_color[' + color_row + '][skin]">
+	<?php foreach ($skins as $skin) { ?>
+	html += '      <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
+	<?php } ?>
+	html += '    </select></td>
 	html += '    <td class="center"><a onclick="$(\'#color-row' + color_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
