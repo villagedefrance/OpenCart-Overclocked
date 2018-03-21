@@ -374,6 +374,24 @@ class ModelToolExportImport extends Model {
 		return $customer_group_ids;
 	}
 
+	// Find all field ids
+	protected function getFieldIds() {
+		$language_id = $this->getDefaultLanguageId();
+
+		$field_ids = array();
+
+		$result = $this->db->query("SELECT field_id, title FROM " . DB_PREFIX . "field_description WHERE language_id = '" . (int)$language_id . "' ORDER BY field_id ASC");
+
+		foreach ($result->rows as $row) {
+			$field_id = $row['field_id'];
+			$title = $row['title'];
+
+			$field_ids[$title] = $field_id;
+		}
+
+		return $field_ids;
+	}
+
 	// Find all available store ids
 	protected function getAvailableStoreIds() {
 		$store_ids = array(0);
@@ -778,8 +796,8 @@ class ModelToolExportImport extends Model {
 		// Generate and execute SQL for inserting the category
 		$sql = "INSERT INTO `" . DB_PREFIX . "category` (`category_id`,`image`,`parent_id`,`top`,`column`,`sort_order`,`date_added`,`date_modified`,`status`) VALUES";
 		$sql .= " ( $category_id, '$image_name', $parent_id, $top, $columns, $sort_order,";
-		$sql .= ($date_added == 'NOW()') ? " $date_added," : " '$date_added',";
-		$sql .= ($date_modified == 'NOW()') ? " $date_modified," : " '$date_modified',";
+		$sql .= ($date_added == 'NOW()') ? " '$date_added'," : " '$date_added',";
+		$sql .= ($date_modified == 'NOW()') ? " '$date_modified'," : " '$date_modified',";
 		$sql .= " $status);";
 
 		$this->db->query($sql);
@@ -966,7 +984,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars_decode($name, ENT_QUOTES);
+				$name = htmlspecialchars($name, ENT_QUOTES);
 				$names[$language_code] = $name;
 			}
 
@@ -985,7 +1003,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "description(")) {
 				$language_code = substr($first_row[$j-1], strlen("description("), strlen($first_row[$j-1])-strlen("description(")-1);
 				$description = $this->getCell($data, $i, $j++);
-				$description = htmlspecialchars_decode($description, ENT_QUOTES);
+				$description = htmlspecialchars($description, ENT_QUOTES);
 				$descriptions[$language_code] = $description;
 			}
 
@@ -994,7 +1012,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "meta_description(")) {
 				$language_code = substr($first_row[$j-1], strlen("meta_description("), strlen($first_row[$j-1])-strlen("meta_description(")-1);
 				$meta_description = $this->getCell($data, $i, $j++);
-				$meta_description = htmlspecialchars_decode($meta_description, ENT_QUOTES);
+				$meta_description = htmlspecialchars($meta_description, ENT_QUOTES);
 				$meta_descriptions[$language_code] = $meta_description;
 			}
 
@@ -1003,7 +1021,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "meta_keywords(")) {
 				$language_code = substr($first_row[$j-1], strlen("meta_keywords("), strlen($first_row[$j-1])-strlen("meta_keywords(")-1);
 				$meta_keyword = $this->getCell($data, $i, $j++);
-				$meta_keyword = htmlspecialchars_decode($meta_keyword, ENT_QUOTES);
+				$meta_keyword = htmlspecialchars($meta_keyword, ENT_QUOTES);
 				$meta_keywords[$language_code] = $meta_keyword;
 			}
 
@@ -1030,13 +1048,11 @@ class ModelToolExportImport extends Model {
 			$store_ids = trim($this->clean($store_ids, false));
 
 			$category['store_ids'] = ($store_ids == "") ? array() : explode(",", $store_ids);
-
 			if ($category['store_ids'] === false) {
 				$category['store_ids'] = array();
 			}
 
 			$category['layout'] = ($layout == "") ? array() : explode(",", $layout);
-
 			if ($category['layout'] === false) {
 				$category['layout'] = array();
 			}
@@ -1304,10 +1320,10 @@ class ModelToolExportImport extends Model {
 		$sql .= in_array('jan', $product_fields) ? " '$jan'," : "";
 		$sql .= in_array('isbn', $product_fields) ? " '$isbn'," : "";
 		$sql .= in_array('mpn', $product_fields) ? " '$mpn'," : "";
-		$sql .= " '$location', $stock_status_id, '$model', $manufacturer_id, '$image', '$label', $shipping, $price, $cost, $quote, $age_minimum, $points,";
-		$sql .= ($date_added == 'NOW()') ? " $date_added," : "' $date_added',";
-		$sql .= ($date_modified == 'NOW()') ? " $date_modified," : "' $date_modified',";
-		$sql .= ($date_available == 'NOW()') ? " $date_available," : "' $date_available',";
+		$sql .= " '$location', $stock_status_id, '$model', $manufacturer_id, '$image', '$label', $shipping, $price, $cost, '$quote', $age_minimum, $points,";
+		$sql .= ($date_added == 'NOW()') ? " '$date_added'," : " '$date_added',";
+		$sql .= ($date_modified == 'NOW()') ? " '$date_modified'," : " '$date_modified',";
+		$sql .= ($date_available == 'NOW()') ? " '$date_available'," : " '$date_available',";
 		$sql .= " $palette_id, $weight, $weight_class_id, $status,";
 		$sql .= " $tax_class_id, $viewed, $length, $width, $height, '$length_class_id', '$sort_order', '$subtract', '$minimum');";
 
@@ -1559,7 +1575,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars_decode($name, ENT_QUOTES);;
+				$name = htmlspecialchars($name, ENT_QUOTES);;
 				$names[$language_code] = $name;
 			}
 
@@ -1612,7 +1628,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "description(")) {
 				$language_code = substr($first_row[$j-1], strlen("description("), strlen($first_row[$j-1])-strlen("description(")-1);
 				$description = $this->getCell($data, $i, $j++);
-				$description = htmlspecialchars_decode($description, ENT_QUOTES);
+				$description = htmlspecialchars($description, ENT_QUOTES);
 				$descriptions[$language_code] = $description;
 			}
 
@@ -1621,7 +1637,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "meta_description(")) {
 				$language_code = substr($first_row[$j-1], strlen("meta_description("), strlen($first_row[$j-1])-strlen("meta_description(")-1);
 				$meta_description = $this->getCell($data, $i, $j++);
-				$meta_description = htmlspecialchars_decode($meta_description, ENT_QUOTES);
+				$meta_description = htmlspecialchars($meta_description, ENT_QUOTES);
 				$meta_descriptions[$language_code] = $meta_description;
 			}
 
@@ -1630,7 +1646,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "meta_keywords(")) {
 				$language_code = substr($first_row[$j-1], strlen("meta_keywords("), strlen($first_row[$j-1])-strlen("meta_keywords(")-1);
 				$meta_keyword = $this->getCell($data, $i, $j++);
-				$meta_keyword = htmlspecialchars_decode($meta_keyword, ENT_QUOTES);
+				$meta_keyword = htmlspecialchars($meta_keyword, ENT_QUOTES);
 				$meta_keywords[$language_code] = $meta_keyword;
 			}
 
@@ -1644,7 +1660,7 @@ class ModelToolExportImport extends Model {
 			while ($this->startsWith($first_row[$j-1], "tags(")) {
 				$language_code = substr($first_row[$j-1], strlen("tags("), strlen($first_row[$j-1])-strlen("tags(")-1);
 				$tag = $this->getCell($data, $i, $j++);
-				$tag = htmlspecialchars_decode($tag, ENT_QUOTES);
+				$tag = htmlspecialchars($tag, ENT_QUOTES);
 				$tags[$language_code] = $tag;
 			}
 
@@ -1658,11 +1674,8 @@ class ModelToolExportImport extends Model {
 			$product['names'] = $names;
 
 			$categories = trim($this->clean($categories, false));
-
 			$product['categories'] = ($categories == "") ? array() : explode(",", $categories);
-			if ($product['categories'] === false) {
-				$product['categories'] = array();
-			}
+
 			$product['quantity'] = $quantity;
 			$product['model'] = $model;
 			$product['manufacturer_name'] = $manufacturer_name;
@@ -2289,7 +2302,7 @@ class ModelToolExportImport extends Model {
 
 		foreach ($query->rows as $row) {
 			$option_id = $row['option_id'];
-			$name = htmlspecialchars_decode($row['name'], ENT_QUOTES);
+			$name = htmlspecialchars($row['name'], ENT_QUOTES);
 
 			$option_ids[$name] = $option_id;
 		}
@@ -2309,7 +2322,7 @@ class ModelToolExportImport extends Model {
 			$product_option_id = $old_product_option_ids[$product_id][$option_id];
 
 			$sql = "INSERT INTO `" . DB_PREFIX . "product_option` (`product_option_id`,`product_id`,`option_id`,`option_value`,`required`) VALUES";
-			$sql .= " ( $product_option_id, $product_id, $option_id, '" . $this->db->escape($option_value) . "', $required);";
+			$sql .= " ( $product_option_id, $product_id, $option_id, '" . $this->db->escape($option_value) . "', '$required');";
 
 			$this->db->query($sql);
 
@@ -2317,7 +2330,7 @@ class ModelToolExportImport extends Model {
 
 		} else {
 			$sql = "INSERT INTO `" . DB_PREFIX . "product_option` (`product_id`,`option_id`,`option_value`,`required`) VALUES";
-			$sql .= " ( $product_id, $option_id, '" . $this->db->escape($option_value) . "', $required);";
+			$sql .= " ( $product_id, $option_id, '" . $this->db->escape($option_value) . "', '$required');";
 
 			$this->db->query($sql);
 		}
@@ -2810,7 +2823,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "text(")) {
 				$language_code = substr($first_row[$j-1], strlen("text("), strlen($first_row[$j-1])-strlen("text(")-1);
 				$text = $this->getCell($data, $i, $j++);
-				$text = htmlspecialchars($text);
+				$text = htmlspecialchars($text, ENT_QUOTES);
 				$texts[$language_code] = $text;
 			}
 
@@ -3084,7 +3097,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars_decode($name, ENT_QUOTES);
+				$name = htmlspecialchars($name, ENT_QUOTES);
 				$names[$language_code] = $name;
 			}
 
@@ -3212,7 +3225,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars_decode($name, ENT_QUOTES);
+				$name = htmlspecialchars($name, ENT_QUOTES);
 				$names[$language_code] = $name;
 			}
 
@@ -3318,7 +3331,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars_decode($name, ENT_QUOTES);
+				$name = htmlspecialchars($name, ENT_QUOTES);
 				$names[$language_code] = $name;
 			}
 
@@ -3424,7 +3437,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars_decode($name, ENT_QUOTES);
+				$name = htmlspecialchars($name, ENT_QUOTES);
 				$names[$language_code] = $name;
 			}
 
@@ -3524,7 +3537,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars_decode($name, ENT_QUOTES);
+				$name = htmlspecialchars($name, ENT_QUOTES);
 				$names[$language_code] = $name;
 			}
 
@@ -3630,7 +3643,7 @@ class ModelToolExportImport extends Model {
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "name(")) {
 				$language_code = substr($first_row[$j-1], strlen("name("), strlen($first_row[$j-1])-strlen("name(")-1);
 				$name = $this->getCell($data, $i, $j++);
-				$name = htmlspecialchars_decode($name, ENT_QUOTES);
+				$name = htmlspecialchars($name, ENT_QUOTES);
 				$names[$language_code] = $name;
 			}
 
@@ -3648,6 +3661,122 @@ class ModelToolExportImport extends Model {
 			$this->moreFilterCells($i, $j, $data, $filter);
 
 			$this->storeFilterIntoDatabase($filter, $languages);
+		}
+	}
+
+	protected function storeFieldIntoDatabase(&$field, $languages) {
+		$field_id = $field['field_id'];
+		$sort_order = $field['sort_order'];
+		$status = $field['status'];
+
+		$titles = $field['titles'];
+		$descriptions = $field['descriptions'];
+
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "field` (`field_id`,`sort_order`,`status`) VALUES ( $field_id, $sort_order, $status);");
+
+		foreach ($languages as $language) {
+			$language_code = $language['code'];
+			$language_id = $language['language_id'];
+
+			$title = isset($titles[$language_code]) ? $this->db->escape($titles[$language_code]) : '';
+			$description = isset($descriptions[$language_code]) ? $this->db->escape($descriptions[$language_code]) : '';
+
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "field_description` (`field_id`,`language_id`,`title`, `description`) VALUES ( $field_id, $language_id, '$title', '$description');");
+		}
+	}
+
+	protected function deleteFields() {
+		$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "field`");
+		$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "field_description`");
+	}
+
+	protected function deleteField($field_id) {
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "field` WHERE field_id = '" . (int)$field_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "field_description WHERE field_id = '" . (int)$field_id . "'");
+	}
+
+	// Function for reading additional cells in class extensions
+	protected function moreFieldCells($i, $j, $worksheet, &$field) {
+		return;
+	}
+
+	protected function uploadFields($reader, $incremental) {
+		// Get worksheet, if not there return immediately
+		$data = $reader->getSheetByName('Fields');
+
+		if ($data == null) {
+			return;
+		}
+
+		// Get installed languages
+		$languages = $this->getLanguages();
+
+		// If not incremental then delete all old fields
+		if (!$incremental) {
+			$this->deleteFields();
+		}
+
+		// Load the worksheet cells and store them to the database
+		$first_row = array();
+
+		$i = 0;
+		$k = $data->getHighestRow();
+
+		for ($i = 0; $i < $k; $i += 1) {
+			if ($i == 0) {
+				$max_col = PHPExcel_Cell::columnIndexFromString($data->getHighestColumn());
+
+				for ($j = 1; $j <= $max_col; $j += 1) {
+					$first_row[] = $this->getCell($data, $i, $j);
+				}
+
+				continue;
+			}
+
+			$j = 1;
+
+			$field_id = trim($this->getCell($data, $i, $j++));
+
+			if ($field_id == '') {
+				continue;
+			}
+
+			$sort_order = $this->getCell($data, $i, $j++);
+			$status = $this->getCell($data, $i, $j++);
+
+			$titles = array();
+
+			while ($this->startsWith($first_row[$j-1], "title(")) {
+				$language_code = substr($first_row[$j-1], strlen("title("), strlen($first_row[$j-1])-strlen("title(")-1);
+				$title = $this->getCell($data, $i, $j++);
+				$title = htmlspecialchars($title, ENT_QUOTES);
+				$titles[$language_code] = $title;
+			}
+
+			$descriptions = array();
+
+			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "description(")) {
+				$language_code = substr($first_row[$j-1], strlen("description("), strlen($first_row[$j-1])-strlen("description(")-1);
+				$description = $this->getCell($data, $i, $j++);
+				$description = htmlspecialchars($description, ENT_QUOTES);
+				$descriptions[$language_code] = $description;
+			}
+
+			$field = array();
+
+			$field['field_id'] = $field_id;
+			$field['sort_order'] = $sort_order;
+			$field['status'] = $status;
+			$field['titles'] = $titles;
+			$field['descriptions'] = $descriptions;
+
+			if ($incremental) {
+				$this->deleteField($field_id);
+			}
+
+			$this->moreFieldCells($i, $j, $data, $field);
+
+			$this->storeFieldIntoDatabase($field, $languages);
 		}
 	}
 
@@ -4074,6 +4203,23 @@ class ModelToolExportImport extends Model {
 
 		$expected_heading = array("filter_id", "filter_group_id", "sort_order", "name");
 		$expected_multilingual = array("name");
+
+		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
+	}
+
+	protected function validateFields($reader) {
+		$data = $reader->getSheetByName('Fields');
+
+		if ($data == null) {
+			return true;
+		}
+
+		if (!$this->existField()) {
+			throw new Exception($this->language->get('error_field_not_supported'));
+		}
+
+		$expected_heading = array("field_id", "sort_order", "status", "title", "description");
+		$expected_multilingual = array("title", "description");
 
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
@@ -5086,6 +5232,61 @@ class ModelToolExportImport extends Model {
 		return $ok;
 	}
 
+	// Get all existing fields
+	protected function validateFieldColumns($reader) {
+		$ok = true;
+
+		$language_id = $this->getDefaultLanguageId();
+
+		$sql = "SELECT *, fd.field_id AS field_id FROM " . DB_PREFIX . "field f LEFT JOIN " . DB_PREFIX . "field_description fd ON (f.field_id = fd.field_id) WHERE fd.language_id = '" . (int)$language_id . "'";
+
+		$query = $this->db->query($sql);
+
+		$fields = array();
+
+		foreach ($query->rows as $row) {
+			$field_id = $row['field_id'];
+
+			if (!isset($fields[$field_id])) {
+				$fields[$field_id] = array();
+			}
+		}
+
+		// Only existing fields can be used in the 'Fields' worksheets
+		$worksheet_names = array('Fields');
+
+		foreach ($worksheet_names as $worksheet_name) {
+			$data = $reader->getSheetByName('Fields');
+
+			if ($data == null) {
+				return $ok;
+			}
+
+			$has_missing_fields = false;
+
+			$i = 0;
+			$k = $data->getHighestRow();
+
+			for ($i = 1; $i < $k; $i += 1) {
+				$field_id = trim($this->getCell($data, $i, 1));
+
+				if ($field_id == "") {
+					if (!$has_missing_fields) {
+						$msg = str_replace('%1', $worksheet_name, $this->language->get('error_missing_field_id'));
+						$this->log->write($msg);
+
+						$has_missing_fields = true;
+					}
+
+					$ok = false;
+					continue;
+				}
+			}
+		}
+
+		return $ok;
+	}
+
 	protected function validateUpload($reader) {
 		$ok = true;
 
@@ -5180,6 +5381,11 @@ class ModelToolExportImport extends Model {
 			$ok = false;
 		}
 
+		if (!$this->validateFields($reader)) {
+			$this->log->write($this->language->get('error_fields_header'));
+			$ok = false;
+		}
+
 		// Certain worksheets rely on the existence of other worksheets
 		$names = $reader->getSheetNames();
 
@@ -5195,12 +5401,13 @@ class ModelToolExportImport extends Model {
 		$exist_rewards = false;
 		$exist_product_attributes = false;
 		$exist_product_filters = false;
+		$exist_options = false;
+		$exist_option_values = false;
+		$exist_attributes = false;
 		$exist_attribute_groups = false;
 		$exist_filters = false;
 		$exist_filter_groups = false;
-		$exist_attributes = false;
-		$exist_options = false;
-		$exist_option_values = false;
+		$exist_fields = false;
 
 		foreach ($names as $name) {
 			if ($name == 'Customers') {
@@ -5312,6 +5519,33 @@ class ModelToolExportImport extends Model {
 				continue;
 			}
 
+			if ($name == 'ProductFilters') {
+				if (!$exist_products) {
+					// Missing Products worksheet, or Products worksheet not listed before ProductFilters
+					$this->log->write($this->language->get('error_product_filters'));
+					$ok = false;
+				}
+
+				$exist_product_filters = true;
+				continue;
+			}
+
+			if ($name == 'Options') {
+				$exist_options = true;
+				continue;
+			}
+
+			if ($name == 'OptionValues') {
+				if (!$exist_options) {
+					// Missing Options worksheet, or Options worksheet not listed before OptionValues
+					$this->log->write($this->language->get('error_option_values'));
+					$ok = false;
+				}
+
+				$exist_option_values = true;
+				continue;
+			}
+
 			if ($name == 'AttributeGroups') {
 				$exist_attribute_groups = true;
 				continue;
@@ -5325,17 +5559,6 @@ class ModelToolExportImport extends Model {
 				}
 
 				$exist_attributes = true;
-				continue;
-			}
-
-			if ($name == 'ProductFilters') {
-				if (!$exist_products) {
-					// Missing Products worksheet, or Products worksheet not listed before ProductFilters
-					$this->log->write($this->language->get('error_product_filters'));
-					$ok = false;
-				}
-
-				$exist_product_filters = true;
 				continue;
 			}
 
@@ -5355,19 +5578,8 @@ class ModelToolExportImport extends Model {
 				continue;
 			}
 
-			if ($name == 'Options') {
-				$exist_options = true;
-				continue;
-			}
-
-			if ($name == 'OptionValues') {
-				if (!$exist_options) {
-					// Missing Options worksheet, or Options worksheet not listed before OptionValues
-					$this->log->write($this->language->get('error_option_values'));
-					$ok = false;
-				}
-
-				$exist_option_values = true;
+			if ($name == 'Fields') {
+				$exist_fields = true;
 				continue;
 			}
 		}
@@ -5426,6 +5638,12 @@ class ModelToolExportImport extends Model {
 
 		if ($this->existFilter()) {
 			if (!$this->validateFilterColumns($reader)) {
+				$ok = false;
+			}
+		}
+
+		if ($this->existField()) {
+			if (!$this->validateFieldColumns($reader)) {
 				$ok = false;
 			}
 		}
@@ -5535,6 +5753,7 @@ class ModelToolExportImport extends Model {
 			$this->uploadAttributes($reader, $incremental);
 			$this->uploadFilterGroups($reader, $incremental);
 			$this->uploadFilters($reader, $incremental);
+			$this->uploadFields($reader, $incremental);
 
 			return true;
 
@@ -5716,8 +5935,8 @@ class ModelToolExportImport extends Model {
 
 			$data[$j++] = $row['customer_id'];
 			$data[$j++] = $row['store_id'];
-			$data[$j++] = html_entity_decode($row['firstname'], ENT_QUOTES, 'UTF-8');
-			$data[$j++] = html_entity_decode($row['lastname'], ENT_QUOTES, 'UTF-8');
+			$data[$j++] = htmlspecialchars_decode($row['firstname'], ENT_QUOTES);
+			$data[$j++] = htmlspecialchars_decode($row['lastname'], ENT_QUOTES);
 			$data[$j++] = $row['email'];
 			$data[$j++] = $row['telephone'];
 			$data[$j++] = $row['fax'];
@@ -5729,12 +5948,12 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['wishlist'];
 			$data[$j++] = ($row['newsletter'] == 0) ? 'false' : 'true';
 			$data[$j++] = $row['address_id'];
-			$data[$j++] = html_entity_decode($row['company'], ENT_QUOTES, 'UTF-8');
+			$data[$j++] = htmlspecialchars_decode($row['company'], ENT_QUOTES);
 			$data[$j++] = $row['company_id'];
 			$data[$j++] = $row['tax_id'];
-			$data[$j++] = html_entity_decode($row['address_1'], ENT_QUOTES, 'UTF-8');
-			$data[$j++] = html_entity_decode($row['address_2'], ENT_QUOTES, 'UTF-8');
-			$data[$j++] = html_entity_decode($row['city'], ENT_QUOTES, 'UTF-8');
+			$data[$j++] = htmlspecialchars_decode($row['address_1'], ENT_QUOTES);
+			$data[$j++] = htmlspecialchars_decode($row['address_2'], ENT_QUOTES);
+			$data[$j++] = htmlspecialchars_decode($row['city'], ENT_QUOTES);
 			$data[$j++] = $row['postcode'];
 			$data[$j++] = $row['country_id'];
 			$data[$j++] = $row['zone_id'];
@@ -5984,7 +6203,7 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['category_id'];
 			$data[$j++] = ($row['parent_id']) ? $row['parent_id'] : '0';
 			foreach ($languages as $language) {
-				$data[$j++] = html_entity_decode($row['name'][$language['code']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($row['name'][$language['code']], ENT_QUOTES);
 			}
 			$data[$j++] = ($row['top'] == 0) ? 'false' : 'true';
 			$data[$j++] = ($row['column']) ? $row['column'] : '0';
@@ -5994,13 +6213,13 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['date_modified'];
 			$data[$j++] = ($row['seo_keyword']) ? $row['seo_keyword'] : '';
 			foreach ($languages as $language) {
-				$data[$j++] = (isset($keep_tags)) ? html_entity_decode($row['description'][$language['code']], ENT_QUOTES, 'UTF-8') : $this->removeEntities($row['description'][$language['code']]);
+				$data[$j++] = (isset($keep_tags)) ? htmlspecialchars_decode($row['description'][$language['code']], ENT_QUOTES) : $this->removeEntities($row['description'][$language['code']]);
 			}
 			foreach ($languages as $language) {
-				$data[$j++] = html_entity_decode($row['meta_description'][$language['code']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($row['meta_description'][$language['code']], ENT_QUOTES);
 			}
 			foreach ($languages as $language) {
-				$data[$j++] = html_entity_decode($row['meta_keyword'][$language['code']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($row['meta_keyword'][$language['code']], ENT_QUOTES);
 			}
 			$store_id_list = '';
 			if (isset($store_ids[$category_id])) {
@@ -6154,12 +6373,12 @@ class ModelToolExportImport extends Model {
 			if ($this->config->get('export_import_settings_use_filter_group_id')) {
 				$data[$j++] = $row['filter_group_id'];
 			} else {
-				$data[$j++] = html_entity_decode($filter_group_names[$row['filter_group_id']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($filter_group_names[$row['filter_group_id']], ENT_QUOTES);
 			}
 			if ($this->config->get('export_import_settings_use_filter_id')) {
 				$data[$j++] = $row['filter_id'];
 			} else {
-				$data[$j++] = html_entity_decode($filter_names[$row['filter_id']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($filter_names[$row['filter_id']], ENT_QUOTES);
 			}
 
 			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
@@ -6589,7 +6808,7 @@ class ModelToolExportImport extends Model {
 
 			$data[$j++] = $product_id;
 			foreach ($languages as $language) {
-				$data[$j++] = html_entity_decode($row['name'][$language['code']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($row['name'][$language['code']], ENT_QUOTES);
 			}
 			$data[$j++] = $row['categories'];
 			$data[$j++] = $row['sku'];
@@ -6606,7 +6825,7 @@ class ModelToolExportImport extends Model {
 			if (in_array('mpn', $product_fields)) {
 				$data[$j++] = $row['mpn'];
 			}
-			$data[$j++] = html_entity_decode($row['location'], ENT_QUOTES, 'UTF-8');
+			$data[$j++] = htmlspecialchars_decode($row['location'], ENT_QUOTES);
 			$data[$j++] = $row['quantity'];
 			$data[$j++] = $row['model'];
 			$data[$j++] = $row['manufacturer_name'];
@@ -6632,13 +6851,13 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['tax_class_id'];
 			$data[$j++] = ($row['keyword']) ? $row['keyword'] : '';
 			foreach ($languages as $language) {
-				$data[$j++] = (isset($keep_tags)) ? html_entity_decode($row['description'][$language['code']], ENT_QUOTES, 'UTF-8') : $this->removeEntities($row['description'][$language['code']]);
+				$data[$j++] = (isset($keep_tags)) ? htmlspecialchars_decode($row['description'][$language['code']], ENT_QUOTES) : $this->removeEntities($row['description'][$language['code']]);
 			}
 			foreach ($languages as $language) {
-				$data[$j++] = html_entity_decode($row['meta_description'][$language['code']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($row['meta_description'][$language['code']], ENT_QUOTES);
 			}
 			foreach ($languages as $language) {
-				$data[$j++] = html_entity_decode($row['meta_keyword'][$language['code']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($row['meta_keyword'][$language['code']], ENT_QUOTES);
 			}
 			$data[$j++] = $row['stock_status_id'];
 			$store_id_list = '';
@@ -6657,7 +6876,7 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $layout_list;
 			$data[$j++] = $row['related'];
 			foreach ($languages as $language) {
-				$data[$j++] = html_entity_decode($row['tag'][$language['code']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($row['tag'][$language['code']], ENT_QUOTES);
 			}
 			$data[$j++] = $row['sort_order'];
 			$data[$j++] = ($row['subtract'] == 0) ? 'false' : 'true';
@@ -7016,9 +7235,9 @@ class ModelToolExportImport extends Model {
 			if ($this->config->get('export_import_settings_use_option_id')) {
 				$data[$j++] = $row['option_id'];
 			} else {
-				$data[$j++] = html_entity_decode($row['option'], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($row['option'], ENT_QUOTES);
 			}
-			$data[$j++] = html_entity_decode($row['option_value'], ENT_QUOTES, 'UTF-8');
+			$data[$j++] = htmlspecialchars_decode($row['option_value'], ENT_QUOTES);
 			$data[$j++] = ($row['required'] == 0) ? 'false' : 'true';
 
 			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
@@ -7126,12 +7345,12 @@ class ModelToolExportImport extends Model {
 			if ($this->config->get('export_import_settings_use_option_id')) {
 				$data[$j++] = $row['option_id'];
 			} else {
-				$data[$j++] = html_entity_decode($row['option'], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($row['option'], ENT_QUOTES);
 			}
 			if ($this->config->get('export_import_settings_use_option_value_id')) {
 				$data[$j++] = $row['option_value_id'];
 			} else {
-				$data[$j++] = html_entity_decode($row['option_value'], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($row['option_value'], ENT_QUOTES);
 			}
 			$data[$j++] = $row['quantity'];
 			$data[$j++] = ($row['subtract'] == 0) ? 'false' : 'true';
@@ -7311,15 +7530,15 @@ class ModelToolExportImport extends Model {
 			if ($this->config->get('export_import_settings_use_attribute_group_id')) {
 				$data[$j++] = $row['attribute_group_id'];
 			} else {
-				$data[$j++] = html_entity_decode($attribute_group_names[$row['attribute_group_id']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($attribute_group_names[$row['attribute_group_id']], ENT_QUOTES);
 			}
 			if ($this->config->get('export_import_settings_use_attribute_id')) {
 				$data[$j++] = $row['attribute_id'];
 			} else {
-				$data[$j++] = html_entity_decode($attribute_names[$row['attribute_id']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($attribute_names[$row['attribute_id']], ENT_QUOTES);
 			}
 			foreach ($languages as $language) {
-				$data[$j++] = html_entity_decode($row['text'][$language['code']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($row['text'][$language['code']], ENT_QUOTES);
 			}
 
 			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
@@ -7419,12 +7638,12 @@ class ModelToolExportImport extends Model {
 			if ($this->config->get('export_import_settings_use_filter_group_id')) {
 				$data[$j++] = $row['filter_group_id'];
 			} else {
-				$data[$j++] = html_entity_decode($filter_group_names[$row['filter_group_id']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($filter_group_names[$row['filter_group_id']], ENT_QUOTES);
 			}
 			if ($this->config->get('export_import_settings_use_filter_id')) {
 				$data[$j++] = $row['filter_id'];
 			} else {
-				$data[$j++] = html_entity_decode($filter_names[$row['filter_id']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($filter_names[$row['filter_id']], ENT_QUOTES);
 			}
 
 			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
@@ -7520,7 +7739,7 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['type'];
 			$data[$j++] = $row['sort_order'];
 			foreach ($languages as $language) {
-				$data[$j++] = html_entity_decode($row['name'][$language['code']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($row['name'][$language['code']], ENT_QUOTES);
 			}
 
 			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
@@ -7631,7 +7850,7 @@ class ModelToolExportImport extends Model {
 			}
 			$data[$j++] = $row['sort_order'];
 			foreach ($languages as $language) {
-				$data[$j++] = html_entity_decode($row['name'][$language['code']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($row['name'][$language['code']], ENT_QUOTES);
 			}
 
 			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
@@ -7724,7 +7943,7 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['attribute_group_id'];
 			$data[$j++] = $row['sort_order'];
 			foreach ($languages as $language) {
-				$data[$j++] = html_entity_decode($row['name'][$language['code']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($row['name'][$language['code']], ENT_QUOTES);
 			}
 
 			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
@@ -7820,7 +8039,7 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['attribute_group_id'];
 			$data[$j++] = $row['sort_order'];
 			foreach ($languages as $language) {
-				$data[$j++] = html_entity_decode($row['name'][$language['code']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($row['name'][$language['code']], ENT_QUOTES);
 			}
 
 			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
@@ -7913,7 +8132,7 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['filter_group_id'];
 			$data[$j++] = $row['sort_order'];
 			foreach ($languages as $language) {
-				$data[$j++] = html_entity_decode($row['name'][$language['code']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($row['name'][$language['code']], ENT_QUOTES);
 			}
 
 			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
@@ -8009,7 +8228,119 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['filter_group_id'];
 			$data[$j++] = $row['sort_order'];
 			foreach ($languages as $language) {
-				$data[$j++] = html_entity_decode($row['name'][$language['code']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = htmlspecialchars_decode($row['name'][$language['code']], ENT_QUOTES);
+			}
+
+			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
+
+			$i += 1;
+			$j = 0;
+		}
+	}
+
+	protected function getFieldDescriptions($languages) {
+		$field_descriptions = array();
+
+		foreach ($languages as $language) {
+			$language_id = $language['language_id'];
+			$language_code = $language['code'];
+
+			$sql = "SELECT f.field_id, fd.* FROM `" . DB_PREFIX . "field` f";
+			$sql .= " LEFT JOIN " . DB_PREFIX . "field_description fd ON (fd.field_id = f.field_id)";
+			$sql .= " WHERE fd.language_id = '" . (int)$language_id . "'";
+			$sql .= " GROUP BY f.field_id";
+			$sql .= " ORDER BY f.field_id ASC";
+
+			$field_query = $this->db->query($sql);
+
+			$field_descriptions[$language_code] = $field_query->rows;
+		}
+
+		return $field_descriptions;
+	}
+
+	protected function getFields($languages) {
+		$field_descriptions = $this->getFieldDescriptions($languages);
+
+		$results = $this->db->query("SELECT * FROM `" . DB_PREFIX . "field` ORDER BY field_id ASC");
+
+		foreach ($languages as $language) {
+			$language_code = $language['code'];
+
+			foreach ($results->rows as $key => $row) {
+				if (isset($field_descriptions[$language_code][$key]['title'])) {
+					$results->rows[$key]['title'][$language_code] = $field_descriptions[$language_code][$key]['title'];
+				} else {
+					$results->rows[$key]['title'][$language_code] = '';
+				}
+
+				if (isset($field_descriptions[$language_code][$key]['description'])) {
+					$results->rows[$key]['description'][$language_code] = $field_descriptions[$language_code][$key]['description'];
+				} else {
+					$results->rows[$key]['description'][$language_code] = '';
+				}
+			}
+		}
+
+		return $results->rows;
+	}
+
+	protected function populateFieldsWorksheet($worksheet, $languages, $box_format, $text_format) {
+		// Set the column widths
+		$j = 0;
+
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('field_id'), 2)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('sort_order'), 2)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('status'), 2)+1);
+		foreach ($languages as $language) {
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('title')+4, 5)+1, $text_format);
+		}
+		foreach ($languages as $language) {
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('description'), 30)+1, $text_format);
+		}
+
+		// The fields headings row and column styles
+		$styles = array();
+		$data = array();
+
+		$i = 1;
+		$j = 0;
+
+		$data[$j++] = 'field_id';
+		$data[$j++] = 'sort_order';
+		$data[$j++] = 'status';
+		foreach ($languages as $language) {
+			$styles[$j] = $text_format;
+			$data[$j++] = 'title(' . $language['code'] . ')';
+		}
+		foreach ($languages as $language) {
+			$styles[$j] = $text_format;
+			$data[$j++] = 'description(' . $language['code'] . ')';
+		}
+
+		$worksheet->getRowDimension($i)->setRowHeight(30);
+
+		$this->setCellRow($worksheet, $i, $data, $box_format);
+
+		// The actual fields values data
+		$i += 1;
+		$j = 0;
+
+		$options = $this->getFields($languages);
+
+		foreach ($options as $row) {
+			$worksheet->getRowDimension($i)->setRowHeight(13);
+
+			$data = array();
+
+			$data[$j++] = $row['field_id'];
+			$data[$j++] = $row['sort_order'];
+			$data[$j++] = $row['status'];
+			foreach ($languages as $language) {
+				$data[$j++] = htmlspecialchars_decode($row['title'][$language['code']], ENT_QUOTES);
+			}
+			foreach ($languages as $language) {
+				$data[$j++] = htmlspecialchars_decode($row['description'][$language['code']], ENT_QUOTES);
 			}
 
 			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
@@ -8412,6 +8743,21 @@ class ModelToolExportImport extends Model {
 					$worksheet->freezePaneByColumnAndRow(1, 2);
 					break;
 
+				case 'e':
+					if (!$this->existField()) {
+						throw new Exception($this->language->get('error_field_not_supported'));
+						break;
+					}
+
+					// Creating the Fields worksheet
+					$workbook->createSheet();
+					$workbook->setActiveSheetIndex($worksheet_index++);
+					$worksheet = $workbook->getActiveSheet();
+					$worksheet->setTitle('Fields');
+					$this->populateFieldsWorksheet($worksheet, $languages, $box_format, $text_format);
+					$worksheet->freezePaneByColumnAndRow(1, 2);
+					break;
+
 				default:
 					break;
 			}
@@ -8482,6 +8828,13 @@ class ModelToolExportImport extends Model {
 						break;
 					}
 					$filename = 'filters-' . $datetime . '.xlsx';
+					break;
+				case 'e':
+					if (!$this->existField()) {
+						throw new Exception($this->language->get('error_field_not_supported'));
+						break;
+					}
+					$filename = 'fields-' . $datetime . '.xlsx';
 					break;
 				default:
 					$filename = $datetime . '.xlsx';
@@ -8586,6 +8939,18 @@ class ModelToolExportImport extends Model {
 		return $query->rows;
 	}
 
+	public function getFieldTitleCounts() {
+		$default_language_id = $this->getDefaultLanguageId();
+
+		$sql = "SELECT fd.title, COUNT(fd.field_id) AS count FROM " . DB_PREFIX . "field_description fd";
+		$sql .= " INNER JOIN `" . DB_PREFIX . "field` f ON (f.field_id = fd.field_id)";
+		$sql .= " WHERE fd.language_id = '" . (int)$default_language_id . "' GROUP BY fd.title";
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
+
 	public function existFilter() {
 		$query = $this->db->query("SHOW TABLES LIKE '" . DB_PREFIX . "filter'");
 		$exist_table_filter = ($query->num_rows > 0);
@@ -8612,6 +8977,31 @@ class ModelToolExportImport extends Model {
 		}
 
 		if (!$exist_table_category_filter) {
+			return false;
+		}
+
+		return true;
+	}
+
+	public function existField() {
+		$query = $this->db->query("SHOW TABLES LIKE '" . DB_PREFIX . "field'");
+		$exist_table_field= ($query->num_rows > 0);
+
+		$query = $this->db->query("SHOW TABLES LIKE '" . DB_PREFIX . "field_description'");
+		$exist_table_field_description = ($query->num_rows > 0);
+
+		$query = $this->db->query("SHOW TABLES LIKE '" . DB_PREFIX . "product_field'");
+		$exist_table_product_field = ($query->num_rows > 0);
+
+		if (!$exist_table_field) {
+			return false;
+		}
+
+		if (!$exist_table_field_description) {
+			return false;
+		}
+
+		if (!$exist_table_product_field) {
 			return false;
 		}
 

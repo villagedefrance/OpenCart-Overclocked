@@ -135,6 +135,12 @@ class ControllerToolExportImport extends Controller {
 						break;
 					}
 					break;
+				case 'e':
+					if ($this->model_tool_export_import->existField()) {
+						$this->model_tool_export_import->download('e', null, null, null, null);
+						break;
+					}
+					break;
 				default:
 					break;
 			}
@@ -181,6 +187,7 @@ class ControllerToolExportImport extends Controller {
 		$this->load->model('tool/export_import');
 
 		$this->data['exist_filter'] = $this->model_tool_export_import->existFilter();
+		$this->data['exist_field'] = $this->model_tool_export_import->existField();
 
 		$this->data['text_export_type_customer'] = $this->language->get('text_export_type_customer');
 		$this->data['text_export_type_category'] = ($this->data['exist_filter']) ? $this->language->get('text_export_type_category') : $this->language->get('text_export_type_category_old');
@@ -188,6 +195,7 @@ class ControllerToolExportImport extends Controller {
 		$this->data['text_export_type_option'] = $this->language->get('text_export_type_option');
 		$this->data['text_export_type_attribute'] = $this->language->get('text_export_type_attribute');
 		$this->data['text_export_type_filter'] = $this->language->get('text_export_type_filter');
+		$this->data['text_export_type_field'] = $this->language->get('text_export_type_field');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
 

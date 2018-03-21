@@ -37,35 +37,35 @@
               <td style="vertical-align:top;">
                 <b><?php echo $entry_export_type; ?></b>
                 <br /><br />
-                <?php if ($export_type=='m') { ?>
+                <?php if ($export_type == 'm') { ?>
                   <input type="radio" name="export_type" value="m" id="export-m" class="radio" checked />
                 <?php } else { ?>
                   <input type="radio" name="export_type" value="m" id="export-m" class="radio" />
                 <?php } ?>
                 <label for="export-m"><span><span></span></span> <?php echo $text_export_type_customer; ?></label>
                 <br />
-                <?php if ($export_type=='c') { ?>
+                <?php if ($export_type == 'c') { ?>
                   <input type="radio" name="export_type" value="c" id="export-c" class="radio" checked />
                 <?php } else { ?>
                   <input type="radio" name="export_type" value="c" id="export-c" class="radio" />
                 <?php } ?>
                 <label for="export-c"><span><span></span></span> <?php echo $text_export_type_category; ?></label>
                 <br />
-                <?php if ($export_type=='p') { ?>
+                <?php if ($export_type == 'p') { ?>
                   <input type="radio" name="export_type" value="p" id="export-p" class="radio" checked />
                 <?php } else { ?>
                   <input type="radio" name="export_type" value="p" id="export-p" class="radio" />
                 <?php } ?>
                 <label for="export-p"><span><span></span></span> <?php echo $text_export_type_product; ?></label>
                 <br />
-                <?php if ($export_type=='o') { ?>
+                <?php if ($export_type == 'o') { ?>
                   <input type="radio" name="export_type" value="o" id="export-o" class="radio" checked />
                 <?php } else { ?>
                   <input type="radio" name="export_type" value="o" id="export-o" class="radio" />
                 <?php } ?>
                 <label for="export-o"><span><span></span></span> <?php echo $text_export_type_option; ?></label>
                 <br />
-                <?php if ($export_type=='a') { ?>
+                <?php if ($export_type == 'a') { ?>
                   <input type="radio" name="export_type" value="a" id="export-a" class="radio" checked />
                 <?php } else { ?>
                   <input type="radio" name="export_type" value="a" id="export-a" class="radio" />
@@ -73,12 +73,21 @@
                 <label for="export-a"><span><span></span></span> <?php echo $text_export_type_attribute; ?></label>
                 <br />
                 <?php if ($exist_filter) { ?>
-                  <?php if ($export_type=='f') { ?>
+                  <?php if ($export_type == 'f') { ?>
                     <input type="radio" name="export_type" value="f" id="export-f" class="radio" checked />
                   <?php } else { ?>
                     <input type="radio" name="export_type" value="f" id="export-f" class="radio" />
                   <?php } ?>
                   <label for="export-f"><span><span></span></span> <?php echo $text_export_type_filter; ?></label>
+                  <br />
+                <?php } ?>
+                <?php if ($exist_field) { ?>
+                  <?php if ($export_type == 'e') { ?>
+                    <input type="radio" name="export_type" value="e" id="export-e" class="radio" checked />
+                  <?php } else { ?>
+                    <input type="radio" name="export_type" value="e" id="export-e" class="radio" />
+                  <?php } ?>
+                  <label for="export-e"><span><span></span></span> <?php echo $text_export_type_field; ?></label>
                   <br />
                 <?php } ?>
               </td>
@@ -389,8 +398,8 @@ $('#tabs a').tabs();
 function check_range_type(export_type) {
 	if ((export_type == 'm') || (export_type == 'c') || (export_type == 'p')) {
 		$('#range_type').fadeIn(500);
-		$('#range_type_id').prop('checked',true);
-		$('#range_type_page').prop('checked',false);
+		$('#range_type_id').prop('checked', true);
+		$('#range_type_page').prop('checked', false);
 		$('.id').show();
 		$('.page').hide();
 	} else {
