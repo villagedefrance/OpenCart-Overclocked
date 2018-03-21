@@ -127,17 +127,10 @@
     </tr>
     <?php } ?>
   </table>
-  <?php if ($order['comment']) { ?>
-  <table class="comment">
-    <tr class="heading">
-      <td><b><?php echo $column_comment; ?></b></td>
-    </tr>
-    <tr>
-      <td><?php echo $order['comment']; ?></td>
-    </tr>
-  </table>
-  <?php } ?>
   <table class="bank">
+    <tr>
+      <td class="center"><span><b><?php echo $text_damages; ?></b></span></td>
+    </tr>
   <?php if (isset($bank_name) && isset($bank_sort_code) && isset($bank_account)) { ?>
     <tr>
       <td class="center"><span><?php echo $text_bank_name; ?> <?php echo $bank_name; ?> - <?php echo $text_bank_account; ?> <?php echo $bank_sort_code; ?> <?php echo $bank_account; ?></span></td>

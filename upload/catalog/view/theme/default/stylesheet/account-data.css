@@ -34,6 +34,9 @@ h1 {
 	border-bottom: 1px solid #DDD;
 }
 /* General */
+.documents {
+	margin: 0 5px;
+}
 .store {
 	width: 100%;
 	margin-bottom: 20px;

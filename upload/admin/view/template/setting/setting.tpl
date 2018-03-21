@@ -110,11 +110,11 @@
           </tr>
           <tr>
             <td><?php echo $entry_bank_sort_code; ?></td>
-            <td><input type="text" name="config_bank_sort_code" value="<?php echo $config_bank_sort_code; ?>" /></td>
+            <td><input type="text" name="config_bank_sort_code" value="<?php echo $config_bank_sort_code; ?>" size="40" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_bank_account; ?></td>
-            <td><input type="text" name="config_bank_account" value="<?php echo $config_bank_account; ?>" /></td>
+            <td><input type="text" name="config_bank_account" value="<?php echo $config_bank_account; ?>" size="40" /></td>
           </tr>
         </table>
       </div>
