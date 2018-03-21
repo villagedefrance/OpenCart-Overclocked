@@ -91,7 +91,7 @@ class ControllerReportCustomerOrder extends Controller {
 				'href' => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'] . $url, 'SSL')
 			);
 
-			$customer_deleted = $this->model_sale_customer->getDeletedByCustomerId($result['customer_id']);
+			$customer_deleted = $this->model_sale_customer->checkCustomersDeletedId($result['customer_id']);
 
 			$this->data['customers'][] = array(
 				'customer'       => $result['customer'],

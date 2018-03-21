@@ -163,16 +163,20 @@ class ControllerSaleCustomer extends Controller {
 
 		if (isset($this->request->post['selected']) && $this->validateDelete()) {
 			foreach ($this->request->post['selected'] as $customer_id) {
-				$this->model_sale_customer->addDeletedCustomer($customer_id);
+				$customer_deleted = $this->model_sale_customer->checkCustomersDeletedId($customer_id);
 
-				$force_delete = $this->config->get('config_force_delete');
+				if (!$customer_deleted) {
+					$this->model_sale_customer->addDeletedCustomer($customer_id);
 
-				$orders_total = $this->model_sale_customer->getTotalCustomersOrders($customer_id);
+					$force_delete = $this->config->get('config_force_delete');
 
-				if (!$force_delete && $orders_total > 0) {
-					$this->model_sale_customer->deleteCustomerWithOrders($customer_id);
-				} else {
-					$this->model_sale_customer->deleteCustomer($customer_id);
+					$orders_total = $this->model_sale_customer->getTotalCustomersOrders($customer_id);
+
+					if (!$force_delete && $orders_total > 0) {
+						$this->model_sale_customer->deleteCustomerWithOrders($customer_id);
+					} else {
+						$this->model_sale_customer->deleteCustomer($customer_id);
+					}
 				}
 			}
 
@@ -446,7 +450,7 @@ class ControllerSaleCustomer extends Controller {
 		foreach ($results as $result) {
 			$action = array();
 
-			$customer_deleted = $this->model_sale_customer->getDeletedByCustomerId($result['customer_id']);
+			$customer_deleted = $this->model_sale_customer->checkCustomersDeletedId($result['customer_id']);
 
 			$action[] = array(
 				'text' => $this->language->get('text_edit'),

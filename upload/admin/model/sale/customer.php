@@ -238,6 +238,16 @@ class ModelSaleCustomer extends Model {
 		}
 	}
 
+	public function getDeletedByCustomerId($customer_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer_deleted WHERE customer_id = '" . (int)$customer_id . "'");
+
+		if ($query->row['total'] == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 	public function approve($customer_id) {
 		$customer_info = $this->getCustomer($customer_id);
 
@@ -794,17 +804,6 @@ class ModelSaleCustomer extends Model {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "return` WHERE customer_id = '" . (int)$customer_id . "'");
 
 		return $query->row['total'];
-	}
-
-	// Deleted
-	public function getDeletedByCustomerId($customer_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer_deleted WHERE customer_id = '" . (int)$customer_id . "'");
-
-		if ($query->row['total'] == 0) {
-			return false;
-		} else {
-			return true;
-		}
 	}
 
 	// Ip

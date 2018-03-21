@@ -497,7 +497,7 @@ class ControllerCommonHome extends Controller {
 				$customer_age = '';
 			}
 
-			$customer_deleted = $this->model_sale_customer->getDeletedByCustomerId($customer_result['customer_id']);
+			$customer_deleted = $this->model_sale_customer->checkCustomersDeletedId($customer_result['customer_id']);
 
 			$this->data['customers'][] = array(
 				'customer_id'    => $customer_result['customer_id'],
