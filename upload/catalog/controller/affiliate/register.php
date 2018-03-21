@@ -17,24 +17,14 @@ class ControllerAffiliateRegister extends Controller {
 		$this->load->model('affiliate/affiliate');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$affiliate_id = $this->model_affiliate_affiliate->addAffiliate($this->request->post);
+			$this->model_affiliate_affiliate->addAffiliate($this->request->post);
 
 			// Clear any previous login attempts in not registered.
 			$this->model_affiliate_affiliate->deleteLoginAttempts($this->request->post['email']);
 
 			$this->affiliate->login($this->request->post['email'], $this->request->post['password']);
 
-			// Add to activity log
-			if ($this->config->get('config_affiliate_activity')) {
-				$this->load->model('affiliate/activity');
-
-				$affiliate_id = $this->affiliate->getId();
-				$affiliate_name = $this->affiliate->getFirstName() . ' ' . $this->affiliate->getLastName();
-
-				$this->model_affiliate_activity->addActivity($affiliate_id, 'register', $affiliate_name);
-			}
-
-			$this->redirect($this->url->link('affiliate/success'));
+			$this->redirect($this->url->link('affiliate/success', '' , 'SSL'));
 		}
 
 		$this->data['breadcrumbs'] = array();

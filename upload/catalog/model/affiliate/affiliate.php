@@ -6,6 +6,16 @@ class ModelAffiliateAffiliate extends Model {
 
 		$affiliate_id = $this->db->getLastId();
 
+		// Add to activity log
+		if ($this->config->get('config_affiliate_activity')) {
+			$firstname = (isset($data['firstname'])) ? trim($data['firstname']) : 'no firstname';
+			$lastname = (isset($data['lastname'])) ? trim($data['lastname']) : 'no lastname';
+
+			$affiliate_name = $firstname . ' ' . $lastname;
+
+			$this->addActivity($affiliate_id, 'register', $affiliate_name);
+		}
+
 		// Send new affiliate email
 		$this->language->load('mail/affiliate');
 
@@ -75,6 +85,10 @@ class ModelAffiliateAffiliate extends Model {
 		}
 
 		return $affiliate_id;
+	}
+
+	public function addActivity($affiliate_id, $key, $affiliate_name) {
+		$this->db->query("INSERT INTO " . DB_PREFIX . "affiliate_activity SET affiliate_id = '" . (int)$affiliate_id . "', `key` = '" . $this->db->escape($key) . "', name = '" . $this->db->escape($affiliate_name) . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "', date_added = NOW()");
 	}
 
 	public function editAffiliate($data) {

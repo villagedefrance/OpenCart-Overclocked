@@ -13,10 +13,10 @@ $_['text_i_am_returning_affiliate'] = '<b>I am a returning affiliate.</b>';
 $_['text_forgotten']                = 'Forgotten Password';
 
 // Entry
-$_['entry_email']                   = 'Affiliate E-Mail:';
+$_['entry_email']                   = 'Affiliate Email:';
 $_['entry_password']                = 'Password:';
 
 // Error
-$_['error_login']                   = 'Warning: No match for E-Mail Address and/or Password.';
+$_['error_login']                   = 'Warning: No match for Email Address and/or Password.';
 $_['error_attempts']                = 'Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.';
 $_['error_approved']                = 'Warning: Your account requires approval before you can login.';

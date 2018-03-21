@@ -18,17 +18,15 @@ class ControllerAffiliatePassword extends Controller {
 
 			$this->model_affiliate_affiliate->editPassword($this->affiliate->getEmail(), $this->request->post['password']);
 
-			$this->session->data['success'] = $this->language->get('text_success');
-
 			// Add to activity log
 			if ($this->config->get('config_affiliate_activity')) {
-				$this->load->model('affiliate/activity');
-
 				$affiliate_id = $this->affiliate->getId();
 				$affiliate_name = $this->affiliate->getFirstName() . ' ' . $this->affiliate->getLastName();
 
-				$this->model_affiliate_activity->addActivity($affiliate_id, 'password', $affiliate_name);
+				$this->model_affiliate_affiliate->addActivity($affiliate_id, 'password', $affiliate_name);
 			}
+
+			$this->session->data['success'] = $this->language->get('text_success');
 
 			$this->redirect($this->url->link('affiliate/account', '', 'SSL'));
 		}
