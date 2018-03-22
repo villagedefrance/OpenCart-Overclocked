@@ -1261,6 +1261,10 @@ a.button-print:hover {
 	-khtml-border-radius: 2px;
 	border-radius: 2px;
 }
+.list tfoot tr td {
+	color: #E5E5E5;
+	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
+}
 .list tfoot tr td.script {
 	color: #E5E5E5;
 	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);

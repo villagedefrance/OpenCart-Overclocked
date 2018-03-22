@@ -64,10 +64,10 @@
         <tfoot>
           <tr>
             <td class="left" colspan="2"></td>
-            <td class="right"><b><?php echo $text_total; ?> <?php echo $column_price; ?> :</b> <?php echo $total_price; ?></td>
-            <td class="right"><b><?php echo $text_total; ?> <?php echo $column_cost; ?> :</b> <?php echo $total_cost; ?></td>
-            <td class="right"><b><?php echo $text_total; ?> <?php echo $column_profit; ?> (%) :</b> <?php echo $total_percent_profit; ?></td>
-            <td class="right"><b><?php echo $text_total; ?> <?php echo $column_profit; ?> :</b> <?php echo $total_profit; ?></td>
+            <td class="right"><b><?php echo $text_total; ?> <?php echo $column_price; ?> : <?php echo $total_price; ?></b></td>
+            <td class="right"><b><?php echo $text_total; ?> <?php echo $column_cost; ?> : <?php echo $total_cost; ?></b></td>
+            <td class="right"><b><?php echo $text_total; ?> <?php echo $column_profit; ?> (%) : <?php echo $total_percent_profit; ?></b></td>
+            <td class="right"><b><?php echo $text_total; ?> <?php echo $column_profit; ?> : <?php echo $total_profit; ?></b></td>
           </tr>
         </tfoot>
       </table>

@@ -25,7 +25,7 @@
           <tr>
             <td class="left"><?php echo $column_name; ?></td>
             <td class="left"><?php echo $column_model; ?></td>
-            <td class="right"><?php echo $column_viewed; ?></td>
+            <td class="center"><?php echo $column_viewed; ?></td>
             <td class="right"><?php echo $column_percent; ?></td>
           </tr>
         </thead>
@@ -35,7 +35,7 @@
             <tr>
               <td class="left"><?php echo $product['name']; ?></td>
               <td class="left"><?php echo $product['model']; ?></td>
-              <td class="right"><?php echo $product['viewed']; ?></td>
+              <td class="center"><?php echo $product['viewed']; ?></td>
               <td class="right"><?php echo $product['percent']; ?></td>
             </tr>
           <?php } ?>
