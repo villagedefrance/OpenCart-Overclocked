@@ -1,5 +1,5 @@
 /*
- Common v1.0.2 | @villagedefrance | Overclocked Edition | GNU GPL3 Licensed
+ Common v1.0.3 | @villagedefrance | Overclocked Edition | GNU GPL3 Licensed
  ---------------------------------------------------------------------------
  Common.js file for development. Use minified version for production.
  ---------------------------------------------------------------------------
@@ -99,6 +99,23 @@ function getURLVar(key) {
 			return '';
 		}
 	}
+}
+
+// Banner Tracking
+function addClick(banner_image_id) {
+	$.ajax({
+		url: 'index.php?route=common/footer/add',
+		type: 'post',
+		data: 'banner_image_id=' + banner_image_id,
+		dataType: 'json',
+		success: function(json) {
+			$('.success, .warning, .attention, .tooltip').remove();
+			if (json['success']) {
+				$('#notification').html('<div class="success" style="display:none;">' + json['success'] + '</div>');
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) { }
+	});
 }
 
 // Product Quantity +/-

@@ -130,4 +130,40 @@ class ModelDesignBanner extends Model {
 
 		return $query->row['total'];
 	}
+
+	public function getImagesClicked($data = array()) {
+		$sql = "SELECT *, bid.title AS title FROM " . DB_PREFIX . "banner_image bi LEFT JOIN " . DB_PREFIX . "banner_image_description bid ON (bi.banner_image_id = bid.banner_image_id) WHERE bid.language_id = '" . (int)$this->config->get('config_language_id') . "' AND bi.banner_id = bid.banner_id AND bi.link != '' ORDER BY bi.clicked DESC";
+
+		if (isset($data['start']) || isset($data['limit'])) {
+			if ($data['start'] < 0) {
+				$data['start'] = 0;
+			}
+
+			if ($data['limit'] < 1) {
+				$data['limit'] = 20;
+			}
+
+			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		}
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
+
+	public function getTotalImagesClicked() {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "banner_image WHERE clicked > '0'");
+
+		return $query->row['total'];
+	}
+
+	public function getTotalImagesClicks() {
+		$query = $this->db->query("SELECT SUM(clicked) AS total FROM " . DB_PREFIX . "banner_image");
+
+		return $query->row['total'];
+	}
+
+	public function resetClicks() {
+		$this->db->query("UPDATE `" . DB_PREFIX . "banner_image` SET clicked = '0'");
+	}
 }

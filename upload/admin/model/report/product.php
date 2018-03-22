@@ -33,7 +33,7 @@ class ModelReportProduct extends Model {
 		return $query->row['total'];
 	}
 
-	public function reset() {
+	public function resetViews() {
 		$this->db->query("UPDATE " . DB_PREFIX . "product SET viewed = '0'");
 	}
 

@@ -6,9 +6,9 @@
       <ul class="slides">
       <?php foreach ($banners as $banner) { ?>
         <?php if ($banner['link']) { ?>
-          <li class="tracked"><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></a></li>
+          <li><a onclick="addClick('<?php echo $banner['banner_image_id']; ?>');" href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></a></li>
         <?php } else { ?>
-          <li class="tracked"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></li>
+          <li><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></li>
         <?php } ?>
       <?php } ?>
 	  </ul>
@@ -21,9 +21,9 @@
       <ul class="slides">
       <?php foreach ($banners as $banner) { ?>
         <?php if ($banner['link']) { ?>
-          <li class="tracked"><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></a></li>
+          <li><a onclick="addClick('<?php echo $banner['banner_image_id']; ?>');" href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></a></li>
         <?php } else { ?>
-          <li class="tracked"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></li>
+          <li><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></li>
         <?php } ?>
       <?php } ?>
 	  </ul>

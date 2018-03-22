@@ -12,4 +12,8 @@ class ModelDesignBanner extends Model {
 
 		return $query->rows;
 	}
+
+	public function updateClicked($banner_image_id) {
+		$this->db->query("UPDATE " . DB_PREFIX . "banner_image SET clicked = (clicked + 1) WHERE banner_image_id = '" . (int)$banner_image_id . "'");
+	}
 }

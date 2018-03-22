@@ -5,9 +5,9 @@
     <div class="slick_skin" id="carousel<?php echo $module; ?>">
       <?php foreach ($banners as $banner) { ?>
         <?php if ($banner['link']) { ?>
-          <div class="carousel-swipe tracked"><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></a></div>
+          <div class="carousel-swipe"><a onclick="addClick('<?php echo $banner['banner_image_id']; ?>');" href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></a></div>
         <?php } else { ?>
-          <div class="carousel-swipe tracked"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></div>
+          <div class="carousel-swipe"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></div>
         <?php } ?>
       <?php } ?>
     </div>
@@ -18,9 +18,9 @@
     <div class="slick_skin" id="carousel<?php echo $module; ?>">
       <?php foreach ($banners as $banner) { ?>
         <?php if ($banner['link']) { ?>
-          <div class="carousel-swipe tracked"><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></a></div>
+          <div class="carousel-swipe"><a onclick="addClick('<?php echo $banner['banner_image_id']; ?>');" href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></a></div>
         <?php } else { ?>
-          <div class="carousel-swipe tracked"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></div>
+          <div class="carousel-swipe"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" id="<?php echo $banner['banner_image_id']; ?>" /></div>
         <?php } ?>
       <?php } ?>
     </div>

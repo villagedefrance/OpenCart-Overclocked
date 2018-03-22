@@ -166,4 +166,23 @@ class ControllerCommonFooter extends Controller {
 
 		$this->render();
 	}
+
+	public function add() {
+		$this->load->model('design/banner');
+
+		$json = array();
+
+		if (isset($this->request->post['banner_image_id'])) {
+			$banner_image_id = $this->request->post['banner_image_id'];
+		} else {
+			$banner_image_id = 0;
+		}
+
+		$this->model_design_banner->updateClicked($banner_image_id);
+
+		$json['success'] = 'clicked';
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
 }
