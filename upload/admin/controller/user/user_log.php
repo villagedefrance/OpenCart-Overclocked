@@ -259,7 +259,7 @@ class ControllerUserUserLog extends Controller {
 		} elseif ($this->config->get('user_log_hacklog')) {
 			$this->data['user_log_hacklog'] = $this->config->get('user_log_hacklog');
 		} else {
-			$this->data['user_log_hacklog'] = 1;
+			$this->data['user_log_hacklog'] = 0;
 		}
 
 		if (isset($this->request->post['user_log_access'])) {
