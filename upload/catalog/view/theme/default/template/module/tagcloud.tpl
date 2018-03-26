@@ -5,7 +5,7 @@
     <?php if ($tagcloud) { ?>
       <?php echo $tagcloud; ?>
     <?php } else { ?>
-      <?php echo $text_notags; ?>
+      <?php echo $text_no_tags; ?>
     <?php } ?>
   </div>
 </div>
@@ -14,7 +14,7 @@
     <?php if ($tagcloud) { ?>
       <?php echo $tagcloud; ?>
     <?php } else { ?>
-      <?php echo $text_notags; ?>
+      <?php echo $text_no_tags; ?>
     <?php } ?>
   </div>
 <?php } ?>
