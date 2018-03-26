@@ -20,9 +20,9 @@
     </div>
     <div class="content">
       <?php if ($active) { ?>
-        <div class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $text_active; ?></div>
+        <div class="tooltip" style="margin:5px 0 15px 0;"><?php echo $text_active; ?></div>
       <?php } else { ?>
-        <div class="attention" style="margin:5px 0px 10px 0px;"><?php echo $text_not_active; ?></div>
+        <div class="attention" style="margin:5px 0 15px 0;"><?php echo $text_not_active; ?></div>
       <?php } ?>
       <div id="tabs" class="htabs">
         <a href="#tab-general"><?php echo $tab_general; ?></a>
