@@ -123,27 +123,27 @@
           <?php } ?>
         </tr>
       </tbody>
-      <?php foreach ($attribute_groups as $attribute_group) { ?>
-        <thead>
+    <?php foreach ($attribute_groups as $attribute_group) { ?>
+      <thead>
+        <tr>
+          <td class="compare-attribute" colspan="<?php echo count($products) + 1; ?>"><?php echo $attribute_group['name']; ?></td>
+        </tr>
+      </thead>
+      <?php foreach ($attribute_group['attribute'] as $key => $attribute) { ?>
+        <tbody>
           <tr>
-            <td class="compare-attribute" colspan="<?php echo count($products) + 1; ?>"><?php echo $attribute_group['name']; ?></td>
-          </tr>
-        </thead>
-        <?php foreach ($attribute_group['attribute'] as $key => $attribute) { ?>
-          <tbody>
-            <tr>
-              <td><?php echo $attribute['name']; ?></td>
-              <?php foreach ($products as $product) { ?>
-                <?php if (isset($products[$product['product_id']]['attribute'][$key])) { ?>
-                  <td><?php echo html_entity_decode($products[$product['product_id']]['attribute'][$key], ENT_QUOTES, 'UTF-8'); ?></td>
-                <?php } else { ?>
-                  <td></td>
-                <?php } ?>
+            <td><?php echo $attribute['name']; ?></td>
+            <?php foreach ($products as $product) { ?>
+              <?php if (isset($products[$product['product_id']]['attribute'][$key])) { ?>
+                <td><?php echo html_entity_decode($products[$product['product_id']]['attribute'][$key], ENT_QUOTES, 'UTF-8'); ?></td>
+              <?php } else { ?>
+                <td></td>
               <?php } ?>
-            </tr>
-          </tbody>
-        <?php } ?>
+            <?php } ?>
+          </tr>
+        </tbody>
       <?php } ?>
+    <?php } ?>
       <tr>
         <td></td>
         <?php foreach ($products as $product) { ?>

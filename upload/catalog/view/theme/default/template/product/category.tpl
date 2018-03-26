@@ -224,7 +224,7 @@ function display(view) {
 
 		$('.display').html('<img src="catalog/view/theme/<?php echo $template; ?>/image/page-list-active.png" alt="" /> <a onclick="display(\'grid\');"><img src="catalog/view/theme/<?php echo $template; ?>/image/page-grid-off.png" alt="" /></a>');
 
-		$.totalStorage('display', 'list');
+		localStorage.setItem('display', 'list');
 
 	} else {
 		$('.product-list').attr('class', 'product-grid');
@@ -294,11 +294,11 @@ function display(view) {
 
 		$('.display').html('<a onclick="display(\'list\');"><img src="catalog/view/theme/<?php echo $template; ?>/image/page-list-off.png" alt="" /></a> <img src="catalog/view/theme/<?php echo $template; ?>/image/page-grid-active.png" alt="" /></a>');
 
-		$.totalStorage('display', 'grid');
+		localStorage.setItem('display', 'grid');
 	}
 }
 
-view = $.totalStorage('display');
+view = localStorage.getItem('display');
 
 if (view) {
 	display(view);
