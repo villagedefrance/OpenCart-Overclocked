@@ -235,7 +235,7 @@ class ControllerUserUserLog extends Controller {
 		} elseif ($this->config->get('user_log_enable')) {
 			$this->data['user_log_enable'] = $this->config->get('user_log_enable');
 		} else {
-			$this->data['user_log_enable'] = 1;
+			$this->data['user_log_enable'] = 0;
 		}
 
 		if (isset($this->request->post['user_log_login'])) {
@@ -283,7 +283,7 @@ class ControllerUserUserLog extends Controller {
 		} elseif ($this->config->get('user_log_allowed')) {
 			$this->data['user_log_allowed'] = $this->config->get('user_log_allowed');
 		} else {
-			$this->data['user_log_allowed'] = 2;
+			$this->data['user_log_allowed'] = 0;
 		}
 
 		if (isset($this->request->post['user_log_display'])) {
