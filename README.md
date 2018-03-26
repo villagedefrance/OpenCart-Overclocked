@@ -32,7 +32,7 @@ Requirements:
 
 
 COMING SOON in v1.11.0!
-- Upgraded to latest jQuery 3.2.1.
+- Upgraded to latest jQuery 3.3.1.
 - Upgraded almost all Javascript libraries.
 - Extensive code validation using Codacy.
 - Added Composer.json and Packagist repo.
@@ -40,6 +40,8 @@ COMING SOON in v1.11.0!
 - Added Administration event Notifications.
 - Added Administration User Logs.
 - Added FlexSlider for "Slideshow" and "Banner".
+- Added Banner clicks counter with report.
+- Added Palette module (Search by color).
 - New Responsive Administration Login page.
 - Paypal Express update. (Thanks Gob33!)
 - Paypal Payflow Iframe update. (Thanks Gob33!)
