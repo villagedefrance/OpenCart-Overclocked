@@ -8,7 +8,7 @@
 <link type="text/css" href="view/javascript/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css" rel="stylesheet" />
 <link type="text/css" href="view/javascript/jquery/ui/themes/start/jquery-ui-1.12.1.min.css" rel="stylesheet" />
 
-<script type="text/javascript" src="view/javascript/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="view/javascript/jquery/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jquery-migrate-1.4.1.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jquery-migrate-3.0.1.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-1.12.1.min.js"></script>
