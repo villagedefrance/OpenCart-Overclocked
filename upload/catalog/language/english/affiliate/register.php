@@ -41,6 +41,7 @@ $_['entry_bank_account_name']   = 'Account Name:';
 $_['entry_bank_account_number'] = 'Account Number:';
 $_['entry_password']            = 'Password:';
 $_['entry_confirm']             = 'Password Confirm:';
+$_['entry_captcha']             = 'Enter the two words';
 
 // Error
 $_['error_exists']              = 'Warning: Email Address is already registered!';
@@ -56,3 +57,4 @@ $_['error_country']             = 'Please select a country!';
 $_['error_zone']                = 'Please select a region / state!';
 $_['error_postcode']            = 'Postcode must be between 2 and 10 characters!';
 $_['error_agree']               = 'Warning: You must agree to the %s!';
+$_['error_captcha']             = 'Verification code does not match the image!';
