@@ -411,8 +411,10 @@
           <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
           <?php if ($is_quote) { ?>
             <a href="<?php echo $is_quote; ?>" class="button" style="margin-left:15px;"><?php echo $button_quote; ?></a>
-          <?php } elseif (!$is_quote && $stock_quantity <= 0) { ?>
+          <?php } elseif (!$is_quote && !$stock_checkout && $stock_quantity <= 0) { ?>
             <span class="stock-status"> &nbsp; <?php echo $stock; ?></span>
+          <?php } elseif (!$is_quote && $stock_checkout && $stock_quantity <= 0) { ?>
+            <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button-cart" />
           <?php } else { ?>
             <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button-cart" />
           <?php } ?>
@@ -428,6 +430,8 @@
       </div>
       <?php if (($dob && $age_minimum > 0 && !$age_checked) || $is_quote || !$buy_now_button || ($stock_quantity <= 0)) { ?>
         <p class="hidden"></p>
+       <?php } elseif (!$is_quote && $stock_checkout && $buy_now_button && $stock_quantity <= 0) { ?>
+        <div id="buy-now" style="margin-bottom:20px;"><input type="button" value="<?php echo $button_buy_it_now; ?>" id="button-buy-it-now" class="button-buy-now" /></div>
       <?php } else { ?>
         <div id="buy-now" style="margin-bottom:20px;"><input type="button" value="<?php echo $button_buy_it_now; ?>" id="button-buy-it-now" class="button-buy-now" /></div>
       <?php } ?>

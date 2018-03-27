@@ -29,39 +29,39 @@
         </tr>
         <tr>
           <td><?php echo $text_image; ?></td>
-          <?php foreach ($products as $product) { ?>
-            <td>
-              <?php if ($products[$product['product_id']]['thumb']) { ?>
-                <?php if ($products[$product['product_id']]['stock_label']) { ?>
-                  <div class="stock-medium"><img src="<?php echo $products[$product['product_id']]['stock_label']; ?>" alt="" /></div>
-                <?php } ?>
-                <?php if (!$products[$product['product_id']]['stock_label'] && $products[$product['product_id']]['offer']) { ?>
-                  <div class="offer-medium"><img src="<?php echo $products[$product['product_id']]['offer_label']; ?>" alt="" /></div>
-                <?php } ?>
-                <?php if (!$products[$product['product_id']]['stock_label'] && !$products[$product['product_id']]['offer'] && $products[$product['product_id']]['special']) { ?>
-                  <div class="special-medium"><img src="<?php echo $products[$product['product_id']]['special_label']; ?>" alt="" /></div>
-                <?php } ?>
-                <?php if ($products[$product['product_id']]['label']) { ?>
-                  <div class="product-label">
-                    <img src="<?php echo $products[$product['product_id']]['label']; ?>" alt="" height="<?php echo $products[$product['product_id']]['label_style']; ?>" width="<?php echo $products[$product['product_id']]['label_style']; ?>" style="margin:0px 0px -<?php echo $products[$product['product_id']]['label_style']; ?>px <?php echo ($products[$product['product_id']]['label_style'] * 2); ?>px;" />
-                  </div>
-                <?php } ?>
-                <a href="<?php echo $products[$product['product_id']]['href']; ?>"><img src="<?php echo $products[$product['product_id']]['thumb']; ?>" alt="<?php echo $products[$product['product_id']]['name']; ?>" /></a>
-              <?php } ?>
-            </td>
+        <?php foreach ($products as $product) { ?>
+          <td>
+          <?php if ($products[$product['product_id']]['thumb']) { ?>
+            <?php if ($products[$product['product_id']]['stock_label']) { ?>
+              <div class="stock-medium"><img src="<?php echo $products[$product['product_id']]['stock_label']; ?>" alt="" /></div>
+            <?php } ?>
+            <?php if (!$products[$product['product_id']]['stock_label'] && $products[$product['product_id']]['offer']) { ?>
+              <div class="offer-medium"><img src="<?php echo $products[$product['product_id']]['offer_label']; ?>" alt="" /></div>
+            <?php } ?>
+            <?php if (!$products[$product['product_id']]['stock_label'] && !$products[$product['product_id']]['offer'] && $products[$product['product_id']]['special']) { ?>
+              <div class="special-medium"><img src="<?php echo $products[$product['product_id']]['special_label']; ?>" alt="" /></div>
+            <?php } ?>
+            <?php if ($products[$product['product_id']]['label']) { ?>
+              <div class="product-label">
+                <img src="<?php echo $products[$product['product_id']]['label']; ?>" alt="" height="<?php echo $products[$product['product_id']]['label_style']; ?>" width="<?php echo $products[$product['product_id']]['label_style']; ?>" style="margin:0px 0px -<?php echo $products[$product['product_id']]['label_style']; ?>px <?php echo ($products[$product['product_id']]['label_style'] * 2); ?>px;" />
+              </div>
+            <?php } ?>
+            <a href="<?php echo $products[$product['product_id']]['href']; ?>"><img src="<?php echo $products[$product['product_id']]['thumb']; ?>" alt="<?php echo $products[$product['product_id']]['name']; ?>" /></a>
           <?php } ?>
+          </td>
+        <?php } ?>
         </tr>
         <tr>
           <td><?php echo $text_price; ?></td>
-          <?php foreach ($products as $product) { ?>
-            <td><?php if ($products[$product['product_id']]['price']) { ?>
-              <?php if (!$products[$product['product_id']]['special']) { ?>
-                <?php echo $products[$product['product_id']]['price']; ?>
-              <?php } else { ?>
-                <span class="price-old"><?php echo $products[$product['product_id']]['price']; ?></span> <span class="price-new"><?php echo $products[$product['product_id']]['special']; ?></span>
-              <?php } ?>
-            <?php } ?></td>
-          <?php } ?>
+        <?php foreach ($products as $product) { ?>
+          <td><?php if ($products[$product['product_id']]['price']) { ?>
+            <?php if (!$products[$product['product_id']]['special']) { ?>
+              <?php echo $products[$product['product_id']]['price']; ?>
+            <?php } else { ?>
+              <span class="price-old"><?php echo $products[$product['product_id']]['price']; ?></span> <span class="price-new"><?php echo $products[$product['product_id']]['special']; ?></span>
+            <?php } ?>
+          <?php } ?></td>
+        <?php } ?>
         </tr>
         <tr>
           <td><?php echo $text_model; ?></td>
@@ -149,8 +149,10 @@
         <?php foreach ($products as $product) { ?>
           <?php if ($products[$product['product_id']]['quote']) { ?>
             <td><a href="<?php echo $products[$product['product_id']]['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a></td>
-          <?php } elseif (!$products[$product['product_id']]['quote'] && $products[$product['product_id']]['stock_quantity'] <= 0) { ?>
+          <?php } elseif (!$products[$product['product_id']]['quote'] && !$stock_checkout && $products[$product['product_id']]['stock_quantity'] <= 0) { ?>
             <td><span class="stock-status"><?php echo $products[$product['product_id']]['stock_status']; ?></span></td>
+          <?php } elseif (!$products[$product['product_id']]['quote'] && $stock_checkout && $products[$product['product_id']]['stock_quantity'] <= 0) { ?>
+            <td><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $products[$product['product_id']]['product_id']; ?>');" class="button" /></td>
           <?php } else { ?>
             <td><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $products[$product['product_id']]['product_id']; ?>');" class="button" /></td>
           <?php } ?>

@@ -40,6 +40,8 @@ class ControllerModuleFeatured extends Controller {
 		$this->data['viewproduct'] = $this->config->get($this->_name . '_viewproduct');
 		$this->data['addproduct'] = $this->config->get($this->_name . '_addproduct');
 
+		$this->data['stock_checkout'] = $this->config->get('config_stock_checkout');
+
 		$this->load->model('catalog/manufacturer');
 		$this->load->model('catalog/product');
 		$this->load->model('catalog/offer');

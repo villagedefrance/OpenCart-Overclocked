@@ -142,6 +142,7 @@ class ControllerProductReviewList extends Controller {
 			$this->data['login_register'] = $this->url->link('account/login', '', 'SSL');
 
 			$this->data['dob'] = $this->config->get('config_customer_dob');
+			$this->data['stock_checkout'] = $this->config->get('config_stock_checkout');
 
 			$this->load->model('tool/image');
 			$this->load->model('catalog/offer');

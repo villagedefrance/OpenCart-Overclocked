@@ -206,6 +206,7 @@ class ControllerProductCategory extends Controller {
 			}
 
 			$this->data['dob'] = $this->config->get('config_customer_dob');
+			$this->data['stock_checkout'] = $this->config->get('config_stock_checkout');
 
 			$this->load->model('catalog/offer');
 			$this->load->model('account/customer');

@@ -305,6 +305,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['lang'] = $this->language->get('code');
 
 			// Buy it Now
+			$this->data['stock_checkout'] = $this->config->get('config_stock_checkout');
 			$this->data['buy_now_button'] = $this->config->get('config_buy_now');
 
 			$this->data['button_buy_it_now'] = $this->language->get('button_buy_it_now');

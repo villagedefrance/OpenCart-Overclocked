@@ -89,8 +89,10 @@
         <?php } else { ?>
           <?php if ($review['quote']) { ?>
             <a href="<?php echo $review['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a>
-          <?php } elseif (!$review['quote'] && $review['stock_quantity'] <= 0) { ?>
+          <?php } elseif (!$review['quote'] && !$stock_checkout && $review['stock_quantity'] <= 0) { ?>
             <span class="stock-status"><?php echo $review['stock_status']; ?></span>
+          <?php } elseif (!$review['quote'] && $stock_checkout && $review['stock_quantity'] <= 0) { ?>
+            <input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button" />
           <?php } else { ?>
             <input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $review['product_id']; ?>');" class="button" />
           <?php } ?>
