@@ -77,664 +77,656 @@
   <?php } ?>
   <?php } ?>
   <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" name="checkout_one_page" id="form">
-    <table class="checkout-one-page">
-      <tr>
-        <td class="checkout-page-left">
-          <table class="address-options">
+    <div class="checkout-one-page">
+      <div class="checkout-page-left">
+        <table class="address-options">
+          <tr>
+            <td colspan="2"><h2><?php echo $text_checkout_payment_address; ?></h2></td>
+          </tr>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <tr>
+            <td colspan="2"><?php echo $entry_firstname; ?>: <b><?php echo $firstname; ?></b>
+              <input type="hidden" name="firstname" value="<?php echo $firstname; ?>" />
+            </td>
+          </tr>
+        <?php } else { ?>
+          <tr>
+            <td colspan="2"><label for="firstname" class="hidden">firstname</label>
+              <input type="text" name="firstname" id="firstname" placeholder="<?php echo $entry_firstname; ?>" value="<?php echo $firstname; ?>" size="26" /> <span class="required">*</span>
+            </td>
+          </tr>
+          <?php if ($error_firstname) { ?>
             <tr>
-              <td colspan="2"><h2><?php echo $text_checkout_payment_address; ?></h2></td>
+              <td colspan="2"><div class="error"><?php echo $error_firstname; ?></div></td>
             </tr>
+          <?php } ?>
+        <?php } ?>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <tr>
+            <td colspan="2"><?php echo $entry_lastname; ?>: <b><?php echo $lastname; ?></b>
+              <input type="hidden" name="lastname" value="<?php echo $lastname; ?>" />
+            </td>
+          </tr>
+        <?php } else { ?>
+          <tr>
+            <td colspan="2"><label for="lastname" class="hidden">lastname</label>
+              <input type="text" name="lastname" id="lastname" placeholder="<?php echo $entry_lastname; ?>" value="<?php echo $lastname; ?>" size="26" /> <span class="required">*</span>
+            </td>
+          </tr>
+          <?php if ($error_lastname) { ?>
+            <tr>
+              <td colspan="2"><div class="error"><?php echo $error_lastname; ?></div></td>
+            </tr>
+          <?php } ?>
+        <?php } ?>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <tr>
+            <td colspan="2"><?php echo $entry_email; ?>: <b><?php echo $email; ?></b>
+              <input type="hidden" name="email" value="<?php echo $email; ?>" />
+            </td>
+          </tr>
+        <?php } else { ?>
+          <tr>
+            <td colspan="2"><label for="email" class="hidden">email</label>
+              <input type="text" name="email" id="email" placeholder="<?php echo $entry_email; ?>" value="<?php echo $email; ?>" size="26" /> <span class="required">*</span>
+            </td>
+          </tr>
+          <?php if ($error_email) { ?>
+            <tr>
+              <td colspan="2"><div class="error"><?php echo $error_email; ?></div></td>
+            </tr>
+          <?php } ?>
+        <?php } ?>
+        <?php if ($one_page_phone) { ?>
           <?php if (isset($this->session->data['order_id'])) { ?>
             <tr>
-              <td colspan="2"><?php echo $entry_firstname; ?>: <b><?php echo $firstname; ?></b>
-                <input type="hidden" name="firstname" value="<?php echo $firstname; ?>" />
+              <td colspan="2"><?php echo $entry_telephone; ?>: <b><?php echo $telephone; ?></b>
+                <input type="hidden" name="telephone" value="<?php echo $telephone; ?>" />
               </td>
             </tr>
           <?php } else { ?>
             <tr>
-              <td colspan="2"><label for="firstname" class="hidden">firstname</label>
-                <input type="text" name="firstname" id="firstname" placeholder="<?php echo $entry_firstname; ?>" value="<?php echo $firstname; ?>" size="26" /> <span class="required">*</span>
+              <td colspan="2"><label for="telephone" class="hidden">telephone</label>
+                <input type="text" name="telephone" id="telephone" placeholder="<?php echo $entry_telephone; ?>" value="<?php echo $telephone; ?>" size="26" /> <span class="required">*</span>
               </td>
             </tr>
-            <?php if ($error_firstname) { ?>
+            <?php if ($error_telephone) { ?>
               <tr>
-                <td colspan="2"><div class="error"><?php echo $error_firstname; ?></div></td>
+                <td colspan="2"><div class="error"><?php echo $error_telephone; ?></div></td>
               </tr>
             <?php } ?>
           <?php } ?>
+        <?php } ?>
+        <?php if ($one_page_fax) { ?>
           <?php if (isset($this->session->data['order_id'])) { ?>
             <tr>
-              <td colspan="2"><?php echo $entry_lastname; ?>: <b><?php echo $lastname; ?></b>
-                <input type="hidden" name="lastname" value="<?php echo $lastname; ?>" />
+              <td colspan="2"><?php echo $entry_fax; ?>: <b><?php echo $fax; ?></b>
+                <input type="hidden" name="fax" value="<?php echo $fax; ?>" />
               </td>
             </tr>
           <?php } else { ?>
             <tr>
-              <td colspan="2"><label for="lastname" class="hidden">lastname</label>
-                <input type="text" name="lastname" id="lastname" placeholder="<?php echo $entry_lastname; ?>" value="<?php echo $lastname; ?>" size="26" /> <span class="required">*</span>
+              <td colspan="2"><label for="fax" class="hidden">fax</label>
+                <input type="text" name="fax" id="fax" placeholder="<?php echo $entry_fax; ?>" value="<?php echo $fax; ?>" size="26" />
               </td>
             </tr>
-            <?php if ($error_lastname) { ?>
-              <tr>
-                <td colspan="2"><div class="error"><?php echo $error_lastname; ?></div></td>
-              </tr>
-            <?php } ?>
           <?php } ?>
+        <?php } ?>
+        <?php if ($one_page_gender) { ?>
           <?php if (isset($this->session->data['order_id'])) { ?>
             <tr>
-              <td colspan="2"><?php echo $entry_email; ?>: <b><?php echo $email; ?></b>
-                <input type="hidden" name="email" value="<?php echo $email; ?>" />
+              <td colspan="2"><?php echo $entry_gender; ?>: <b><?php echo ($gender == 0) ? $text_male : $text_female; ?></b>
+                <input type="hidden" name="gender" value="<?php echo $gender; ?>" />
               </td>
             </tr>
           <?php } else { ?>
             <tr>
-              <td colspan="2"><label for="email" class="hidden">email</label>
-                <input type="text" name="email" id="email" placeholder="<?php echo $entry_email; ?>" value="<?php echo $email; ?>" size="26" /> <span class="required">*</span>
+              <td colspan="2"><?php if ($gender == 0) { ?>
+                <input type="radio" name="gender" value="0" checked="checked" /><?php echo $text_male; ?>&nbsp;&nbsp;
+                <input type="radio" name="gender" value="1" /><?php echo $text_female; ?>
+              <?php } else { ?>
+                <input type="radio" name="gender" value="0" /><?php echo $text_male; ?>&nbsp;&nbsp;
+                <input type="radio" name="gender" value="1" checked="checked" /><?php echo $text_female; ?>
+              <?php } ?></td>
+            </tr>
+          <?php } ?>
+        <?php } ?>
+        <?php if ($one_page_dob) { ?>
+          <?php if (isset($this->session->data['order_id'])) { ?>
+            <tr>
+              <td colspan="2"><?php echo $entry_date_of_birth; ?>: <b><?php echo $date_of_birth; ?></b>
+                <input type="hidden" name="date_of_birth" value="<?php echo $date_of_birth; ?>" />
               </td>
             </tr>
-            <?php if ($error_email) { ?>
+          <?php } else { ?>
+            <tr>
+              <td colspan="2"><label for="date-of-birth" class="hidden">date of birth</label>
+                <input type="text" name="date_of_birth" id="date-of-birth" placeholder="<?php echo $entry_date_of_birth; ?>" value="<?php echo $date_of_birth; ?>" size="26" /> <span class="required">*</span>
+              </td>
+            </tr>
+            <?php if ($error_date_of_birth) { ?>
               <tr>
-                <td colspan="2"><div class="error"><?php echo $error_email; ?></div></td>
+                <td colspan="2"><div class="error"><?php echo $error_date_of_birth; ?></div></td>
               </tr>
             <?php } ?>
           <?php } ?>
-          <?php if ($one_page_phone) { ?>
-            <?php if (isset($this->session->data['order_id'])) { ?>
-              <tr>
-                <td colspan="2"><?php echo $entry_telephone; ?>: <b><?php echo $telephone; ?></b>
-                  <input type="hidden" name="telephone" value="<?php echo $telephone; ?>" />
-                </td>
-              </tr>
-            <?php } else { ?>
-              <tr>
-                <td colspan="2"><label for="telephone" class="hidden">telephone</label>
-                  <input type="text" name="telephone" id="telephone" placeholder="<?php echo $entry_telephone; ?>" value="<?php echo $telephone; ?>" size="26" /> <span class="required">*</span>
-                </td>
-              </tr>
-              <?php if ($error_telephone) { ?>
-                <tr>
-                  <td colspan="2"><div class="error"><?php echo $error_telephone; ?></div></td>
-                </tr>
-              <?php } ?>
-            <?php } ?>
+        <?php } ?>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <?php if ($company) { ?>
+            <tr>
+              <td colspan="2"><?php echo $entry_company; ?>: <b><?php echo $company; ?></b>
+                <input type="hidden" name="company" value="<?php echo $company; ?>" />
+              </td>
+            </tr>
           <?php } ?>
-          <?php if ($one_page_fax) { ?>
-            <?php if (isset($this->session->data['order_id'])) { ?>
-              <tr>
-                <td colspan="2"><?php echo $entry_fax; ?>: <b><?php echo $fax; ?></b>
-                  <input type="hidden" name="fax" value="<?php echo $fax; ?>" />
-                </td>
-              </tr>
-            <?php } else { ?>
-              <tr>
-                <td colspan="2"><label for="fax" class="hidden">fax</label>
-                  <input type="text" name="fax" id="fax" placeholder="<?php echo $entry_fax; ?>" value="<?php echo $fax; ?>" size="26" />
-                </td>
-              </tr>
-            <?php } ?>
-          <?php } ?>
-          <?php if ($one_page_gender) { ?>
-            <?php if (isset($this->session->data['order_id'])) { ?>
-              <tr>
-                <td colspan="2"><?php echo $entry_gender; ?>: <b><?php echo ($gender == 0) ? $text_male : $text_female; ?></b>
-                  <input type="hidden" name="gender" value="<?php echo $gender; ?>" />
-                </td>
-              </tr>
-            <?php } else { ?>
-              <tr>
-                <td colspan="2"><?php if ($gender == 0) { ?>
-                  <input type="radio" name="gender" value="0" checked="checked" /><?php echo $text_male; ?>&nbsp;&nbsp;
-                  <input type="radio" name="gender" value="1" /><?php echo $text_female; ?>
+        <?php } else { ?>
+          <tr>
+            <td colspan="2"><label for="company" class="hidden">company</label>
+              <input type="text" name="company" id="company" placeholder="<?php echo $entry_company; ?>" value="<?php echo $company; ?>" size="26" />
+            </td>
+          </tr>
+        <?php } ?>
+          <tr>
+            <td colspan="2"><div style="display:<?php echo (count($customer_groups) > 1 ? 'table-row' : 'none'); ?>;"> <?php echo $entry_customer_group; ?><br />
+              <?php foreach ($customer_groups as $customer_group) { ?>
+                <?php if ($customer_group['customer_group_id'] == $customer_group_id) { ?>
+                  <input type="radio" name="customer_group_id" value="<?php echo $customer_group['customer_group_id']; ?>" id="customer-group-id<?php echo $customer_group['customer_group_id']; ?>" checked="checked" />
+                  <label for="customer-group-id<?php echo $customer_group['customer_group_id']; ?>"><?php echo $customer_group['name']; ?></label>
+                  <br />
                 <?php } else { ?>
-                  <input type="radio" name="gender" value="0" /><?php echo $text_male; ?>&nbsp;&nbsp;
-                  <input type="radio" name="gender" value="1" checked="checked" /><?php echo $text_female; ?>
-                <?php } ?></td>
-              </tr>
-            <?php } ?>
-          <?php } ?>
-          <?php if ($one_page_dob) { ?>
-            <?php if (isset($this->session->data['order_id'])) { ?>
-              <tr>
-                <td colspan="2"><?php echo $entry_date_of_birth; ?>: <b><?php echo $date_of_birth; ?></b>
-                  <input type="hidden" name="date_of_birth" value="<?php echo $date_of_birth; ?>" />
-                </td>
-              </tr>
-            <?php } else { ?>
-              <tr>
-                <td colspan="2"><label for="date-of-birth" class="hidden">date of birth</label>
-                  <input type="text" name="date_of_birth" id="date-of-birth" placeholder="<?php echo $entry_date_of_birth; ?>" value="<?php echo $date_of_birth; ?>" size="26" /> <span class="required">*</span>
-                </td>
-              </tr>
-              <?php if ($error_date_of_birth) { ?>
-                <tr>
-                  <td colspan="2"><div class="error"><?php echo $error_date_of_birth; ?></div></td>
-                </tr>
+                  <input type="radio" name="customer_group_id" value="<?php echo $customer_group['customer_group_id']; ?>" id="customer-group-id<?php echo $customer_group['customer_group_id']; ?>" />
+                  <label for="customer-group-id<?php echo $customer_group['customer_group_id']; ?>"><?php echo $customer_group['name']; ?></label>
+                  <br />
+                <?php } ?>
               <?php } ?>
-            <?php } ?>
-          <?php } ?>
-          <?php if (isset($this->session->data['order_id'])) { ?>
-            <?php if ($company) { ?>
-              <tr>
-                <td colspan="2"><?php echo $entry_company; ?>: <b><?php echo $company; ?></b>
-                  <input type="hidden" name="company" value="<?php echo $company; ?>" />
-                </td>
-              </tr>
-            <?php } ?>
-          <?php } else { ?>
-            <tr>
-              <td colspan="2"><label for="company" class="hidden">company</label>
-                <input type="text" name="company" id="company" placeholder="<?php echo $entry_company; ?>" value="<?php echo $company; ?>" size="26" />
-              </td>
-            </tr>
-          <?php } ?>
-            <tr>
-              <td colspan="2"><div style="display:<?php echo (count($customer_groups) > 1 ? 'table-row' : 'none'); ?>;"> <?php echo $entry_customer_group; ?><br />
-                <?php foreach ($customer_groups as $customer_group) { ?>
-                  <?php if ($customer_group['customer_group_id'] == $customer_group_id) { ?>
-                    <input type="radio" name="customer_group_id" value="<?php echo $customer_group['customer_group_id']; ?>" id="customer-group-id<?php echo $customer_group['customer_group_id']; ?>" checked="checked" />
-                    <label for="customer-group-id<?php echo $customer_group['customer_group_id']; ?>"><?php echo $customer_group['name']; ?></label>
-                    <br />
-                  <?php } else { ?>
-                    <input type="radio" name="customer_group_id" value="<?php echo $customer_group['customer_group_id']; ?>" id="customer-group-id<?php echo $customer_group['customer_group_id']; ?>" />
-                    <label for="customer-group-id<?php echo $customer_group['customer_group_id']; ?>"><?php echo $customer_group['name']; ?></label>
-                    <br />
-                  <?php } ?>
-                <?php } ?>
-              </div></td>
-            </tr>
-          <?php if (isset($this->session->data['order_id'])) { ?>
-            <?php if ($company_id) { ?>
-              <tr id="company-id-display">
-                <td colspan="2"><?php echo $entry_company_id; ?>: <b><?php echo $company_id; ?></b>
-                  <input type="hidden" name="company_id" value="<?php echo $company_id; ?>" />
-                </td>
-              </tr>
-            <?php } ?>
-          <?php } else { ?>
+            </div></td>
+          </tr>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <?php if ($company_id) { ?>
             <tr id="company-id-display">
-              <td colspan="2"><label for="company-id" class="hidden">company id</label>
-                <input type="text" name="company_id" id="company-id" placeholder="<?php echo $entry_company_id; ?>" value="<?php echo $company_id; ?>" size="26" />
+              <td colspan="2"><?php echo $entry_company_id; ?>: <b><?php echo $company_id; ?></b>
+                <input type="hidden" name="company_id" value="<?php echo $company_id; ?>" />
               </td>
             </tr>
-            <?php if ($error_company_id) { ?>
-              <tr>
-                <td colspan="2"><div class="error"><?php echo $error_company_id; ?></div></td>
-              </tr>
-            <?php } ?>
           <?php } ?>
-          <?php if (isset($this->session->data['order_id'])) { ?>
-            <tr id="tax-id-display">
-              <td colspan="2"><?php echo $entry_tax_id; ?>: <b><?php echo $tax_id; ?></b>
-                <input type="hidden" name="tax_id" value="<?php echo $tax_id; ?>" />
-              </td>
+        <?php } else { ?>
+          <tr id="company-id-display">
+            <td colspan="2"><label for="company-id" class="hidden">company id</label>
+              <input type="text" name="company_id" id="company-id" placeholder="<?php echo $entry_company_id; ?>" value="<?php echo $company_id; ?>" size="26" />
+            </td>
+          </tr>
+          <?php if ($error_company_id) { ?>
+            <tr>
+              <td colspan="2"><div class="error"><?php echo $error_company_id; ?></div></td>
             </tr>
-          <?php } else { ?>
-            <tr id="tax-id-display">
-              <td colspan="2"><label for="tax-id" class="hidden">tax id</label>
-                <input type="text" name="tax_id" id="tax-id" placeholder="<?php echo $entry_tax_id; ?>" value="<?php echo $tax_id; ?>" size="26" />
-              </td>
-            </tr>
-            <?php if ($error_tax_id) { ?>
-              <tr>
-                <td colspan="2"><div class="error"><?php echo $error_tax_id; ?></div></td>
-              </tr>
-            <?php } ?>
           <?php } ?>
-          <?php if (isset($this->session->data['order_id'])) { ?>
+        <?php } ?>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <tr id="tax-id-display">
+            <td colspan="2"><?php echo $entry_tax_id; ?>: <b><?php echo $tax_id; ?></b>
+              <input type="hidden" name="tax_id" value="<?php echo $tax_id; ?>" />
+            </td>
+          </tr>
+        <?php } else { ?>
+          <tr id="tax-id-display">
+            <td colspan="2"><label for="tax-id" class="hidden">tax id</label>
+              <input type="text" name="tax_id" id="tax-id" placeholder="<?php echo $entry_tax_id; ?>" value="<?php echo $tax_id; ?>" size="26" />
+            </td>
+          </tr>
+          <?php if ($error_tax_id) { ?>
             <tr>
-              <td colspan="2"><?php echo $entry_address_1; ?>: <b><?php echo $address_1; ?></b>
-                <input type="hidden" name="address_1" value="<?php echo $address_1; ?>" />
-              </td>
+              <td colspan="2"><div class="error"><?php echo $error_tax_id; ?></div></td>
             </tr>
-          <?php } else { ?>
-            <tr>
-              <td colspan="2"><label for="address-1" class="hidden">address 1</label>
-                <input type="text" name="address_1" id="address-1" placeholder="<?php echo $entry_address_1; ?>" value="<?php echo $address_1; ?>" size="26" /> <span class="required">*</span>
-              </td>
-            </tr>
-            <?php if ($error_address_1) { ?>
-              <tr>
-                <td colspan="2"><div class="error"><?php echo $error_address_1; ?></div></td>
-              </tr>
-            <?php }?>
           <?php } ?>
-          <?php if (isset($this->session->data['order_id'])) { ?>
-            <?php if ($address_2) { ?>
-              <tr>
-                <td colspan="2"><?php echo $entry_address_2; ?>: <b><?php echo $address_2; ?></b>
-                  <input type="hidden" name="address_2" value="<?php echo $address_2; ?>" />
-                </td>
-              </tr>
-            <?php }?>
-          <?php } else { ?>
+        <?php } ?>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <tr>
+            <td colspan="2"><?php echo $entry_address_1; ?>: <b><?php echo $address_1; ?></b>
+              <input type="hidden" name="address_1" value="<?php echo $address_1; ?>" />
+            </td>
+          </tr>
+        <?php } else { ?>
+          <tr>
+            <td colspan="2"><label for="address-1" class="hidden">address 1</label>
+              <input type="text" name="address_1" id="address-1" placeholder="<?php echo $entry_address_1; ?>" value="<?php echo $address_1; ?>" size="26" /> <span class="required">*</span>
+            </td>
+          </tr>
+          <?php if ($error_address_1) { ?>
             <tr>
-              <td colspan="2"><label for="address-2" class="hidden">address 2</label>
-                <input type="text" name="address_2" id="address-2" placeholder="<?php echo $entry_address_2; ?>" value="<?php echo $address_2; ?>" size="26" />
-              </td>
+              <td colspan="2"><div class="error"><?php echo $error_address_1; ?></div></td>
             </tr>
-            <?php if ($error_address_1) { ?>
-              <tr>
-                <td colspan="2"><div class="error"><?php echo $error_address_1; ?></div></td>
-              </tr>
-            <?php } ?>
-          <?php } ?>
-          <?php if (isset($this->session->data['order_id'])) { ?>
-            <tr>
-              <td colspan="2"><?php echo $entry_city; ?>: <b><?php echo $city; ?></b>
-                <input type="hidden" name="city" value="<?php echo $city; ?>" />
-              </td>
-            </tr>
-          <?php } else { ?>
-            <tr>
-              <td colspan="2"><label for="city" class="hidden">city</label>
-                <input type="text" name="city" id="city" placeholder="<?php echo $entry_city; ?>" value="<?php echo $city; ?>" size="26" /> <span class="required">*</span>
-              </td>
-            </tr>
-            <?php if ($error_city) { ?>
-              <tr>
-                <td colspan="2"><div class="error"><?php echo $error_city; ?></div></td>
-              </tr>
-            <?php } ?>
-          <?php } ?>
-          <?php if (isset($this->session->data['order_id'])) { ?>
-            <?php if ($postcode) { ?>
-              <tr>
-                <td colspan="2"><?php echo $entry_postcode; ?>: <b><?php echo $postcode; ?></b>
-                  <input type="hidden" name="postcode" value="<?php echo $postcode; ?>" />
-                </td>
-              </tr>
-            <?php } ?>
-          <?php } else { ?>
-            <tr>
-              <td colspan="2"><label for="postcode" class="hidden">postcode</label>
-                <input type="text" name="postcode" id="postcode" placeholder="<?php echo $entry_postcode; ?>" value="<?php echo $postcode; ?>" size="26" /> <span id="payment-postcode-required" class="required">*</span>
-              </td>
-            </tr>
-            <?php if ($error_postcode) { ?>
-              <tr>
-                <td colspan="2"><div class="error"><?php echo $error_postcode; ?></div></td>
-              </tr>
-            <?php } ?>
-          <?php } ?>
-          <?php if (isset($this->session->data['order_id'])) { ?>
-            <tr>
-              <td colspan="2"><?php echo $entry_country; ?>: <b><?php echo $country_name; ?></b>
-                <input type="hidden" name="country_id" value="<?php echo $country_id; ?>" />
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2"><?php echo $entry_zone; ?>: <b><?php echo $zone_name; ?></b>
-                <input type="hidden" name="zone_id" value="<?php echo $zone_id; ?>" />
-              </td>
-            </tr>
-          <?php } else { ?>
-            <tr>
-              <td colspan="2"><select name="country_id">
-                <option value=""><?php echo $text_select; ?></option>
-                <?php foreach ($countries as $country) { ?>
-                  <?php if ($country['country_id'] == $country_id) { ?>
-                    <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo (strlen($country['name']) > 24) ? substr(strip_tags(html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8')), 0, 22) . '..' : html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8'); ?></option>
-                  <?php } else { ?>
-                    <option value="<?php echo $country['country_id']; ?>"><?php echo (strlen($country['name']) > 24) ? substr(strip_tags(html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8')), 0, 22) . '..' : html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8'); ?></option>
-                  <?php } ?>
-                <?php } ?>
-              </select> <span class="required">*</span></td>
-            </tr>
-            <?php if ($error_country) { ?>
-              <tr>
-                <td colspan="2"><div class="error"><?php echo $error_country; ?></div></td>
-              </tr>
-            <?php } ?>
-            <tr>
-              <td colspan="2"><select name="zone_id"></select> <span class="required">*</span></td>
-            </tr>
-            <?php if ($error_zone) { ?>
-              <tr>
-                <td colspan="2"><div class="error"><?php echo $error_zone; ?></div></td>
-              </tr>
-            <?php }?>
           <?php }?>
+        <?php } ?>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <?php if ($address_2) { ?>
+            <tr>
+              <td colspan="2"><?php echo $entry_address_2; ?>: <b><?php echo $address_2; ?></b>
+                <input type="hidden" name="address_2" value="<?php echo $address_2; ?>" />
+              </td>
+            </tr>
+          <?php }?>
+        <?php } else { ?>
+          <tr>
+            <td colspan="2"><label for="address-2" class="hidden">address 2</label>
+              <input type="text" name="address_2" id="address-2" placeholder="<?php echo $entry_address_2; ?>" value="<?php echo $address_2; ?>" size="26" />
+            </td>
+          </tr>
+          <?php if ($error_address_1) { ?>
+            <tr>
+              <td colspan="2"><div class="error"><?php echo $error_address_1; ?></div></td>
+            </tr>
+          <?php } ?>
+        <?php } ?>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <tr>
+            <td colspan="2"><?php echo $entry_city; ?>: <b><?php echo $city; ?></b>
+              <input type="hidden" name="city" value="<?php echo $city; ?>" />
+            </td>
+          </tr>
+        <?php } else { ?>
+          <tr>
+            <td colspan="2"><label for="city" class="hidden">city</label>
+              <input type="text" name="city" id="city" placeholder="<?php echo $entry_city; ?>" value="<?php echo $city; ?>" size="26" /> <span class="required">*</span>
+            </td>
+          </tr>
+          <?php if ($error_city) { ?>
+            <tr>
+              <td colspan="2"><div class="error"><?php echo $error_city; ?></div></td>
+            </tr>
+          <?php } ?>
+        <?php } ?>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <?php if ($postcode) { ?>
+            <tr>
+              <td colspan="2"><?php echo $entry_postcode; ?>: <b><?php echo $postcode; ?></b>
+                <input type="hidden" name="postcode" value="<?php echo $postcode; ?>" />
+              </td>
+            </tr>
+          <?php } ?>
+        <?php } else { ?>
+          <tr>
+            <td colspan="2"><label for="postcode" class="hidden">postcode</label>
+              <input type="text" name="postcode" id="postcode" placeholder="<?php echo $entry_postcode; ?>" value="<?php echo $postcode; ?>" size="26" /> <span id="payment-postcode-required" class="required">*</span>
+            </td>
+          </tr>
+          <?php if ($error_postcode) { ?>
+            <tr>
+              <td colspan="2"><div class="error"><?php echo $error_postcode; ?></div></td>
+            </tr>
+          <?php } ?>
+        <?php } ?>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <tr>
+            <td colspan="2"><?php echo $entry_country; ?>: <b><?php echo $country_name; ?></b>
+              <input type="hidden" name="country_id" value="<?php echo $country_id; ?>" />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2"><?php echo $entry_zone; ?>: <b><?php echo $zone_name; ?></b>
+              <input type="hidden" name="zone_id" value="<?php echo $zone_id; ?>" />
+            </td>
+          </tr>
+        <?php } else { ?>
+          <tr>
+            <td colspan="2"><select name="country_id">
+              <option value=""><?php echo $text_select; ?></option>
+              <?php foreach ($countries as $country) { ?>
+                <?php if ($country['country_id'] == $country_id) { ?>
+                  <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo (strlen($country['name']) > 24) ? substr(strip_tags(html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8')), 0, 22) . '..' : html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8'); ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $country['country_id']; ?>"><?php echo (strlen($country['name']) > 24) ? substr(strip_tags(html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8')), 0, 22) . '..' : html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8'); ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <?php if ($error_country) { ?>
+            <tr>
+              <td colspan="2"><div class="error"><?php echo $error_country; ?></div></td>
+            </tr>
+          <?php } ?>
+          <tr>
+            <td colspan="2"><select name="zone_id"></select> <span class="required">*</span></td>
+          </tr>
+          <?php if ($error_zone) { ?>
+            <tr>
+              <td colspan="2"><div class="error"><?php echo $error_zone; ?></div></td>
+            </tr>
+          <?php }?>
+        <?php }?>
         </table>
         <?php if (!isset($this->session->data['order_id'])) { ?>
-          <div style="margin:8px 0px 8px 3px;">
-            <?php if ($check_shipping_address == 1) { ?>
-              <input type="checkbox" name="check_shipping_address" value="1" checked="checked" /> <?php echo $entry_shipping; ?>
-            <?php } else { ?>
-              <input type="checkbox" name="check_shipping_address" value="1" /> <?php echo $entry_shipping; ?>
-            <?php } ?>
+          <div class="address-checkbox">
+          <?php if ($check_shipping_address == 1) { ?>
+            <input type="checkbox" name="check_shipping_address" value="1" checked="checked" /> <?php echo $entry_shipping; ?>
+          <?php } else { ?>
+            <input type="checkbox" name="check_shipping_address" value="1" /> <?php echo $entry_shipping; ?>
+          <?php } ?>
           </div>
         <?php } else { ?>
-          <div style="margin:8px 0px 8px 3px;">
-            <?php if ($check_shipping_address == 1) { ?>
-              <h2><?php echo $entry_shipping; ?></h2>
-            <?php } ?>
+          <div class="address-checkbox">
+          <?php if ($check_shipping_address == 1) { ?>
+            <h2><?php echo $entry_shipping; ?></h2>
+          <?php } ?>
           </div>
         <?php } ?>
         <table class="address-options" id="shipping-address-display">
-          <?php if ((!isset($this->session->data['order_id']) && $check_shipping_address == 1) || $check_shipping_address == 0) { ?>
+        <?php if ((!isset($this->session->data['order_id']) && $check_shipping_address == 1) || $check_shipping_address == 0) { ?>
+          <tr>
+            <td colspan="2"><h2><?php echo $text_checkout_shipping_address; ?></h2></td>
+          </tr>
+        <?php } ?>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <?php if ($check_shipping_address == 0) { ?>
             <tr>
-              <td colspan="2"><h2><?php echo $text_checkout_shipping_address; ?></h2></td>
+              <td colspan="2"><?php echo $entry_firstname; ?>: <b><?php echo $shipping_firstname; ?></b>
+                <input type="hidden" name="shipping_firstname" value="<?php echo $shipping_firstname; ?>" />
+              </td>
             </tr>
           <?php } ?>
-          <?php if (isset($this->session->data['order_id'])) { ?>
-            <?php if ($check_shipping_address == 0) { ?>
+        <?php } else { ?>
+          <tr>
+            <td colspan="2"><label for="shipping-firstname" class="hidden">shipping firstname</label>
+              <input type="text" name="shipping_firstname" id="shipping-firstname" placeholder="<?php echo $entry_firstname; ?>" value="<?php echo $shipping_firstname; ?>" size="26" /> <span class="required">*</span>
+            </td>
+          </tr>
+          <?php if ($error_shipping_firstname) { ?>
+            <tr>
+              <td colspan="2"><div class="error"><?php echo $error_shipping_firstname; ?></div></td>
+            </tr>
+          <?php } ?>
+        <?php } ?>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <?php if ($check_shipping_address == 0) { ?>
+            <tr>
+              <td colspan="2"><?php echo $entry_lastname; ?>: <b><?php echo $shipping_lastname; ?></b>
+                <input type="hidden" name="shipping_lastname" value="<?php echo $shipping_lastname; ?>" />
+              </td>
+            </tr>
+          <?php } ?>
+        <?php } else { ?>
+          <tr>
+            <td colspan="2"><label for="shipping-lastname" class="hidden">shipping lastname</label>
+              <input type="text" name="shipping_lastname" id="shipping-lastname" placeholder="<?php echo $entry_lastname; ?>" value="<?php echo $shipping_lastname; ?>" size="26" /> <span class="required">*</span>
+            </td>
+          </tr>
+          <?php if ($error_shipping_lastname) { ?>
+            <tr>
+              <td valign="top" align="left" colspan="2"><div class="error"><?php echo $error_shipping_lastname; ?></div></td>
+            </tr>
+          <?php } ?>
+        <?php } ?>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <?php if ($check_shipping_address == 0) { ?>
+            <?php if ($shipping_company) { ?>
               <tr>
-                <td colspan="2"><?php echo $entry_firstname; ?>: <b><?php echo $shipping_firstname; ?></b>
-                  <input type="hidden" name="shipping_firstname" value="<?php echo $shipping_firstname; ?>" />
+                <td colspan="2"><?php echo $entry_company; ?>: <b><?php echo $shipping_company; ?></b>
+                  <input type="hidden" name="shipping_company" value="<?php echo $shipping_company; ?>" />
                 </td>
               </tr>
             <?php } ?>
-          <?php } else { ?>
+          <?php } ?>
+        <?php } else { ?>
+          <tr>
+            <td colspan="2"><label for="shipping-company" class="hidden">shipping company</label>
+              <input type="text" name="shipping_company" id="shipping-company" placeholder="<?php echo $entry_company; ?>" value="<?php echo $shipping_company; ?>" size="26" />
+            </td>
+          </tr>
+        <?php } ?>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <?php if ($check_shipping_address == 0) { ?>
             <tr>
-              <td colspan="2"><label for="shipping-firstname" class="hidden">shipping firstname</label>
-                <input type="text" name="shipping_firstname" id="shipping-firstname" placeholder="<?php echo $entry_firstname; ?>" value="<?php echo $shipping_firstname; ?>" size="26" /> <span class="required">*</span>
+              <td colspan="2"><?php echo $entry_address_1; ?>: <b><?php echo $shipping_address_1; ?></b>
+                <input type="hidden" name="shipping_address_1" value="<?php echo $shipping_address_1; ?>" />
               </td>
             </tr>
-            <?php if ($error_shipping_firstname) { ?>
-              <tr>
-                <td colspan="2"><div class="error"><?php echo $error_shipping_firstname; ?></div></td>
-              </tr>
-            <?php } ?>
           <?php } ?>
-          <?php if (isset($this->session->data['order_id'])) { ?>
-            <?php if ($check_shipping_address == 0) { ?>
+        <?php } else { ?>
+          <tr>
+            <td colspan="2"><label for="shipping-address-1" class="hidden">shipping address 1</label>
+              <input type="text" name="shipping_address_1" id="shipping-address-1" placeholder="<?php echo $entry_address_1; ?>" value="<?php echo $shipping_address_1; ?>" size="26" /> <span class="required">*</span>
+            </td>
+          </tr>
+          <?php if ($error_shipping_address_1) { ?>
+            <tr>
+              <td colspan="2"><div class="error"><?php echo $error_shipping_address_1; ?></div></td>
+            </tr>
+          <?php } ?>
+        <?php } ?>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <?php if ($check_shipping_address == 0) { ?>
+            <?php if ($shipping_address_2) { ?>
               <tr>
-                <td colspan="2"><?php echo $entry_lastname; ?>: <b><?php echo $shipping_lastname; ?></b>
-                  <input type="hidden" name="shipping_lastname" value="<?php echo $shipping_lastname; ?>" />
+                <td colspan="2"><?php echo $entry_address_2; ?>: <b><?php echo $shipping_address_2; ?></b>
+                  <input type="hidden" name="shipping_address_2" value="<?php echo $shipping_address_2; ?>" />
                 </td>
               </tr>
             <?php } ?>
-          <?php } else { ?>
-            <tr>
-              <td colspan="2"><label for="shipping-lastname" class="hidden">shipping lastname</label>
-                <input type="text" name="shipping_lastname" id="shipping-lastname" placeholder="<?php echo $entry_lastname; ?>" value="<?php echo $shipping_lastname; ?>" size="26" /> <span class="required">*</span>
-              </td>
-            </tr>
-            <?php if ($error_shipping_lastname) { ?>
-              <tr>
-                <td valign="top" align="left" colspan="2"><div class="error"><?php echo $error_shipping_lastname; ?></div></td>
-              </tr>
-            <?php } ?>
           <?php } ?>
-          <?php if (isset($this->session->data['order_id'])) { ?>
-            <?php if ($check_shipping_address == 0) { ?>
-              <?php if ($shipping_company) { ?>
-                <tr>
-                  <td colspan="2"><?php echo $entry_company; ?>: <b><?php echo $shipping_company; ?></b>
-                    <input type="hidden" name="shipping_company" value="<?php echo $shipping_company; ?>" />
-                  </td>
-                </tr>
-              <?php } ?>
-            <?php } ?>
-          <?php } else { ?>
+        <?php } else { ?>
+          <tr>
+            <td colspan="2"><label for="shipping-address-2" class="hidden">shipping address 2</label>
+              <input type="text" name="shipping_address_2" id="shipping-address-2" placeholder="<?php echo $entry_address_2; ?>" value="<?php echo $shipping_address_2; ?>" size="26" />
+            </td>
+          </tr>
+        <?php } ?>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <?php if ($check_shipping_address == 0) { ?>
             <tr>
-              <td colspan="2"><label for="shipping-company" class="hidden">shipping company</label>
-                <input type="text" name="shipping_company" id="shipping-company" placeholder="<?php echo $entry_company; ?>" value="<?php echo $shipping_company; ?>" size="26" />
+              <td colspan="2"><?php echo $entry_city; ?>: <b><?php echo $shipping_city; ?></b>
+                <input type="hidden" name="shipping_city" value="<?php echo $shipping_city; ?>" />
               </td>
             </tr>
           <?php } ?>
-          <?php if (isset($this->session->data['order_id'])) { ?>
-            <?php if ($check_shipping_address == 0) { ?>
+        <?php } else { ?>
+          <tr>
+            <td colspan="2"><label for="shipping-city" class="hidden">shipping city</label>
+              <input type="text" name="shipping_city" id="shipping-city" placeholder="<?php echo $entry_city; ?>" value="<?php echo $shipping_city; ?>" size="26" /> <span class="required">*</span>
+            </td>
+          </tr>
+          <?php if ($error_shipping_city) { ?>
+            <tr>
+              <td colspan="2"><div class="error"><?php echo $error_shipping_city; ?></div></td>
+            </tr>
+          <?php } ?>
+        <?php } ?>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <?php if ($check_shipping_address == 0) { ?>
+            <?php if ($shipping_postcode) { ?>
               <tr>
-                <td colspan="2"><?php echo $entry_address_1; ?>: <b><?php echo $shipping_address_1; ?></b>
-                  <input type="hidden" name="shipping_address_1" value="<?php echo $shipping_address_1; ?>" />
+                <td colspan="2"><?php echo $entry_postcode; ?>: <b><?php echo $shipping_postcode; ?></b>
+                  <input type="hidden" name="shipping_postcode" value="<?php echo $shipping_postcode; ?>" />
                 </td>
               </tr>
             <?php } ?>
-          <?php } else { ?>
+          <?php } ?>
+        <?php } else { ?>
+          <tr>
+            <td colspan="2"><label for="shipping-postcode" class="hidden">shipping postcode</label>
+              <input type="text" name="shipping_postcode" id="shipping-postcode" placeholder="<?php echo $entry_postcode; ?>" value="<?php echo $shipping_postcode; ?>" size="26" /> <span id="payment-postcode-required" class="required">*</span>
+            </td>
+          </tr>
+          <?php if ($error_shipping_postcode) { ?>
             <tr>
-              <td colspan="2"><label for="shipping-address-1" class="hidden">shipping address 1</label>
-                <input type="text" name="shipping_address_1" id="shipping-address-1" placeholder="<?php echo $entry_address_1; ?>" value="<?php echo $shipping_address_1; ?>" size="26" /> <span class="required">*</span>
+              <td colspan="2"><div class="error"><?php echo $error_shipping_postcode; ?></div></td>
+            </tr>
+          <?php } ?>
+        <?php } ?>
+        <?php if (isset($this->session->data['order_id'])) { ?>
+          <?php if ($check_shipping_address == 0) { ?>
+            <tr>
+              <td colspan="2"><?php echo $entry_country; ?>: <b><?php echo $shipping_country_name; ?></b>
+                <input type="hidden" name="shipping_country_id" value="<?php echo $shipping_country_id; ?>" />
               </td>
             </tr>
-            <?php if ($error_shipping_address_1) { ?>
-              <tr>
-                <td colspan="2"><div class="error"><?php echo $error_shipping_address_1; ?></div></td>
-              </tr>
-            <?php } ?>
-          <?php } ?>
-          <?php if (isset($this->session->data['order_id'])) { ?>
-            <?php if ($check_shipping_address == 0) { ?>
-              <?php if ($shipping_address_2) { ?>
-                <tr>
-                  <td colspan="2"><?php echo $entry_address_2; ?>: <b><?php echo $shipping_address_2; ?></b>
-                    <input type="hidden" name="shipping_address_2" value="<?php echo $shipping_address_2; ?>" />
-                  </td>
-                </tr>
-              <?php } ?>
-            <?php } ?>
-          <?php } else { ?>
             <tr>
-              <td colspan="2"><label for="shipping-address-2" class="hidden">shipping address 2</label>
-                <input type="text" name="shipping_address_2" id="shipping-address-2" placeholder="<?php echo $entry_address_2; ?>" value="<?php echo $shipping_address_2; ?>" size="26" />
+              <td colspan="2"><?php echo $entry_zone; ?>: <b><?php echo $shipping_zone_name; ?></b>
+                <input type="hidden" name="shipping_zone_id" value="<?php echo $shipping_zone_id; ?>" />
               </td>
             </tr>
           <?php } ?>
-          <?php if (isset($this->session->data['order_id'])) { ?>
-            <?php if ($check_shipping_address == 0) { ?>
-              <tr>
-                <td colspan="2"><?php echo $entry_city; ?>: <b><?php echo $shipping_city; ?></b>
-                  <input type="hidden" name="shipping_city" value="<?php echo $shipping_city; ?>" />
-                </td>
-              </tr>
-            <?php } ?>
-          <?php } else { ?>
-            <tr>
-              <td colspan="2"><label for="shipping-city" class="hidden">shipping city</label>
-                <input type="text" name="shipping_city" id="shipping-city" placeholder="<?php echo $entry_city; ?>" value="<?php echo $shipping_city; ?>" size="26" /> <span class="required">*</span>
-              </td>
-            </tr>
-            <?php if ($error_shipping_city) { ?>
-              <tr>
-                <td colspan="2"><div class="error"><?php echo $error_shipping_city; ?></div></td>
-              </tr>
-            <?php } ?>
-          <?php } ?>
-          <?php if (isset($this->session->data['order_id'])) { ?>
-            <?php if ($check_shipping_address == 0) { ?>
-              <?php if ($shipping_postcode) { ?>
-                <tr>
-                  <td colspan="2"><?php echo $entry_postcode; ?>: <b><?php echo $shipping_postcode; ?></b>
-                    <input type="hidden" name="shipping_postcode" value="<?php echo $shipping_postcode; ?>" />
-                  </td>
-                </tr>
-              <?php } ?>
-            <?php } ?>
-          <?php } else { ?>
-            <tr>
-              <td colspan="2"><label for="shipping-postcode" class="hidden">shipping postcode</label>
-                <input type="text" name="shipping_postcode" id="shipping-postcode" placeholder="<?php echo $entry_postcode; ?>" value="<?php echo $shipping_postcode; ?>" size="26" /> <span id="payment-postcode-required" class="required">*</span>
-              </td>
-            </tr>
-            <?php if ($error_shipping_postcode) { ?>
-              <tr>
-                <td colspan="2"><div class="error"><?php echo $error_shipping_postcode; ?></div></td>
-              </tr>
-            <?php } ?>
-          <?php } ?>
-          <?php if (isset($this->session->data['order_id'])) { ?>
-            <?php if ($check_shipping_address == 0) { ?>
-              <tr>
-                <td colspan="2"><?php echo $entry_country; ?>: <b><?php echo $shipping_country_name; ?></b>
-                  <input type="hidden" name="shipping_country_id" value="<?php echo $shipping_country_id; ?>" />
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2"><?php echo $entry_zone; ?>: <b><?php echo $shipping_zone_name; ?></b>
-                  <input type="hidden" name="shipping_zone_id" value="<?php echo $shipping_zone_id; ?>" />
-                </td>
-              </tr>
-            <?php } ?>
-          <?php } else { ?>
-            <tr>
-              <td colspan="2"><select name="shipping_country_id">
-                <option value=""><?php echo $text_select; ?></option>
-                <?php foreach ($countries as $country) { ?>
-                  <?php if ($country['country_id'] == $shipping_country_id) { ?>
-                    <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo (strlen($country['name']) > 24) ? substr(strip_tags(html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8')), 0, 22) . '..' : html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8'); ?></option>
-                  <?php } else { ?>
-                    <option value="<?php echo $country['country_id']; ?>"><?php echo (strlen($country['name']) > 24) ? substr(strip_tags(html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8')), 0, 22) . '..' : html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8'); ?></option>
-                  <?php } ?>
+        <?php } else { ?>
+          <tr>
+            <td colspan="2"><select name="shipping_country_id">
+              <option value=""><?php echo $text_select; ?></option>
+              <?php foreach ($countries as $country) { ?>
+                <?php if ($country['country_id'] == $shipping_country_id) { ?>
+                  <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo (strlen($country['name']) > 24) ? substr(strip_tags(html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8')), 0, 22) . '..' : html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8'); ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $country['country_id']; ?>"><?php echo (strlen($country['name']) > 24) ? substr(strip_tags(html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8')), 0, 22) . '..' : html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8'); ?></option>
                 <?php } ?>
-              </select> <span class="required">*</span></td>
-            </tr>
-            <?php if ($error_shipping_country) { ?>
-              <tr>
-                <td colspan="2"><div class="error"><?php echo $error_shipping_country; ?></div><br /></td>
-              </tr>
-            <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <?php if ($error_shipping_country) { ?>
             <tr>
-              <td colspan="2"><select name="shipping_zone_id"></select> <span class="required">*</span></td>
+              <td colspan="2"><div class="error"><?php echo $error_shipping_country; ?></div><br /></td>
             </tr>
-            <?php if ($error_shipping_zone) { ?>
-              <tr>
-                <td colspan="2"><div class="error"><?php echo $error_shipping_zone; ?></div><br /></td>
-              </tr>
-            <?php } ?>
           <?php } ?>
+          <tr>
+            <td colspan="2"><select name="shipping_zone_id"></select> <span class="required">*</span></td>
+          </tr>
+          <?php if ($error_shipping_zone) { ?>
+            <tr>
+              <td colspan="2"><div class="error"><?php echo $error_shipping_zone; ?></div><br /></td>
+            </tr>
+          <?php } ?>
+        <?php } ?>
         </table>
-      </td>
-      <td class="hide-phone" style="width:3%;"></td>
-      <td class="checkout-page-right">
+		<div class="address-checkbox"></div>
+      </div>
+      <div class="spacer"></div>
+      <div class="checkout-page-right">
         <table class="order-options">
           <tr>
-            <td id="shipping-method" style="width:34%; vertical-align:top;">
-              <?php if (isset($this->session->data['order_id'])) { ?>
-                <h2><?php echo $text_shipping_method; ?></h2>
-                <?php echo $this->session->data['shipping_method']['title']; ?> [ <b><?php echo $this->session->data['shipping_method']['text']; ?></b> ]<br /><br />
-                <input type="hidden" name="shipping_method" value="<?php echo $shipping_method_code; ?>" />
-              <?php } else { ?>
-                <h2><?php echo $text_shipping_method; ?></h2>
-                <a onclick="refresh();" id="shipping-refresh" class="button" style="margin:0px 5px 5px 5px;"><i class="fa fa-refresh"></i></a>
-                <?php if ($shipping_methods) { ?>
-                  <?php if ($error_shipping_method) { ?>
-                    <div class="attention" style="margin:5px 0px;"><?php echo $error_shipping_method; ?></div>
-                  <?php } ?>
-                  <table id="shipping-lock" class="radio" style="margin-bottom:2px;">
-                  <?php foreach ($shipping_methods as $shipping_method) { ?>
-                    <?php if (!$shipping_method['error']) { ?>
-                      <?php foreach ($shipping_method['quote'] as $quote) { ?>
-                        <tr class="highlight">
-                          <td><?php if ($quote['code'] == $shipping_method_code) { ?>
-                            <?php $code = $quote['code']; ?>
-                            <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" checked="checked" />
-                          <?php } else { ?>
-                            <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" />
-                          <?php } ?></td>
-                          <td><label for="<?php echo $quote['code']; ?>"><?php echo $quote['title']; ?></label></td>
-                          <td style="text-align:right;"><label for="<?php echo $quote['code']; ?>"><?php echo $quote['text']; ?></label></td>
-                        </tr>
-                      <?php } ?>
-                    <?php } else { ?>
-                      <tr>
-                        <td colspan="3"><div class="error"><?php echo $shipping_method['error']; ?></div></td>
-                      </tr>
+            <td><h2><?php echo $text_shipping_method; ?></h2></td>
+            <td class="spacer"></td>
+            <td><h2><?php echo $text_payment_method; ?></h2></td>
+          </tr>
+          <tr>
+            <td id="shipping-method">
+            <?php if (isset($this->session->data['order_id'])) { ?>
+              <?php echo $this->session->data['shipping_method']['title']; ?> [ <b><?php echo $this->session->data['shipping_method']['text']; ?></b> ]<br /><br />
+              <input type="hidden" name="shipping_method" value="<?php echo $shipping_method_code; ?>" />
+            <?php } else { ?>
+              <a onclick="refresh();" id="shipping-refresh" class="button" style="margin:0 5px 5px 5px;"><i class="fa fa-refresh"></i></a>
+              <?php if ($shipping_methods) { ?>
+                <?php if ($error_shipping_method) { ?>
+                  <div class="attention" style="margin:5px 0;"><?php echo $error_shipping_method; ?></div>
+                <?php } ?>
+                <table id="shipping-lock" class="radio" style="margin-bottom:2px;">
+                <?php foreach ($shipping_methods as $shipping_method) { ?>
+                  <?php if (!$shipping_method['error']) { ?>
+                    <?php foreach ($shipping_method['quote'] as $quote) { ?>
+                    <tr class="highlight">
+                      <td><?php if ($quote['code'] == $shipping_method_code) { ?>
+                        <?php $code = $quote['code']; ?>
+                        <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" checked="checked" />
+                      <?php } else { ?>
+                        <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" />
+                      <?php } ?></td>
+                      <td><label for="<?php echo $quote['code']; ?>"><?php echo $quote['title']; ?></label></td>
+                      <td style="text-align:right;"><label for="<?php echo $quote['code']; ?>"><?php echo $quote['text']; ?></label></td>
+                    </tr>
                     <?php } ?>
+                  <?php } else { ?>
+                    <tr>
+                      <td colspan="3"><div class="error"><?php echo $shipping_method['error']; ?></div></td>
+                    </tr>
+                  <?php } ?>
+                <?php } ?>
+                </table>
+              <?php } ?>
+            <?php } ?>
+            </td>
+            <td class="spacer"></td>
+            <td id="payment-method">
+            <?php if (isset($this->session->data['order_id'])) { ?>
+              <?php echo $this->session->data['payment_method']['title']; ?><br /><br />
+                <input type="hidden" name="payment_method" value="<?php echo $payment_method_code; ?>" />
+              <?php } else { ?>
+                <?php if ($payment_methods) { ?>
+                  <?php if ($error_payment_method) { ?>
+                    <div class="attention" style="margin:5px 0;"><?php echo $error_payment_method; ?></div>
+                  <?php } ?>
+                  <table id="payment-lock" class="radio" style="margin-bottom:2px;">
+                  <?php foreach ($payment_methods as $payment_method) { ?>
+                    <?php $apply_paypal_fee = ((substr($payment_method['code'], 0, 3) == "pp_") || ($payment_method['code'] == "paypal_email")) ? true : false; ?>
+                    <tr class="highlight">
+                      <td><?php if ($payment_method['code'] == $payment_method_code) { ?>
+                        <?php $code = $payment_method['code']; ?>
+                        <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" id="<?php echo $payment_method['code']; ?>" checked="checked" />
+                      <?php } else { ?>
+                        <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" id="<?php echo $payment_method['code']; ?>" />
+                      <?php } ?></td>
+                      <td><?php if ($payment_images) { ?>
+                        <?php foreach ($payment_images as $payment_image) { ?>
+                          <?php if ($payment_image['payment'] == strtolower($payment_method['code'])) { ?>
+                            <?php if ($payment_image['status']) { ?>
+                              <label for="<?php echo $payment_method['code']; ?>"><img src="<?php echo $payment_image['image']; ?>" title="<?php echo $payment_method['title']; ?>" alt="<?php echo $payment_method['title']; ?>" />
+                              <?php if ($paypal_fee && $apply_paypal_fee) { ?>
+                                <span> + <?php echo $paypal_fee; ?></span>
+                              <?php } ?>
+                              </label>
+                            <?php } else { ?>
+                              <label for="<?php echo $payment_method['code']; ?>"><?php echo $payment_method['title']; ?>
+                                <?php if ($paypal_fee) { ?>
+                                  <span> + <?php echo $paypal_fee; ?></span>
+                                <?php } ?>
+                              </label>
+                            <?php } ?>
+                          <?php } ?>
+                        <?php } ?>
+                      <?php } else { ?>
+                        <label for="<?php echo $payment_method['code']; ?>"><?php echo $payment_method['title']; ?>
+                          <?php if ($paypal_fee) { ?>
+                            <span> + <?php echo $paypal_fee; ?></span>
+                          <?php } ?>
+                        </label>
+                      <?php } ?></td>
+                    </tr>
                   <?php } ?>
                   </table>
                 <?php } ?>
               <?php } ?>
-            </td>
-            <td style="width:4%;"></td>
-            <td id="payment-method" style="width:34%; vertical-align:top;">
-              <?php if (isset($this->session->data['order_id'])) { ?>
-                <h2><?php echo $text_payment_method; ?></h2>
-                <?php echo $this->session->data['payment_method']['title']; ?><br /><br />
-                  <input type="hidden" name="payment_method" value="<?php echo $payment_method_code; ?>" />
-                <?php } else { ?>
-                  <h2><?php echo $text_payment_method; ?></h2>
-                  <?php if ($payment_methods) { ?>
-                    <?php if ($error_payment_method) { ?>
-                      <div class="attention" style="margin:5px 0px;"><?php echo $error_payment_method; ?></div>
-                    <?php } ?>
-                    <table id="payment-lock" class="radio" style="margin-bottom:2px;">
-                    <?php foreach ($payment_methods as $payment_method) { ?>
-                      <?php $apply_paypal_fee = ((substr($payment_method['code'], 0, 3) == "pp_") || ($payment_method['code'] == "paypal_email")) ? true : false; ?>
-                      <tr class="highlight">
-                        <td><?php if ($payment_method['code'] == $payment_method_code) { ?>
-                          <?php $code = $payment_method['code']; ?>
-                          <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" id="<?php echo $payment_method['code']; ?>" checked="checked" />
-                        <?php } else { ?>
-                          <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" id="<?php echo $payment_method['code']; ?>" />
-                        <?php } ?></td>
-                        <td><?php if ($payment_images) { ?>
-                          <?php foreach ($payment_images as $payment_image) { ?>
-                            <?php if ($payment_image['payment'] == strtolower($payment_method['code'])) { ?>
-                              <?php if ($payment_image['status']) { ?>
-                                <label for="<?php echo $payment_method['code']; ?>"><img src="<?php echo $payment_image['image']; ?>" title="<?php echo $payment_method['title']; ?>" alt="<?php echo $payment_method['title']; ?>" />
-                                <?php if ($paypal_fee && $apply_paypal_fee) { ?>
-                                  <span> + <?php echo $paypal_fee; ?></span>
-                                <?php } ?>
-                                </label>
-                              <?php } else { ?>
-                                <label for="<?php echo $payment_method['code']; ?>"><?php echo $payment_method['title']; ?>
-                                  <?php if ($paypal_fee) { ?>
-                                    <span> + <?php echo $paypal_fee; ?></span>
-                                  <?php } ?>
-                                </label>
-                              <?php } ?>
-                            <?php } ?>
-                          <?php } ?>
-                        <?php } else { ?>
-                          <label for="<?php echo $payment_method['code']; ?>"><?php echo $payment_method['title']; ?>
-                            <?php if ($paypal_fee) { ?>
-                              <span> + <?php echo $paypal_fee; ?></span>
-                            <?php } ?>
-                          </label>
-                        <?php } ?></td>
-                      </tr>
-                    <?php } ?>
-                    </table>
-                  <?php } ?>
-                <?php } ?>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="3" style="width:70%;"><div class="division"></div></td>
-            </tr>
-            <tr>
-              <td colspan="3" style="width:72%;"><div id="checkout-one-cart"></div></td>
-            </tr>
-            <tr>
-              <td colspan="3">
-                <?php if (!isset($this->session->data['order_id'])) { ?>
-                  <h2><?php echo $text_comments; ?></h2>
-                  <textarea name="comment" rows="4" style="width:100%;"><?php echo $comment; ?></textarea>
-                <?php } else { ?>
-                  <?php if ($comment) { ?>
-                    <h2><?php echo $text_comments; ?></h2>
-                    <?php echo $comment; ?><br /><br />
-                  <?php } ?>
-                <?php } ?>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="3">
-                <?php if ($error_agree) { ?>
-                  <div class="attention" style="margin:5px 0px;"><?php echo $error_agree; ?></div>
-                <?php } ?>
-                <?php if (!isset($this->session->data['order_id'])) { ?>
-                  <?php if ($text_agree) { ?>
-                    <div class="buttons">
-                      <div class="right"><?php echo $text_agree; ?>
-                        <?php if ($agree) { ?>
-                          <input type="checkbox" name="agree" value="1" checked="checked" />
-                        <?php } else { ?>
-                          <input type="checkbox" name="agree" value="1" />
-                        <?php } ?>
-                      </div>
-                    </div>
-                  <?php } ?>
-                <?php } ?>
-                <?php if (!isset($this->session->data['order_id'])) { ?>
-                  <input type="submit" value="<?php echo $button_continue; ?>" id="button-order" class="button" style="float:right; margin-bottom:10px;" />
-                <?php } ?>
               </td>
             </tr>
           </table>
-        </td>
-      </tr>
-    </table>
+          <div class="division"></div>
+          <div id="checkout-one-cart"></div>
+          <div style="margin-bottom:10px;">
+          <?php if (!isset($this->session->data['order_id'])) { ?>
+            <h2><?php echo $text_comments; ?></h2>
+            <textarea name="comment" rows="4" style="width:100%;"><?php echo $comment; ?></textarea>
+          <?php } else { ?>
+            <?php if ($comment) { ?>
+              <h2><?php echo $text_comments; ?></h2>
+              <?php echo $comment; ?><br /><br />
+            <?php } ?>
+          <?php } ?>
+          </div>
+          <div>
+          <?php if ($error_agree) { ?>
+            <div class="attention" style="margin:5px 0;"><?php echo $error_agree; ?></div>
+          <?php } ?>
+          <?php if (!isset($this->session->data['order_id'])) { ?>
+            <?php if ($text_agree) { ?>
+              <div class="buttons">
+                <div class="right"><?php echo $text_agree; ?>
+                <?php if ($agree) { ?>
+                  <input type="checkbox" name="agree" value="1" checked="checked" />
+                <?php } else { ?>
+                  <input type="checkbox" name="agree" value="1" />
+                <?php } ?>
+                </div>
+              </div>
+            <?php } ?>
+          <?php } ?>
+          <?php if (!isset($this->session->data['order_id'])) { ?>
+            <input type="submit" value="<?php echo $button_continue; ?>" id="button-order" class="button" style="float:right; margin-bottom:10px;" />
+          <?php } ?>
+          </div>
+        </div>
+      </div>
     </form>
     <?php if (isset($this->session->data['order_id'])) { ?>
       <div id="checkout-submit"></div>
