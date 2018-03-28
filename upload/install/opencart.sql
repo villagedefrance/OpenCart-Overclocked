@@ -4389,7 +4389,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (116, 0, 'config', 'config_notification_complete', '1', 0),
 (117, 0, 'config', 'config_notification_pending', '1', 0),
 (118, 0, 'config', 'config_notifications', '1', 0),
-(119, 0, 'config', 'config_news_chars', '300', 0),
+(119, 0, 'config', 'config_news_chars', '1200', 0),
 (120, 0, 'config', 'config_news_addthis', '1', 0),
 (121, 0, 'config', 'config_cookie_age', '365', 0),
 (122, 0, 'config', 'config_cookie_privacy', '3', 0),
