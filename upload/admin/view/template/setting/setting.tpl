@@ -1056,17 +1056,17 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_force_delete; ?><span class="help"><?php echo $help_force_delete; ?></span></td>
-            <td><?php if ($config_force_delete) { ?>
-              <input type="radio" name="config_force_delete" value="1" id="force-delete-on" class="radio" checked />
-              <label for="force-delete-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_force_delete" value="0" id="force-delete-off" class="radio" />
-              <label for="force-delete-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <td><?php echo $entry_account_captcha; ?><span class="help"><?php echo $help_account_captcha; ?></span></td>
+            <td><?php if ($config_account_captcha) { ?>
+              <input type="radio" name="config_account_captcha" value="1" id="account-captcha-on" class="radio" checked />
+              <label for="account-captcha-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_account_captcha" value="0" id="account-captcha-off" class="radio" />
+              <label for="account-captcha-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="config_force_delete" value="1" id="force-delete-on" class="radio" />
-              <label for="force-delete-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_force_delete" value="0" id="force-delete-off" class="radio" checked />
-              <label for="force-delete-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <input type="radio" name="config_account_captcha" value="1" id="account-captcha-on" class="radio" />
+              <label for="account-captcha-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_account_captcha" value="0" id="account-captcha-off" class="radio" checked />
+              <label for="account-captcha-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -1081,6 +1081,20 @@
                 <?php } ?>
               <?php } ?>
             </select></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_force_delete; ?><span class="help"><?php echo $help_force_delete; ?></span></td>
+            <td><?php if ($config_force_delete) { ?>
+              <input type="radio" name="config_force_delete" value="1" id="force-delete-on" class="radio" checked />
+              <label for="force-delete-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_force_delete" value="0" id="force-delete-off" class="radio" />
+              <label for="force-delete-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_force_delete" value="1" id="force-delete-on" class="radio" />
+              <label for="force-delete-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_force_delete" value="0" id="force-delete-off" class="radio" checked />
+              <label for="force-delete-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
           </tr>
         </table>
         <h2><?php echo $text_affiliate; ?></h2>
@@ -1302,7 +1316,7 @@
       </div>
       <div id="tab-preference">
         <table class="form">
-          <tr>
+          <tr class="highlighted">
             <td><?php echo $entry_admin_stylesheet; ?></td>
             <td><select name="config_admin_stylesheet">
               <?php foreach ($admin_stylesheets as $admin_stylesheet) { ?>

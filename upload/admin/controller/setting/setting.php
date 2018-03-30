@@ -190,9 +190,10 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_customer_fax'] = $this->language->get('entry_customer_fax');
 		$this->data['entry_customer_gender'] = $this->language->get('entry_customer_gender');
 		$this->data['entry_customer_dob'] = $this->language->get('entry_customer_dob');
-		$this->data['entry_force_delete'] = $this->language->get('entry_force_delete');
 		$this->data['entry_picklist_status'] = $this->language->get('entry_picklist_status');
+		$this->data['entry_account_captcha'] = $this->language->get('entry_account_captcha');
 		$this->data['entry_account'] = $this->language->get('entry_account');
+		$this->data['entry_force_delete'] = $this->language->get('entry_force_delete');
 		$this->data['entry_affiliate_approval'] = $this->language->get('entry_affiliate_approval');
 		$this->data['entry_affiliate_auto'] = $this->language->get('entry_affiliate_auto');
 		$this->data['entry_affiliate_commission'] = $this->language->get('entry_affiliate_commission');
@@ -367,9 +368,10 @@ class ControllerSettingSetting extends Controller {
 		$this->data['help_customer_price'] = $this->language->get('help_customer_price');
 		$this->data['help_customer_redirect'] = $this->language->get('help_customer_redirect');
 		$this->data['help_customer_dob'] = $this->language->get('help_customer_dob');
-		$this->data['help_force_delete'] = $this->language->get('help_force_delete');
 		$this->data['help_picklist_status'] = $this->language->get('help_picklist_status');
+		$this->data['help_account_captcha'] = $this->language->get('help_account_captcha');
 		$this->data['help_account'] = $this->language->get('help_account');
+		$this->data['help_force_delete'] = $this->language->get('help_force_delete');
 		$this->data['help_affiliate_approval'] = $this->language->get('help_affiliate_approval');
 		$this->data['help_affiliate_auto'] = $this->language->get('help_affiliate_auto');
 		$this->data['help_affiliate_commission'] = $this->language->get('help_affiliate_commission');
@@ -404,7 +406,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['help_cookie_privacy'] = $this->language->get('help_cookie_privacy');
 		$this->data['help_cookie_age'] = $this->language->get('help_cookie_age');
 		$this->data['help_news_addthis'] = $this->language->get('help_news_addthis');
-		$this->data['help_news_style'] = $this->language->get('help_news_style');
 		$this->data['help_news_chars'] = $this->language->get('help_news_chars');
 		$this->data['help_notification_return'] = $this->language->get('help_notification_return');
 		$this->data['help_notification_online'] = $this->language->get('help_notification_online');
@@ -1293,10 +1294,10 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_picklist_status'] = $this->config->get('config_picklist_status');
 		}
 
-		if (isset($this->request->post['config_force_delete'])) {
-			$this->data['config_force_delete'] = $this->request->post['config_force_delete'];
+		if (isset($this->request->post['config_account_captcha'])) {
+			$this->data['config_account_captcha'] = $this->request->post['config_account_captcha'];
 		} else {
-			$this->data['config_force_delete'] = $this->config->get('config_force_delete');
+			$this->data['config_account_captcha'] = $this->config->get('config_account_captcha');
 		}
 
 		$this->load->model('catalog/information');
@@ -1307,6 +1308,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_account_id'] = $this->request->post['config_account_id'];
 		} else {
 			$this->data['config_account_id'] = $this->config->get('config_account_id');
+		}
+
+		if (isset($this->request->post['config_force_delete'])) {
+			$this->data['config_force_delete'] = $this->request->post['config_force_delete'];
+		} else {
+			$this->data['config_force_delete'] = $this->config->get('config_force_delete');
 		}
 
 		if (isset($this->request->post['config_affiliate_approval'])) {

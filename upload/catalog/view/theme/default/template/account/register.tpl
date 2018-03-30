@@ -201,6 +201,25 @@
       </tr>
     </table>
   </div>
+  <?php if ($account_captcha) { ?>
+    <br />
+    <div id="captcha-wrap">
+      <div class="captcha-box">
+        <div class="captcha-view">
+          <img src="<?php echo $captcha_image; ?>" alt="" id="captcha-image" />
+        </div>
+      </div>
+      <div class="captcha-text">
+        <label><?php echo $entry_captcha; ?></label>
+        <input type="text" name="captcha" id="captcha" value="<?php echo $captcha; ?>" autocomplete="off" />
+      </div>
+      <div class="captcha-action"><i class="fa fa-repeat"></i></div>
+    </div>
+    <br />
+    <?php if ($error_captcha) { ?>
+      <span class="error"><?php echo $error_captcha; ?></span>
+    <?php } ?>
+  <?php } ?>
   <?php if ($text_agree) { ?>
     <div class="buttons">
       <div class="right"><?php echo $text_agree; ?>
@@ -223,6 +242,15 @@
   <?php echo $content_bottom; ?>
 </div>
 <?php echo $content_footer; ?>
+
+<?php if ($account_captcha) { ?>
+<script type="text/javascript"><!--
+$('img#captcha-image').on('load', function(event) {
+	$(event.target).show();
+});
+$('img#captcha-image').trigger('load');
+//--></script>
+<?php } ?>
 
 <script type="text/javascript"><!--
 $('input[name=\'customer_group_id\']:checked').live('change', function() {

@@ -98,8 +98,11 @@ class ControllerAccountRegister extends Controller {
 		$this->data['entry_newsletter'] = $this->language->get('entry_newsletter');
 		$this->data['entry_password'] = $this->language->get('entry_password');
 		$this->data['entry_confirm'] = $this->language->get('entry_confirm');
+		$this->data['entry_captcha'] = $this->language->get('entry_captcha');
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
+
+		$this->data['account_captcha'] = $this->config->get('config_account_captcha');
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -189,6 +192,12 @@ class ControllerAccountRegister extends Controller {
 			$this->data['error_zone'] = $this->error['zone'];
 		} else {
 			$this->data['error_zone'] = '';
+		}
+
+		if (isset($this->error['captcha'])) {
+			$this->data['error_captcha'] = $this->error['captcha'];
+		} else {
+			$this->data['error_captcha'] = '';
 		}
 
 		$this->data['action'] = $this->url->link('account/register', '', 'SSL');
@@ -344,6 +353,14 @@ class ControllerAccountRegister extends Controller {
 		} else {
 			$this->data['newsletter'] = '';
 		}
+
+		if (isset($this->request->post['captcha'])) {
+			$this->data['captcha'] = $this->request->post['captcha'];
+		} else {
+			$this->data['captcha'] = '';
+		}
+
+		$this->data['captcha_image'] = $this->url->link('account/register/captcha', '', 'SSL');
 
 		if ($this->config->get('config_account_id')) {
 			$this->load->model('catalog/information');
@@ -502,6 +519,12 @@ class ControllerAccountRegister extends Controller {
 			$this->error['confirm'] = $this->language->get('error_confirm');
 		}
 
+		if ($this->config->get('config_account_captcha')) {
+			if (!isset($this->request->post['captcha']) || empty($this->session->data['captcha']) || ($this->session->data['captcha'] != strtolower($this->request->post['captcha']))) {
+				$this->error['captcha'] = $this->language->get('error_captcha');
+			}
+		}
+
 		if ($this->config->get('config_account_id')) {
 			$this->load->model('catalog/information');
 
@@ -539,5 +562,15 @@ class ControllerAccountRegister extends Controller {
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
+	}
+
+	public function captcha() {
+		$this->load->library('captcha');
+
+		$captcha = new Captcha();
+
+		$this->session->data['captcha'] = $captcha->getCode();
+
+		$captcha->showImage($this->config->get('config_captcha_font'));
 	}
 }
