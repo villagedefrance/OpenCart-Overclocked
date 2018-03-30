@@ -1,5 +1,5 @@
 <div id="quantity-notifications"></div>
-<table id="quantity-table" class="form">
+<table id="quantity-table" class="form-modal">
   <tr>
     <td><?php echo $entry_qt_selected; ?></td>
     <td><select name="qt_selected">

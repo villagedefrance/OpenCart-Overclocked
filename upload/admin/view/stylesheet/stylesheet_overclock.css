@@ -1343,8 +1343,11 @@ a.button-print:hover {
 }
 /* Table Form */
 table.form {
-	width: 100%;
 	background: #30353A;
+}
+table.form,
+table.form-modal {
+	width: 100%;
 	border-collapse: collapse;
 	margin-bottom: 20px;
 }
@@ -1353,10 +1356,14 @@ table.form-slim {
 	border-collapse: collapse;
 	margin-bottom: 1px;
 }
-table.form > tbody > tr > td:first-child, table.form-slim > tbody > tr > td:first-child {
+table.form > tbody > tr > td:first-child,
+table.form-modal > tbody > tr > td:first-child,
+table.form-slim > tbody > tr > td:first-child {
 	width: 240px;
 }
-table.form > tbody > tr.highlighted, table.form-slim > tbody > tr.highlighted {
+table.form > tbody > tr.highlighted,
+table.form-modal > tbody > tr.highlighted,
+table.form-slim > tbody > tr.highlighted {
 	background-color: #30353A;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#32383D), to(#2A2E33));
 	background-image: -webkit-linear-gradient(top, #32383D, #2A2E33);
@@ -1365,10 +1372,17 @@ table.form > tbody > tr.highlighted, table.form-slim > tbody > tr.highlighted {
 	background-image: -o-linear-gradient(top, #32383D, #2A2E33);
 	background-image: linear-gradient(to bottom, #32383D, #2A2E33);
 }
-table.form > tbody > tr > td, table.form-slim > tbody > tr > td {
+table.form > tbody > tr > td,
+table.form-slim > tbody > tr > td {
 	color: #E5E5E5;
 	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 	border-bottom: 1px dotted #555;
+	padding: 10px;
+}
+table.form-modal > tbody > tr > td {
+	color: #111;
+	text-shadow: 0 0 1px rgba(17, 17, 17, 0.05);
+	border-bottom: 1px dotted #AAA;
 	padding: 10px;
 }
 table.form > tbody > tr > td span.form-icon {

@@ -129,7 +129,7 @@ $_['entry_px_price']          = 'Enter Retail Price:';
 $_['entry_px_cost']           = 'Enter Average Cost:';
 $_['entry_qt_selected']       = 'Products to update:';
 $_['entry_qt_quantity']       = 'Enter Quantity in Stock:';
-$_['entry_qt_minimum']        = 'Enter Quantity Minimum:<span class="help">Force a minimum ordered amount.</span>';
+$_['entry_qt_minimum']        = 'Enter Quantity Minimum:<br /><small>Force a minimum ordered amount.</small>';
 $_['entry_sp_selected']       = 'Products to update:';
 $_['entry_sp_append']         = 'Updating Method:';
 $_['entry_sp_customer_group'] = 'Customer Group:';

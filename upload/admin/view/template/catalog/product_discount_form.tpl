@@ -1,5 +1,5 @@
 <div id="discount-notifications"></div>
-<table id="discount-table" class="form">
+<table id="discount-table" class="form-modal">
   <tr>
     <td><?php echo $entry_di_selected; ?></td>
     <td><select name="di_selected">

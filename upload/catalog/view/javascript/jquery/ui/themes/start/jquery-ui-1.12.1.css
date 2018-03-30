@@ -48,21 +48,20 @@
 	top: 0;
 	left: 0;
 	position: absolute;
-	opacity: 0;
 	filter:Alpha(Opacity=0); /* support: IE8 */
+	-khtml-opacity: 0;
+	-moz-opacity: 0;
+	opacity: 0;
 }
-
 .ui-front {
 	z-index: 100;
 }
-
 /* Interaction Cues
 ----------------------------------*/
 .ui-state-disabled {
 	cursor: default !important;
 	pointer-events: none;
 }
-
 /* Icons
 ----------------------------------*/
 .ui-icon {
@@ -74,16 +73,13 @@
 	overflow: hidden;
 	background-repeat: no-repeat;
 }
-
 .ui-widget-icon-block {
 	left: 50%;
 	margin-left: -8px;
 	display: block;
 }
-
 /* Misc visuals
 ----------------------------------*/
-
 /* Overlays */
 .ui-widget-overlay {
 	position: fixed;
@@ -225,7 +221,6 @@
 .ui-menu .ui-state-active {
 	margin: -1px;
 }
-
 /* icon support */
 .ui-menu-icons {
 	position: relative;
@@ -233,7 +228,6 @@
 .ui-menu-icons .ui-menu-item-wrapper {
 	padding-left: 2em;
 }
-
 /* left-aligned */
 .ui-menu .ui-icon {
 	position: absolute;
@@ -242,7 +236,6 @@
 	left: .2em;
 	margin: auto 0;
 }
-
 /* right-aligned */
 .ui-menu .ui-menu-icon {
 	left: auto;
@@ -264,7 +257,6 @@
 	/* Support: IE <= 11 */
 	overflow: visible;
 }
-
 .ui-button,
 .ui-button:link,
 .ui-button:visited,
@@ -272,7 +264,6 @@
 .ui-button:active {
 	text-decoration: none;
 }
-
 /* to make room for the icon, a width needs to be set here */
 .ui-button-icon-only {
 	width: 2em;
@@ -280,12 +271,10 @@
 	text-indent: -9999px;
 	white-space: nowrap;
 }
-
 /* no icon support for input elements */
 input.ui-button.ui-button-icon-only {
 	text-indent: 0;
 }
-
 /* button icon element(s) */
 .ui-button-icon-only .ui-icon {
 	position: absolute;
@@ -294,7 +283,6 @@ input.ui-button.ui-button-icon-only {
 	margin-top: -8px;
 	margin-left: -8px;
 }
-
 .ui-button.ui-icon-notext .ui-icon {
 	padding: 0;
 	width: 2.1em;
@@ -302,7 +290,6 @@ input.ui-button.ui-button-icon-only {
 	text-indent: -9999px;
 	white-space: nowrap;
 }
-
 input.ui-button.ui-icon-notext .ui-icon {
 	width: auto;
 	height: auto;
@@ -310,7 +297,6 @@ input.ui-button.ui-icon-notext .ui-icon {
 	white-space: normal;
 	padding: .4em 1em;
 }
-
 /* Workarounds */
 /* Support: Firefox 5 - 40 */
 input.ui-button::-moz-focus-inner,
@@ -360,7 +346,6 @@ button.ui-button::-moz-focus-inner {
 .ui-controlgroup-vertical .ui-controlgroup-label.ui-widget-content {
 	border-bottom: none;
 }
-
 /* Spinner specific style fixes */
 .ui-controlgroup-vertical .ui-spinner-input {
 	/* Support: IE8 only, Android < 4.4 only */
@@ -370,7 +355,6 @@ button.ui-button::-moz-focus-inner {
 .ui-controlgroup-vertical .ui-spinner .ui-spinner-up {
 	border-top-style: solid;
 }
-
 .ui-checkboxradio-label .ui-icon-background {
 	box-shadow: inset 1px 1px 1px #ccc;
 	border-radius: .12em;
@@ -490,7 +474,6 @@ button.ui-button::-moz-focus-inner {
 .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
 	float: left;
 }
-
 /* With multiple calendars */
 .ui-datepicker.ui-datepicker-multi {
 	width: auto;
@@ -523,7 +506,6 @@ button.ui-button::-moz-focus-inner {
 	width: 100%;
 	font-size: 0;
 }
-
 /* RTL support */
 .ui-datepicker-rtl {
 	direction: rtl;
@@ -559,7 +541,6 @@ button.ui-button::-moz-focus-inner {
 	border-right-width: 0;
 	border-left-width: 1px;
 }
-
 /* Icons */
 .ui-datepicker .ui-icon {
 	display: block;
@@ -673,6 +654,8 @@ button.ui-button::-moz-focus-inner {
 	background: #2191c0 url("images/ui-bg_gloss-wave_75_2191c0_500x100.png") 50% 50% repeat-x;
 	height: 100%;
 	filter: alpha(opacity=25); /* support: IE8 */
+	-khtml-opacity: 0.25;
+	-moz-opacity: 0.25;
 	opacity: 0.25;
 }
 .ui-progressbar-indeterminate .ui-progressbar-value {
@@ -872,7 +855,6 @@ button.ui-button::-moz-focus-inner {
 body .ui-tooltip {
 	border-width: 2px;
 }
-
 /* Component containers
 ----------------------------------*/
 .ui-widget {
@@ -895,10 +877,10 @@ body .ui-tooltip {
 .ui-widget-content {
 	border: 1px solid #a6c9e2;
 	background: #fcfdfd url("images/ui-bg_inset-hard_100_fcfdfd_1x100.png") 50% bottom repeat-x;
-	color: #222222;
+	color: #222;
 }
 .ui-widget-content a {
-	color: #222222;
+	color: #222;
 }
 .ui-widget-header {
 	border: 1px solid #4297d7;
@@ -909,7 +891,6 @@ body .ui-tooltip {
 .ui-widget-header a {
 	color: #eaf5f7;
 }
-
 /* Interaction states
 ----------------------------------*/
 .ui-state-default,
@@ -962,7 +943,6 @@ a.ui-button:focus {
 	color: #026890;
 	text-decoration: none;
 }
-
 .ui-visual-focus {
 	box-shadow: 0 0 3px 1px rgb(94, 158, 214);
 }
@@ -988,7 +968,6 @@ a.ui-button:active,
 	color: #fff;
 	text-decoration: none;
 }
-
 /* Interaction Cues
 ----------------------------------*/
 .ui-state-highlight,
@@ -1032,24 +1011,26 @@ a.ui-button:active,
 .ui-priority-secondary,
 .ui-widget-content .ui-priority-secondary,
 .ui-widget-header .ui-priority-secondary {
-	opacity: .7;
 	filter: Alpha(Opacity=70); /* support: IE8 */
+	-khtml-opacity: 0.7;
+	-moz-opacity: 0.7;
+	opacity: 0.7;
 	font-weight: normal;
 }
 .ui-state-disabled,
 .ui-widget-content .ui-state-disabled,
 .ui-widget-header .ui-state-disabled {
-	opacity: .35;
 	filter: Alpha(Opacity=35); /* support: IE8 */
+	-khtml-opacity: 0.35;
+	-moz-opacity: 0.35;
+	opacity: 0.35;
 	background-image: none;
 }
 .ui-state-disabled .ui-icon {
 	filter: Alpha(Opacity=35); /* support: IE8 - See #6059 */
 }
-
 /* Icons
 ----------------------------------*/
-
 /* States and Images */
 .ui-icon {
 	width: 16px;
@@ -1083,7 +1064,6 @@ a.ui-button:active,
 .ui-button .ui-icon {
 	background-image: url("images/ui-icons_e0fdff_256x240.png");
 }
-
 /* Positioning */
 .ui-icon-blank { background-position: 16px 16px; }
 .ui-icon-caret-1-n { background-position: 0 0; }
@@ -1264,7 +1244,6 @@ a.ui-button:active,
 
 /* Misc visuals
 ----------------------------------*/
-
 /* Corner radius */
 .ui-corner-all,
 .ui-corner-top,
@@ -1290,12 +1269,13 @@ a.ui-button:active,
 .ui-corner-br {
 	border-bottom-right-radius: 3px;
 }
-
 /* Overlays */
 .ui-widget-overlay {
-	background: #aaa;
-	opacity: .3;
+	background: #AAA;
 	filter: Alpha(Opacity=30); /* support: IE8 */
+	-khtml-opacity: 0.3;
+	-moz-opacity: 0.3;
+	opacity: 0.3;
 }
 .ui-widget-shadow {
 	-webkit-box-shadow: 5px 5px 0 #999;

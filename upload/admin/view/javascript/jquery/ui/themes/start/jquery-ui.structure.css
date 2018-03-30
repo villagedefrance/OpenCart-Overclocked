@@ -54,10 +54,11 @@
 	top: 0;
 	left: 0;
 	position: absolute;
-	opacity: 0;
 	filter: Alpha(Opacity=0); /* support: IE8 */
+	-khtml-opacity: 0;
+	-moz-opacity: 0;
+	opacity: 0;
 }
-
 .ui-front {
 	z-index: 100;
 }
@@ -80,7 +81,6 @@
 	overflow: hidden;
 	background-repeat: no-repeat;
 }
-
 .ui-widget-icon-block {
 	left: 50%;
 	margin-left: -8px;
@@ -231,7 +231,6 @@
 .ui-menu .ui-state-active {
 	margin: -1px;
 }
-
 /* icon support */
 .ui-menu-icons {
 	position: relative;
@@ -239,7 +238,6 @@
 .ui-menu-icons .ui-menu-item-wrapper {
 	padding-left: 2em;
 }
-
 /* left-aligned */
 .ui-menu .ui-icon {
 	position: absolute;
@@ -248,7 +246,6 @@
 	left: .2em;
 	margin: auto 0;
 }
-
 /* right-aligned */
 .ui-menu .ui-menu-icon {
 	left: auto;
@@ -270,7 +267,6 @@
 	/* Support: IE <= 11 */
 	overflow: visible;
 }
-
 .ui-button,
 .ui-button:link,
 .ui-button:visited,
@@ -278,7 +274,6 @@
 .ui-button:active {
 	text-decoration: none;
 }
-
 /* to make room for the icon, a width needs to be set here */
 .ui-button-icon-only {
 	width: 2em;
@@ -286,12 +281,10 @@
 	text-indent: -9999px;
 	white-space: nowrap;
 }
-
 /* no icon support for input elements */
 input.ui-button.ui-button-icon-only {
 	text-indent: 0;
 }
-
 /* button icon element(s) */
 .ui-button-icon-only .ui-icon {
 	position: absolute;
@@ -300,16 +293,13 @@ input.ui-button.ui-button-icon-only {
 	margin-top: -8px;
 	margin-left: -8px;
 }
-
 .ui-button.ui-icon-notext .ui-icon {
 	padding: 0;
 	width: 2.1em;
 	height: 2.1em;
 	text-indent: -9999px;
 	white-space: nowrap;
-
 }
-
 input.ui-button.ui-icon-notext .ui-icon {
 	width: auto;
 	height: auto;
@@ -377,9 +367,8 @@ button.ui-button::-moz-focus-inner {
 .ui-controlgroup-vertical .ui-spinner .ui-spinner-up {
 	border-top-style: solid;
 }
-
 .ui-checkboxradio-label .ui-icon-background {
-	box-shadow: inset 1px 1px 1px #ccc;
+	box-shadow: inset 1px 1px 1px #CCC;
 	border-radius: .12em;
 	border: none;
 }
@@ -677,9 +666,11 @@ button.ui-button::-moz-focus-inner {
 	height: 100%;
 }
 .ui-progressbar .ui-progressbar-overlay {
-	background: #2191c0 url("images/ui-bg_gloss-wave_75_2191c0_500x100.png") 50% 50% repeat-x;
+	background: #2191C0 url("images/ui-bg_gloss-wave_75_2191c0_500x100.png") 50% 50% repeat-x;
 	height: 100%;
 	filter: alpha(opacity=25); /* support: IE8 */
+	-khtml-opacity: 0.25;
+	-moz-opacity: 0.25;
 	opacity: 0.25;
 }
 .ui-progressbar-indeterminate .ui-progressbar-value {
@@ -746,13 +737,11 @@ button.ui-button::-moz-focus-inner {
 	border: 0;
 	background-position: 0 0;
 }
-
 /* Support: IE8 - See #6727 */
 .ui-slider.ui-state-disabled .ui-slider-handle,
 .ui-slider.ui-state-disabled .ui-slider-range {
 	filter: inherit;
 }
-
 .ui-slider-horizontal {
 	height: .8em;
 }
@@ -790,7 +779,6 @@ button.ui-button::-moz-focus-inner {
 .ui-slider-vertical .ui-slider-range-max {
 	top: 0;
 }
-
 .ui-spinner {
 	position: relative;
 	display: inline-block;

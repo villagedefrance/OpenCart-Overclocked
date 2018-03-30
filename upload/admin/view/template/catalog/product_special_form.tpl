@@ -1,5 +1,5 @@
 <div id="special-notifications"></div>
-<table id="special-table" class="form">
+<table id="special-table" class="form-modal">
   <tr>
     <td><?php echo $entry_sp_selected; ?></td>
     <td><select name="sp_selected">

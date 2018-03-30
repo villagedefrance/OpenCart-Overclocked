@@ -429,8 +429,10 @@ a.ui-button:active,
 /* Overlays */
 .ui-widget-overlay {
 	background: #aaa;
-	opacity: .3;
 	filter: Alpha(Opacity=30); /* support: IE8 */
+	-khtml-opacity: 0.3;
+	-moz-opacity: 0.3;
+	opacity: 0.3;
 }
 .ui-widget-shadow {
 	-webkit-box-shadow: 5px 5px 0 #999;
