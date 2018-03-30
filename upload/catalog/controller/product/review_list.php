@@ -249,7 +249,7 @@ class ControllerProductReviewList extends Controller {
 					'special_label'   => $special_label,
 					'offer'           => $offer,
 					'name'            => $result['name'],
-					'text'            => substr(strip_tags(html_entity_decode($result['text'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
+					'text'            => substr(strip_tags(html_entity_decode($result['text'], ENT_QUOTES, 'UTF-8')), 0, 300) . '..',
 					'age_minimum'     => ($result['age_minimum'] > 0) ? (int)$result['age_minimum'] : '',
 					'age_logged'      => $age_logged,
 					'age_checked'     => $age_checked,

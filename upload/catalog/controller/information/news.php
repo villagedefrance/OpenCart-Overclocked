@@ -63,6 +63,8 @@ class ControllerInformationNews extends Controller {
 			$this->data['news'] = $this->url->link('information/news_list', '', 'SSL');
 			$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
 
+			$this->data['stock_checkout'] = $this->config->get('config_stock_checkout');
+
 			// Image
 			$this->load->model('tool/image');
 

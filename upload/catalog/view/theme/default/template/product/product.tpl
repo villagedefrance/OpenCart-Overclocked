@@ -608,8 +608,10 @@
             <div class="box-product-bottom">
               <?php if ($product['quote']) { ?>
                 <div><a href="<?php echo $product['quote']; ?>" title="<?php echo $button_quote; ?>"><i class="fa fa-quote"></i></a></div>
-              <?php } elseif (!$product['quote'] && $product['stock_quantity'] <= 0) { ?>
+              <?php } elseif (!$product['quote'] && !$stock_checkout && $product['stock_quantity'] <= 0) { ?>
                 <div class="stock-status"><a title="<?php echo $product['stock_status']; ?>"><i class="fa fa-warning"></i></a></div>
+              <?php } elseif (!$product['quote'] && $stock_checkout && $product['stock_quantity'] <= 0) { ?>
+                <div><a onclick="addToCart('<?php echo $product['product_id']; ?>');" title="<?php echo $button_cart; ?>"><i class="fa fa-shopping-cart"></i></a></div>
               <?php } else { ?>
                 <div><a onclick="addToCart('<?php echo $product['product_id']; ?>');" title="<?php echo $button_cart; ?>"><i class="fa fa-shopping-cart"></i></a></div>
               <?php } ?>
