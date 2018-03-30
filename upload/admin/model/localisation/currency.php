@@ -142,6 +142,10 @@ class ModelLocalisationCurrency extends Model {
 		if ($query->rows) {
 			$currencies = array();
 
+			$file_url = 'http://www.floatrates.com/daily/' . strtolower($default) . '.xml';
+
+			$file_exists = $this->checkFileExists($file_url);
+
 			$data = array(
 				'sort'  => 'code',
 				'order' => 'ASC'
@@ -149,7 +153,7 @@ class ModelLocalisationCurrency extends Model {
 
 			$results = $this->getCurrencies($data);
 
-			if ($results) {
+			if ($results && $file_exists) {
 				foreach ($results as $result) {
 					if ($result['code'] != strtoupper($default)) {
 						$currencies[] = $result['code'];
@@ -157,7 +161,7 @@ class ModelLocalisationCurrency extends Model {
 				}
 
 				if (!empty($currencies)) {
-					$xml = simplexml_load_file('http://www.floatrates.com/daily/' . strtolower($default) . '.xml');
+					$xml = simplexml_load_file($file_url);
 
 					foreach ($xml->children() as $response) {
 						if (in_array($response->targetCurrency, $currencies)) {
@@ -215,6 +219,16 @@ class ModelLocalisationCurrency extends Model {
 			$this->cache->delete('currency');
 		} else {
 			return;
+		}
+	}
+
+	protected function checkFileExists($url) {
+		$file_headers = @get_headers($url);
+
+		if (!$file_headers || strpos($file_headers[0], '200') === false) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 
