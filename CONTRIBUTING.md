@@ -1,5 +1,9 @@
 OpenCart Overclocked Edition is a free open source ecommerce platform for online merchants.
 
+-------------------------
+  Contributing Guidelines
+-------------------------
+
 ## Reporting a bug and security issues
 
 Read the instructions below before you create a bug report.
@@ -28,5 +32,8 @@ Fork the repository, edit and submit a pull request.
 
 Please be very clear on your commit messages and pull request, empty pull request messages may be rejected without reason.
 
-Your code standards should match the [OpenCart Overclocked Edition coding standards](https://github.com/villagedefrance/OpenCart-Overclocked/wiki/Coding-standards).
+## Code Standards
+
+Your code should strictly follow the [OpenCart Overclocked Edition coding standards](https://github.com/villagedefrance/OpenCart-Overclocked/wiki/Coding-standards).
+
 We use an automated code scanner to check for most basic mistakes - if the test fails your pull request will be rejected.

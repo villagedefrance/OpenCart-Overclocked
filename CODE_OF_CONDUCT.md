@@ -1,4 +1,8 @@
-# Contributor Covenant Code of Conduct
+OpenCart Overclocked Edition is a free open source ecommerce platform for online merchants.
+
+-----------------------------------------
+  Contributor Covenant Code of Conduct
+-----------------------------------------
 
 ## Our Pledge
 
