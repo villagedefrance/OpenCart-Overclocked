@@ -1645,7 +1645,10 @@ ul.box-filter > li ul {
 	float: right;
 	clear: right;
 	display: inline-block;
-	margin: 5px 8px;
+	margin: 5px 1px;
+}
+.product-list .addons a i {
+	padding: 0 3px;
 }
 .product-list .cart {
 	float: right;
@@ -1744,7 +1747,10 @@ ul.box-filter > li ul {
 }
 .product-grid .addons {
 	display: inline-block;
-	margin: 5px 8px;
+	margin: 5px 1px;
+}
+.product-grid .addons a i {
+	padding: 0 3px;
 }
 .product-grid .cart {
 	margin-bottom: 3px;

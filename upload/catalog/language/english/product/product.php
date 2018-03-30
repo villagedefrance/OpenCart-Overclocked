@@ -25,7 +25,7 @@ $_['text_write']                              = 'Write a review';
 $_['text_latest']                             = 'Latest reviews';
 $_['text_no_reviews']                         = 'There are no reviews for this product.';
 $_['text_on']                                 = ' on ';
-$_['text_note']                               = '<span style="color: #DE5954;">Note:</span> HTML is not translated!';
+$_['text_note']                               = '<span style="color:#DE5954;">Note:</span> HTML is not translated!';
 $_['text_share']                              = 'Share';
 $_['text_success']                            = 'Thank you for your review.<br />It has been submitted for approval.';
 $_['text_upload']                             = 'Your file was successfully uploaded!';

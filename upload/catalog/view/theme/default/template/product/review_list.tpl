@@ -52,7 +52,7 @@
           <?php } ?>
           <?php if ($review['label']) { ?>
             <div class="product-label">
-              <img src="<?php echo $review['label']; ?>" alt="" height="<?php echo $review['label_style']; ?>" width="<?php echo $review['label_style']; ?>" style="margin:0px 0px -<?php echo $review['label_style']; ?>px <?php echo ($review['label_style'] * 2); ?>px;" />
+              <img src="<?php echo $review['label']; ?>" alt="" height="<?php echo $review['label_style']; ?>" width="<?php echo $review['label_style']; ?>" style="margin:0 0 -<?php echo $review['label_style']; ?>px <?php echo ($review['label_style'] * 2); ?>px;" />
             </div>
           <?php } ?>
           <div class="image"><a href="<?php echo $review['href']; ?>"><img src="<?php echo $review['thumb']; ?>" alt="<?php echo $review['name']; ?>" /></a></div>
@@ -79,7 +79,7 @@
         <div class="addons">
           <a onclick="addToWishList('<?php echo $review['product_id']; ?>');" title="<?php echo $button_wishlist; ?>" class="button-add"><i class="fa fa-heart"></i></a>
           <a onclick="addToCompare('<?php echo $review['product_id']; ?>');" title="<?php echo $button_compare; ?>" class="button-add"><i class="fa fa-random"></i></a>
-          <a href="<?php echo $review['href']; ?>" title="<?php echo $button_view; ?>" class="button-add"><i class="fa fa-search"></i></a>
+          <a href="<?php echo $review['href']; ?>" title="<?php echo $button_view; ?>" class="button-add"><i class="fa fa-location-arrow"></i></a>
         </div>
         <div class="cart">
         <?php if ($dob && $review['age_minimum'] && !$review['age_logged']) { ?>

@@ -53,7 +53,7 @@
             <?php } ?>
             <?php if ($product['label']) { ?>
               <div class="product-label">
-                <img src="<?php echo $product['label']; ?>" alt="" height="<?php echo $product['label_style']; ?>" width="<?php echo $product['label_style']; ?>" style="margin:0px 0px -<?php echo $product['label_style']; ?>px <?php echo ($product['label_style'] * 2); ?>px;" />
+                <img src="<?php echo $product['label']; ?>" alt="" height="<?php echo $product['label_style']; ?>" width="<?php echo $product['label_style']; ?>" style="margin:0 0 -<?php echo $product['label_style']; ?>px <?php echo ($product['label_style'] * 2); ?>px;" />
               </div>
             <?php } ?>
             <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
@@ -80,7 +80,7 @@
           <div class="addons">
             <a onclick="addToWishList('<?php echo $product['product_id']; ?>');" title="<?php echo $button_wishlist; ?>" class="button-add"><i class="fa fa-heart"></i></a>
             <a onclick="addToCompare('<?php echo $product['product_id']; ?>');" title="<?php echo $button_compare; ?>" class="button-add"><i class="fa fa-random"></i></a>
-            <a href="<?php echo $product['href']; ?>" title="<?php echo $button_view; ?>" class="button-add"><i class="fa fa-search"></i></a>
+            <a href="<?php echo $product['href']; ?>" title="<?php echo $button_view; ?>" class="button-add"><i class="fa fa-location-arrow"></i></a>
           </div>
           <div class="cart">
           <?php if ($dob && $product['age_minimum'] && !$product['age_logged']) { ?>

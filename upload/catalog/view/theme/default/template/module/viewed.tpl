@@ -17,7 +17,7 @@
             <div class="special-medium"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($product['label']) { ?>
-            <div class="product-label" style="left:<?php echo $product['label_style']; ?>px; margin:0px 0px -<?php echo $product['label_style']; ?>px 0px;">
+            <div class="product-label" style="left:<?php echo $product['label_style']; ?>px; margin:0 0 -<?php echo $product['label_style']; ?>px 0;">
             <img src="<?php echo $product['label']; ?>" alt="" height="<?php echo $product['label_style']; ?>" width="<?php echo $product['label_style']; ?>" /></div>
           <?php } ?>
           <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
@@ -49,16 +49,16 @@
           <?php if ($product['quote']) { ?>
             <div class="cart"><a href="<?php echo $product['quote']; ?>" title="<?php echo $button_quote; ?>"><i class="fa fa-quote"></i></a></div>
           <?php } elseif (!$product['quote'] && !$stock_checkout && $product['stock_quantity'] <= 0) { ?>
-            <div class="stock-status"><a title="<?php echo $product['stock_status']; ?>"><i class="fa fa-warning"></i></a></div>
+            <div class="stock-status"><a title="<?php echo $product['stock_status']; ?>"><i class="fa fa-clock-o"></i></a></div>
           <?php } elseif (!$product['quote'] && $stock_checkout && $product['stock_quantity'] <= 0) { ?>
-            <div class="cart"><a onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" title="<?php echo $button_cart; ?>"><i class="fa fa-shopping-cart"></i></a></div>
+            <div class="cart"><a onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" title="<?php echo $button_cart; ?>"><i class="fa fa-cart-arrow-down"></i></a></div>
           <?php } else { ?>
-            <div class="cart"><a onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" title="<?php echo $button_cart; ?>"><i class="fa fa-shopping-cart"></i></a></div>
+            <div class="cart"><a onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" title="<?php echo $button_cart; ?>"><i class="fa fa-cart-arrow-down"></i></a></div>
           <?php } ?>
         <?php } ?>
           <div><a onclick="addToWishList('<?php echo $product['product_id']; ?>');" title="<?php echo $button_wishlist; ?>"><i class="fa fa-heart"></i></a></div>
         <?php if ($viewproduct) { ?>
-          <div><a href="<?php echo $product['href']; ?>" title="<?php echo $button_view; ?>"><i class="fa fa-search"></i></a></div>
+          <div><a href="<?php echo $product['href']; ?>" title="<?php echo $button_view; ?>"><i class="fa fa-location-arrow"></i></a></div>
         <?php } ?>
         </div>
       </div>
@@ -82,7 +82,7 @@
             <div class="special-medium"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($product['label']) { ?>
-            <div class="product-label" style="left:<?php echo $product['label_style']; ?>px; margin:0px 0px -<?php echo $product['label_style']; ?>px 0px;">
+            <div class="product-label" style="left:<?php echo $product['label_style']; ?>px; margin:0 0 -<?php echo $product['label_style']; ?>px 0;">
             <img src="<?php echo $product['label']; ?>" alt="" height="<?php echo $product['label_style']; ?>" width="<?php echo $product['label_style']; ?>" /></div>
           <?php } ?>
           <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
@@ -114,16 +114,16 @@
           <?php if ($product['quote']) { ?>
             <div class="cart"><a href="<?php echo $product['quote']; ?>" title="<?php echo $button_quote; ?>"><i class="fa fa-quote"></i></a></div>
           <?php } elseif (!$product['quote'] && !$stock_checkout && $product['stock_quantity'] <= 0) { ?>
-            <div class="stock-status"><a title="<?php echo $product['stock_status']; ?>"><i class="fa fa-warning"></i></a></div>
+            <div class="stock-status"><a title="<?php echo $product['stock_status']; ?>"><i class="fa fa-clock-o"></i></a></div>
           <?php } elseif (!$product['quote'] && $stock_checkout && $product['stock_quantity'] <= 0) { ?>
-            <div class="cart"><a onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" title="<?php echo $button_cart; ?>"><i class="fa fa-shopping-cart"></i></a></div>
+            <div class="cart"><a onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" title="<?php echo $button_cart; ?>"><i class="fa fa-cart-arrow-down"></i></a></div>
           <?php } else { ?>
-            <div class="cart"><a onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" title="<?php echo $button_cart; ?>"><i class="fa fa-shopping-cart"></i></a></div>
+            <div class="cart"><a onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" title="<?php echo $button_cart; ?>"><i class="fa fa-cart-arrow-down"></i></a></div>
           <?php } ?>
         <?php } ?>
           <div><a onclick="addToWishList('<?php echo $product['product_id']; ?>');" title="<?php echo $button_wishlist; ?>"><i class="fa fa-heart"></i></a></div>
         <?php if ($viewproduct) { ?>
-          <div><a href="<?php echo $product['href']; ?>" title="<?php echo $button_view; ?>"><i class="fa fa-search"></i></a></div>
+          <div><a href="<?php echo $product['href']; ?>" title="<?php echo $button_view; ?>"><i class="fa fa-location-arrow"></i></a></div>
         <?php } ?>
         </div>
       </div>

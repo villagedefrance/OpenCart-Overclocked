@@ -43,7 +43,7 @@
             <?php } ?>
             <?php if ($products[$product['product_id']]['label']) { ?>
               <div class="product-label">
-                <img src="<?php echo $products[$product['product_id']]['label']; ?>" alt="" height="<?php echo $products[$product['product_id']]['label_style']; ?>" width="<?php echo $products[$product['product_id']]['label_style']; ?>" style="margin:0px 0px -<?php echo $products[$product['product_id']]['label_style']; ?>px <?php echo ($products[$product['product_id']]['label_style'] * 2); ?>px;" />
+                <img src="<?php echo $products[$product['product_id']]['label']; ?>" alt="" height="<?php echo $products[$product['product_id']]['label_style']; ?>" width="<?php echo $products[$product['product_id']]['label_style']; ?>" style="margin:0 0 -<?php echo $products[$product['product_id']]['label_style']; ?>px <?php echo ($products[$product['product_id']]['label_style'] * 2); ?>px;" />
               </div>
             <?php } ?>
             <a href="<?php echo $products[$product['product_id']]['href']; ?>"><img src="<?php echo $products[$product['product_id']]['thumb']; ?>" alt="<?php echo $products[$product['product_id']]['name']; ?>" /></a>

@@ -1536,15 +1536,15 @@
             <td><?php echo $entry_lightbox; ?><span class="help"><?php echo $help_lightbox; ?></span></td>
             <td><select name="config_lightbox">
               <?php if (isset($config_lightbox)) { $selected = "selected"; ?>
-                <option value="colorbox" <?php if ($config_lightbox == 'magnific') { echo $selected; } ?>><?php echo $text_magnific; ?> <?php echo $text_default; ?></option>
+                <option value="magnific" <?php if ($config_lightbox == 'magnific') { echo $selected; } ?>><?php echo $text_magnific; ?> <?php echo $text_default; ?></option>
                 <option value="fancybox" <?php if ($config_lightbox == 'fancybox') { echo $selected; } ?>><?php echo $text_fancybox; ?></option>
-                <option value="magnific" <?php if ($config_lightbox == 'colorbox') { echo $selected; } ?>><?php echo $text_colorbox; ?></option>
+                <option value="colorbox" <?php if ($config_lightbox == 'colorbox') { echo $selected; } ?>><?php echo $text_colorbox; ?></option>
                 <option value="swipebox" <?php if ($config_lightbox == 'swipebox') { echo $selected; } ?>><?php echo $text_swipebox; ?></option>
                 <option value="zoomlens" <?php if ($config_lightbox == 'zoomlens') { echo $selected; } ?>><?php echo $text_zoomlens; ?></option>
               <?php } else { ?>
-                <option value="colorbox"><?php echo $text_magnific; ?> <?php echo $text_default; ?></option>
+                <option value="magnific"><?php echo $text_magnific; ?> <?php echo $text_default; ?></option>
                 <option value="fancybox"><?php echo $text_fancybox; ?></option>
-                <option value="magnific"><?php echo $text_colorbox; ?></option>
+                <option value="colorbox"><?php echo $text_colorbox; ?></option>
                 <option value="swipebox"><?php echo $text_swipebox; ?></option>
                 <option value="zoomlens"><?php echo $text_zoomlens; ?></option>
               <?php } ?>
