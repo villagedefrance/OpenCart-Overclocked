@@ -1,6 +1,5 @@
--------------------------
+
 # Contributing Guidelines
--------------------------
 
 ## Reporting a bug and security issues
 
