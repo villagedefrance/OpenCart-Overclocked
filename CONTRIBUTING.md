@@ -1,7 +1,5 @@
-OpenCart Overclocked Edition is a free open source ecommerce platform for online merchants.
-
 -------------------------
-  Contributing Guidelines
+# Contributing Guidelines
 -------------------------
 
 ## Reporting a bug and security issues
