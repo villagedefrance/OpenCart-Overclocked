@@ -4518,7 +4518,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (245, 0, 'config', 'config_tax_customer', 'shipping', 0),
 (246, 0, 'config', 'config_tax_default', 'shipping', 0),
 (247, 0, 'affiliate', 'affiliate_mode', '0', 0),
-(248, 0, 'affiliate', 'affiliate_module', 'a:1:{i:0;a:4:{s:9:\"layout_id\";s:2:\"10\";s:8:\"position\";s:12:\"column_right\";s:6:\"status\";s:1:\"1\";s:10:\"sort_order\";s:1:\"1\";}}', 1),
+(248, 0, 'affiliate', 'affiliate_module', 'a:1:{i:0;a:4:{s:9:\"layout_id\";s:2:\"10\";s:8:\"position\";s:12:\"column_right\";s:6:\"status\";s:1:\"0\";s:10:\"sort_order\";s:1:\"1\";}}', 1),
 (249, 0, 'banner', 'banner_speed', '500', 0),
 (250, 0, 'banner', 'banner_duration', '4000', 0),
 (251, 0, 'banner', 'banner_transition', 'fade', 0),
