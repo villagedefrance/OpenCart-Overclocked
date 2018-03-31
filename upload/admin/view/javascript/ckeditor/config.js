@@ -11,6 +11,9 @@ CKEDITOR.editorConfig = function(config) {
 	config.filebrowserWindowWidth = '640';
 	config.filebrowserWindowHeight = '440';
 
+	config.enterMode = CKEDITOR.ENTER_BR;
+	config.shiftEnterMode = CKEDITOR.ENTER_P;
+
 	config.allowedContent = true;
 	config.htmlEncodeOutput = false;
 	config.resize_enabled = true;
