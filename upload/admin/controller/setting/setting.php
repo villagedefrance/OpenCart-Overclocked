@@ -149,6 +149,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_order_edit'] = $this->language->get('entry_order_edit');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_complete_status'] = $this->language->get('entry_complete_status');
+		$this->data['entry_abandoned_cart'] = $this->language->get('entry_abandoned_cart');
 		$this->data['entry_guest_checkout'] = $this->language->get('entry_guest_checkout');
 		$this->data['entry_one_page_checkout'] = $this->language->get('entry_one_page_checkout');
 		$this->data['entry_one_page_phone'] = $this->language->get('entry_one_page_phone');
@@ -342,6 +343,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['help_order_edit'] = $this->language->get('help_order_edit');
 		$this->data['help_order_status'] = $this->language->get('help_order_status');
 		$this->data['help_complete_status'] = $this->language->get('help_complete_status');
+		$this->data['help_abandoned_cart'] = $this->language->get('help_abandoned_cart');
 		$this->data['help_one_page_checkout'] = $this->language->get('help_one_page_checkout');
 		$this->data['help_express_checkout'] = $this->language->get('help_express_checkout');
 		$this->data['help_express_autofill'] = $this->language->get('help_express_autofill');
@@ -1028,6 +1030,14 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_complete_status_id'] = $this->request->post['config_complete_status_id'];
 		} else {
 			$this->data['config_complete_status_id'] = $this->config->get('config_complete_status_id');
+		}
+
+		if (isset($this->request->post['config_abandoned_cart'])) {
+			$this->data['config_abandoned_cart'] = $this->request->post['config_abandoned_cart'];
+		} elseif ($this->config->get('config_abandoned_cart')) {
+			$this->data['config_abandoned_cart'] = $this->config->get('config_abandoned_cart');
+		} else {
+			$this->data['config_abandoned_cart'] = 7;
 		}
 
 		// Standard Checkout

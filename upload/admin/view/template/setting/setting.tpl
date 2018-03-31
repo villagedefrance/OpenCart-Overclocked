@@ -440,6 +440,10 @@
               <?php } ?>
             </select></td>
           </tr>
+          <tr>
+            <td><?php echo $entry_abandoned_cart; ?><span class="help"><?php echo $help_abandoned_cart; ?></span></td>
+            <td><input type="text" name="config_abandoned_cart" value="<?php echo $config_abandoned_cart; ?>" size="3" /></td>
+          </tr>
         </table>
         <h2><?php echo $text_standard; ?></h2>
         <table class="form">

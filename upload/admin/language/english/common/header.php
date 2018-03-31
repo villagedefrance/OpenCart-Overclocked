@@ -99,6 +99,7 @@ $_['text_report_customer_online']      = 'Online';
 $_['text_report_affiliate']            = 'Affiliates';
 $_['text_report_affiliate_activity']   = 'Activity';
 $_['text_report_affiliate_commission'] = 'Commissions';
+$_['text_report_abandoned_cart']       = 'Abandoned Carts';
 $_['text_report_banner_clicked']       = 'Banners';
 $_['text_report_robot_online']         = 'Robots';
 $_['text_review']                      = 'Reviews';

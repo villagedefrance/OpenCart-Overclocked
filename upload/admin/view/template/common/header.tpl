@@ -192,6 +192,7 @@
               <li><a href="<?php echo $report_affiliate_commission; ?>"><?php echo ($icons) ? '<i class="fa fa-percent"></i>' : ''; ?><?php echo $text_report_affiliate_commission; ?></a></li>
             </ul>
           </li>
+          <li><a href="<?php echo $report_abandoned_cart; ?>"><?php echo ($icons) ? '<i class="fa fa-paper-plane"></i>' : ''; ?><?php echo $text_report_abandoned_cart; ?></a></li>
           <li><a href="<?php echo $report_banner_clicked; ?>"><?php echo ($icons) ? '<i class="fa fa-photo"></i>' : ''; ?><?php echo $text_report_banner_clicked; ?></a></li>
         <?php if ($track_robots) { ?>
           <li><a href="<?php echo $report_robot_online; ?>"><?php echo ($icons) ? '<i class="fa fa-wifi"></i>' : ''; ?><?php echo $text_report_robot_online; ?></a></li>
