@@ -92,7 +92,7 @@ $(document).ready(function() {
       <a class="top-link" onclick="location='<?php echo $account; ?>';" title=""><i class="fa fa-user"></i><span class="hide-phone"> &nbsp;<?php echo $text_signin; ?></span></a>
     <?php } ?>
     <a class="top-link" onclick="location='<?php echo $shopping_cart; ?>';" title=""><i class="fa fa-shopping-cart"></i><span class="hide-phone"> &nbsp;<?php echo $text_shopping_cart; ?></span></a>
-    <a class="top-link" onclick="location='<?php echo $checkout; ?>';" title=""><i class="fa fa-mail-forward"></i><span class="hide-phone"> &nbsp;<?php echo $text_checkout; ?></span></a>
+    <a class="top-link" onclick="location='<?php echo $checkout; ?>';" title=""><i class="fa fa-play"></i><span class="hide-phone"> &nbsp;<?php echo $text_checkout; ?></span></a>
   </div>
 </div>
 <div id="container">

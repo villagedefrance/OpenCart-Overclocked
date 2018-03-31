@@ -79,7 +79,7 @@
       <div class="addons">
         <a onclick="addToWishList('<?php echo $product['product_id']; ?>');" title="<?php echo $button_wishlist; ?>" class="button-add"><i class="fa fa-heart"></i></a>
         <a onclick="addToCompare('<?php echo $product['product_id']; ?>');" title="<?php echo $button_compare; ?>" class="button-add"><i class="fa fa-random"></i></a>
-        <a href="<?php echo $product['href']; ?>" title="<?php echo $button_view; ?>" class="button-add"><i class="fa fa-location-arrow"></i></a>
+        <a href="<?php echo $product['href']; ?>" title="<?php echo $button_view; ?>" class="button-add"><i class="fa fa-plus"></i></a>
       </div>
       <div class="cart">
       <?php if ($dob && $product['age_minimum'] && !$product['age_logged']) { ?>
