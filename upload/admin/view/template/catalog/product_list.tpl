@@ -64,12 +64,12 @@
           <?php } else { ?>
             <a href="<?php echo $sort_quantity; ?>"><?php echo $column_quantity; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
-          <td class="left"><?php if ($sort == 'p.date_added') { ?>
+          <td class="left hide-tablet"><?php if ($sort == 'p.date_added') { ?>
             <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
           <?php } else { ?>
             <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
-          <td class="left"><?php if ($sort == 'p.date_modified') { ?>
+          <td class="left hide-tablet"><?php if ($sort == 'p.date_modified') { ?>
             <a href="<?php echo $sort_date_modified; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_modified; ?></a>
           <?php } else { ?>
             <a href="<?php echo $sort_date_modified; ?>"><?php echo $column_date_modified; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
@@ -87,12 +87,12 @@
             <td></td>
             <td></td>
             <td></td>
-            <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" /></td>
-            <td><input type="text" name="filter_model" value="<?php echo $filter_model; ?>" /></td>
+            <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" size="18" /></td>
+            <td><input type="text" name="filter_model" value="<?php echo $filter_model; ?>" size="14" /></td>
             <td class="right"><input type="text" name="filter_price" value="<?php echo $filter_price; ?>" size="10" /></td>
-            <td class="right"><input type="text" name="filter_quantity" value="<?php echo $filter_quantity; ?>" size="10" /></td>
-            <td></td>
-            <td></td>
+            <td class="right"><input type="text" name="filter_quantity" value="<?php echo $filter_quantity; ?>" size="8" /></td>
+            <td class="hide-tablet"></td>
+            <td class="hide-tablet"></td>
             <td class="center"><select name="filter_status">
               <option value="*"></option>
               <?php if ($filter_status) { ?>
@@ -124,7 +124,7 @@
               <td class="left"><?php echo $product['barcode']; ?><?php echo $product['model']; ?></td>
               <td class="right"><?php if ($product['special']) { ?>
                 <span style="text-decoration:line-through;"><?php echo $product['price']; ?></span><br />
-                <span style="color:#FF0000;"><?php echo $product['special']; ?></span><br />
+                <span style="color:#E53030;"><?php echo $product['special']; ?></span><br />
                 <?php if ($product['discount']) { ?>
                   <?php foreach ($product['discount'] as $discount) { ?>
                     <span style="color:#558899; font-size:10px;"><?php echo $discount['price']; ?>(<?php echo $discount['quantity']; ?>)</span>&nbsp;
@@ -139,14 +139,14 @@
                 <?php } ?>
               <?php } ?></td>
               <td class="right"><?php if ($product['quantity'] <= 0) { ?>
-                <span style="color:#FF0000;"><?php echo $product['quantity']; ?></span>
+                <span style="color:#E53030;"><?php echo $product['quantity']; ?></span>
               <?php } elseif ($product['quantity'] <= 9) { ?>
                 <span style="color:#FFA500;"><?php echo $product['quantity']; ?></span>
               <?php } else { ?>
                 <span style="color:#5DC15E;"><?php echo $product['quantity']; ?></span>
               <?php } ?></td>
-              <td class="center"><?php echo $product['date_added']; ?></td>
-              <td class="center"><?php echo $product['date_modified']; ?></td>
+              <td class="center hide-tablet"><?php echo $product['date_added']; ?></td>
+              <td class="center hide-tablet"><?php echo $product['date_modified']; ?></td>
               <?php if ($product['status'] == 1) { ?>
                 <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
               <?php } else { ?>

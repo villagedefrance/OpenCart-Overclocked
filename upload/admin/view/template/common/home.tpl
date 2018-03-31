@@ -495,7 +495,7 @@
             <thead>
               <tr>
                 <td class="left"><?php echo $column_product; ?></td>
-                <td class="left hide-phone"><img src="view/image/dashboard/top-model.png" alt="" title="" /></td>
+                <td class="left hide-tablet"><img src="view/image/dashboard/top-model.png" alt="" title="" /></td>
                 <td class="right"><img src="view/image/dashboard/top-total.png" alt="" title="" /></td>
                 <td class="right"><img src="view/image/dashboard/top-price.png" alt="" title="" /></td>
               </tr>
@@ -505,7 +505,7 @@
                 <?php foreach ($sellers as $seller) { ?>
                   <tr>
                     <td class="left"><a href="<?php echo $seller['href']; ?>" title=""><?php echo $seller['name']; ?></a></td>
-                    <td class="left hide-phone"><?php echo $seller['model']; ?></td>
+                    <td class="left hide-tablet"><?php echo $seller['model']; ?></td>
                     <td class="right"><?php echo $seller['quantity']; ?></td>
                     <td class="right"><?php echo $seller['total']; ?></td>
                   </tr>
@@ -526,7 +526,7 @@
             <thead>
               <tr>
                 <td class="left"><?php echo $column_product; ?></td>
-                <td class="left hide-phone"><img src="view/image/dashboard/top-model.png" alt="" title="" /></td>
+                <td class="left hide-tablet"><img src="view/image/dashboard/top-model.png" alt="" title="" /></td>
                 <td class="right"><img src="view/image/dashboard/top-viewed.png" alt="" title="" /></td>
                 <td class="right"><img src="view/image/dashboard/top-percent.png" alt="" title="" /></td>
               </tr>
@@ -536,7 +536,7 @@
                 <?php foreach ($views as $view) { ?>
                   <tr>
                     <td class="left"><a href="<?php echo $view['href']; ?>" title=""><?php echo $view['name']; ?></a></td>
-                    <td class="left hide-phone"><?php echo $view['model']; ?></td>
+                    <td class="left hide-tablet"><?php echo $view['model']; ?></td>
                     <td class="right"><?php echo $view['viewed']; ?></td>
                     <td class="right"><?php echo $view['percent']; ?></td>
                   </tr>
@@ -557,7 +557,7 @@
             <thead>
               <tr>
                 <td class="left"><?php echo $column_customer; ?></td>
-                <td class="right hide-phone"><img src="view/image/dashboard/top-order.png" alt="" title="" /></td>
+                <td class="right hide-tablet"><img src="view/image/dashboard/top-order.png" alt="" title="" /></td>
                 <td class="right"><img src="view/image/dashboard/top-product.png" alt="" title="" /></td>
                 <td class="right"><img src="view/image/dashboard/top-price.png" alt="" title="" /></td>
               </tr>
@@ -567,7 +567,7 @@
                 <?php foreach ($clients as $client) { ?>
                   <tr>
                     <td class="left"><a href="<?php echo $client['href']; ?>" title=""><?php echo $client['customer']; ?></a></td>
-                    <td class="right hide-phone"><?php echo $client['orders']; ?></td>
+                    <td class="right hide-tablet"><?php echo $client['orders']; ?></td>
                     <td class="right"><?php echo $client['products']; ?></td>
                     <td class="right"><?php echo $client['total']; ?></td>
                   </tr>
