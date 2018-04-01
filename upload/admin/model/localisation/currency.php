@@ -223,12 +223,23 @@ class ModelLocalisationCurrency extends Model {
 	}
 
 	protected function checkFileExists($url) {
-		$file_headers = @get_headers($url);
+		$curl = curl_init();
 
-		if (!$file_headers || strpos($file_headers[0], '200') === false) {
-			return false;
-		} else {
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_NOBODY, 1);
+		curl_setopt($curl, CURLOPT_FAILONERROR, 1);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
+		curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+
+		if ($response !== false) {
 			return true;
+		} else {
+			return false;
 		}
 	}
 
