@@ -19,10 +19,10 @@ $_['column_action']         = 'Action';
 
 // Button
 $_['button_recover']        = 'Send email';
-$_['button_view']        = 'View';
+$_['button_view']           = 'View';
 
 // Email
-$_['subject']               = "Incomplete Order at";
+$_['subject']               = "Incomplete Order at %s";
 
 $_['failed_cart_greeting']  = 'Hi, %s';
 $_['failed_cart_intro']     = 'We noticed you stopped by our shop recently and didn\'t complete your purchase; we just wanted to make sure this wasn\'t in error -- if you meant to complete checkout, you didn\'t complete the payment process and thus your order wasn\'t placed.';
