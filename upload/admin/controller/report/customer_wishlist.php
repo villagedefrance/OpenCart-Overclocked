@@ -81,10 +81,6 @@ class ControllerReportCustomerWishlist extends Controller {
 
 		$url = '';
 
-		if (isset($this->request->get['page'])) {
-			$url .= '&page=' . $this->request->get['page'];
-		}
-
 		$pagination = new Pagination();
 		$pagination->total = $wishlist_total;
 		$pagination->page = $page;
