@@ -49,8 +49,6 @@ class ControllerReportCustomerWishlist extends Controller {
 
 		$results = $this->model_report_customer->getWishlist($data);
 
-		$product_total = count($results);
-
 		foreach ($results as $result) {
 			if ($result['total_wishlisted']) {
 				$percent = round($result['total_wishlisted'] / $wishlist_total * 100, 2);
