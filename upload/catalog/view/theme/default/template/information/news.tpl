@@ -34,7 +34,7 @@
         </div>
       </div>
       <?php if ($news_addthis) { ?>
-        <div style="margin:25px 0px;">
+        <div style="margin:25px 0;">
           <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
             <a class="addthis_button_email"></a>
             <a class="addthis_button_print"></a>
@@ -111,7 +111,7 @@
               <?php } ?>
                 <div class="box-product-bottom">
                 <?php if ($product['quote']) { ?>
-                  <div><a href="<?php echo $product['quote']; ?>" title="<?php echo $button_quote; ?>"><i class="fa fa-quote"></i></a></div>
+                  <div><a href="<?php echo $product['quote']; ?>" title="<?php echo $button_quote; ?>"><i class="fa fa-edit"></i></a></div>
                 <?php } elseif (!$product['quote'] && !$stock_checkout && $product['stock_quantity'] <= 0) { ?>
                   <div class="stock-status"><a title="<?php echo $product['stock_status']; ?>"><i class="fa fa-clock-o"></i></a></div>
                 <?php } elseif (!$product['quote'] && $stock_checkout && $product['stock_quantity'] <= 0) { ?>

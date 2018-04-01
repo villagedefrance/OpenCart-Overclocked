@@ -15,9 +15,9 @@
   <h1><?php echo $heading_title; ?></h1>
   <div class="product-info">
     <?php if ($dob && $age_minimum > 0 && !$age_logged) { ?>
-      <div class="attention" style="margin:0px 0px 15px 0px;"><?php echo $text_age_restriction; ?></div>
+      <div class="attention" style="margin:0 0 15px 0;"><?php echo $text_age_restriction; ?></div>
     <?php } elseif ($dob && $age_minimum > 0 && !$age_checked) { ?>
-      <div class="attention" style="margin:0px 0px 15px 0px;"><?php echo $text_age_minimum; ?></div>
+      <div class="attention" style="margin:0 0 15px 0;"><?php echo $text_age_minimum; ?></div>
     <?php } ?>
     <?php if ($thumb || $images) { ?>
       <div class="left">
@@ -33,7 +33,7 @@
             <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($label) { ?>
-            <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0px 0px -<?php echo $label_style; ?>px 0px;">
+            <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0 0 -<?php echo $label_style; ?>px 0;">
             <img src="<?php echo $label; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
@@ -60,7 +60,7 @@
             <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($label) { ?>
-            <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0px 0px -<?php echo $label_style; ?>px 0px;">
+            <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0 0 -<?php echo $label_style; ?>px 0;">
             <img src="<?php echo $label; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
@@ -87,7 +87,7 @@
             <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($label) { ?>
-            <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0px 0px -<?php echo $label_style; ?>px 0px;">
+            <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0 0 -<?php echo $label_style; ?>px 0;">
             <img src="<?php echo $label; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
@@ -114,7 +114,7 @@
             <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($label) { ?>
-            <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0px 0px -<?php echo $label_style; ?>px 0px;">
+            <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0 0 -<?php echo $label_style; ?>px 0;">
             <img src="<?php echo $label; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
@@ -141,7 +141,7 @@
             <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($label) { ?>
-            <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0px 0px -58px 0px;">
+            <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0 0 -58px 0;">
             <img src="<?php echo $label; ?>" alt="" /></div>
           <?php } ?>
           <div class="simpleLens-gallery-container" id="zoom">
@@ -607,7 +607,7 @@
             <?php } ?>
             <div class="box-product-bottom">
               <?php if ($product['quote']) { ?>
-                <div><a href="<?php echo $product['quote']; ?>" title="<?php echo $button_quote; ?>"><i class="fa fa-quote"></i></a></div>
+                <div><a href="<?php echo $product['quote']; ?>" title="<?php echo $button_quote; ?>"><i class="fa fa-edit"></i></a></div>
               <?php } elseif (!$product['quote'] && !$stock_checkout && $product['stock_quantity'] <= 0) { ?>
                 <div class="stock-status"><a title="<?php echo $product['stock_status']; ?>"><i class="fa fa-clock-o"></i></a></div>
               <?php } elseif (!$product['quote'] && $stock_checkout && $product['stock_quantity'] <= 0) { ?>
