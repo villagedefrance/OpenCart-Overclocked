@@ -161,6 +161,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_report_product_quantity'] = $this->language->get('text_report_product_quantity');
 		$this->data['text_report_product_purchased'] = $this->language->get('text_report_product_purchased');
 		$this->data['text_report_customer_order'] = $this->language->get('text_report_customer_order');
+		$this->data['text_report_customer_wishlist'] = $this->language->get('text_report_customer_wishlist');
 		$this->data['text_report_customer_reward'] = $this->language->get('text_report_customer_reward');
 		$this->data['text_report_customer_credit'] = $this->language->get('text_report_customer_credit');
 		$this->data['text_report_customer_country'] = $this->language->get('text_report_customer_country');
@@ -328,6 +329,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['report_product_quantity'] = $this->url->link('report/product_quantity', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_product_purchased'] = $this->url->link('report/product_purchased', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_customer_order'] = $this->url->link('report/customer_order', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['report_customer_wishlist'] = $this->url->link('report/customer_wishlist', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_customer_reward'] = $this->url->link('report/customer_reward', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_customer_credit'] = $this->url->link('report/customer_credit', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_customer_country'] = $this->url->link('report/customer_country', 'token=' . $this->session->data['token'], 'SSL');

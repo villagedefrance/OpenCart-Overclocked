@@ -91,6 +91,7 @@ $_['text_report_product_viewed']       = 'Viewed';
 $_['text_report_product_quantity']     = 'Stock Levels';
 $_['text_report_product_purchased']    = 'Purchased';
 $_['text_report_customer_order']       = 'Orders';
+$_['text_report_customer_wishlist']    = 'Wishlists';
 $_['text_report_customer_reward']      = 'Rewards';
 $_['text_report_customer_credit']      = 'Credits';
 $_['text_report_customer_country']     = 'Countries';

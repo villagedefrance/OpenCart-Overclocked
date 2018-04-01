@@ -179,6 +179,7 @@
           <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-user"></i>' : ''; ?><?php echo $text_customer; ?></a>
             <ul>
               <li><a href="<?php echo $report_customer_order; ?>"><?php echo ($icons) ? '<i class="fa fa-shopping-bag"></i>' : ''; ?><?php echo $text_report_customer_order; ?></a></li>
+              <li><a href="<?php echo $report_customer_wishlist; ?>"><?php echo ($icons) ? '<i class="fa fa-heart"></i>' : ''; ?><?php echo $text_report_customer_wishlist; ?></a></li>
               <li><a href="<?php echo $report_customer_reward; ?>"><?php echo ($icons) ? '<i class="fa fa-gift"></i>' : ''; ?><?php echo $text_report_customer_reward; ?></a></li>
               <li><a href="<?php echo $report_customer_credit; ?>"><?php echo ($icons) ? '<i class="fa fa-money"></i>' : ''; ?><?php echo $text_report_customer_credit; ?></a></li>
               <li><a href="<?php echo $report_customer_country; ?>"><?php echo ($icons) ? '<i class="fa fa-globe"></i>' : ''; ?><?php echo $text_report_customer_country; ?></a></li>

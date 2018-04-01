@@ -18,6 +18,7 @@ class ControllerAccountWishList extends Controller {
 
 		$this->language->load('account/wishlist');
 
+		$this->load->model('account/wishlist');
 		$this->load->model('catalog/product');
 		$this->load->model('tool/image');
 
@@ -31,6 +32,8 @@ class ControllerAccountWishList extends Controller {
 			if ($key !== false) {
 				unset($this->session->data['wishlist'][$key]);
 			}
+
+			$this->model_account_wishlist->deleteWishlist($this->request->get['remove']);
 
 			$this->session->data['success'] = $this->language->get('text_remove');
 
@@ -210,6 +213,10 @@ class ControllerAccountWishList extends Controller {
 			}
 
 			if ($this->customer->isLogged()) {
+				$this->load->model('account/wishlist');
+
+				$this->model_account_wishlist->addWishlist($this->request->post['product_id']);
+
 				$json['success'] = sprintf($this->language->get('text_success'), $this->url->link('product/product', 'product_id=' . $this->request->post['product_id'], 'SSL'), $product_info['name'], $this->url->link('account/wishlist', '', 'SSL'));
 			} else {
 				$json['success'] = sprintf($this->language->get('text_login'), $this->url->link('account/login', '', 'SSL'), $this->url->link('account/register', '', 'SSL'), $this->url->link('product/product', 'product_id=' . $this->request->post['product_id'], 'SSL'), $product_info['name'], $this->url->link('account/wishlist', '', 'SSL'));

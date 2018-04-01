@@ -189,6 +189,28 @@ class ModelReportCustomer extends Model {
 		return $query->row['total'];
 	}
 
+	public function getWishlist($data) {
+		if ($data['start'] < 0) {
+			$data['start'] = 0;
+		}
+
+		if ($data['limit'] < 1) {
+			$data['limit'] = 20;
+		}
+
+		$sql = "SELECT pd.name, p.model, COUNT(*) AS total_wishlisted FROM " . DB_PREFIX . "customer_wishlist cw LEFT JOIN " . DB_PREFIX . "product_description pd ON (cw.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product p ON (cw.product_id = p.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' GROUP BY cw.product_id ORDER BY total_wishlisted DESC LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
+
+	public function getTotalWishlist() {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer_wishlist");
+
+		return $query->row['total'];
+	}
+
 	public function getTotalCustomersOnline($data = array()) {
 		$sql = "SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "customer_online` co LEFT JOIN " . DB_PREFIX . "customer c ON (co.customer_id = c.customer_id) WHERE co.date_added > DATE_SUB(NOW(), INTERVAL 1 MINUTE)";
 

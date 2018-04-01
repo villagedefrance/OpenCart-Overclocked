@@ -86,6 +86,12 @@ class ModelSaleCustomer extends Model {
 		return $query->row;
 	}
 
+	public function getCustomerByName($customer_id) {
+		$query = $this->db->query("SELECT DISTINCT CONCAT(firstname, ' ', lastname) AS name FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "'");
+
+		return $query->row['name'];
+	}
+
 	public function getCustomerByEmail($email) {
 		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "customer WHERE LCASE(email) = '" . $this->db->escape(utf8_strtolower($email)) . "'");
 
