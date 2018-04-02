@@ -148,9 +148,9 @@
         <td></td>
         <?php foreach ($products as $product) { ?>
           <?php if ($products[$product['product_id']]['quote']) { ?>
-            <td><a href="<?php echo $products[$product['product_id']]['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a></td>
+            <td><a href="<?php echo $products[$product['product_id']]['quote']; ?>" title="" class="button"><i class="fa fa-edit"></i> &nbsp; <?php echo $button_quote; ?></a></td>
           <?php } elseif (!$products[$product['product_id']]['quote'] && !$stock_checkout && $products[$product['product_id']]['stock_quantity'] <= 0) { ?>
-            <td><span class="stock-status"><?php echo $products[$product['product_id']]['stock_status']; ?></span></td>
+            <td><span class="stock-status"> &nbsp; <i class="fa fa-clock-o"></i> <?php echo $products[$product['product_id']]['stock_status']; ?></span></td>
           <?php } elseif (!$products[$product['product_id']]['quote'] && $stock_checkout && $products[$product['product_id']]['stock_quantity'] <= 0) { ?>
             <td><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $products[$product['product_id']]['product_id']; ?>');" class="button" /></td>
           <?php } else { ?>
@@ -161,7 +161,7 @@
       <tr>
         <td></td>
         <?php foreach ($products as $product) { ?>
-          <td class="remove"><a href="<?php echo $products[$product['product_id']]['remove']; ?>" class="button"><?php echo $button_remove; ?></a></td>
+          <td class="remove"><a href="<?php echo $products[$product['product_id']]['remove']; ?>" class="button-danger"><i class="fa fa-close"></i> &nbsp; <?php echo $button_remove; ?></a></td>
         <?php } ?>
       </tr>
     </table>

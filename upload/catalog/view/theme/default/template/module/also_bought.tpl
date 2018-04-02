@@ -58,7 +58,7 @@
         <?php } ?>
           <div><a onclick="addToWishList('<?php echo $product['product_id']; ?>');" title="<?php echo $button_wishlist; ?>"><i class="fa fa-heart"></i></a></div>
         <?php if ($viewproduct) { ?>
-          <div><a href="<?php echo $product['href']; ?>" title="<?php echo $button_view; ?>"><i class="fa fa-plus"></i></a></div>
+          <div><a href="<?php echo $product['href']; ?>" title="<?php echo $button_view; ?>"><i class="fa fa-eye"></i></a></div>
         <?php } ?>
         </div>
       </div>
@@ -123,7 +123,7 @@
         <?php } ?>
           <div><a onclick="addToWishList('<?php echo $product['product_id']; ?>');" title="<?php echo $button_wishlist; ?>"><i class="fa fa-heart"></i></a></div>
         <?php if ($viewproduct) { ?>
-          <div><a href="<?php echo $product['href']; ?>" title="<?php echo $button_view; ?>"><i class="fa fa-plus"></i></a></div>
+          <div><a href="<?php echo $product['href']; ?>" title="<?php echo $button_view; ?>"><i class="fa fa-eye"></i></a></div>
         <?php } ?>
         </div>
       </div>

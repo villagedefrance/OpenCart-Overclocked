@@ -208,7 +208,7 @@ span.from {
 /* Top Links */
 a.top-link, a.top-link:visited, a.top-link:hover {
 	text-align: right;
-	font-size: 15px;
+	font-size: 16px;
 	font-weight: normal;
 	text-decoration: none;
 	text-shadow: 0 1px 0 #EEE;
@@ -1063,7 +1063,7 @@ a.button-add:hover {
 	position: relative;
 	bottom: 0;
 	width: 100%;
-	height: 34px;
+	height: 35px;
 	display: inline-block;
 	margin-top: 8px;
 	border-top: 1px solid #CCC;
@@ -1081,7 +1081,7 @@ a.button-add:hover {
 .box-product > div .box-product-bottom > div a {
 	color: #777;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 21px;
 	text-decoration: none;
 	line-height: 36px;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
@@ -1648,7 +1648,8 @@ ul.box-filter > li ul {
 	margin: 5px 1px;
 }
 .product-list .addons a i {
-	padding: 0 3px;
+	font-size: 21px;
+	padding: 1px;
 }
 .product-list .cart {
 	float: right;
@@ -1750,7 +1751,8 @@ ul.box-filter > li ul {
 	margin: 5px 1px;
 }
 .product-grid .addons a i {
-	padding: 0 3px;
+	font-size: 21px;
+	padding: 1px;
 }
 .product-grid .cart {
 	margin-bottom: 3px;
