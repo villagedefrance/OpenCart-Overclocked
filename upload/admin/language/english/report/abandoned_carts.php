@@ -25,9 +25,9 @@ $_['button_view']           = 'View';
 $_['subject']               = "Incomplete Order at %s";
 
 $_['failed_cart_greeting']  = 'Hi, %s';
-$_['failed_cart_intro']     = 'We noticed you stopped by our store recently and didn\'t complete your purchase; we just wanted to make sure this wasn\'t in error -- if you meant to complete checkout, you didn\'t complete the payment process and thus your order wasn\'t placed.';
-$_['failed_cart_contents']  = 'For your convenience, here\'s a list of what was in your cart:';
-$_['failed_cart_body']      = 'If your abandoned cart was intentional, we\'d love to hear any feedback, suggestions or complaints you can offer so we can improve our store and customer experience!';
+$_['failed_cart_intro']     = 'We noticed that you were about to pick up some goods in the store and that you didn\'t get the chance to finish your order. We just wanted to see if there were any problems or anything at all we could help with. If so, please let us know.';
+$_['failed_cart_contents']  = 'In case you were looking to pick up where you left off, here\'s a reminder of what you were thinking about getting:';
+$_['failed_cart_body']      = 'If your abandoned cart was intentional, we\'d love to hear any feedback, suggestions or complaints you may have, so we can further improve our store and customer experience!';
 $_['failed_cart_footer']    = 'You received this message because you (or someone using your email address) recently stopped by our store - you have not been added to any newsletter and will not receive further communication from us as a result of your order attempt (unless you explicitly signed up to our newsletter and/or product notifications). We do not forcefully sign people up to our communications.';
 $_['failed_cart_signoff']   = 'We thank you for your interest in our products. Have an excellent day!';
 $_['failed_cart_signature'] = 'Regards,';
