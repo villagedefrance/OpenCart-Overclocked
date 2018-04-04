@@ -807,7 +807,7 @@ $('#button-payment-method').live('click', function() {
 			if (json['redirect']) {
 				location = json['redirect'];
 			} else if (json['error']) {
-                if (json['error']['warning']) {
+				if (json['error']['warning']) {
 					$('#payment-method .checkout-content').prepend('<div class="warning" style="display:none;">' + json['error']['warning'] + '<img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>');
 
 					$('.warning').fadeIn(500);

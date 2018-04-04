@@ -5,7 +5,7 @@ class ControllerPaymentFreeCheckout extends Controller {
 		$this->language->load('payment/free_checkout');
 
 		$this->data['text_wait'] = $this->language->get('text_wait');
-		$this->data['text_loading'] = $this->language->get('text_loading');
+		$this->data['text_instruction'] = $this->language->get('text_instruction');
 
 		$this->data['button_confirm'] = $this->language->get('button_confirm');
 
@@ -30,9 +30,13 @@ class ControllerPaymentFreeCheckout extends Controller {
 		}
 
 		if ($this->session->data['payment_method']['code'] == 'free_checkout') {
+			$this->language->load('payment/free_checkout');
+
 			$this->load->model('checkout/order');
 
-			$this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('free_checkout_order_status_id'));
+			$comment = $this->language->get('text_instruction') . "\n\n";
+
+			$this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('free_checkout_order_status_id'), $comment, true);
 		}
 	}
 }

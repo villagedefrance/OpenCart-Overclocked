@@ -1,7 +1,7 @@
 <?php
 class ControllerPaymentCod extends Controller {
 
-	public function index() {
+	protected function index() {
 		$this->language->load('payment/cod');
 
 		$this->data['text_wait'] = $this->language->get('text_wait');
@@ -24,6 +24,11 @@ class ControllerPaymentCod extends Controller {
 	}
 
 	public function confirm() {
+		// Helps prevent cod direct access exploit.
+		if (strtolower($this->session->data['payment_method']['code']) != 'cod') {
+			return;
+		}
+
 		if ($this->session->data['payment_method']['code'] == 'cod') {
 			$this->language->load('payment/cod');
 

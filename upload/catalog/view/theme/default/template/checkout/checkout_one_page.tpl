@@ -76,7 +76,7 @@
     <div class="warning"><?php echo $error_warning; ?><img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>
   <?php } ?>
   <?php } ?>
-  <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" name="checkout_one_page" id="form">
+  <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
     <div class="checkout-one-page">
       <div class="checkout-page-left">
         <table class="address-options">
@@ -728,9 +728,11 @@
         </div>
       </div>
     </form>
+    <div style="clear:both;">
     <?php if (isset($this->session->data['order_id'])) { ?>
-      <div id="checkout-submit"></div>
+      <div id="checkout-submit" class="payment"></div>
     <?php } ?>
+    </div>
     <?php echo $content_bottom; ?>
   </div>
 <?php echo $content_footer; ?>
@@ -805,6 +807,7 @@ $('select[name=\'country_id\']').bind('change', function() {
 		url: 'index.php?route=checkout/checkout_one_page/country&country_id=' + this.value,
 		dataType: 'json',
 		beforeSend: function() {
+			$('.attention, .error').remove();
 			$('select[name=\'country_id\']').after('<span class="wait">&nbsp;<img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /></span>');
 		},
 		complete: function() {
@@ -870,6 +873,7 @@ $('select[name=\'shipping_country_id\']').bind('change', function() {
 		url: 'index.php?route=checkout/checkout_one_page/country&country_id=' + this.value,
 		dataType: 'json',
 		beforeSend: function() {
+			$('.attention, .error').remove();
 			$('select[name=\'shipping_country_id\']').after('<span class="wait">&nbsp;<img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /></span>');
 		},
 		complete: function() {
@@ -927,6 +931,7 @@ $('select[name=\'shipping_country_id\']').trigger('change');
 
 <script type="text/javascript"><!--
 function refresh() {
+	$('.attention, .error, .wait').remove();
 	$('#form').append('<input type="hidden" id="refresh" name="refresh" value="1" />');
 	$('#form').submit();
 }
@@ -954,6 +959,8 @@ $('input[name=\'shipping_method\']:checked').live('change', function() {
 //--></script> 
 
 <script type="text/javascript"><!--
+$('#checkout-one-cart').load('index.php?route=checkout/checkout_one_cart');
+
 $('input[name=\'payment_method\']:checked').live('change', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/checkout_one_page/paymentMethod',
@@ -981,6 +988,15 @@ $.ajax({
 	type: 'post',
 	data: '',
 	dataType: 'json',
+	beforeSend: function() {
+		$('.attention, .error').remove();
+		$('#checkout-submit').after('<span class="wait">&nbsp;<img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /></span>');
+		$('#checkout-submit').attr('disabled', true);
+	},
+	complete: function() {
+		$('#checkout-submit').attr('disabled', false);
+		$('.wait').remove();
+	},
 	success: function(json) {
 		$('#checkout-submit').html(json['payment']);
 	},

@@ -1648,7 +1648,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 		if (isset($this->session->data['payment_method']['code']) && isset($this->session->data['order_id'])) {
 			$json['payment'] = $this->getChild('payment/' . $this->session->data['payment_method']['code']);
 		} else {
-			$json['payment'] = '<div class="payment"><input type="submit" value="---" id="button-order" class="button" /></div>';
+			$json['payment'] = '';
 		}
 
 		$this->response->addHeader('Content-Type: application/json');
