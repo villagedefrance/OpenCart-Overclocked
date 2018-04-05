@@ -37,6 +37,8 @@ $_['text_user_agent']            = 'User Agent:';
 $_['text_accept_language']       = 'Accept Language:';
 $_['text_date_added']            = 'Date Added:';
 $_['text_date_modified']         = 'Date Modified:';
+$_['text_abandoned']             = '<b>ATTENTION: Abandoned Order!</b> To recover this order, <b>click</b> "Recover Order" and <b>Re-enter some key information</b> as requested.';
+$_['text_missed']                = '<b>ATTENTION: Missed Order!</b> This order is incomplete, you should <b>delete it</b> or <b>email the customer</b> to recover it.';
 $_['text_firstname']             = 'First Name:';
 $_['text_lastname']              = 'Last Name:';
 $_['text_company']               = 'Company:';
@@ -160,6 +162,7 @@ $_['entry_voucher']              = 'Voucher:';
 $_['entry_reward']               = 'Reward:';
 
 // Button
+$_['button_recover']             = 'Recover Order';
 $_['button_refresh']             = 'Refresh';
 $_['button_pick_list']           = 'Pick List';
 $_['button_shipping_label']      = 'Shipping Label';
@@ -171,6 +174,8 @@ $_['tab_pick_list']              = 'Pick List';
 
 // Help
 $_['help_autocomplete']          = '(Autocomplete)';
+$_['help_confirm_select']        = 'Must be re-selected to recover!';
+$_['help_do_not_edit']           = 'Do Not Change!';
 
 // Error
 $_['error_warning']              = 'Warning: Please check the form carefully for errors!';

@@ -79,7 +79,7 @@
             <td class="right"><?php echo $order['total']; ?></td>
             <td class="center"><?php echo $order['date_added']; ?></td>
             <td class="center"><?php echo $order['ip']; ?></td>
-            <td class="center"><?php echo ($order['abandoned'] == '1') ? '<span class="passed"><i class="fa fa-check"></i></span>' : '<span class="disabled"><i class="fa fa-hourglass-half"></i></span>'; ?></td>
+            <td class="center"><?php echo ($order['abandoned'] == '1') ? '<span class="passed"><a title="' . $text_reminder . '" style="color:#FFF;"><i class="fa fa-check"></i></a></span>' : '<span class="disabled"><i class="fa fa-hourglass-half"></i></span>'; ?></td>
             <td class="right"><?php foreach ($order['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>

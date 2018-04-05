@@ -131,7 +131,7 @@ class ModelReportAbandonedCarts extends Model {
 	}
 
 	public function deleteOrder($order_id) {
-		$order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order` WHERE order_status_id > '0' AND order_id = '" . (int)$order_id . "'");
+		$order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order` WHERE order_status_id = '0' AND order_id = '" . (int)$order_id . "'");
 
 		if ($order_query->num_rows) {
 			$product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");

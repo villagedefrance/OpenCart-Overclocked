@@ -110,7 +110,7 @@
               <?php foreach ($addresses as $address) { ?>
                 <option value="<?php echo $address['address_id']; ?>"><?php echo $address['firstname'] . ' ' . $address['lastname'] . ', ' . $address['address_1'] . ', ' . $address['city'] . ', ' . $address['country']; ?></option>
               <?php } ?>
-            </select></td>
+            </select> &nbsp; <span style="color:#F2B155; font-weight:bold;"><?php echo ($abandoned) ? $help_confirm_select : ''; ?></span></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
@@ -227,7 +227,7 @@
               <?php foreach ($addresses as $address) { ?>
                 <option value="<?php echo $address['address_id']; ?>"><?php echo $address['firstname'] . ' ' . $address['lastname'] . ', ' . $address['address_1'] . ', ' . $address['city'] . ', ' . $address['country']; ?></option>
               <?php } ?>
-            </select></td>
+            </select> &nbsp; <span style="color:#F2B155; font-weight:bold;"><?php echo ($abandoned) ? $help_confirm_select : ''; ?></span></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
@@ -390,7 +390,7 @@
           <tr>
             <td class="left"><?php echo $entry_product; ?><span class="help"><?php echo $help_autocomplete; ?></span></td>
             <td class="left"><input type="text" name="product" value="" />
-            <input type="hidden" name="product_id" value="" /></td>
+            <input type="hidden" name="product_id" value="" /> &nbsp; <span style="color:#E53030; font-weight:bold;"><?php echo ($abandoned) ? $help_do_not_edit : ''; ?></span></td>
           </tr>
           <tr id="option"></tr>
           <tr>
@@ -401,7 +401,9 @@
         <tfoot>
           <tr>
             <td class="left">&nbsp;</td>
-            <td class="left"><a id="button-product" class="button"><?php echo $button_add_product; ?></a></td>
+            <td class="left"><?php if (!$abandoned) { ?>
+              <a id="button-product" class="button"><?php echo $button_add_product; ?></a>
+            <?php } ?></td>
           </tr>
         </tfoot>
         </table>
@@ -585,7 +587,7 @@
               </select>
               <input type="hidden" name="shipping_method" value="<?php echo $shipping_method; ?>" />
               <input type="hidden" name="shipping_code" value="<?php echo $shipping_code; ?>" />
-            <?php } ?></td>
+            <?php } ?> &nbsp; <span style="color:#E53030; font-weight:bold;"><?php echo ($abandoned) ? $help_do_not_edit : ''; ?></span></td>
           </tr>
           <tr>
             <td class="left"><?php echo $entry_payment; ?></td>
@@ -608,7 +610,7 @@
               </select>
               <input type="hidden" name="payment_method" value="<?php echo $payment_method; ?>" />
               <input type="hidden" name="payment_code" value="<?php echo $payment_code; ?>" />
-            <?php } ?></td>
+            <?php } ?> &nbsp; <span style="color:#E53030; font-weight:bold;"><?php echo ($abandoned) ? $help_do_not_edit : ''; ?></span></td>
           </tr>
           <tr>
             <td class="left"><?php echo $entry_coupon; ?></td>
@@ -656,7 +658,9 @@
         <tfoot>
           <tr>
             <td class="left">&nbsp;</td>
-            <td class="left"><a id="button-update" class="button"><?php echo $button_update_total; ?></a></td>
+            <td class="left"><?php if (!$abandoned) { ?>
+              <a id="button-update" class="button"><?php echo $button_update_total; ?></a>
+            <?php } ?></td>
           </tr>
         </tfoot>
         </table>

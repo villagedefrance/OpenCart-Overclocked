@@ -9,11 +9,20 @@
     <div class="heading">
       <h1><img src="view/image/order.png" alt="" /> <?php echo $order_title; ?></h1>
       <div class="buttons">
+      <?php if ($abandoned) { ?>
+        <a href="<?php echo $recover; ?>" class="button-save animated fadeIn"><i class="fa fa-recycle"></i> &nbsp; <?php echo $button_recover; ?></a>
+      <?php } ?>
         <a onclick="location = '<?php echo $refresh; ?>';" class="button"><i class="fa fa-refresh"></i> &nbsp; <?php echo $button_refresh; ?></a>
         <a href="<?php echo $close; ?>" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content">
+  <?php if (!$abandoned && $order_status_id == 0) { ?>
+    <div class="warning"><?php echo $text_missed; ?></div>
+  <?php } ?>
+  <?php if ($abandoned) { ?>
+    <div class="attention"><?php echo $text_abandoned; ?></div>
+  <?php } ?>
     <table class="list">
       <tbody>
         <tr class="filter">

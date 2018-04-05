@@ -7,6 +7,7 @@ $_['text_list']             = 'Abandoned Cart Overview';
 $_['text_search']           = 'If no transactions appear in the customer search, the records counted are abandoned carts.';
 $_['text_success']          = 'Success: a follow-up email has been sent to the selected customers!';
 $_['text_deleted']          = 'Selected abandoned cart(s) have been deleted.';
+$_['text_reminder']         = 'Reminder sent!';
 
 // Column
 $_['column_order_id']       = 'Order ID';
