@@ -42,6 +42,8 @@ COMING SOON in v1.11.0!
 - Added FlexSlider for "Slideshow" and "Banner".
 - Added Banner clicks counter with report.
 - Added Palette module (Search by color).
+- Added new Abandoned Carts feature.
+- Added Customer Wishlist products report.
 - New Responsive Administration Login page.
 - Paypal Express update. (Thanks Gob33!)
 - Paypal Payflow Iframe update. (Thanks Gob33!)
