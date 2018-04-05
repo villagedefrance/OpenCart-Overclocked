@@ -400,7 +400,7 @@
           <tr>
             <td><?php echo $entry_category; ?></td>
             <td><a href="<?php echo $configure_category; ?>" class="button-form"><i class="fa fa-gear"></i></a>
-            <div class="scrollbox" style="width:500px; height:293px; margin:5px 0px;">
+            <div class="scrollbox" style="width:500px; height:293px; margin:5px 0;">
               <?php $class='odd'; ?>
               <?php foreach ($categories as $category) { ?>
                 <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
@@ -442,7 +442,7 @@
           <tr>
             <td><?php echo $entry_filter; ?></td>
             <td><a href="<?php echo $configure_filter; ?>" class="button-form"><i class="fa fa-gear"></i></a>
-            <div class="scrollbox" style="width:350px; height:155px; margin:5px 0px;">
+            <div class="scrollbox" style="width:350px; height:155px; margin:5px 0;">
               <?php $class='odd'; ?>
               <?php foreach ($filters as $filter) { ?>
                 <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
@@ -484,7 +484,7 @@
           <tr>
             <td><?php echo $entry_download; ?></td>
             <td><a href="<?php echo $configure_download; ?>" class="button-form"><i class="fa fa-gear"></i></a>
-            <div class="scrollbox" style="width:350px; height:155px; margin:5px 0px;">
+            <div class="scrollbox" style="width:350px; height:155px; margin:5px 0;">
               <?php $class='odd'; ?>
               <?php foreach ($downloads as $download) { ?>
                 <?php $class=($class == 'even' ? 'odd' : 'even'); ?>

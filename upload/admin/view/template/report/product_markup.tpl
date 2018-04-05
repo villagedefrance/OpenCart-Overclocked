@@ -57,13 +57,13 @@
                 <td class="center"><?php echo $product['product_id']; ?></td>
                 <td class="left"><a href="<?php echo $product['product_href']; ?>" title=""><?php echo $product['name']; ?></a></td>
                 <td class="right"><?php if ($product['has_special']) { ?>
-                  <span style="color:#B00;"><?php echo $product['price_formatted']; ?></span>
+                  <span style="color:#E53030;"><?php echo $product['price_formatted']; ?></span>
                 <?php } else { ?>
                   <?php echo $product['price_formatted']; ?>
                 <?php } ?></td>
                 <td class="right"><?php echo $product['cost_formatted']; ?></td>
                 <td class="right"><?php if ($product['graph_type'] > 0) { ?>
-                  <span style="color:#B00;">-<?php echo $product['ratio']; ?>%</span>
+                  <span style="color:#E53030;">-<?php echo $product['ratio']; ?>%</span>
                 <?php } else { ?>
                   <?php echo $product['ratio']; ?>%
                 <?php } ?></td>
