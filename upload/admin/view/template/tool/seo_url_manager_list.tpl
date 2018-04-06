@@ -33,10 +33,10 @@
     </div>
     <div class="content-body">
     <?php if ($error_url_status) { ?>
-      <div class="attention" style="margin:0px 0px 10px 0px;"><?php echo $error_url_status; ?></div>
+      <div class="attention" style="margin:0 0 10px 0;"><?php echo $error_url_status; ?></div>
     <?php } ?>
     <?php if ($success_url_status) { ?>
-      <div class="tooltip" style="margin:0px 0px 10px 0px;"><?php echo $success_url_status; ?></div>
+      <div class="tooltip" style="margin:0 0 10px 0;"><?php echo $success_url_status; ?></div>
     <?php } ?>
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
@@ -45,7 +45,7 @@
         <table class="list">
         <thead>
           <tr>
-            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" id="check-all" class="checkbox" />
             <label for="check-all"><span></span></label></td>
             <td class="left"><?php if ($sort == 'url_alias_id') { ?>
               <a href="<?php echo $sort_url_alias_id; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_url_alias_id; ?></a>

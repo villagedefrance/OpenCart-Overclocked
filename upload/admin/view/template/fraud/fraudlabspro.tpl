@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="content">
-      <div class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $text_signup; ?></div>
+      <div class="tooltip" style="margin:5px 0 10px 0;"><?php echo $text_signup; ?></div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" name="fraudlabspro">
         <table class="form">
           <tr>
