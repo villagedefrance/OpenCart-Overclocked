@@ -16,7 +16,6 @@
     <h2><?php echo $lang_link_items; ?></h2>
     <tbody>
     <p><?php echo $lang_desc1; ?></p>
-
     <p><?php echo $lang_desc2; ?></p>
     <a class="button" onclick="loadUnlinked(this)"><span><?php echo $lang_load_btn; ?></span></a>
     </tbody>
@@ -37,13 +36,13 @@
     <tbody id="tableBody">
     <tr>
       <td class="right">
-        <input id="newProduct" type="text"> <input type="hidden" id="newProductId">
+        <input id="newProduct" type="text" /> <input type="hidden" id="newProductId" />
       </td>
       <td>
-        <input id="newAmazonSku" type="text">
+        <input id="newAmazonSku" type="text" />
       </td>
       <td class="center">
-        <a class="button" id="addNewButton" onclick="addNewLinkAutocomplete()"><span><?php echo $lang_add; ?></span></a>
+        <a class="button" id="addNewButton" onclick="addNewLinkAutocomplete();"><span><?php echo $lang_add; ?></span></a>
       </td>
     </tr>
     </tbody>
@@ -70,8 +69,7 @@
 </div>
 
 <script type="text/javascript"><!--
-
-$(document).ready(function () {
+$(document).ready(function() {
   loadLinks();
 });
 
@@ -81,7 +79,7 @@ function loadLinks() {
     type: 'get',
     dataType: 'json',
     data: 'product_id=' + encodeURIComponent($('#newProductId').val()) + '&amazon_sku=' + encodeURIComponent($('#newAmazonSku').val()),
-    success: function (json) {
+    success: function(json) {
       var rows = '';
       for (i in json) {
         rows += '<tr>';
@@ -95,7 +93,7 @@ function loadLinks() {
       }
       $('#linkedItems').html(rows);
     },
-    error: function (xhr, ajaxOptions, thrownError) {
+    error: function(xhr, ajaxOptions, thrownError) {
       if (xhr.status != 0) {
         alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
       }
@@ -108,15 +106,15 @@ function loadUnlinked(button) {
     url: '<?php echo html_entity_decode($getUnlinkedItemsAjax); ?>',
     type: 'get',
     dataType: 'json',
-    beforeSend: function () {
+    beforeSend: function() {
       $(button).after('<span class="wait"><img src="view/image/loading.gif" alt="" /></span>');
       $(button).hide();
     },
-    complete: function () {
+    complete: function() {
       $(".wait").remove();
       $(button).show();
     },
-    success: function (json) {
+    success: function(json) {
       var thread1 = '';
       thread1 += '<tr>';
       thread1 += '<td class="center" colspan="6"><?php echo $lang_unlinked_items; ?></td>';
@@ -143,7 +141,7 @@ function loadUnlinked(button) {
 
         rows += '<td class="left">';
         rows += '<div class="amazonSkuDiv_' + json[i]['product_id'] + '_' + json[i]['var'] + '">';
-        rows += '<input class="amazonSku_' + json[i]['product_id'] + '_' + json[i]['var'] + '"  type="text">';
+        rows += '<input class="amazonSku_' + json[i]['product_id'] + '_' + json[i]['var'] + '"  type="text" />';
         rows += '<a onclick="addNewSkuField(' + json[i]['product_id'] + ', \'' + json[i]['var'] + '\')"><img src="view/image/add.png" alt="<?php echo $lang_add_sku_tooltip; ?>" title="<?php echo $lang_add_sku_tooltip; ?>"></a>';
         rows += '</div>';
         rows += '</td>';
@@ -153,9 +151,8 @@ function loadUnlinked(button) {
       }
 
       $('#tableBody').html(rows);
-
     },
-    error: function (xhr, ajaxOptions, thrownError) {
+    error: function(xhr, ajaxOptions, thrownError) {
       if (xhr.status != 0) {
         alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
       }
@@ -170,19 +167,19 @@ function addLink(button, product_id, amazon_sku, variation) {
     dataType: 'json',
     async: 'false',
     data: 'product_id=' + encodeURIComponent(product_id) + '&amazon_sku=' + encodeURIComponent(amazon_sku) + '&var=' + encodeURIComponent(variation),
-    beforeSend: function () {
+    beforeSend: function() {
       $(button).after('<span class="wait"><img src="view/image/loading.gif" alt="" /></span>');
       $(button).hide();
     },
-    complete: function () {
+    complete: function() {
       $('.wait').remove();
       $(button).show();
     },
-    success: function (json) {
+    success: function(json) {
       //alert(json);
       loadLinks();
     },
-    error: function (xhr, ajaxOptions, thrownError) {
+    error: function(xhr, ajaxOptions, thrownError) {
       if (xhr.status != 0) {
         alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
       }
@@ -196,15 +193,15 @@ function removeLink(button, amazon_sku) {
     type: 'get',
     dataType: 'json',
     data: 'amazon_sku=' + encodeURIComponent(amazon_sku),
-    beforeSend: function () {
+    beforeSend: function() {
       $(button).after('<span class="wait"><img src="view/image/loading.gif" alt="" /></span>');
       $(button).hide();
     },
-    success: function (json) {
+    success: function(json) {
       //alert(json);
       loadLinks();
     },
-    error: function (xhr, ajaxOptions, thrownError) {
+    error: function(xhr, ajaxOptions, thrownError) {
       if (xhr.status != 0) {
         alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
       }
@@ -215,8 +212,8 @@ function removeLink(button, amazon_sku) {
 function addNewSkuField(product_id, variation) {
   var newField = '';
   newField += '<div class="amazonSkuDiv_' + product_id + '_' + variation + '">';
-  newField += '<input class="amazonSku_' + product_id + '_' + variation + '"  type="text">';
-  newField += '<a class="removeSkuIcon_' + product_id + '_' + variation + '" onclick="removeSkuField(this, \'' + product_id + '\', \'' + variation + '\')"><img src="view/image/delete.png" alt=""></a>';
+  newField += '<input class="amazonSku_' + product_id + '_' + variation + '"  type="text" />';
+  newField += '<a class="removeSkuIcon_' + product_id + '_' + variation + '" onclick="removeSkuField(this, \'' + product_id + '\', \'' + variation + '\')"><img src="view/image/delete.png" alt="" /></a>';
   newField += '</div>';
 
   $(".amazonSkuDiv_" + product_id + "_" + variation.replace(":", "\\:")).last().after(newField);
@@ -231,17 +228,19 @@ function addNewLink(button, product_id, variation) {
   var errors = 0;
 
   console.log(".amazonSku_" + product_id + "_" + variation.replace(':', '\\:'));
-  $(".amazonSku_" + product_id + "_" + variation.replace(':', '\\:')).each(function (index) {
+
+  $(".amazonSku_" + product_id + "_" + variation.replace(':', '\\:')).each(function(index) {
     if ($(this).val() == '') {
       errors++;
     }
   });
+ 
   if (errors > 0) {
     alert('<?php echo $lang_sku_empty_warning; ?>');
     return;
   }
 
-  $(".amazonSku_" + product_id + "_" + variation.replace(':', '\\:')).each(function (index) {
+  $(".amazonSku_" + product_id + "_" + variation.replace(':', '\\:')).each(function(index) {
     addLink(button, product_id, $(this).val(), variation);
   });
 
@@ -267,6 +266,7 @@ function addNewLinkAutocomplete() {
   var product_id = $('#newProductId').val();
   var amazon_sku = $('#newAmazonSku').val();
   var variation = '';
+
   if ($('#openstockOptionSelector').length != 0) {
     variation = $('#openstockOptionSelector').val();
   }
@@ -282,27 +282,28 @@ function addNewLinkAutocomplete() {
 
 $('#newProduct').autocomplete({
   delay: 0,
-  source: function (request, response) {
+  source: function(request, response) {
     $.ajax({
       url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' + encodeURIComponent(request.term),
       dataType: 'json',
-      success: function (json) {
-        response($.map(json, function (item) {
+      success: function(json) {
+        response($.map(json, function(item) {
           return {
             id: item.product_id,
             label: item.name
           }
         }));
       },
-      error: function (xhr, ajaxOptions, thrownError) {
+      error: function(xhr, ajaxOptions, thrownError) {
         if (xhr.status != 0) {
           alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
       }
     });
   },
-  select: function (event, ui) {
+  select: function(event, ui) {
     openstockCheck(ui.item.id);
+
     $('#newProductId').val(ui.item.id);
     $('#newProductId').attr('label', ui.item.label);
   }
@@ -314,20 +315,20 @@ function openstockCheck(product_id) {
     dataType: 'json',
     type: 'get',
     data: 'product_id=' + product_id,
-    success: function (data) {
+    success: function(data) {
       if (!data) {
         $("#openstockOptionSelector").remove();
         return;
       }
 
-      var optionHtml = '<select id="openstockOptionSelector"><option value=""/>';
+      var optionHtml = '<select id="openstockOptionSelector"><option value="" />';
       for (var i in data) {
         optionHtml += '<option value="' + data[i]['var'] + '">' + data[i]['combi'] + '</option>';
       }
       optionHtml += '</select>';
       $('#newProduct').after(optionHtml);
     },
-    error: function (xhr, ajaxOptions, thrownError) {
+    error: function(xhr, ajaxOptions, thrownError) {
       if (xhr.status != 0) {
         alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
       }

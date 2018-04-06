@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="content">
-      <div class="tooltip" style="margin:10px 0px;"><?php echo $text_installed; ?></div>
+      <div class="tooltip" style="margin:10px 0;"><?php echo $text_installed; ?></div>
     </div>
   </div>
 </div>
