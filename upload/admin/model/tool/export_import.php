@@ -621,7 +621,7 @@ class ModelToolExportImport extends Model {
 			if ($password == '') {
 				// Generate a default password 'overclocked'
 				if ($salt == '') {
-					$salt = substr(md5(uniqid(rand(), true)), 0, 9); 
+					$salt = substr(md5(uniqid(rand(), true)), 0, 9);
 				}
 				$password = sha1($salt . sha1($salt . sha1('overclocked')));
 			} else {
