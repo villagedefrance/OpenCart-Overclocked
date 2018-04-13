@@ -99,7 +99,7 @@ class ModelLocalisationCountry extends Model {
 
 			foreach ($query->rows as $result) {
 				$country_data[$result['language_id']] = array(
-					'name'	=> $result['name']
+					'name' => $result['name']
 				);
 			}
 

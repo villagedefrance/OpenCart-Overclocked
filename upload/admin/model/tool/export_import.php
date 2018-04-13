@@ -392,6 +392,21 @@ class ModelToolExportImport extends Model {
 		return $customer_group_ids;
 	}
 
+	// Find all video product ids
+	protected function getExistingVideoProductIds() {
+		$product_ids = array(0);
+
+		$result = $this->db->query("SELECT * FROM `" . DB_PREFIX . "product_youtube`;");
+
+		foreach ($result->rows as $row) {
+			if (!in_array((int)$row['product_id'], $product_ids)) {
+				$product_ids[] = (int)$row['product_id'];
+			}
+		}
+
+		return $product_ids;
+	}
+
 	// Find all available store ids
 	protected function getAvailableStoreIds() {
 		$store_ids = array(0);
@@ -1515,6 +1530,21 @@ class ModelToolExportImport extends Model {
 			$this->db->query($categories_sql);
 		}
 
+		if ($product['video_code']) {
+			$product_id = $product['product_id'];
+			$video_code = $product['video_code'];
+
+			$product_ids = $this->getExistingVideoProductIds();
+
+			if (!in_array((int)$product_id, $product_ids)) {
+				$video_code_sql = "INSERT INTO `" . DB_PREFIX . "product_youtube` (`product_id`,`video_code`) VALUES ( $product_id, '$video_code');";
+			} else {
+				$video_code_sql = "UPDATE `" . DB_PREFIX . "product_youtube` SET video_code = '" . $this->db->escape($video_code) . "' WHERE product_id = '" . (int)$product_id . "'";
+			}
+
+			$this->db->query($video_code_sql);
+		}
+
 		if ($keyword) {
 			if (isset($url_alias_ids[$product_id])) {
 				$url_alias_id = $url_alias_ids[$product_id];
@@ -1748,6 +1778,7 @@ class ModelToolExportImport extends Model {
 			$manufacturer_name = $this->getCell($data, $i, $j++);
 			$image_name = $this->getCell($data, $i, $j++);
 			$label_name = $this->getCell($data, $i, $j++);
+			$video_code = $this->getCell($data, $i, $j++);
 			$shipping = $this->getCell($data, $i, $j++, 'Yes');
 			$price = $this->getCell($data, $i, $j++, '0.00');
 			$cost = $this->getCell($data, $i, $j++, '0.00');
@@ -1829,6 +1860,7 @@ class ModelToolExportImport extends Model {
 			$product['manufacturer_name'] = $manufacturer_name;
 			$product['image'] = $image_name;
 			$product['label'] = $label_name;
+			$product['video_code'] = $video_code;
 			$product['shipping'] = $shipping;
 			$product['price'] = $price;
 			$product['cost'] = $cost;
@@ -3010,7 +3042,7 @@ class ModelToolExportImport extends Model {
 
 		$filter_group_ids = array();
 
-		$query = $this->db->query("SELECT filter_group_id, name `FROM " . DB_PREFIX . "filter_group_description` WHERE language_id = '" . (int)$language_id . "'");
+		$query = $this->db->query("SELECT filter_group_id, name FROM `" . DB_PREFIX . "filter_group_description` WHERE language_id = '" . (int)$language_id . "'");
 
 		foreach ($query->rows as $row) {
 			$filter_group_id = $row['filter_group_id'];
@@ -4117,8 +4149,8 @@ class ModelToolExportImport extends Model {
 			$expected_heading[] = "mpn";
 		}
 
-		$expected_heading = array_merge($expected_heading, array("location", "quantity", "model", "manufacturer_name", "image_name", "label_name", "shipping", "price", "cost", "quote", "age_minimum", "points", "date_added"));
-		$expected_heading = array_merge($expected_heading, array("date_modified", "date_available", "palette_id", "weight", "weight_unit", "length", "width", "height", "length_unit", "status", "tax_class_id", "seo_keyword"));
+		$expected_heading = array_merge($expected_heading, array("location", "quantity", "model", "manufacturer_name", "image_name", "label_name", "video_code", "shipping", "price", "cost", "quote", "age_minimum", "points"));
+		$expected_heading = array_merge($expected_heading, array("date_added", "date_modified", "date_available", "palette_id", "weight", "weight_unit", "length", "width", "height", "length_unit", "status", "tax_class_id", "seo_keyword"));
 		$expected_heading = array_merge($expected_heading, array("description", "meta_description", "meta_keywords", "stock_status_id", "store_ids", "layout", "related_ids", "tags", "sort_order", "subtract", "minimum"));
 
 		$expected_multilingual = array("name", "description", "meta_description", "meta_keywords", "tags");
@@ -7153,6 +7185,16 @@ class ModelToolExportImport extends Model {
 		return $layouts;
 	}
 
+	protected function getVideoCodeForProducts($product_id) {
+		$query = $this->db->query("SELECT video_code AS video_code FROM `" . DB_PREFIX . "product_youtube` WHERE product_id = '" . (int)$product_id . "'");
+
+		if (isset($query->row['video_code'])) {
+			return $query->row['video_code'];
+		} else {
+			return 0;
+		}
+	}
+
 	protected function getProductDescriptions($languages, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		// Product description table for each language
 		$product_descriptions = array();
@@ -7319,6 +7361,7 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('manufacturer_name'), 16)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('image_name')+4, 36)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('label_name')+4, 36)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('video_code')+4, 19)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('shipping'), 5)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('price'), 10)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('cost'), 10)+1);
@@ -7403,6 +7446,8 @@ class ModelToolExportImport extends Model {
 		$data[$j++] = 'image_name';
 		$styles[$j] = &$text_format;
 		$data[$j++] = 'label_name';
+		$styles[$j] = &$text_format;
+		$data[$j++] = 'video_code';
 		$data[$j++] = 'shipping';
 		$styles[$j] = &$price_format;
 		$data[$j++] = 'price';
@@ -7483,6 +7528,8 @@ class ModelToolExportImport extends Model {
 
 			$product_id = $row['product_id'];
 
+			$video_code = $this->getVideoCodeForProducts($product_id);
+
 			$data[$j++] = $product_id;
 			foreach ($languages as $language) {
 				$data[$j++] = html_entity_decode($row['name'][$language['code']], ENT_QUOTES, 'UTF-8');
@@ -7508,6 +7555,7 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['manufacturer_name'];
 			$data[$j++] = $row['image_name'];
 			$data[$j++] = $row['label_name'];
+			$data[$j++] = $video_code;
 			$data[$j++] = ($row['shipping'] == 0) ? 'no' : 'yes';
 			$data[$j++] = $row['price'];
 			$data[$j++] = $row['cost'];
