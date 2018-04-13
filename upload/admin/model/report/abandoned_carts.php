@@ -70,17 +70,17 @@ class ModelReportAbandonedCarts extends Model {
 	public function getOrders($data = array()) {
 		$days = ($this->config->get('config_abandoned_cart')) ? $this->config->get('config_abandoned_cart') : 7;
 
-		$sql = "SELECT o.*, CONCAT(o.firstname, ' ', o.lastname) AS customer FROM `" . DB_PREFIX . "order` o WHERE o.date_added >= DATE_SUB(NOW(), INTERVAL " . $days . " DAY) AND o.order_status_id = '0'";
+		$sql = "SELECT o.*, CONCAT(o.firstname, ' ', o.lastname) AS `name` FROM `" . DB_PREFIX . "order` o WHERE o.date_added >= DATE_SUB(NOW(), INTERVAL " . $days . " DAY) AND o.order_status_id = '0'";
 
-		if (isset($data['filter_customer'])) {
-			$sql .= " AND CONCAT(o.firstname, ' ', o.lastname) LIKE '%" . $this->db->escape($data['filter_customer']) . "%'";
+		if (isset($data['filter_name'])) {
+			$sql .= " AND CONCAT(o.firstname, ' ', o.lastname) LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
 		}
 
 		$sql .= " GROUP BY o.order_id";
 
 		$sort_data = array(
 			'o.order_id',
-			'customer',
+			'name',
 			'o.total',
 			'o.date_added',
 			'o.ip',
@@ -121,8 +121,8 @@ class ModelReportAbandonedCarts extends Model {
 
 		$sql = "SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` o WHERE o.date_added >= DATE_SUB(NOW(), INTERVAL " . $days . " DAY) AND o.order_status_id = '0'";
 
-		if (isset($data['filter_customer'])) {
-			$sql .= " AND CONCAT(o.firstname, ' ', o.lastname) LIKE '%" . $this->db->escape($data['filter_customer']) . "%'";
+		if (isset($data['filter_name'])) {
+			$sql .= " AND CONCAT(o.firstname, ' ', o.lastname) LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
 		}
 
 		$query = $this->db->query($sql);

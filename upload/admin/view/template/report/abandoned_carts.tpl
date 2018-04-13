@@ -35,10 +35,10 @@
             <?php } else { ?>
               <a href="<?php echo $sort_order; ?>"><?php echo $column_order_id; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
-            <td class="left"><?php if ($sort == 'customer') { ?>
-              <a href="<?php echo $sort_customer; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_customer; ?></a>
+            <td class="left"><?php if ($sort == 'name') { ?>
+              <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
             <?php } else { ?>
-              <a href="<?php echo $sort_customer; ?>"><?php echo $column_customer; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
+              <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="left"><?php if ($sort == 'o.total') { ?>
               <a href="<?php echo $sort_total; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_total; ?></a>
@@ -64,6 +64,16 @@
           </tr>
         </thead>
         <tbody>
+          <tr class="filter">
+            <td></td>
+            <td></td>
+            <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" /></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="text-align:right;"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+          </tr>
       <?php if ($orders) { ?>
         <?php foreach ($orders as $order) { ?>
           <tr>
@@ -75,7 +85,7 @@
               <label for="<?php echo $order['order_id']; ?>"><span></span></label>
             <?php } ?></td>
             <td class="center"><?php echo $order['order_id']; ?></td>
-            <td class="left"><?php echo $order['customer']; ?></td>
+            <td class="left"><?php echo $order['name']; ?></td>
             <td class="right"><?php echo $order['total']; ?></td>
             <td class="center"><?php echo $order['date_added']; ?></td>
             <td class="center"><?php echo $order['ip']; ?></td>
@@ -104,6 +114,37 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+function filter() {
+	url = 'index.php?route=report/abandoned_carts&token=<?php echo $token; ?>';
+
+	var filter_name = $('input[name=\'filter_name\']').attr('value');
+
+	if (filter_name) {
+		url += '&filter_name=' + encodeURIComponent(filter_name);
+	}
+
+	location = url;
+}
+//--></script>
+
+<script type="text/javascript"><!--
+window.addEventListener("keydown", function(event) {
+	if (event.defaultPrevented) {
+		return;
+	}
+
+	switch (event.key) {
+	case "Enter": filter();
+		break;
+	default:
+		return;
+	}
+
+	event.preventDefault();
+}, true);
+//--></script>
 
 <script type="text/javascript"><!--
 $('#button-recover').on('click', function() {
