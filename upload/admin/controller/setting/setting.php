@@ -1452,7 +1452,7 @@ class ControllerSettingSetting extends Controller {
 		} elseif ($this->config->get('config_admin_stylesheet')) {
 			$this->data['config_admin_stylesheet'] = $this->config->get('config_admin_stylesheet');
 		} else {
-			$this->data['config_admin_stylesheet'] = 'classic';
+			$this->data['config_admin_stylesheet'] = 'overclock';
 		}
 
 		if (isset($this->request->post['config_admin_width_limit'])) {

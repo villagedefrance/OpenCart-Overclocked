@@ -3419,7 +3419,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (149, 0, 'config', 'config_admin_limit', '20', 0),
 (150, 0, 'config', 'config_admin_menu_icons', '1', 0),
 (151, 0, 'config', 'config_admin_width_limit', '0', 0),
-(152, 0, 'config', 'config_admin_stylesheet', 'classic', 0),
+(152, 0, 'config', 'config_admin_stylesheet', 'overclock', 0),
 (153, 0, 'config', 'config_voucher_max', '1000', 0),
 (154, 0, 'config', 'config_voucher_min', '1', 0),
 (155, 0, 'featured', 'featured_addproduct', '0', 0),

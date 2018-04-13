@@ -614,18 +614,18 @@ class ModelToolExportImport extends Model {
 			$gender = $this->getCell($data, $i, $j++);
 			$gender = ($gender) ? '1' : '0';
 			$date_of_birth = trim($this->getCell($data, $i, $j++));
-			$date_of_birth = (is_string($date_of_birth) && utf8_strlen($date_of_birth) > 0) ? $date_of_birth : "0000-00-00";
+			$date_of_birth = (is_string($date_of_birth) && utf8_strlen($date_of_birth) > 0) ? $date_of_birth : '0000-00-00';
 			$password = trim($this->getCell($data, $i, $j++));
 			$password = (is_string($password) && utf8_strlen($password) > 0) ? $password : '';
 			$salt = trim($this->getCell($data, $i, $j++));
 			if ($password == '') {
-				// Generate a default password 'overclocked'
+				// Generate a default password 'overclock'
 				if ($salt == '') {
 					$salt = substr(md5(uniqid(rand(), true)), 0, 9);
 				}
-				$password = sha1($salt . sha1($salt . sha1('overclocked')));
+				$password = sha1($salt . sha1($salt . sha1('overclock')));
 			} else {
-				$password = md5('overclocked');
+				$password = md5('overclock');
 			}
 			$cart = $this->getCell($data, $i, $j++);
 			$wishlist = $this->getCell($data, $i, $j++);
