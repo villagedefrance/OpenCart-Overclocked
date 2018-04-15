@@ -22,7 +22,7 @@
  * @package    PHPExcel_Shared
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    v1.8.1, released: 01-05-2015
+ * @version    v1.11.0, released: 01-05-2018
  * @edition     Overclocked Edition
  */
 
@@ -109,7 +109,7 @@ class PHPExcel_Shared_File {
 		if ($returnValue == '' || ($returnValue === null)) {
 			$pathArray = explode('/', $pFilename);
 
-			while(in_array('..', $pathArray) && $pathArray[0] != '..') {
+			while (in_array('..', $pathArray) && $pathArray[0] != '..') {
 				for ($i = 0; $i < count($pathArray); ++$i) {
 					if ($pathArray[$i] == '..' && $i > 0) {
 						unset($pathArray[$i]);
@@ -132,7 +132,7 @@ class PHPExcel_Shared_File {
 	 */
 	public static function sys_get_temp_dir() {
 		if (self::$_useUploadTempDirectory) {
-			//  use upload-directory when defined to allow running on environments having very restricted open_basedir configs
+			// use upload-directory when defined to allow running on environments having very restricted open_basedir configs
 			if (ini_get('upload_tmp_dir') !== false) {
 				if ($temp = ini_get('upload_tmp_dir')) {
 					if (file_exists($temp)) {
@@ -160,6 +160,7 @@ class PHPExcel_Shared_File {
 			// trick for creating a file in system's temporary dir
 			// without knowing the path of the system's temporary dir
 			$temp = tempnam(__FILE__, '');
+
 			if (file_exists($temp)) {
 				unlink($temp);
 				return realpath(dirname($temp));
@@ -169,8 +170,7 @@ class PHPExcel_Shared_File {
 		}
 
 		// use ordinary built-in PHP function
-		//	There should be no problem with the 5.2.4 Suhosin realpath() bug, because this line should only
-		//		be called if we're running 5.2.1 or earlier
+		// There should be no problem with the 5.2.4 Suhosin realpath() bug, because this line should only be called if we're running 5.2.1 or earlier
 		return realpath(sys_get_temp_dir());
 	}
 }

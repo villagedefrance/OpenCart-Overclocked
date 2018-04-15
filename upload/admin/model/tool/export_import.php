@@ -124,70 +124,74 @@ class ModelToolExportImport extends Model {
 		return $language_id;
 	}
 
-	public function getLanguages() {
-		$language_data = $this->cache->get('languages');
+	protected function getLanguages() {
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "language` WHERE status = '1' ORDER BY `code` ASC");
 
-		if (!$language_data) {
-			$language_data = array();
-
-			$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "language` WHERE status = '1' ORDER BY code ASC");
-
-			foreach ($query->rows as $result) {
-				$language_data[$result['code']] = array(
-					'language_id' => $result['language_id'],
-					'name'        => $result['name'],
-					'code'        => $result['code'],
-					'locale'      => $result['locale'],
-					'image'       => $result['image'],
-					'directory'   => $result['directory'],
-					'filename'    => $result['filename'],
-					'sort_order'  => $result['sort_order'],
-					'status'      => $result['status']
-				);
-			}
-
-			$this->cache->set('languages', $language_data);
-		}
-
-		return $language_data;
+		return $query->rows;
 	}
 
 	protected function getDefaultWeightUnit() {
-		$weight_class_id = $this->config->get('config_weight_class_id');
+		$weight_class_id = $this->config->get( 'config_weight_class_id' );
 
-		$language_query = $this->db->query("SELECT DISTINCT language_id FROM `" . DB_PREFIX . "language` WHERE code = '" . $this->config->get('config_admin_language') . "'");
+		$language_id = $this->getDefaultLanguageId();
 
-		if ($language_query->row['language_id']) {
-			$language_id = $language_query->row['language_id'];
+		$sql = "SELECT unit FROM `" . DB_PREFIX . "weight_class_description` WHERE language_id = '" . (int)$language_id . "'";
 
-			$query = $this->db->query("SELECT DISTINCT unit FROM `" . DB_PREFIX . "weight_class_description` WHERE language_id = '" . (int)$language_id . "'");
+		$query = $this->db->query($sql);
 
-			if ($query->row['unit']) {
+		if ($query->num_rows > 0) {
+			return $query->row['unit'];
+		}
+
+		$en_sql = "SELECT language_id FROM `" . DB_PREFIX . "language` WHERE code = 'en'";
+
+		$en_query = $this->db->query($en_sql);
+
+		if ($en_query->num_rows > 0) {
+			$language_id = $en_query->row['language_id'];
+
+			$sql = "SELECT unit FROM `" . DB_PREFIX . "weight_class_description` WHERE language_id = '" . (int)$language_id . "'";
+
+			$query = $this->db->query($sql);
+
+			if ($query->num_rows > 0) {
 				return $query->row['unit'];
 			}
-
-		} else {
-			return 'kg';
 		}
+
+		return 'kg';
 	}
 
 	protected function getDefaultMeasurementUnit() {
 		$length_class_id = $this->config->get('config_length_class_id');
 
-		$language_query = $this->db->query("SELECT DISTINCT language_id FROM `" . DB_PREFIX . "language` WHERE code = '" . $this->config->get('config_admin_language') . "'");
+		$language_id = $this->getDefaultLanguageId();
 
-		if ($language_query->row['language_id']) {
-			$language_id = $language_query->row['language_id'];
+		$sql = "SELECT unit FROM `".DB_PREFIX."length_class_description` WHERE language_id = '" . (int)$language_id . "'";
 
-			$query = $this->db->query("SELECT DISTINCT unit FROM `" . DB_PREFIX . "length_class_description` WHERE language_id = '" . (int)$language_id . "'");
+		$query = $this->db->query($sql);
 
-			if ($query->row['unit']) {
+		if ($query->num_rows > 0) {
+			return $query->row['unit'];
+		}
+
+		$en_sql = "SELECT language_id FROM `" . DB_PREFIX . "language` WHERE code = 'en'";
+
+		$en_query = $this->db->query($en_sql);
+
+		if ($en_query->num_rows > 0) {
+			$language_id = $en_query->row['language_id'];
+
+			$sql = "SELECT unit FROM `" . DB_PREFIX . "length_class_description` WHERE language_id = '" . (int)$language_id . "'";
+
+			$query = $this->db->query($sql);
+
+			if ($query->num_rows > 0) {
 				return $query->row['unit'];
 			}
-
-		} else {
-			return 'cm';
 		}
+
+		return 'cm';
 	}
 
 	// Find all customer ids
@@ -305,7 +309,7 @@ class ModelToolExportImport extends Model {
 
 		$weight_class_ids = array();
 
-		$result = $this->db->query("SELECT weight_class_id, unit FROM `" . DB_PREFIX . "weight_class_description` WHERE language_id = '" . (int)$language_id . "'");
+		$result = $this->db->query("SELECT weight_class_id, `unit` FROM `" . DB_PREFIX . "weight_class_description` WHERE language_id = '" . (int)$language_id . "'");
 
 		if ($result->rows) {
 			foreach ($result->rows as $row) {
@@ -327,7 +331,7 @@ class ModelToolExportImport extends Model {
 
 		$length_class_ids = array();
 
-		$result = $this->db->query("SELECT length_class_id, unit FROM `" . DB_PREFIX . "length_class_description` WHERE language_id = '" . (int)$language_id . "'");
+		$result = $this->db->query("SELECT length_class_id, `unit` FROM `" . DB_PREFIX . "length_class_description` WHERE language_id = '" . (int)$language_id . "'");
 
 		if ($result->rows) {
 			foreach ($result->rows as $row) {
@@ -362,7 +366,7 @@ class ModelToolExportImport extends Model {
 
 		$field_ids = array();
 
-		$result = $this->db->query("SELECT field_id, title FROM `" . DB_PREFIX . "field_description` WHERE language_id = '" . (int)$language_id . "' ORDER BY field_id ASC");
+		$result = $this->db->query("SELECT field_id, `title` FROM `" . DB_PREFIX . "field_description` WHERE language_id = '" . (int)$language_id . "' ORDER BY field_id ASC");
 
 		foreach ($result->rows as $row) {
 			$field_id = $row['field_id'];
@@ -1394,7 +1398,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	// Extract and Insert the product details
-	protected function storeProductIntoDatabase(&$product, $languages, &$product_fields, &$layout_ids, &$available_store_ids, &$manufacturers, &$weight_class_ids, &$length_class_ids, &$url_alias_ids) {
+	protected function storeProductIntoDatabase(&$product, $languages, &$layout_ids, &$available_store_ids, &$manufacturers, &$weight_class_ids, &$length_class_ids, &$url_alias_ids) {
 		$product_id = $product['product_id'];
 		$names = $product['names'];
 		$categories = $product['categories'];
@@ -1433,18 +1437,10 @@ class ModelToolExportImport extends Model {
 		$length_class_id = (isset($length_class_ids[$length_unit])) ? $length_class_ids[$length_unit] : 0;
 		$sku = $this->db->escape($product['sku']);
 		$upc = $this->db->escape($product['upc']);
-		if (in_array('ean', $product_fields)) {
-			$ean = $this->db->escape($product['ean']);
-		}
-		if (in_array('jan', $product_fields)) {
-			$jan = $this->db->escape($product['jan']);
-		}
-		if (in_array('isbn', $product_fields)) {
-			$isbn = $this->db->escape($product['isbn']);
-		}
-		if (in_array('mpn', $product_fields)) {
-			$mpn = $this->db->escape($product['mpn']);
-		}
+		$ean = $this->db->escape($product['ean']);
+		$jan = $this->db->escape($product['jan']);
+		$isbn = $this->db->escape($product['isbn']);
+		$mpn = $this->db->escape($product['mpn']);
 		$location = $this->db->escape($product['location']);
 		$store_ids = $product['store_ids'];
 		$layout = $product['layout'];
@@ -1465,18 +1461,10 @@ class ModelToolExportImport extends Model {
 		}
 
 		// Generate and execute SQL for inserting the product
-		$sql = "INSERT INTO `" . DB_PREFIX . "product` (`product_id`,`quantity`,`sku`,`upc`,";
-		$sql .= in_array('ean', $product_fields) ? "`ean`," : "";
-		$sql .= in_array('jan', $product_fields) ? "`jan`," : "";
-		$sql .= in_array('isbn', $product_fields) ? "`isbn`," : "";
-		$sql .= in_array('mpn', $product_fields) ? "`mpn`," : "";
+		$sql = "INSERT INTO `" . DB_PREFIX . "product` (`product_id`,`quantity`,`sku`,`upc`,`ean`,`jan`,`isbn`,`mpn`,";
 		$sql .= "`location`,`stock_status_id`,`model`,`manufacturer_id`,`image`,`label`,`shipping`,`price`,`cost`,`quote`,`age_minimum`,`points`,`date_added`,`date_modified`,`date_available`,`palette_id`,`weight`,`weight_class_id`,`status`,";
 		$sql .= "`tax_class_id`,`viewed`,`length`,`width`,`height`,`length_class_id`,`sort_order`,`subtract`,`minimum`) VALUES";
-		$sql .= " ( $product_id, $quantity, '$sku', '$upc',";
-		$sql .= in_array('ean', $product_fields) ? " '$ean'," : "";
-		$sql .= in_array('jan', $product_fields) ? " '$jan'," : "";
-		$sql .= in_array('isbn', $product_fields) ? " '$isbn'," : "";
-		$sql .= in_array('mpn', $product_fields) ? " '$mpn'," : "";
+		$sql .= " ( $product_id, $quantity, '$sku', '$upc', '$ean', '$jan', '$isbn', '$mpn',";
 		$sql .= " '$location', $stock_status_id, '$model', $manufacturer_id, '$image', '$label', $shipping, $price, $cost, '$quote', $age_minimum, $points,";
 		$sql .= ($date_added == 'NOW()') ? " '$date_added'," : " '$date_added',";
 		$sql .= ($date_modified == 'NOW()') ? " '$date_modified'," : " '$date_modified',";
@@ -1708,15 +1696,6 @@ class ModelToolExportImport extends Model {
 		// Get length classes
 		$length_class_ids = $this->getLengthClassIds();
 
-		// Get list of the field names
-		$query = $this->db->query("DESCRIBE `" . DB_PREFIX . "product`");
-
-		$product_fields = array();
-
-		foreach ($query->rows as $row) {
-			$product_fields[] = $row['Field'];
-		}
-
 		// Load the worksheet cells and store them to the database
 		$first_row = array();
 
@@ -1754,18 +1733,10 @@ class ModelToolExportImport extends Model {
 			$categories = $this->getCell($data, $i, $j++);
 			$sku = $this->getCell($data, $i, $j++, '');
 			$upc = $this->getCell($data, $i, $j++, '');
-			if (in_array('ean', $product_fields)) {
-				$ean = $this->getCell($data, $i, $j++, '');
-			}
-			if (in_array('jan', $product_fields)) {
-				$jan = $this->getCell($data, $i, $j++, '');
-			}
-			if (in_array('isbn', $product_fields)) {
-				$isbn = $this->getCell($data, $i, $j++, '');
-			}
-			if (in_array('mpn', $product_fields)) {
-				$mpn = $this->getCell($data, $i, $j++, '');
-			}
+			$ean = $this->getCell($data, $i, $j++, '');
+			$jan = $this->getCell($data, $i, $j++, '');
+			$isbn = $this->getCell($data, $i, $j++, '');
+			$mpn = $this->getCell($data, $i, $j++, '');
 			$location = $this->getCell($data, $i, $j++, '');
 			$quantity = $this->getCell($data, $i, $j++, '0');
 			$model = $this->getCell($data, $i, $j++, '   ');
@@ -1880,18 +1851,10 @@ class ModelToolExportImport extends Model {
 			$product['measurement_unit'] = $measurement_unit;
 			$product['sku'] = $sku;
 			$product['upc'] = $upc;
-			if (in_array('ean', $product_fields)) {
-				$product['ean'] = $ean;
-			}
-			if (in_array('jan', $product_fields)) {
-				$product['jan'] = $jan;
-			}
-			if (in_array('isbn', $product_fields)) {
-				$product['isbn'] = $isbn;
-			}
-			if (in_array('mpn', $product_fields)) {
-				$product['mpn'] = $mpn;
-			}
+			$product['ean'] = $ean;
+			$product['jan'] = $jan;
+			$product['isbn'] = $isbn;
+			$product['mpn'] = $mpn;
 			$product['location'] = $location;
 			$store_ids = trim($this->clean($store_ids, false));
 			$product['store_ids'] = ($store_ids == "") ? array() : explode(",", $store_ids);
@@ -1918,7 +1881,7 @@ class ModelToolExportImport extends Model {
 
 			$this->moreProductCells($i, $j, $data, $product);
 
-			$this->storeProductIntoDatabase($product, $languages, $product_fields, $layout_ids, $available_store_ids, $manufacturers, $weight_class_ids, $length_class_ids, $url_alias_ids);
+			$this->storeProductIntoDatabase($product, $languages, $layout_ids, $available_store_ids, $manufacturers, $weight_class_ids, $length_class_ids, $url_alias_ids);
 		}
 	}
 
@@ -1926,21 +1889,22 @@ class ModelToolExportImport extends Model {
 	protected function storeAdditionalImageIntoDatabase(&$image, &$old_product_image_ids) {
 		$product_id = $image['product_id'];
 		$image_name = $image['image_name'];
+		$palette_color_id = $image['palette_color_id'];
 		$sort_order = $image['sort_order'];
 
 		if (isset($old_product_image_ids[$product_id][$image_name])) {
 			$product_image_id = $old_product_image_ids[$product_id][$image_name];
 
-			$sql = "INSERT INTO `" . DB_PREFIX . "product_image` (`product_image_id`,`product_id`,`image`,`sort_order`) VALUES";
-			$sql .= " ( $product_image_id, $product_id, '" . $this->db->escape($image_name) . "', $sort_order);";
+			$sql = "INSERT INTO `" . DB_PREFIX . "product_image` (`product_image_id`,`product_id`,`image`,`palette_color_id`,`sort_order`) VALUES";
+			$sql .= " ( $product_image_id, $product_id, '" . $this->db->escape($image_name) . "', $palette_color_id, $sort_order);";
 
 			$this->db->query($sql);
 
 			unset($old_product_image_ids[$product_id][$image_name]);
 
 		} else {
-			$sql = "INSERT INTO `" . DB_PREFIX . "product_image` (`product_id`,`image`,`sort_order`) VALUES";
-			$sql .= " ( $product_id, '" . $this->db->escape($image_name) . "', $sort_order);";
+			$sql = "INSERT INTO `" . DB_PREFIX . "product_image` (`product_id`,`image`,`palette_color_id`,`sort_order`) VALUES";
+			$sql .= " ( $product_id, '" . $this->db->escape($image_name) . "', $palette_color_id, $sort_order);";
 
 			$this->db->query($sql);
 		}
@@ -2023,6 +1987,7 @@ class ModelToolExportImport extends Model {
 
 			$image['product_id'] = $product_id;
 			$image['image_name'] = $image_name;
+			$image['palette_color_id'] = $palette_color_id;
 			$image['sort_order'] = $sort_order;
 
 			if (($incremental) && ($product_id != $previous_product_id)) {
@@ -4119,29 +4084,7 @@ class ModelToolExportImport extends Model {
 			return true;
 		}
 
-		// Get list of the field names
-		$query = $this->db->query("DESCRIBE `" . DB_PREFIX . "product`");
-
-		$product_fields = array();
-
-		foreach ($query->rows as $row) {
-			$product_fields[] = $row['Field'];
-		}
-
-		$expected_heading = array("product_id", "name", "categories", "sku", "upc");
-
-		if (in_array("ean", $product_fields)) {
-			$expected_heading[] = "ean";
-		}
-		if (in_array("jan", $product_fields)) {
-			$expected_heading[] = "jan";
-		}
-		if (in_array("isbn", $product_fields)) {
-			$expected_heading[] = "isbn";
-		}
-		if (in_array("mpn", $product_fields)) {
-			$expected_heading[] = "mpn";
-		}
+		$expected_heading = array("product_id", "name", "categories", "sku", "upc", "ean", "jan", "isbn", "mpn");
 
 		$expected_heading = array_merge($expected_heading, array("location", "quantity", "model", "manufacturer_name", "image_name", "label_name", "video_code", "shipping", "price", "cost", "quote", "age_minimum", "points"));
 		$expected_heading = array_merge($expected_heading, array("date_added", "date_modified", "date_available", "palette_id", "weight", "weight_unit", "length", "width", "height", "length_unit", "status", "tax_class_id", "seo_keyword"));
@@ -4159,7 +4102,8 @@ class ModelToolExportImport extends Model {
 			return true;
 		}
 
-		$expected_heading = array("product_id", "image", "sort_order");
+		$expected_heading = array("product_id", "image", "palette_color_id", "sort_order");
+
 		$expected_multilingual = array();
 
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
@@ -4173,6 +4117,7 @@ class ModelToolExportImport extends Model {
 		}
 
 		$expected_heading = array("product_id", "customer_group", "priority", "price", "date_start", "date_end");
+
 		$expected_multilingual = array();
 
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
@@ -4186,6 +4131,7 @@ class ModelToolExportImport extends Model {
 		}
 
 		$expected_heading = array("product_id", "customer_group", "quantity", "priority", "price", "date_start", "date_end");
+
 		$expected_multilingual = array();
 
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
@@ -4199,6 +4145,7 @@ class ModelToolExportImport extends Model {
 		}
 
 		$expected_heading = array("product_id", "customer_group", "points");
+
 		$expected_multilingual = array();
 
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
@@ -7103,37 +7050,6 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	// Manufacturers
-	protected function getManufacturerDescriptions($language_id, $language_code, $offset = null, $rows = null, $min_id = null, $max_id = null) {
-		// Manufacturer description table for each language
-		$manufacturer_descriptions = array();
-
-		$sql = "SELECT p.product_id, md.name AS manufacturer_name FROM `" . DB_PREFIX . "manufacturer_description` md";
-		$sql .= " LEFT JOIN `" . DB_PREFIX . "manufacturer` m ON (m.manufacturer_id = md.manufacturer_id)";
-		$sql .= " INNER JOIN `" . DB_PREFIX . "product` p ON (p.manufacturer_id = md.manufacturer_id)";
-		$sql .= " WHERE md.language_id = '" . (int)$language_id . "'";
-		if (isset($min_id) && isset($max_id)) {
-			$sql .= " AND p.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
-		}
-		$sql .= " GROUP BY p.product_id";
-		$sql .= " ORDER BY p.product_id";
-		if (isset($offset) && isset($rows)) {
-			$sql .= " ASC LIMIT '" . (int)$offset . "','" . (int)$rows . "'";
-		} else {
-			$sql .= " ASC";
-		}
-
-		$manufacturer_query = $this->db->query($sql);
-
-		$manufacturer_descriptions[$language_code] = $manufacturer_query->rows;
-
-		if (isset($manufacturer_descriptions)) {
-			return $manufacturer_descriptions;
-		} else {
-			return 0;
-		}
-	}
-
 	// Products
 	protected function getStoreIdsForProducts() {
 		$store_ids = array();
@@ -7180,6 +7096,23 @@ class ModelToolExportImport extends Model {
 		return $layouts;
 	}
 
+	protected function getPostedCategories() {
+		$posted_categories = '';
+
+		if (isset($this->request->post['categories'])) {
+			if (count($this->request->post['categories']) > 0) {
+				foreach ($this->request->post['categories'] as $category_id) {
+					$posted_categories .= ($posted_categories == '') ? '(' : ',';
+					$posted_categories .= $category_id;
+				}
+
+				$posted_categories .= ')';
+			}
+		}
+
+		return $posted_categories;
+	}
+
 	protected function getVideoCodeForProducts($product_id) {
 		$query = $this->db->query("SELECT video_code AS video_code FROM `" . DB_PREFIX . "product_youtube` WHERE product_id = '" . (int)$product_id . "'");
 
@@ -7198,13 +7131,23 @@ class ModelToolExportImport extends Model {
 			$language_id = $language['language_id'];
 			$language_code = strtolower($language['code']);
 
-			$sql = "SELECT product_id, name, description, meta_description, meta_keyword, GROUP_CONCAT(tag SEPARATOR \",\") AS tag FROM `" . DB_PREFIX . "product_description`";
-			$sql .= " WHERE language_id = '" . (int)$language_id . "'";
-			if (isset($min_id) && isset($max_id)) {
-				$sql .= " AND product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+			$sql = "SELECT p.product_id, pd.* FROM `" . DB_PREFIX . "product_description` pd";
+			$sql .= " INNER JOIN `" . DB_PREFIX . "product` p ON (p.product_id = pd.product_id)";
+			if ($this->posted_categories) {
+				$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc ON (pc.product_id = p.product_id)";
 			}
-			$sql .= " GROUP BY product_id, language_id";
-			$sql .= " ORDER BY product_id";
+			$sql .= " WHERE pd.language_id = '" . (int)$language_id . "'";
+			if (isset($min_id) && isset($max_id)) {
+				$sql .= " AND p.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+
+				if ($this->posted_categories) {
+					$sql .= " AND pc.category_id IN " . $this->posted_categories;
+				}
+			} else if ($this->posted_categories) {
+				$sql .= " AND pc.category_id IN " . $this->posted_categories;
+			}
+			$sql .= " GROUP BY p.product_id ";
+			$sql .= " ORDER BY p.product_id";
 			if (isset($offset) && isset($rows)) {
 				$sql .= " ASC LIMIT '" . (int)$offset . "','" . (int)$rows . "'";
 			} else {
@@ -7223,22 +7166,14 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	public function getProducts($languages, $default_language_id, $product_fields, $offset = null, $rows = null, $min_id = null, $max_id = null) {
+	public function getProducts($languages, $default_language_id, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		$sql = "SELECT p.product_id, GROUP_CONCAT(DISTINCT CAST(pc.category_id AS CHAR(11)) SEPARATOR \",\") AS categories,";
 		$sql .= " p.sku,";
 		$sql .= " p.upc,";
-		if (in_array('ean', $product_fields)) {
-			$sql .= " p.ean,";
-		}
-		if (in_array('jan', $product_fields)) {
-			$sql .= " p.jan,";
-		}
-		if (in_array('isbn', $product_fields)) {
-			$sql .= " p.isbn,";
-		}
-		if (in_array('mpn', $product_fields)) {
-			$sql .= " p.mpn,";
-		}
+		$sql .= " p.ean,";
+		$sql .= " p.jan,";
+		$sql .= " p.isbn,";
+		$sql .= " p.mpn,";
 		$sql .= " p.location,";
 		$sql .= " p.quantity,";
 		$sql .= " p.model,";
@@ -7270,18 +7205,23 @@ class ModelToolExportImport extends Model {
 		$sql .= " p.minimum,";
 		$sql .= " GROUP_CONCAT(DISTINCT CAST(pr.related_id AS CHAR(11)) SEPARATOR \",\" ) AS related";
 		$sql .= " FROM `" . DB_PREFIX . "product` p";
-		$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc ON (pc.product_id = p.product_id)";
-		$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_store` ps ON (ps.product_id = p.product_id)";
-		$sql .= " LEFT JOIN `" . DB_PREFIX . "url_alias` ua ON (ua.query=CONCAT('product_id=',p.product_id))";
-		$sql .= " LEFT JOIN `" . DB_PREFIX . "manufacturer_description` md ON (md.manufacturer_id = p.manufacturer_id)";
-		$sql .= " LEFT JOIN `" . DB_PREFIX . "weight_class_description` wc ON (wc.weight_class_id = p.weight_class_id)";
-		$sql .= " LEFT JOIN `" . DB_PREFIX . "length_class_description` mc ON (mc.length_class_id = p.length_class_id)";
+		$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc ON (p.product_id = pc.product_id)";
+		if ($this->posted_categories) {
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc2 ON (p.product_id = pc2.product_id)";
+		}
+		$sql .= " LEFT JOIN `" . DB_PREFIX . "url_alias` ua ON (ua.query = CONCAT('product_id=',p.product_id))";
+		$sql .= " LEFT JOIN `" . DB_PREFIX . "manufacturer` m ON (m.manufacturer_id = p.manufacturer_id)";
+		$sql .= " LEFT JOIN `" . DB_PREFIX . "manufacturer_description` md ON (md.manufacturer_id = p.manufacturer_id) AND md.language_id = '" . (int)$default_language_id . "'";
+		$sql .= " LEFT JOIN `" . DB_PREFIX . "weight_class_description` wc ON (wc.weight_class_id = p.weight_class_id) AND wc.language_id = '" . (int)$default_language_id . "'";
+		$sql .= " LEFT JOIN `" . DB_PREFIX . "length_class_description` mc ON (mc.length_class_id = p.length_class_id) AND mc.language_id = '" . (int)$default_language_id . "'";
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "product_related` pr ON (pr.product_id = p.product_id)";
-		$sql .= " WHERE md.language_id = '" . (int)$default_language_id . "'";
-		$sql .= " AND wc.language_id = '" . (int)$default_language_id . "'";
-		$sql .= " AND mc.language_id = '" . (int)$default_language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " AND p.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+			$sql .= " WHERE p.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+			if ($this->posted_categories) {
+				$sql .= " AND pc2.category_id IN " . $this->posted_categories;
+			}
+		} else if ($this->posted_categories) {
+			$sql .= " WHERE pc2.category_id IN " . $this->posted_categories;
 		}
 		$sql .= " GROUP BY p.product_id";
 		$sql .= " ORDER BY p.product_id";
@@ -7299,17 +7239,33 @@ class ModelToolExportImport extends Model {
 			$language_code = strtolower($language['code']);
 
 			foreach ($results->rows as $key => $row) {
-				if (isset($product_descriptions[$language_code][$key])) {
+				if (isset($product_descriptions[$language_code][$key]['name'])) {
 					$results->rows[$key]['name'][$language_code] = $product_descriptions[$language_code][$key]['name'];
-					$results->rows[$key]['description'][$language_code] = $product_descriptions[$language_code][$key]['description'];
-					$results->rows[$key]['meta_description'][$language_code] = $product_descriptions[$language_code][$key]['meta_description'];
-					$results->rows[$key]['meta_keyword'][$language_code] = $product_descriptions[$language_code][$key]['meta_keyword'];
-					$results->rows[$key]['tag'][$language_code] = $product_descriptions[$language_code][$key]['tag'];
 				} else {
 					$results->rows[$key]['name'][$language_code] = '';
+				}
+
+				if (isset($product_descriptions[$language_code][$key]['description'])) {
+					$results->rows[$key]['description'][$language_code] = $product_descriptions[$language_code][$key]['description'];
+				} else {
 					$results->rows[$key]['description'][$language_code] = '';
+				}
+
+				if (isset($product_descriptions[$language_code][$key]['meta_description'])) {
+					$results->rows[$key]['meta_description'][$language_code] = $product_descriptions[$language_code][$key]['meta_description'];
+				} else {
 					$results->rows[$key]['meta_description'][$language_code] = '';
+				}
+
+				if (isset($product_descriptions[$language_code][$key]['meta_keyword'])) {
+					$results->rows[$key]['meta_keyword'][$language_code] = $product_descriptions[$language_code][$key]['meta_keyword'];
+				} else {
 					$results->rows[$key]['meta_keyword'][$language_code] = '';
+				}
+
+				if (isset($product_descriptions[$language_code][$key]['tag'])) {
+					$results->rows[$key]['tag'][$language_code] = $product_descriptions[$language_code][$key]['tag'];
+				} else {
 					$results->rows[$key]['tag'][$language_code] = '';
 				}
 			}
@@ -7319,15 +7275,6 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function populateProductsWorksheet($worksheet, $languages, $default_language_id, $box_format, $price_format, $weight_format, $text_format, $date_format, $datetime_format, $offset = null, $rows = null, $min_id = null, $max_id = null) {
-		// Get list of the field names
-		$describe_query = $this->db->query("DESCRIBE `" . DB_PREFIX . "product`");
-
-		$product_fields = array();
-
-		foreach ($describe_query->rows as $row) {
-			$product_fields[] = $row['Field'];
-		}
-
 		// Set the column widths
 		$j = 0;
 
@@ -7338,18 +7285,10 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('categories'), 12)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('sku'), 10)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('upc'), 12)+1);
-		if (in_array('ean', $product_fields)) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('ean'), 14)+1);
-		}
-		if (in_array('jan', $product_fields)) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('jan'), 13)+1);
-		}
-		if (in_array('isbn', $product_fields)) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('isbn'), 13)+1);
-		}
-		if (in_array('mpn', $product_fields)) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('mpn'), 15)+1);
-		}
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('ean'), 14)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('jan'), 13)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('isbn'), 13)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('mpn'), 15)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('location'), 10)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('quantity'), 5)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('model'), 16)+1);
@@ -7414,22 +7353,14 @@ class ModelToolExportImport extends Model {
 		$data[$j++] = 'sku';
 		$styles[$j] = &$text_format;
 		$data[$j++] = 'upc';
-		if (in_array('ean', $product_fields)) {
-			$styles[$j] = &$text_format;
-			$data[$j++] = 'ean';
-		}
-		if (in_array('jan', $product_fields)) {
-			$styles[$j] = &$text_format;
-			$data[$j++] = 'jan';
-		}
-		if (in_array('isbn', $product_fields)) {
-			$styles[$j] = &$text_format;
-			$data[$j++] = 'isbn';
-		}
-		if (in_array('mpn', $product_fields)) {
-			$styles[$j] = &$text_format;
-			$data[$j++] = 'mpn';
-		}
+		$styles[$j] = &$text_format;
+		$data[$j++] = 'ean';
+		$styles[$j] = &$text_format;
+		$data[$j++] = 'jan';
+		$styles[$j] = &$text_format;
+		$data[$j++] = 'isbn';
+		$styles[$j] = &$text_format;
+		$data[$j++] = 'mpn';
 		$styles[$j] = &$text_format;
 		$data[$j++] = 'location';
 		$data[$j++] = 'quantity';
@@ -7509,7 +7440,7 @@ class ModelToolExportImport extends Model {
 
 		$keep_tags = $this->config->get('export_import_settings_use_export_tags');
 
-		$products = $this->getProducts($languages, $default_language_id, $product_fields, $offset, $rows, $min_id, $max_id);
+		$products = $this->getProducts($languages, $default_language_id, $offset, $rows, $min_id, $max_id);
 
 		$length = count($products);
 
@@ -7532,25 +7463,17 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['categories'];
 			$data[$j++] = $row['sku'];
 			$data[$j++] = $row['upc'];
-			if (in_array('ean', $product_fields)) {
-				$data[$j++] = $row['ean'];
-			}
-			if (in_array('jan', $product_fields)) {
-				$data[$j++] = $row['jan'];
-			}
-			if (in_array('isbn', $product_fields)) {
-				$data[$j++] = $row['isbn'];
-			}
-			if (in_array('mpn', $product_fields)) {
-				$data[$j++] = $row['mpn'];
-			}
-			$data[$j++] = html_entity_decode($row['location'], ENT_QUOTES, 'UTF-8');
+			$data[$j++] = $row['ean'];
+			$data[$j++] = $row['jan'];
+			$data[$j++] = $row['isbn'];
+			$data[$j++] = $row['mpn'];
+			$data[$j++] = $row['location'];
 			$data[$j++] = $row['quantity'];
 			$data[$j++] = $row['model'];
-			$data[$j++] = $row['manufacturer_name'];
+			$data[$j++] = ($row['manufacturer_name']) ? $row['manufacturer_name'] : '';
 			$data[$j++] = $row['image_name'];
 			$data[$j++] = $row['label_name'];
-			$data[$j++] = $video_code;
+			$data[$j++] = ($video_code) ? $video_code : '';
 			$data[$j++] = ($row['shipping'] == 0) ? 'no' : 'yes';
 			$data[$j++] = $row['price'];
 			$data[$j++] = $row['cost'];
@@ -7610,11 +7533,20 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function getAdditionalImages($min_id = null, $max_id = null) {
-		$sql = "SELECT product_id, image, sort_order FROM `" . DB_PREFIX . "product_image`";
-		if (isset($min_id) && isset($max_id)) {
-			$sql .= " WHERE product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+		$sql = "SELECT p.product_id, pia.image, pia.palette_color_id, pia.sort_order FROM `" . DB_PREFIX . "product_image` pia";
+		$sql .= " LEFT JOIN `" . DB_PREFIX . "product` p ON (p.product_id = pia.product_id)";
+		if ($this->posted_categories) {
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc ON (pc.product_id = pia.product_id)";
 		}
-		$sql .= " ORDER BY product_id, image, sort_order ASC";
+		if (isset($min_id) && isset($max_id)) {
+			$sql .= " WHERE p.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+			if ($this->posted_categories) {
+				$sql .= " AND pc.category_id IN " . $this->posted_categories;
+			}
+		} else if ($this->posted_categories) {
+			$sql .= " WHERE pc.category_id IN " . $this->posted_categories;
+		}
+		$sql .= " ORDER BY p.product_id, pia.image, pia.sort_order";
 
 		$result = $this->db->query($sql);
 
@@ -7627,6 +7559,7 @@ class ModelToolExportImport extends Model {
 
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('product_id'), 4)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('image')+4, 36)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('palette_color_id'), 4)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('sort_order'), 5)+1);
 
 		// The additional images headings row and colum styles
@@ -7639,6 +7572,7 @@ class ModelToolExportImport extends Model {
 		$data[$j++] = 'product_id';
 		$styles[$j] = &$text_format;
 		$data[$j++] = 'image';
+		$data[$j++] = 'palette_color_id';
 		$data[$j++] = 'sort_order';
 
 		$worksheet->getRowDimension($i)->setRowHeight(30);
@@ -7658,6 +7592,7 @@ class ModelToolExportImport extends Model {
 
 			$data[$j++] = $row['product_id'];
 			$data[$j++] = $row['image'];
+			$data[$j++] = $row['palette_color_id'];
 			$data[$j++] = $row['sort_order'];
 
 			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
@@ -7669,13 +7604,21 @@ class ModelToolExportImport extends Model {
 
 	protected function getSpecials($language_id, $min_id = null, $max_id = null) {
 		// Get the product specials
-		$sql = "SELECT ps.*, cgd.name AS name FROM `" . DB_PREFIX . "product_special` ps";
+		$sql = "SELECT ps.*, cgd.name AS `name` FROM `" . DB_PREFIX . "product_special` ps";
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "customer_group_description` cgd ON (cgd.customer_group_id = ps.customer_group_id)";
-		$sql .= " WHERE cgd.language_id = '" . $language_id . "'";
+		if ($this->posted_categories) {
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc ON (pc.product_id = ps.product_id)";
+		}
+		$sql .= " WHERE cgd.language_id = '" . (int)$language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " AND ps.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+			if ($this->posted_categories) {
+				$sql .= " AND pc.category_id IN " . $this->posted_categories;
+			}
+		} else if ($this->posted_categories) {
+			$sql .= " AND pc.category_id IN " . $this->posted_categories;
 		}
-		$sql .= " ORDER BY ps.product_id, cgd.name, ps.priority";
+		$sql .= " ORDER BY ps.product_id, cgd.`name`, ps.priority";
 
 		$result = $this->db->query($sql);
 
@@ -7742,13 +7685,21 @@ class ModelToolExportImport extends Model {
 
 	protected function getDiscounts($language_id, $min_id = null, $max_id = null) {
 		// Get the product discounts
-		$sql = "SELECT pd.*, cgd.name AS name FROM `" . DB_PREFIX . "product_discount` pd";
+		$sql = "SELECT pd.*, cgd.name AS `name` FROM `" . DB_PREFIX . "product_discount` pd";
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "customer_group_description` cgd ON (cgd.customer_group_id = pd.customer_group_id)";
-		$sql .= " WHERE cgd.language_id = '" . $language_id . "'";
+		if ($this->posted_categories) {
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc ON (pc.product_id = pd.product_id)";
+		}
+		$sql .= " WHERE cgd.language_id = '" . (int)$language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " AND pd.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+			if ($this->posted_categories) {
+				$sql .= " AND pc.category_id IN " . $this->posted_categories;
+			}
+		} else if ($this->posted_categories) {
+			$sql .= " AND pc.category_id IN " . $this->posted_categories;
 		}
-		$sql .= " ORDER BY pd.product_id ASC, cgd.name ASC, pd.quantity ASC";
+		$sql .= " ORDER BY pd.product_id, cgd.`name`, pd.quantity";
 
 		$result = $this->db->query($sql);
 
@@ -7818,13 +7769,21 @@ class ModelToolExportImport extends Model {
 
 	protected function getRewards($language_id, $min_id = null, $max_id = null) {
 		// Get the product rewards
-		$sql = "SELECT pr.*, cgd.name FROM `" . DB_PREFIX . "product_reward` pr";
+		$sql = "SELECT pr.*, cgd.`name` FROM `" . DB_PREFIX . "product_reward` pr";
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "customer_group_description` cgd ON (cgd.customer_group_id = pr.customer_group_id)";
+		if ($this->posted_categories) {
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc ON (pc.product_id = pr.product_id)";
+		}
 		$sql .= " WHERE cgd.language_id = '" . $language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " AND pr.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+			if ($this->posted_categories) {
+				$sql .= " AND pc.category_id IN " . $this->posted_categories;
+			}
+		} else if ($this->posted_categories) {
+			$sql .= " AND pc.category_id IN " . $this->posted_categories;
 		}
-		$sql .= " ORDER BY pr.product_id, name";
+		$sql .= " ORDER BY pr.product_id";
 
 		$result = $this->db->query($sql);
 
@@ -7887,19 +7846,27 @@ class ModelToolExportImport extends Model {
 
 		// Database query for getting the product options
 		if ($exist_po_value) {
-			$sql = "SELECT p.product_id, po.option_id, po.value AS option_value, po.required, od.name AS `option` FROM";
+			$sql = "SELECT p.product_id, po.option_id, po.value AS option_value, po.required, od.`name` AS `option` FROM";
 		} else {
-			$sql = "SELECT p.product_id, po.option_id, po.option_value, po.required, od.name AS `option` FROM";
+			$sql = "SELECT p.product_id, po.option_id, po.option_value, po.required, od.`name` AS `option` FROM";
 		}
-		$sql .= " (SELECT product_id FROM `" . DB_PREFIX . "product`";
+		$sql .= " (SELECT p1.product_id FROM `" . DB_PREFIX . "product` p1";
+		if ($this->posted_categories) {
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc ON (pc.product_id = p1.product_id)";
+		}
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " WHERE product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+			$sql .= " WHERE p1.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+			if ($this->posted_categories) {
+				$sql .= " AND pc.category_id IN " . $this->posted_categories;
+			}
+		} else if ($this->posted_categories) {
+			$sql .= " WHERE pc.category_id IN " . $this->posted_categories;
 		}
-		$sql .= " ORDER BY product_id ASC) AS p";
+		$sql .= " ORDER BY p1.product_id ASC) AS p";
 		$sql .= " INNER JOIN `" . DB_PREFIX . "product_option` po ON (po.product_id = p.product_id)";
 		$sql .= " INNER JOIN `" . DB_PREFIX . "option_description` od ON (od.option_id = po.option_id)";
 		$sql .= " WHERE od.language_id = '" . (int)$language_id . "'";
-		$sql .= " ORDER BY p.product_id ASC, po.option_id ASC";
+		$sql .= " ORDER BY p.product_id, po.option_id";
 
 		$query = $this->db->query($sql);
 
@@ -7973,17 +7940,25 @@ class ModelToolExportImport extends Model {
 
 		$sql = "SELECT p.product_id, pov.option_id, pov.option_value_id, pov.quantity, pov.subtract, od.name AS `option`, ovd.name AS option_value,";
 		$sql .= " pov.price, pov.price_prefix, pov.points, pov.points_prefix, pov.weight, pov.weight_prefix";
-		$sql .= " FROM (SELECT product_id FROM `" . DB_PREFIX . "product`";
-		if (isset($min_id) && isset($max_id)) {
-			$sql .= " WHERE product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+		$sql .= " FROM (SELECT p1.product_id FROM `" . DB_PREFIX . "product` p1";
+		if ($this->posted_categories) {
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc ON (pc.product_id = p1.product_id)";
 		}
-		$sql .= " ORDER BY product_id ASC) AS p";
+		if (isset($min_id) && isset($max_id)) {
+			$sql .= " WHERE p1.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+			if ($this->posted_categories) {
+				$sql .= " AND pc.category_id IN " . $this->posted_categories;
+			}
+		} else if ($this->posted_categories) {
+			$sql .= " WHERE pc.category_id IN " . $this->posted_categories;
+		}
+		$sql .= " ORDER BY p1.product_id ASC) AS p";
 		$sql .= " INNER JOIN `" . DB_PREFIX . "product_option_value` pov ON (pov.product_id = p.product_id)";
 		$sql .= " INNER JOIN `" . DB_PREFIX . "option_value_description` ovd ON (ovd.option_value_id = pov.option_value_id)";
 		$sql .= " INNER JOIN `" . DB_PREFIX . "option_description` od ON (od.option_id = ovd.option_id)";
 		$sql .= " WHERE ovd.language_id = '" . (int)$language_id . "'";
 		$sql .= " AND od.language_id = '" . (int)$language_id . "'";
-		$sql .= " ORDER BY p.product_id ASC, pov.option_id ASC, pov.option_value_id";
+		$sql .= " ORDER BY p.product_id, pov.option_id, pov.option_value_id";
 
 		$query = $this->db->query($sql);
 
@@ -8133,10 +8108,18 @@ class ModelToolExportImport extends Model {
 		$sql = "SELECT pa.product_id, ag.attribute_group_id, pa.attribute_id, pa.language_id, pa.text FROM `" . DB_PREFIX . "product_attribute` pa";
 		$sql .= " INNER JOIN `" . DB_PREFIX . "attribute` a ON (a.attribute_id = pa.attribute_id)";
 		$sql .= " INNER JOIN `" . DB_PREFIX . "attribute_group` ag ON (ag.attribute_group_id = a.attribute_group_id)";
+		if ($this->posted_categories) {
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc ON (pc.product_id = pa.product_id)";
+		}
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " WHERE pa.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+			if ($this->posted_categories) {
+				$sql .= " AND pc.category_id IN " . $this->posted_categories;
+			}
+		} else if ($this->posted_categories) {
+			$sql .= " WHERE pc.category_id IN " . $this->posted_categories;
 		}
-		$sql .= " ORDER BY pa.product_id ASC, ag.attribute_group_id ASC, pa.attribute_id ASC";
+		$sql .= " ORDER BY pa.product_id, ag.attribute_group_id, pa.attribute_id";
 
 		$query = $this->db->query($sql);
 
@@ -8277,8 +8260,16 @@ class ModelToolExportImport extends Model {
 		$sql = "SELECT pf.product_id, fg.filter_group_id, pf.filter_id FROM `" . DB_PREFIX . "product_filter` pf";
 		$sql .= " INNER JOIN `" . DB_PREFIX . "filter` f ON (f.filter_id = pf.filter_id)";
 		$sql .= " INNER JOIN `" . DB_PREFIX . "filter_group` fg ON (fg.filter_group_id = f.filter_group_id)";
+		if ($this->posted_categories) {
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc ON (pc.product_id = pf.product_id)";
+		}
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " WHERE pf.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+			if ($this->posted_categories) {
+				$sql .= " AND pc.category_id IN " . $this->posted_categories;
+			}
+		} else if ($this->posted_categories) {
+			$sql .= " WHERE pc.category_id IN " . $this->posted_categories;
 		}
 		$sql .= " ORDER BY pf.product_id ASC, fg.filter_group_id ASC, pf.filter_id ASC";
 
@@ -8408,7 +8399,7 @@ class ModelToolExportImport extends Model {
 			$language_code = $language['code'];
 
 			foreach ($results->rows as $key => $row) {
-				if (isset($option_descriptions[$language_code][$key])) {
+				if (isset($option_descriptions[$language_code][$key]['name'])) {
 					$results->rows[$key]['name'][$language_code] = $option_descriptions[$language_code][$key]['name'];
 				} else {
 					$results->rows[$key]['name'][$language_code] = '';
@@ -8504,7 +8495,7 @@ class ModelToolExportImport extends Model {
 			$language_code = $language['code'];
 
 			foreach ($results->rows as $key => $row) {
-				if (isset($option_value_descriptions[$language_code][$key])) {
+				if (isset($option_value_descriptions[$language_code][$key]['name'])) {
 					$results->rows[$key]['name'][$language_code] = $option_value_descriptions[$language_code][$key]['name'];
 				} else {
 					$results->rows[$key]['name'][$language_code] = '';
@@ -8615,7 +8606,7 @@ class ModelToolExportImport extends Model {
 			$language_code = $language['code'];
 
 			foreach ($results->rows as $key => $row) {
-				if (isset($attribute_group_descriptions[$language_code][$key])) {
+				if (isset($attribute_group_descriptions[$language_code][$key]['name'])) {
 					$results->rows[$key]['name'][$language_code] = $attribute_group_descriptions[$language_code][$key]['name'];
 				} else {
 					$results->rows[$key]['name'][$language_code] = '';
@@ -8708,7 +8699,7 @@ class ModelToolExportImport extends Model {
 			$language_code = $language['code'];
 
 			foreach ($results->rows as $key => $row) {
-				if (isset($attribute_descriptions[$language_code][$key])) {
+				if (isset($attribute_descriptions[$language_code][$key]['name'])) {
 					$results->rows[$key]['name'][$language_code] = $attribute_descriptions[$language_code][$key]['name'];
 				} else {
 					$results->rows[$key]['name'][$language_code] = '';
@@ -8897,7 +8888,7 @@ class ModelToolExportImport extends Model {
 			$language_code = $language['code'];
 
 			foreach ($results->rows as $key => $row) {
-				if (isset($filter_descriptions[$language_code][$key])) {
+				if (isset($filter_descriptions[$language_code][$key]['name'])) {
 					$results->rows[$key]['name'][$language_code] = $filter_descriptions[$language_code][$key]['name'];
 				} else {
 					$results->rows[$key]['name'][$language_code] = '';
@@ -9188,7 +9179,15 @@ class ModelToolExportImport extends Model {
 	}
 
 	public function getCountProduct() {
-		$pro_count_query = $this->db->query("SELECT COUNT(product_id) AS count_product FROM " . DB_PREFIX . "product");
+		$posted_categories = $this->getPostedCategories();
+
+		$sql = "SELECT COUNT(DISTINCT p.product_id) AS count_product FROM `" . DB_PREFIX . "product` p";
+		if ($posted_categories) {
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc ON (pc.product_id = p.product_id)";
+			$sql .= " WHERE pc.category_id IN " . $posted_categories;
+		}
+
+		$pro_count_query = $this->db->query($sql);
 
 		if (isset($pro_count_query->row['count_product'])) {
 			$count = $pro_count_query->row['count_product'];
@@ -9236,6 +9235,8 @@ class ModelToolExportImport extends Model {
 		if ($this->config->get('export_import_settings_use_export_pclzip')) {
 			PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
 		}
+
+		$this->posted_categories = $this->getPostedCategories();
 
 		try {
 			// Set appropriate timeout limit

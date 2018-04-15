@@ -22,7 +22,7 @@
  * @package    PHPExcel_Shared
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    v1.8.1, released: 01-05-2015
+ * @version    v1.11.0, released: 01-05-2018
  * @edition     Overclocked Edition
  */
 
@@ -311,7 +311,6 @@ class PHPExcel_Shared_String {
 
 		// CUSTOM: IBM AIX iconv() does not work
 		if (defined('PHP_OS') && @stristr(PHP_OS, 'AIX') && defined('ICONV_IMPL') && (@strcasecmp(ICONV_IMPL, 'unknown') == 0) && defined('ICONV_VERSION') && (@strcasecmp(ICONV_VERSION, 'unknown') == 0)) {
-
 			self::$_isIconvEnabled = false;
 			return false;
 		}
@@ -325,6 +324,7 @@ class PHPExcel_Shared_String {
 		if (empty(self::$_controlCharacters)) {
 			self::_buildControlCharacters();
 		}
+
 		if (empty(self::$_SYLKCharacters)) {
 			self::_buildSYLKCharacters();
 		}
@@ -531,7 +531,7 @@ class PHPExcel_Shared_String {
 
 		$newstr = '';
 
-		for($i = 0; $i < $len; $i += 2) {
+		for ($i = 0; $i < $len; $i += 2) {
 			if ($bom_be) {
 				$val = ord($str{$i}) << 4;
 				$val += ord($str{$i+1});
@@ -636,7 +636,7 @@ class PHPExcel_Shared_String {
 
     public static function mb_str_split($string) {
         # Split at all position not after the start: ^, and not before the end: $
-        return preg_split('/(?<!^)(?!$)/u', $string );
+        return preg_split('/(?<!^)(?!$)/u', $string);
     }
 
 	/**

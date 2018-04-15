@@ -20,7 +20,7 @@
  * @package    PHPExcel_RichText
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    v1.8.1, released: 01-05-2015
+ * @version    v1.11.0, released: 01-05-2018
  * @edition     Overclocked Edition
  */
 
@@ -79,12 +79,12 @@ class PHPExcel_RichText_Run extends PHPExcel_RichText_TextElement implements PHP
 	 * @return string	Hash code
 	 */
 	public function getHashCode() {
-    	return md5(
+		return md5(
 			$this->getText()
-    		. $this->_font->getHashCode()
-    		. __CLASS__
-    	);
-    }
+			. $this->_font->getHashCode()
+			. __CLASS__
+		);
+	}
 
 	/**
 	 * Implement PHP __clone to create a deep clone, not just a shallow copy.

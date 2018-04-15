@@ -22,15 +22,16 @@
  * @package	PHPExcel_Shared
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license	http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version	##VERSION##, ##DATE##
+ * @version    v1.11.0, released: 01-05-2018
+ * @edition     Overclocked Edition
  */
 
 if (!defined('DATE_W3C')) {
-  define('DATE_W3C', 'Y-m-d\TH:i:sP');
+	define('DATE_W3C', 'Y-m-d\TH:i:sP');
 }
 
 if (!defined('DEBUGMODE_ENABLED')) {
-  define('DEBUGMODE_ENABLED', false);
+	define('DEBUGMODE_ENABLED', false);
 }
 
 /**
@@ -64,8 +65,10 @@ class PHPExcel_Shared_XMLWriter extends XMLWriter {
 			$this->openMemory();
 		} else {
 			// Create temporary filename
-			if ($pTemporaryStorageFolder === null)
+			if ($pTemporaryStorageFolder === null) {
 				$pTemporaryStorageFolder = PHPExcel_Shared_File::sys_get_temp_dir();
+			}
+
 			$this->_tempFileName = @tempnam($pTemporaryStorageFolder, 'xml');
 
 			// Open storage
@@ -111,10 +114,9 @@ class PHPExcel_Shared_XMLWriter extends XMLWriter {
 	 * @param string $text
 	 * @return string
 	 */
-	public function writeRawData($text)
-	{
+	public function writeRawData($text) {
 		if (is_array($text)) {
-			$text = implode("\n",$text);
+			$text = implode("\n", $text);
 		}
 
 		if (method_exists($this, 'writeRaw')) {

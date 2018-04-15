@@ -23,7 +23,7 @@
  * @package    PHPExcel_Cell
  * @copyright  Copyright (c) 2015 J.Neuhoff - mhccorp.com
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    v1.8.1, released: 01-05-2015
+ * @version    v1.11.0, released: 01-05-2018
  * @edition     Overclocked Edition
  */
 
@@ -49,12 +49,12 @@ class PHPExcel_Cell_ExportImportValueBinder extends PHPExcel_Cell_DefaultValueBi
 	* See http://stackoverflow.com/questions/12457610/reading-numbers-as-text-format-with-phpexcel
 	*
 	* @param  PHPExcel_Cell  $cell   Cell to bind value to
-	* @param  mixed          $value  Value to bind in cell
+	* @param  mixed          $value   Value to bind in cell
 	* @return boolean
 	*/
 	public function bindValue(PHPExcel_Cell $cell, $value = null) { 
 		// sanitize UTF-8 strings 
-		if (is_string($value)) { 
+		if (is_string($value) || strpos($value, "\n") !== false) { 
 			$value = PHPExcel_Shared_String::SanitizeUTF8($value); 
 		} 
 

@@ -22,7 +22,7 @@
  * @package    PHPExcel
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    v1.8.1, released: 01-05-2015
+ * @version    v1.11.0, released: 01-05-2018
  * @edition     Overclocked Edition
  */
 
@@ -132,14 +132,14 @@ class PHPExcel {
 	private $_macrosCertificate = null;
 
 	/**
-	* _ribbonXMLData : NULL if workbook is'nt Excel 2007 or not contain a customized UI
+	* _ribbonXMLData : NULL if workbook isn't Excel 2007 or not contain a customized UI
 	*
 	* @var NULL|string
 	*/
 	private $_ribbonXMLData = null;
 
 	/**
-	* _ribbonBinObjects : NULL if workbook is'nt Excel 2007 or not contain embedded objects (picture(s)) for Ribbon Elements
+	* _ribbonBinObjects : NULL if workbook isn't Excel 2007 or not contain embedded objects (picture(s)) for Ribbon Elements
 	* ignored if $_ribbonXMLData is null
 	*
 	* @var NULL|array
@@ -270,7 +270,7 @@ class PHPExcel {
 	}
 
 	/**
-	* return the extension of a filename. Internal use for a array_map callback (php<5.3 don't like lambda function)
+	* return the extension of a filename. Internal use for a array_map callback (php < 5.3 don't like lambda function)
 	*
 	*/
 	private function _getExtensionOnly($ThePath) {
@@ -499,9 +499,7 @@ class PHPExcel {
 	*/
 	public function addSheet(PHPExcel_Worksheet $pSheet, $iSheetIndex = null) {
 		if ($this->sheetNameExists($pSheet->getTitle())) {
-			throw new PHPExcel_Exception(
-				"Workbook already contains a worksheet named '{$pSheet->getTitle()}'. Rename this worksheet first."
-			);
+			throw new PHPExcel_Exception("Workbook already contains a worksheet named '{$pSheet->getTitle()}'. Rename this worksheet first.");
 		}
 
 		if ($iSheetIndex === null) {
@@ -541,9 +539,7 @@ class PHPExcel {
 		$numSheets = count($this->_workSheetCollection);
 
 		if ($pIndex > $numSheets - 1) {
-			throw new PHPExcel_Exception(
-				"You tried to remove a sheet by the out of bounds index: {$pIndex}. The actual number of sheets is {$numSheets}."
-			);
+			throw new PHPExcel_Exception("You tried to remove a sheet by the out of bounds index: {$pIndex}. The actual number of sheets is {$numSheets}.");
 		} else {
 			array_splice($this->_workSheetCollection, $pIndex, 1);
 		}
@@ -565,9 +561,7 @@ class PHPExcel {
 		if (!isset($this->_workSheetCollection[$pIndex])) {
 			$numSheets = $this->getSheetCount();
 
-			throw new PHPExcel_Exception(
-				"Your requested sheet index: {$pIndex} is out of bounds. The actual number of sheets is {$numSheets}."
-			);
+			throw new PHPExcel_Exception("Your requested sheet index: {$pIndex} is out of bounds. The actual number of sheets is {$numSheets}.");
 		}
 
 		return $this->_workSheetCollection[$pIndex];
@@ -673,9 +667,7 @@ class PHPExcel {
 		$numSheets = count($this->_workSheetCollection);
 
 		if ($pIndex > $numSheets - 1) {
-			throw new PHPExcel_Exception(
-				"You tried to set a sheet active by the out of bounds index: {$pIndex}. The actual number of sheets is {$numSheets}."
-			);
+			throw new PHPExcel_Exception("You tried to set a sheet active by the out of bounds index: {$pIndex}. The actual number of sheets is {$numSheets}.");
 		} else {
 			$this->_activeSheetIndex = $pIndex;
 		}

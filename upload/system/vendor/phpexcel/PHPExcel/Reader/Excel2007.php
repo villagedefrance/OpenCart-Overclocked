@@ -22,7 +22,7 @@
  * @package    PHPExcel_Reader
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    v1.8.1, released: 01-05-2015
+ * @version    v1.11.0, released: 01-05-2018
  * @edition     Overclocked Edition
  */
 
@@ -105,6 +105,7 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 					}
 				}
 			}
+
 			$zip->close();
 		}
 
@@ -135,9 +136,9 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 
 		foreach ($rels->Relationship as $rel) {
 			switch ($rel["Type"]) {
-			case "http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument":
+				case "http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument":
 				$xmlWorkbook = simplexml_load_string(
-				    $this->securityScan($this->_getFromZipArchive($zip, "{$rel['Target']}"), 'SimpleXMLElement', PHPExcel_Settings::getLibXmlLoaderOptions())
+					$this->securityScan($this->_getFromZipArchive($zip, "{$rel['Target']}"), 'SimpleXMLElement', PHPExcel_Settings::getLibXmlLoaderOptions())
 				);
 
 				if ($xmlWorkbook->sheets) {
@@ -303,6 +304,7 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 
 		// Apache POI fixes
 		$contents = $archive->getFromName($fileName);
+
 		if ($contents === false) {
 			$contents = $archive->getFromName(substr($fileName, 1));
 		}
@@ -413,10 +415,14 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 
 					if (is_object($xmlCore)) {
 						$docProps = $excel->getProperties();
-						if (isset($xmlCore->Company))
+
+						if (isset($xmlCore->Company)) {
 							$docProps->setCompany((string) $xmlCore->Company);
-						if (isset($xmlCore->Manager))
+						}
+
+						if (isset($xmlCore->Manager)) {
 							$docProps->setManager((string) $xmlCore->Manager);
+						}
 					}
 				break;
 
@@ -564,6 +570,7 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 
 							if ($numFmts && $xf["numFmtId"]) {
 								$tmpNumFmt = self::array_item($numFmts->xpath("sml:numFmt[@numFmtId=$xf[numFmtId]]"));
+
 								if (isset($tmpNumFmt["formatCode"])) {
 									$numFmt = (string) $tmpNumFmt["formatCode"];
 								} elseif ((int)$xf["numFmtId"] < 165) {
@@ -776,18 +783,23 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 										if ($col["style"] && !$this->_readDataOnly) {
 											$docSheet->getColumnDimension(PHPExcel_Cell::stringFromColumnIndex($i))->setXfIndex(intval($col["style"]));
 										}
+
 										if (self::boolean($col["bestFit"])) {
 											$docSheet->getColumnDimension(PHPExcel_Cell::stringFromColumnIndex($i))->setAutoSize(true);
 										}
+
 										if (self::boolean($col["hidden"])) {
 											$docSheet->getColumnDimension(PHPExcel_Cell::stringFromColumnIndex($i))->setVisible(false);
 										}
+
 										if (self::boolean($col["collapsed"])) {
 											$docSheet->getColumnDimension(PHPExcel_Cell::stringFromColumnIndex($i))->setCollapsed(true);
 										}
+
 										if ($col["outlineLevel"] > 0) {
 											$docSheet->getColumnDimension(PHPExcel_Cell::stringFromColumnIndex($i))->setOutlineLevel(intval($col["outlineLevel"]));
 										}
+
 										$docSheet->getColumnDimension(PHPExcel_Cell::stringFromColumnIndex($i))->setWidth(floatval($col["width"]));
 
 										if (intval($col["max"]) == 16384) {
@@ -1127,18 +1139,23 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 								if (isset($xmlSheet->pageSetup["orientation"])) {
 									$docPageSetup->setOrientation((string) $xmlSheet->pageSetup["orientation"]);
 								}
+
 								if (isset($xmlSheet->pageSetup["paperSize"])) {
 									$docPageSetup->setPaperSize(intval($xmlSheet->pageSetup["paperSize"]));
 								}
+
 								if (isset($xmlSheet->pageSetup["scale"])) {
 									$docPageSetup->setScale(intval($xmlSheet->pageSetup["scale"]), false);
 								}
+
 								if (isset($xmlSheet->pageSetup["fitToHeight"]) && intval($xmlSheet->pageSetup["fitToHeight"]) >= 0) {
 									$docPageSetup->setFitToHeight(intval($xmlSheet->pageSetup["fitToHeight"]), false);
 								}
+
 								if (isset($xmlSheet->pageSetup["fitToWidth"]) && intval($xmlSheet->pageSetup["fitToWidth"]) >= 0) {
 									$docPageSetup->setFitToWidth(intval($xmlSheet->pageSetup["fitToWidth"]), false);
 								}
+
 								if (isset($xmlSheet->pageSetup["firstPageNumber"]) && isset($xmlSheet->pageSetup["useFirstPageNumber"]) && self::boolean((string) $xmlSheet->pageSetup["useFirstPageNumber"])) {
 									$docPageSetup->setFirstPageNumber(intval($xmlSheet->pageSetup["firstPageNumber"]));
 								}
@@ -1152,16 +1169,19 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 								} else {
 									$docHeaderFooter->setDifferentOddEven(false);
 								}
+
 								if (isset($xmlSheet->headerFooter["differentFirst"]) && self::boolean((string)$xmlSheet->headerFooter["differentFirst"])) {
 									$docHeaderFooter->setDifferentFirst(true);
 								} else {
 									$docHeaderFooter->setDifferentFirst(false);
 								}
+
 								if (isset($xmlSheet->headerFooter["scaleWithDoc"]) && !self::boolean((string)$xmlSheet->headerFooter["scaleWithDoc"])) {
 									$docHeaderFooter->setScaleWithDocument(false);
 								} else {
 									$docHeaderFooter->setScaleWithDocument(true);
 								}
+
 								if (isset($xmlSheet->headerFooter["alignWithMargins"]) && !self::boolean((string)$xmlSheet->headerFooter["alignWithMargins"])) {
 									$docHeaderFooter->setAlignWithMargins(false);
 								} else {
@@ -1279,10 +1299,11 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 									$relsWorksheet = simplexml_load_string($this->securityScan($this->_getFromZipArchive($zip,  dirname("$dir/$fileWorksheet") . "/_rels/" . basename($fileWorksheet) . ".rels")), 'SimpleXMLElement', PHPExcel_Settings::getLibXmlLoaderOptions()); //~ http://schemas.openxmlformats.org/package/2006/relationships");
 
 									foreach ($relsWorksheet->Relationship as $ele) {
-									    if ($ele["Type"] == "http://schemas.openxmlformats.org/officeDocument/2006/relationships/comments") {
+										if ($ele["Type"] == "http://schemas.openxmlformats.org/officeDocument/2006/relationships/comments") {
 											$comments[(string)$ele["Id"]] = (string)$ele["Target"];
 										}
-									    if ($ele["Type"] == "http://schemas.openxmlformats.org/officeDocument/2006/relationships/vmlDrawing") {
+
+										if ($ele["Type"] == "http://schemas.openxmlformats.org/officeDocument/2006/relationships/vmlDrawing") {
 											$vmlComments[(string)$ele["Id"]] = (string)$ele["Target"];
 										}
 									}
@@ -1364,15 +1385,19 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 													if ($stylePair[0] == 'margin-left') {
 														$comment->setMarginLeft($stylePair[1]);
 													}
+
 													if ($stylePair[0] == 'margin-top') {
 														$comment->setMarginTop($stylePair[1]);
 													}
+
 													if ($stylePair[0] == 'width') {
 														$comment->setWidth($stylePair[1]);
 													}
+
 													if ($stylePair[0] == 'height') {
 														$comment->setHeight($stylePair[1]);
 													}
+
 													if ($stylePair[0] == 'visibility') {
 														$comment->setVisible($stylePair[1] == 'visible');
 													}
@@ -1546,6 +1571,7 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 														$objDrawing->setHeight(PHPExcel_Shared_Drawing::EMUToPixels(self::array_item($xfrm->ext->attributes(), "cy")));
 														$objDrawing->setRotation(PHPExcel_Shared_Drawing::angleToDegrees(self::array_item($xfrm->attributes(), "rot")));
 													}
+
 													if ($outerShdw) {
 														$shadow = $objDrawing->getShadow();
 														$shadow->setVisible(true);
@@ -1556,7 +1582,9 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 														$shadow->getColor()->setRGB(self::array_item($outerShdw->srgbClr->attributes(), "val"));
 														$shadow->setAlpha(self::array_item($outerShdw->srgbClr->alpha->attributes(), "val") / 1000);
 													}
+
 													$objDrawing->setWorksheet($docSheet);
+
 												} elseif (($this->_includeCharts) && ($twoCellAnchor->graphicFrame)) {
 													$fromCoordinate = PHPExcel_Cell::stringFromColumnIndex((string) $twoCellAnchor->from->col) . ($twoCellAnchor->from->row + 1);
 													$fromOffsetX = PHPExcel_Shared_Drawing::EMUToPixels($twoCellAnchor->from->colOff);
@@ -1694,24 +1722,25 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 										case '_xlnm.Print_Area':
 									break;
 
-										default:
-											if ($mapSheetId[(integer) $definedName['localSheetId']] !== null) {
-												$range = explode('!', (string)$definedName);
+									default:
+										if ($mapSheetId[(integer) $definedName['localSheetId']] !== null) {
+											$range = explode('!', (string)$definedName);
 
-												if (count($range) == 2) {
-													$range[0] = str_replace("''", "'", $range[0]);
-													$range[0] = str_replace("'", "", $range[0]);
+											if (count($range) == 2) {
+												$range[0] = str_replace("''", "'", $range[0]);
+												$range[0] = str_replace("'", "", $range[0]);
 
-													if ($worksheet = $docSheet->getParent()->getSheetByName($range[0])) {
-														$extractedRange = str_replace('$', '', $range[1]);
-														$scope = $docSheet->getParent()->getSheet($mapSheetId[(integer) $definedName['localSheetId']]);
+												if ($worksheet = $docSheet->getParent()->getSheetByName($range[0])) {
+													$extractedRange = str_replace('$', '', $range[1]);
+													$scope = $docSheet->getParent()->getSheet($mapSheetId[(integer) $definedName['localSheetId']]);
 
-														$excel->addNamedRange(new PHPExcel_NamedRange((string)$definedName['name'], $worksheet, $extractedRange, true, $scope));
-													}
+													$excel->addNamedRange(new PHPExcel_NamedRange((string)$definedName['name'], $worksheet, $extractedRange, true, $scope));
 												}
 											}
-											break;
+										}
+										break;
 									}
+
 								} elseif (!isset($definedName['localSheetId'])) {
 									// "Global" definedNames
 									$locatedSheet = null;
@@ -1749,6 +1778,7 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 							if ($excel->getSheetCount() == 0) {
 								$excel->createSheet();
 							}
+
 							$excel->setActiveSheetIndex(0);
 						}
 					}
@@ -1775,10 +1805,12 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 								$excel->getSheetByName($charts[$chartEntryRef]['sheet'])->addChart($objChart);
 
 								$objChart->setWorksheet($excel->getSheetByName($charts[$chartEntryRef]['sheet']));
+
 								$objChart->setTopLeftPosition( $chartDetails[$chartPositionRef]['fromCoordinate'],
 									$chartDetails[$chartPositionRef]['fromOffsetX'],
 									$chartDetails[$chartPositionRef]['fromOffsetY']
 								);
+
 								$objChart->setBottomRightPosition( $chartDetails[$chartPositionRef]['toCoordinate'],
 									$chartDetails[$chartPositionRef]['toOffsetX'],
 									$chartDetails[$chartPositionRef]['toOffsetY']
@@ -1832,9 +1864,11 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 			if (isset($style->font->b)) {
 				$docStyle->getFont()->setBold(!isset($style->font->b["val"]) || self::boolean((string) $style->font->b["val"]));
 			}
+
 			if (isset($style->font->i)) {
 				$docStyle->getFont()->setItalic(!isset($style->font->i["val"]) || self::boolean((string) $style->font->i["val"]));
 			}
+
 			if (isset($style->font->strike)) {
 				$docStyle->getFont()->setStrikethrough(!isset($style->font->strike["val"]) || self::boolean((string) $style->font->strike["val"]));
 			}
@@ -1853,6 +1887,7 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 				if ($vertAlign == 'superscript') {
 					$docStyle->getFont()->setSuperScript(true);
 				}
+
 				if ($vertAlign == 'subscript') {
 					$docStyle->getFont()->setSubScript(true);
 				}
@@ -2008,6 +2043,7 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 							if ($vertAlign == 'superscript') {
 								$objText->getFont()->setSuperScript(true);
 							}
+
 							if ($vertAlign == 'subscript') {
 								$objText->getFont()->setSubScript(true);
 							}
@@ -2068,6 +2104,7 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 			} else {
 				$excel->setRibbonBinObjects(null);
 			}
+
 		} else {
 			$excel->setRibbonXMLData(null);
 			$excel->setRibbonBinObjects(null);
@@ -2095,14 +2132,17 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 			if (strpos($item[1], 'px') !== false) {
 				$item[1] = str_replace('px', '', $item[1]);
 			}
+
 			if (strpos($item[1], 'pt') !== false) {
 				$item[1] = str_replace('pt', '', $item[1]);
 				$item[1] = PHPExcel_Shared_Font::fontSizeToPixels($item[1]);
 			}
+
 			if (strpos($item[1], 'in') !== false) {
 				$item[1] = str_replace('in', '', $item[1]);
 				$item[1] = PHPExcel_Shared_Font::inchSizeToPixels($item[1]);
 			}
+
 			if (strpos($item[1], 'cm') !== false) {
 				$item[1] = str_replace('cm', '', $item[1]);
 				$item[1] = PHPExcel_Shared_Font::centimeterSizeToPixels($item[1]);
