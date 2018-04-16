@@ -360,24 +360,6 @@ class ModelToolExportImport extends Model {
 		return $layout_ids;
 	}
 
-	// Find all field ids
-	protected function getFieldIds() {
-		$language_id = $this->getDefaultLanguageId();
-
-		$field_ids = array();
-
-		$result = $this->db->query("SELECT field_id, `title` FROM `" . DB_PREFIX . "field_description` WHERE language_id = '" . (int)$language_id . "' ORDER BY field_id ASC");
-
-		foreach ($result->rows as $row) {
-			$field_id = $row['field_id'];
-			$title = $row['title'];
-
-			$field_ids[$title] = $field_id;
-		}
-
-		return $field_ids;
-	}
-
 	// Find all customer group ids
 	protected function getCustomerGroupIds() {
 		$language_id = $this->getDefaultLanguageId();
@@ -458,6 +440,21 @@ class ModelToolExportImport extends Model {
 		}
 
 		return $category_ids;
+	}
+
+	// Find available field ids
+	protected function getAvailableFieldIds() {
+		$language_id = $this->getDefaultLanguageId();
+
+		$field_ids = array();
+
+		$result = $this->db->query("SELECT field_id, `title` FROM `" . DB_PREFIX . "field_description` WHERE language_id = '" . (int)$language_id . "'");
+
+		foreach ($result->rows as $row) {
+			$field_ids[$row['title']] = (int)$row['field_id'];
+		}
+
+		return $field_ids;
 	}
 
 	// Find available palette ids
@@ -2813,6 +2810,150 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
+	// Product field
+	protected function getFieldIds() {
+		$language_id = $this->getDefaultLanguageId();
+
+		$field_ids = array();
+
+		$sql = "SELECT f.field_id, fd.* FROM `" . DB_PREFIX . "field_description` fd";
+		$sql .= " LEFT JOIN `" . DB_PREFIX . "field` f ON (f.field_id = fd.field_id)";
+		$sql .= " WHERE fd.language_id = '" . (int)$language_id . "'";
+		$sql .= " ORDER BY f.field_id ASC";
+
+		$query = $this->db->query($sql);
+
+		foreach ($result->rows as $row) {
+			$field_id = $row['field_id'];
+			$title = $row['title'];
+
+			$field_ids[$field_id][$title] = $field_id;
+		}
+
+		return $field_ids;
+	}
+
+	protected function storeProductFieldIntoDatabase(&$product_field, $languages) {
+		$product_id = $product_field['product_id'];
+		$field_id = $product_field['field_id'];
+		$texts = $product_field['texts'];
+
+		foreach ($languages as $language) {
+			$language_code = $language['code'];
+			$language_id = $language['language_id'];
+
+			$text = isset($texts[$language_code]) ? $this->db->escape($texts[$language_code]) : '';
+
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "product_field` (`product_id`,`field_id`,`language_id`,`text`) VALUES ( $product_id, $field_id, $language_id, '$text');");
+		}
+	}
+
+	protected function deleteProductFields() {
+		$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "product_field`");
+	}
+
+	protected function deleteProductField(&$product_id) {
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "product_field` WHERE product_id = '" . (int)$product_id . "'");
+	}
+
+	protected function deleteUnlistedProductFields(&$unlisted_product_ids) {
+		foreach ($unlisted_product_ids as $product_id) {
+			$this->db->query("DELETE FROM `" . DB_PREFIX . "product_field` WHERE product_id = '" . (int)$product_id . "'");
+		}
+	}
+
+	// Function for reading additional cells in class extensions
+	protected function moreProductFieldCells($i, $j, $worksheet, &$product_field) {
+		return;
+	}
+
+	protected function uploadProductFields($reader, $incremental, &$available_product_ids) {
+		// Get worksheet, if not there return immediately
+		$data = $reader->getSheetByName('ProductFields');
+
+		if ($data == null) {
+			return;
+		}
+
+		// If incremental then find current product IDs else delete all old product attributes
+		if ($incremental) {
+			$unlisted_product_ids = $available_product_ids;
+		} else {
+			$this->deleteProductFields();
+		}
+
+		$field_ids = $this->getFieldIds();
+
+		// Load the worksheet cells and store them to the database
+		$languages = $this->getLanguages();
+
+		$previous_product_id = 0;
+		$first_row = array();
+
+		$i = 0;
+		$k = $data->getHighestRow();
+
+		for ($i = 0; $i < $k; $i += 1) {
+			if ($i == 0) {
+				$max_col = PHPExcel_Cell::columnIndexFromString($data->getHighestColumn());
+
+				for ($j = 1; $j <= $max_col; $j += 1) {
+					$first_row[] = $this->getCell($data, $i, $j);
+				}
+
+				continue;
+			}
+
+			$j = 1;
+
+			$product_id = trim($this->getCell($data, $i, $j++));
+
+			if ($product_id == '') {
+				continue;
+			}
+
+			$field_title = $this->getCell($data, $i, $j++);
+			$field_id = isset($field_ids[$field_id][$field_title]) ? $field_ids[$field_id][$field_title] : '';
+
+			if ($field_id == '') {
+				continue;
+			}
+
+			$texts = array();
+
+			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "text(")) {
+				$language_code = substr($first_row[$j-1], strlen("text("), strlen($first_row[$j-1])-strlen("text(")-1);
+				$text = $this->getCell($data, $i, $j++);
+				$text = htmlspecialchars($text);
+				$texts[$language_code] = $text;
+			}
+
+			$product_field = array();
+
+			$product_field['product_id'] = $product_id;
+			$product_field['field_id'] = $field_id;
+			$product_field['texts'] = $texts;
+
+			if (($incremental) && ($product_id != $previous_product_id)) {
+				$this->deleteProductField($product_id);
+
+				if (isset($unlisted_product_ids[$product_id])) {
+					unset($unlisted_product_ids[$product_id]);
+				}
+			}
+
+			$this->moreProductFieldCells($i, $j, $data, $product_field);
+
+			$this->storeProductFieldIntoDatabase($product_field, $languages);
+
+			$previous_product_id = $product_id;
+		}
+
+		if ($incremental) {
+			$this->deleteUnlistedProductFields($unlisted_product_ids);
+		}
+	}
+
 	// Product Attribute
 	protected function getAttributeGroupIds() {
 		$language_id = $this->getDefaultLanguageId();
@@ -2824,6 +2965,7 @@ class ModelToolExportImport extends Model {
 		foreach ($query->rows as $row) {
 			$attribute_group_id = $row['attribute_group_id'];
 			$name = $row['name'];
+
 			$attribute_group_ids[$name] = $attribute_group_id;
 		}
 
@@ -2976,7 +3118,7 @@ class ModelToolExportImport extends Model {
 			$product_attribute['texts'] = $texts;
 
 			if (($incremental) && ($product_id != $previous_product_id)) {
-				$this->deleteProductAttribute( $product_id );
+				$this->deleteProductAttribute($product_id);
 
 				if (isset($unlisted_product_ids[$product_id])) {
 					unset($unlisted_product_ids[$product_id]);
@@ -3393,6 +3535,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
+	// Attribute Groups
 	protected function storeAttributeGroupIntoDatabase(&$attribute_group, $languages) {
 		$attribute_group_id = $attribute_group['attribute_group_id'];
 		$sort_order = $attribute_group['sort_order'];
@@ -3493,6 +3636,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
+	// Attributes
 	protected function storeAttributeIntoDatabase(&$attribute, $languages) {
 		$attribute_id = $attribute['attribute_id'];
 		$attribute_group_id = $attribute['attribute_group_id'];
@@ -3504,6 +3648,7 @@ class ModelToolExportImport extends Model {
 		foreach ($languages as $language) {
 			$language_code = $language['code'];
 			$language_id = $language['language_id'];
+
 			$name = isset($names[$language_code]) ? $this->db->escape($names[$language_code]) : '';
 
 			$this->db->query("INSERT INTO `" . DB_PREFIX . "attribute_description` (`attribute_id`,`language_id`,`name`) VALUES ( $attribute_id, $language_id, '$name');");
@@ -3600,6 +3745,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
+	// Filter Groups
 	protected function storeFilterGroupIntoDatabase(&$filter_group, $languages) {
 		$filter_group_id = $filter_group['filter_group_id'];
 		$sort_order = $filter_group['sort_order'];
@@ -3610,6 +3756,7 @@ class ModelToolExportImport extends Model {
 		foreach ($languages as $language) {
 			$language_code = $language['code'];
 			$language_id = $language['language_id'];
+
 			$name = isset($names[$language_code]) ? $this->db->escape($names[$language_code]) : '';
 
 			$this->db->query("INSERT INTO `" . DB_PREFIX . "filter_group_description` (`filter_group_id`,`language_id`,`name`) VALUES ( $filter_group_id, $language_id, '$name');");
@@ -3699,6 +3846,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
+	// Filters
 	protected function storeFilterIntoDatabase(&$filter, $languages) {
 		$filter_id = $filter['filter_id'];
 		$filter_group_id = $filter['filter_group_id'];
@@ -3806,6 +3954,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
+	// Fields
 	protected function storeFieldIntoDatabase(&$field, $languages) {
 		$field_id = $field['field_id'];
 		$sort_order = $field['sort_order'];
@@ -4195,6 +4344,23 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
+	protected function validateProductFields(&$reader) {
+		$data = $reader->getSheetByName('ProductFields');
+
+		if ($data == null) {
+			return true;
+		}
+
+		if (!$this->existField()) {
+			throw new Exception($this->language->get('error_field_not_supported'));
+		}
+
+		$expected_heading = array("product_id", "field_id", "text");
+		$expected_multilingual = array("text");
+
+		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
+	}
+
 	protected function validateProductAttributes(&$reader) {
 		$data = $reader->getSheetByName('ProductAttributes');
 
@@ -4259,7 +4425,6 @@ class ModelToolExportImport extends Model {
 		}
 
 		$expected_heading = array("option_id", "type", "sort_order", "name");
-
 		$expected_multilingual = array("name");
 
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
@@ -4530,7 +4695,7 @@ class ModelToolExportImport extends Model {
 		}
 
 		// Make sure product_ids are numeric entries and are also mentioned in worksheet 'Products'
-		$worksheets = array('AdditionalImages', 'Specials', 'Discounts', 'Rewards', 'ProductOptions', 'ProductOptionValues', 'ProductAttributes');
+		$worksheets = array('AdditionalImages', 'Specials', 'Discounts', 'Rewards', 'ProductOptions', 'ProductOptionValues', 'ProductFields', 'ProductAttributes');
 
 		foreach ($worksheets as $worksheet) {
 			$data = $reader->getSheetByName($worksheet);
@@ -4568,8 +4733,8 @@ class ModelToolExportImport extends Model {
 					continue;
 				}
 
-				if (!in_array( $product_id, $product_ids )) {
-					if (!in_array( $product_id, $unlisted_product_ids )) {
+				if (!in_array($product_id, $product_ids)) {
+					if (!in_array($product_id, $unlisted_product_ids)) {
 						$unlisted_product_ids[] = $product_id;
 
 						$msg = str_replace('%2', $product_id, str_replace('%1', $worksheet, $this->language->get('error_unlisted_product_id')));
@@ -5739,10 +5904,10 @@ class ModelToolExportImport extends Model {
 		}
 
 		// Only existing fields can be used in the 'Fields' worksheets
-		$worksheet_names = array('Fields');
+		$worksheet_names = array('ProductFields');
 
 		foreach ($worksheet_names as $worksheet_name) {
-			$data = $reader->getSheetByName('Fields');
+			$data = $reader->getSheetByName('ProductFields');
 
 			if ($data == null) {
 				return $ok;
@@ -5808,6 +5973,7 @@ class ModelToolExportImport extends Model {
 			'Rewards',
 			'ProductOptions',
 			'ProductOptionValues',
+			'ProductFields',
 			'ProductAttributes',
 			'ProductFilters',
 			'Options',
@@ -5902,6 +6068,11 @@ class ModelToolExportImport extends Model {
 			$ok = false;
 		}
 
+		if (!$this->validateProductFields($reader)) {
+			$this->log->write($this->language->get('error_product_fields_header'));
+			$ok = false;
+		}
+
 		if (!$this->validateProductAttributes($reader)) {
 			$this->log->write($this->language->get('error_product_attributes_header'));
 			$ok = false;
@@ -5961,6 +6132,7 @@ class ModelToolExportImport extends Model {
 		$exist_specials = false;
 		$exist_discounts = false;
 		$exist_rewards = false;
+		$exist_product_fields = false;
 		$exist_product_attributes = false;
 		$exist_product_filters = false;
 		$exist_options = false;
@@ -6077,6 +6249,17 @@ class ModelToolExportImport extends Model {
 				}
 
 				$exist_rewards = true;
+				continue;
+			}
+
+			if ($name == 'ProductFields') {
+				if (!$exist_products) {
+					// Missing Products worksheet, or Products worksheet not listed before ProductFields
+					$this->log->write($this->language->get('error_product_fields'));
+					$ok = false;
+				}
+
+				$exist_product_fields = true;
 				continue;
 			}
 
@@ -6334,6 +6517,7 @@ class ModelToolExportImport extends Model {
 			$this->uploadRewards($reader, $incremental, $available_product_ids);
 			$this->uploadProductOptions($reader, $incremental, $available_product_ids);
 			$this->uploadProductOptionValues($reader, $incremental, $available_product_ids);
+			$this->uploadProductFields($reader, $incremental, $available_product_ids);
 			$this->uploadProductAttributes($reader, $incremental, $available_product_ids);
 			$this->uploadProductFilters($reader, $incremental, $available_product_ids);
 			$this->uploadOptions($reader, $incremental);
@@ -8066,6 +8250,136 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
+	protected function getFieldTitles($language_id) {
+		$sql = "SELECT field_id, `title` FROM `" . DB_PREFIX . "field_description`";
+		$sql .= " WHERE language_id = '" . (int)$language_id . "'";
+		$sql .= " ORDER BY field_id ASC";
+
+		$query = $this->db->query($sql);
+
+		$field_titles = array();
+
+		foreach ($query->rows as $row) {
+			$field_id = $row['field_id'];
+			$field_title = $row['title'];
+
+			$field_titles[$field_id] = $field_title;
+		}
+
+		return $field_titles;
+	}
+
+	protected function getProductFields($languages, $min_id, $max_id) {
+		$sql = "SELECT pf.product_id, pf.field_id, pf.language_id, pf.text FROM `" . DB_PREFIX . "product_field` pf";
+		$sql .= " INNER JOIN `" . DB_PREFIX . "field` f ON (f.field_id = pf.field_id)";
+		if ($this->posted_categories) {
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc ON (pc.product_id = pf.product_id)";
+		}
+		if (isset($min_id) && isset($max_id)) {
+			$sql .= " WHERE pf.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+			if ($this->posted_categories) {
+				$sql .= " AND pc.category_id IN " . $this->posted_categories;
+			}
+		} else if ($this->posted_categories) {
+			$sql .= " WHERE pc.category_id IN " . $this->posted_categories;
+		}
+		$sql .= " ORDER BY pf.product_id, pf.field_id";
+
+		$query = $this->db->query($sql);
+
+		$texts = array();
+
+		foreach ($query->rows as $row) {
+			$product_id = $row['product_id'];
+			$field_id = $row['field_id'];
+			$language_id = $row['language_id'];
+			$text = $row['text'];
+
+			$texts[$product_id][$field_id][$language_id] = $text;
+		}
+
+		$product_fields = array();
+
+		foreach ($texts as $product_id => $level1) {
+			foreach ($level1 as $field_id => $text) {
+				$product_field = array();
+
+				$product_field['product_id'] = $product_id;
+				$product_field['field_id'] = $field_id;
+
+				$product_field['text'] = array();
+
+				foreach ($languages as $language) {
+					$language_id = $language['language_id'];
+					$code = $language['code'];
+
+					if (isset($text[$language_id])) {
+						$product_field['text'][$code] = $text[$language_id];
+					} else {
+						$product_field['text'][$code] = '';
+					}
+				}
+
+				$product_fields[] = $product_field;
+			}
+		}
+
+		return $product_fields;
+	}
+
+	protected function populateProductFieldsWorksheet($worksheet, $languages, $default_language_id, $box_format, $text_format, $min_id = null, $max_id = null) {
+		// Set the column widths
+		$j = 0;
+
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('product_id')+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('field_id')+1);
+		foreach ($languages as $language) {
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('text')+4, 30)+1);
+		}
+
+		// The heading row and column styles
+		$styles = array();
+		$data = array();
+
+		$i = 1;
+		$j = 0;
+
+		$data[$j++] = 'product_id';
+		$data[$j++] = 'field_id';
+
+		foreach ($languages as $language) {
+			$styles[$j] = &$text_format;
+			$data[$j++] = 'text(' . $language['code'] . ')';
+		}
+
+		$worksheet->getRowDimension($i)->setRowHeight(30);
+
+		$this->setCellRow($worksheet, $i, $data, $box_format);
+
+		// The actual product attributes data
+		$i += 1;
+		$j = 0;
+
+		$product_fields = $this->getProductFields($languages, $min_id, $max_id);
+
+		foreach ($product_fields as $row) {
+			$worksheet->getRowDimension($i)->setRowHeight(13);
+
+			$data = array();
+
+			$data[$j++] = $row['product_id'];
+			$data[$j++] = $row['field_id'];
+			foreach ($languages as $language) {
+				$data[$j++] = html_entity_decode($row['text'][$language['code']], ENT_QUOTES, 'UTF-8');
+			}
+
+			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
+
+			$i += 1;
+			$j = 0;
+		}
+	}
+
 	protected function getAttributeGroupNames($language_id) {
 		$sql = "SELECT attribute_group_id, `name` FROM `" . DB_PREFIX . "attribute_group_description`";
 		$sql .= " WHERE language_id = '" . (int)$language_id . "'";
@@ -9401,6 +9715,16 @@ class ModelToolExportImport extends Model {
 					$worksheet->setTitle('ProductOptionValues');
 					$this->populateProductOptionValuesWorksheet($worksheet, $box_format, $price_format, $weight_format, $text_format, $min_id, $max_id);
 					$worksheet->freezePaneByColumnAndRow(1, 2);
+
+					// Creating the ProductFields worksheet
+					if ($this->existField()) {
+						$workbook->createSheet();
+						$workbook->setActiveSheetIndex($worksheet_index++);
+						$worksheet = $workbook->getActiveSheet();
+						$worksheet->setTitle('ProductFields');
+						$this->populateProductFieldsWorksheet($worksheet, $languages, $default_language_id, $box_format, $text_format, $min_id, $max_id);
+						$worksheet->freezePaneByColumnAndRow(1, 2);
+					}
 
 					// Creating the ProductAttributes worksheet
 					$workbook->createSheet();
