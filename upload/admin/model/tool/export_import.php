@@ -393,6 +393,21 @@ class ModelToolExportImport extends Model {
 		return $product_ids;
 	}
 
+	// Find all product tax local rate ids
+	protected function getExistingProductTaxLocalRateIds() {
+		$product_ids = array(0);
+
+		$result = $this->db->query("SELECT * FROM `" . DB_PREFIX . "product_tax_local_rate`;");
+
+		foreach ($result->rows as $row) {
+			if (!in_array((int)$row['product_id'], $product_ids)) {
+				$product_ids[] = (int)$row['product_id'];
+			}
+		}
+
+		return $product_ids;
+	}
+
 	// Find all available store ids
 	protected function getAvailableStoreIds() {
 		$store_ids = array(0);
@@ -1524,6 +1539,21 @@ class ModelToolExportImport extends Model {
 			$this->db->query($video_code_sql);
 		}
 
+		if ($product['tax_local_rate_id']) {
+			$product_id = $product['product_id'];
+			$tax_local_rate_id = $product['tax_local_rate_id'];
+
+			$product_ids = $this->getExistingProductTaxLocalRateIds();
+
+			if (!in_array((int)$product_id, $product_ids)) {
+				$tax_local_rate_sql = "INSERT INTO `" . DB_PREFIX . "product_tax_local_rate` (`product_id`,`tax_local_rate_id`) VALUES ( $product_id, '$tax_local_rate_id');";
+			} else {
+				$tax_local_rate_sql = "UPDATE `" . DB_PREFIX . "product_tax_local_rate` SET tax_local_rate_id = '" . (int)$tax_local_rate_id . "' WHERE product_id = '" . (int)$product_id . "'";
+			}
+
+			$this->db->query($tax_local_rate_sql);
+		}
+
 		if ($keyword) {
 			if (isset($url_alias_ids[$product_id])) {
 				$url_alias_id = $url_alias_ids[$product_id];
@@ -1601,6 +1631,7 @@ class ModelToolExportImport extends Model {
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "product_related`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "product_to_layout`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "product_to_location`;\n";
+		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "product_tax_local_rate`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "product_tag`;\n";
 
 		$sql .= "DELETE FROM `" . DB_PREFIX . "url_alias` WHERE `query` LIKE 'product_id=%';\n";
@@ -1635,6 +1666,7 @@ class ModelToolExportImport extends Model {
 		$sql .= "DELETE FROM `" . DB_PREFIX . "product_related` WHERE product_id = '" . (int)$product_id . "';\n";
 		$sql .= "DELETE FROM `" . DB_PREFIX . "product_to_layout` WHERE product_id = '" . (int)$product_id . "';\n";
 		$sql .= "DELETE FROM `" . DB_PREFIX . "product_to_location` WHERE product_id = '" . (int)$product_id . "';\n";
+		$sql .= "DELETE FROM `" . DB_PREFIX . "product_tax_local_rate` WHERE product_id = '" . (int)$product_id . "';\n";
 		$sql .= "DELETE FROM `" . DB_PREFIX . "product_tag` WHERE product_id = '" . (int)$product_id . "';\n";
 
 		$sql .= "DELETE FROM `" . DB_PREFIX . "url_alias` WHERE `query` LIKE 'product_id=" . (int)$product_id . "';\n";
@@ -1762,6 +1794,7 @@ class ModelToolExportImport extends Model {
 			$measurement_unit = $this->getCell($data, $i, $j++, $default_measurement_unit);
 			$status = $this->getCell($data, $i, $j++, 'true');
 			$tax_class_id = $this->getCell($data, $i, $j++, '0');
+			$tax_local_rate_id = $this->getCell($data, $i, $j++, '0');
 			$keyword = $this->getCell($data, $i, $j++);
 
 			$descriptions = array();
@@ -1837,6 +1870,7 @@ class ModelToolExportImport extends Model {
 			$product['weight_unit'] = $weight_unit;
 			$product['status'] = $status;
 			$product['tax_class_id'] = $tax_class_id;
+			$product['tax_local_rate_id'] = $tax_local_rate_id;
 			$product['viewed'] = isset($view_counts[$product_id]) ? $view_counts[$product_id] : 0;
 			$product['descriptions'] = $descriptions;
 			$product['stock_status_id'] = $stock_status_id;
@@ -3143,7 +3177,7 @@ class ModelToolExportImport extends Model {
 
 		$filter_group_ids = array();
 
-		$query = $this->db->query("SELECT filter_group_id, name FROM `" . DB_PREFIX . "filter_group_description` WHERE language_id = '" . (int)$language_id . "'");
+		$query = $this->db->query("SELECT filter_group_id, `name` FROM `" . DB_PREFIX . "filter_group_description` WHERE language_id = '" . (int)$language_id . "'");
 
 		foreach ($query->rows as $row) {
 			$filter_group_id = $row['filter_group_id'];
@@ -3159,7 +3193,7 @@ class ModelToolExportImport extends Model {
 
 		$filter_ids = array();
 
-		$sql = "SELECT f.filter_group_id, fd.filter_id, fd.name FROM `" . DB_PREFIX . "filter_description` fd";
+		$sql = "SELECT f.filter_group_id, fd.filter_id, fd.`name` FROM `" . DB_PREFIX . "filter_description` fd";
 		$sql .= " INNER JOIN `" . DB_PREFIX . "filter` f ON (f.filter_id = fd.filter_id)";
 		$sql .= " WHERE fd.language_id = '" . (int)$language_id . "'";
 
@@ -3871,7 +3905,7 @@ class ModelToolExportImport extends Model {
 
 	protected function deleteFilter($filter_id) {
 		$this->db->query("DELETE FROM `" . DB_PREFIX . "filter` WHERE filter_id = '" . (int)$filter_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "filter_description WHERE filter_id = '" . (int)$filter_id . "'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "filter_description` WHERE filter_id = '" . (int)$filter_id . "'");
 	}
 
 	// Function for reading additional cells in class extensions
@@ -3983,7 +4017,7 @@ class ModelToolExportImport extends Model {
 
 	protected function deleteField($field_id) {
 		$this->db->query("DELETE FROM `" . DB_PREFIX . "field` WHERE field_id = '" . (int)$field_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "field_description WHERE field_id = '" . (int)$field_id . "'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "field_description` WHERE field_id = '" . (int)$field_id . "'");
 	}
 
 	// Function for reading additional cells in class extensions
@@ -4236,8 +4270,8 @@ class ModelToolExportImport extends Model {
 		$expected_heading = array("product_id", "name", "categories", "sku", "upc", "ean", "jan", "isbn", "mpn");
 
 		$expected_heading = array_merge($expected_heading, array("location", "quantity", "model", "manufacturer_name", "image_name", "label_name", "video_code", "shipping", "price", "cost", "quote", "age_minimum", "points"));
-		$expected_heading = array_merge($expected_heading, array("date_added", "date_modified", "date_available", "palette_id", "weight", "weight_unit", "length", "width", "height", "length_unit", "status", "tax_class_id", "seo_keyword"));
-		$expected_heading = array_merge($expected_heading, array("description", "meta_description", "meta_keywords", "stock_status_id", "store_ids", "layout", "related_ids", "tags", "sort_order", "subtract", "minimum"));
+		$expected_heading = array_merge($expected_heading, array("date_added", "date_modified", "date_available", "palette_id", "weight", "weight_unit", "length", "width", "height", "length_unit", "status", "tax_class_id", "tax_local_rate_id"));
+		$expected_heading = array_merge($expected_heading, array("seo_keyword", "description", "meta_description", "meta_keywords", "stock_status_id", "store_ids", "layout", "related_ids", "tags", "sort_order", "subtract", "minimum"));
 
 		$expected_multilingual = array("name", "description", "meta_description", "meta_keywords", "tags");
 
@@ -7381,6 +7415,7 @@ class ModelToolExportImport extends Model {
 		$sql .= " p.height,";
 		$sql .= " p.status,";
 		$sql .= " p.tax_class_id,";
+		$sql .= " ptlr.tax_local_rate_id,";
 		$sql .= " p.sort_order,";
 		$sql .= " ua.keyword,";
 		$sql .= " p.stock_status_id,";
@@ -7398,6 +7433,7 @@ class ModelToolExportImport extends Model {
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "manufacturer_description` md ON (md.manufacturer_id = p.manufacturer_id) AND md.language_id = '" . (int)$default_language_id . "'";
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "weight_class_description` wc ON (wc.weight_class_id = p.weight_class_id) AND wc.language_id = '" . (int)$default_language_id . "'";
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "length_class_description` mc ON (mc.length_class_id = p.length_class_id) AND mc.language_id = '" . (int)$default_language_id . "'";
+		$sql .= " LEFT JOIN `" . DB_PREFIX . "product_tax_local_rate` ptlr ON (ptlr.product_id = p.product_id)";
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "product_related` pr ON (pr.product_id = p.product_id)";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " WHERE p.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
@@ -7498,6 +7534,7 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('length_unit'), 3)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('status'), 5)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('tax_class_id'), 3)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('tax_local_rate_id'), 3)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('seo_keyword'), 16)+1);
 		foreach ($languages as $language) {
 			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('description')+4, 48)+1);
@@ -7584,6 +7621,7 @@ class ModelToolExportImport extends Model {
 		$data[$j++] = 'length_unit';
 		$data[$j++] = 'status';
 		$data[$j++] = 'tax_class_id';
+		$data[$j++] = 'tax_local_rate_id';
 		$styles[$j] = &$text_format;
 		$data[$j++] = 'seo_keyword';
 		foreach ($languages as $language) {
@@ -7676,6 +7714,7 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['length_unit'];
 			$data[$j++] = ($row['status'] == 0) ? 'false' : 'true';
 			$data[$j++] = $row['tax_class_id'];
+			$data[$j++] = $row['tax_local_rate_id'];
 			$data[$j++] = ($row['keyword']) ? $row['keyword'] : '';
 			foreach ($languages as $language) {
 				$data[$j++] = (isset($keep_tags)) ? html_entity_decode($row['description'][$language['code']], ENT_QUOTES, 'UTF-8') : $this->removeEntities($row['description'][$language['code']]);
