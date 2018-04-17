@@ -1437,7 +1437,6 @@ class ModelToolExportImport extends Model {
 		$status = $product['status'];
 		$status = ((strtoupper($status) == "TRUE") || (strtoupper($status) == "YES") || (strtoupper($status) == "ENABLED")) ? 1 : 0;
 		$tax_class_id = $product['tax_class_id'];
-		$viewed = $product['viewed'];
 		$descriptions = $product['descriptions'];
 		$stock_status_id = $product['stock_status_id'];
 		$meta_descriptions = $product['meta_descriptions'];
@@ -1463,6 +1462,7 @@ class ModelToolExportImport extends Model {
 		$meta_keywords = $product['meta_keywords'];
 		$tags = $product['tags'];
 		$sort_order = $product['sort_order'];
+		$viewed = $product['viewed'];
 
 		if ($manufacturer_name) {
 			$this->storeManufacturerIntoDatabase($manufacturers, $manufacturer_name, $store_ids, $available_store_ids);
@@ -1475,14 +1475,14 @@ class ModelToolExportImport extends Model {
 		// Generate and execute SQL for inserting the product
 		$sql = "INSERT INTO `" . DB_PREFIX . "product` (`product_id`,`quantity`,`sku`,`upc`,`ean`,`jan`,`isbn`,`mpn`,";
 		$sql .= "`location`,`stock_status_id`,`model`,`manufacturer_id`,`image`,`label`,`shipping`,`price`,`cost`,`quote`,`age_minimum`,`points`,`date_added`,`date_modified`,`date_available`,`palette_id`,`weight`,`weight_class_id`,`status`,";
-		$sql .= "`tax_class_id`,`viewed`,`length`,`width`,`height`,`length_class_id`,`sort_order`,`subtract`,`minimum`) VALUES";
+		$sql .= "`tax_class_id`,`length`,`width`,`height`,`length_class_id`,`sort_order`,`subtract`,`minimum`,`viewed`) VALUES";
 		$sql .= " ( $product_id, $quantity, '$sku', '$upc', '$ean', '$jan', '$isbn', '$mpn',";
 		$sql .= " '$location', $stock_status_id, '$model', $manufacturer_id, '$image', '$label', $shipping, $price, $cost, '$quote', $age_minimum, $points,";
 		$sql .= ($date_added == 'NOW()') ? " '$date_added'," : " '$date_added',";
 		$sql .= ($date_modified == 'NOW()') ? " '$date_modified'," : " '$date_modified',";
 		$sql .= ($date_available == 'NOW()') ? " '$date_available'," : " '$date_available',";
 		$sql .= " $palette_id, $weight, $weight_class_id, $status,";
-		$sql .= " $tax_class_id, $viewed, $length, $width, $height, '$length_class_id', '$sort_order', '$subtract', '$minimum');";
+		$sql .= " $tax_class_id, $length, $width, $height, '$length_class_id', '$sort_order', '$subtract', '$minimum', $viewed);";
 
 		$this->db->query($sql);
 
@@ -4271,7 +4271,7 @@ class ModelToolExportImport extends Model {
 
 		$expected_heading = array_merge($expected_heading, array("location", "quantity", "model", "manufacturer_name", "image_name", "label_name", "video_code", "shipping", "price", "cost", "quote", "age_minimum", "points"));
 		$expected_heading = array_merge($expected_heading, array("date_added", "date_modified", "date_available", "palette_id", "weight", "weight_unit", "length", "width", "height", "length_unit", "status", "tax_class_id", "tax_local_rate_id"));
-		$expected_heading = array_merge($expected_heading, array("seo_keyword", "description", "meta_description", "meta_keywords", "stock_status_id", "store_ids", "layout", "related_ids", "tags", "sort_order", "subtract", "minimum"));
+		$expected_heading = array_merge($expected_heading, array("seo_keyword", "description", "meta_description", "meta_keywords", "stock_status_id", "store_ids", "layout", "related_ids", "tags", "sort_order", "subtract", "minimum", "viewed"));
 
 		$expected_multilingual = array("name", "description", "meta_description", "meta_keywords", "tags");
 
@@ -7384,8 +7384,9 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	public function getProducts($languages, $default_language_id, $offset = null, $rows = null, $min_id = null, $max_id = null) {
-		$sql = "SELECT p.product_id, GROUP_CONCAT(DISTINCT CAST(pc.category_id AS CHAR(11)) SEPARATOR \",\") AS categories,";
+	public function getProducts(&$languages, $default_language_id, $offset = null, $rows = null, $min_id = null, $max_id = null) {
+		$sql = "SELECT p.product_id,";
+		$sql .= " GROUP_CONCAT(DISTINCT CAST(pc.category_id AS CHAR(11)) SEPARATOR \",\") AS categories,";
 		$sql .= " p.sku,";
 		$sql .= " p.upc,";
 		$sql .= " p.ean,";
@@ -7413,23 +7414,23 @@ class ModelToolExportImport extends Model {
 		$sql .= " p.length,";
 		$sql .= " p.width,";
 		$sql .= " p.height,";
+		$sql .= " mc.unit AS length_unit,";
 		$sql .= " p.status,";
 		$sql .= " p.tax_class_id,";
 		$sql .= " ptlr.tax_local_rate_id,";
-		$sql .= " p.sort_order,";
 		$sql .= " ua.keyword,";
 		$sql .= " p.stock_status_id,";
-		$sql .= " mc.unit AS length_unit,";
+		$sql .= " p.sort_order,";
 		$sql .= " p.subtract,";
 		$sql .= " p.minimum,";
-		$sql .= " GROUP_CONCAT(DISTINCT CAST(pr.related_id AS CHAR(11)) SEPARATOR \",\" ) AS related";
+		$sql .= " p.viewed,";
+		$sql .= " GROUP_CONCAT(DISTINCT CAST(pr.related_id AS CHAR(11)) SEPARATOR \",\") AS related";
 		$sql .= " FROM `" . DB_PREFIX . "product` p";
-		$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc ON (p.product_id = pc.product_id)";
+		$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc ON (pc.product_id = p.product_id)";
 		if ($this->posted_categories) {
-			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc2 ON (p.product_id = pc2.product_id)";
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc2 ON (pc2.product_id = p.product_id)";
 		}
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "url_alias` ua ON (ua.query = CONCAT('product_id=',p.product_id))";
-		$sql .= " LEFT JOIN `" . DB_PREFIX . "manufacturer` m ON (m.manufacturer_id = p.manufacturer_id)";
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "manufacturer_description` md ON (md.manufacturer_id = p.manufacturer_id) AND md.language_id = '" . (int)$default_language_id . "'";
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "weight_class_description` wc ON (wc.weight_class_id = p.weight_class_id) AND wc.language_id = '" . (int)$default_language_id . "'";
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "length_class_description` mc ON (mc.length_class_id = p.length_class_id) AND mc.language_id = '" . (int)$default_language_id . "'";
@@ -7494,7 +7495,7 @@ class ModelToolExportImport extends Model {
 		return $results->rows;
 	}
 
-	protected function populateProductsWorksheet($worksheet, $languages, $default_language_id, $box_format, $price_format, $weight_format, $text_format, $date_format, $datetime_format, $offset = null, $rows = null, $min_id = null, $max_id = null) {
+	protected function populateProductsWorksheet(&$worksheet, &$languages, $default_language_id, &$box_format, &$price_format, &$weight_format, &$text_format, &$date_format, &$datetime_format, $offset = null, $rows = null, &$min_id = null, &$max_id = null) {
 		// Set the column widths
 		$j = 0;
 
@@ -7555,6 +7556,7 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('sort_order'), 5)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('subtract'), 5)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('minimum'), 5)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('viewed'), 5)+1);
 
 		// The product headings row and column styles
 		$styles = array();
@@ -7648,6 +7650,7 @@ class ModelToolExportImport extends Model {
 		$data[$j++] = 'sort_order';
 		$data[$j++] = 'subtract';
 		$data[$j++] = 'minimum';
+		$data[$j++] = 'viewed';
 
 		$worksheet->getRowDimension($i)->setRowHeight(30);
 
@@ -7747,6 +7750,7 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['sort_order'];
 			$data[$j++] = ($row['subtract'] == 0) ? 'false' : 'true';
 			$data[$j++] = $row['minimum'];
+			$data[$j++] = $row['viewed'];
 
 			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
 
