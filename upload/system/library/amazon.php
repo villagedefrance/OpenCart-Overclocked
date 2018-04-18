@@ -285,7 +285,7 @@ class Amazon {
 		}
 
 		$token = $this->pbkdf2($this->encPass, $this->encSalt, 1000, 32);
-		$crypt = $this->encrypt($argString, $token, true);
+		$crypt = $this->encrypt($argString, $token);
 
 		$defaults = array(
 			CURLOPT_POST => 1,
@@ -318,7 +318,7 @@ class Amazon {
 		}
 
 		$token = $this->pbkdf2($this->encPass, $this->encSalt, 1000, 32);
-		$crypt = $this->encrypt($argString, $token, true);
+		$crypt = $this->encrypt($argString, $token);
 
 		$defaults = array(
 			CURLOPT_POST => 1,
@@ -360,62 +360,12 @@ class Amazon {
 		return $data;
 	}
 
-	private function encrypt($msg, $k, $base64 = false) {
-		if (!$td = mcrypt_module_open('rijndael-256', '', 'ctr', '')) {
-			return false;
-		}
-
-		$iv = mcrypt_create_iv(32, MCRYPT_RAND);
-
-		if (mcrypt_generic_init($td, $k, $iv) !== 0) {
-			return false;
-		}
-
-		$msg = mcrypt_generic($td, $msg);
-		$msg = $iv . $msg;
-		$mac = $this->pbkdf2($msg, $k, 1000, 32);
-		$msg .= $mac;
-
-		mcrypt_generic_deinit($td);
-		mcrypt_module_close($td);
-
-		if ($base64) {
-			$msg = base64_encode($msg);
-		}
-
-		return $msg;
+	private function encrypt($msg, $key) {
+		return strtr(base64_encode(openssl_encrypt($value, 'AES-128-CBC', hash('sha256', $key, true))), '+/=', '-_,');
 	}
 
-	private function decrypt($msg, $k, $base64 = false) {
-		if ($base64) {
-			$msg = base64_decode($msg);
-		}
-
-		if (!$td = mcrypt_module_open('rijndael-256', '', 'ctr', '')) {
-			return false;
-		}
-
-		$iv = substr($msg, 0, 32);
-		$mo = strlen($msg) - 32;
-		$em = substr($msg, $mo);
-		$msg = substr($msg, 32, strlen($msg) - 64);
-		$mac = $this->pbkdf2($iv . $msg, $k, 1000, 32);
-
-		if ($em !== $mac) {
-			return false;
-		}
-
-		if (mcrypt_generic_init($td, $k, $iv) !== 0) {
-			return false;
-		}
-
-		$msg = mdecrypt_generic($td, $msg);
-		$msg = unserialize($msg);
-
-		mcrypt_generic_deinit($td);
-		mcrypt_module_close($td);
-
-		return $msg;
+	private function decrypt($msg, $key) {
+		return trim(openssl_decrypt(base64_decode(strtr($value, '-_,', '+/=')), 'AES-128-CBC', hash('sha256', $key, true)));
 	}
 
 	private function pbkdf2($p, $s, $c, $kl, $a = 'sha256') {
