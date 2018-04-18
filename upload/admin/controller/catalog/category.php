@@ -640,7 +640,7 @@ class ControllerCatalogCategory extends Controller {
 		} elseif (!empty($category_info)) {
 			$this->data['column'] = $category_info['column'];
 		} else {
-			$this->data['column'] = 1;
+			$this->data['column'] = 0;
 		}
 
 		if (isset($this->request->post['sort_order'])) {

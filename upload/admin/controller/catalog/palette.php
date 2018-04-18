@@ -228,10 +228,12 @@ class ControllerCatalogPalette extends Controller {
 				'href' => $this->url->link('catalog/palette/update', 'token=' . $this->session->data['token'] . '&palette_id=' . $result['palette_id'] . $url, 'SSL')
 			);
 
+			$colors_total = $this->model_catalog_palette->getTotalColorsByPaletteId($result['palette_id']);
+
 			$this->data['palettes'][] = array(
 				'palette_id' => $result['palette_id'],
 				'name'       => $result['name'],
-				'colors'     => $this->model_catalog_palette->getTotalColorsByPaletteId($result['palette_id']),
+				'colors'     => $colors_total,
 				'selected'   => isset($this->request->post['selected']) && in_array($result['palette_id'], $this->request->post['selected']),
 				'action'     => $action
 			);
@@ -275,7 +277,7 @@ class ControllerCatalogPalette extends Controller {
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 		}
 
-		if ($order == 'ASC') {
+		if ($order == 'DESC') {
 			$url .= '&order=DESC';
 		} else {
 			$url .= '&order=ASC';
@@ -339,6 +341,8 @@ class ControllerCatalogPalette extends Controller {
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 		$this->data['button_add_color'] = $this->language->get('button_add_color');
 		$this->data['button_remove'] = $this->language->get('button_remove');
+
+		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -408,15 +412,13 @@ class ControllerCatalogPalette extends Controller {
 			$palette_name = $this->model_catalog_palette->getPaletteName($this->request->get['palette_id']);
 		}
 
-		$this->data['token'] = $this->session->data['token'];
-
 		$this->load->model('localisation/language');
 
 		$this->data['languages'] = $this->model_localisation_language->getLanguages();
 
 		if (isset($this->request->post['name'])) {
 			$this->data['name'] = $this->request->post['name'];
-		} elseif (!empty($palette_name)) {
+		} elseif (isset($palette_name)) {
 			$this->data['name'] = html_entity_decode($palette_name, ENT_QUOTES, 'UTF-8');
 		} else {
 			$this->data['name'] = '';

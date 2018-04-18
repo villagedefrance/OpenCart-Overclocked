@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="content">
-    <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
+      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
       <table class="form">
         <tr>
           <td><span class="required">*</span> <?php echo $entry_name; ?></td>
@@ -81,7 +81,7 @@
         </tr>
       </tfoot>
       </table>
-    </form>
+      </form>
     </div>
   </div>
 </div>
@@ -101,11 +101,11 @@ function addColor() {
 	html += '    <td class="left">';
 	html += '      #<input type="text" name="palette_color[' + color_row + '][color]" value="" size="7" maxlength="6" /><span class="color" style="background-color:#F8F8F8;">?</span>';
 	html += '    </td>';
-	html += '    <td class="left"><select name="palette_color[' + color_row + '][skin]">
+	html += '    <td class="left"><select name="palette_color[' + color_row + '][skin]">';
 	<?php foreach ($skins as $skin) { ?>
-	html += '      <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
+	html += '      <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>';
 	<?php } ?>
-	html += '    </select></td>
+	html += '    </select></td>';
 	html += '    <td class="center"><a onclick="$(\'#color-row' + color_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
