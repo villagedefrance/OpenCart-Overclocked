@@ -1948,7 +1948,7 @@ class ModelToolExportImport extends Model {
 	protected function deleteAdditionalImage(&$product_id) {
 		$old_product_image_ids = array();
 
-		$query = $this->db->query("SELECT product_image_id, product_id, image FROM `" . DB_PREFIX . "product_image` WHERE product_id = '" . (int)$product_id . "'");
+		$query = $this->db->query("SELECT product_image_id, product_id, `image` FROM `" . DB_PREFIX . "product_image` WHERE product_id = '" . (int)$product_id . "'");
 
 		foreach ($query->rows as $row) {
 			$product_image_id = $row['product_image_id'];
@@ -2012,6 +2012,7 @@ class ModelToolExportImport extends Model {
 			}
 
 			$image_name = $this->getCell($data, $i, $j++, '');
+			$palette_color_id = $this->getCell($data, $i, $j++);
 			$sort_order = $this->getCell($data, $i, $j++, '0');
 
 			$image = array();
@@ -2473,7 +2474,7 @@ class ModelToolExportImport extends Model {
 
 		foreach ($query->rows as $row) {
 			$option_id = $row['option_id'];
-			$name = htmlspecialchars($row['name'], ENT_QUOTES);
+			$name = htmlspecialchars_decode($row['name']);
 
 			$option_ids[$name] = $option_id;
 		}
@@ -2628,12 +2629,12 @@ class ModelToolExportImport extends Model {
 
 		$option_value_ids = array();
 
-		$query = $this->db->query("SELECT option_id, option_value_id, name FROM `" . DB_PREFIX . "option_value_description` WHERE language_id = '" . (int)$language_id . "'");
+		$query = $this->db->query("SELECT option_id, option_value_id, `name` FROM `" . DB_PREFIX . "option_value_description` WHERE language_id = '" . (int)$language_id . "'");
 
 		foreach ($query->rows as $row) {
 			$option_id = $row['option_id'];
 			$option_value_id = $row['option_value_id'];
-			$name = $row['name'];
+			$name = htmlspecialchars_decode($row['name']);
 
 			$option_value_ids[$option_id][$name] = $option_value_id;
 		}
@@ -2857,7 +2858,7 @@ class ModelToolExportImport extends Model {
 
 		$query = $this->db->query($sql);
 
-		foreach ($result->rows as $row) {
+		foreach ($query->rows as $row) {
 			$field_id = $row['field_id'];
 			$title = $row['title'];
 
@@ -5080,9 +5081,8 @@ class ModelToolExportImport extends Model {
 
 		$sql = "SELECT od.option_id, od.name AS option_name, ovd.option_value_id, ovd.name AS option_value_name";
 		$sql .= " FROM `" . DB_PREFIX . "option_description` od";
-		$sql .= " LEFT JOIN `" . DB_PREFIX . "option_value_description` ovd ON (ovd.option_id = od.option_id)";
-		$sql .= " WHERE ovd.language_id = '" . (int)$language_id . "'";
-		$sql .= " AND od.language_id = '" . (int)$language_id . "'";
+		$sql .= " LEFT JOIN `" . DB_PREFIX . "option_value_description` ovd ON (ovd.option_id = od.option_id) AND ovd.language_id = '" . (int)$language_id . "'";
+		$sql .= " WHERE od.language_id = '" . (int)$language_id . "'";
 
 		$query = $this->db->query($sql);
 
