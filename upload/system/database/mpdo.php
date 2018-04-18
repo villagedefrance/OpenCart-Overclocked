@@ -5,16 +5,8 @@ final class DBmPDO {
 
 	public function __construct($hostname, $username, $password, $database, $port = '3306') {
 		try {
-			$dsn = "mysql:host={$hostname};port={$port};dbname={$database};charset=UTF8";
-
-			$options = array(
-				\PDO::ATTR_PERSISTENT => true,
-				\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
-			);
-
-			$this->connection = new \PDO($dsn, $username, $password, $options);
-
-		} catch (\PDOException $e) {
+			$this->connection = new \PDO("mysql:host=" . $hostname . ";port=" . $port . ";dbname=" . $database, $username, $password, array(\PDO::ATTR_PERSISTENT => true));
+		} catch(\PDOException $e) {
 			throw new \Exception('Failed to connect to database. Reason: \'' . $e->getMessage() . '\'');
 		}
 
@@ -22,8 +14,6 @@ final class DBmPDO {
 		$this->connection->exec("SET CHARACTER SET utf8");
 		$this->connection->exec("SET CHARACTER_SET_CONNECTION=utf8");
 		$this->connection->exec("SET SQL_MODE = ''");
-
-		$this->rowCount = 0;
 	}
 
 	public function prepare($sql) {
@@ -53,7 +43,7 @@ final class DBmPDO {
 				$result->num_rows = $this->statement->rowCount();
 			}
 
-		} catch (\PDOException $e) {
+		} catch(\PDOException $e) {
 			throw new \Exception('Error: ' . $e->getMessage() . ' Error Code : ' . $e->getCode());
 		}
 	}
@@ -67,27 +57,21 @@ final class DBmPDO {
 			if ($this->statement && $this->statement->execute($params)) {
 				$data = array();
 
-				$this->rowCount = $this->statement->rowCount();
-
-				if ($this->rowCount > 0) {
-					try {
-						$data = $this->statement->fetchAll(\PDO::FETCH_ASSOC);
-					} catch (\PDOException $ex) {
-						throw new \Exception('Error: ' . $ex->getMessage() . ' Error Code : ' . $ex->getCode());
-					}
+				while ($row = $this->statement->fetch(\PDO::FETCH_ASSOC)) {
+					$data[] = $row;
 				}
-
-				// free up resources
-				$this->statement->closeCursor();
-				$this->statement = null;
 
 				$result = new \stdClass();
 				$result->row = (isset($data[0]) ? $data[0] : array());
 				$result->rows = $data;
-				$result->num_rows = $this->rowCount;
+				$result->num_rows = $this->statement->rowCount();
+
+				// free up resources
+				$this->statement->closeCursor();
+				$this->statement = null;
 			}
 
-		} catch (\PDOException $e) {
+		} catch(\PDOException $e) {
 			throw new \Exception('Error: ' . $e->getMessage() . ' Error Code : ' . $e->getCode() . ' <br />' . $sql);
 		}
 
@@ -98,7 +82,6 @@ final class DBmPDO {
 			$result->row = array();
 			$result->rows = array();
 			$result->num_rows = 0;
-
 			return $result;
 		}
 	}
@@ -111,7 +94,7 @@ final class DBmPDO {
 		if ($this->statement) {
 			return $this->statement->rowCount();
 		} else {
-			return $this->rowCount;
+			return 0;
 		}
 	}
 
