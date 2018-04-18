@@ -6,7 +6,7 @@ final class DBmPDO {
 	public function __construct($hostname, $username, $password, $database, $port = '3306') {
 		try {
 			$this->connection = new \PDO("mysql:host=" . $hostname . ";port=" . $port . ";dbname=" . $database, $username, $password, array(\PDO::ATTR_PERSISTENT => true));
-		} catch(\PDOException $e) {
+		} catch (\PDOException $e) {
 			throw new \Exception('Failed to connect to database. Reason: \'' . $e->getMessage() . '\'');
 		}
 
@@ -43,7 +43,7 @@ final class DBmPDO {
 				$result->num_rows = $this->statement->rowCount();
 			}
 
-		} catch(\PDOException $e) {
+		} catch (\PDOException $e) {
 			throw new \Exception('Error: ' . $e->getMessage() . ' Error Code : ' . $e->getCode());
 		}
 	}
@@ -71,7 +71,7 @@ final class DBmPDO {
 				$this->statement = null;
 			}
 
-		} catch(\PDOException $e) {
+		} catch (\PDOException $e) {
 			throw new \Exception('Error: ' . $e->getMessage() . ' Error Code : ' . $e->getCode() . ' <br />' . $sql);
 		}
 
@@ -82,6 +82,7 @@ final class DBmPDO {
 			$result->row = array();
 			$result->rows = array();
 			$result->num_rows = 0;
+
 			return $result;
 		}
 	}
