@@ -29,7 +29,7 @@ class ModelCatalogField extends Model {
 	}
 
 	public function editFieldStatus($field_id, $status) {
-        $this->db->query("UPDATE `" . DB_PREFIX . "field` SET status = '" . (int)$status . "'WHERE field_id = '" . (int)$field_id . "'");
+        $this->db->query("UPDATE `" . DB_PREFIX . "field` SET status = '" . (int)$status . "' WHERE field_id = '" . (int)$field_id . "'");
 
 		$this->cache->delete('field');
     }

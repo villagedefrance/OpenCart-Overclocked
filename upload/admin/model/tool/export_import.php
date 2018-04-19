@@ -4240,15 +4240,19 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deletePalettes() {
-		$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "palette`");
-		$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "palette_color`");
-		$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "palette_color_description`");
+		$sql = "TRUNCATE TABLE `" . DB_PREFIX . "palette`;\n";
+		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "palette_color`;\n";
+		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "palette_color_description`;\n";
+
+		$this->multiquery($sql);
 	}
 
 	protected function deletePalette($palette_id) {
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "palette` WHERE palette_id = '" . (int)$palette_id . "'");
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "palette_color` WHERE palette_id = '" . (int)$palette_id . "'");
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "palette_color_description` WHERE palette_id = '" . (int)$palette_id . "'");
+		$sql = "DELETE FROM `" . DB_PREFIX . "palette` WHERE palette_id = '" . (int)$palette_id . "';\n";
+		$sql .= "DELETE FROM `" . DB_PREFIX . "palette_color` WHERE palette_id = '" . (int)$palette_id . "';\n";
+		$sql .= "DELETE FROM `" . DB_PREFIX . "palette_color_description` WHERE palette_id = '" . (int)$palette_id . "';\n";
+
+		$this->multiquery($sql);
 	}
 
 	// Function for reading additional cells in class extensions
