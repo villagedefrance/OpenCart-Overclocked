@@ -141,6 +141,9 @@ class ControllerToolExportImport extends Controller {
 						break;
 					}
 					break;
+				case 't':
+					$this->model_tool_export_import->download('t', null, null, null, null);
+					break;
 				default:
 					break;
 			}
@@ -196,6 +199,7 @@ class ControllerToolExportImport extends Controller {
 		$this->data['text_export_type_attribute'] = $this->language->get('text_export_type_attribute');
 		$this->data['text_export_type_filter'] = $this->language->get('text_export_type_filter');
 		$this->data['text_export_type_field'] = $this->language->get('text_export_type_field');
+		$this->data['text_export_type_palette'] = $this->language->get('text_export_type_palette');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
 
@@ -341,7 +345,7 @@ class ControllerToolExportImport extends Controller {
 		if (isset($this->request->post['export_type'])) {
 			$this->data['export_type'] = $this->request->post['export_type'];
 		} else {
-			$this->data['export_type'] = 'p';
+			$this->data['export_type'] = 'm';
 		}
 
 		if (isset($this->request->post['range_type'])) {

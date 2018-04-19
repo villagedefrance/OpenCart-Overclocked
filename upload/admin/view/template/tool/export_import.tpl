@@ -90,6 +90,13 @@
                   <label for="export-e"><span><span></span></span> <?php echo $text_export_type_field; ?></label>
                   <br />
                 <?php } ?>
+                <?php if ($export_type == 't') { ?>
+                  <input type="radio" name="export_type" value="t" id="export-t" class="radio" checked />
+                <?php } else { ?>
+                  <input type="radio" name="export_type" value="t" id="export-t" class="radio" />
+                <?php } ?>
+                <label for="export-t"><span><span></span></span> <?php echo $text_export_type_palette; ?></label>
+                <br />
               </td>
             </tr>
             <tr id="range_type">

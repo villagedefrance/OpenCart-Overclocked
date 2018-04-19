@@ -457,34 +457,6 @@ class ModelToolExportImport extends Model {
 		return $category_ids;
 	}
 
-	// Find available field ids
-	protected function getAvailableFieldIds() {
-		$language_id = $this->getDefaultLanguageId();
-
-		$field_ids = array();
-
-		$result = $this->db->query("SELECT field_id, `title` FROM `" . DB_PREFIX . "field_description` WHERE language_id = '" . (int)$language_id . "'");
-
-		foreach ($result->rows as $row) {
-			$field_ids[$row['title']] = (int)$row['field_id'];
-		}
-
-		return $field_ids;
-	}
-
-	// Find available palette ids
-	protected function getAvailablePaletteIds() {
-		$palette_ids = array();
-
-		$result = $this->db->query("SELECT palette_id FROM `" . DB_PREFIX . "palette`;");
-
-		foreach ($result->rows as $row) {
-			$palette_ids[$row['palette_id']] = (int)$row['palette_id'];
-		}
-
-		return $palette_ids;
-	}
-
 	// Find all available customer ids
 	protected function getAvailableCustomerIds() {
 		$customer_ids = array();
@@ -995,7 +967,7 @@ class ModelToolExportImport extends Model {
 			$sql = "INSERT INTO `" . DB_PREFIX . "category_description` (`category_id`,`language_id`,`name`,`description`,`meta_description`,`meta_keyword`) VALUES";
 			$sql .= " ( $category_id, $language_id, '$name', '$description', '$meta_description', '$meta_keyword');";
 
-			$this->db->query( $sql );
+			$this->db->query($sql);
 		}
 
 		if ($seo_keyword) {
@@ -1456,6 +1428,7 @@ class ModelToolExportImport extends Model {
 		$store_ids = $product['store_ids'];
 		$layout = $product['layout'];
 		$related_ids = $product['related_ids'];
+		$location_ids = $product['location_ids'];
 		$subtract = $product['subtract'];
 		$subtract = ((strtoupper($subtract) == "TRUE") || (strtoupper($subtract) == "YES") || (strtoupper($subtract) == "ENABLED")) ? 1 : 0;
 		$minimum = $product['minimum'];
@@ -1619,6 +1592,24 @@ class ModelToolExportImport extends Model {
 			$related_sql .= ";";
 
 			$this->db->query($related_sql);
+		}
+
+		if (count($location_ids) > 0) {
+			$location_sql = "INSERT INTO `" . DB_PREFIX . "product_to_location` (`product_id`,`location_id`) VALUES";
+
+			$first = true;
+
+			foreach ($location_ids as $location_id) {
+				$location_sql .= ($first) ? "\n" : ",\n";
+
+				$first = false;
+
+				$location_sql .= " ( $product_id, $location_id)";
+			}
+
+			$location_sql .= ";";
+
+			$this->db->query($location_sql);
 		}
 	}
 
@@ -1828,6 +1819,7 @@ class ModelToolExportImport extends Model {
 			$store_ids = $this->getCell($data, $i, $j++);
 			$layout = $this->getCell($data, $i, $j++);
 			$related = $this->getCell($data, $i, $j++);
+			$location = $this->getCell($data, $i, $j++);
 
 			$tags = array();
 
@@ -1895,6 +1887,10 @@ class ModelToolExportImport extends Model {
 			$product['related_ids'] = ($related == "") ? array() : explode(",", $related);
 			if ($product['related_ids'] === false) {
 				$product['related_ids'] = array();
+			}
+			$product['location_ids'] = ($location == "") ? array() : explode(",", $location);
+			if ($product['location_ids'] === false) {
+				$product['location_ids'] = array();
 			}
 			$product['layout'] = ($layout == "") ? array() : explode(",", $layout);
 			if ($product['layout'] === false) {
@@ -2845,6 +2841,114 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
+	// Product palette
+	protected function storeProductColorIntoDatabase(&$product_color) {
+		$product_id = $product_color['product_id'];
+		$product_color_id = $product_color['product_color_id'];
+		$palette_color_id = $product_color['palette_color_id'];
+
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "product_color` (`product_color_id`,`product_id`,`palette_color_id`) VALUES ( $product_color_id, $product_id, $palette_color_id);");
+	}
+
+	protected function deleteProductColors() {
+		$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "product_color`");
+	}
+
+	protected function deleteProductColor(&$product_id) {
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "product_color` WHERE product_id = '" . (int)$product_id . "'");
+	}
+
+	protected function deleteUnlistedProductColors(&$unlisted_product_ids) {
+		foreach ($unlisted_product_ids as $product_id) {
+			$this->db->query("DELETE FROM `" . DB_PREFIX . "product_color` WHERE product_id = '" . (int)$product_id . "'");
+		}
+	}
+
+	// Function for reading additional cells in class extensions
+	protected function moreProductColorCells($i, $j, $worksheet, &$product_color) {
+		return;
+	}
+
+	protected function uploadProductColors($reader, $incremental, &$available_product_ids) {
+		// Get worksheet, if not there return immediately
+		$data = $reader->getSheetByName('ProductColors');
+
+		if ($data == null) {
+			return;
+		}
+
+		// If incremental then find current product IDs else delete all old product attributes
+		if ($incremental) {
+			$unlisted_product_ids = $available_product_ids;
+		} else {
+			$this->deleteProductColors();
+		}
+
+		// Load the worksheet cells and store them to the database
+		$previous_product_id = 0;
+
+		$first_row = array();
+
+		$i = 0;
+		$k = $data->getHighestRow();
+
+		for ($i = 0; $i < $k; $i += 1) {
+			if ($i == 0) {
+				$max_col = PHPExcel_Cell::columnIndexFromString($data->getHighestColumn());
+
+				for ($j = 1; $j <= $max_col; $j += 1) {
+					$first_row[] = $this->getCell($data, $i, $j);
+				}
+
+				continue;
+			}
+
+			$j = 1;
+
+			$product_id = trim($this->getCell($data, $i, $j++));
+
+			if ($product_id == '') {
+				continue;
+			}
+
+			$product_color_id = trim($this->getCell($data, $i, $j++));
+
+			if ($product_color_id == '') {
+				continue;
+			}
+
+			$palette_color_id = trim($this->getCell($data, $i, $j++));
+
+			if ($palette_color_id == '') {
+				continue;
+			}
+
+			$product_color = array();
+
+			$product_color['product_id'] = $product_id;
+			$product_color['product_color_id'] = $product_color_id;
+			$product_color['palette_color_id'] = $palette_color_id;
+
+			if (($incremental) && ($product_id != $previous_product_id)) {
+				$this->deleteProductColor($product_id);
+
+				if (isset($unlisted_product_ids[$product_id])) {
+					unset($unlisted_product_ids[$product_id]);
+				}
+			}
+
+			$this->moreProductColorCells($i, $j, $data, $product_color);
+
+			$this->storeProductColorIntoDatabase($product_color);
+
+			$previous_product_id = $product_id;
+		}
+
+		if ($incremental) {
+			$this->deleteUnlistedProductColors($unlisted_product_ids);
+		}
+	}
+
 	// Product field
 	protected function getFieldIds() {
 		$language_id = $this->getDefaultLanguageId();
@@ -2947,8 +3051,7 @@ class ModelToolExportImport extends Model {
 				continue;
 			}
 
-			$field_title = $this->getCell($data, $i, $j++);
-			$field_id = isset($field_ids[$field_id][$field_title]) ? $field_ids[$field_id][$field_title] : '';
+			$field_id = trim($this->getCell($data, $i, $j++));
 
 			if ($field_id == '') {
 				continue;
@@ -3262,6 +3365,7 @@ class ModelToolExportImport extends Model {
 
 		// Load the worksheet cells and store them to the database
 		$languages = $this->getLanguages();
+
 		$previous_product_id = 0;
 		$first_row = array();
 
@@ -3346,6 +3450,7 @@ class ModelToolExportImport extends Model {
 		foreach ($languages as $language) {
 			$language_code = $language['code'];
 			$language_id = $language['language_id'];
+
 			$name = isset($names[$language_code]) ? $this->db->escape($names[$language_code]) : '';
 
 			$this->db->query("INSERT INTO `" . DB_PREFIX . "option_description` (`option_id`,`language_id`,`name`) VALUES ( $option_id, $language_id, '$name');");
@@ -3893,6 +3998,7 @@ class ModelToolExportImport extends Model {
 		foreach ($languages as $language) {
 			$language_code = $language['code'];
 			$language_id = $language['language_id'];
+
 			$name = isset($names[$language_code]) ? $this->db->escape($names[$language_code]) : '';
 
 			$this->db->query("INSERT INTO `" . DB_PREFIX . "filter_description` (`filter_id`,`language_id`,`filter_group_id`,`name`) VALUES ( $filter_id, $language_id, $filter_group_id, '$name');");
@@ -4106,6 +4212,135 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
+	// Palettes
+	protected function storePaletteIntoDatabase(&$palette) {
+		$palette_id = $palette['palette_id'];
+		$name = $palette['name'];
+
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "palette` (`palette_id`,`name`) VALUES ( $palette_id, '$name');");
+	}
+
+	protected function storePaletteColorIntoDatabase(&$palette_color, $languages) {
+		$palette_color_id = $palette_color['palette_color_id'];
+		$palette_id = $palette_color['palette_id'];
+		$color = $palette_color['color'];
+		$skin = $palette_color['skin'];
+		$titles = $palette_color['titles'];
+
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "palette_color` (`palette_color_id`,`palette_id`,`color`,`skin`) VALUES ( $palette_color_id, $palette_id, '$color', '$skin');");
+
+		foreach ($languages as $language) {
+			$language_code = $language['code'];
+			$language_id = $language['language_id'];
+
+			$title = isset($titles[$language_code]) ? $this->db->escape($titles[$language_code]) : '';
+
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "palette_color_description` (`palette_color_id`,`language_id`,`palette_id`,`title`) VALUES ( $palette_color_id, $language_id, $palette_id, '$title');");
+		}
+	}
+
+	protected function deletePalettes() {
+		$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "palette`");
+		$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "palette_color`");
+		$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "palette_color_description`");
+	}
+
+	protected function deletePalette($palette_id) {
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "palette` WHERE palette_id = '" . (int)$palette_id . "'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "palette_color` WHERE palette_id = '" . (int)$palette_id . "'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "palette_color_description` WHERE palette_id = '" . (int)$palette_id . "'");
+	}
+
+	// Function for reading additional cells in class extensions
+	protected function morePaletteCells($i, $j, $worksheet, &$palette) {
+		return;
+	}
+
+	protected function uploadPalettes($reader, $incremental) {
+		// Get worksheet, if not there return immediately
+		$data = $reader->getSheetByName('Palettes');
+
+		if ($data == null) {
+			return;
+		}
+
+		// Get installed languages
+		$languages = $this->getLanguages();
+
+		// If not incremental, delete old palettes
+		if (!$incremental) {
+			$this->deletePalettes();
+		}
+
+		// Load the worksheet cells and store them to the database
+		$first_row = array();
+
+		$i = 0;
+		$k = $data->getHighestRow();
+
+		for ($i = 0; $i < $k; $i += 1) {
+			if ($i == 0) {
+				$max_col = PHPExcel_Cell::columnIndexFromString($data->getHighestColumn());
+
+				for ($j = 1; $j <= $max_col; $j += 1) {
+					$first_row[] = $this->getCell($data, $i, $j);
+				}
+
+				continue;
+			}
+
+			$j = 1;
+
+			$palette_id = trim($this->getCell($data, $i, $j++));
+
+			if ($palette_id == '') {
+				continue;
+			}
+
+			$name = $this->getCell($data, $i, $j++);
+
+			$palette_color_id = trim($this->getCell($data, $i, $j++));
+
+			if ($palette_color_id == '') {
+				continue;
+			}
+
+			$color = $this->getCell($data, $i, $j++);
+			$skin = $this->getCell($data, $i, $j++);
+
+			$titles = array();
+
+			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "title(")) {
+				$language_code = substr($first_row[$j-1], strlen("title("), strlen($first_row[$j-1])-strlen("title(")-1);
+				$title = $this->getCell($data, $i, $j++);
+				$title = htmlspecialchars($title);
+				$titles[$language_code] = $title;
+			}
+
+			$palette = array();
+
+			$palette['palette_id'] = $palette_id;
+			$palette['name'] = $name;
+
+			$palette_color = array();
+
+			$palette_color['palette_color_id'] = $palette_color_id;
+			$palette_color['palette_id'] = $palette_id;
+			$palette_color['color'] = $color;
+			$palette_color['skin'] = $skin;
+			$palette_color['titles'] = $titles;
+
+			if ($incremental) {
+				$this->deletePalette($palette_id);
+			}
+
+			$this->morePaletteCells($i, $j, $data, $palette);
+
+			$this->storePaletteIntoDatabase($palette);
+			$this->storePaletteColorIntoDatabase($palette_color, $languages);
+		}
+	}
+
 	// PHPExcel
 	protected function getCell($worksheet, $row, $col, $default_val = '') {
 		$col -= 1; // We use 1-based, PHPExcel uses 0-based column index
@@ -4270,9 +4505,9 @@ class ModelToolExportImport extends Model {
 
 		$expected_heading = array("product_id", "name", "categories", "sku", "upc", "ean", "jan", "isbn", "mpn");
 
-		$expected_heading = array_merge($expected_heading, array("location", "quantity", "model", "manufacturer_name", "image_name", "label_name", "video_code", "shipping", "price", "cost", "quote", "age_minimum", "points"));
-		$expected_heading = array_merge($expected_heading, array("date_added", "date_modified", "date_available", "palette_id", "weight", "weight_unit", "length", "width", "height", "length_unit", "status", "tax_class_id", "tax_local_rate_id"));
-		$expected_heading = array_merge($expected_heading, array("seo_keyword", "description", "meta_description", "meta_keywords", "stock_status_id", "store_ids", "layout", "related_ids", "tags", "sort_order", "subtract", "minimum", "viewed"));
+		$expected_heading = array_merge($expected_heading, array("location", "quantity", "model", "manufacturer_name", "image_name", "label_name", "video_code", "shipping", "price", "cost", "quote", "age_minimum", "points", "date_added"));
+		$expected_heading = array_merge($expected_heading, array("date_modified", "date_available", "palette_id", "weight", "weight_unit", "length", "width", "height", "length_unit", "status", "tax_class_id", "tax_local_rate_id", "seo_keyword"));
+		$expected_heading = array_merge($expected_heading, array("description", "meta_description", "meta_keywords", "stock_status_id", "store_ids", "layout", "related_ids", "location_ids", "tags", "sort_order", "subtract", "minimum", "viewed"));
 
 		$expected_multilingual = array("name", "description", "meta_description", "meta_keywords", "tags");
 
@@ -4287,7 +4522,6 @@ class ModelToolExportImport extends Model {
 		}
 
 		$expected_heading = array("product_id", "image", "palette_color_id", "sort_order");
-
 		$expected_multilingual = array();
 
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
@@ -4301,7 +4535,6 @@ class ModelToolExportImport extends Model {
 		}
 
 		$expected_heading = array("product_id", "customer_group", "priority", "price", "date_start", "date_end");
-
 		$expected_multilingual = array();
 
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
@@ -4315,7 +4548,6 @@ class ModelToolExportImport extends Model {
 		}
 
 		$expected_heading = array("product_id", "customer_group", "quantity", "priority", "price", "date_start", "date_end");
-
 		$expected_multilingual = array();
 
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
@@ -4329,7 +4561,6 @@ class ModelToolExportImport extends Model {
 		}
 
 		$expected_heading = array("product_id", "customer_group", "points");
-
 		$expected_multilingual = array();
 
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
@@ -4374,6 +4605,19 @@ class ModelToolExportImport extends Model {
 			}
 		}
 
+		$expected_multilingual = array();
+
+		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
+	}
+
+	protected function validateProductColors(&$reader) {
+		$data = $reader->getSheetByName('ProductColors');
+
+		if ($data == null) {
+			return true;
+		}
+
+		$expected_heading = array("product_id", "product_color_id", "palette_color_id");
 		$expected_multilingual = array();
 
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
@@ -4564,6 +4808,19 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
+	protected function validatePalettes(&$reader) {
+		$data = $reader->getSheetByName('Palettes');
+
+		if ($data == null) {
+			return true;
+		}
+
+		$expected_heading = array("palette_id", "name", "palette_color_id", "color", "skin", "title");
+		$expected_multilingual = array("title");
+
+		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
+	}
+
 	protected function validateCategoryIdColumns(&$reader) {
 		$data = $reader->getSheetByName('Categories');
 
@@ -4730,7 +4987,7 @@ class ModelToolExportImport extends Model {
 		}
 
 		// Make sure product_ids are numeric entries and are also mentioned in worksheet 'Products'
-		$worksheets = array('AdditionalImages', 'Specials', 'Discounts', 'Rewards', 'ProductOptions', 'ProductOptionValues', 'ProductFields', 'ProductAttributes');
+		$worksheets = array('AdditionalImages', 'Specials', 'Discounts', 'Rewards', 'ProductOptions', 'ProductOptionValues', 'ProductColors',  'ProductFields', 'ProductAttributes');
 
 		foreach ($worksheets as $worksheet) {
 			$data = $reader->getSheetByName($worksheet);
@@ -5972,6 +6229,61 @@ class ModelToolExportImport extends Model {
 		return $ok;
 	}
 
+	// Get all existing palettes
+	protected function validatePaletteColumns(&$reader) {
+		$ok = true;
+
+		$language_id = $this->getDefaultLanguageId();
+
+		$sql = "SELECT *, pcd.palette_id AS palette_id FROM `" . DB_PREFIX . "palette` p LEFT JOIN `" . DB_PREFIX . "palette_color` pc ON (p.palette_id = pc.palette_id) LEFT JOIN `" . DB_PREFIX . "palette_color_description` pcd ON (p.palette_id = pcd.palette_id) WHERE pcd.language_id = '" . (int)$language_id . "'";
+
+		$query = $this->db->query($sql);
+
+		$palettes = array();
+
+		foreach ($query->rows as $row) {
+			$palette_color_id = $row['palette_color_id'];
+
+			if (!isset($palettes[$palette_color_id])) {
+				$palettes[$palette_color_id] = array();
+			}
+		}
+
+		// Only existing palettes can be used in the 'Palettes' worksheets
+		$worksheet_names = array('Palettes');
+
+		foreach ($worksheet_names as $worksheet_name) {
+			$data = $reader->getSheetByName('Palettes');
+
+			if ($data == null) {
+				return $ok;
+			}
+
+			$has_missing_palettes = false;
+
+			$i = 0;
+			$k = $data->getHighestRow();
+
+			for ($i = 1; $i < $k; $i += 1) {
+				$palette_color_id = trim($this->getCell($data, $i, 1));
+
+				if ($palette_color_id == "") {
+					if (!$has_missing_palettes) {
+						$msg = str_replace('%1', $worksheet_name, $this->language->get('error_missing_palette_id'));
+						$this->log->write($msg);
+
+						$has_missing_palettes = true;
+					}
+
+					$ok = false;
+					continue;
+				}
+			}
+		}
+
+		return $ok;
+	}
+
 	protected function validateIncrementalOnly(&$reader, $incremental) {
 		// Certain worksheets can only be imported in incremental mode for the time being
 		$ok = true;
@@ -6007,6 +6319,7 @@ class ModelToolExportImport extends Model {
 			'Rewards',
 			'ProductOptions',
 			'ProductOptionValues',
+			'ProductColors',
 			'ProductFields',
 			'ProductAttributes',
 			'ProductFilters',
@@ -6016,7 +6329,8 @@ class ModelToolExportImport extends Model {
 			'Attributes',
 			'FilterGroups',
 			'Filters',
-			'Fields'
+			'Fields',
+			'Palettes'
 		);
 
 		$all_worksheets_ignored = true;
@@ -6102,6 +6416,11 @@ class ModelToolExportImport extends Model {
 			$ok = false;
 		}
 
+		if (!$this->validateProductColors($reader)) {
+			$this->log->write($this->language->get('error_product_colors_header'));
+			$ok = false;
+		}
+
 		if (!$this->validateProductFields($reader)) {
 			$this->log->write($this->language->get('error_product_fields_header'));
 			$ok = false;
@@ -6152,6 +6471,11 @@ class ModelToolExportImport extends Model {
 			$ok = false;
 		}
 
+		if (!$this->validatePalettes($reader)) {
+			$this->log->write($this->language->get('error_palettes_header'));
+			$ok = false;
+		}
+
 		// Certain worksheets rely on the existence of other worksheets
 		$names = $reader->getSheetNames();
 
@@ -6166,6 +6490,7 @@ class ModelToolExportImport extends Model {
 		$exist_specials = false;
 		$exist_discounts = false;
 		$exist_rewards = false;
+		$exist_product_colors = false;
 		$exist_product_fields = false;
 		$exist_product_attributes = false;
 		$exist_product_filters = false;
@@ -6176,6 +6501,7 @@ class ModelToolExportImport extends Model {
 		$exist_filters = false;
 		$exist_filter_groups = false;
 		$exist_fields = false;
+		$exist_palettes = false;
 
 		foreach ($names as $name) {
 			if ($name == 'Customers') {
@@ -6286,6 +6612,17 @@ class ModelToolExportImport extends Model {
 				continue;
 			}
 
+			if ($name == 'ProductColors') {
+				if (!$exist_products) {
+					// Missing Products worksheet, or Products worksheet not listed before ProductColors
+					$this->log->write($this->language->get('error_product_colors'));
+					$ok = false;
+				}
+
+				$exist_product_colors = true;
+				continue;
+			}
+
 			if ($name == 'ProductFields') {
 				if (!$exist_products) {
 					// Missing Products worksheet, or Products worksheet not listed before ProductFields
@@ -6371,6 +6708,11 @@ class ModelToolExportImport extends Model {
 				$exist_fields = true;
 				continue;
 			}
+
+			if ($name == 'Palettes') {
+				$exist_palettes = true;
+				continue;
+			}
 		}
 
 		if ($exist_customers) {
@@ -6451,6 +6793,10 @@ class ModelToolExportImport extends Model {
 			if (!$this->validateFieldColumns($reader)) {
 				$ok = false;
 			}
+		}
+
+		if (!$this->validatePaletteColumns($reader)) {
+			$ok = false;
 		}
 
 		return $ok;
@@ -6551,6 +6897,7 @@ class ModelToolExportImport extends Model {
 			$this->uploadRewards($reader, $incremental, $available_product_ids);
 			$this->uploadProductOptions($reader, $incremental, $available_product_ids);
 			$this->uploadProductOptionValues($reader, $incremental, $available_product_ids);
+			$this->uploadProductColors($reader, $incremental, $available_product_ids);
 			$this->uploadProductFields($reader, $incremental, $available_product_ids);
 			$this->uploadProductAttributes($reader, $incremental, $available_product_ids);
 			$this->uploadProductFilters($reader, $incremental, $available_product_ids);
@@ -6561,6 +6908,7 @@ class ModelToolExportImport extends Model {
 			$this->uploadFilterGroups($reader, $incremental);
 			$this->uploadFilters($reader, $incremental);
 			$this->uploadFields($reader, $incremental);
+			$this->uploadPalettes($reader, $incremental);
 
 			return true;
 
@@ -7424,7 +7772,8 @@ class ModelToolExportImport extends Model {
 		$sql .= " p.subtract,";
 		$sql .= " p.minimum,";
 		$sql .= " p.viewed,";
-		$sql .= " GROUP_CONCAT(DISTINCT CAST(pr.related_id AS CHAR(11)) SEPARATOR \",\") AS related";
+		$sql .= " GROUP_CONCAT(DISTINCT CAST(pr.related_id AS CHAR(11)) SEPARATOR \",\") AS related,";
+		$sql .= " GROUP_CONCAT(DISTINCT CAST(pl.location_id AS CHAR(11)) SEPARATOR \",\") AS location";
 		$sql .= " FROM `" . DB_PREFIX . "product` p";
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc ON (pc.product_id = p.product_id)";
 		if ($this->posted_categories) {
@@ -7436,6 +7785,7 @@ class ModelToolExportImport extends Model {
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "length_class_description` mc ON (mc.length_class_id = p.length_class_id) AND mc.language_id = '" . (int)$default_language_id . "'";
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "product_tax_local_rate` ptlr ON (ptlr.product_id = p.product_id)";
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "product_related` pr ON (pr.product_id = p.product_id)";
+		$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_location` pl ON (pl.product_id = p.product_id)";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " WHERE p.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
 			if ($this->posted_categories) {
@@ -7550,6 +7900,7 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('store_ids'), 5)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('layout'), 16)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('related_ids'), 16)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('location_ids'), 16)+1);
 		foreach ($languages as $language) {
 			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('tags')+4, 24)+1);
 		}
@@ -7643,6 +7994,7 @@ class ModelToolExportImport extends Model {
 		$styles[$j] = &$text_format;
 		$data[$j++] = 'layout';
 		$data[$j++] = 'related_ids';
+		$data[$j++] = 'location_ids';
 		foreach ($languages as $language) {
 			$styles[$j] = &$text_format;
 			$data[$j++] = 'tags(' . $language['code'] . ')';
@@ -7744,6 +8096,7 @@ class ModelToolExportImport extends Model {
 			}
 			$data[$j++] = $layout_list;
 			$data[$j++] = $row['related'];
+			$data[$j++] = $row['location'];
 			foreach ($languages as $language) {
 				$data[$j++] = html_entity_decode($row['tag'][$language['code']], ENT_QUOTES, 'UTF-8');
 			}
@@ -8293,23 +8646,82 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function getFieldTitles($language_id) {
-		$sql = "SELECT field_id, `title` FROM `" . DB_PREFIX . "field_description`";
-		$sql .= " WHERE language_id = '" . (int)$language_id . "'";
-		$sql .= " ORDER BY field_id ASC";
+	protected function getProductColors($min_id, $max_id) {
+		$sql = "SELECT pc1.product_id, pc1.product_color_id, pc1.palette_color_id FROM `" . DB_PREFIX . "product_color` pc1";
+		$sql .= " INNER JOIN `" . DB_PREFIX . "palette_color` pc2 ON (pc2.palette_color_id = pc1.palette_color_id)";
+		if ($this->posted_categories) {
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "product_to_category` pc ON (pc.product_id = pc1.product_id)";
+		}
+		if (isset($min_id) && isset($max_id)) {
+			$sql .= " WHERE pc1.product_id BETWEEN '" . (int)$min_id . "' AND '" . (int)$max_id . "'";
+			if ($this->posted_categories) {
+				$sql .= " AND pc.category_id IN " . $this->posted_categories;
+			}
+		} else if ($this->posted_categories) {
+			$sql .= " WHERE pc.category_id IN " . $this->posted_categories;
+		}
+		$sql .= " ORDER BY pc1.product_id, pc1.palette_color_id";
 
 		$query = $this->db->query($sql);
 
-		$field_titles = array();
+		$product_colors = array();
 
 		foreach ($query->rows as $row) {
-			$field_id = $row['field_id'];
-			$field_title = $row['title'];
+			$product_color = array();
 
-			$field_titles[$field_id] = $field_title;
+			$product_color['product_id'] = $row['product_id'];
+			$product_color['product_color_id'] = $row['product_color_id'];
+			$product_color['palette_color_id'] = $row['palette_color_id'];
+
+			$product_colors[] = $product_color;
 		}
 
-		return $field_titles;
+		return $product_colors;
+	}
+
+	protected function populateProductColorsWorksheet($worksheet, $box_format, $text_format, $min_id = null, $max_id = null) {
+		// Set the column widths
+		$j = 0;
+
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('product_id')+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('product_color_id')+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('palette_color_id')+1);
+
+		// The heading row and column styles
+		$styles = array();
+		$data = array();
+
+		$i = 1;
+		$j = 0;
+
+		$data[$j++] = 'product_id';
+		$data[$j++] = 'product_color_id';
+		$data[$j++] = 'palette_color_id';
+
+		$worksheet->getRowDimension($i)->setRowHeight(30);
+
+		$this->setCellRow($worksheet, $i, $data, $box_format);
+
+		// The actual product colors data
+		$i += 1;
+		$j = 0;
+
+		$product_colors = $this->getProductColors($min_id, $max_id);
+
+		foreach ($product_colors as $row) {
+			$worksheet->getRowDimension($i)->setRowHeight(13);
+
+			$data = array();
+
+			$data[$j++] = $row['product_id'];
+			$data[$j++] = $row['product_color_id'];
+			$data[$j++] = $row['palette_color_id'];
+
+			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
+
+			$i += 1;
+			$j = 0;
+		}
 	}
 
 	protected function getProductFields($languages, $min_id, $max_id) {
@@ -8399,7 +8811,7 @@ class ModelToolExportImport extends Model {
 
 		$this->setCellRow($worksheet, $i, $data, $box_format);
 
-		// The actual product attributes data
+		// The actual product fields data
 		$i += 1;
 		$j = 0;
 
@@ -9366,10 +9778,10 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('sort_order'), 2)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('status'), 2)+1);
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('title')+4, 5)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('title')+4, 10)+1);
 		}
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('description'), 30)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('description')+4, 30)+1);
 		}
 
 		// The fields headings row and column styles
@@ -9410,10 +9822,118 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['sort_order'];
 			$data[$j++] = $row['status'];
 			foreach ($languages as $language) {
+				$styles[$j] = &$text_format;
 				$data[$j++] = html_entity_decode($row['title'][$language['code']], ENT_QUOTES, 'UTF-8');
 			}
 			foreach ($languages as $language) {
+				$styles[$j] = &$text_format;
 				$data[$j++] = html_entity_decode($row['description'][$language['code']], ENT_QUOTES, 'UTF-8');
+			}
+
+			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
+
+			$i += 1;
+			$j = 0;
+		}
+	}
+
+	protected function getPaletteDescriptions($languages) {
+		$palette_descriptions = array();
+
+		foreach ($languages as $language) {
+			$language_id = $language['language_id'];
+			$language_code = $language['code'];
+
+			$sql = "SELECT p.palette_id, pc.palette_color_id, pcd.* FROM `" . DB_PREFIX . "palette` p";
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "palette_color` pc ON (pc.palette_id = p.palette_id)";
+			$sql .= " LEFT JOIN `" . DB_PREFIX . "palette_color_description` pcd ON (pcd.palette_id = p.palette_id) AND pcd.palette_color_id = pc.palette_color_id";
+			$sql .= " WHERE pcd.language_id = '" . (int)$language_id . "'";
+			$sql .= " GROUP BY pc.palette_color_id";
+			$sql .= " ORDER BY p.palette_id, pc.palette_color_id ASC";
+
+			$palette_query = $this->db->query($sql);
+
+			$palette_descriptions[$language_code] = $palette_query->rows;
+		}
+
+		return $palette_descriptions;
+	}
+
+	protected function getPalettes($languages) {
+		$palette_descriptions = $this->getPaletteDescriptions($languages);
+
+		$results = $this->db->query("SELECT * FROM `" . DB_PREFIX . "palette` p LEFT JOIN `" . DB_PREFIX . "palette_color` pc ON (pc.palette_id = p.palette_id) ORDER BY p.palette_id, pc.palette_color_id ASC");
+
+		foreach ($languages as $language) {
+			$language_code = $language['code'];
+
+			foreach ($results->rows as $key => $row) {
+				if (isset($palette_descriptions[$language_code][$key]['title'])) {
+					$results->rows[$key]['title'][$language_code] = $palette_descriptions[$language_code][$key]['title'];
+				} else {
+					$results->rows[$key]['title'][$language_code] = '';
+				}
+			}
+		}
+
+		return $results->rows;
+	}
+
+	protected function populatePalettesWorksheet($worksheet, $languages, $box_format, $text_format) {
+		// Set the column widths
+		$j = 0;
+
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('palette_id'), 2)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 20)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('palette_color_id'), 2)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('color')+4, 12)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('skin')+4, 12)+1);
+		foreach ($languages as $language) {
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('title')+4, 15)+1);
+		}
+
+		// The palettes headings row and column styles
+		$styles = array();
+		$data = array();
+
+		$i = 1;
+		$j = 0;
+
+		$data[$j++] = 'palette_id';
+		$styles[$j] = &$text_format;
+		$data[$j++] = 'name';
+		$data[$j++] = 'palette_color_id';
+		$styles[$j] = &$text_format;
+		$data[$j++] = 'color';
+		$styles[$j] = &$text_format;
+		$data[$j++] = 'skin';
+		foreach ($languages as $language) {
+			$styles[$j] = &$text_format;
+			$data[$j++] = 'title(' . $language['code'] . ')';
+		}
+
+		$worksheet->getRowDimension($i)->setRowHeight(30);
+
+		$this->setCellRow($worksheet, $i, $data, $box_format);
+
+		// The actual palettes values data
+		$i += 1;
+		$j = 0;
+
+		$options = $this->getPalettes($languages);
+
+		foreach ($options as $row) {
+			$worksheet->getRowDimension($i)->setRowHeight(13);
+
+			$data = array();
+
+			$data[$j++] = $row['palette_id'];
+			$data[$j++] = $row['name'];
+			$data[$j++] = $row['palette_color_id'];
+			$data[$j++] = $row['color'];
+			$data[$j++] = $row['skin'];
+			foreach ($languages as $language) {
+				$data[$j++] = html_entity_decode($row['title'][$language['code']], ENT_QUOTES, 'UTF-8');
 			}
 
 			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
@@ -9680,8 +10200,8 @@ class ModelToolExportImport extends Model {
 					$workbook->setActiveSheetIndex($worksheet_index++);
 					$worksheet = $workbook->getActiveSheet();
 					$worksheet->setTitle('Addresses');
-					$this->populateAddressesWorksheet( $worksheet, $box_format, $text_format, $min_id, $max_id );
-					$worksheet->freezePaneByColumnAndRow( 1, 2 );
+					$this->populateAddressesWorksheet($worksheet, $box_format, $text_format, $min_id, $max_id);
+					$worksheet->freezePaneByColumnAndRow(1, 2);
 					break;
 
 				case 'c':
@@ -9757,6 +10277,14 @@ class ModelToolExportImport extends Model {
 					$worksheet = $workbook->getActiveSheet();
 					$worksheet->setTitle('ProductOptionValues');
 					$this->populateProductOptionValuesWorksheet($worksheet, $box_format, $price_format, $weight_format, $text_format, $min_id, $max_id);
+					$worksheet->freezePaneByColumnAndRow(1, 2);
+
+					// Creating the ProductColors worksheet
+					$workbook->createSheet();
+					$workbook->setActiveSheetIndex($worksheet_index++);
+					$worksheet = $workbook->getActiveSheet();
+					$worksheet->setTitle('ProductColors');
+					$this->populateProductColorsWorksheet($worksheet, $box_format, $text_format, $min_id, $max_id);
 					$worksheet->freezePaneByColumnAndRow(1, 2);
 
 					// Creating the ProductFields worksheet
@@ -9859,6 +10387,16 @@ class ModelToolExportImport extends Model {
 					$worksheet->freezePaneByColumnAndRow(1, 2);
 					break;
 
+				case 't':
+					// Creating the Palettes worksheet
+					$workbook->createSheet();
+					$workbook->setActiveSheetIndex($worksheet_index++);
+					$worksheet = $workbook->getActiveSheet();
+					$worksheet->setTitle('Palettes');
+					$this->populatePalettesWorksheet($worksheet, $languages, $box_format, $text_format);
+					$worksheet->freezePaneByColumnAndRow(1, 2);
+					break;
+
 				default:
 					break;
 			}
@@ -9936,6 +10474,9 @@ class ModelToolExportImport extends Model {
 						break;
 					}
 					$filename = 'fields-' . $datetime . '.xlsx';
+					break;
+				case 't':
+					$filename = 'palettes-' . $datetime . '.xlsx';
 					break;
 				default:
 					$filename = $datetime . '.xlsx';
@@ -10046,6 +10587,18 @@ class ModelToolExportImport extends Model {
 		$sql = "SELECT fd.title, COUNT(fd.field_id) AS count FROM " . DB_PREFIX . "field_description fd";
 		$sql .= " INNER JOIN `" . DB_PREFIX . "field` f ON (f.field_id = fd.field_id)";
 		$sql .= " WHERE fd.language_id = '" . (int)$default_language_id . "' GROUP BY fd.title";
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
+
+	public function getPaletteTitleCounts() {
+		$default_language_id = $this->getDefaultLanguageId();
+
+		$sql = "SELECT pcd.title, COUNT(pcd.palette_id) AS count FROM " . DB_PREFIX . "palette_color_description pcd";
+		$sql .= " INNER JOIN `" . DB_PREFIX . "palette` p ON (p.palette_id = pcd.palette_id)";
+		$sql .= " WHERE pcd.language_id = '" . (int)$default_language_id . "' GROUP BY pcd.title";
 
 		$query = $this->db->query($sql);
 
