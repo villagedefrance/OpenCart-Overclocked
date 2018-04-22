@@ -21,6 +21,7 @@ CKEDITOR.editorConfig = function(config) {
 	config.toolbarCanCollapse = true;
 	config.toolbarStartupExpanded = true;
 
+	config.extraPlugins = 'ckawesome';
 	config.extraPlugins = 'simplebutton';
 	config.extraPlugins = 'codemirror';
 	config.codemirror = {

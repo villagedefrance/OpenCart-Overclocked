@@ -81,20 +81,17 @@ CKEDITOR.stylesSet.add('default', [
 
 	/* Object styles */
 
-	{
-		name: 'Styled Image (left)',
+	{ name: 'Styled Image (left)',
 		element: 'img',
 		attributes: { 'class': 'left' }
 	},
 
-	{
-		name: 'Styled Image (right)',
+	{ name: 'Styled Image (right)',
 		element: 'img',
 		attributes: { 'class': 'right' }
 	},
 
-	{
-		name: 'Compact Table',
+	{ name: 'Compact Table',
 		element: 'table',
 		attributes: {
 			cellpadding: '5',
