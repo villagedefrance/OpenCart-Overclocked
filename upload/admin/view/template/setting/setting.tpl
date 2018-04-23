@@ -569,8 +569,6 @@
               <span class="error"><?php echo $error_multiple_checkout; ?></span>
             <?php } ?></td>
           </tr>
-        </table>
-        <table class="form">
           <tr>
             <td><?php echo $entry_express_autofill; ?><span class="help"><?php echo $help_express_autofill; ?></span></td>
             <td><?php if ($config_express_autofill) { ?>

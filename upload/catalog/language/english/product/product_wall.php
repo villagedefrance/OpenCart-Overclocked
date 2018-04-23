@@ -5,6 +5,7 @@ $_['heading_title']     = 'Product Wall';
 // Text
 $_['text_refine']       = 'Refine Search';
 $_['text_empty']        = 'There are no products to display!';
+$_['text_error']        = 'Product not found!';
 $_['text_quantity']     = 'Qty:';
 $_['text_manufacturer'] = 'Brand:';
 $_['text_model']        = 'Product Code:';

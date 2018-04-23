@@ -41,11 +41,6 @@
             <?php } else { ?>
               <a href="<?php echo $sort_sort_order; ?>"><?php echo $column_sort_order; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
-            <td class="left"><?php if ($sort == 'i.bottom') { ?>
-              <a href="<?php echo $sort_bottom; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_bottom; ?></a>
-            <?php } else { ?>
-              <a href="<?php echo $sort_bottom; ?>"><?php echo $column_bottom; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
-            <?php } ?></td>
             <td class="left"><?php if ($sort == 'i.status') { ?>
               <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
             <?php } else { ?>
@@ -67,7 +62,6 @@
               <?php } ?></td>
               <td class="left"><?php echo $information['title']; ?></td>
               <td class="center"><?php echo $information['sort_order']; ?></td>
-              <td class="center"><?php echo $information['bottom']; ?></td>
               <?php if ($information['status'] == 1) { ?>
                 <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
               <?php } else { ?>
@@ -80,7 +74,7 @@
           <?php } ?>
         <?php } else { ?>
           <tr>
-            <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
+            <td class="center" colspan="5"><?php echo $text_no_results; ?></td>
           </tr>
         <?php } ?>
         </tbody>

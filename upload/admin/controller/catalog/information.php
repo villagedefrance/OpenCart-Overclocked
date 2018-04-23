@@ -279,7 +279,6 @@ class ControllerCatalogInformation extends Controller {
 				'information_id' => $result['information_id'],
 				'title'          => $result['title'],
 				'sort_order'     => $result['sort_order'],
-				'bottom'         => ($result['bottom']) ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'status'         => $result['status'],
 				'selected'       => isset($this->request->post['selected']) && in_array($result['information_id'], $this->request->post['selected']),
 				'action'         => $action
@@ -296,7 +295,6 @@ class ControllerCatalogInformation extends Controller {
 
 		$this->data['column_title'] = $this->language->get('column_title');
 		$this->data['column_sort_order'] = $this->language->get('column_sort_order');
-		$this->data['column_bottom'] = $this->language->get('column_bottom');
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 
@@ -333,7 +331,6 @@ class ControllerCatalogInformation extends Controller {
 
 		$this->data['sort_title'] = $this->url->link('catalog/information', 'token=' . $this->session->data['token'] . '&sort=id.title' . $url, 'SSL');
 		$this->data['sort_sort_order'] = $this->url->link('catalog/information', 'token=' . $this->session->data['token'] . '&sort=i.sort_order' . $url, 'SSL');
-		$this->data['sort_bottom'] = $this->url->link('catalog/information', 'token=' . $this->session->data['token'] . '&sort=i.bottom' . $url, 'SSL');
 		$this->data['sort_status'] = $this->url->link('catalog/information', 'token=' . $this->session->data['token'] . '&sort=i.status' . $url, 'SSL');
 
 		$url = '';
