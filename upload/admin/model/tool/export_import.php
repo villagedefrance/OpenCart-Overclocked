@@ -4213,46 +4213,86 @@ class ModelToolExportImport extends Model {
 	}
 
 	// Palettes
-	protected function storePaletteIntoDatabase(&$palette) {
-		$palette_id = $palette['palette_id'];
-		$name = $palette['name'];
+	protected function getPaletteColorIds() {
+		$palette_color_ids = array();
 
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "palette` (`palette_id`,`name`) VALUES ( $palette_id, '$name');");
+		$palette_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "palette_color`;");
+
+		if ($palette_query->rows) {
+			$palette_color_ids = $palette_query->rows;
+		}
+
+		return $palette_color_ids;
 	}
 
-	protected function storePaletteColorIntoDatabase(&$palette_color, $languages) {
-		$palette_color_id = $palette_color['palette_color_id'];
-		$palette_id = $palette_color['palette_id'];
-		$color = $palette_color['color'];
-		$skin = $palette_color['skin'];
-		$titles = $palette_color['titles'];
+	protected function getAvailablePaletteIds() {
+		$palette_ids = array();
 
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "palette_color` (`palette_color_id`,`palette_id`,`color`,`skin`) VALUES ( $palette_color_id, $palette_id, '$color', '$skin');");
+		$palette_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "palette`;");
 
-		foreach ($languages as $language) {
-			$language_code = $language['code'];
-			$language_id = $language['language_id'];
+		if ($palette_query->rows) {
+			$palette_ids = $palette_query->rows;
+		}
 
-			$title = isset($titles[$language_code]) ? $this->db->escape($titles[$language_code]) : '';
+		return $palette_ids;
+	}
 
-			$this->db->query("INSERT INTO `" . DB_PREFIX . "palette_color_description` (`palette_color_id`,`language_id`,`palette_id`,`title`) VALUES ( $palette_color_id, $language_id, $palette_id, '$title');");
+	protected function storePaletteIntoDatabase(&$palette, $languages) {
+		$palette_color_id = $palette['palette_color_id'];
+		$palette_id = $palette['palette_id'];
+		$name = $palette['name'];
+		$color = $palette['color'];
+		$skin = $palette['skin'];
+		$titles = $palette['titles'];
+
+		$palette_color_ids = $this->getPaletteColorIds();
+
+		if (in_array($palette_color_id, $palette_color_ids)) {
+			$this->db->query("UPDATE `" . DB_PREFIX . "palette_color` SET palette_id = '" . (int)$palette_id . "', `color` = '" . $this->db->escape($color) . "', skin = '" . $this->db->escape($skin) . "' WHERE palette_color_id = '" . (int)$palette_color_id . "'");
+
+			foreach ($languages as $language) {
+				$language_code = $language['code'];
+				$language_id = $language['language_id'];
+
+				$title = isset($titles[$language_code]) ? $this->db->escape($titles[$language_code]) : '';
+
+				$this->db->query("UPDATE `" . DB_PREFIX . "palette_color_description` SET language_id = '" . (int)$language_id . "', palette_id = '" . (int)$palette_id . "', `title` = '" . $this->db->escape($title) . "' WHERE palette_color_id = '" . (int)$palette_color_id . "'");
+			}
+
+		} else {
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "palette_color` SET palette_color_id = '" . (int)$palette_color_id . "', palette_id = '" . (int)$palette_id . "', `color` = '" . $this->db->escape($color) . "', skin = '" . $this->db->escape($skin) . "'");
+
+			foreach ($languages as $language) {
+				$language_code = $language['code'];
+				$language_id = $language['language_id'];
+
+				$title = isset($titles[$language_code]) ? $this->db->escape($titles[$language_code]) : '';
+
+				$this->db->query("INSERT INTO `" . DB_PREFIX . "palette_color_description` SET palette_color_id = '" . (int)$palette_color_id . "', language_id = '" . (int)$language_id . "', palette_id = '" . (int)$palette_id . "',  `title` = '" . $title . "'");
+			}
+		}
+
+		$palette_ids = $this->getAvailablePaletteIds();
+
+		if (in_array($palette_id, $palette_ids)) {
+			$this->db->query("UPDATE `" . DB_PREFIX . "palette` SET `name` = '" . $this->db->escape($name) . "' WHERE palette_id = '" . (int)$palette_id . "'");
+		} else {
+			$this->db->query("DELETE FROM `" . DB_PREFIX . "palette` WHERE palette_id = '" . (int)$palette_id . "'");
+
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "palette` (`palette_id`,`name`) VALUES ( $palette_id, '$name');");
 		}
 	}
 
 	protected function deletePalettes() {
-		$sql = "TRUNCATE TABLE `" . DB_PREFIX . "palette`;\n";
-		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "palette_color`;\n";
-		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "palette_color_description`;\n";
-
-		$this->multiquery($sql);
+		$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "palette_color`");
+		$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "palette_color_description`");
+		$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "palette`");
 	}
 
 	protected function deletePalette($palette_id) {
-		$sql = "DELETE FROM `" . DB_PREFIX . "palette` WHERE palette_id = '" . (int)$palette_id . "';\n";
-		$sql .= "DELETE FROM `" . DB_PREFIX . "palette_color` WHERE palette_id = '" . (int)$palette_id . "';\n";
-		$sql .= "DELETE FROM `" . DB_PREFIX . "palette_color_description` WHERE palette_id = '" . (int)$palette_id . "';\n";
-
-		$this->multiquery($sql);
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "palette_color` WHERE palette_id = '" . (int)$palette_id . "'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "palette_color_description` WHERE palette_id = '" . (int)$palette_id . "'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "palette` WHERE palette_id = '" . (int)$palette_id . "'");
 	}
 
 	// Function for reading additional cells in class extensions
@@ -4271,7 +4311,9 @@ class ModelToolExportImport extends Model {
 		// Get installed languages
 		$languages = $this->getLanguages();
 
-		// If not incremental, delete old palettes
+		// Not incremental at this time, delete old palettes
+		$incremental = false;
+
 		if (!$incremental) {
 			$this->deletePalettes();
 		}
@@ -4295,6 +4337,12 @@ class ModelToolExportImport extends Model {
 
 			$j = 1;
 
+			$palette_color_id = trim($this->getCell($data, $i, $j++));
+
+			if ($palette_color_id == '') {
+				continue;
+			}
+
 			$palette_id = trim($this->getCell($data, $i, $j++));
 
 			if ($palette_id == '') {
@@ -4302,13 +4350,6 @@ class ModelToolExportImport extends Model {
 			}
 
 			$name = $this->getCell($data, $i, $j++);
-
-			$palette_color_id = trim($this->getCell($data, $i, $j++));
-
-			if ($palette_color_id == '') {
-				continue;
-			}
-
 			$color = $this->getCell($data, $i, $j++);
 			$skin = $this->getCell($data, $i, $j++);
 
@@ -4323,25 +4364,21 @@ class ModelToolExportImport extends Model {
 
 			$palette = array();
 
+			$palette['palette_color_id'] = $palette_color_id;
 			$palette['palette_id'] = $palette_id;
 			$palette['name'] = $name;
+			$palette['color'] = $color;
+			$palette['skin'] = $skin;
+			$palette['titles'] = $titles;
 
-			$palette_color = array();
-
-			$palette_color['palette_color_id'] = $palette_color_id;
-			$palette_color['palette_id'] = $palette_id;
-			$palette_color['color'] = $color;
-			$palette_color['skin'] = $skin;
-			$palette_color['titles'] = $titles;
-
+			// Not incremental at this time, so this has no effect.
 			if ($incremental) {
 				$this->deletePalette($palette_id);
 			}
 
 			$this->morePaletteCells($i, $j, $data, $palette);
 
-			$this->storePaletteIntoDatabase($palette);
-			$this->storePaletteColorIntoDatabase($palette_color, $languages);
+			$this->storePaletteIntoDatabase($palette, $languages);
 		}
 	}
 
@@ -4819,7 +4856,7 @@ class ModelToolExportImport extends Model {
 			return true;
 		}
 
-		$expected_heading = array("palette_id", "name", "palette_color_id", "color", "skin", "title");
+		$expected_heading = array("palette_color_id", "palette_id", "name", "color", "skin", "title");
 		$expected_multilingual = array("title");
 
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
@@ -9887,9 +9924,9 @@ class ModelToolExportImport extends Model {
 		// Set the column widths
 		$j = 0;
 
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('palette_color_id'), 2)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('palette_id'), 2)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 20)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('palette_color_id'), 2)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('color')+4, 12)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('skin')+4, 12)+1);
 		foreach ($languages as $language) {
@@ -9903,10 +9940,10 @@ class ModelToolExportImport extends Model {
 		$i = 1;
 		$j = 0;
 
+		$data[$j++] = 'palette_color_id';
 		$data[$j++] = 'palette_id';
 		$styles[$j] = &$text_format;
 		$data[$j++] = 'name';
-		$data[$j++] = 'palette_color_id';
 		$styles[$j] = &$text_format;
 		$data[$j++] = 'color';
 		$styles[$j] = &$text_format;
@@ -9931,9 +9968,9 @@ class ModelToolExportImport extends Model {
 
 			$data = array();
 
+			$data[$j++] = $row['palette_color_id'];
 			$data[$j++] = $row['palette_id'];
 			$data[$j++] = $row['name'];
-			$data[$j++] = $row['palette_color_id'];
 			$data[$j++] = $row['color'];
 			$data[$j++] = $row['skin'];
 			foreach ($languages as $language) {
