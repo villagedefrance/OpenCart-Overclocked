@@ -33,6 +33,7 @@ $_['text_topcustomer']              = 'Top 5 Customers';
 $_['text_topcountry']               = 'Top Country';
 $_['text_download']                 = 'Download';
 $_['text_guest']                    = 'Guest';
+$_['text_user_log']                 = 'View User Log';
 
 // Help
 $_['help_mail_log']                 = 'Mail log';

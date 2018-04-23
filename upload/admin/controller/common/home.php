@@ -188,12 +188,16 @@ class ControllerCommonHome extends Controller {
 		// Check user log number of entries
 		$this->load->model('user/user_log');
 
+		$this->data['text_user_log'] = $this->language->get('text_user_log');
+
 		$entries_total = $this->model_user_user_log->getTotalDataLog(0);
 
 		if ($entries_total > 499) {
 			$this->data['error_user_log'] = sprintf($this->language->get('error_user_log'), (int)$entries_total);
+			$this->data['view_user_log'] = $this->url->link('user/user_log', 'token=' . $this->session->data['token'], 'SSL');
 		} else {
 			$this->data['error_user_log'] = '';
+			$this->data['view_user_log'] = '';
 		}
 
 		// Error log
