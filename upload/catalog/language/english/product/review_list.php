@@ -4,12 +4,12 @@ $_['heading_title']    = 'Reviews';
 
 // Text
 $_['text_error']       = 'Review not found!';
-$_['text_empty']       = 'There are no reviews to list.';
+$_['text_empty']       = 'There are no reviews to display.';
 $_['text_reviews']     = 'Based on %s reviews.';
 $_['text_compare']     = 'Product Compare (%s)';
-$_['text_from'] = 'from';
-$_['text_price'] = 'Price:';
-$_['text_tax'] = 'Ex Tax:';
+$_['text_from']        = 'from';
+$_['text_price']       = 'Price:';
+$_['text_tax']         = 'Ex Tax:';
 $_['text_display']     = 'Display:';
 $_['text_list']        = 'List';
 $_['text_grid']        = 'Grid';

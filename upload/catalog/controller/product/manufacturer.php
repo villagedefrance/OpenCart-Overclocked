@@ -529,7 +529,7 @@ class ControllerProductManufacturer extends Controller {
 			}
 
 			$this->data['breadcrumbs'][] = array(
-				'text'      => $this->language->get('text_error'),
+				'text'      => $this->language->get('heading_title'),
 				'href'      => $this->url->link('product/manufacturer/info', $url, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);

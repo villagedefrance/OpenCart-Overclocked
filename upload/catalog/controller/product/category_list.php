@@ -117,17 +117,17 @@ class ControllerProductCategoryList extends Controller {
 			$this->response->setOutput($this->render());
 
 		} else {
-			$this->data['heading_title'] = $this->language->get('text_error');
-
-			$this->data['text_error'] = $this->language->get('text_error');
-
-			$this->data['button_continue'] = $this->language->get('button_continue');
-
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('heading_title'),
 				'href'      => $this->url->link('product/category_list', '', 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
+
+			$this->data['heading_title'] = $this->language->get('text_error');
+
+			$this->data['text_error'] = $this->language->get('text_error');
+
+			$this->data['button_continue'] = $this->language->get('button_continue');
 
 			$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
 

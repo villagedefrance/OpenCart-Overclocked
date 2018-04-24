@@ -661,6 +661,7 @@ class ControllerProductProduct extends Controller {
 
 			$this->data['share_addthis'] = $this->config->get('config_share_addthis');
 
+			// Offers
 			$this->load->model('catalog/offer');
 
 			$this->data['offers'] = array();
@@ -956,7 +957,7 @@ class ControllerProductProduct extends Controller {
 			}
 
 			$this->data['breadcrumbs'][] = array(
-				'text'      => $this->language->get('text_error'),
+				'text'      => $this->language->get('heading_title'),
 				'href'      => $this->url->link('product/product', $url . '&product_id=' . $product_id, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
