@@ -37,7 +37,7 @@ class Offer {
 }
 
 class ModelTotalOffers {
-	private $registry;
+	protected $registry;
 
 	public function __construct(Registry $registry) {
 		$this->registry = $registry;
@@ -49,7 +49,7 @@ class ModelTotalOffers {
 		return $this->registry->get($name);
 	}
 
-	private function getDiscount($discount_item, &$discountable_products, &$already_discounted_items = array(), $one_to_many = 0) {
+	protected function getDiscount($discount_item, &$discountable_products, &$already_discounted_items = array(), $one_to_many = 0) {
 		$discount_total = 0;
 
 		for ($disc = 0, $n = count($this->discount_list); $disc < $n; $disc++) {
@@ -83,24 +83,35 @@ class ModelTotalOffers {
 				}
 
 				if ($match == 1 && $one_to_many != 0) {
-					$id = $discountable_products[$i]['product_id'];
+					$pro_id = $discountable_products[$i]['product_id'];
 
 					if ($one_to_many == 1) {
-						if (in_array($id, $already_discounted_items)) {
+						if (in_array($pro_id, $already_discounted_items)) {
 							continue;
 						}
 
-						$already_discounted_items[] = $id;
+						$already_discounted_items[] = $pro_id;
 					}
 				}
 
 				if ($match == 1) {
 					$discountable_products[$i]['quantity'] -= 1;
 
+					$discount_total = 0;
+
 					if ($line->type == "$") {
-						$discount_total = $this->tax->calculate($line->amount, $discountable_products[$i]['tax_class_id'], $this->config->get('config_tax'));
+						$product_amount = $line->amount;
+
+						if ($product_amount > 0) {
+							$discount_total = $this->tax->calculate($line->amount, $discountable_products[$i]['tax_class_id'], $this->config->get('config_tax'));
+						}
+
 					} else {
-						$discount_total = $this->tax->calculate(($discountable_products[$i]['price'] * $line->amount), $discountable_products[$i]['tax_class_id'], $this->config->get('config_tax')) / 100;
+						$product_amount = $discountable_products[$i]['price'] * $line->amount;
+
+						if ($product_amount > 0) {
+							$discount_total = $this->tax->calculate(($discountable_products[$i]['price'] * $line->amount), $discountable_products[$i]['tax_class_id'], $this->config->get('config_tax')) / 100;
+						}
 					}
 				}
 			}
@@ -113,7 +124,6 @@ class ModelTotalOffers {
 		$products = $this->cart->getProducts();
 
 		reset($products);
-
 		sort($products);
 
 		$discountable_products = array();
@@ -127,8 +137,7 @@ class ModelTotalOffers {
 		}
 
 		$discount_total = 0;
-
-		$one_to_many = false;
+		$one_to_many = 0;
 
 		for ($i = 0, $n = sizeof($discountable_products); $i < $n; $i++) {
 			$already_discounted_items = array();
@@ -158,14 +167,12 @@ class ModelTotalOffers {
 				} else {
 					$discount_total += $item_discountable;
 
-					$cart_products = $this->cart->getProducts();
-
-					foreach ($cart_products as $product) {
+					foreach ($products as $product) {
 						if ($product['tax_class_id'] && $product['total'] > 0) {
 							$tax_rates = $this->tax->getRates($product['total'], $product['tax_class_id']);
 
 							foreach ($tax_rates as $tax_rate) {
-								if (in_array($item_discountable, $cart_products)) {
+								if (in_array($item_discountable, $products)) {
 									$taxes[$tax_rate['tax_rate_id']] -= $tax_rate['amount'];
 								}
 							}
@@ -190,7 +197,7 @@ class ModelTotalOffers {
 		}
 	}
 
-	private function addProToPro($item1, $item2, $type, $amount) {
+	protected function addProToPro($item1, $item2, $type, $amount) {
 		$add_to_list = new Offer;
 
 		$add_to_list->init($item1, $item2, $type, $amount, PRO_TO_PRO);
@@ -200,7 +207,7 @@ class ModelTotalOffers {
 		}
 	}
 
-	private function addProToCat($item1, $item2, $type, $amount) {
+	protected function addProToCat($item1, $item2, $type, $amount) {
 		$add_to_list = new Offer;
 
 		$add_to_list->init($item1, $item2, $type, $amount, PRO_TO_CAT);
@@ -210,7 +217,7 @@ class ModelTotalOffers {
 		}
 	}
 
-	private function addCatToCat($item1, $item2, $type, $amount) {
+	protected function addCatToCat($item1, $item2, $type, $amount) {
 		$add_to_list = new Offer;
 
 		$add_to_list->init($item1, $item2, $type, $amount, CAT_TO_CAT);
@@ -220,7 +227,7 @@ class ModelTotalOffers {
 		}
 	}
 
-	private function addCatToPro($item1, $item2, $type, $amount) {
+	protected function addCatToPro($item1, $item2, $type, $amount) {
 		$add_to_list = new Offer;
 
 		$add_to_list->init($item1, $item2, $type, $amount, CAT_TO_PRO);
@@ -230,11 +237,11 @@ class ModelTotalOffers {
 		}
 	}
 
-	private function offers() {
+	protected function offers() {
 		$this->load->model('checkout/offers');
 
 		// Product Product
-		$offer_product_products = $this->model_checkout_offers->getOfferProductProducts(0);
+		$offer_product_products = $this->model_checkout_offers->getOfferProductProducts();
 
 		if ($offer_product_products) {
 			foreach ($offer_product_products as $result) {
@@ -249,7 +256,7 @@ class ModelTotalOffers {
 		}
 
 		// Product Category
-		$offer_product_categories = $this->model_checkout_offers->getOfferProductCategories(0);
+		$offer_product_categories = $this->model_checkout_offers->getOfferProductCategories();
 
 		if ($offer_product_categories) {
 			foreach ($offer_product_categories as $result) {
@@ -264,7 +271,7 @@ class ModelTotalOffers {
 		}
 
 		// Category Product
-		$offer_category_products = $this->model_checkout_offers->getOfferCategoryProducts(0);
+		$offer_category_products = $this->model_checkout_offers->getOfferCategoryProducts();
 
 		if ($offer_category_products) {
 			foreach ($offer_category_products as $result) {
@@ -279,7 +286,7 @@ class ModelTotalOffers {
 		}
 
 		// Category Category
-		$offer_category_categories = $this->model_checkout_offers->getOfferCategoryCategories(0);
+		$offer_category_categories = $this->model_checkout_offers->getOfferCategoryCategories();
 
 		if ($offer_category_categories) {
 			foreach ($offer_category_categories as $result) {

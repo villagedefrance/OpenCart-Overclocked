@@ -262,7 +262,7 @@ class ControllerCheckoutCart extends Controller {
 			// Get offers
 			$this->load->model('catalog/offer');
 
-			$offers = $this->model_catalog_offer->getListProductOffers(0);
+			$offers = $this->model_catalog_offer->getListProductOffers();
 
 			// Get Products
 			$this->load->model('tool/image');

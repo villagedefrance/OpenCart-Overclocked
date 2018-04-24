@@ -9,7 +9,7 @@ class ModelCatalogOffer extends Model {
 		$offer_products = array();
 
 		// Product Product
-		$offer_product_products = $this->model_checkout_offers->getOfferProductProducts(0);
+		$offer_product_products = $this->model_checkout_offers->getOfferProductProducts();
 
 		if ($offer_product_products) {
 			foreach ($offer_product_products as $result) {
@@ -52,7 +52,7 @@ class ModelCatalogOffer extends Model {
 		}
 
 		// Product Category
-		$offer_product_categories = $this->model_checkout_offers->getOfferProductCategories(0);
+		$offer_product_categories = $this->model_checkout_offers->getOfferProductCategories();
 
 		if ($offer_product_categories) {
 			foreach ($offer_product_categories as $result) {
@@ -63,8 +63,6 @@ class ModelCatalogOffer extends Model {
 				} else {
 					$type = (int)$result['disc'] . '% ' . $this->language->get('text_off');
 				}
-
-				$product_lists = array();
 
 				$product_lists = $this->getCategoryProducts($result['two']);
 
@@ -108,7 +106,7 @@ class ModelCatalogOffer extends Model {
 		}
 
 		// Category Product
-		$offer_category_products = $this->model_checkout_offers->getOfferCategoryProducts(0);
+		$offer_category_products = $this->model_checkout_offers->getOfferCategoryProducts();
 
 		if ($offer_category_products) {
 			foreach ($offer_category_products as $result) {
@@ -119,8 +117,6 @@ class ModelCatalogOffer extends Model {
 				} else {
 					$type = (int)$result['disc'] . '% ' . $this->language->get('text_off');
 				}
-
-				$product_lists = array();
 
 				$product_lists = $this->getCategoryProducts($result['one']);
 
@@ -164,7 +160,7 @@ class ModelCatalogOffer extends Model {
 		}
 
 		// Category Category
-		$offer_category_categories = $this->model_checkout_offers->getOfferCategoryCategories(0);
+		$offer_category_categories = $this->model_checkout_offers->getOfferCategoryCategories();
 
 		if ($offer_category_categories) {
 			foreach ($offer_category_categories as $result) {
@@ -176,12 +172,7 @@ class ModelCatalogOffer extends Model {
 					$type = (int)$result['disc'] . '% ' . $this->language->get('text_off');
 				}
 
-				$product_one_lists = array();
-
 				$product_one_lists = $this->getCategoryProducts($result['one']);
-
-				$product_two_lists = array();
-
 				$product_two_lists = $this->getCategoryProducts($result['two']);
 
 				if ($product_one_lists && $product_two_lists) {
@@ -226,13 +217,14 @@ class ModelCatalogOffer extends Model {
 		return $offer_products;
 	}
 
-	public function getListProductOffers($data = array()) {
+	// Called in Shopping Cart
+	public function getListProductOffers() {
 		$this->load->model('checkout/offers');
 
 		$offer_products = array();
 
 		// Product Product
-		$offer_product_products = $this->model_checkout_offers->getOfferProductProducts(0);
+		$offer_product_products = $this->model_checkout_offers->getOfferProductProducts();
 
 		if ($offer_product_products) {
 			foreach ($offer_product_products as $pp_result) {
@@ -247,7 +239,7 @@ class ModelCatalogOffer extends Model {
 		}
 
 		// Product Category
-		$offer_product_categories = $this->model_checkout_offers->getOfferProductCategories(0);
+		$offer_product_categories = $this->model_checkout_offers->getOfferProductCategories();
 
 		if ($offer_product_categories) {
 			foreach ($offer_product_categories as $pc_result) {
@@ -270,7 +262,7 @@ class ModelCatalogOffer extends Model {
 		}
 
 		// Category Product
-		$offer_category_products = $this->model_checkout_offers->getOfferCategoryProducts(0);
+		$offer_category_products = $this->model_checkout_offers->getOfferCategoryProducts();
 
 		if ($offer_category_products) {
 			foreach ($offer_category_products as $cp_result) {
@@ -293,7 +285,7 @@ class ModelCatalogOffer extends Model {
 		}
 
 		// Category Category
-		$offer_category_categories = $this->model_checkout_offers->getOfferCategoryCategories(0);
+		$offer_category_categories = $this->model_checkout_offers->getOfferCategoryCategories();
 
 		if ($offer_category_categories) {
 			foreach ($offer_category_categories as $cc_result) {
@@ -326,8 +318,8 @@ class ModelCatalogOffer extends Model {
 		return $offer_products;
 	}
 
-	// Product List
-	private function getCategoryProducts($category_id) {
+	// Product List from Category
+	protected function getCategoryProducts($category_id) {
 		$product_list = array();
 
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_category WHERE category_id = '" . (int)$category_id . "'");
@@ -341,14 +333,16 @@ class ModelCatalogOffer extends Model {
 		return $product_list;
 	}
 
+	// Product Image
 	public function getOfferProductImage($product_id) {
-		$query = $this->db->query("SELECT image FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "'");
+		$query = $this->db->query("SELECT image FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "' AND status = '1'");
 
 		return $query->row['image'];
 	}
 
+	// Product Name
 	public function getOfferProductName($product_id) {
-		$query = $this->db->query("SELECT pd.name AS name FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.product_id = '" . (int)$product_id . "'");
+		$query = $this->db->query("SELECT pd.name AS name FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.product_id = '" . (int)$product_id . "' AND p.status = '1'");
 
 		return $query->row['name'];
 	}

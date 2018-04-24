@@ -2,7 +2,7 @@
 class ModelCheckoutOffers extends Model {
 
 	// Product Product
-	public function getOfferProductProducts($data = array()) {
+	public function getOfferProductProducts() {
 		$status = true;
 
 		$product_product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "offer_product_product WHERE ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
@@ -31,11 +31,13 @@ class ModelCheckoutOffers extends Model {
 
 		if ($status) {
 			return $product_product_data;
+		} else {
+			return 0;
 		}
 	}
 
 	// Product Category
-	public function getOfferProductCategories($data = array()) {
+	public function getOfferProductCategories() {
 		$status = true;
 
 		$product_category_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "offer_product_category WHERE ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
@@ -64,11 +66,13 @@ class ModelCheckoutOffers extends Model {
 
 		if ($status) {
 			return $product_category_data;
+		} else {
+			return 0;
 		}
 	}
 
 	// Category Product
-	public function getOfferCategoryProducts($data = array()) {
+	public function getOfferCategoryProducts() {
 		$status = true;
 
 		$category_product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "offer_category_product WHERE ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
@@ -97,11 +101,13 @@ class ModelCheckoutOffers extends Model {
 
 		if ($status) {
 			return $category_product_data;
+		} else {
+			return 0;
 		}
 	}
 
 	// Category Category
-	public function getOfferCategoryCategories($data = array()) {
+	public function getOfferCategoryCategories() {
 		$status = true;
 
 		$category_category_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "offer_category_category WHERE ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
@@ -130,6 +136,8 @@ class ModelCheckoutOffers extends Model {
 
 		if ($status) {
 			return $category_category_data;
+		} else {
+			return 0;
 		}
 	}
 

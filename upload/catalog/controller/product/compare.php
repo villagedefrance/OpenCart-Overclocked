@@ -141,6 +141,7 @@ class ControllerProductCompare extends Controller {
 					}
 				}
 
+				// Offers
 				if (in_array($product_info['product_id'], $offers, true)) {
 					$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), $label_ratio, $label_ratio);
 					$offer = true;
