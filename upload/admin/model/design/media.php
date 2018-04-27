@@ -2,7 +2,7 @@
 class ModelDesignMedia extends Model {
 
 	public function addMedia($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "media SET name = '" . $this->db->escape($data['name']) . "', media = '" .  $this->db->escape(html_entity_decode($data['media'], ENT_QUOTES, 'UTF-8')) . "', credit = '" . $this->db->escape($data['credit']) . "', status = '" . (int)$data['status'] . "'");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "media` SET `name` = '" . $this->db->escape($data['name']) . "', media = '" .  $this->db->escape(html_entity_decode($data['media'], ENT_QUOTES, 'UTF-8')) . "', credit = '" . $this->db->escape($data['credit']) . "', status = '" . (int)$data['status'] . "'");
 
 		$media_id = $this->db->getLastId();
 
@@ -11,24 +11,24 @@ class ModelDesignMedia extends Model {
 	}
 
 	public function editMedia($media_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "media SET name = '" . $this->db->escape($data['name']) . "', media = '" .  $this->db->escape(html_entity_decode($data['media'], ENT_QUOTES, 'UTF-8')) . "', credit = '" . $this->db->escape($data['credit']) . "', status = '" . (int)$data['status'] . "' WHERE media_id = '" . (int)$media_id . "'");
+		$this->db->query("UPDATE `" . DB_PREFIX . "media` SET `name` = '" . $this->db->escape($data['name']) . "', media = '" .  $this->db->escape(html_entity_decode($data['media'], ENT_QUOTES, 'UTF-8')) . "', credit = '" . $this->db->escape($data['credit']) . "', status = '" . (int)$data['status'] . "' WHERE media_id = '" . (int)$media_id . "'");
 	}
 
 	public function deleteMedia($media_id) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "media WHERE media_id = '" . (int)$media_id . "'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "media` WHERE media_id = '" . (int)$media_id . "'");
 	}
 
 	public function getMedia($media_id) {
-		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "media WHERE media_id = '" . (int)$media_id . "'");
+		$query = $this->db->query("SELECT DISTINCT * FROM `" . DB_PREFIX . "media` WHERE media_id = '" . (int)$media_id . "'");
 
 		return $query->row;
 	}
 
 	public function getMedias($data = array()) {
-		$sql = "SELECT * FROM " . DB_PREFIX . "media";
+		$sql = "SELECT * FROM `" . DB_PREFIX . "media`";
 
 		if (!empty($data['filter_name'])) {
-			$sql .= " WHERE name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+			$sql .= " WHERE `name` LIKE '" . $this->db->escape($data['filter_name']) . "%'";
 		}
 
 		$sql .= " GROUP BY media_id";
@@ -68,66 +68,24 @@ class ModelDesignMedia extends Model {
 	}
 
 	public function getTotalMedias() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "media");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "media`");
 
 		return $query->row['total'];
 	}
 
 	public function getMediaImage($media_id) {
-		$image = 'no_file.jpg';
-
-		$query = $this->db->query("SELECT DISTINCT media AS filename FROM " . DB_PREFIX . "media WHERE media_id = '" . (int)$media_id . "'");
+		$query = $this->db->query("SELECT DISTINCT media AS filename FROM `" . DB_PREFIX . "media` WHERE media_id = '" . (int)$media_id . "'");
 
 		$filename = $query->row['filename'];
 
 		$ext = utf8_substr(strrchr($filename, '.'), 1);
 
-		if (strtolower($ext) == 'mp3') {
-			$image = 'mp3.png';
-		}
+		$available_mimes = array('flv', 'mp3', 'mp4', 'oga', 'ogv', 'ogg', 'webm', 'm4a', 'm4v', 'wav', 'wmv', 'wma');
 
-		if (strtolower($ext) == 'mp4') {
-			$image = 'mp4.png';
-		}
-
-		if (strtolower($ext) == 'oga') {
-			$image = 'oga.png';
-		}
-
-		if (strtolower($ext) == 'ogv') {
-			$image = 'ogv.png';
-		}
-
-		if (strtolower($ext) == 'ogg') {
-			$image = 'ogg.png';
-		}
-
-		if (strtolower($ext) == 'webm') {
-			$image = 'webm.png';
-		}
-
-		if (strtolower($ext) == 'm4a') {
-			$image = 'm4a.png';
-		}
-
-		if (strtolower($ext) == 'm4v') {
-			$image = 'm4v.png';
-		}
-
-		if (strtolower($ext) == 'wav') {
-			$image = 'wav.png';
-		}
-
-		if (strtolower($ext) == 'wmv') {
-			$image = 'wmv.png';
-		}
-
-		if (strtolower($ext) == 'wma') {
-			$image = 'wma.png';
-		}
-
-		if (strtolower($ext) == 'flv') {
-			$image = 'flv.png';
+		if (in_array(strtolower($ext), $available_mimes)) {
+			$image = strtolower($ext) . '.png';
+		} else {
+			$image = 'no_file.jpg';
 		}
 
 		return $image;
@@ -136,7 +94,7 @@ class ModelDesignMedia extends Model {
 	public function getMediaSize($media_id) {
 		$filesize = 0;
 
-		$query = $this->db->query("SELECT DISTINCT media AS filename FROM " . DB_PREFIX . "media WHERE media_id = '" . (int)$media_id . "'");
+		$query = $this->db->query("SELECT DISTINCT media AS filename FROM `" . DB_PREFIX . "media` WHERE media_id = '" . (int)$media_id . "'");
 
 		$filename = $query->row['filename'];
 
@@ -147,8 +105,8 @@ class ModelDesignMedia extends Model {
 
 			$suffix = array('B','KB','MB','GB','TB','PB','EB','ZB','YB');
 
-			while (($size / 2048) > 1) {
-				$size = $size / 2048;
+			while (($size / 1024) > 1) {
+				$size = $size / 1024;
 				$i++;
 			}
 

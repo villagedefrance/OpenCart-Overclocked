@@ -228,9 +228,13 @@ class ControllerCatalogDownload extends Controller {
 				'href' => $this->url->link('catalog/download/update', 'token=' . $this->session->data['token'] . '&download_id=' . $result['download_id'] . $url, 'SSL')
 			);
 
-			$file = DIR_DOWNLOAD . $result['filename'];
-
-			$size = filesize($file);
+			if ($result['filename'] && file_exists(DIR_IMAGE . $result['filename'])) {
+				$file = DIR_IMAGE . $result['filename'];
+				$size = filesize($file);
+			} else {
+				$file = '';
+				$size = 0;
+			}
 
 			$mask = $result['mask'];
 
@@ -347,6 +351,11 @@ class ControllerCatalogDownload extends Controller {
 	protected function getForm() {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
+		$this->data['text_default'] = $this->language->get('text_default');
+		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
+		$this->data['text_browse'] = $this->language->get('text_browse');
+		$this->data['text_clear'] = $this->language->get('text_clear');
+
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_filename'] = $this->language->get('entry_filename');
 		$this->data['entry_mask'] = $this->language->get('entry_mask');
@@ -361,6 +370,8 @@ class ControllerCatalogDownload extends Controller {
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 		$this->data['button_upload'] = $this->language->get('button_upload');
+
+		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -434,8 +445,6 @@ class ControllerCatalogDownload extends Controller {
 			$download_info = $this->model_catalog_download->getDownload($this->request->get['download_id']);
 		}
 
-		$this->data['token'] = $this->session->data['token'];
-
 		if (isset($this->request->get['download_id'])) {
 			$this->data['download_id'] = $this->request->get['download_id'];
 		} else {
@@ -457,6 +466,20 @@ class ControllerCatalogDownload extends Controller {
 		} else {
 			$this->data['filename'] = '';
 		}
+
+		$this->load->model('tool/image');
+
+		if (isset($this->request->post['filename']) && file_exists(DIR_IMAGE . $this->request->post['filename'])) {
+			$this->data['thumb'] = $this->model_tool_image->resize($this->request->post['filename'], 100, 100);
+		} elseif (!empty($download_info) && $download_info['filename'] && file_exists(DIR_IMAGE . $download_info['filename'])) {
+			$download_image = $this->model_catalog_download->getDownloadImage($download_info['download_id']);
+
+			$this->data['thumb'] = $this->model_tool_image->resize($download_image, 100, 100);
+		} else {
+			$this->data['thumb'] = $this->model_tool_image->resize('no_file.jpg', 100, 100);
+		}
+
+		$this->data['no_file'] = $this->model_tool_image->resize('no_file.jpg', 100, 100);
 
 		if (isset($this->request->post['mask'])) {
 			$this->data['mask'] = $this->request->post['mask'];
@@ -504,8 +527,17 @@ class ControllerCatalogDownload extends Controller {
 			$this->error['filename'] = $this->language->get('error_filename');
 		}
 
-		if (!file_exists(DIR_DOWNLOAD . $this->request->post['filename']) && !is_file(DIR_DOWNLOAD . $this->request->post['filename'])) {
-			$this->error['filename'] = $this->language->get('error_exists');
+		$allowed = array('zip', 'pdf', 'swf', 'flv', 'mp3', 'mp4', 'oga', 'ogv', 'ogg', 'webm', 'm4a', 'm4v', 'wav', 'wmv', 'wma');
+
+		if ($this->request->post['filename']) {
+			$ext = utf8_substr(strrchr($this->request->post['filename'], '.'), 1);
+
+			if (!in_array(strtolower($ext), $allowed)) {
+				$this->error['filename'] = $this->language->get('error_exists');
+			}
+
+		} else {
+			$this->error['filename'] = $this->language->get('error_filename');
 		}
 
 		if ((utf8_strlen($this->request->post['mask']) > 3) || (utf8_strlen($this->request->post['mask']) < 128)) {
@@ -537,82 +569,6 @@ class ControllerCatalogDownload extends Controller {
 		}
 
 		return empty($this->error);
-	}
-
-	public function upload() {
-		$this->language->load('catalog/download');
-
-		$json = array();
-
-		if (!$this->user->hasPermission('modify', 'catalog/download')) {
-			$json['error'] = $this->language->get('error_permission');
-		}
-
-		if (!isset($json['error'])) {
-			if (!empty($this->request->files['file']['name'])) {
-				$filename = basename(html_entity_decode($this->request->files['file']['name'], ENT_QUOTES, 'UTF-8'));
-
-				if ((utf8_strlen($filename) < 3) || (utf8_strlen($filename) > 128)) {
-					$json['error'] = $this->language->get('error_filename');
-				}
-
-				// Allowed file extension types
-				$allowed = array();
-
-				$filetypes = explode("\n", str_replace(array("\r\n", "\r"), "\n", $this->config->get('config_file_extension_allowed')));
-
-				foreach ($filetypes as $filetype) {
-					$allowed[] = trim($filetype);
-				}
-
-				if (!in_array(substr(strrchr($filename, '.'), 1), $allowed)) {
-					$json['error'] = $this->language->get('error_filetype');
-				}
-
-				// Allowed file mime types
-				$allowed = array();
-
-				$filetypes = explode("\n", str_replace(array("\r\n", "\r"), "\n", $this->config->get('config_file_mime_allowed')));
-
-				foreach ($filetypes as $filetype) {
-					$allowed[] = trim($filetype);
-				}
-
-				if (!in_array($this->request->files['file']['type'], $allowed)) {
-					$json['error'] = $this->language->get('error_filetype');
-				}
-
-				// Check to see if any PHP files are trying to be uploaded
-				$content = file_get_contents($this->request->files['file']['tmp_name']);
-
-				if (preg_match('/\<\?php/i', $content)) {
-					$json['error'] = $this->language->get('error_filetype');
-				}
-
-				if ($this->request->files['file']['error'] != UPLOAD_ERR_OK) {
-					$json['error'] = $this->language->get('error_upload_' . $this->request->files['file']['error']);
-				}
-
-			} else {
-				$json['error'] = $this->language->get('error_upload');
-			}
-		}
-
-		if (!isset($json['error'])) {
-			if (is_uploaded_file($this->request->files['file']['tmp_name']) && file_exists($this->request->files['file']['tmp_name'])) {
-				$ext = hash_rand('md5');
-
-				$json['filename'] = $filename . '.' . $ext;
-				$json['mask'] = $filename;
-
-				move_uploaded_file($this->request->files['file']['tmp_name'], DIR_DOWNLOAD . $filename . '.' . $ext);
-			}
-
-			$json['success'] = $this->language->get('text_upload');
-		}
-
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
 	}
 
 	public function autocomplete() {
