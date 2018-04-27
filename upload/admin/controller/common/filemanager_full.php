@@ -195,8 +195,8 @@ class ControllerCommonFileManagerFull extends Controller {
 
 					$suffix = array('B','KB','MB','GB','TB','PB','EB','ZB','YB');
 
-					while (($size / 2048) > 1) {
-						$size = $size / 2048;
+					while (($size / 1024) > 1) {
+						$size = $size / 1024;
 						$i++;
 					}
 
@@ -511,7 +511,7 @@ class ControllerCommonFileManagerFull extends Controller {
 					$json['error'] = $this->language->get('error_directory');
 				}
 
-				$file_max_size = 2048000; // 2mb
+				$file_max_size = 5120000; // 5mb
 
 				if ($this->request->files['image']['size'] > (int)$file_max_size) {
 					$json['error'] = $this->language->get('error_file_size');
@@ -665,7 +665,7 @@ class ControllerCommonFileManagerFull extends Controller {
 			$contentType = $_SERVER["CONTENT_TYPE"];
 		}
 
-		$file_max_size = 30720; // 30Mb
+		$file_max_size = 102400; // 100Mb
 
 		if (strpos($contentType, "multipart") !== false) {
 			if (isset($_FILES['file']['tmp_name']) && is_uploaded_file($_FILES['file']['tmp_name'])) {
