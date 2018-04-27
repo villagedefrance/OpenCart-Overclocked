@@ -259,6 +259,15 @@ class ControllerCheckoutCart extends Controller {
 				$this->data['weight'] = '';
 			}
 
+			// Get tax breakdown
+			if ($this->config->get('config_tax_breakdown')) {
+				$this->data['tax_breakdown'] = true;
+				$this->data['tax_colspan'] = 6;
+			} else {
+				$this->data['tax_breakdown'] = false;
+				$this->data['tax_colspan'] = 4;
+			}
+
 			// Get offers
 			$this->load->model('catalog/offer');
 

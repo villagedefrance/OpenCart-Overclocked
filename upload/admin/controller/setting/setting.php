@@ -146,6 +146,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_invoice_prefix'] = $this->language->get('entry_invoice_prefix');
 		$this->data['entry_auto_invoice'] = $this->language->get('entry_auto_invoice');
 		$this->data['entry_cart_weight'] = $this->language->get('entry_cart_weight');
+		$this->data['entry_tax_breakdown'] = $this->language->get('entry_tax_breakdown');
 		$this->data['entry_order_edit'] = $this->language->get('entry_order_edit');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_complete_status'] = $this->language->get('entry_complete_status');
@@ -340,6 +341,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['help_invoice_prefix'] = $this->language->get('help_invoice_prefix');
 		$this->data['help_auto_invoice'] = $this->language->get('help_auto_invoice');
 		$this->data['help_cart_weight'] = $this->language->get('help_cart_weight');
+		$this->data['help_tax_breakdown'] = $this->language->get('help_tax_breakdown');
 		$this->data['help_order_edit'] = $this->language->get('help_order_edit');
 		$this->data['help_order_status'] = $this->language->get('help_order_status');
 		$this->data['help_complete_status'] = $this->language->get('help_complete_status');
@@ -1006,6 +1008,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_cart_weight'] = $this->request->post['config_cart_weight'];
 		} else {
 			$this->data['config_cart_weight'] = $this->config->get('config_cart_weight');
+		}
+
+		if (isset($this->request->post['config_tax_breakdown'])) {
+			$this->data['config_tax_breakdown'] = $this->request->post['config_tax_breakdown'];
+		} else {
+			$this->data['config_tax_breakdown'] = $this->config->get('config_tax_breakdown');
 		}
 
 		if (isset($this->request->post['config_order_edit'])) {

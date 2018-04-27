@@ -26,9 +26,9 @@
   <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
     <div class="cart-info">
     <?php if ($dob && $age_minimum > 0 && !$age_logged) { ?>
-      <div class="attention" style="margin:0px 0px 15px 0px;"><?php echo $text_age_restriction; ?></div>
+      <div class="attention" style="margin:0 0 15px 0;"><?php echo $text_age_restriction; ?></div>
     <?php } elseif ($dob && $age_minimum > 0 && !$age_checked) { ?>
-      <div class="attention" style="margin:0px 0px 15px 0px;"><?php echo $text_age_minimum; ?></div>
+      <div class="attention" style="margin:0 0 15px 0;"><?php echo $text_age_minimum; ?></div>
     <?php } ?>
       <table>
         <thead>
@@ -38,8 +38,10 @@
             <td class="model hide-phone"><?php echo $column_model; ?></td>
             <td class="quantity"><?php echo $column_quantity; ?></td>
             <td class="price hide-phone"><?php echo $column_price; ?></td>
+          <?php if ($tax_breakdown) { ?>
             <td class="price hide-phone"><?php echo $column_tax_value; ?></td>
             <td class="price hide-phone"><?php echo $column_tax_percent; ?></td>
+          <?php } ?>
             <td class="total"><?php echo $column_total; ?></td>
           </tr>
         </thead>
@@ -47,7 +49,7 @@
           <?php foreach ($products as $product) { ?>
             <?php if ($product['recurring']) { ?>
               <tr>
-                <td colspan="6" style="border:none; line-height:18px; margin-left:10px;"> 
+                <td colspan="<?php echo $tax_colspan; ?>" style="border:none; line-height:18px; margin-left:10px;"> 
                   <image src="catalog/view/theme/<?php echo $template; ?>/image/reorder.png" alt="" title="" style="float:left; margin-right:8px;" /> 
                   <strong><?php echo $text_recurring_item; ?></strong>
                   <?php echo $product['profile_description']; ?>
@@ -67,7 +69,7 @@
                     <div class="special-small"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
                   <?php } ?>
                   <?php if ($product['label']) { ?>
-                    <div class="product-label" style="left:<?php echo $product['label_style']; ?>px; margin:0px 0px -<?php echo $product['label_style']; ?>px 0px;">
+                    <div class="product-label" style="left:<?php echo $product['label_style']; ?>px; margin:0 0 -<?php echo $product['label_style']; ?>px 0;">
                     <img src="<?php echo $product['label']; ?>" alt="" height="<?php echo $product['label_style']; ?>" width="<?php echo $product['label_style']; ?>" /></div>
                   <?php } ?>
                   <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
@@ -103,8 +105,10 @@
                 <a href="<?php echo $product['remove']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a>
               </td>
               <td class="price hide-phone"><?php echo $product['price']; ?></td>
+            <?php if ($tax_breakdown) { ?>
               <td class="price hide-phone"><?php echo $product['tax_value']; ?></td>
               <td class="price hide-phone"><?php echo $product['tax_percent']; ?>%</td>
+            <?php } ?>
               <td class="total"><?php echo $product['total']; ?></td>
             </tr>
           <?php } ?>
@@ -117,8 +121,10 @@
                 &nbsp;<a href="<?php echo $vouchers['remove']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a>
               </td>
               <td class="price hide-phone"><?php echo $vouchers['amount']; ?></td>
+            <?php if ($tax_breakdown) { ?>
               <td class="price hide-phone">0.00</td>
               <td class="price hide-phone">0%</td>
+            <?php } ?>
               <td class="total"><?php echo $vouchers['amount']; ?></td>
             </tr>
           <?php } ?>
@@ -356,13 +362,11 @@ $('#button-quote').live('click', function() {
 				html += '  </table>';
 				html += '  <br />';
 				html += '  <input type="hidden" name="next" value="shipping" />';
-
-				<?php if ($shipping_method) { ?>
+			<?php if ($shipping_method) { ?>
 				html += '  <input type="submit" value="<?php echo $button_shipping; ?>" id="button-shipping" class="button" />';
-				<?php } else { ?>
+			<?php } else { ?>
 				html += '  <input type="submit" value="<?php echo $button_shipping; ?>" id="button-shipping" class="button" disabled="disabled" />';
-				<?php } ?>
-
+			<?php } ?>
 				html += '</form>';
 
 				$.colorbox({

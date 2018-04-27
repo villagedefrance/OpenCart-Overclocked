@@ -413,6 +413,20 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_tax_breakdown; ?><span class="help"><?php echo $help_tax_breakdown; ?></span></td>
+            <td><?php if ($config_tax_breakdown) { ?>
+              <input type="radio" name="config_tax_breakdown" value="1" id="tax-breakdown-on" class="radio" checked />
+              <label for="tax-breakdown-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_tax_breakdown" value="0" id="tax-breakdown-off" class="radio" />
+              <label for="tax-breakdown-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_tax_breakdown" value="1" id="tax-breakdown-on" class="radio" />
+              <label for="tax-breakdown-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_tax_breakdown" value="0" id="tax-breakdown-off" class="radio" checked />
+              <label for="tax-breakdown-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_order_edit; ?><span class="help"><?php echo $help_order_edit; ?></span></td>
             <td><input type="text" name="config_order_edit" value="<?php echo $config_order_edit; ?>" size="3" /></td>
           </tr>
