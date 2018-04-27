@@ -14,18 +14,28 @@ class ControllerTotalOffers extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$this->redirect($this->url->link('extension/total', 'token=' . $this->session->data['token'], 'SSL'));
+			if (isset($this->request->post['apply'])) {
+				$this->redirect($this->url->link('total/offers', 'token=' . $this->session->data['token'], 'SSL'));
+			} else {
+				$this->redirect($this->url->link('extension/total', 'token=' . $this->session->data['token'], 'SSL'));
+			}
 		}
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_yes'] = $this->language->get('text_yes');
+		$this->data['text_no'] = $this->language->get('text_no');
 
 		$this->data['entry_status'] = $this->language->get('entry_status');
+		$this->data['entry_taxes'] = $this->language->get('entry_taxes');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 
+		$this->data['help_taxes'] = $this->language->get('help_taxes');
+
 		$this->data['button_save'] = $this->language->get('button_save');
+		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
 		if (isset($this->error['warning'])) {
@@ -62,6 +72,12 @@ class ControllerTotalOffers extends Controller {
 			$this->data['offers_status'] = $this->request->post['offers_status'];
 		} else {
 			$this->data['offers_status'] = $this->config->get('offers_status');
+		}
+
+		if (isset($this->request->post['offers_taxes'])) {
+			$this->data['offers_taxes'] = $this->request->post['offers_taxes'];
+		} else {
+			$this->data['offers_taxes'] = $this->config->get('offers_taxes');
 		}
 
 		if (isset($this->request->post['offers_sort_order'])) {

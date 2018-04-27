@@ -52,6 +52,8 @@ class ModelTotalOffers {
 	protected function getDiscount($discount_item, &$discountable_products, &$already_discounted_items = array(), $one_to_many = 0) {
 		$discount_total = 0;
 
+		$offer_taxes = $this->config->get('offers_taxes');
+
 		for ($disc = 0, $n = count($this->discount_list); $disc < $n; $disc++) {
 			$line = $this->discount_list[$disc];
 
@@ -102,15 +104,19 @@ class ModelTotalOffers {
 					if ($line->type == "$") {
 						$product_amount = $line->amount;
 
-						if ($product_amount > 0) {
+						if ($offer_taxes && $product_amount > 0) {
 							$discount_total = $this->tax->calculate($line->amount, $discountable_products[$i]['tax_class_id'], $this->config->get('config_tax'));
+						} else {
+							$discount_total = $line->amount;
 						}
 
 					} else {
 						$product_amount = $discountable_products[$i]['price'] * $line->amount;
 
-						if ($product_amount > 0) {
+						if ($offer_taxes && $product_amount > 0) {
 							$discount_total = $this->tax->calculate(($discountable_products[$i]['price'] * $line->amount), $discountable_products[$i]['tax_class_id'], $this->config->get('config_tax')) / 100;
+						} else {
+							$discount_total = $discountable_products[$i]['price'] * $line->amount;
 						}
 					}
 				}
@@ -125,6 +131,8 @@ class ModelTotalOffers {
 
 		reset($products);
 		sort($products);
+
+		$offer_taxes = $this->config->get('offers_taxes');
 
 		$discountable_products = array();
 
@@ -167,13 +175,15 @@ class ModelTotalOffers {
 				} else {
 					$discount_total += $item_discountable;
 
-					foreach ($products as $product) {
-						if ($product['tax_class_id'] && $product['total'] > 0) {
-							$tax_rates = $this->tax->getRates($product['total'], $product['tax_class_id']);
+					if ($offer_taxes) {
+						foreach ($products as $product) {
+							if ($product['tax_class_id'] && $product['total'] > 0) {
+								$tax_rates = $this->tax->getRates($product['total'], $product['tax_class_id']);
 
-							foreach ($tax_rates as $tax_rate) {
-								if (in_array($item_discountable, $products)) {
-									$taxes[$tax_rate['tax_rate_id']] -= $tax_rate['amount'];
+								foreach ($tax_rates as $tax_rate) {
+									if (in_array($item_discountable, $products)) {
+										$taxes[$tax_rate['tax_rate_id']] -= $tax_rate['amount'];
+									}
 								}
 							}
 						}
