@@ -27,12 +27,12 @@
 	}
 
 	/**
-	* Attaches resize event to a window, limiting thenumber of event fired.
+	* Attaches resize event to a window, limiting the number of event fired.
 	* Fires only when encounters delay of 100 after series of events.
-	* 
+	*
 	* Some browsers fire event multiple times when resizing
 	* http://www.quirksmode.org/dom/events/resize.html
-	* 
+	*
 	* @param fn callback This refers to the passed element
 	*/
 	function addResizeEvent(fn) {
@@ -99,6 +99,7 @@
 	function getBox(el) {
 		var left, right, top, bottom;
 		var offset = getOffset(el);
+
 		left = offset.left;
 		top = offset.top;
 		right = left + el.offsetWidth;
@@ -129,12 +130,13 @@
 	/**
 	* Function places an absolutely positioned element on top of the
 	* specified element, copying position and dimentions.
-	* 
+	*
 	* @param {Element} from
 	* @param {Element} to
 	*/
 	function copyLayout(from, to) {
 		var box = getBox(from);
+
 		addStyles(to, {
 			position: 'absolute',
 			left: box.left + 'px',
@@ -150,6 +152,7 @@
 	*/
 	var toElement = (function() {
 		var div = document.createElement('div');
+
 		return function(html) {
 			div.innerHTML = html;
 			var el = div.firstChild;
@@ -163,6 +166,7 @@
 	*/
 	var getUID = (function() {
 		var id = 0;
+
 		return function() {
 			return 'ValumsAjaxUpload' + id++;
 		};
@@ -210,7 +214,7 @@
 	* Easy styling and uploading
 	* @constructor
 	* @param button An element you want convert to 
-	* upload button. Tested dimentions up to 500x500px
+	* upload button. Tested dimensions up to 500x500px
 	* @param {Object} options See defaults below.
 	*/
 	window.AjaxUpload = function(button, options) {
@@ -303,7 +307,7 @@
 				'right': 0,
 				'margin': 0,
 				'padding': 0,
-				'fontSize': '480px',
+				'fontSize': '40px',
 				'cursor': 'pointer'
 			});
 
@@ -317,7 +321,7 @@
 				'padding': 0,
 				'opacity': 0,
 				'direction' : 'ltr',
-				'zIndex': 2147483583
+				'zIndex': 999
 			});
 
 			if (div.style.opacity !== "0") {
@@ -380,10 +384,13 @@
 				if (self._disabled) {
 					return;
 				}
+
 				if (!self._input) {
 					self._createInput();
 				}
+
 				var div = self._input.parentNode;
+
 				copyLayout(self._button, div);
 				div.style.visibility = 'visible';
 			});
@@ -420,9 +427,11 @@
 			for (var prop in settings.data) {
 				if (settings.data.hasOwnProperty(prop)) {
 					var el = document.createElement("input");
+
 					el.setAttribute('type', 'hidden');
 					el.setAttribute('name', prop);
 					el.setAttribute('value', settings.data[prop]);
+
 					form.appendChild(el);
 				}
 			}

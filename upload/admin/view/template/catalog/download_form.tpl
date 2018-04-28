@@ -10,7 +10,7 @@
   <?php } ?>
   <div class="box">
   <div class="heading">
-    <h1><img src="view/image/download.png" alt="" /> <?php echo $heading_title; ?></h1>
+    <h1><img src="view/image/download.png" alt="" /> <?php echo $download_title; ?></h1>
     <div class="buttons">
       <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
       <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
@@ -35,14 +35,12 @@
         </tr>
         <tr>
           <td><span class="required">*</span> <?php echo $entry_filename; ?><span class="help"><?php echo $help_filename; ?></span></td>
-          <td><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />
-            <input type="hidden" name="filename" value="<?php echo $filename; ?>" id="filename" />
-            <a onclick="image_upload('filename', 'thumb');" class="button-browse"></a><a onclick="$('#thumb').attr('src', '<?php echo $no_file; ?>'); $('#filename').attr('value', '');" class="button-recycle"></a>
-          </div>
-          <?php if ($error_filename) { ?>
+          <td><?php if ($error_filename) { ?>
+            <input type="text" name="filename" value="<?php echo $filename; ?>" size="40" class="input-error" /> <a id="button-upload" class="button-form"><i class="fa fa-upload"></i> &nbsp; <?php echo $button_upload; ?></a>
             <span class="error"><?php echo $error_filename; ?></span>
-          <?php } ?>
-          </td>
+          <?php } else { ?>
+            <input type="text" name="filename" value="<?php echo $filename; ?>" size="40" /> <a id="button-upload" class="button-form"><i class="fa fa-upload"></i> &nbsp; <?php echo $button_upload; ?></a>
+          <?php } ?></td>
         </tr>
         <tr>
           <td><span class="required">*</span> <?php echo $entry_mask; ?><span class="help"><?php echo $help_mask; ?></span></td>
@@ -72,32 +70,35 @@
   </div>
 </div>
 
+<script type="text/javascript" src="view/javascript/jquery/ajaxupload.min.js"></script> 
+
 <script type="text/javascript"><!--
-function image_upload(field, thumb) {
-	$('#dialog').remove();
+new AjaxUpload('#button-upload', {
+	action: 'index.php?route=catalog/download/upload&token=<?php echo $token; ?>',
+	name: 'file',
+	autoSubmit: true,
+	responseType: 'json',
+	onSubmit: function(file, extension) {
+		$('#button-upload').after('<img src="view/image/loading.gif" alt="" class="loading" style="padding-left:5px;" />');
+		$('#button-upload').attr('disabled', true);
+	},
+	onComplete: function(file, json) {
+		$('#button-upload').attr('disabled', false);
 
-	$('#content').prepend('<div id="dialog" style="padding:3px 0 0 0;"><iframe src="index.php?route=common/filemanager&token=<?php echo $token; ?>&field=' + encodeURIComponent(field) + '" style="padding:0; margin:0; display:block; width:100%; height:100%;" frameborder="no" scrolling="auto"></iframe></div>');
+		if (json['success']) {
+			alert(json['success']);
 
-	$('#dialog').dialog({
-		title: '<?php echo $text_image_manager; ?>',
-		close: function(event, ui) {
-			if ($('#' + field).attr('value')) {
-				$.ajax({
-					url: 'index.php?route=common/filemanager/image&token=<?php echo $token; ?>&image=' + encodeURIComponent($('#' + field).attr('value')),
-					dataType: 'text',
-					success: function(data) {
-						$('#' + thumb).replaceWith('<img src="' + data + '" alt="" id="' + thumb + '" />');
-					}
-				});
-			}
-		},
-		bgiframe: false,
-		width: <?php echo ($this->browser->checkMobile()) ? 580 : 760; ?>,
-		height: 400,
-		resizable: false,
-		modal: false
-	});
-};
+			$('input[name=\'filename\']').attr('value', json['filename']);
+			$('input[name=\'mask\']').attr('value', json['mask']);
+		}
+
+		if (json['error']) {
+			alert(json['error']);
+		}
+
+		$('.loading').remove();
+	}
+});
 //--></script>
 
 <?php echo $footer; ?>

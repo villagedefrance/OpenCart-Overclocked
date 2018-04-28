@@ -108,6 +108,12 @@ class ModelCatalogDownload extends Model {
 		return $download_description_data;
 	}
 
+	public function getDownloadName($download_id) {
+		$query = $this->db->query("SELECT DISTINCT dd.name AS `name` FROM " . DB_PREFIX . "download_description dd LEFT JOIN " . DB_PREFIX . "download d ON (d.download_id = dd.download_id) WHERE dd.download_id = '" . (int)$download_id . "' AND dd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+
+		return $query->row['name'];
+	}
+
 	public function getDownloadImage($download_id) {
 		$query = $this->db->query("SELECT filename FROM " . DB_PREFIX . "download WHERE download_id = '" . (int)$download_id . "'");
 

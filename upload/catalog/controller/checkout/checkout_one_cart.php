@@ -236,6 +236,7 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 				$this->data['error_warning'] = sprintf($this->language->get('error_minimum'), $product['name'], $product['minimum']);
 			}
 
+			// Option
 			$option_data = array();
 
 			foreach ($product['option'] as $option) {
@@ -250,6 +251,18 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 				$option_data[] = array(
 					'name'  => $option['name'],
 					'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
+				);
+			}
+
+			// Download
+			$download_data = array();
+
+			foreach ($product['download'] as $download) {
+				$download_data[] = array(
+					'name'      => $download['name'],
+					'filename'  => $download['filename'],
+					'mask'      => $download['mask'],
+					'remaining' => $download['remaining']
 				);
 			}
 
@@ -288,6 +301,15 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 				}
 			}
 
+			// Check price free
+			if ($product['price'] > 0) {
+				$product_tax_value = ($this->tax->calculate(($product['price'] * $product['quantity']), $product['tax_class_id'], $this->config->get('config_tax')) - ($product['price'] * $product['quantity']));
+				$product_tax_percent = number_format((($product_tax_value * 100) / ($product['price'] * $product['quantity'])), 2, '.', '');
+			} else {
+				$product_tax_value = '0.00';
+				$product_tax_percent = '0.00';
+			}
+
 			// Check minimum age
 			$age_minimum = $product['age_minimum'];
 			$age_logged = false;
@@ -311,22 +333,21 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 				}
 			}
 
-			$product_tax_value = ($this->tax->calculate(($product['price'] * $product['quantity']), $product['tax_class_id'], $this->config->get('config_tax')) - ($product['price'] * $product['quantity']));
-
 			$this->data['products'][] = array(
 				'product_id'          => $product['product_id'],
 				'key'                 => $product['key'],
 				'name'                => $product['name'],
 				'model'               => $product['model'],
 				'option'              => $option_data,
+				'download'            => $download_data,
 				'quantity'            => $product['quantity'],
 				'stock'               => $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
 				'subtract'            => $product['subtract'],
 				'price'               => $price,
 				'cost'                => $product['cost'],
 				'tax_value'           => $this->currency->format($product_tax_value),
-				'tax_percent'         => number_format((($product_tax_value * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
-				'age_minimum'         => $age_checked ? '<span style="color:#007200;"> (' . $product['age_minimum'] . '+)</span>' : '',
+				'tax_percent'         => $product_tax_percent,
+				'age_minimum'         => ($age_checked) ? '<span style="color:#007200;"> (' . $product['age_minimum'] . '+)</span>' : '',
 				'recurring'           => $product['recurring'],
 				'profile_name'        => $product['profile_name'],
 				'profile_description' => $profile_description,
@@ -337,7 +358,7 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 
 		$this->data['products_recurring'] = array();
 
-		$this->data['age_minimum'] = $age_minimum ? (int)$age_minimum : 0;
+		$this->data['age_minimum'] = ($age_minimum) ? (int)$age_minimum : 0;
 		$this->data['age_logged'] = $age_logged;
 		$this->data['age_checked'] = $age_checked;
 

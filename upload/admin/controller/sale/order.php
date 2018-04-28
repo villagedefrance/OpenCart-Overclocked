@@ -2532,6 +2532,15 @@ class ControllerSaleOrder extends Controller {
 					}
 				}
 
+				// Check price free
+				if ($product['price'] > 0) {
+					$product_tax_value = $this->currency->format(($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']);
+					$product_tax_percent = number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / ($product['price'] * $product['quantity'])), 2, '.', '');
+				} else {
+					$product_tax_value = '0.00';
+					$product_tax_percent = '0.00';
+				}
+
 				$this->data['products'][] = array(
 					'order_product_id' => $product['order_product_id'],
 					'product_id'       => $product['product_id'],
@@ -2541,8 +2550,8 @@ class ControllerSaleOrder extends Controller {
 					'option'           => $option_data,
 					'quantity'         => $product['quantity'],
 					'price'            => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
-					'tax_value'        => $this->currency->format(($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
-					'tax_percent'      => number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
+					'tax_value'        => $product_tax_value,
+					'tax_percent'      => $product_tax_percent,
 					'total'            => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
 					'picked'           => $product['picked'],
 					'backordered'      => $product['backordered'],
@@ -2960,7 +2969,7 @@ class ControllerSaleOrder extends Controller {
 				if (file_exists($file) && is_file($file)) {
 					header('Content-Type: application/octet-stream');
 					header('Content-Description: File Transfer');
-					header('Content-Disposition: attachment; filename="' . ($mask ? $mask : basename($file)) . '"');
+					header('Content-Disposition: attachment; filename=' . ($mask) ? $mask : basename($file));
 					header('Content-Transfer-Encoding: binary');
 					header('Expires: 0');
 					header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
