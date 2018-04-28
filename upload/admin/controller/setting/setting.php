@@ -171,9 +171,9 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_express_point'] = $this->language->get('entry_express_point');
 		$this->data['entry_empty_category'] = $this->language->get('entry_empty_category');
 		$this->data['entry_product_count'] = $this->language->get('entry_product_count');
+		$this->data['entry_download'] = $this->language->get('entry_download');
 		$this->data['entry_review'] = $this->language->get('entry_review');
 		$this->data['entry_review_login'] = $this->language->get('entry_review_login');
-		$this->data['entry_download'] = $this->language->get('entry_download');
 		$this->data['entry_tax'] = $this->language->get('entry_tax');
 		$this->data['entry_vat'] = $this->language->get('entry_vat');
 		$this->data['entry_tax_default'] = $this->language->get('entry_tax_default');
@@ -1172,6 +1172,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_product_count'] = $this->config->get('config_product_count');
 		}
 
+		if (isset($this->request->post['config_download'])) {
+			$this->data['config_download'] = $this->request->post['config_download'];
+		} else {
+			$this->data['config_download'] = $this->config->get('config_download');
+		}
+
 		if (isset($this->request->post['config_review_status'])) {
 			$this->data['config_review_status'] = $this->request->post['config_review_status'];
 		} else {
@@ -1182,12 +1188,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_review_login'] = $this->request->post['config_review_login'];
 		} else {
 			$this->data['config_review_login'] = $this->config->get('config_review_login');
-		}
-
-		if (isset($this->request->post['config_download'])) {
-			$this->data['config_download'] = $this->request->post['config_download'];
-		} else {
-			$this->data['config_download'] = $this->config->get('config_download');
 		}
 
 		if (isset($this->request->post['config_tax'])) {

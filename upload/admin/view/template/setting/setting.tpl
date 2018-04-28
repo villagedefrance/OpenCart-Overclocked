@@ -756,6 +756,20 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_download; ?></td>
+            <td><?php if ($config_download) { ?>
+              <input type="radio" name="config_download" value="1" id="download-on" class="radio" checked />
+              <label for="download-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_download" value="0" id="download-off" class="radio" />
+              <label for="download-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_download" value="1" id="download-on" class="radio" />
+              <label for="download-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_download" value="0" id="download-off" class="radio" checked />
+              <label for="download-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_review; ?><span class="help"><?php echo $help_review; ?></span></td>
             <td><?php if ($config_review_status) { ?>
               <input type="radio" name="config_review_status" value="1" id="review-status-on" class="radio" checked />
@@ -781,20 +795,6 @@
               <label for="review-login-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_review_login" value="0" id="review-login-off" class="radio" checked />
               <label for="review-login-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_download; ?></td>
-            <td><?php if ($config_download) { ?>
-              <input type="radio" name="config_download" value="1" id="download-on" class="radio" checked />
-              <label for="download-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_download" value="0" id="download-off" class="radio" />
-              <label for="download-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } else { ?>
-              <input type="radio" name="config_download" value="1" id="download-on" class="radio" />
-              <label for="download-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_download" value="0" id="download-off" class="radio" checked />
-              <label for="download-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
         </table>
