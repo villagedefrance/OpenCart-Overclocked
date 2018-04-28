@@ -342,6 +342,15 @@ class ControllerCheckoutConfirm extends Controller {
 				$data['accept_language'] = '';
 			}
 
+			// Get tax breakdown
+			if ($this->config->get('config_tax_breakdown')) {
+				$this->data['tax_breakdown'] = true;
+				$this->data['tax_colspan'] = 6;
+			} else {
+				$this->data['tax_breakdown'] = false;
+				$this->data['tax_colspan'] = 4;
+			}
+
 			$this->load->model('checkout/order');
 
 			$this->session->data['order_id'] = $this->model_checkout_order->addOrder($data);
@@ -390,8 +399,8 @@ class ControllerCheckoutConfirm extends Controller {
 					$product_tax_value = ($this->tax->calculate(($product['price'] * $product['quantity']), $product['tax_class_id'], $this->config->get('config_tax')) - ($product['price'] * $product['quantity']));
 					$product_tax_percent = number_format((($product_tax_value * 100) / ($product['price'] * $product['quantity'])), 2, '.', '');
 				} else {
-					$product_tax_value = '0.00';
-					$product_tax_percent = '0.00';
+					$product_tax_value = 0;
+					$product_tax_percent = '';
 				}
 
 				// Profile

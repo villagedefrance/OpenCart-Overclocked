@@ -2537,8 +2537,8 @@ class ControllerSaleOrder extends Controller {
 					$product_tax_value = $this->currency->format(($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']);
 					$product_tax_percent = number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / ($product['price'] * $product['quantity'])), 2, '.', '');
 				} else {
-					$product_tax_value = '0.00';
-					$product_tax_percent = '0.00';
+					$product_tax_value = 0;
+					$product_tax_percent = '';
 				}
 
 				$this->data['products'][] = array(

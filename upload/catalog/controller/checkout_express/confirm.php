@@ -415,6 +415,15 @@ class ControllerCheckoutExpressConfirm extends Controller {
 				$this->data['order_comment'] = '';
 			}
 
+			// Get tax breakdown
+			if ($this->config->get('config_tax_breakdown')) {
+				$this->data['tax_breakdown'] = true;
+				$this->data['tax_colspan'] = 6;
+			} else {
+				$this->data['tax_breakdown'] = false;
+				$this->data['tax_colspan'] = 4;
+			}
+
 			$this->data['column_name'] = $this->language->get('column_name');
 			$this->data['column_model'] = $this->language->get('column_model');
 			$this->data['column_quantity'] = $this->language->get('column_quantity');
@@ -446,6 +455,16 @@ class ControllerCheckoutExpressConfirm extends Controller {
 					);
 				}
 
+				// Check price free
+				if ($product['price'] > 0) {
+					$product_tax_value = ($this->tax->calculate(($product['price'] * $product['quantity']), $product['tax_class_id'], $this->config->get('config_tax')) - ($product['price'] * $product['quantity']));
+					$product_tax_percent = number_format((($product_tax_value * 100) / ($product['price'] * $product['quantity'])), 2, '.', '');
+				} else {
+					$product_tax_value = 0;
+					$product_tax_percent = '';
+				}
+
+				// Profile
 				$profile_description = '';
 
 				if ($product['recurring']) {
@@ -483,7 +502,7 @@ class ControllerCheckoutExpressConfirm extends Controller {
 					'subtract'            => $product['subtract'],
 					'price'               => $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax'))),
 					'tax_value'           => $this->currency->format($product_tax_value),
-					'tax_percent'         => number_format((($product_tax_value * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
+					'tax_percent'         => $product_tax_percent,
 					'age_minimum'         => ($product['age_minimum'] > 0) ? ' (' . $product['age_minimum'] . '+)' : '',
 					'total'               => $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')) * $product['quantity']),
 					'href'                => $this->url->link('product/product', 'product_id=' . $product['product_id'], 'SSL'),

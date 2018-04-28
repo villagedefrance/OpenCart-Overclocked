@@ -208,6 +208,15 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 			$data['accept_language'] = '';
 		}
 
+		// Get tax breakdown
+		if ($this->config->get('config_tax_breakdown')) {
+			$this->data['tax_breakdown'] = true;
+			$this->data['tax_colspan'] = 6;
+		} else {
+			$this->data['tax_breakdown'] = false;
+			$this->data['tax_colspan'] = 4;
+		}
+
 		$this->load->model('checkout/order');
 
 		$this->data['column_name'] = $this->language->get('column_name');
@@ -254,18 +263,6 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 				);
 			}
 
-			// Download
-			$download_data = array();
-
-			foreach ($product['download'] as $download) {
-				$download_data[] = array(
-					'name'      => $download['name'],
-					'filename'  => $download['filename'],
-					'mask'      => $download['mask'],
-					'remaining' => $download['remaining']
-				);
-			}
-
 			// Display prices & totals
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 				$price = $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')));
@@ -306,8 +303,8 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 				$product_tax_value = ($this->tax->calculate(($product['price'] * $product['quantity']), $product['tax_class_id'], $this->config->get('config_tax')) - ($product['price'] * $product['quantity']));
 				$product_tax_percent = number_format((($product_tax_value * 100) / ($product['price'] * $product['quantity'])), 2, '.', '');
 			} else {
-				$product_tax_value = '0.00';
-				$product_tax_percent = '0.00';
+				$product_tax_value = 0;
+				$product_tax_percent = '';
 			}
 
 			// Check minimum age
@@ -339,7 +336,7 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 				'name'                => $product['name'],
 				'model'               => $product['model'],
 				'option'              => $option_data,
-				'download'            => $download_data,
+				'download'            => $product['download'],
 				'quantity'            => $product['quantity'],
 				'stock'               => $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
 				'subtract'            => $product['subtract'],
