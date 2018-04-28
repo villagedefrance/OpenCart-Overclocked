@@ -665,7 +665,7 @@ class ControllerCommonFileManagerFull extends Controller {
 			$contentType = $_SERVER["CONTENT_TYPE"];
 		}
 
-		$file_max_size = 102400; // 100Mb
+		$file_max_size = 98304; // 96Mb
 
 		if (strpos($contentType, "multipart") !== false) {
 			if (isset($_FILES['file']['tmp_name']) && is_uploaded_file($_FILES['file']['tmp_name'])) {

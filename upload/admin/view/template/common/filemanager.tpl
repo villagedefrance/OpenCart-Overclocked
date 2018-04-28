@@ -711,8 +711,8 @@ $(document).ready(function() {
 				$('#uploader').plupload({
 					runtimes: 'html5,flash,silverlight',
 					url: 'index.php?route=common/filemanager/multi&token=<?php echo $token; ?>&directory=' + window.dr,
-					max_file_count: 50,
-					max_file_size: '99mb',
+					max_file_count: 20,
+					max_file_size: '96mb',
 					chunk_size: '1mb',
 					unique_names: false,
 					resize: { quality: 100, crop: false },
@@ -768,7 +768,7 @@ $(document).ready(function() {
 					$('#information-dialog').html(json['html']);
 					$('#information-dialog').dialog({
 						title: '<?php echo $heading_info; ?>',
-						width: 640,
+						width: 600,
 						height: 260,
 						resizable: false,
 						modal: true
