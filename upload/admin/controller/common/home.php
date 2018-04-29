@@ -344,8 +344,13 @@ class ControllerCommonHome extends Controller {
 
 		// Overview Links
 		$config_order_status_id = $this->config->get('config_order_status_id');
+		$config_complete_status_id = $this->config->get('config_complete_status_id');
 
-		$this->data['total_pending_orders'] = $this->model_sale_order->getTotalOrdersByOrderStatusId($config_order_status_id);
+		if ($config_order_status_id != $config_complete_status_id) {
+			$this->data['total_pending_orders'] = $this->model_sale_order->getTotalOrdersByOrderStatusId($config_order_status_id);
+		} else {
+			$this->data['total_pending_orders'] = 0;
+		}
 
 		$this->data['view_reviews'] = $this->url->link('catalog/review', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['view_affiliates'] = $this->url->link('sale/affiliate', 'token=' . $this->session->data['token'], 'SSL');
