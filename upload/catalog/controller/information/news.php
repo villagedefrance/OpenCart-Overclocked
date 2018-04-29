@@ -384,7 +384,7 @@ class ControllerInformationNews extends Controller {
 			$mask = basename($download_info['mask']);
 
 			if (!headers_sent()) {
-				if (file_exists($file)) {
+				if (file_exists($file) && is_file($file)) {
 					header('Content-Type: application/octet-stream');
 					header('Content-Description: File Transfer');
 					header('Content-Disposition: attachment; filename="' . ($mask ? $mask : basename($file)) . '"');
@@ -400,6 +400,8 @@ class ControllerInformationNews extends Controller {
 				} else {
 					exit('Error: Could not find file ' . $file . '!');
 				}
+
+				clearstatcache();
 
 			} else {
 				exit('Error: Headers already sent out!');

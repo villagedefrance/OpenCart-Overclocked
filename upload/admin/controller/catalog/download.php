@@ -617,12 +617,12 @@ class ControllerCatalogDownload extends Controller {
 
 		if (!isset($json['error'])) {
 			if (is_uploaded_file($this->request->files['file']['tmp_name']) && file_exists($this->request->files['file']['tmp_name'])) {
-				$ext = hash_rand('md5');
+				$ms = substr(time().str_shuffle(md5(time())), 0, 8);
 
-				$json['filename'] = $filename . '.' . $ext;
+				$json['filename'] = $filename . '.' . $ms;
 				$json['mask'] = $filename;
 
-				move_uploaded_file($this->request->files['file']['tmp_name'], DIR_DOWNLOAD . $filename . '.' . $ext);
+				move_uploaded_file($this->request->files['file']['tmp_name'], DIR_DOWNLOAD . $filename . '.' . $ms);
 			}
 
 			$json['success'] = $this->language->get('text_upload');

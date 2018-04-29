@@ -2969,7 +2969,7 @@ class ControllerSaleOrder extends Controller {
 				if (file_exists($file) && is_file($file)) {
 					header('Content-Type: application/octet-stream');
 					header('Content-Description: File Transfer');
-					header('Content-Disposition: attachment; filename=' . ($mask) ? $mask : basename($file));
+					header('Content-Disposition: attachment; filename="' . ($mask ? $mask : basename($file)) . '"');
 					header('Content-Transfer-Encoding: binary');
 					header('Expires: 0');
 					header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
