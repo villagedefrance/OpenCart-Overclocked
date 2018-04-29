@@ -216,7 +216,7 @@
         <?php } ?>
       </div>
       <div class="validate animated fadeIn">
-        <a onclick="$('#login').submit();" class="button-filter"><?php echo $button_login; ?></a>
+        <a onclick="$('#login').submit();" class="button-filter"><i class="fa fa-power-off"></i> &nbsp; <?php echo $button_login; ?></a>
       </div>
     <?php if ($redirect) { ?>
       <input type="hidden" name="redirect" value="<?php echo $redirect; ?>" />
