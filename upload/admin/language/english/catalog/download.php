@@ -5,6 +5,7 @@ $_['heading_title']        = 'Downloads';
 // Text
 $_['text_success']         = 'Success: You have modified <b>Downloads</b> !';
 $_['text_upload']          = 'Your file was successfully uploaded!';
+$_['text_upload_limit']    = 'Maximum File Size set in store Settings is: %s bytes.';
 
 // Column
 $_['column_name']          = 'Download Name';
@@ -23,7 +24,7 @@ $_['entry_update']         = 'Push to Previous Customers:';
 // Help
 $_['help_filename']        = 'You can upload via the upload button or use FTP to upload to the download directory and enter the file name manually.<br /><br />It is also recommended that the filename and the mask are different to stop people trying to directly link to your downloads.';
 $_['help_mask']            = 'The mask must end with a file type.<br />Example: filename<b>.zip</b>';
-$_['help_update']          = 'Check this to update previously purchased versions as well.';
+$_['help_update']          = 'Check this to update past orders.';
 
 // Error
 $_['error_permission']     = 'Warning: You do not have permission to modify <b>Downloads</b> !';

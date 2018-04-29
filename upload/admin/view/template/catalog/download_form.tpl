@@ -18,6 +18,7 @@
     </div>
   </div>
   <div class="content">
+    <div class="tooltip" style="margin:10px 0 15px 0;"><?php echo $text_upload_limit; ?></div>
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
       <table class="form">
         <tr>

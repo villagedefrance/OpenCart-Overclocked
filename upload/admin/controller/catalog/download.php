@@ -347,6 +347,8 @@ class ControllerCatalogDownload extends Controller {
 	protected function getForm() {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
+		$this->data['text_upload_limit'] = sprintf($this->language->get('text_upload_limit'), $this->config->get('config_file_max_size'));
+
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_filename'] = $this->language->get('entry_filename');
 		$this->data['entry_mask'] = $this->language->get('entry_mask');
