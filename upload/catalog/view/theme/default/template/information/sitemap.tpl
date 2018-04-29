@@ -12,6 +12,7 @@
   <h1><?php echo $heading_title; ?></h1>
   <div class="sitemap-info">
     <div class="left">
+    <?php if ($categories) { ?>
       <ul>
       <?php foreach ($categories as $category_1) { ?>
         <li><a href="<?php echo $category_1['href']; ?>"><?php echo $category_1['name']; ?></a>
@@ -33,6 +34,7 @@
         </li>
       <?php } ?>
       </ul>
+    <?php } ?>
     </div>
     <div class="right">
       <ul>
@@ -46,6 +48,7 @@
         <li><a href="<?php echo $review_list; ?>"><?php echo $text_review_list; ?></a></li>
         <li class="last-line"><a href="<?php echo $search; ?>"><?php echo $text_search; ?></a></li>
         <li class="last-line"><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a>
+        <?php if ($sitemap_links) { ?>
           <ul>
             <li><a href="<?php echo $login; ?>"><?php echo $text_login; ?></a></li>
             <li><a href="<?php echo $edit; ?>"><?php echo $text_edit; ?></a></li>
@@ -63,9 +66,11 @@
             <li><a href="<?php echo $giftvoucher; ?>"><?php echo $text_giftvoucher; ?></a></li>
             <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
           </ul>
+        <?php } ?>
         </li>
         <?php if ($allow_affiliate) { ?>
         <li class="last-line"><a href="<?php echo $affiliate_account; ?>"><?php echo $text_affiliate_account; ?></a>
+        <?php if ($sitemap_links) { ?>
           <ul>
             <li><a href="<?php echo $affiliate_login; ?>"><?php echo $text_affiliate_login; ?></a></li>
             <li><a href="<?php echo $affiliate_edit; ?>"><?php echo $text_affiliate_edit; ?></a></li>
@@ -75,14 +80,17 @@
             <li><a href="<?php echo $affiliate_tracking; ?>"><?php echo $text_affiliate_tracking; ?></a></li>
             <li><a href="<?php echo $affiliate_transaction; ?>"><?php echo $text_affiliate_transaction; ?></a></li>
           </ul>
+        <?php } ?>
         </li>
         <?php } ?>
         <li class="last-line"><a href="<?php echo $sitemap; ?>"><?php echo $text_information; ?></a>
+        <?php if ($informations) { ?>
           <ul>
           <?php foreach ($informations as $information) { ?>
             <li><a href="<?php echo $information['href']; ?>"><?php echo $information['title']; ?></a></li>
           <?php } ?>
           </ul>
+        <?php } ?>
         </li>
         <li class="last-line"><a href="<?php echo $news; ?>"><?php echo $text_news; ?></a></li>
         <li class="last-line"><a href="<?php echo $quote; ?>"><?php echo $text_quote; ?></a></li>

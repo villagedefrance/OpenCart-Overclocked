@@ -315,6 +315,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_robots_online'] = $this->language->get('entry_robots_online');
 		$this->data['entry_password'] = $this->language->get('entry_password');
 		$this->data['entry_ban_page'] = $this->language->get('entry_ban_page');
+		$this->data['entry_sitemap_links'] = $this->language->get('entry_sitemap_links');
 		$this->data['entry_file_max_size'] = $this->language->get('entry_file_max_size');
 		$this->data['entry_file_extension_allowed'] = $this->language->get('entry_file_extension_allowed');
 		$this->data['entry_file_mime_allowed'] = $this->language->get('entry_file_mime_allowed');
@@ -458,6 +459,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['help_robots_online'] = $this->language->get('help_robots_online');
 		$this->data['help_password'] = $this->language->get('help_password');
 		$this->data['help_ban_page'] = $this->language->get('help_ban_page');
+		$this->data['help_sitemap_links'] = $this->language->get('help_sitemap_links');
 		$this->data['help_file_max_size'] = $this->language->get('help_file_max_size');
 		$this->data['help_file_extension_allowed'] = $this->language->get('help_file_extension_allowed');
 		$this->data['help_file_mime_allowed'] = $this->language->get('help_file_mime_allowed');
@@ -2140,62 +2142,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['matomo_web'] = 'https://matomo.org/';
 
 		// Server
-		if (isset($this->request->post['config_secure'])) {
-			$this->data['config_secure'] = $this->request->post['config_secure'];
-		} else {
-			$this->data['config_secure'] = $this->config->get('config_secure');
-		}
-
-		if (isset($this->request->post['config_shared'])) {
-			$this->data['config_shared'] = $this->request->post['config_shared'];
-		} else {
-			$this->data['config_shared'] = $this->config->get('config_shared');
-		}
-
-		if (isset($this->request->post['config_robots'])) {
-			$this->data['config_robots'] = $this->request->post['config_robots'];
-		} else {
-			$this->data['config_robots'] = $this->config->get('config_robots');
-		}
-
-		if (isset($this->request->post['config_robots_online'])) {
-			$this->data['config_robots_online'] = $this->request->post['config_robots_online'];
-		} else {
-			$this->data['config_robots_online'] = $this->config->get('config_robots_online');
-		}
-
-		if (isset($this->request->post['config_password'])) {
-			$this->data['config_password'] = $this->request->post['config_password'];
-		} else {
-			$this->data['config_password'] = $this->config->get('config_password');
-		}
-
-		if (isset($this->request->post['config_ban_page'])) {
-			$this->data['config_ban_page'] = $this->request->post['config_ban_page'];
-		} else {
-			$this->data['config_ban_page'] = $this->config->get('config_ban_page');
-		}
-
-		if (isset($this->request->post['config_file_max_size'])) {
-			$this->data['config_file_max_size'] = $this->request->post['config_file_max_size'];
-		} elseif ($this->config->get('config_file_max_size')) {
-			$this->data['config_file_max_size'] = $this->config->get('config_file_max_size');
-		} else {
-			$this->data['config_file_max_size'] = 300000;
-		}
-
-		if (isset($this->request->post['config_file_extension_allowed'])) {
-			$this->data['config_file_extension_allowed'] = $this->request->post['config_file_extension_allowed'];
-		} else {
-			$this->data['config_file_extension_allowed'] = $this->config->get('config_file_extension_allowed');
-		}
-
-		if (isset($this->request->post['config_file_mime_allowed'])) {
-			$this->data['config_file_mime_allowed'] = $this->request->post['config_file_mime_allowed'];
-		} else {
-			$this->data['config_file_mime_allowed'] = $this->config->get('config_file_mime_allowed');
-		}
-
 		if (isset($this->request->post['config_maintenance'])) {
 			$this->data['config_maintenance'] = $this->request->post['config_maintenance'];
 		} else {
@@ -2262,6 +2208,70 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_quote_filename'] = $this->request->post['config_quote_filename'];
 		} else {
 			$this->data['config_quote_filename'] = $this->config->get('config_quote_filename');
+		}
+
+		// Security
+		if (isset($this->request->post['config_secure'])) {
+			$this->data['config_secure'] = $this->request->post['config_secure'];
+		} else {
+			$this->data['config_secure'] = $this->config->get('config_secure');
+		}
+
+		if (isset($this->request->post['config_shared'])) {
+			$this->data['config_shared'] = $this->request->post['config_shared'];
+		} else {
+			$this->data['config_shared'] = $this->config->get('config_shared');
+		}
+
+		if (isset($this->request->post['config_robots'])) {
+			$this->data['config_robots'] = $this->request->post['config_robots'];
+		} else {
+			$this->data['config_robots'] = $this->config->get('config_robots');
+		}
+
+		if (isset($this->request->post['config_robots_online'])) {
+			$this->data['config_robots_online'] = $this->request->post['config_robots_online'];
+		} else {
+			$this->data['config_robots_online'] = $this->config->get('config_robots_online');
+		}
+
+		if (isset($this->request->post['config_password'])) {
+			$this->data['config_password'] = $this->request->post['config_password'];
+		} else {
+			$this->data['config_password'] = $this->config->get('config_password');
+		}
+
+		if (isset($this->request->post['config_ban_page'])) {
+			$this->data['config_ban_page'] = $this->request->post['config_ban_page'];
+		} else {
+			$this->data['config_ban_page'] = $this->config->get('config_ban_page');
+		}
+
+		if (isset($this->request->post['config_sitemap_links'])) {
+			$this->data['config_sitemap_links'] = $this->request->post['config_sitemap_links'];
+		} else {
+			$this->data['config_sitemap_links'] = $this->config->get('config_sitemap_links');
+		}
+
+		// Upload
+		if (isset($this->request->post['config_file_max_size'])) {
+			$this->data['config_file_max_size'] = $this->request->post['config_file_max_size'];
+		} elseif ($this->config->get('config_file_max_size')) {
+			$this->data['config_file_max_size'] = $this->config->get('config_file_max_size');
+		} else {
+			$this->data['config_file_max_size'] = 2048000;
+		}
+
+		if (isset($this->request->post['config_file_extension_allowed'])) {
+			$this->data['config_file_extension_allowed'] = $this->request->post['config_file_extension_allowed'];
+		} else {
+			$this->data['config_file_extension_allowed'] = $this->config->get('config_file_extension_allowed');
+		}
+
+		if (isset($this->request->post['config_file_mime_allowed'])) {
+			$this->data['config_file_mime_allowed'] = $this->request->post['config_file_mime_allowed'];
+		} else {
+			$this->data['config_file_mime_allowed'] = $this->config->get('config_file_mime_allowed');
 		}
 
 		$this->template = 'setting/setting.tpl';

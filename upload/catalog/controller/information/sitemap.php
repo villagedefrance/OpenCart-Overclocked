@@ -65,6 +65,8 @@ class ControllerInformationSitemap extends Controller {
 		$this->load->model('catalog/category');
 		$this->load->model('catalog/product');
 
+		$this->data['sitemap_links'] = $this->config->get('config_sitemap_links');
+
 		$empty_category = $this->config->get('config_empty_category');
 
 		$this->data['categories'] = array();

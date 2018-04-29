@@ -2447,6 +2447,20 @@
               <?php } ?>
             </select></td>
           </tr>
+          <tr>
+            <td><?php echo $entry_sitemap_links; ?><span class="help"><?php echo $help_sitemap_links; ?></span></td>
+            <td><?php if ($config_sitemap_links) { ?>
+              <input type="radio" name="config_sitemap_links" value="1" id="sitemap-links-on" class="radio" checked />
+              <label for="sitemap-links-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_sitemap_links" value="0" id="sitemap-links-off" class="radio" />
+              <label for="sitemap-links-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_sitemap_links" value="1" id="sitemap-links-on" class="radio" />
+              <label for="sitemap-links-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_sitemap_links" value="0" id="sitemap-links-off" class="radio" checked />
+              <label for="sitemap-links-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
         </table>
         <h2><?php echo $text_upload; ?></h2>
         <table class="form">
