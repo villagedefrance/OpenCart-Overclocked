@@ -729,7 +729,7 @@ table.radio tr.highlight:hover td {
 	margin-top: 10px;
 }
 /* Button */
-a.button, input.button, input.button-cart, input.button-wrap-add, input.button-wrap-remove {
+a.button, input.button, button.button, input.button-cart, input.button-wrap-add, input.button-wrap-remove {
 	color: #FFF;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	background-color: #239DD1;
@@ -771,7 +771,7 @@ a.button, a.button-danger {
 	font-weight: bold;
 	line-height: 12px;
 }
-input.button, input.button-danger {
+input.button, input.button-danger, button.button {
 	border: 0;
 	height: 24px;
 	padding: 0 12px;
@@ -813,7 +813,7 @@ input.button-wrap-remove, input.button-wrap-remove:hover {
 input.button-wrap-add:hover, input.button-wrap-remove:hover {
 	background-color: #0D6D98;
 }
-a.button:hover, input.button:hover, input.button-cart:hover {
+a.button:hover, input.button:hover, button.button:hover, input.button-cart:hover {
 	background-color: #3782BF;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#3782BF), to(#0D6D98));
 	background-image: -webkit-linear-gradient(top, #3782BF, #0D6D98);
@@ -2238,7 +2238,7 @@ ul.box-filter > li ul {
 	min-width: 195px;
 }
 .login-content .left .content, .login-content .right .content {
-	min-height: 210px;
+	min-height: 230px;
 }
 /* Orders */
 .order-list {

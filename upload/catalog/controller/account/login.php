@@ -104,7 +104,7 @@ class ControllerAccountLogin extends Controller {
 			// Added strpos check to pass McAfee PCI compliance test (http://forum.opencart.com/viewtopic.php?f=10&t=12043&p=151494#p151295)
 			if (isset($this->request->post['redirect']) && (strpos($this->request->post['redirect'], $this->config->get('config_url')) === 0 || strpos($this->request->post['redirect'], $this->config->get('config_ssl')) === 0)) {
 				$this->redirect(str_replace('&amp;', '&', $this->request->post['redirect']));
-			} elseif ($this->cart->hasProducts() && $this->config->get('config_express_checkout') && !$this->config->get('config_customer_redirect')) {
+			} elseif ($this->cart->hasProducts() && !$this->config->get('config_customer_redirect')) {
 				$this->redirect($this->url->link('checkout/cart', '', 'SSL'));
 			} elseif ($this->config->get('config_customer_redirect')) {
 				$this->redirect($this->url->link('common/home', '', 'SSL'));
@@ -138,6 +138,7 @@ class ControllerAccountLogin extends Controller {
 		$this->data['text_new_customer'] = $this->language->get('text_new_customer');
 		$this->data['text_register'] = $this->language->get('text_register');
 		$this->data['text_register_account'] = $this->language->get('text_register_account');
+		$this->data['text_register_gdpr'] = $this->language->get('text_register_gdpr');
 		$this->data['text_returning_customer'] = $this->language->get('text_returning_customer');
 		$this->data['text_i_am_returning_customer'] = $this->language->get('text_i_am_returning_customer');
 		$this->data['text_forgotten'] = $this->language->get('text_forgotten');

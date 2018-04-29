@@ -22,12 +22,13 @@
       <div class="content">
         <p><b><?php echo $text_register; ?></b></p>
         <p><?php echo $text_register_account; ?></p>
-        <a href="<?php echo $register; ?>" class="button"><?php echo $button_continue; ?></a>
+        <p><?php echo $text_register_gdpr; ?></p>
+        <a href="<?php echo $register; ?>" class="button"><i class="fa fa-caret-right"></i> &nbsp; <?php echo $button_continue; ?></a>
       </div>
     </div>
     <div class="right">
       <h2><?php echo $text_returning_customer; ?></h2>
-      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" name="login">
         <div class="content">
           <p><?php echo $text_i_am_returning_customer; ?></p>
           <b><?php echo $entry_email; ?></b><br />
@@ -39,7 +40,7 @@
           <br />
           <a href="<?php echo $forgotten; ?>"><?php echo $text_forgotten; ?></a><br />
           <br />
-          <input type="submit" value="<?php echo $button_login; ?>" class="button" />
+          <button type="submit" class="button"><i class="fa fa-sign-in"></i> &nbsp; <?php echo $button_login; ?></button>
           <?php if ($redirect) { ?>
             <input type="hidden" name="redirect" value="<?php echo $redirect; ?>" />
           <?php } ?>

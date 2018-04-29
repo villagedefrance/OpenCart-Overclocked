@@ -13,7 +13,7 @@
           <input type="password" name="password" /><br />
         </p>
         <p style="text-align:center;">
-          <a onclick="$('#module-account').submit();" class="button"><?php echo $button_login; ?></a>
+          <a onclick="$('#module-account').submit();" class="button"><i class="fa fa-sign-in"></i> &nbsp; <?php echo $button_login; ?></a>
         </p>
       </form>
       <div style="margin-top:15px; text-align:center;">
@@ -26,7 +26,7 @@
 <?php } else { ?>
 <div style="margin-bottom:20px;">
   <div>
-    <div style="text-align:left; padding:10px 10px;">
+    <div style="text-align:left; padding:10px;">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="module-account">
         <p>
           <?php echo $entry_email_address; ?><br />
@@ -36,7 +36,7 @@
           <input type="password" name="password" /><br />
         </p>
         <p style="text-align:center;">
-          <a onclick="$('#module-account').submit();" class="button"><?php echo $button_login; ?></a>
+          <a onclick="$('#module-account').submit();" class="button"><i class="fa fa-sign-in"></i> &nbsp; <?php echo $button_login; ?></a>
         </p>
       </form>
       <div style="margin-top:15px; text-align:center;">
@@ -77,13 +77,13 @@
           <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
         </ul>
       </div>
-      <div style="text-align:center; padding:10px 0px;">
-        <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
+      <div style="text-align:center; padding:10px 0;">
+        <a href="<?php echo $logout; ?>" class="button"><i class="fa fa-sign-out"></i> &nbsp; <?php echo $button_logout; ?></a>
       </div>
     <?php } ?>
     <?php if ($mode == 1) { ?>
-      <div style="text-align:center; padding:10px 0px;">
-        <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
+      <div style="text-align:center; padding:10px 0;">
+        <a href="<?php echo $logout; ?>" class="button"><i class="fa fa-sign-out"></i> &nbsp; <?php echo $button_logout; ?></a>
       </div>
     <?php } ?>
   </div>
@@ -115,13 +115,13 @@
           <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
         </ul>
       </div>
-      <div style="text-align:center; padding:10px 0px;">
-        <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
+      <div style="text-align:center; padding:10px 0;">
+        <a href="<?php echo $logout; ?>" class="button"><i class="fa fa-sign-out"></i> &nbsp; <?php echo $button_logout; ?></a>
       </div>
     <?php } ?>
     <?php if ($mode == 1) { ?>
-      <div style="text-align:center; padding:10px 0px;">
-        <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
+      <div style="text-align:center; padding:10px 0;">
+        <a href="<?php echo $logout; ?>" class="button"><i class="fa fa-sign-out"></i> &nbsp; <?php echo $button_logout; ?></a>
       </div>
     <?php } ?>
   </div>

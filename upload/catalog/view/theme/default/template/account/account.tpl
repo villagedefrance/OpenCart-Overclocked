@@ -16,7 +16,12 @@
   <h1><?php echo $heading_title; ?></h1>
   <div class="buttons">
     <div class="left"><h4><?php echo $firstname; ?> <?php echo $lastname; ?> &nbsp; (<?php echo $email; ?>)</h4></div>
-    <div class="right"><a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a></div>
+    <div class="right">
+    <?php if ($cart_exist) { ?>
+      <a href="<?php echo $my_cart; ?>" class="button"><i class="fa fa-shopping-cart"></i> &nbsp; <?php echo $button_my_cart; ?></a> &nbsp;
+    <?php } ?>
+      <a href="<?php echo $logout; ?>" class="button"><i class="fa fa-sign-out"></i> &nbsp; <?php echo $button_logout; ?></a>
+    </div>
   </div>
   <?php if (!$addresses) { ?>
     <div class="attention"><?php echo $text_no_address; ?></div>

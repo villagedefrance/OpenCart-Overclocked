@@ -74,9 +74,18 @@ class ControllerAccountAccount extends Controller {
 		$this->data['recurring'] = $this->url->link('account/recurring', '', 'SSL');
 		$this->data['newsletter'] = $this->url->link('account/newsletter', '', 'SSL');
 
+		$this->data['button_my_cart'] = $this->language->get('button_my_cart');
 		$this->data['button_logout'] = $this->language->get('button_logout');
 
+		$this->data['my_cart'] = $this->url->link('checkout/cart', '', 'SSL');
 		$this->data['logout'] = $this->url->link('account/logout', '', 'SSL');
+
+		// Check Cart
+		if ($this->cart->hasProducts()) {
+			$this->data['cart_exist'] = true;
+		} else {
+			$this->data['cart_exist'] = false;
+		}
 
 		// Check Addresses
 		$this->load->model('account/address');
