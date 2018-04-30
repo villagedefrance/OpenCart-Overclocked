@@ -125,7 +125,7 @@ class ControllerToolSitemap extends Controller {
 		if (file_exists("../sitemap.txt") && is_file("../sitemap.txt")) {
 			$getsitemaptext = file_get_contents("../sitemap.txt");
 
-			$this->data['sitemaptext'] = htmlspecialchars($getsitemaptext, ENT_QUOTES);
+			$this->data['sitemaptext'] = $getsitemaptext;
 
 			$filetext = "../sitemap.txt";
 
@@ -155,7 +155,7 @@ class ControllerToolSitemap extends Controller {
 		if (file_exists("../sitemap.xml") && is_file("../sitemap.xml")) {
 			$getsitemapxml = file_get_contents("../sitemap.xml");
 
-			$this->data['sitemapxml'] = htmlspecialchars($getsitemapxml, ENT_QUOTES);
+			$this->data['sitemapxml'] = $getsitemapxml;
 
 			$filexml = "../sitemap.xml";
 

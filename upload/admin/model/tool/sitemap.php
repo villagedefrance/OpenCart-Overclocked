@@ -559,7 +559,7 @@ class ModelToolSitemap extends Model {
 		$link_url = str_replace("&", "&amp;", $link_node);
 
 		$output = "<url>\r";
-		$output .= "<loc>" . html_entity_decode($link_url) . "</loc>\r";
+		$output .= "<loc>" . $link_url . "</loc>\r";
 		$output .= "<lastmod>" . date("Y-m-d") . "</lastmod>\r";
 		$output .= "<changefreq>" . $changefreq . "</changefreq>\r";
 		$output .= "<priority>" . $priority . "</priority>\r";
@@ -572,7 +572,7 @@ class ModelToolSitemap extends Model {
 		$link_url = str_replace("&", "&amp;", $link);
 
 		$output = "<url>\r";
-		$output .= "<loc>" . html_entity_decode($link_url) . "</loc>\r";
+		$output .= "<loc>" . $link_url . "</loc>\r";
 		$output .= "<lastmod>" . date("Y-m-d") . "</lastmod>\r";
 		$output .= "<changefreq>" . $changefreq . "</changefreq>\r";
 		$output .= "<priority>" . $priority . "</priority>\r";
