@@ -59,8 +59,10 @@
         <td class="left"><?php echo $column_model; ?></td>
         <td class="center"><?php echo $column_quantity; ?></td>
         <td class="right"><?php echo $column_price; ?></td>
+      <?php if ($tax_breakdown) { ?>
         <td class="right"><?php echo $column_tax_value; ?></td>
         <td class="right"><?php echo $column_tax_percent; ?></td>
+      <?php } ?>
         <td class="right"><?php echo $column_total; ?></td>
         <?php if ($products) { ?>
           <td style="width:1px;"></td>
@@ -68,48 +70,52 @@
       </tr>
     </thead>
     <tbody>
-      <?php foreach ($products as $product) { ?>
-        <tr>
-          <td class="left"><?php echo $product['name']; ?>
-          <?php foreach ($product['option'] as $option) { ?>
-            <br />
-            &nbsp;<small> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></small>
-          <?php } ?></td>
-          <td class="left"><?php echo $product['model']; ?></td>
-          <td class="center"><?php echo $product['quantity']; ?></td>
-          <td class="right"><?php echo $product['price']; ?></td>
-          <td class="right"><?php echo $product['tax_value']; ?></td>
-          <td class="right"><?php echo $product['tax_percent']; ?>%</td>
-          <td class="right"><?php echo $product['total']; ?></td>
-          <td class="right">
-            <a href="<?php echo $product['return']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/return.png" alt="<?php echo $button_return; ?>" title="<?php echo $button_return; ?>" /></a>
-          </td>
-        </tr>
+    <?php foreach ($products as $product) { ?>
+      <tr>
+        <td class="left"><?php echo $product['name']; ?>
+        <?php foreach ($product['option'] as $option) { ?>
+          <br />
+          &nbsp;<small> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></small>
+        <?php } ?></td>
+        <td class="left"><?php echo $product['model']; ?></td>
+        <td class="center"><?php echo $product['quantity']; ?></td>
+        <td class="right"><?php echo $product['price']; ?></td>
+      <?php if ($tax_breakdown) { ?>
+        <td class="right"><?php echo $product['tax_value']; ?></td>
+        <td class="right"><?php echo $product['tax_percent']; ?>%</td>
       <?php } ?>
-      <?php foreach ($vouchers as $voucher) { ?>
-        <tr>
-          <td class="left" colspan="2"><?php echo $voucher['description']; ?></td>
-          <td class="left" colspan="2"></td>
-          <td class="right">1</td>
-          <td class="right"><?php echo $voucher['amount']; ?></td>
-          <td class="right"><?php echo $voucher['amount']; ?></td>
-          <?php if ($products) { ?>
-          <td></td>
-          <?php } ?>
-        </tr>
+        <td class="right"><?php echo $product['total']; ?></td>
+        <td class="right">
+          <a href="<?php echo $product['return']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/return.png" alt="<?php echo $button_return; ?>" title="<?php echo $button_return; ?>" /></a>
+        </td>
+      </tr>
+    <?php } ?>
+    <?php foreach ($vouchers as $voucher) { ?>
+      <tr>
+        <td class="left" colspan="2"><?php echo $voucher['description']; ?></td>
+      <?php if ($tax_breakdown) { ?>
+        <td class="left" colspan="2"></td>
       <?php } ?>
+        <td class="right">1</td>
+        <td class="right"><?php echo $voucher['amount']; ?></td>
+        <td class="right"><?php echo $voucher['amount']; ?></td>
+      <?php if ($products) { ?>
+        <td></td>
+      <?php } ?>
+      </tr>
+    <?php } ?>
     </tbody>
     <tfoot>
-      <?php foreach ($totals as $total) { ?>
-        <tr>
-          <td colspan="4"></td>
-          <td class="right" colspan="2"><b><?php echo $total['title']; ?>:</b></td>
-          <td class="right"><?php echo $total['text']; ?></td>
-          <?php if ($products) { ?>
-          <td></td>
-          <?php } ?>
-        </tr>
+    <?php foreach ($totals as $total) { ?>
+      <tr>
+        <td colspan="<?php echo $tax_colspan; ?>"></td>
+        <td class="right" colspan="2"><b><?php echo $total['title']; ?>:</b></td>
+        <td class="right"><?php echo $total['text']; ?></td>
+      <?php if ($products) { ?>
+        <td></td>
       <?php } ?>
+      </tr>
+    <?php } ?>
     </tfoot>
   </table>
   <?php if ($comment) { ?>

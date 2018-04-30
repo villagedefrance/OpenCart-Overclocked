@@ -438,6 +438,15 @@ class ControllerAccountOrder extends Controller {
 			$this->data['button_return'] = $this->language->get('button_return');
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
+			// Get tax breakdown
+			if ($this->config->get('config_tax_breakdown')) {
+				$this->data['tax_breakdown'] = true;
+				$this->data['tax_colspan'] = 4;
+			} else {
+				$this->data['tax_breakdown'] = false;
+				$this->data['tax_colspan'] = 2;
+			}
+
 			if ($order_info['invoice_no']) {
 				$this->data['invoice_no'] = $order_info['invoice_prefix'] . $order_info['invoice_no'];
 			} else {
@@ -549,7 +558,7 @@ class ControllerAccountOrder extends Controller {
 					'quantity'    => $product['quantity'],
 					'price'       => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
 					'tax_value'   => $this->currency->format(($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
-					'tax_percent' => number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
+					'tax_percent' => number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / (($product['price']) ? ($product['price'] * $product['quantity']) : $product['quantity'])), 2, '.', ''),
 					'total'       => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
 					'return'      => $this->url->link('account/return/insert', 'order_id=' . $order_info['order_id'] . '&product_id=' . $product['product_id'], 'SSL')
 				);
@@ -710,6 +719,15 @@ class ControllerAccountOrder extends Controller {
 		$this->data['column_total'] = $this->language->get('column_total');
 
 		$this->data['token'] = $this->session->data['token'];
+
+		// Get tax breakdown
+		if ($this->config->get('config_tax_breakdown')) {
+			$this->data['tax_breakdown'] = true;
+			$this->data['tax_colspan'] = 6;
+		} else {
+			$this->data['tax_breakdown'] = false;
+			$this->data['tax_colspan'] = 4;
+		}
 
 		$this->load->model('account/order');
 		$this->load->model('setting/setting');
@@ -883,7 +901,7 @@ class ControllerAccountOrder extends Controller {
 					'quantity'    => $product['quantity'],
 					'price'       => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
 					'tax_value'   => $this->currency->format(($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
-					'tax_percent' => number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
+					'tax_percent' => number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / (($product['price']) ? ($product['price'] * $product['quantity']) : $product['quantity'])), 2, '.', ''),
 					'total'       => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value'])
 				);
 			}

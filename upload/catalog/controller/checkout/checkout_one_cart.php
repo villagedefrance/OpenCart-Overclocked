@@ -298,15 +298,6 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 				}
 			}
 
-			// Check price free
-			if ($product['price'] > 0) {
-				$product_tax_value = ($this->tax->calculate(($product['price'] * $product['quantity']), $product['tax_class_id'], $this->config->get('config_tax')) - ($product['price'] * $product['quantity']));
-				$product_tax_percent = number_format((($product_tax_value * 100) / ($product['price'] * $product['quantity'])), 2, '.', '');
-			} else {
-				$product_tax_value = 0;
-				$product_tax_percent = '';
-			}
-
 			// Check minimum age
 			$age_minimum = $product['age_minimum'];
 			$age_logged = false;
@@ -330,6 +321,8 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 				}
 			}
 
+			$product_tax_value = ($this->tax->calculate(($product['price'] * $product['quantity']), $product['tax_class_id'], $this->config->get('config_tax')) - ($product['price'] * $product['quantity']));
+
 			$this->data['products'][] = array(
 				'product_id'          => $product['product_id'],
 				'key'                 => $product['key'],
@@ -343,7 +336,7 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 				'price'               => $price,
 				'cost'                => $product['cost'],
 				'tax_value'           => $this->currency->format($product_tax_value),
-				'tax_percent'         => $product_tax_percent,
+				'tax_percent'         => number_format((($product_tax_value * 100) / (($product['price']) ? ($product['price'] * $product['quantity']) : $product['quantity'])), 2, '.', ''),
 				'age_minimum'         => ($age_checked) ? '<span style="color:#007200;"> (' . $product['age_minimum'] . '+)</span>' : '',
 				'recurring'           => $product['recurring'],
 				'profile_name'        => $product['profile_name'],

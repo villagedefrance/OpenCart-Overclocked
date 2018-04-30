@@ -71,12 +71,12 @@
       <td>
         <?php echo $payment_address; ?><br/><br/>
         <img src="catalog/view/theme/<?php echo $template; ?>/image/location/phone.png" alt="" height="14" width="14" /> <?php echo $telephone; ?><br />
-        <img src="catalog/view/theme/<?php echo $template; ?>/image/location/mail.png" alt="" height="14" width="14" /> <?php echo $email; ?><br/>
+        <img src="catalog/view/theme/<?php echo $template; ?>/image/location/mail.png" alt="" height="14" width="14" /> <?php echo $email; ?><br />
         <?php if ($payment_company) { ?>
-          <img src="catalog/view/theme/<?php echo $template; ?>/image/location/company.png" alt="" height="14" width="14" /> <?php echo $payment_company; ?><br/>
+          <img src="catalog/view/theme/<?php echo $template; ?>/image/location/company.png" alt="" height="14" width="14" /> <?php echo $payment_company; ?><br />
         <?php } ?>
         <?php if ($payment_company_id) { ?>
-          <img src="catalog/view/theme/<?php echo $template; ?>/image/location/tax.png" alt="" height="14" width="14" /> <?php echo $payment_company_id; ?><br/>
+          <img src="catalog/view/theme/<?php echo $template; ?>/image/location/tax.png" alt="" height="14" width="14" /> <?php echo $payment_company_id; ?><br />
         <?php } ?>
       </td>
       <td><?php echo $shipping_address; ?></td>
@@ -88,8 +88,10 @@
       <td class="left"><b><?php echo $column_model; ?></b></td>
       <td class="center"><b><?php echo $column_quantity; ?></b></td>
       <td class="right"><b><?php echo $column_price; ?></b></td>
+    <?php if ($tax_breakdown) { ?>
       <td class="right"><b><?php echo $column_tax_value; ?></b></td>
       <td class="right"><b><?php echo $column_tax_percent; ?></b></td>
+    <?php } ?>
       <td class="right"><b><?php echo $column_total; ?></b></td>
     </tr>
   <?php foreach ($products as $product) { ?>
@@ -103,8 +105,10 @@
       <td class="left"><?php echo $product['model']; ?></td>
       <td class="center"><?php echo $product['quantity']; ?></td>
       <td class="right"><?php echo $product['price']; ?></td>
+    <?php if ($tax_breakdown) { ?>
       <td class="right"><?php echo $product['tax_value']; ?></td>
       <td class="right"><?php echo $product['tax_percent']; ?>%</td>
+    <?php } ?>
       <td class="right"><?php echo $product['total']; ?></td>
     </tr>
   <?php } ?>
@@ -114,14 +118,16 @@
       <td class="left"></td>
       <td class="right">1</td>
       <td class="right"><?php echo $voucher['amount']; ?></td>
+    <?php if ($tax_breakdown) { ?>
       <td class="right">0.00</td>
       <td class="right">0%</td>
+    <?php } ?>
       <td class="right"><?php echo $voucher['amount']; ?></td>
     </tr>
   <?php } ?>
   <?php foreach ($totals as $total) { ?>
     <tr>
-      <td class="right" colspan="6"><b><?php echo $total['title']; ?>:</b></td>
+      <td class="right" colspan="<?php echo $tax_colspan; ?>"><b><?php echo $total['title']; ?>:</b></td>
       <td class="right"><?php echo $total['text']; ?></td>
     </tr>
   <?php } ?>

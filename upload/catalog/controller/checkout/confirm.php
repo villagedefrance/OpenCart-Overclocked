@@ -394,15 +394,6 @@ class ControllerCheckoutConfirm extends Controller {
 					);
 				}
 
-				// Check price free
-				if ($product['price'] > 0) {
-					$product_tax_value = ($this->tax->calculate(($product['price'] * $product['quantity']), $product['tax_class_id'], $this->config->get('config_tax')) - ($product['price'] * $product['quantity']));
-					$product_tax_percent = number_format((($product_tax_value * 100) / ($product['price'] * $product['quantity'])), 2, '.', '');
-				} else {
-					$product_tax_value = 0;
-					$product_tax_percent = '';
-				}
-
 				// Profile
 				$profile_description = '';
 
@@ -434,7 +425,7 @@ class ControllerCheckoutConfirm extends Controller {
 					'subtract'            => $product['subtract'],
 					'price'               => $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax'))),
 					'tax_value'           => $this->currency->format($product_tax_value),
-					'tax_percent'         => $product_tax_percent,
+					'tax_percent'         => number_format((($product_tax_value * 100) / (($product['price']) ? ($product['price'] * $product['quantity']) : $product['quantity'])), 2, '.', ''),
 					'age_minimum'         => ($product['age_minimum'] > 0) ? ' (' . $product['age_minimum'] . '+)' : '',
 					'total'               => $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')) * $product['quantity']),
 					'href'                => $this->url->link('product/product', 'product_id=' . $product['product_id'], 'SSL'),

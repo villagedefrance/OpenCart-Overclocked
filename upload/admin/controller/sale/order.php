@@ -2532,15 +2532,6 @@ class ControllerSaleOrder extends Controller {
 					}
 				}
 
-				// Check price free
-				if ($product['price'] > 0) {
-					$product_tax_value = $this->currency->format(($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']);
-					$product_tax_percent = number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / ($product['price'] * $product['quantity'])), 2, '.', '');
-				} else {
-					$product_tax_value = 0;
-					$product_tax_percent = '';
-				}
-
 				$this->data['products'][] = array(
 					'order_product_id' => $product['order_product_id'],
 					'product_id'       => $product['product_id'],
@@ -2550,8 +2541,8 @@ class ControllerSaleOrder extends Controller {
 					'option'           => $option_data,
 					'quantity'         => $product['quantity'],
 					'price'            => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
-					'tax_value'        => $product_tax_value,
-					'tax_percent'      => $product_tax_percent,
+					'tax_value'        => $this->currency->format(($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'tax_percent'      => number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / (($product['price']) ? ($product['price'] * $product['quantity']) : $product['quantity'])), 2, '.', ''),
 					'total'            => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
 					'picked'           => $product['picked'],
 					'backordered'      => $product['backordered'],
@@ -3787,6 +3778,15 @@ class ControllerSaleOrder extends Controller {
 		$this->data['column_total'] = $this->language->get('column_total');
 		$this->data['column_comment'] = $this->language->get('column_comment');
 
+		// Get tax breakdown
+		if ($this->config->get('config_tax_breakdown')) {
+			$this->data['tax_breakdown'] = true;
+			$this->data['tax_colspan'] = 6;
+		} else {
+			$this->data['tax_breakdown'] = false;
+			$this->data['tax_colspan'] = 4;
+		}
+
 		$this->load->model('sale/order');
 		$this->load->model('setting/setting');
 
@@ -3938,7 +3938,7 @@ class ControllerSaleOrder extends Controller {
 						'quantity'    => $product['quantity'],
 						'price'       => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
 						'tax_value'   => $this->currency->format(($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
-						'tax_percent' => number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
+						'tax_percent' => number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / (($product['price']) ? ($product['price'] * $product['quantity']) : $product['quantity'])), 2, '.', ''),
 						'total'       => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value'])
 					);
 				}

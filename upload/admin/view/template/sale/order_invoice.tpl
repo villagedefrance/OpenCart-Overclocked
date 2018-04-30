@@ -89,8 +89,10 @@
       <td class="left"><b><?php echo $column_model; ?></b></td>
       <td class="center"><b><?php echo $column_quantity; ?></b></td>
       <td class="right"><b><?php echo $column_price; ?></b></td>
+    <?php if ($tax_breakdown) { ?>
       <td class="right"><b><?php echo $column_tax_value; ?></b></td>
       <td class="right"><b><?php echo $column_tax_percent; ?></b></td>
+    <?php } ?>
       <td class="right"><b><?php echo $column_total; ?></b></td>
     </tr>
     <?php foreach ($order['product'] as $product) { ?>
@@ -104,8 +106,10 @@
       <td class="left"><?php echo $product['model']; ?></td>
       <td class="center"><?php echo $product['quantity']; ?></td>
       <td class="right"><?php echo $product['price']; ?></td>
+    <?php if ($tax_breakdown) { ?>
       <td class="right"><?php echo $product['tax_value']; ?></td>
       <td class="right"><?php echo $product['tax_percent']; ?>%</td>
+    <?php } ?>
       <td class="right"><?php echo $product['total']; ?></td>
     </tr>
     <?php } ?>
@@ -115,14 +119,16 @@
       <td class="left"></td>
       <td class="right">1</td>
       <td class="right"><?php echo $voucher['amount']; ?></td>
+    <?php if ($tax_breakdown) { ?>
       <td class="right">0.00</td>
       <td class="right">0%</td>
+    <?php } ?>
       <td class="right"><?php echo $voucher['amount']; ?></td>
     </tr>
     <?php } ?>
     <?php foreach ($order['total'] as $total) { ?>
     <tr>
-      <td class="right" colspan="6"><b><?php echo $total['title']; ?>:</b></td>
+      <td class="right" colspan="<?php echo $tax_colspan; ?>"><b><?php echo $total['title']; ?>:</b></td>
       <td class="right"><?php echo $total['text']; ?></td>
     </tr>
     <?php } ?>

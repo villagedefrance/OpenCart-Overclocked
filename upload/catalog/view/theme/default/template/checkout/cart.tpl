@@ -46,10 +46,11 @@
           </tr>
         </thead>
         <tbody>
+          <?php $tax_colspan_plus = $tax_colspan + 1; ?>
           <?php foreach ($products as $product) { ?>
             <?php if ($product['recurring']) { ?>
               <tr>
-                <td colspan="<?php echo $tax_colspan; ?>" style="border:none; line-height:18px; margin-left:10px;"> 
+                <td colspan="<?php echo $tax_colspan_plus; ?>" style="border:none; line-height:18px; margin-left:10px;"> 
                   <image src="catalog/view/theme/<?php echo $template; ?>/image/reorder.png" alt="" title="" style="float:left; margin-right:8px;" /> 
                   <strong><?php echo $text_recurring_item; ?></strong>
                   <?php echo $product['profile_description']; ?>
