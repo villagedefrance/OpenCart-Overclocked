@@ -437,7 +437,7 @@ class ControllerCheckoutCart extends Controller {
 					'special'             => $special,
 					'cost'                => $product['cost'],
 					'tax_value'           => $this->currency->format($product_tax_value),
-					'tax_percent'         => number_format((($product_tax_value * 100) / (($product['price']) ? ($product['price'] * $product['quantity']) : $product['quantity'])), 2, '.', ''),
+					'tax_percent'         => number_format((($product_tax_value * 100) / (($product['price'] > 0) ? ($product['price'] * $product['quantity']) : $product['quantity'])), 2, '.', ''),
 					'age_minimum'         => ($age_checked) ? '<span style="color:#007200;"> (' . $product['age_minimum'] . '+)</span>' : '',
 					'recurring'           => $product['recurring'],
 					'profile_name'        => $product['profile_name'],
