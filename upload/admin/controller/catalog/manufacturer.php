@@ -508,7 +508,7 @@ class ControllerCatalogManufacturer extends Controller {
 		} elseif (!empty($manufacturer_info)) {
 			$this->data['sort_order'] = $manufacturer_info['sort_order'];
 		} else {
-			$this->data['sort_order'] = '';
+			$this->data['sort_order'] = 0;
 		}
 
 		if (isset($this->request->post['status'])) {
@@ -516,7 +516,7 @@ class ControllerCatalogManufacturer extends Controller {
 		} elseif (!empty($manufacturer_info)) {
 			$this->data['status'] = $manufacturer_info['status'];
 		} else {
-			$this->data['status'] = '1';
+			$this->data['status'] = 1;
 		}
 
 		$this->template = 'catalog/manufacturer_form.tpl';

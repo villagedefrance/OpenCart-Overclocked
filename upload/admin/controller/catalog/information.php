@@ -513,20 +513,20 @@ class ControllerCatalogInformation extends Controller {
 			$this->data['bottom'] = 0;
 		}
 
+		if (isset($this->request->post['sort_order'])) {
+			$this->data['sort_order'] = $this->request->post['sort_order'];
+		} elseif (!empty($information_info)) {
+			$this->data['sort_order'] = $information_info['sort_order'];
+		} else {
+			$this->data['sort_order'] = 0;
+		}
+
 		if (isset($this->request->post['status'])) {
 			$this->data['status'] = $this->request->post['status'];
 		} elseif (!empty($information_info)) {
 			$this->data['status'] = $information_info['status'];
 		} else {
 			$this->data['status'] = 1;
-		}
-
-		if (isset($this->request->post['sort_order'])) {
-			$this->data['sort_order'] = $this->request->post['sort_order'];
-		} elseif (!empty($information_info)) {
-			$this->data['sort_order'] = $information_info['sort_order'];
-		} else {
-			$this->data['sort_order'] = '';
 		}
 
 		if (isset($this->request->post['information_layout'])) {
