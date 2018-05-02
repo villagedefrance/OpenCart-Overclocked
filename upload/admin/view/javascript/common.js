@@ -1,5 +1,5 @@
 /*
- Common v1.0.3 | @villagedefrance | Overclocked Edition | GNU GPL3 Licensed
+ Common v1.0.4 | @villagedefrance | Overclocked Edition | GNU GPL3 Licensed
  ---------------------------------------------------------------------------
  Common.js file for development. Use minified version for production.
  ---------------------------------------------------------------------------
@@ -29,9 +29,12 @@ function apply() {
 	$('#form').submit();
 }
 
-// Success Remove Onclick
+// Success and Tooltip Remove
 $(document).ready(function() {
-	$('.success, .tooltip').live('click', function() {
+	$('body').on('click', '.success', function() {
+		$(this).fadeOut('slow');
+	});
+	$('body').on('click', '.tooltip', function() {
 		$(this).fadeOut('slow');
 	});
 });

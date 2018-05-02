@@ -1,5 +1,5 @@
 /*
- Common v1.0.3 | @villagedefrance | Overclocked Edition | GNU GPL3 Licensed
+ Common v1.0.4 | @villagedefrance | Overclocked Edition | GNU GPL3 Licensed
  ---------------------------------------------------------------------------
  Common.js file for development. Use minified version for production.
  ---------------------------------------------------------------------------
@@ -27,11 +27,14 @@ $(document).ready(function() {
 	});
 
 	// Ajax Cart
-	$('#cart > .heading').live('click', function() {
-		$('#cart').addClass('active');
+	$('#cart').on('click', '.heading', function() {
 		$('#cart').load('index.php?route=module/cart');
-		$('#cart').live('mouseleave', function() {
-			$(this).removeClass('active');
+		$('#cart').addClass("active");
+		$('#cart').find('.content').stop(false, true).slideDown('slow');
+		$('#cart').mouseleave(function() {
+			$('#cart').removeClass("active");
+			$('#cart').find('.content').stop(false, true).slideUp('slow');
+			$('#cart').off('.heading');
 		});
 	});
 
@@ -39,17 +42,11 @@ $(document).ready(function() {
 	$('#menu > ul > li').hover(
 		function() {
 			$(this).addClass("active");
-			$(this).find('div').stop(false, true).slideDown({
-				duration: 300,
-				easing: "easeOutExpo"
-			});
+			$(this).find('div').stop(false, true).slideDown('slow');
 		},
 		function() {
 			$(this).removeClass("active");
-			$(this).find('div').stop(false, true).slideUp({
-				duration: 100,
-				easing: "easeOutExpo"
-			});
+			$(this).find('div').stop(false, true).slideUp('slow');
 		}
 	);
 
@@ -72,10 +69,16 @@ $(document).ready(function() {
 		});
 	}
 
-	$('.success img, .warning img, .attention img, .tooltip img').live('click', function() {
+	// Close X Classes remove
+	$('.success, .warning, .attention, .tooltip').on('click', 'img', function() {
 		$(this).parent().fadeOut('slow', function() {
 			$(this).remove();
 		});
+	});
+
+	// Success Class remove
+	$('body').on('click', '.success', function() {
+		$(this).fadeOut('slow');
 	});
 });
 
@@ -210,10 +213,3 @@ function addToCompare(product_id) {
 		}
 	});
 }
-
-// Success Remove Onclick
-$(document).ready(function() {
-	$('.success').live('click', function() {
-		$(this).fadeOut('slow');
-	});
-});
