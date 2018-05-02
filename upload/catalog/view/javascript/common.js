@@ -6,7 +6,7 @@
 */
 $(document).ready(function() {
 	// Standard Search
-	$('.button-search').bind('click', function() {
+	$('.button-search').on('click', function() {
 		url = $('base').attr('href') + 'index.php?route=product/search';
 		var search = $('input[name=\'search\']').attr('value');
 		if (search) {
@@ -15,7 +15,7 @@ $(document).ready(function() {
 		location = url;
 	});
 
-	$('#header input[name=\'search\']').bind('keydown', function(e) {
+	$('#header input[name=\'search\']').on('keydown', function(e) {
 		if (e.keyCode == 13) {
 			url = $('base').attr('href') + 'index.php?route=product/search';
 			var search = $('input[name=\'search\']').attr('value');

@@ -729,7 +729,7 @@ $('select[name="profile_id"], input[name="quantity"]').change(function() {
 	});
 });
 
-$('#button-cart').bind('click', function() {
+$('#button-cart').on('click', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/cart/add',
 		type: 'post',
@@ -764,7 +764,7 @@ $('#button-cart').bind('click', function() {
 	});
 });
 
-$('#button-buy-it-now').bind('click', function() {
+$('#button-buy-it-now').on('click', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/cart/add',
 		type: 'post',
@@ -869,7 +869,7 @@ $('img#captcha-image').trigger('load');
 //--></script>
 
 <script type="text/javascript"><!--
-$('#review .pagination a').live('click', function() {
+$('#review .pagination').on('click', 'a', function() {
 	$('#review').fadeOut('slow');
 	$('#review').load(this.href);
 	$('#review').fadeIn('slow');
@@ -879,7 +879,7 @@ $('#review .pagination a').live('click', function() {
 
 $('#review').load('index.php?route=product/product/review&product_id=<?php echo $product_id; ?>');
 
-$('#button-review').bind('click', function() {
+$('#button-review').on('click', function() {
 	$.ajax({
 		url: 'index.php?route=product/product/write&product_id=<?php echo $product_id; ?>',
 		type: 'post',

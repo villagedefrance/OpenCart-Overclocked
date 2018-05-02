@@ -155,7 +155,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#column-right a').live('click', function() {
+	$('#column-right').on('click', 'a', function() {
 		if ($(this).attr('class') == 'selected') {
 			$(this).removeAttr('class');
 		} else {
@@ -164,7 +164,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#column-right a').live('dblclick', function() {
+	$('#column-right').on('dblclick', 'a', function() {
 		<?php if ($fckeditor !== false) { ?>
 			window.opener.CKEDITOR.tools.callFunction(<?php echo $fckeditor; ?>, '<?php echo $directory; ?>' + encodeURIComponent($(this).find('input[name=\'image\']').attr('value')).replace('%2F', '/'));
 			self.close();
@@ -293,7 +293,7 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#create').bind('click', function() {
+	$('#create').on('click', function() {
 		var tree = $.tree.focused();
 
 		if (tree.selected) {
@@ -311,7 +311,7 @@ $(document).ready(function() {
 				resizable: false
 			});
 
-			$('#dialog input[type=\'button\']').bind('click', function() {
+			$('#dialog input[type=\'button\']').on('click', function() {
 				$.ajax({
 					url: 'index.php?route=common/filemanager_full/create&token=<?php echo $token; ?>',
 					type: 'post',
@@ -337,7 +337,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#delete').bind('click', function() {
+	$('#delete').on('click', function() {
 		var path = $('#column-right a.selected').attr('file');
 		var fldr = $('#column-left a.clicked').html();
 
@@ -450,7 +450,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#move').bind('click', function() {
+	$('#move').on('click', function() {
 		$('#dialog').remove();
 
 		html = '<div id="dialog">';
@@ -467,7 +467,7 @@ $(document).ready(function() {
 
 		$('#dialog select[name=\'to\']').load('index.php?route=common/filemanager_full/folders&token=<?php echo $token; ?>');
 
-		$('#dialog input[type=\'button\']').bind('click', function() {
+		$('#dialog input[type=\'button\']').on('click', function() {
 			path = $('#column-right a.selected').find('input[name=\'image\']').attr('value');
 
 			if (path) {
@@ -523,7 +523,7 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#copy').bind('click', function() {
+	$('#copy').on('click', function() {
 		$('#dialog').remove();
 
 		html = '<div id="dialog">';
@@ -540,7 +540,7 @@ $(document).ready(function() {
 
 		$('#dialog select[name=\'to\']').load('index.php?route=common/filemanager_full/folders&token=<?php echo $token; ?>');
 
-		$('#dialog input[type=\'button\']').bind('click', function() {
+		$('#dialog input[type=\'button\']').on('click', function() {
 			path = $('#column-right a.selected').find('input[name=\'image\']').attr('value');
 
 			if (path) {
@@ -596,7 +596,7 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#rename').bind('click', function() {
+	$('#rename').on('click', function() {
 		$('#dialog').remove();
 
 		html = '<div id="dialog">';
@@ -611,7 +611,7 @@ $(document).ready(function() {
 			resizable: false
 		});
 
-		$('#dialog input[type=\'button\']').bind('click', function() {
+		$('#dialog input[type=\'button\']').on('click', function() {
 			path = $('#column-right a.selected').find('input[name=\'image\']').attr('value');
 
 			if (path) {
@@ -756,13 +756,13 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#refresh').bind('click', function() {
+	$('#refresh').on('click', function() {
 		var tree = $.tree.focused();
 
 		tree.select_branch(tree.selected);
 	});
 
-	$('#information').bind('click', function() {
+	$('#information').on('click', function() {
 		$.ajax({
 			url: 'index.php?route=common/filemanager_full/information&token=<?php echo $token; ?>',
 			dataType: 'json',
