@@ -232,5 +232,6 @@ License: same as jQuery license.
 	};
 	// place it under window so it can be extended and overridden by others
 	window.hotkeys = hotkeys;
+
 	return jQuery;
 })(jQuery);

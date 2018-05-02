@@ -584,6 +584,7 @@
       </div>
     </div>
   </div>
+  </div>
 </div>
 
 <!--[if IE]>
@@ -636,9 +637,9 @@ function getSalesChart(range) {
 	});
 }
 
-jQuery(document).ready(function() {
+$(document).ready(function() {
 	getSalesChart($('#range').val());
-})(jQuery);
+});
 //--></script>
 
 <script type="text/javascript"><!--

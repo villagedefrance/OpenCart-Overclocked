@@ -51,10 +51,10 @@
                 _sfiWrapper.css('width', _options.width + 'px');
 			}
 
-			_sfiFileName.appendTo(_sfiWrapper);
+            _sfiFileName.appendTo(_sfiWrapper);
             _sfiTrigger.appendTo(_sfiWrapper);
 
-			/* Hide the old input, it still can be used in the background */
+            /* Hide the old input, it still can be used in the background */
             _input.hide();
 
             /* If the input is disabled, don't apply the events, and just move forward. */
@@ -113,13 +113,13 @@
 
                 if (_ext == '' || _allowed == false) {
                     return true;
-				}
-		
+                }
+
                 if ($.inArray(_ext, _allowed) !== -1) {
                     return true;
                 } else {
                     return false;
-				}
+                }
             }
         });
     };

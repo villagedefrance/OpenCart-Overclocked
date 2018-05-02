@@ -73,10 +73,12 @@ function normalizeCaps(settings) {
 		plupload.each(features.split(/\s*,\s*/), function(feature) {
 			resolve(feature, true);
 		});
+
 	} else if (typeof(features) === 'object') {
 		plupload.each(features, function(value, feature) {
 			resolve(feature, value);
 		});
+
 	} else if (features === true) {
 		// check settings for required features
 		if (settings.chunk_size && settings.chunk_size > 0) {
@@ -624,7 +626,6 @@ var plupload = {
 	 * @return {String} Formatted size string.
 	 */
 	formatSize : function(size) {
-
 		if (size === undef || /\D/.test(size)) {
 			return plupload.translate('N/A');
 		}
@@ -658,7 +659,6 @@ var plupload = {
 		return size + " " + plupload.translate('b');
 	},
 
-
 	/**
 	 * Parses the specified size string into a byte value. For example 10kb becomes 10240.
 	 *
@@ -668,7 +668,6 @@ var plupload = {
 	 * @return {Number} Size in bytes.
 	 */
 	parseSize : u.Basic.parseSizeStr,
-
 
 	/**
 	 * A way to predict what runtime will be choosen in the current environment with the
@@ -706,7 +705,6 @@ var plupload = {
 	}
 };
 
-
 plupload.addFileFilter('mime_types', function(filters, file, cb) {
 	if (filters.length && !filters.regexp.test(file.name)) {
 		this.trigger('Error', {
@@ -719,7 +717,6 @@ plupload.addFileFilter('mime_types', function(filters, file, cb) {
 		cb(true);
 	}
 });
-
 
 plupload.addFileFilter('max_file_size', function(maxSize, file, cb) {
 	var undef;
@@ -739,10 +736,10 @@ plupload.addFileFilter('max_file_size', function(maxSize, file, cb) {
 	}
 });
 
-
 plupload.addFileFilter('prevent_duplicates', function(value, file, cb) {
 	if (value) {
 		var ii = this.files.length;
+
 		while (ii--) {
 			// Compare by name and size (size might be 0 or undefined, but still equivalent for both)
 			if (file.name === this.files[ii].name && file.size === this.files[ii].size) {
@@ -771,7 +768,6 @@ plupload.addFileFilter('prevent_empty', function(value, file, cb) {
 		cb(true);
 	}
 });
-
 
 /**
 @class Uploader
@@ -976,18 +972,7 @@ plupload.Uploader = function(options) {
 	@event Destroy
 	@param {plupload.Uploader} uploader Uploader instance sending the event.
 	 */
-	var uid = plupload.guid()
-	, settings
-	, files = []
-	, preferred_caps = {}
-	, fileInputs = []
-	, fileDrops = []
-	, startTime
-	, total
-	, disabled = false
-	, xhr
-	;
-
+	var uid = plupload.guid(), settings, files = [], preferred_caps = {}, fileInputs = [], fileDrops = [], startTime, total, disabled = false, xhr;
 
 	// Private methods
 	function uploadNext() {
@@ -1018,12 +1003,10 @@ plupload.Uploader = function(options) {
 		}
 	}
 
-
 	function calcFile(file) {
 		file.percent = file.size > 0 ? Math.ceil(file.loaded / file.size * 100) : 100;
 		calc();
 	}
-
 
 	function calc() {
 		var i, file;
@@ -1072,7 +1055,6 @@ plupload.Uploader = function(options) {
 		}
 	}
 
-
 	function getRUID() {
 		var ctrl = fileInputs[0] || fileDrops[0];
 		if (ctrl) {
@@ -1081,7 +1063,6 @@ plupload.Uploader = function(options) {
 		return false;
 	}
 
-
 	function bindEventListeners() {
 		this.bind('FilesAdded FilesRemoved', function(up) {
 			up.trigger('QueueChanged');
@@ -1089,24 +1070,15 @@ plupload.Uploader = function(options) {
 		});
 
 		this.bind('CancelUpload', onCancelUpload);
-
 		this.bind('BeforeUpload', onBeforeUpload);
-
 		this.bind('UploadFile', onUploadFile);
-
 		this.bind('UploadProgress', onUploadProgress);
-
 		this.bind('StateChanged', onStateChanged);
-
 		this.bind('QueueChanged', calc);
-
 		this.bind('Error', onError);
-
 		this.bind('FileUploaded', onFileUploaded);
-
 		this.bind('Destroy', onDestroy);
 	}
-
 
 	function initControls(settings, cb) {
 		var self = this, inited = 0, queue = [];
@@ -1229,14 +1201,12 @@ plupload.Uploader = function(options) {
 			});
 		}
 
-
 		plupload.inSeries(queue, function() {
 			if (typeof(cb) === 'function') {
 				cb(inited);
 			}
 		});
 	}
-
 
 	function resizeImage(blob, params, runtimeOptions, cb) {
 		var img = new o.image.Image();
@@ -1274,7 +1244,6 @@ plupload.Uploader = function(options) {
 			cb(blob);
 		}
 	}
-
 
 	function setOption(option, value, init) {
 		var self = this, reinitRequired = false;
@@ -1373,11 +1342,7 @@ plupload.Uploader = function(options) {
 				case 'container':
 				case 'browse_button':
 				case 'drop_element':
-						value = 'container' === option
-							? plupload.get(value)
-							: plupload.getAll(value)
-							;
-
+						value = 'container' === option ? plupload.get(value) : plupload.getAll(value);
 				case 'runtimes':
 				case 'multi_selection':
 				case 'flash_swf_url':
@@ -1413,6 +1378,7 @@ plupload.Uploader = function(options) {
 			preferred_caps = normalizeCaps(plupload.extend({}, settings, {
 				required_features: true
 			}));
+
 		} else if (reinitRequired) {
 			self.trigger('Destroy');
 
@@ -1431,7 +1397,6 @@ plupload.Uploader = function(options) {
 		}
 	}
 
-
 	// Internal event handlers
 	function onBeforeUpload(up, file) {
 		// Generate unique target filenames
@@ -1443,7 +1408,6 @@ plupload.Uploader = function(options) {
 			file.target_name = file.id + '.' + ext;
 		}
 	}
-
 
 	function onUploadFile(up, file) {
 		var url = up.settings.url;
@@ -1640,7 +1604,6 @@ plupload.Uploader = function(options) {
 			}
 		}
 
-
 		blob = file.getSource();
 
 		// Start uploading chunks
@@ -1656,11 +1619,9 @@ plupload.Uploader = function(options) {
 		}
 	}
 
-
 	function onUploadProgress(up, file) {
 		calcFile(file);
 	}
-
 
 	function onStateChanged(up) {
 		if (up.state == plupload.STARTED) {
@@ -1677,13 +1638,11 @@ plupload.Uploader = function(options) {
 		}
 	}
 
-
 	function onCancelUpload() {
 		if (xhr) {
 			xhr.abort();
 		}
 	}
-
 
 	function onFileUploaded(up) {
 		calc();
@@ -1694,7 +1653,6 @@ plupload.Uploader = function(options) {
 			uploadNext.call(up);
 		}, 1);
 	}
-
 
 	function onError(up, err) {
 		if (err.code === plupload.INIT_ERROR) {
@@ -1716,7 +1674,6 @@ plupload.Uploader = function(options) {
 			}
 		}
 	}
-
 
 	function onDestroy(up) {
 		up.stop();
@@ -1747,7 +1704,6 @@ plupload.Uploader = function(options) {
 		total.reset();
 	}
 
-
 	// Default settings
 	settings = {
 		chunk_size: 0,
@@ -1770,7 +1726,6 @@ plupload.Uploader = function(options) {
 		silverlight_xap_url: 'js/Moxie.xap'
 	};
 
-
 	setOption.call(this, options, null, true);
 
 	// Inital total state
@@ -1778,7 +1733,6 @@ plupload.Uploader = function(options) {
 
 	// Add public methods
 	plupload.extend(this, {
-
 		/**
 		 * Unique id for the Uploader instance.
 		 *
@@ -1840,7 +1794,6 @@ plupload.Uploader = function(options) {
 		 */
 		total : total,
 
-
 		/**
 		 * Initializes the Uploader instance and adds internal event listeners.
 		 *
@@ -1850,6 +1803,7 @@ plupload.Uploader = function(options) {
 			var self = this, opt, preinitOpt, err;
 
 			preinitOpt = self.getOption('preinit');
+
 			if (typeof(preinitOpt) == "function") {
 				preinitOpt(self);
 			} else {
@@ -1875,14 +1829,12 @@ plupload.Uploader = function(options) {
 				return self.trigger('Error', err);
 			}
 
-
 			if (!settings.browse_button && !settings.drop_element) {
 				return self.trigger('Error', {
 					code : plupload.INIT_ERROR,
 					message : plupload.translate("You must specify either browse_button or drop_element.")
 				});
 			}
-
 
 			initControls.call(self, settings, function(inited) {
 				var initOpt = self.getOption('init');
@@ -1976,7 +1928,6 @@ plupload.Uploader = function(options) {
 			}
 		},
 
-
 		/**
 		 * Disables/enables browse button on request.
 		 *
@@ -2022,14 +1973,11 @@ plupload.Uploader = function(options) {
 		 * @param {String} [fileName] If specified, will be used as a name for the file
 		 */
 		addFile : function(file, fileName) {
-			var self = this
-			, queue = []
-			, filesAdded = []
-			, ruid
-			;
+			var self = this, queue = [], filesAdded = [], ruid;
 
 			function filterFile(file, cb) {
 				var queue = [];
+
 				plupload.each(self.settings.filters, function(rule, name) {
 					if (fileFilters[name]) {
 						queue.push(function(cb) {
@@ -2060,14 +2008,12 @@ plupload.Uploader = function(options) {
 						file.connectRuntime(ruid);
 					}
 					resolveFile(new plupload.File(file));
-				}
-				// moxie.file.Blob
-				else if (file instanceof o.file.Blob) {
+
+				} else if (file instanceof o.file.Blob) {
 					resolveFile(file.getSource());
 					file.destroy();
-				}
-				// plupload.File - final step for other branches
-				else if (file instanceof plupload.File) {
+
+				} else if (file instanceof plupload.File) {
 					if (fileName) {
 						file.name = fileName;
 					}
@@ -2086,18 +2032,15 @@ plupload.Uploader = function(options) {
 							delay(cb, 1); // do not build up recursions or eventually we might hit the limits
 						});
 					});
-				}
-				// native File or blob
-				else if (plupload.inArray(type, ['file', 'blob']) !== -1) {
+
+				} else if (plupload.inArray(type, ['file', 'blob']) !== -1) {
 					resolveFile(new o.file.File(null, file));
-				}
-				// input[type="file"]
-				else if (type === 'node' && plupload.typeOf(file.files) === 'filelist') {
+
+				} else if (type === 'node' && plupload.typeOf(file.files) === 'filelist') {
 					// if we are dealing with input[type="file"]
 					plupload.each(file.files, resolveFile);
-				}
-				// mixed array of any supported types (see above)
-				else if (type === 'array') {
+
+				} else if (type === 'array') {
 					fileName = null; // should never happen, but unset anyway to avoid funny situations
 					plupload.each(file, resolveFile);
 				}
@@ -2148,6 +2091,7 @@ plupload.Uploader = function(options) {
 
 			// if upload is in progress we need to stop it and restart after files are removed
 			var restartRequired = false;
+
 			if (this.state == plupload.STARTED) { // upload in progress
 				plupload.each(removed, function(file) {
 					if (file.status === plupload.UPLOADING) {
@@ -2217,7 +2161,6 @@ plupload.Uploader = function(options) {
 		@param {String} name Event name to check for.
 		*/
 
-
 		/**
 		Adds an event listener by name.
 
@@ -2245,7 +2188,6 @@ plupload.Uploader = function(options) {
 
 		@method unbindAll
 		*/
-
 
 		/**
 		 * Destroys Plupload instance and cleans after itself.
@@ -2276,9 +2218,7 @@ plupload.File = (function() {
 	var filepool = {};
 
 	function PluploadFile(file) {
-
 		plupload.extend(this, {
-
 			/**
 			 * File id this is a globally unique id for the specific file.
 			 *
@@ -2361,7 +2301,6 @@ plupload.File = (function() {
 			 */
 			lastModifiedDate: file.lastModifiedDate || (new Date()).toLocaleString(), // Thu Aug 23 2012 19:40:00 GMT+0400 (GET)
 
-
 			/**
 			 * Set when file becomes plupload.DONE or plupload.FAILED. Is used to calculate proper plupload.QueueProgress.bytesPerSec.
 			 * @private
@@ -2413,7 +2352,6 @@ plupload.File = (function() {
 
 	return PluploadFile;
 }());
-
 
 /**
  * Constructs a queue progress.

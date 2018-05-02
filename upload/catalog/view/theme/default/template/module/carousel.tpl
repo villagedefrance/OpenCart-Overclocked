@@ -28,7 +28,7 @@
 <?php } ?>
 
 <script type="text/javascript"><!--
-jQuery(document).ready(function() {
+$(document).ready(function() {
 	$('#carousel<?php echo $module; ?>').slick({
 		arrows: true,
 		autoplay: <?php echo $auto; ?>,
@@ -53,5 +53,5 @@ jQuery(document).ready(function() {
 	$('.carousel-swipe').on('swipe', function(event, slick, direction) {
 		console.log(direction);
 	});
-})(jQuery);
+});
 --></script>

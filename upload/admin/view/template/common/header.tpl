@@ -451,12 +451,3 @@ $(document).ready(function() {
 	setInterval(function() {time();}, 1000);
 });
 //--></script>
-
-<script type="text/javascript"><!--
-$(document).ready(function() {
-	$('#main-menu').smartmenus({
-		subMenusSubOffsetX: 1,
-		subMenusSubOffsetY: -8
-	});
-});
-//--></script>

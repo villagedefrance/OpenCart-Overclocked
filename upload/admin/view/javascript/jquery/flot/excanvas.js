@@ -633,9 +633,7 @@ if (!document.createElement('canvas').getContext) {
     this.currentY_ = p.y;
   };
 
-  contextPrototype.bezierCurveTo = function(aCP1x, aCP1y,
-                                            aCP2x, aCP2y,
-                                            aX, aY) {
+  contextPrototype.bezierCurveTo = function(aCP1x, aCP1y, aCP2x, aCP2y, aX, aY) {
     var p = getCoords(this, aX, aY);
     var cp1 = getCoords(this, aCP1x, aCP1y);
     var cp2 = getCoords(this, aCP2x, aCP2y);
@@ -660,7 +658,6 @@ if (!document.createElement('canvas').getContext) {
   contextPrototype.quadraticCurveTo = function(aCPx, aCPy, aX, aY) {
     // the following is lifted almost directly from
     // http://developer.mozilla.org/en/docs/Canvas_tutorial:Drawing_shapes
-
     var cp = getCoords(this, aCPx, aCPy);
     var p = getCoords(this, aX, aY);
 
@@ -668,6 +665,7 @@ if (!document.createElement('canvas').getContext) {
       x: this.currentX_ + 2.0 / 3.0 * (cp.x - this.currentX_),
       y: this.currentY_ + 2.0 / 3.0 * (cp.y - this.currentY_)
     };
+
     var cp2 = {
       x: cp1.x + (p.x - this.currentX_) / 3.0,
       y: cp1.y + (p.y - this.currentY_) / 3.0
@@ -676,8 +674,7 @@ if (!document.createElement('canvas').getContext) {
     bezierCurveTo(this, cp1, cp2, p);
   };
 
-  contextPrototype.arc = function(aX, aY, aRadius,
-                                  aStartAngle, aEndAngle, aClockwise) {
+  contextPrototype.arc = function(aX, aY, aRadius, aStartAngle, aEndAngle, aClockwise) {
     aRadius *= Z;
     var arcType = aClockwise ? 'at' : 'wa';
 
@@ -696,15 +693,7 @@ if (!document.createElement('canvas').getContext) {
     var pStart = getCoords(this, xStart, yStart);
     var pEnd = getCoords(this, xEnd, yEnd);
 
-    this.currentPath_.push({type: arcType,
-                           x: p.x,
-                           y: p.y,
-                           radius: aRadius,
-                           xStart: pStart.x,
-                           yStart: pStart.y,
-                           xEnd: pEnd.x,
-                           yEnd: pEnd.y});
-
+    this.currentPath_.push({type: arcType, x: p.x, y: p.y, radius: aRadius, xStart: pStart.x, yStart: pStart.y, xEnd: pEnd.x, yEnd: pEnd.y});
   };
 
   contextPrototype.rect = function(aX, aY, aWidth, aHeight) {
@@ -828,8 +817,7 @@ if (!document.createElement('canvas').getContext) {
     // The following check doesn't account for skews (which don't exist
     // in the canvas spec (yet) anyway.
 
-    if (this.m_[0][0] != 1 || this.m_[0][1] ||
-        this.m_[1][1] != 1 || this.m_[1][0]) {
+    if (this.m_[0][0] != 1 || this.m_[0][1] || this.m_[1][1] != 1 || this.m_[1][0]) {
       var filter = [];
 
       // Note the 12/21 reversal
@@ -1213,9 +1201,7 @@ if (!document.createElement('canvas').getContext) {
         offset = {x: 0, y: 0},
         lineStr = [];
 
-    var fontStyle = getComputedStyle(processFontStyle(this.font),
-                                     this.element_);
-
+    var fontStyle = getComputedStyle(processFontStyle(this.font), this.element_);
     var fontStyleString = buildStyle(fontStyle);
 
     var elementStyle = this.element_.currentStyle;
@@ -1310,7 +1296,9 @@ if (!document.createElement('canvas').getContext) {
       this.element_.insertAdjacentHTML('beforeEnd', s);
       this.textMeasureEl_ = this.element_.lastChild;
     }
+
     var doc = this.element_.ownerDocument;
+
     this.textMeasureEl_.innerHTML = '';
     this.textMeasureEl_.style.font = this.font;
     // Don't use innerHTML or innerText because they allow markup/whitespace.
@@ -1345,9 +1333,7 @@ if (!document.createElement('canvas').getContext) {
 
   CanvasGradient_.prototype.addColorStop = function(aOffset, aColor) {
     aColor = processStyle(aColor);
-    this.colors_.push({offset: aOffset,
-                       color: aColor.color,
-                       alpha: aColor.alpha});
+    this.colors_.push({offset: aOffset, color: aColor.color, alpha: aColor.alpha});
   };
 
   function CanvasPattern_(image, repetition) {
@@ -1389,6 +1375,7 @@ if (!document.createElement('canvas').getContext) {
     this.code = this[s];
     this.message = s +': DOM Exception ' + this.code;
   }
+
   var p = DOMException_.prototype = new Error;
   p.INDEX_SIZE_ERR = 1;
   p.DOMSTRING_SIZE_ERR = 2;
