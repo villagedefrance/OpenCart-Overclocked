@@ -253,7 +253,7 @@ $('img#captcha-image').trigger('load');
 <?php } ?>
 
 <script type="text/javascript"><!--
-$('input[name=\'customer_group_id\']:checked').live('change', function() {
+$('input[name=\'customer_group_id\']:checked').on('change', function() {
 	var customer_group = [];
 
 <?php foreach ($customer_groups as $customer_group) { ?>
@@ -295,7 +295,7 @@ $('input[name=\'customer_group_id\']:checked').trigger('change');
 //--></script>
 
 <script type="text/javascript"><!--
-$('select[name=\'country_id\']').bind('change', function() {
+$('select[name=\'country_id\']').on('change', function() {
 	$.ajax({
 		url: 'index.php?route=account/register/country&country_id=' + this.value,
 		dataType: 'json',

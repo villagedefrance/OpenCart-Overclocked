@@ -22,7 +22,7 @@
 </div>
 
 <script type="text/javascript"><!--
-$('#button-quantity-update').bind('click', function() {
+$('body').on('click', '#button-quantity-update', function() {
 	$('#quantity-notifications').html('');
 	$('#img-quantity-update').show();
 	$('div.success').remove();

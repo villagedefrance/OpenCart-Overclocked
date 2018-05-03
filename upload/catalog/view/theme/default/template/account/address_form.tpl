@@ -125,7 +125,7 @@
 <?php echo $content_footer; ?>
 
 <script type="text/javascript"><!--
-$('select[name=\'country_id\']').bind('change', function() {
+$('select[name=\'country_id\']').on('change', function() {
 	$.ajax({
 		url: 'index.php?route=account/address/country&country_id=' + this.value,
 		dataType: 'json',

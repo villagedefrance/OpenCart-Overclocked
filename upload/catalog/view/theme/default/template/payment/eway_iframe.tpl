@@ -10,9 +10,9 @@
     </div>
   </div>
 
-<script src="https://secure.ewaypayments.com/scripts/eCrypt.js"></script>
+<script type="text/javascript" src="https://secure.ewaypayments.com/scripts/eCrypt.js"></script>
 
-<script type="text/javascript">//<!--
+<script type="text/javascript"><!--
 /* eWAY Rapid IFrame config object */
 var eWAYConfig = {
 	sharedPaymentUrl: "<?php echo $SharedPaymentUrl; ?>"

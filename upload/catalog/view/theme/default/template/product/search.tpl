@@ -157,14 +157,10 @@
 <?php echo $content_footer; ?>
 
 <script type="text/javascript"><!--
-$('#content input[name=\'search\']').keydown(function(e) {
-	if (e.keyCode == 13) { $('#button-search').trigger('click'); }
-});
-
-$('#button-search').bind('click', function() {
-	url = 'index.php?route=product/search';
-
+$('body').on('click', '#button-search', function() {
 	var search = $('#content input[name=\'search\']').attr('value');
+
+	url = 'index.php?route=product/search';
 
 	if (search) {
 		url += '&search=' + encodeURIComponent(search);
@@ -179,6 +175,12 @@ $('#button-search').bind('click', function() {
 	}
 
 	location = url;
+});
+
+$('#content input[name=\'search\']').keydown(function(e) {
+	if (e.keyCode == 13) {
+		$('#button-search').trigger('click');
+	}
 });
 
 function display(view) {

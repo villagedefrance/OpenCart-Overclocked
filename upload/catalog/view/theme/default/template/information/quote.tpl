@@ -115,7 +115,7 @@ $('img#captcha-image').on('load', function(event) {
 $('img#captcha-image').trigger('load');
 //--></script>
 
-<script type="text/javascript" src="catalog/view/javascript/jquery/ajaxupload.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/jquery/ajaxupload.min.js"></script>
 
 <script type="text/javascript"><!--
 new AjaxUpload('#button-quote-upload', {

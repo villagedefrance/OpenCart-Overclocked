@@ -43,7 +43,7 @@
         <fieldset><p><?php echo $text_recurring_help; ?></p></fieldset>
       </div>
       <table class="form">
-        <tr>
+        <tr class="highlighted">
           <td><?php echo $entry_status; ?></td>
           <td><select name="status">
             <?php if ($status) { ?>

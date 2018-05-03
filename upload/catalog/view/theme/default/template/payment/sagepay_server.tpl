@@ -74,7 +74,7 @@ $('input[name=\'CreateToken\']').on('change', function() {
 //--></script>
 
 <script type="text/javascript"><!--
-$('#button-confirm').bind('click', function() {
+$('body').on('click', '#button-confirm', function() {
   $.ajax({
     url: 'index.php?route=payment/sagepay_server/send',
     type: 'post',
@@ -110,7 +110,7 @@ $('#button-confirm').bind('click', function() {
 //--></script>
 
 <script type="text/javascript"><!--
-$('#button-delete').bind('click', function() {
+$('body').on('click', '#button-delete', function() {
   if (confirm('<?php echo $text_confirm_delete; ?>')) {
     $.ajax({
       url: 'index.php?route=payment/sagepay_server/delete',

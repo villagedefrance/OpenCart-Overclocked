@@ -50,7 +50,7 @@
 <?php echo $content_footer; ?>
 
 <script type="text/javascript"><!--
-$('#checkout .checkout-content input[name=\'account\']').live('change', function() {
+$('#checkout .checkout-content input[name=\'account\']').on('change', function() {
 	if ($(this).attr('value') == 'register') {
 		$('#payment-address .checkout-heading span').html('<?php echo $text_checkout_account; ?>');
 	} else {
@@ -58,7 +58,7 @@ $('#checkout .checkout-content input[name=\'account\']').live('change', function
 	}
 });
 
-$('.checkout-heading a').live('click', function() {
+$('.checkout-heading').on('click', 'a', function() {
 	$('.checkout-content').slideUp('slow');
 
 	$(this).parent().parent().find('.checkout-content').slideDown('slow');
@@ -103,7 +103,7 @@ $(document).ready(function() {
 <?php } ?>
 
 // Checkout
-$('#button-account').live('click', function() {
+$('body').on('click', '#button-account', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/' + $('input[name=\'account\']:checked').attr('value'),
 		dataType: 'html',
@@ -135,7 +135,7 @@ $('#button-account').live('click', function() {
 });
 
 // Login
-$('#button-login').live('click', function() {
+$('body').on('click', '#button-login', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/login/validate',
 		type: 'post',
@@ -167,7 +167,7 @@ $('#button-login').live('click', function() {
 });
 
 // Register
-$('#button-register').live('click', function() {
+$('body').on('click', '#button-register', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/register/validate',
 		type: 'post',
@@ -353,7 +353,7 @@ $('#button-register').live('click', function() {
 });
 
 // Payment Address
-$('#button-payment-address').live('click', function() {
+$('body').on('click', '#button-payment-address', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/payment_address/validate',
 		type: 'post',
@@ -380,43 +380,43 @@ $('#button-payment-address').live('click', function() {
 				}
 
 				if (json['error']['firstname']) {
-					$('#payment-address input[name=\'firstname\']').after('<span class="error">' + json['error']['firstname'] + '</span>');
+					$('#payment-address input[name=\'firstname\'] + br').after('<span class="error">' + json['error']['firstname'] + '</span>');
 				}
 
 				if (json['error']['lastname']) {
-					$('#payment-address input[name=\'lastname\']').after('<span class="error">' + json['error']['lastname'] + '</span>');
+					$('#payment-address input[name=\'lastname\'] + br').after('<span class="error">' + json['error']['lastname'] + '</span>');
 				}
 
 				if (json['error']['telephone']) {
-					$('#payment-address input[name=\'telephone\']').after('<span class="error">' + json['error']['telephone'] + '</span>');
+					$('#payment-address input[name=\'telephone\'] + br').after('<span class="error">' + json['error']['telephone'] + '</span>');
 				}
 
 				if (json['error']['company_id']) {
-					$('#payment-address input[name=\'company_id\']').after('<span class="error">' + json['error']['company_id'] + '</span>');
+					$('#payment-address input[name=\'company_id\'] + br').after('<span class="error">' + json['error']['company_id'] + '</span>');
 				}
 
 				if (json['error']['tax_id']) {
-					$('#payment-address input[name=\'tax_id\']').after('<span class="error">' + json['error']['tax_id'] + '</span>');
+					$('#payment-address input[name=\'tax_id\'] + br').after('<span class="error">' + json['error']['tax_id'] + '</span>');
 				}
 
 				if (json['error']['address_1']) {
-					$('#payment-address input[name=\'address_1\']').after('<span class="error">' + json['error']['address_1'] + '</span>');
+					$('#payment-address input[name=\'address_1\'] + br').after('<span class="error">' + json['error']['address_1'] + '</span>');
 				}
 
 				if (json['error']['city']) {
-					$('#payment-address input[name=\'city\']').after('<span class="error">' + json['error']['city'] + '</span>');
+					$('#payment-address input[name=\'city\'] + br').after('<span class="error">' + json['error']['city'] + '</span>');
 				}
 
 				if (json['error']['postcode']) {
-					$('#payment-address input[name=\'postcode\']').after('<span class="error">' + json['error']['postcode'] + '</span>');
+					$('#payment-address input[name=\'postcode\'] + br').after('<span class="error">' + json['error']['postcode'] + '</span>');
 				}
 
 				if (json['error']['country']) {
-					$('#payment-address select[name=\'country_id\']').after('<span class="error">' + json['error']['country'] + '</span>');
+					$('#payment-address select[name=\'country_id\'] + br').after('<span class="error">' + json['error']['country'] + '</span>');
 				}
 
 				if (json['error']['zone']) {
-					$('#payment-address select[name=\'zone_id\']').after('<span class="error">' + json['error']['zone'] + '</span>');
+					$('#payment-address select[name=\'zone_id\'] + br').after('<span class="error">' + json['error']['zone'] + '</span>');
 				}
 
 			} else {
@@ -483,7 +483,7 @@ $('#button-payment-address').live('click', function() {
 });
 
 // Shipping Address
-$('#button-shipping-address').live('click', function() {
+$('body').on('click', '#button-shipping-address', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/shipping_address/validate',
 		type: 'post',
@@ -510,39 +510,39 @@ $('#button-shipping-address').live('click', function() {
 				}
 
 				if (json['error']['firstname']) {
-					$('#shipping-address input[name=\'firstname\']').after('<span class="error">' + json['error']['firstname'] + '</span>');
+					$('#shipping-address input[name=\'firstname\'] + br').after('<span class="error">' + json['error']['firstname'] + '</span>');
 				}
 
 				if (json['error']['lastname']) {
-					$('#shipping-address input[name=\'lastname\']').after('<span class="error">' + json['error']['lastname'] + '</span>');
+					$('#shipping-address input[name=\'lastname\'] + br').after('<span class="error">' + json['error']['lastname'] + '</span>');
 				}
 
 				if (json['error']['email']) {
-					$('#shipping-address input[name=\'email\']').after('<span class="error">' + json['error']['email'] + '</span>');
+					$('#shipping-address input[name=\'email\'] + br').after('<span class="error">' + json['error']['email'] + '</span>');
 				}
 
 				if (json['error']['telephone']) {
-					$('#shipping-address input[name=\'telephone\']').after('<span class="error">' + json['error']['telephone'] + '</span>');
+					$('#shipping-address input[name=\'telephone\'] + br').after('<span class="error">' + json['error']['telephone'] + '</span>');
 				}
 
 				if (json['error']['address_1']) {
-					$('#shipping-address input[name=\'address_1\']').after('<span class="error">' + json['error']['address_1'] + '</span>');
+					$('#shipping-address input[name=\'address_1\'] + br').after('<span class="error">' + json['error']['address_1'] + '</span>');
 				}
 
 				if (json['error']['city']) {
-					$('#shipping-address input[name=\'city\']').after('<span class="error">' + json['error']['city'] + '</span>');
+					$('#shipping-address input[name=\'city\'] + br').after('<span class="error">' + json['error']['city'] + '</span>');
 				}
 
 				if (json['error']['postcode']) {
-					$('#shipping-address input[name=\'postcode\']').after('<span class="error">' + json['error']['postcode'] + '</span>');
+					$('#shipping-address input[name=\'postcode\'] + br').after('<span class="error">' + json['error']['postcode'] + '</span>');
 				}
 
 				if (json['error']['country']) {
-					$('#shipping-address select[name=\'country_id\']').after('<span class="error">' + json['error']['country'] + '</span>');
+					$('#shipping-address select[name=\'country_id\'] + br').after('<span class="error">' + json['error']['country'] + '</span>');
 				}
 
 				if (json['error']['zone']) {
-					$('#shipping-address select[name=\'zone_id\']').after('<span class="error">' + json['error']['zone'] + '</span>');
+					$('#shipping-address select[name=\'zone_id\'] + br').after('<span class="error">' + json['error']['zone'] + '</span>');
 				}
 
 			} else {
@@ -597,11 +597,11 @@ $('#button-shipping-address').live('click', function() {
 });
 
 // Guest
-$('#button-guest').live('click', function() {
+$('body').on('click', '#button-guest', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/guest/validate',
 		type: 'post',
-		data: $('#payment-address input[type=\'text\'], #payment-address input[type=\'checkbox\']:checked, #payment-address input[type=\'radio\']:checked, #payment-address input[type=\'hidden\'], #payment-address select'),
+		data: $('#payment-address input[type=\'text\'], #payment-address input[type=\'password\'], #payment-address input[type=\'checkbox\']:checked, #payment-address input[type=\'radio\']:checked, #payment-address input[type=\'hidden\'], #payment-address select'),
 		dataType: 'json',
 		beforeSend: function() {
 			$('#button-guest').attr('disabled', true);
@@ -759,11 +759,11 @@ $('#button-guest').live('click', function() {
 });
 
 // Guest Shipping
-$('#button-guest-shipping').live('click', function() {
+$('body').on('click', '#button-guest-shipping', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/guest_shipping/validate',
 		type: 'post',
-		data: $('#shipping-address input[type=\'text\'], #shipping-address select'),
+		data: $('#shipping-address input[type=\'text\'], #shipping-address input[type=\'password\'], #shipping-address input[type=\'checkbox\']:checked, #shipping-address input[type=\'radio\']:checked, #shipping-address select'),
 		dataType: 'json',
 		beforeSend: function() {
 			$('#button-guest-shipping').attr('disabled', true);
@@ -786,31 +786,39 @@ $('#button-guest-shipping').live('click', function() {
 				}
 
 				if (json['error']['firstname']) {
-					$('#shipping-address input[name=\'firstname\']').after('<span class="error">' + json['error']['firstname'] + '</span>');
+					$('#shipping-address input[name=\'firstname\'] + br').after('<span class="error">' + json['error']['firstname'] + '</span>');
 				}
 
 				if (json['error']['lastname']) {
-					$('#shipping-address input[name=\'lastname\']').after('<span class="error">' + json['error']['lastname'] + '</span>');
+					$('#shipping-address input[name=\'lastname\'] + br').after('<span class="error">' + json['error']['lastname'] + '</span>');
+				}
+
+				if (json['error']['email']) {
+					$('#payment-address input[name=\'email\'] + br').after('<span class="error">' + json['error']['email'] + '</span>');
+				}
+
+				if (json['error']['telephone']) {
+					$('#payment-address input[name=\'telephone\'] + br').after('<span class="error">' + json['error']['telephone'] + '</span>');
 				}
 
 				if (json['error']['address_1']) {
-					$('#shipping-address input[name=\'address_1\']').after('<span class="error">' + json['error']['address_1'] + '</span>');
+					$('#shipping-address input[name=\'address_1\'] + br').after('<span class="error">' + json['error']['address_1'] + '</span>');
 				}
 
 				if (json['error']['city']) {
-					$('#shipping-address input[name=\'city\']').after('<span class="error">' + json['error']['city'] + '</span>');
+					$('#shipping-address input[name=\'city\'] + br').after('<span class="error">' + json['error']['city'] + '</span>');
 				}
 
 				if (json['error']['postcode']) {
-					$('#shipping-address input[name=\'postcode\']').after('<span class="error">' + json['error']['postcode'] + '</span>');
+					$('#shipping-address input[name=\'postcode\'] + br').after('<span class="error">' + json['error']['postcode'] + '</span>');
 				}
 
 				if (json['error']['country']) {
-					$('#shipping-address select[name=\'country_id\']').after('<span class="error">' + json['error']['country'] + '</span>');
+					$('#shipping-address select[name=\'country_id\'] + br').after('<span class="error">' + json['error']['country'] + '</span>');
 				}
 
 				if (json['error']['zone']) {
-					$('#shipping-address select[name=\'zone_id\']').after('<span class="error">' + json['error']['zone'] + '</span>');
+					$('#shipping-address select[name=\'zone_id\'] + br').after('<span class="error">' + json['error']['zone'] + '</span>');
 				}
 
 			} else {
@@ -842,7 +850,7 @@ $('#button-guest-shipping').live('click', function() {
 	});
 });
 
-$('#button-shipping-method').live('click', function() {
+$('body').on('click', '#button-shipping-method', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/shipping_method/validate',
 		type: 'post',
@@ -895,7 +903,7 @@ $('#button-shipping-method').live('click', function() {
 	});
 });
 
-$('#button-payment-method').live('click', function() {
+$('body').on('click', '#button-payment-method', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/payment_method/validate',
 		type: 'post',

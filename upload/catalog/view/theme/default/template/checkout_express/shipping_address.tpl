@@ -6,13 +6,13 @@
   <label for="shipping-address-existing"><?php echo $text_address_existing; ?></label>
   <div id="shipping-existing">
     <select name="address_id" style="width:100%; margin-bottom:15px;" size="5">
-      <?php foreach ($addresses as $address) { ?>
-        <?php if ($address['address_id'] == $address_id) { ?>
-          <option value="<?php echo $address['address_id']; ?>" selected="selected"><?php echo $address['firstname']; ?> <?php echo $address['lastname']; ?>, <?php echo $address['address_1']; ?>, <?php echo $address['city']; ?>, <?php echo $address['zone']; ?>, <?php echo $address['country']; ?></option>
-        <?php } else { ?>
-          <option value="<?php echo $address['address_id']; ?>"><?php echo $address['firstname']; ?> <?php echo $address['lastname']; ?>, <?php echo $address['address_1']; ?>, <?php echo $address['city']; ?>, <?php echo $address['zone']; ?>, <?php echo $address['country']; ?></option>
-        <?php } ?>
+    <?php foreach ($addresses as $address) { ?>
+      <?php if ($address['address_id'] == $address_id) { ?>
+        <option value="<?php echo $address['address_id']; ?>" selected="selected"><?php echo $address['firstname']; ?> <?php echo $address['lastname']; ?>, <?php echo $address['address_1']; ?>, <?php echo $address['city']; ?>, <?php echo $address['zone']; ?>, <?php echo $address['country']; ?></option>
+      <?php } else { ?>
+        <option value="<?php echo $address['address_id']; ?>"><?php echo $address['firstname']; ?> <?php echo $address['lastname']; ?>, <?php echo $address['address_1']; ?>, <?php echo $address['city']; ?>, <?php echo $address['zone']; ?>, <?php echo $address['country']; ?></option>
       <?php } ?>
+    <?php } ?>
     </select>
   </div>
   <p><input type="radio" name="shipping_address" value="new" id="shipping-address-new" />
@@ -79,7 +79,7 @@
 </div>
 
 <script type="text/javascript"><!--
-$('#shipping-address input[name=\'shipping_address\']').live('change', function() {
+$('#shipping-address input[name=\'shipping_address\']').on('change', function() {
 	if (this.value == 'new') {
 		$('#shipping-existing').hide();
 		$('#shipping-new').show(500);
@@ -92,7 +92,7 @@ $('#shipping-address input[name=\'shipping_address\']').live('change', function(
 <script type="text/javascript"><!--
 var postcode_required = 0;
 
-$('#shipping-address select[name=\'country_id\']').bind('change', function() {
+$('#shipping-address select[name=\'country_id\']').on('change', function() {
 	$.ajax({
 		url:'index.php?route=checkout_express/checkout/country&country_id=' + this.value,
 		dataType:'json',

@@ -59,7 +59,7 @@
             <tbody id="route-row<?php echo $route_row; ?>">
               <tr>
                 <td class="left"><?php foreach ($languages as $language) { ?>
-                  <?php if (isset($error_footer_route[$route_row][$language['language_id']])) { ?>
+                <?php if (isset($error_footer_route[$route_row][$language['language_id']])) { ?>
                   <input type="text" name="footer_route[<?php echo $route_row; ?>][footer_route_description][<?php echo $language['language_id']; ?>][title]" size="30" value="<?php echo isset($footer_route['footer_route_description'][$language['language_id']]) ? $footer_route['footer_route_description'][$language['language_id']]['title'] : ''; ?>" class="input-error" />
                   <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
                   <span class="error"><?php echo $error_footer_route[$route_row][$language['language_id']]; ?></span>
@@ -70,13 +70,13 @@
               <?php } ?></td>
               <td class="left"><input type="text" name="footer_route[<?php echo $route_row; ?>][route]" value="<?php echo $footer_route['route']; ?>" size="50" /></td>
               <td class="center"><select name="footer_route[<?php echo $route_row; ?>][external_link]">
-                <?php if ($footer_route['external_link']) { ?>
-                  <option value="1" selected="selected"><?php echo $text_yes; ?></option>
-                  <option value="0"><?php echo $text_no; ?></option>
-                <?php } else { ?>
-                  <option value="1"><?php echo $text_yes; ?></option>
-                  <option value="0" selected="selected"><?php echo $text_no; ?></option>
-                <?php } ?>
+              <?php if ($footer_route['external_link']) { ?>
+                <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                <option value="0"><?php echo $text_no; ?></option>
+              <?php } else { ?>
+                <option value="1"><?php echo $text_yes; ?></option>
+                <option value="0" selected="selected"><?php echo $text_no; ?></option>
+              <?php } ?>
               </select></td>
               <td class="center"><input type="text" name="footer_route[<?php echo $route_row; ?>][sort_order]" value="<?php echo $footer_route['sort_order']; ?>" size="4" /></td>
               <td class="center"><a onclick="$('#route-row<?php echo $route_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
@@ -97,18 +97,18 @@
           <tr>
             <td><?php echo $entry_position; ?></td>
             <td><select name="position">
-              <?php if (isset($position)) { $selected = "selected"; ?>
-                <option value="1" <?php if ($position == 1) { echo $selected; } ?>><?php echo $text_position; ?> 1 </option>
-                <option value="2" <?php if ($position == 2) { echo $selected; } ?>><?php echo $text_position; ?> 2 </option>
-                <option value="3" <?php if ($position == 3) { echo $selected; } ?>><?php echo $text_position; ?> 3 </option>
-                <option value="4" <?php if ($position == 4) { echo $selected; } ?>><?php echo $text_position; ?> 4 </option>
-              <?php } else { ?>
-                <option selected="selected"></option>
-                <option value="1" selected><?php echo $text_position; ?> 1 </option>
-                <option value="2"><?php echo $text_position; ?> 2 </option>
-                <option value="3"><?php echo $text_position; ?> 3 </option>
-                <option value="4"><?php echo $text_position; ?> 4 </option>
-              <?php } ?>
+            <?php if (isset($position)) { $selected = "selected"; ?>
+              <option value="1" <?php if ($position == 1) { echo $selected; } ?>><?php echo $text_position; ?> 1 </option>
+              <option value="2" <?php if ($position == 2) { echo $selected; } ?>><?php echo $text_position; ?> 2 </option>
+              <option value="3" <?php if ($position == 3) { echo $selected; } ?>><?php echo $text_position; ?> 3 </option>
+              <option value="4" <?php if ($position == 4) { echo $selected; } ?>><?php echo $text_position; ?> 4 </option>
+            <?php } else { ?>
+              <option selected="selected"></option>
+              <option value="1" selected><?php echo $text_position; ?> 1 </option>
+              <option value="2"><?php echo $text_position; ?> 2 </option>
+              <option value="3"><?php echo $text_position; ?> 3 </option>
+              <option value="4"><?php echo $text_position; ?> 4 </option>
+            <?php } ?>
             </select></td>
           </tr>
           <tr>
@@ -140,7 +140,7 @@
             <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
             </td>
           </tr>
-          <tr>
+          <tr class="highlighted">
             <td><?php echo $entry_status; ?></td>
             <td><select name="status">
               <?php if ($status) { ?>

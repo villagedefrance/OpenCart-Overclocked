@@ -54,7 +54,7 @@
 </div>
 
 <script type="text/javascript"><!--
-$('#button-confirm').bind('click', function() {
+$('body').on('click', '#button-confirm', function() {
   $.ajax({
     url: 'index.php?route=payment/perpetual_payments/send',
     type: 'post',

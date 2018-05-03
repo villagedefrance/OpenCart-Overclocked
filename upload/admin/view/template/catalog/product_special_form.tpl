@@ -49,7 +49,7 @@
 </div>
 
 <script type="text/javascript"><!--
-$('#button-special-update').bind('click', function() {
+$('body').on('click', '#button-special-update', function() {
 	$('#special-notifications').html('');
 	$('#img-special-update').show();
 	$('div.success').remove();

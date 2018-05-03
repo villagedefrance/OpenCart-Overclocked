@@ -1234,14 +1234,13 @@ $('input[name=\'manufacturer\']').autocomplete({
 	focus: function(event, ui) {
 		return false;
 	}
-}).bind('focus', function() {
-	if (!$(this).autocomplete('widget').is(':visible')) {
-		$(this).delay(10).promise().done(function() {
-			if ($(this).is(":focus")) {
-				$(this).autocomplete('search', $(this).val() ? $(this).val() : ' ');
-			}
-		});
-	}
+});
+
+$('body').on('click', '#product-manufacturer div img', function() {
+	$(this).parent().remove();
+
+	$('#product-manufacturer div:odd').attr('class', 'odd');
+	$('#product-manufacturer div:even').attr('class', 'even');
 });
 
 // Category
@@ -1276,7 +1275,7 @@ $('input[name=\'category\']').autocomplete({
 	}
 });
 
-$('#product-category div img').live('click', function() {
+$('body').on('click', '#product-category div img', function() {
 	$(this).parent().remove();
 
 	$('#product-category div:odd').attr('class', 'odd');
@@ -1315,7 +1314,7 @@ $('input[name=\'filter\']').autocomplete({
 	}
 });
 
-$('#product-filter div img').live('click', function() {
+$('body').on('click', '#product-filter div img', function() {
 	$(this).parent().remove();
 
 	$('#product-filter div:odd').attr('class', 'odd');
@@ -1354,7 +1353,7 @@ $('input[name=\'download\']').autocomplete({
 	}
 });
 
-$('#product-download div img').live('click', function() {
+$('body').on('click', '#product-download div img', function() {
 	$(this).parent().remove();
 
 	$('#product-download div:odd').attr('class', 'odd');
@@ -1393,7 +1392,7 @@ $('input[name=\'related\']').autocomplete({
 	}
 });
 
-$('#product-related div img').live('click', function() {
+$('body').on('click', '#product-related div img', function() {
 	$(this).parent().remove();
 
 	$('#product-related div:odd').attr('class', 'odd');
@@ -1473,7 +1472,7 @@ getRelated();
 <?php } ?>
 
 <script type="text/javascript"><!--
-$('select[name=\'tax_local_rate_id\']').bind('change', function() {
+$('select[name=\'tax_local_rate_id\']').on('change', function() {
 	if ($(this).val() != <?php echo $tax_local_rate_id; ?>) {
 		$('#price-apply').fadeIn(500);
 	} else {
@@ -1485,17 +1484,17 @@ $('select[name=\'tax_local_rate_id\']').trigger('change');
 //--></script>
 
 <script type="text/javascript"><!--
-$('.incvat').bind('change keydown keyup', function() {
+$('.incvat').on('change keydown keyup', function() {
 	$('input.excvat').val(($(this).val()/<?php echo $vat_rate; ?>).toFixed(4));
 });
 
-$('.excvat').bind('change keydown keyup', function() {
+$('.excvat').on('change keydown keyup', function() {
 	$('input.incvat').val(($(this).val()*<?php echo $vat_rate; ?>).toFixed(4));
 });
 //--></script>
 
 <script type="text/javascript"><!--
-$('select[name=\'palette_id\']').bind('change', function() {
+$('select[name=\'palette_id\']').on('change', function() {
 	if ($(this).val() != <?php echo $palette_id; ?>) {
 		$('#color-apply').fadeIn(500);
 	} else {

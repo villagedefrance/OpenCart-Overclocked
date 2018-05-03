@@ -70,7 +70,7 @@
 	*/
 	var components = {
 		iframe: function(url) {
-			return '<iframe id="printPage" name="printPage" src=' + url + ' style="position:absolute; top:0px; left:0px; width:0px; height:0px; border:0px; overflow:none; z-index:-1;"></iframe>';
+			return '<iframe id="printPage" name="printPage" src=' + url + ' style="position:absolute; top:0; left:0; width:0; height:0; border:0; overflow:none; z-index:-1;"></iframe>';
 		},
 		messageBox: function(message) {
 			return "<div id='printMessageBox' style='\
@@ -83,7 +83,7 @@
 				background:#FFF;\
 				border:2px solid #777;\
 				border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px; -khtml-border-radius: 5px;\
-				box-shadow:0px 0px 5px #999; -webkit-box-shadow:0px 0px 5px #999; -moz-box-shadow:0px 0px 5px #999;'>\
+				box-shadow:0 0 5px #999; -webkit-box-shadow:0 0 5px #999; -moz-box-shadow:0 0 5px #999;'>\
 				" + message + "</div>";
 			}
 		}

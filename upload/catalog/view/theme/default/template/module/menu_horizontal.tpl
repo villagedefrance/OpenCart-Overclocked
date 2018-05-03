@@ -84,7 +84,7 @@
 
 <script type="text/javascript"><!--
 $('#menu-holder').prepend('<div id="menu-trigger" class="<?php echo $mod_shape; ?> <?php echo $mod_color; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/menu/menu-button-<?php echo ($menu_theme == 'light') ? 'dark' : 'light'; ?>.png" alt="" style="padding:3px 15px;" /></div>');
-$('#menu-trigger').live('click', function(e) {
+$('body').on('click', '#menu-trigger', function(e) {
 	e.preventDefault();
 	$('#menu-phone').slideToggle();
 });

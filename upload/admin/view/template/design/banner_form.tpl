@@ -29,7 +29,7 @@
             <input type="text" name="name" value="<?php echo $name; ?>" size="30" />
           <?php } ?></td>
         </tr>
-        <tr>
+        <tr class="highlighted">
           <td><?php echo $entry_status; ?></td>
           <td><select name="status">
             <?php if ($status) { ?>

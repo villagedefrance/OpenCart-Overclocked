@@ -53,7 +53,7 @@
 </div>
 
 <script type="text/javascript"><!--
-$('#button-discount-update').bind('click', function() {
+$('body').on('click', '#button-discount-update', function() {
 	$('#discount-notifications').html('');
 	$('#img-discount-update').show();
 	$('div.success').remove();

@@ -14,9 +14,7 @@
 </div>
 
 <script type="text/javascript"><!--
-$(function() {
-  $('#button-confirm').bind('click', function() {
-    $('#okpay-checkout').submit();
-  });
+$('body').on('click', '#button-confirm', function() {
+  $('#okpay-checkout').submit();
 });
 //--></script>

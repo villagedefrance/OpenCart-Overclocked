@@ -64,9 +64,10 @@
 <?php echo $content_footer; ?>
 
 <script type="text/javascript"><!--
-$('#captcha-image').load(function(event) {
+$('img#captcha-image').on('load', function(event) {
 	$(event.target).show();
 });
+$('img#captcha-image').trigger('load');
 //--></script>
 
 <?php echo $footer; ?>

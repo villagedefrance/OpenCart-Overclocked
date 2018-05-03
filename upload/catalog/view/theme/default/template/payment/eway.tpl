@@ -110,7 +110,7 @@ function select_eWAYPaymentOption(v) {
 	}
 }
 
-$('#button-confirm').bind('click', function() {
+$('body').on('click', '#button-confirm', function() {
 	if ($('#eway-radio-cc').is(':checked')) {
 		var eway_error = false;
 
@@ -132,7 +132,6 @@ $('#button-confirm').bind('click', function() {
 
 		var cc_year = parseInt($('#eway-card-expiry-year').val(), 10);
 		var cc_month = parseInt($('#eway-card-expiry-month').val(), 10);
-
 		var cc_expiry = new Date(cc_year, cc_month, 1);
 		var cc_expired = new Date(cc_expiry - 1);
 		var today = new Date();
@@ -159,6 +158,7 @@ $('#button-confirm').bind('click', function() {
 	}
 
 	$('#eway-payment-form').submit();
+
 	$('#button-confirm').button('loading');
 	$("#button-confirm").prop('disabled', true);
 });

@@ -158,7 +158,7 @@
 <?php } ?>
 
 <script type="text/javascript"><!--
-$('#payment-address input[name=\'customer_group_id\']:checked').live('change', function() {
+$('#payment-address input[name=\'customer_group_id\']:checked').on('change', function() {
 	var customer_group = [];
 
 <?php foreach ($customer_groups as $customer_group) { ?>
@@ -202,7 +202,7 @@ $('#payment-address input[name=\'customer_group_id\']:checked').trigger('change'
 //--></script>
 
 <script type="text/javascript"><!--
-$('#payment-address select[name=\'country_id\']').bind('change', function() {
+$('#payment-address select[name=\'country_id\']').on('change', function() {
 	$.ajax({
 		url: 'index.php?route=checkout_express/checkout/country&country_id=' + this.value,
 		dataType: 'json',

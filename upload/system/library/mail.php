@@ -8,6 +8,7 @@ class Mail {
 	protected $text;
 	protected $html;
 	protected $attachments = array();
+
 	public $protocol = 'mail';
 	public $smtp_hostname;
 	public $smtp_username;
@@ -15,7 +16,7 @@ class Mail {
 	public $smtp_port = 25;
 	public $smtp_timeout = 5;
 	public $verp = false;
-	public $parameter = '';
+	public $parameter;
 
 	public function __construct($config = array()) {
 		foreach ($config as $key => $value) {

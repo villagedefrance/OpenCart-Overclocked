@@ -66,7 +66,7 @@
 </div>
 
 <script type="text/javascript"><!--
-$('#button-confirm').bind('click', function() {
+$('body').on('click', '#button-confirm', function() {
   $.ajax({
     url: 'index.php?route=payment/pp_pro_pf/send',
     type: 'POST',
@@ -78,7 +78,9 @@ $('#button-confirm').bind('click', function() {
       $('#payment').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
     },
   })
-  .fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+  .fail(function(jqXHR, textStatus, errorThrown) {
+    alert('Status: ' + textStatus + '\r\nError: ' + errorThrown);
+  })
   .done(function(json) {
     if (json['error']) {
       alert(json['error']);

@@ -234,7 +234,7 @@ class ControllerCheckoutRegister extends Controller {
 				if ($customer_group && $customer_group['tax_id_display']) {
 					$this->load->helper('vat');
 
-					if ($this->config->get('config_vat') && $this->request->post['tax_id'] != '' && (vat_validation($country_info['iso_code_2'], $this->request->post['tax_id']) == 'invalid')) {
+					if ($this->config->get('config_vat') && ($this->request->post['tax_id'] != '') && (vat_validation($country_info['iso_code_2'], $this->request->post['tax_id']) == 'invalid')) {
 						$json['error']['tax_id'] = $this->language->get('error_vat');
 					}
 				}
@@ -280,14 +280,15 @@ class ControllerCheckoutRegister extends Controller {
 				$this->customer->login($this->request->post['email'], $this->request->post['password']);
 
 				$this->session->data['payment_address_id'] = $this->customer->getAddressId();
+				$this->session->data['payment_postcode'] = $this->request->post['postcode'];
 				$this->session->data['payment_country_id'] = $this->request->post['country_id'];
 				$this->session->data['payment_zone_id'] = $this->request->post['zone_id'];
 
 				if (!empty($this->request->post['shipping_address'])) {
 					$this->session->data['shipping_address_id'] = $this->customer->getAddressId();
+					$this->session->data['shipping_postcode'] = $this->request->post['postcode'];
 					$this->session->data['shipping_country_id'] = $this->request->post['country_id'];
 					$this->session->data['shipping_zone_id'] = $this->request->post['zone_id'];
-					$this->session->data['shipping_postcode'] = $this->request->post['postcode'];
 				}
 
 			} else {

@@ -96,7 +96,7 @@
               </div><br />
               <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
             <?php if ($new_entry) { ?>
-              &nbsp;<a onclick="location = '<?php echo $new_download; ?>';" class="button-filter" style="margin-top:0px;"><?php echo $button_new_download; ?></a>
+              &nbsp;<a onclick="location = '<?php echo $new_download; ?>';" class="button-filter" style="margin-top:0;"><?php echo $button_new_download; ?></a>
             <?php } ?>
             </td>
           </tr>
@@ -150,7 +150,7 @@
             <td><?php echo $entry_sort_order; ?></td>
             <td><input type="text" name="sort_order" value="<?php echo $sort_order; ?>" size="3" /></td>
           </tr>
-          <tr>
+          <tr class="highlighted">
             <td><?php echo $entry_status; ?></td>
             <td><select name="status">
               <?php if ($status) { ?>
@@ -318,7 +318,7 @@ $('input[name=\'product\']').autocomplete({
 	}
 });
 
-$('#product-wise-list div img').live('click', function() {
+$('#product-wise-list div').on('click', 'img', function() {
 	$(this).parent().remove();
 
 	$('#product-wise-list div:odd').attr('class', 'odd');

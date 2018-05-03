@@ -94,7 +94,7 @@
 </div>
 
 <script type="text/javascript"><!--
-$('#payment-address input[name=\'payment_address\']').live('change', function() {
+$('#payment-address input[name=\'payment_address\']').on('change', function() {
 	if (this.value == 'new') {
 		$('#payment-existing').hide();
 		$('#payment-new').show(500);
@@ -108,8 +108,11 @@ $('#payment-address input[name=\'payment_address\']').live('change', function() 
 <script type="text/javascript"><!--
 var postcode_required = 0;
 
-$('#payment-address select[name=\'country_id\']').bind('change', function() {
-	if (this.value == '') { return; }
+$('#payment-address select[name=\'country_id\']').on('change', function() {
+	if (this.value == '') {
+		return;
+	}
+
 	$.ajax({
 		url: 'index.php?route=checkout_express/checkout/country&country_id=' + this.value,
 		dataType: 'json',

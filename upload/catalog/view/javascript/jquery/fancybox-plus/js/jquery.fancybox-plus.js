@@ -5,7 +5,7 @@
  * Examples and documentation at: http://igorlino.github.io/fancybox-plus/
  *
  * Base version: 1.3.9 (29.09.2016)
- * Custom version: 1.4.0, for OC Overclocked Edition
+ * Custom version: 1.4.1, for OC Overclocked Edition
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
  */
@@ -140,7 +140,7 @@
 
             tmp.css('padding', (selectedOpts.padding + selectedOpts.margin));
 
-            $('.fbplus-inline-tmp').unbind('fbplus-cancel').bind('fbplus-change', function() {
+            $('.fbplus-inline-tmp').off('fbplus-cancel').on('fbplus-change', function() {
                 $(this).replaceWith(content.children());
             });
 
@@ -296,10 +296,10 @@
 
             busy = true;
 
-            $(content.add(overlay)).unbind();
+            $(content.add(overlay)).off();
 
-            $(window).unbind("resize.fb scroll.fb");
-            $(document).unbind('keydown.fb');
+            $(window).off("resize.fb scroll.fb");
+            $(document).off('keydown.fb');
 
             if (wrap.is(":visible") && currentOpts.titlePosition !== 'outside') {
                 wrap.css('height', wrap.height());
@@ -357,14 +357,11 @@
 
                     $.event.trigger('fbplus-change');
 
-                    content
-                        .empty()
-                        .removeAttr('filter')
-                        .css({
-                            'border-width': currentOpts.padding,
-                            'width': final_pos.width - currentOpts.padding * 2,
-                            'height': selectedOpts.autoDimensions ? 'auto' : final_pos.height - titleHeight - currentOpts.padding * 2
-                        });
+                    content.empty().removeAttr('filter').css({
+                        'border-width': currentOpts.padding,
+                        'width': final_pos.width - currentOpts.padding * 2,
+                        'height': selectedOpts.autoDimensions ? 'auto' : final_pos.height - titleHeight - currentOpts.padding * 2
+                    });
 
                     if (equal) {
                         finish_resizing();
@@ -437,10 +434,7 @@
             titleStr = currentOpts.title || '';
             titleHeight = 0;
 
-            title
-                .empty()
-                .removeAttr('style')
-                .removeClass();
+            title.empty().removeAttr('style').removeClass();
 
             if (currentOpts.titleShow === false) {
                 title.hide();
@@ -496,7 +490,7 @@
         },
         _set_navigation = function() {
             if (currentOpts.enableEscapeButton || currentOpts.enableKeyboardNav) {
-                $(document).bind('keydown.fb', function(e) {
+                $(document).on('keydown.fb', function(e) {
                     if (e.keyCode == 27 && currentOpts.enableEscapeButton) {
                         e.preventDefault();
                         $.fancyboxPlus.close();
@@ -544,17 +538,17 @@
             _set_navigation();
 
             if (currentOpts.hideOnContentClick) {
-                content.bind('click', $.fancyboxPlus.close);
+                content.on('click', $.fancyboxPlus.close);
             }
 
             if (currentOpts.hideOnOverlayClick) {
-                overlay.bind('click', $.fancyboxPlus.close);
+                overlay.on('click', $.fancyboxPlus.close);
             }
 
-            $(window).bind("resize.fb", $.fancyboxPlus.resize);
+            $(window).on("resize.fb", $.fancyboxPlus.resize);
 
             if (currentOpts.centerOnScroll) {
-                $(window).bind("scroll.fb", $.fancyboxPlus.center);
+                $(window).on("scroll.fb", $.fancyboxPlus.center);
             }
 
             if (currentOpts.type == 'iframe') {
@@ -727,8 +721,8 @@
 
         $(this)
             .data('fancyboxPlus', $.extend({}, options, ($.metadata ? $(this).metadata() : {})))
-            .unbind('click.fb')
-            .bind('click.fb', function(e) {
+            .off('click.fb')
+            .on('click.fb', function(e) {
                 e.preventDefault();
 
                 if (busy) {
@@ -873,10 +867,10 @@
 
         $(close.add(nav_left).add(nav_right)).hide();
 
-        $(content.add(overlay)).unbind();
+        $(content.add(overlay)).off();
 
-        $(window).unbind("resize.fb scroll.fb");
-        $(document).unbind('keydown.fb');
+        $(window).off("resize.fb scroll.fb");
+        $(document).off('keydown.fb');
 
         content.find('iframe').attr('src', isIE6 && /^https/i.test(window.location.href || '') ? 'javascript:void(false)' : 'about:blank');
 
@@ -1003,7 +997,7 @@
         });
 
         if ($.fn.mousewheel) {
-            wrap.bind('mousewheel.fb', function(e, delta) {
+            wrap.on('mousewheel.fb', function(e, delta) {
                 if (busy) {
                     e.preventDefault();
 
@@ -1086,4 +1080,3 @@
     });
 
 })(jQuery);
-

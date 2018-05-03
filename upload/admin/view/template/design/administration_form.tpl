@@ -18,10 +18,10 @@
       </div>
     </div>
     <div class="content">
-    <div class="tooltip" style="margin:10px 0px 20px 0px;"><?php echo $text_administration; ?></div>
+    <div class="tooltip" style="margin:10px 0 20px 0;"><?php echo $text_administration; ?></div>
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
       <table class="form">
-        <tr>
+        <tr class="highlighted">
           <td><span class="required">*</span> <?php echo $entry_name; ?></td>
           <td><?php if ($error_name) { ?>
             stylesheet_<input type="text" name="name" value="<?php echo $name; ?>" size="20" class="input-error" />.css

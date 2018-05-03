@@ -48,11 +48,13 @@
 </table>
 <br />
 <div class="buttons">
-  <div class="right"><input type="button" value="<?php echo $button_continue; ?>" id="button-guest-shipping" class="button" /></div>
+  <div class="right">
+    <input type="button" value="<?php echo $button_continue; ?>" id="button-guest-shipping" class="button" />
+  </div>
 </div>
 
 <script type="text/javascript"><!--
-$('#shipping-address select[name=\'country_id\']').bind('change', function() {
+$('#shipping-address select[name=\'country_id\']').on('change', function() {
 	if (this.value == '') return;
 	$.ajax({
 		url: 'index.php?route=checkout/checkout/country&country_id=' + this.value,

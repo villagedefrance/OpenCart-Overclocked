@@ -14,7 +14,7 @@
 	"use strict";
 
 	var pluginName = "cookieDisclaimer",
-            
+
 	defaults = {
 		layout: "bar", // bar, modal
 		position: "top", // top, middle, bottom
@@ -109,7 +109,7 @@
 
 			this.cookieListner();
 		},
-                
+
 		/* COOKIE EXISTANCE CHECK  */
 		cookieHunter: function() {
 			if ($.cookie(this.settings.cookie.name) != this.settings.cookie.val) {
@@ -120,7 +120,7 @@
 				}
 			}
 		},
-            
+
 		/* ACCEPT COOKIE POLICY BUTTON */
 		cookieListner: function() {
 			var plugin = this;
@@ -134,7 +134,7 @@
 				});
 			});
 		},
-                
+
 		/* POLICY PAGE BUTTON ON CLICK FUNCTION */
 		policyOnClick: function() {
 			var plugin = this;
@@ -144,13 +144,13 @@
 				plugin.settings.policyBtn.onClick();
 			});
 		},
-            
+
 		/* COOKIES LIST */
 		cookiesList: function(out, element) {
 			var cookiesList = document.cookie.split(';'),
 				cookiesListString = document.cookie,
 				cookieListOutput = "";
-                    
+
 			switch (out) {
 				case "array":
 					cookieListOutput = cookiesList;
@@ -170,14 +170,14 @@
 					}
 					break;
 				default:
-					cookieListOutput = cookiesList;                            
+					cookieListOutput = cookiesList;
 					break;
 				}
 
 			console.log("cookieList as " + out + " : " + cookieListOutput);
 			return cookieListOutput;
 		},
-            
+
 		/* COOKIE KILLER */
 		cookieKiller: function() {
 			if ($.cookie(this.settings.cookie.name) != undefined) {
@@ -187,7 +187,7 @@
 				alert('Sorry, but there are no cookie named ' + this.settings.cookie.name);
 			}
 		},
-                
+
 		/* COOKIE KILLER BUTTON */
 		cookieKillerButton: function() {
 			var plugin = this;

@@ -14,7 +14,7 @@
       <?php if (!$shipping_method['error']) { ?>
         <?php foreach ($shipping_method['quote'] as $quote) { ?>
           <tr class="highlight">
-            <td style="vertical-align:middle; padding:0px;">
+            <td style="vertical-align:middle; padding:0;">
               <?php if ($quote['code'] == $code || !$code) { ?>
                 <?php $good++; $code = $quote['code']; ?>
                 <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" checked="checked" />

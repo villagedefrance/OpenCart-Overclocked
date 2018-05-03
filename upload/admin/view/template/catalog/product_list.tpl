@@ -306,7 +306,7 @@ $('input[name=\'filter_model\']').autocomplete({
 //--></script>
 
 <script type="text/javascript"><!--
-$('#price-button').bind('click', function() {
+$('body').on('click', '#price-button', function() {
 	$.ajax({
 		url: 'index.php?route=catalog/product/updatePrice&token=<?php echo $token; ?>',
 		dataType: 'json',
@@ -333,7 +333,7 @@ $('#price-button').bind('click', function() {
 	});
 });
 
-$('#quantity-button').bind('click', function() {
+$('body').on('click', '#quantity-button', function() {
 	$.ajax({
 		url: 'index.php?route=catalog/product/updateQuantity&token=<?php echo $token; ?>',
 		dataType: 'json',
@@ -360,7 +360,7 @@ $('#quantity-button').bind('click', function() {
 	});
 });
 
-$('#special-button').bind('click', function() {
+$('body').on('click', '#special-button', function() {
 	$.ajax({
 		url: 'index.php?route=catalog/product/updateSpecial&token=<?php echo $token; ?>',
 		dataType: 'json',
@@ -387,7 +387,7 @@ $('#special-button').bind('click', function() {
 	});
 });
 
-$('#discount-button').bind('click', function() {
+$('body').on('click', '#discount-button', function() {
 	$.ajax({
 		url: 'index.php?route=catalog/product/updateDiscount&token=<?php echo $token; ?>',
 		dataType: 'json',

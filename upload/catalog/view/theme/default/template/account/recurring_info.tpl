@@ -104,7 +104,9 @@ $('#cancel-profile').on('click', function() {
 				$('#cancel-profile').after('<img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="Loading..." class="loading" id="img-loading-cancel" />');
 			},
 		})
-		.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			alert('Status: ' + textStatus + '\r\nError: ' + errorThrown);
+		})
 		.done(function(json) {
 			if ('error' in json) {
 				$('#notification').html('<div class="warning" style="display:none;">' + json['error'] + '<img src="catalog/view/theme/default/image/close.png" alt="Close" class="close" /></div>');

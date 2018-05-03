@@ -281,7 +281,7 @@
 <?php echo $content_footer; ?>
 
 <script type="text/javascript"><!--
-$('input[name=\'next\']').bind('change', function() {
+$('input[name=\'next\']').on('change', function() {
 	$('.cart-module > div').hide();
 	$('#' + this.value).show();
 });
@@ -289,7 +289,7 @@ $('input[name=\'next\']').bind('change', function() {
 
 <?php if ($shipping_status) { ?>
 <script type="text/javascript"><!--
-$('#button-quote').live('click', function() {
+$('#button-quote').on('click', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/cart/quote',
 		type: 'post',
@@ -389,7 +389,7 @@ $('#button-quote').live('click', function() {
 //--></script>
 
 <script type="text/javascript"><!--
-$('select[name=\'country_id\']').bind('change', function() {
+$('select[name=\'country_id\']').on('change', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/cart/country&country_id=' + this.value,
 		dataType: 'json',

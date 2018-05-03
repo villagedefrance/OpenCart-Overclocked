@@ -59,16 +59,6 @@ $(document).ready(function() {
 		}
 	});
 
-	// IE10 Fixes
-	if ($.browser.msie && $.browser.version == 10) {
-		$('#menu > ul > li').bind('mouseover', function() {
-			$(this).addClass('active');
-		});
-		$('#menu > ul > li').bind('mouseout', function() {
-			$(this).removeClass('active');
-		});
-	}
-
 	// Close X Classes remove
 	$('.success, .warning, .attention, .tooltip').on('click', 'img', function() {
 		$(this).parent().fadeOut('slow', function() {
@@ -119,32 +109,6 @@ function addClick(banner_image_id) {
 		},
 		error: function(xhr, ajaxOptions, thrownError) { }
 	});
-}
-
-// Product Quantity +/-
-function addProductCount() {
-	var q = parseInt($('#quantity').val());
-	if (q > 0) {
-		$('#quantity').val(q + 1);
-	}
-	return false;
-}
-
-function subProductCount() {
-	var q = parseInt($('#quantity').val());
-	if (q > 1) {
-		$('#quantity').val(q - 1);
-	}
-	return false;
-}
-
-// Go to Reviews
-function goToReviews(product_id) {
-	$('a[href=\'#tab-review\']').trigger('click');
-	$('html, body').animate({
-		scrollTop: $('#reviews').position().top -= 30
-	}, 'slow');
-	return false;
 }
 
 // Add to Cart / Wishlist / Compare
@@ -212,4 +176,30 @@ function addToCompare(product_id) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 		}
 	});
+}
+
+// Product Quantity +/-
+function addProductCount() {
+	var q = parseInt($('#quantity').val());
+	if (q > 0) {
+		$('#quantity').val(q + 1);
+	}
+	return false;
+}
+
+function subProductCount() {
+	var q = parseInt($('#quantity').val());
+	if (q > 1) {
+		$('#quantity').val(q - 1);
+	}
+	return false;
+}
+
+// Go to Reviews
+function goToReviews(product_id) {
+	$('a[href=\'#tab-review\']').trigger('click');
+	$('html, body').animate({
+		scrollTop: $('#reviews').position().top -= 30
+	}, 'slow');
+	return false;
 }

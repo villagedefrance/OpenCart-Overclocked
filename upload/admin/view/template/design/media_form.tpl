@@ -44,7 +44,7 @@
           <td><?php echo $entry_credit; ?></td>
           <td><input type="text" name="credit" value="<?php echo $credit; ?>" size="50" /></td>
         </tr>
-        <tr>
+        <tr class="highlighted">
           <td><?php echo $entry_status; ?></td>
           <td><select name="status">
             <?php if ($status) { ?>
