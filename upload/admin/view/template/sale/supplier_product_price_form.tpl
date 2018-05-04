@@ -1,5 +1,5 @@
 <div id="price-notifications"></div>
-<table id="price-table" class="form">
+<table id="price-table" class="form-modal">
   <tr>
     <td><?php echo $entry_px_selected; ?></td>
     <td><select name="px_selected">
