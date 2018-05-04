@@ -147,7 +147,19 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_accept'] = $this->language->get('text_accept');
 
 		$this->data['cookie_consent'] = $this->config->get('config_cookie_consent');
-		$this->data['cookie_theme'] = $this->config->get('config_cookie_theme');
+
+		$cookie_theme = $this->config->get('config_cookie_theme');
+
+		if ($cookie_theme == "dark") {
+			$this->data['cookie_popup'] = "#323435";
+			$this->data['cookie_text'] = "#FCFCFC";
+			$this->data['cookie_button'] = "#14A7D0";
+		} else {
+			$this->data['cookie_popup'] = "#EDEDED";
+			$this->data['cookie_text'] = "#777777";
+			$this->data['cookie_button'] = "#14A7D0";
+		}
+
 		$this->data['cookie_position'] = $this->config->get('config_cookie_position');
 
 		$cookie_privacy = $this->config->get('config_cookie_privacy');

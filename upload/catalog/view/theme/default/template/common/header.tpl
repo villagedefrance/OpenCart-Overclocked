@@ -52,26 +52,31 @@ $(document).ready(function() {
 //--></script>
 <?php } ?>
 <?php if ($cookie_consent) { ?>
-<link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/consent/css/cookieDisclaimer.min.css" />
-<script type="text/javascript" src="catalog/view/javascript/jquery/consent/jquery.cookieDisclaimer.pack.min.js"></script>
+<link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/consent/css/cookieconsent.min.css" />
+<script type="text/javascript" src="catalog/view/javascript/jquery/consent/js/cookieconsent.min.js"></script>
 <script type="text/javascript"><!--
-$(document).ready(function() {
-  $('body').cookieDisclaimer({
-    position: "<?php echo $cookie_position; ?>",
-    style: "<?php echo $cookie_theme; ?>",
-    text: "<?php echo $text_message; ?>",
-    cssPosition: "relative",
-    acceptBtn: {
-      text: "<?php echo $text_accept; ?>"
+window.addEventListener("load", function() {
+window.cookieconsent.initialise({
+  "cookie.expiryDays": "<?php echo $cookie_age; ?>",
+  "palette": {
+    "popup": {
+      "background": "<?php echo $cookie_popup; ?>",
+	  "text": "<?php echo $cookie_text; ?>"
     },
-    policyBtn: {
-      active: true,
-      text: "<?php echo $text_policy; ?>",
-      link: "<?php echo $cookie_privacy; ?>"
-    },
-    cookie: { expire: <?php echo $cookie_age; ?> }
-  });
-});
+    "button": {
+      "background": "<?php echo $cookie_button; ?>"
+    }
+  },
+<?php if ($cookie_position == 'top') { ?>
+  "position": "top",
+  "static": true,
+<?php } ?>
+  "content": {
+    "message": "<?php echo $text_message; ?>",
+	"dismiss": "<?php echo $text_accept; ?>",
+    "href": "<?php echo $cookie_privacy; ?>"
+  }
+})});
 //--></script>
 <?php } ?>
 <?php echo ($google_analytics) ? $google_analytics : ''; ?>
