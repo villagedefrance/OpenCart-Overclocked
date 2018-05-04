@@ -394,7 +394,7 @@ $('input[name=\'payment\']:checked').trigger('change');
 //--></script>
 
 <script type="text/javascript"><!--
-$("#transaction .pagination a").live('click', function() {
+$('#transaction .pagination').on('click', 'a', function() {
 	$("#transaction").load(this.href);
 	return false;
 });

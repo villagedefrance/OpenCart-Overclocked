@@ -98,7 +98,7 @@
                 <?php } ?>
               </select></td>
             </tr>
-            <tr>
+            <tr class="highlighted">
               <td><?php echo $entry_status; ?></td>
               <td><select name="status">
                 <?php if ($status) { ?>
@@ -344,14 +344,14 @@ function addAddress() {
 //--></script>
 
 <script type="text/javascript"><!--
-$('#history .pagination a').live('click', function() {
+$('#history .pagination').on('click', 'a', function() {
 	$('#history').load(this.href);
 	return false;
 });
 
 $('#history').load('index.php?route=sale/supplier/history&token=<?php echo $token; ?>&supplier_id=<?php echo $supplier_id; ?>');
 
-$('#button-history').bind('click', function() {
+$('body').on('click', '#button-history', function() {
 	$.ajax({
 		url: 'index.php?route=sale/supplier/history&token=<?php echo $token; ?>&supplier_id=<?php echo $supplier_id; ?>',
 		type: 'post',
@@ -376,7 +376,7 @@ $('#button-history').bind('click', function() {
 //--></script>
 
 <script type="text/javascript"><!--
-$('#catalog-product .pagination a').live('click', function() {
+$('#catalog-product .pagination').on('click', 'a', function() {
 	$('#catalog-product').load(this.href);
 	return false;
 });

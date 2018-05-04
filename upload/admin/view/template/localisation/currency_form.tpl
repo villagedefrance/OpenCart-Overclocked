@@ -54,7 +54,7 @@
             <td><?php echo $entry_value; ?></td>
             <td><input type="text" name="value" value="<?php echo $value; ?>" /></td>
           </tr>
-          <tr>
+          <tr class="highlighted">
             <td><?php echo $entry_status; ?></td>
             <td><select name="status">
               <?php if ($status) { ?>

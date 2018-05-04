@@ -266,7 +266,7 @@ $('input[name=\'filter_supplier\']').autocomplete({
 //--></script>
 
 <script type="text/javascript"><!--
-$('#price-button').bind('click', function() {
+$('body').on('click', '#price-button', function() {
 	$.ajax({
 		url: 'index.php?route=sale/supplier_product/updatePrice&token=<?php echo $token; ?>',
 		dataType: 'json',

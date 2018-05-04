@@ -824,7 +824,7 @@ $('.datetime').datetimepicker({
 //--></script>
 
 <?php if ($options) { ?>
-<script type="text/javascript" src="catalog/view/javascript/jquery/ajaxupload.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/jquery/ajaxupload.min.js"></script>
 
 <?php foreach ($options as $option) { ?>
 <?php if ($option['type'] == 'file') { ?>

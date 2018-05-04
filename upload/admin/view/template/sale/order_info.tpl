@@ -503,7 +503,7 @@
 </div>
 
 <script type="text/javascript"><!--
-$('#invoice-generate').live('click', function() {
+$('body').on('click', '#invoice-generate', function() {
 	$.ajax({
 		url: 'index.php?route=sale/order/createInvoiceNo&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
 		dataType: 'json',
@@ -531,7 +531,7 @@ $('#invoice-generate').live('click', function() {
 	});
 });
 
-$('#credit-add').live('click', function() {
+$('body').on('click', '#credit-add', function() {
 	$.ajax({
 		url: 'index.php?route=sale/order/addCredit&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
 		type: 'post',
@@ -559,7 +559,7 @@ $('#credit-add').live('click', function() {
 	});
 });
 
-$('#credit-remove').live('click', function() {
+$('body').on('click', '#credit-remove', function() {
 	$.ajax({
 		url: 'index.php?route=sale/order/removeCredit&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
 		type: 'post',
@@ -587,7 +587,7 @@ $('#credit-remove').live('click', function() {
 	});
 });
 
-$('#reward-add').live('click', function() {
+$('body').on('click', '#reward-add', function() {
 	$.ajax({
 		url: 'index.php?route=sale/order/addReward&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
 		type: 'post',
@@ -615,7 +615,7 @@ $('#reward-add').live('click', function() {
 	});
 });
 
-$('#reward-remove').live('click', function() {
+$('body').on('click', '#reward-remove', function() {
 	$.ajax({
 		url: 'index.php?route=sale/order/removeReward&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
 		type: 'post',
@@ -643,7 +643,7 @@ $('#reward-remove').live('click', function() {
 	});
 });
 
-$('#commission-add').live('click', function() {
+$('body').on('click', '#commission-add', function() {
 	$.ajax({
 		url: 'index.php?route=sale/order/addCommission&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
 		type: 'post',
@@ -671,7 +671,7 @@ $('#commission-add').live('click', function() {
 	});
 });
 
-$('#commission-remove').live('click', function() {
+$('body').on('click', '#commission-remove', function() {
 	$.ajax({
 		url: 'index.php?route=sale/order/removeCommission&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
 		type: 'post',
@@ -764,14 +764,14 @@ $(document).ready(function() {
 	});
 });
 
-$('#history .pagination a').live('click', function() {
+$('#history .pagination').on('click', 'a', function() {
 	$('#history').load(this.href);
 	return false;
 });
 
 $('#history').load('index.php?route=sale/order/history&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>');
 
-$('#button-history').live('click', function() {
+$('body').on('click', '#button-history', function() {
 	if (typeof verifyStatusChange == 'function') {
 		if (verifyStatusChange() == false) {
 			return false;

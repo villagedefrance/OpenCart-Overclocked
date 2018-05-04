@@ -208,14 +208,13 @@ $('input[name=\'manufacturer\']').autocomplete({
 	focus: function(event, ui) {
 		return false;
 	}
-}).bind('focus', function() {
-	if (!$(this).autocomplete('widget').is(':visible')) {
-		$(this).delay(10).promise().done(function() {
-			if ($(this).is(":focus")) {
-				$(this).autocomplete('search', $(this).val() ? $(this).val() : ' ');
-			}
-		});
-	}
+});
+
+$('body').on('click', '#manufacturer div img', function() {
+	$(this).parent().remove();
+
+	$('#manufacturer div:odd').attr('class', 'odd');
+	$('#manufacturer div:even').attr('class', 'even');
 });
 //--></script>
 

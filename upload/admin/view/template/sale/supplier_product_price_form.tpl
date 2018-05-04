@@ -18,7 +18,7 @@
 </div>
 
 <script type="text/javascript"><!--
-$('#button-price-update').bind('click', function() {
+$('body').on('click', '#button-price-update', function() {
 	$('#price-notifications').html('');
 	$('#img-price-update').show();
 	$('div.success').remove();

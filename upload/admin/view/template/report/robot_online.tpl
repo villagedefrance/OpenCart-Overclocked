@@ -14,7 +14,7 @@
     </div>
     <div class="content-body">
     <?php if (!$tracking) { ?>
-      <div class="tooltip" style="margin:0px 0px 10px 0px;"><?php echo $text_tracking; ?></div>
+      <div class="tooltip" style="margin:0 0 10px 0;"><?php echo $text_tracking; ?></div>
     <?php } ?>
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>

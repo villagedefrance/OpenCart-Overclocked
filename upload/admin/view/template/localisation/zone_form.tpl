@@ -43,7 +43,7 @@
             <td><?php echo $entry_code; ?></td>
             <td><input type="text" name="code" value="<?php echo $code; ?>" /></td>
           </tr>
-          <tr>
+          <tr class="highlighted">
             <td><?php echo $entry_status; ?></td>
             <td><select name="status">
               <?php if ($status) { ?>

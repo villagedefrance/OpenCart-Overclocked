@@ -397,7 +397,7 @@
 </div>
 
 <script type="text/javascript"><!--
-$('select[name=\'customer_group_id\']').live('change', function() {
+$('select[name=\'customer_group_id\']').on('change', function() {
 	var customer_group = [];
 
 <?php foreach ($customer_groups as $customer_group) { ?>
@@ -552,14 +552,14 @@ function addAddress() {
 //--></script>
 
 <script type="text/javascript"><!--
-$('#history .pagination a').live('click', function() {
+$('#history .pagination').on('click', 'a', function() {
 	$('#history').load(this.href);
 	return false;
 });
 
 $('#history').load('index.php?route=sale/customer/history&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>');
 
-$('#button-history').bind('click', function() {
+$('body').on('click', '#button-history', function() {
 	$.ajax({
 		url: 'index.php?route=sale/customer/history&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>',
 		type: 'post',
@@ -584,7 +584,7 @@ $('#button-history').bind('click', function() {
 //--></script>
 
 <script type="text/javascript"><!--
-$('#purchase .pagination a').live('click', function() {
+$('#purchase .pagination').on('click', 'a', function() {
 	$('#purchase').load(this.href);
 	return false;
 });
@@ -593,7 +593,7 @@ $('#purchase').load('index.php?route=sale/customer/purchase&token=<?php echo $to
 //--></script>
 
 <script type="text/javascript"><!--
-$('#transaction .pagination a').live('click', function() {
+$('#transaction .pagination').on('click', 'a', function() {
 	$('#transaction').load(this.href);
 	return false;
 });
@@ -649,7 +649,7 @@ function deleteTransaction(customer_transaction_id) {
 //--></script>
 
 <script type="text/javascript"><!--
-$('#reward .pagination a').live('click', function() {
+$('#reward .pagination').on('click', 'a', function() {
 	$('#reward').load(this.href);
 	return false;
 });

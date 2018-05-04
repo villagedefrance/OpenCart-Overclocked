@@ -171,7 +171,7 @@
 </div>
 
 <script type="text/javascript"><!--
-$('input[name=\'category[]\']').bind('change', function() {
+$('input[name=\'category[]\']').on('change', function() {
 	var filter_category_id = this;
 	$.ajax({
 		url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_category_id=' + filter_category_id.value + '&limit=10000',
@@ -226,7 +226,7 @@ $('input[name=\'product\']').autocomplete({
 	}
 });
 
-$('#coupon-product div img').live('click', function() {
+$('body').on('click', '#coupon-product div img', function() {
 	$(this).parent().remove();
 
 	$('#coupon-product div:odd').attr('class', 'odd');
@@ -264,7 +264,7 @@ $('input[name=\'category\']').autocomplete({
 	}
 });
 
-$('#coupon-category div img').live('click', function() {
+$('body').on('click', '#coupon-category div img', function() {
 	$(this).parent().remove();
 
 	$('#coupon-category div:odd').attr('class', 'odd');
@@ -281,7 +281,7 @@ $(document).ready(function() {
 
 <?php if ($coupon_id) { ?>
 <script type="text/javascript"><!--
-$('#history .pagination a').live('click', function() {
+$('#history .pagination').on('click', 'a', function() {
 	$('#history').load(this.href);
 	return false;
 });
