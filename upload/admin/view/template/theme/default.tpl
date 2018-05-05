@@ -418,7 +418,7 @@
 </div>
 
 <script type="text/javascript"><!--
-$('input[name=\'default_footer_theme\']').bind('change', function() {
+$('input[name=\'default_footer_theme\']').on('change', function() {
 	$('.footer-theme').hide();
 	$('#theme-' + this.value).show();
 });
