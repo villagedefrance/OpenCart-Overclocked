@@ -39,7 +39,7 @@ class ControllerModuleSlideshow extends Controller {
 		$this->data['speed'] = ($this->config->get($this->_name . '_speed')) ? $this->config->get($this->_name . '_speed') : 300;
 
 		$this->data['dots'] = ($this->config->get($this->_name . '_dots')) ? 'true' : 'false';
-		$this->data['arrows'] = ($this->config->get($this->_name . '_arrows')) ? 'true' : 'false';
+		$this->data['arrows'] = ($this->config->get($this->_name . '_arrows') && !$this->browser->checkMobile()) ? 'true' : 'false';
 
 		$this->load->model('design/banner');
 		$this->load->model('tool/image');

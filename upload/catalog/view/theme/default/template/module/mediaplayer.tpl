@@ -41,7 +41,7 @@ $(document).ready(function() {
 	plyr.setup('#player-<?php echo $module; ?>', options {
 		controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
 		iconUrl: '<?php echo $icons; ?>',
-        clickToPlay: true
+		clickToPlay: true
 	});
 });
 //--></script>
