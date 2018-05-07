@@ -10,6 +10,17 @@ Options -Indexes
 ## Prevent Apache from returning a 404 error as the result of a rewrite when the directory with the same name does not exist.
 Options -MultiViews
 
+## Reduce Server HTTP Header to the minimum product (Apache) rather than showing detailed version information of the server and operating system:
+# ServerTokens Prod
+
+## Remove the footer from error pages, which details the version numbers:
+ServerSignature Off
+
+## Hide X-Powered-By and Server headers, sent by downstream application servers:
+# Note you need both below as the "always" one doesn't work with Jboss for some reason.
+Header always unset "X-Powered-By"
+Header unset "X-Powered-By"
+
 ## Remove browser bugs
 # This only applies to old browsers
 BrowserMatch ^Mozilla/4 gzip-only-text/html
@@ -64,6 +75,11 @@ AddType video/webm .webm
 # especially if the web server is serving user-uploaded content or content that could potentially be treated as executable by the browser.
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+## Set XSS Protection header
+<IfModule mod_headers.c> 
+  Header set X-XSS-Protection "1; mode=block" 
 </IfModule>
 
 ## SEO URL Settings
