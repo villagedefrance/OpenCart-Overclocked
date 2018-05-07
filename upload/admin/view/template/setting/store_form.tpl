@@ -125,19 +125,21 @@
           </tr>
           <tr>
             <td><?php echo $entry_template; ?></td>
-            <td><select name="config_template" onchange="$('#template').load('index.php?route=setting/store/template&token=<?php echo $token; ?>&template=' + encodeURIComponent(this.value));">
-              <?php foreach ($templates as $template) { ?>
-                <?php if ($template == $config_template) { ?>
-                  <option value="<?php echo $template; ?>" selected="selected"><?php echo $template; ?></option>
-                <?php } else { ?>
-                  <option value="<?php echo $template; ?>"><?php echo $template; ?></option>
-                <?php } ?>
+            <td><select name="config_template">
+            <?php foreach ($templates as $template) { ?>
+              <?php if ($template['name'] == $config_template) { ?>
+                <option value="<?php echo $template['name']; ?>" selected="selected"><?php echo $template['name']; ?></option>
+              <?php } else { ?>
+                <option value="<?php echo $template['name']; ?>"><?php echo $template['name']; ?></option>
               <?php } ?>
+            <?php } ?>
             </select></td>
           </tr>
           <tr>
             <td></td>
-            <td id="template"></td>
+            <td><?php foreach ($templates as $template) { ?>
+              <?php echo ($template['name'] == $config_template) ? '<img src="' . $template['image'] . '" alt="" style="border:1px solid #EEE;" />' : ''; ?>
+            <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_layout; ?></td>
@@ -676,10 +678,6 @@ $(document).ready(function() {
 
 	$('#meta-description').trigger('load');
 });
-//--></script>
-
-<script type="text/javascript"><!--
-$('#template').load('index.php?route=setting/store/template&token=<?php echo $token; ?>&template=' + encodeURIComponent($('select[name=\'config_template\']').attr('value')));
 //--></script>
 
 <script type="text/javascript"><!--

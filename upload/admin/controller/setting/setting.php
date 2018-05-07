@@ -833,7 +833,7 @@ class ControllerSettingSetting extends Controller {
 			if (file_exists(DIR_IMAGE . 'templates/' . basename($directory) . '.png')) {
 				$image = $server . 'image/templates/' . basename($directory) . '.png';
 			} else {
-				$image = $server . 'image/no_image.jpg';
+				$image = $server . 'image/templates/default.png';
 			}
 
 			$this->data['templates'][] = array(

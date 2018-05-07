@@ -600,7 +600,24 @@ class ControllerSettingStore extends Controller {
 		$directories = glob(DIR_CATALOG . 'view/theme/*', GLOB_ONLYDIR);
 
 		foreach ($directories as $directory) {
-			$this->data['templates'][] = basename($directory);
+			if ((isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) || ($this->request->server['HTTPS'] == '443')) {
+				$server = HTTPS_CATALOG;
+			} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
+				$server = HTTPS_CATALOG;
+			} else {
+				$server = HTTP_CATALOG;
+			}
+
+			if (file_exists(DIR_IMAGE . 'templates/' . basename($directory) . '.png')) {
+				$image = $server . 'image/templates/' . basename($directory) . '.png';
+			} else {
+				$image = $server . 'image/templates/default.png';
+			}
+
+			$this->data['templates'][] = array(
+				'name'  => basename($directory),
+				'image' => $image
+			);
 		}
 
 		if (isset($this->request->post['config_template'])) {
@@ -1194,23 +1211,5 @@ class ControllerSettingStore extends Controller {
 		}
 
 		return empty($this->error);
-	}
-
-	public function template() {
-		if ((isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) || ($this->request->server['HTTPS'] == '443')) {
-			$server = HTTPS_CATALOG;
-		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
-			$server = HTTPS_CATALOG;
-		} else {
-			$server = HTTP_CATALOG;
-		}
-
-		if (file_exists(DIR_IMAGE . 'templates/' . basename($this->request->get['template']) . '.png')) {
-			$image = $server . 'image/templates/' . basename($this->request->get['template']) . '.png';
-		} else {
-			$image = $server . 'image/no_image.jpg';
-		}
-
-		$this->response->setOutput('<img src="' . $image . '" alt="" title="" style="border:1px solid #EEE;" />');
 	}
 }
