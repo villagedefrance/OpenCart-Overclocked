@@ -205,7 +205,7 @@ $(document).ready(function() {
 				'text-align': 'left'
 			});
 			$('span.fileName').css({
-				'margin-top': '-10px',
+				'margin-top': '0',
 				'margin-left': '15px',
 				'text-decoration': 'none'
 			});
