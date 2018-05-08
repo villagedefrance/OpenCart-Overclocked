@@ -138,6 +138,8 @@ function addImage() {
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('.colorbox').colorbox({
+		overlayClose: true,
+		opacity: 0.3,
 		width: <?php echo ($this->browser->checkMobile()) ? 580 : 760; ?>,
 		height: 400
 	});

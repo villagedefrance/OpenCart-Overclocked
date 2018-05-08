@@ -4,6 +4,9 @@ class ControllerCheckoutExpressRegister extends Controller {
 	public function index() {
 		$this->language->load('checkout/checkout_express');
 
+		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.min.css');
+		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
+
 		$this->data['text_account_already'] = sprintf($this->language->get('text_account_already'), $this->url->link('checkout_express/checkout', '', 'SSL'));
 
 		$this->data['text_your_details'] = $this->language->get('text_your_details');

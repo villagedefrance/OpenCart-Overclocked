@@ -7,6 +7,9 @@ class ControllerCheckoutRegister extends Controller {
 			$this->redirect($this->url->link('checkout_express/signup', '', 'SSL'));
 		}
 
+		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.min.css');
+		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
+
 		$this->language->load('checkout/checkout');
 
 		$this->data['text_your_details'] = $this->language->get('text_your_details');

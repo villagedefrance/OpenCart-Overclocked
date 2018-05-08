@@ -55,7 +55,10 @@
 
 <script type="text/javascript"><!--
 $('#shipping-address select[name=\'country_id\']').on('change', function() {
-	if (this.value == '') return;
+	if (this.value == '') {
+		return;
+	}
+
 	$.ajax({
 		url: 'index.php?route=checkout/checkout/country&country_id=' + this.value,
 		dataType: 'json',

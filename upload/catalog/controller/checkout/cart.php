@@ -117,8 +117,8 @@ class ControllerCheckoutCart extends Controller {
 		if ($this->cart->hasProducts() || !empty($this->session->data['vouchers'])) {
 			$this->document->setTitle($this->language->get('heading_title'));
 
+			$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.min.css');
 			$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
-			$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
 
 			// Reward
 			$points_rate = $this->config->get('config_reward_rate') ? $this->config->get('config_reward_rate') : 1;

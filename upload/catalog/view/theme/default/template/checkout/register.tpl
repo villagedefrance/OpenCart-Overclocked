@@ -292,7 +292,9 @@ $(document).ready(function() {
 
 <script type="text/javascript"><!--
 $('.colorbox').colorbox({
-	width: 640,
+	overlayClose: true,
+	opacity: 0.3,
+	width: 600,
 	height: 480
 });
 //--></script>

@@ -644,7 +644,7 @@
 $(document).ready(function() {
 	$('.colorbox').colorbox({
 		overlayClose: true,
-		opacity: 0.5,
+		opacity: 0.3,
 		rel: "colorbox"
 	});
 });

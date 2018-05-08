@@ -11,8 +11,8 @@ class ControllerCheckoutExpressSignup extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_signup'));
 
+		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.min.css');
 		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
-		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
 
 		$this->load->model('checkout/checkout_express');
 

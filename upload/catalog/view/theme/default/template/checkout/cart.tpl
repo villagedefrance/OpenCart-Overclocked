@@ -372,8 +372,8 @@ $('#button-quote').on('click', function() {
 
 				$.colorbox({
 					overlayClose: true,
-					opacity: 0.5,
-					width: '640px',
+					opacity: 0.3,
+					width: '600px',
 					height: '480px',
 					href: false,
 					html: html
