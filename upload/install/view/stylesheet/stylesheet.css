@@ -222,8 +222,11 @@ label {
 	color: #11BB11;
 }
 /* Button */
-a.button, input.button {
+a.button, input.button, input[type='submit'].button {
 	color: #FFF;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 13px;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	background-color: #239DD1;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#31B0D5), to(#239DD1));
@@ -244,20 +247,14 @@ a.button, input.button {
 a.button {
 	display: inline-block;
 	text-decoration: none;
-	padding: 6px 12px 6px 12px;
-	font-size: 12px;
-	font-weight: bold;
-	line-height: 12px;
+	padding: 10px 16px;
 }
-input.button {
+input.button, input[type='submit'].button {
 	border: 0;
-	height: 24px;
-	padding: 0 12px;
-	font-size: 12px;
-	font-weight: bold;
-	line-height: 12px;
+	height: 33px;
+	padding: 10px 16px;
 }
-a.button:hover, input.button:hover {
+a.button:hover, input.button:hover, input[type='submit'].button:hover {
 	background-color: #3782BF;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#3782BF), to(#0D6D98));
 	background-image: -webkit-linear-gradient(top, #3782BF, #0D6D98);
@@ -276,7 +273,7 @@ a.button:hover, input.button:hover {
 	background-image: -o-linear-gradient(top, #FCFCFC, #ECECEC);
 	background-image: linear-gradient(to bottom, #FCFCFC, #ECECEC);
 	border: 1px solid #DBDBDB;
-	padding: 5px;
+	padding: 6px;
 	margin-bottom: 20px;
 	overflow: auto;
 }
@@ -318,7 +315,7 @@ a.button:hover, input.button:hover {
 	width: 50%;
 	text-align: center;
 }
-.finalize img {
+.finalize div img {
 	width: 270px;
 	background: #FFF;
 	border: 1px solid #DDD;
@@ -326,6 +323,9 @@ a.button:hover, input.button:hover {
 	-moz-border-radius: 2px;
 	-khtml-border-radius: 2px;
 	border-radius: 2px;
+	-webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,0.75);
+	-moz-box-shadow: 0 0 5px 0 rgba(0,0,0,0.75);
+	box-shadow: 0 0 5px 0 rgba(0,0,0,0.75);
 	margin-bottom: 5px;
 	padding: 5px;
 }
