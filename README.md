@@ -31,7 +31,7 @@ Requirements:
 - PHP: PHP 5.4+
 
 
-COMING SOON in v1.11.0!
+NEW in v1.11.0!
 - Upgraded to latest jQuery 3.3.1.
 - Upgraded almost all Javascript libraries.
 - Extensive code validation using Codacy.
@@ -52,15 +52,6 @@ COMING SOON in v1.11.0!
 - Currency rates auto-update fixed.
 - PHP 7.2+ improved support.
 - GDPR compliance.
-- ...
-
-
-NEW in v1.10.2 (Current Release)!
-- Updated Camera slideshow module.
-- Updated Admin Theme manager.
-- Updated News collapsible styles.
-- Added CKEditor for Product Attributes.
-- Removed MarkItUp script.
 - bug fixes.
 - ...
 
@@ -94,13 +85,13 @@ INSTALLATION:
 - 2 - Upload the zip archive directly to your server (can be local or live).
 - 3 - Unzip the archive in a temporary folder of your choice.
 - 4 - Copy/Paste the content of the "upload" folder at the root of your domain.
-- 5 - Find the 2 "config-dist.php" files and rename them "config.php".
-- 6 - Create an empty database and give your username all privileges.
+- 5 - Find the 2 "config-dist.php" files (root and /admin) and rename them "config.php".
+- 6 - Create an empty database on your server and give your username all privileges.
 - 7 - Run the installer by entering "<your domain>/install/index.php" in your browser.
 - 8 - Once you have completed the installer, simply go to your new Admin!
 
 
-To UPGRADE to the latest version of Overclocked Edition.
+To UPGRADE to the latest version of Overclocked Edition:
 
 Same as the above INSTALLATION guidelines, but without steps 5 and 6:
 - Do not overwrite your "config.php" files! ... just Skip step 5.
