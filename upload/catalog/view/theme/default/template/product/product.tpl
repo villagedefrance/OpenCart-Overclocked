@@ -33,7 +33,7 @@
             <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($label) { ?>
-            <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0 0 -<?php echo $label_style; ?>px 0;">
+            <div class="product-label" style="margin:0 0 -<?php echo $label_style; ?>px <?php echo $label_style; ?>px;">
             <img src="<?php echo $label; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
@@ -60,7 +60,7 @@
             <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($label) { ?>
-            <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0 0 -<?php echo $label_style; ?>px 0;">
+            <div class="product-label" style="margin:0 0 -<?php echo $label_style; ?>px <?php echo $label_style; ?>px;">
             <img src="<?php echo $label; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
@@ -87,7 +87,7 @@
             <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($label) { ?>
-            <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0 0 -<?php echo $label_style; ?>px 0;">
+            <div class="product-label" style="margin:0 0 -<?php echo $label_style; ?>px <?php echo $label_style; ?>px;">
             <img src="<?php echo $label; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
@@ -114,7 +114,7 @@
             <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($label) { ?>
-            <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0 0 -<?php echo $label_style; ?>px 0;">
+            <div class="product-label" style="margin:0 0 -<?php echo $label_style; ?>px <?php echo $label_style; ?>px;">
             <img src="<?php echo $label; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
@@ -141,7 +141,7 @@
             <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($label) { ?>
-            <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0 0 -58px 0;">
+            <div class="product-label" style="margin:0 0 -58px 58px;">
             <img src="<?php echo $label; ?>" alt="" /></div>
           <?php } ?>
           <div class="simpleLens-gallery-container" id="zoom">
@@ -350,7 +350,7 @@
                 <span class="required">* </span>
               <?php } ?>
               <b><?php echo $option['name']; ?>:</b><br />
-              <textarea name="option[<?php echo $option['product_option_id']; ?>]" cols="40" rows="5"><?php echo $option['option_value']; ?></textarea>
+              <textarea name="option[<?php echo $option['product_option_id']; ?>]" cols="30" rows="5"><?php echo $option['option_value']; ?></textarea>
               </div>
               <br />
             <?php } ?>
@@ -419,7 +419,7 @@
             <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button-cart" />
           <?php } ?>
         <?php } ?>
-        <span>
+        <span id="price-button-add">
           <a onclick="addToWishList('<?php echo $product_id; ?>');" title="<?php echo $button_wishlist; ?>" class="button-add"><i class="fa fa-heart"></i></a>
           <a onclick="addToCompare('<?php echo $product_id; ?>');" title="<?php echo $button_compare; ?>" class="button-add"><i class="fa fa-random"></i></a>
         </span>
