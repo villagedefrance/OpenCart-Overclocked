@@ -1,4 +1,5 @@
 <?php echo $header; ?>
+<script type="text/javascript" src="view/javascript/jquery/jquery-migrate-1.4.1.min.js"></script>
 <div id="content">
   <div class="breadcrumb">
   <?php foreach ($breadcrumbs as $breadcrumb) { ?>
