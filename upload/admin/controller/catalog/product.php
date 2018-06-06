@@ -756,6 +756,9 @@ class ControllerCatalogProduct extends Controller {
 
 		$this->data['token'] = $this->session->data['token'];
 
+		// Call jQuery Migrate 1.4.1 for compatibility
+		$this->document->addScript('view/javascript/jquery/jquery-migrate-1.4.1.min.js');
+
 		// Check if OpenbayPro is enabled
 		$this->load->model('setting/extension');
 

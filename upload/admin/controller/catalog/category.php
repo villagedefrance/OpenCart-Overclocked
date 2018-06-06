@@ -431,6 +431,9 @@ class ControllerCatalogCategory extends Controller {
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
+		// Call jQuery Migrate 1.4.1 for compatibility
+		$this->document->addScript('view/javascript/jquery/jquery-migrate-1.4.1.min.js');
+
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
