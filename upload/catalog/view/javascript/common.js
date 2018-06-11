@@ -7,8 +7,8 @@
 $(document).ready(function() {
 	// Standard Search
 	$('.button-search').on('click', function() {
-		url = $('base').attr('href') + 'index.php?route=product/search';
-		var search = $('input[name=\'search\']').attr('value');
+		url = $('base').prop('href') + 'index.php?route=product/search';
+		var search = $('input[name=\'search\']').prop('value');
 		if (search) {
 			url += '&search=' + encodeURIComponent(search);
 		}
@@ -17,8 +17,8 @@ $(document).ready(function() {
 
 	$('#header input[name=\'search\']').on('keydown', function(e) {
 		if (e.keyCode == 13) {
-			url = $('base').attr('href') + 'index.php?route=product/search';
-			var search = $('input[name=\'search\']').attr('value');
+			url = $('base').prop('href') + 'index.php?route=product/search';
+			var search = $('input[name=\'search\']').prop('value');
 			if (search) {
 				url += '&search=' + encodeURIComponent(search);
 			}

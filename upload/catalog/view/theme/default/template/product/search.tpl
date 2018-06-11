@@ -158,7 +158,7 @@
 
 <script type="text/javascript"><!--
 $('body').on('click', '#button-search', function() {
-	var search = $('#content input[name=\'search\']').attr('value');
+	var search = $('#content input[name=\'search\']').prop('value');
 
 	url = 'index.php?route=product/search';
 
@@ -167,7 +167,7 @@ $('body').on('click', '#button-search', function() {
 		url += '&description=true';
 	}
 
-	var category_id = $('#content select[name=\'category_id\']').attr('value');
+	var category_id = $('#content select[name=\'category_id\']').prop('value');
 
 	if (category_id > 0) {
 		url += '&category_id=' + encodeURIComponent(category_id);
