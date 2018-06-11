@@ -66,7 +66,7 @@
 function filter() {
 	url = 'index.php?route=report/customer_country&token=<?php echo $token; ?>';
 
-	var filter_name = $('input[name=\'filter_name\']').attr('value');
+	var filter_name = $('input[name=\'filter_name\']').prop('value');
 
 	if (filter_name) {
 		url += '&filter_name=' + encodeURIComponent(filter_name);

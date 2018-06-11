@@ -141,37 +141,37 @@
 function filter() {
 	url = 'index.php?route=sale/supplier&token=<?php echo $token; ?>';
 
-	var filter_reference = $('input[name=\'filter_reference\']').attr('value');
+	var filter_reference = $('input[name=\'filter_reference\']').prop('value');
 
 	if (filter_reference) {
 		url += '&filter_reference=' + encodeURIComponent(filter_reference);
 	}
 
-	var filter_company = $('select[name=\'filter_company\']').attr('value');
+	var filter_company = $('select[name=\'filter_company\']').prop('value');
 
 	if (filter_company) {
 		url += '&filter_company=' + encodeURIComponent(filter_company);
 	}
 
-	var filter_email = $('input[name=\'filter_email\']').attr('value');
+	var filter_email = $('input[name=\'filter_email\']').prop('value');
 
 	if (filter_email) {
 		url += '&filter_email=' + encodeURIComponent(filter_email);
 	}
 
-	var filter_supplier_group_id = $('select[name=\'filter_supplier_group_id\']').attr('value');
+	var filter_supplier_group_id = $('select[name=\'filter_supplier_group_id\']').prop('value');
 
 	if (filter_supplier_group_id != '*') {
 		url += '&filter_supplier_group_id=' + encodeURIComponent(filter_supplier_group_id);
 	}
 
-	var filter_status = $('select[name=\'filter_status\']').attr('value');
+	var filter_status = $('select[name=\'filter_status\']').prop('value');
 
 	if (filter_status != '*') {
 		url += '&filter_status=' + encodeURIComponent(filter_status);
 	}
 
-	var filter_date_added = $('input[name=\'filter_date_added\']').attr('value');
+	var filter_date_added = $('input[name=\'filter_date_added\']').prop('value');
 
 	if (filter_date_added) {
 		url += '&filter_date_added=' + encodeURIComponent(filter_date_added);

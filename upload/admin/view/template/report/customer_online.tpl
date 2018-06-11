@@ -77,13 +77,13 @@
 function filter() {
 	url = 'index.php?route=report/customer_online&token=<?php echo $token; ?>';
 
-	var filter_ip = $('input[name=\'filter_ip\']').attr('value');
+	var filter_ip = $('input[name=\'filter_ip\']').prop('value');
 
 	if (filter_ip) {
 		url += '&filter_ip=' + encodeURIComponent(filter_ip);
 	}
 
-	var filter_customer = $('input[name=\'filter_customer\']').attr('value');
+	var filter_customer = $('input[name=\'filter_customer\']').prop('value');
 
 	if (filter_customer) {
 		url += '&filter_customer=' + encodeURIComponent(filter_customer);

@@ -113,37 +113,37 @@
 function filter() {
 	url = 'index.php?route=sale/recurring&token=<?php echo $token; ?>';
 
-	var filter_order_recurring_id = $('input[name=\'filter_order_recurring_id\']').attr('value');
+	var filter_order_recurring_id = $('input[name=\'filter_order_recurring_id\']').prop('value');
 
 	if (filter_order_recurring_id) {
 		url += '&filter_order_recurring_id=' + encodeURIComponent(filter_order_recurring_id);
 	}
 
-	var filter_order_id = $('input[name=\'filter_order_id\']').attr('value');
+	var filter_order_id = $('input[name=\'filter_order_id\']').prop('value');
 
 	if (filter_order_id) {
 		url += '&filter_order_id=' + encodeURIComponent(filter_order_id);
 	}
 
-	var filter_payment_reference = $('input[name=\'filter_payment_reference\']').attr('value');
+	var filter_payment_reference = $('input[name=\'filter_payment_reference\']').prop('value');
 
 	if (filter_payment_reference) {
 		url += '&filter_payment_reference=' + encodeURIComponent(filter_payment_reference);
 	}
 
-	var filter_customer = $('input[name=\'filter_customer\']').attr('value');
+	var filter_customer = $('input[name=\'filter_customer\']').prop('value');
 
 	if (filter_customer) {
 		url += '&filter_customer=' + encodeURIComponent(filter_customer);
 	}
 
-	var filter_created = $('input[name=\'filter_created\']').attr('value');
+	var filter_created = $('input[name=\'filter_created\']').prop('value');
 
 	if (filter_created != '') {
 		url += '&filter_created=' + encodeURIComponent(filter_created);
 	}
 
-	var filter_status = $('select[name=\'filter_status\']').attr('value');
+	var filter_status = $('select[name=\'filter_status\']').prop('value');
 
 	if (filter_status != '0') {
 		url += '&filter_status=' + encodeURIComponent(filter_status);

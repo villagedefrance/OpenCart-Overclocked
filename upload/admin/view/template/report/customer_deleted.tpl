@@ -62,19 +62,19 @@
 function filter() {
 	url = 'index.php?route=report/customer_deleted&token=<?php echo $token; ?>';
 
-	var filter_name = $('input[name=\'filter_name\']').attr('value');
+	var filter_name = $('input[name=\'filter_name\']').prop('value');
 
 	if (filter_name) {
 		url += '&filter_name=' + encodeURIComponent(filter_name);
 	}
 
-	var filter_email = $('input[name=\'filter_email\']').attr('value');
+	var filter_email = $('input[name=\'filter_email\']').prop('value');
 
 	if (filter_email) {
 		url += '&filter_email=' + encodeURIComponent(filter_email);
 	}
 
-	var filter_orders = $('input[name=\'filter_orders\']').attr('value');
+	var filter_orders = $('input[name=\'filter_orders\']').prop('value');
 
 	if (filter_orders) {
 		url += '&filter_orders=' + encodeURIComponent(filter_orders);

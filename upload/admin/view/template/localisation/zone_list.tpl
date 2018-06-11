@@ -103,7 +103,7 @@
 function filter() {
 	url = 'index.php?route=localisation/zone&token=<?php echo $token; ?>';
 
-	var filter_name = $('input[name=\'filter_name\']').attr('value');
+	var filter_name = $('input[name=\'filter_name\']').prop('value');
 
 	if (filter_name) {
 		url += '&filter_name=' + encodeURIComponent(filter_name);

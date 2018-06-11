@@ -67,13 +67,13 @@
 function filter() {
 	url = 'index.php?route=report/robot_online&token=<?php echo $token; ?>';
 
-	var filter_ip = $('input[name=\'filter_ip\']').attr('value');
+	var filter_ip = $('input[name=\'filter_ip\']').prop('value');
 
 	if (filter_ip) {
 		url += '&filter_ip=' + encodeURIComponent(filter_ip);
 	}
 
-	var filter_robot = $('input[name=\'filter_robot\']').attr('value');
+	var filter_robot = $('input[name=\'filter_robot\']').prop('value');
 
 	if (filter_robot) {
 		url += '&filter_robot=' + encodeURIComponent(filter_robot);
