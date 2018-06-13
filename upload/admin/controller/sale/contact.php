@@ -6,6 +6,9 @@ class ControllerSaleContact extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+		// Call jQuery Migrate 1.4.1 for compatibility
+		$this->document->addScript('view/javascript/jquery/jquery-migrate-1.4.1.min.js');
+
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_default'] = $this->language->get('text_default');
@@ -239,7 +242,7 @@ class ControllerSaleContact extends Controller {
 
 							$mail->setTo($email);
 							$mail->setFrom($this->config->get('config_email'));
-							$mail->setSender($store_name);
+							$mail->setSender(html_entity_decode($store_name, ENT_QUOTES, 'UTF-8'));
 							$mail->setSubject(html_entity_decode($this->request->post['subject'], ENT_QUOTES, 'UTF-8'));
 							$mail->setHtml($message);
 							$mail->send();
