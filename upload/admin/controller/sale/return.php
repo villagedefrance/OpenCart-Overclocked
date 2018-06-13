@@ -578,6 +578,11 @@ class ControllerSaleReturn extends Controller {
 	}
 
 	protected function getForm() {
+		$this->load->model('sale/return');
+
+		// Call jQuery Migrate 1.4.1 for compatibility
+		$this->document->addScript('view/javascript/jquery/jquery-migrate-1.4.1.min.js');
+
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_select'] = $this->language->get('text_select');

@@ -673,10 +673,11 @@ class ControllerSaleAffiliate extends Controller {
 		$this->data['tab_product'] = $this->language->get('tab_product');
 		$this->data['tab_transaction'] = $this->language->get('tab_transaction');
 
-		// Security key
 		$this->data['token'] = $this->session->data['token'];
 
-		// Errors
+		// Call jQuery Migrate 1.4.1 for compatibility
+		$this->document->addScript('view/javascript/jquery/jquery-migrate-1.4.1.min.js');
+
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {

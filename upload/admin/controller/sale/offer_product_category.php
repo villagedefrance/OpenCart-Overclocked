@@ -336,6 +336,9 @@ class ControllerSaleOfferProductCategory extends Controller {
 
 		$this->data['token'] = $this->session->data['token'];
 
+		// Call jQuery Migrate 1.4.1 for compatibility
+		$this->document->addScript('view/javascript/jquery/jquery-migrate-1.4.1.min.js');
+
 		if (isset($this->request->get['offer_product_category_id'])) {
 			$this->data['offer_product_category_id'] = $this->request->get['offer_product_category_id'];
 		} else {
