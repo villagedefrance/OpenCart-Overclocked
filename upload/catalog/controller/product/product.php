@@ -328,12 +328,14 @@ class ControllerProductProduct extends Controller {
 					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], 232, 232);
 					$this->data['label'] = $this->model_tool_image->resize($product_info['label'], 58, 58);
 					$this->data['label_style'] = 176;
+					$this->data['label_height'] = 61;
 					$this->data['gallery_thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'));
 				} else {
 					$this->data['zoom'] = '';
 					$this->data['thumb'] = '';
 					$this->data['label'] = '';
 					$this->data['label_style'] = '';
+					$this->data['label_height'] = '';
 					$this->data['gallery_thumb'] = '';
 				}
 
@@ -347,10 +349,12 @@ class ControllerProductProduct extends Controller {
 					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
 					$this->data['label'] = $this->model_tool_image->resize($product_info['label'], round(($this->config->get('config_image_thumb_width') / 4), 0), round(($this->config->get('config_image_thumb_height') / 4), 0));
 					$this->data['label_style'] = round(($this->config->get('config_image_thumb_width') * 0.75), 0);
+					$this->data['label_height'] = round(($this->config->get('config_image_thumb_height') * 0.25), 0);
 				} else {
 					$this->data['thumb'] = '';
 					$this->data['label'] = '';
 					$this->data['label_style'] = '';
+					$this->data['label_height'] = '';
 				}
 
 				$this->data['lightbox'] = 'swipebox';
@@ -363,10 +367,12 @@ class ControllerProductProduct extends Controller {
 					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
 					$this->data['label'] = $this->model_tool_image->resize($product_info['label'], round(($this->config->get('config_image_thumb_width') / 4), 0), round(($this->config->get('config_image_thumb_height') / 4), 0));
 					$this->data['label_style'] = round(($this->config->get('config_image_thumb_width') * 0.75), 0);
+					$this->data['label_height'] = round(($this->config->get('config_image_thumb_height') * 0.25), 0);
 				} else {
 					$this->data['thumb'] = '';
 					$this->data['label'] = '';
 					$this->data['label_style'] = '';
+					$this->data['label_height'] = '';
 				}
 
 				$this->data['lightbox'] = 'magnific';
@@ -379,10 +385,12 @@ class ControllerProductProduct extends Controller {
 					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
 					$this->data['label'] = $this->model_tool_image->resize($product_info['label'], round(($this->config->get('config_image_thumb_width') / 4), 0), round(($this->config->get('config_image_thumb_height') / 4), 0));
 					$this->data['label_style'] = round(($this->config->get('config_image_thumb_width') * 0.75), 0);
+					$this->data['label_height'] = round(($this->config->get('config_image_thumb_height') * 0.25), 0);
 				} else {
 					$this->data['thumb'] = '';
 					$this->data['label'] = '';
 					$this->data['label_style'] = '';
+					$this->data['label_height'] = '';
 				}
 
 				$this->data['lightbox'] = 'fancybox';
@@ -395,10 +403,12 @@ class ControllerProductProduct extends Controller {
 					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
 					$this->data['label'] = $this->model_tool_image->resize($product_info['label'], round(($this->config->get('config_image_thumb_width') / 4), 0), round(($this->config->get('config_image_thumb_height') / 4), 0));
 					$this->data['label_style'] = round(($this->config->get('config_image_thumb_width') * 0.75), 0);
+					$this->data['label_height'] = round(($this->config->get('config_image_thumb_height') * 0.25), 0);
 				} else {
 					$this->data['thumb'] = '';
 					$this->data['label'] = '';
 					$this->data['label_style'] = '';
+					$this->data['label_height'] = '';
 				}
 
 				$this->data['lightbox'] = 'colorbox';
