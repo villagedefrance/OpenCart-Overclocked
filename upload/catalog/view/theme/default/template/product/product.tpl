@@ -141,7 +141,7 @@
             <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($label) { ?>
-            <div class="product-label" style="margin:0 0 -58px 58px;">
+            <div class="product-label" style="left:<?php echo $label_style; ?>px; margin:0 0 -58px 0;">
             <img src="<?php echo $label; ?>" alt="" /></div>
           <?php } ?>
           <div class="simpleLens-gallery-container" id="zoom">
