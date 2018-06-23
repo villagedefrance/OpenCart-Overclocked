@@ -1557,13 +1557,13 @@
                 <option value="magnific" <?php if ($config_lightbox == 'magnific') { echo $selected; } ?>><?php echo $text_magnific; ?> <?php echo $text_default; ?></option>
                 <option value="fancybox" <?php if ($config_lightbox == 'fancybox') { echo $selected; } ?>><?php echo $text_fancybox; ?></option>
                 <option value="colorbox" <?php if ($config_lightbox == 'colorbox') { echo $selected; } ?>><?php echo $text_colorbox; ?></option>
-                <option value="swipebox" <?php if ($config_lightbox == 'swipebox') { echo $selected; } ?>><?php echo $text_swipebox; ?></option>
+                <option value="glightbox" <?php if ($config_lightbox == 'glightbox') { echo $selected; } ?>><?php echo $text_glightbox; ?></option>
                 <option value="zoomlens" <?php if ($config_lightbox == 'zoomlens') { echo $selected; } ?>><?php echo $text_zoomlens; ?></option>
               <?php } else { ?>
                 <option value="magnific"><?php echo $text_magnific; ?> <?php echo $text_default; ?></option>
                 <option value="fancybox"><?php echo $text_fancybox; ?></option>
                 <option value="colorbox"><?php echo $text_colorbox; ?></option>
-                <option value="swipebox"><?php echo $text_swipebox; ?></option>
+                <option value="glightbox"><?php echo $text_swipebox; ?></option>
                 <option value="zoomlens"><?php echo $text_zoomlens; ?></option>
               <?php } ?>
             </select></td>
