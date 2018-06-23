@@ -514,55 +514,6 @@
       </div>
     </div>
   <?php } ?>
-  <div id="reviews"></div>
-  <?php if ($review_status) { ?>
-    <div class="panel-collapsed">
-      <h3><?php echo $tab_review; ?><i class="fa"></i></h3>
-      <div class="panel-content">
-        <div id="review"></div>
-        <div id="add-review">
-        <?php if ($review_allowed) { ?>
-          <h2 id="review-title"><?php echo $text_write; ?></h2>
-          <div class="review-element">
-            <input type="text" name="name" placeholder="<?php echo $entry_name; ?>" value="" size="30" />
-          </div>
-          <div class="review-element">
-            <textarea name="text" cols="40" rows="3" placeholder="<?php echo $entry_review; ?>"></textarea>
-            <br /><?php echo $text_note; ?>
-          </div>
-          <div class="review-rating">
-            <b><?php echo $entry_rating; ?></b>&nbsp;
-            <img src="catalog/view/theme/<?php echo $template; ?>/image/thumbs-down.png" alt="<?php echo $entry_bad; ?>" title="<?php echo $entry_bad; ?>" />&nbsp;
-            <input type="radio" name="rating" value="1" />&nbsp;
-            <input type="radio" name="rating" value="2" />&nbsp;
-            <input type="radio" name="rating" value="3" />&nbsp;
-            <input type="radio" name="rating" value="4" />&nbsp;
-            <input type="radio" name="rating" value="5" />&nbsp;
-            <img src="catalog/view/theme/<?php echo $template; ?>/image/thumbs-up.png" alt="<?php echo $entry_good; ?>" title="<?php echo $entry_good; ?>" />
-          </div>
-          <div id="captcha-wrap">
-            <div class="captcha-box">
-              <div class="captcha-view">
-                <img src="index.php?route=product/product/captcha" alt="" id="captcha-image" />
-              </div>
-            </div>
-            <div class="captcha-text">
-              <label><?php echo $entry_captcha; ?></label>
-              <input type="text" name="captcha" id="captcha" value="<?php echo $captcha; ?>" autocomplete="off" />
-            </div>
-            <div class="captcha-action"><i class="fa fa-repeat"></i></div>
-          </div>
-          <br />
-          <div><a id="button-review" class="button"><?php echo $button_continue; ?></a></div>
-        <?php } else { ?>
-          <?php if ($help_review_logged) { ?>
-            <div class="attention"><?php echo $help_review_logged; ?></div>
-          <?php } ?>
-        <?php } ?>
-        </div>
-      </div>
-    </div>
-  <?php } ?>
   <?php if ($products) { ?>
     <div class="panel-collapsed">
       <h3><?php echo $tab_related; ?><i class="fa"></i></h3>
@@ -619,6 +570,55 @@
               <div><a href="<?php echo $product['href']; ?>" title="<?php echo $button_view; ?>"><i class="fa fa-eye"></i></a></div>
             </div>
           </div>
+        <?php } ?>
+        </div>
+      </div>
+    </div>
+  <?php } ?>
+  <div id="reviews"></div>
+  <?php if ($review_status) { ?>
+    <div class="panel-collapsed">
+      <h3><?php echo $tab_review; ?><i class="fa"></i></h3>
+      <div class="panel-content">
+        <div id="review"></div>
+        <div id="add-review">
+        <?php if ($review_allowed) { ?>
+          <h2 id="review-title"><?php echo $text_write; ?></h2>
+          <div class="review-element">
+            <input type="text" name="name" placeholder="<?php echo $entry_name; ?>" value="" size="30" />
+          </div>
+          <div class="review-element">
+            <textarea name="text" cols="40" rows="3" placeholder="<?php echo $entry_review; ?>"></textarea>
+            <br /><?php echo $text_note; ?>
+          </div>
+          <div class="review-rating">
+            <b><?php echo $entry_rating; ?></b>&nbsp;
+            <img src="catalog/view/theme/<?php echo $template; ?>/image/thumbs-down.png" alt="<?php echo $entry_bad; ?>" title="<?php echo $entry_bad; ?>" />&nbsp;
+            <input type="radio" name="rating" value="1" />&nbsp;
+            <input type="radio" name="rating" value="2" />&nbsp;
+            <input type="radio" name="rating" value="3" />&nbsp;
+            <input type="radio" name="rating" value="4" />&nbsp;
+            <input type="radio" name="rating" value="5" />&nbsp;
+            <img src="catalog/view/theme/<?php echo $template; ?>/image/thumbs-up.png" alt="<?php echo $entry_good; ?>" title="<?php echo $entry_good; ?>" />
+          </div>
+          <div id="captcha-wrap">
+            <div class="captcha-box">
+              <div class="captcha-view">
+                <img src="index.php?route=product/product/captcha" alt="" id="captcha-image" />
+              </div>
+            </div>
+            <div class="captcha-text">
+              <label><?php echo $entry_captcha; ?></label>
+              <input type="text" name="captcha" id="captcha" value="<?php echo $captcha; ?>" autocomplete="off" />
+            </div>
+            <div class="captcha-action"><i class="fa fa-repeat"></i></div>
+          </div>
+          <br />
+          <div><a id="button-review" class="button"><?php echo $button_continue; ?></a></div>
+        <?php } else { ?>
+          <?php if ($help_review_logged) { ?>
+            <div class="attention"><?php echo $help_review_logged; ?></div>
+          <?php } ?>
         <?php } ?>
         </div>
       </div>
