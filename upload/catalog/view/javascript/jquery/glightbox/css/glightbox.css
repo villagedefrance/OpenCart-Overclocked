@@ -51,6 +51,7 @@
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
+  -ms-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
   filter: alpha(opacity=0);
@@ -914,7 +915,6 @@ iframe.wait-autoplay {
     -moz-box-orient: horizontal;
     -ms-box-orient: horizontal;
     -webkit-box-direction: normal;
-	-moz-box-direction: normal;
 	-ms-box-direction: normal;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -958,7 +958,7 @@ iframe.wait-autoplay {
     display: -ms-inline-flexbox;
     display: inline-flex;
     -webkit-box-pack: center;
-	-moz-box-pack: center;
+	-ms-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
   }
