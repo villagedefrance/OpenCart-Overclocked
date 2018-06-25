@@ -238,13 +238,13 @@
   width: auto;
 }
 .gslide-description.left-position, .gslide-description.right-position {
-  padding: 30px;
+  padding: 15px 30px;
   background: #FFF;
   max-width: 300px;
   min-width: 190px;
 }
 .gslide-description .bottom-position, .gslide-description .top-position {
-  padding: 30px;
+  padding: 15px 30px;
   background: #FFF;
   width: 100%;
   display: inline-block;
@@ -406,14 +406,14 @@ iframe.wait-autoplay {
 /* Skin */
 .glightbox-clean .gslide-description {
   background: #FFF;
-  padding: 22px 20px;
+  padding: 10px 20px;
 }
 .glightbox-clean .gslide-title {
   font-size: 1em;
   font-weight: normal;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #000;
-  margin-bottom: 19px;
+  margin-bottom: 15px;
   line-height: 1.4em;
 }
 .glightbox-clean .gslide-desc {
