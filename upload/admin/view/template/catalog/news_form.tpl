@@ -137,12 +137,12 @@
                 <option value="magnific" <?php if ($lightbox == 'magnific') { echo $selected; } ?>>Magnific (<?php echo $text_default; ?>)</option>
                 <option value="colorbox" <?php if ($lightbox == 'colorbox') { echo $selected; } ?>>ColorBox</option>
                 <option value="fancybox" <?php if ($lightbox == 'fancybox') { echo $selected; } ?>>FancyBox</option>
-                <option value="swipebox" <?php if ($lightbox == 'swipebox') { echo $selected; } ?>>SwipeBox</option>
+                <option value="glightbox" <?php if ($lightbox == 'glightbox') { echo $selected; } ?>>GLightbox</option>
               <?php } else { ?>
                 <option value="magnific">Magnific (<?php echo $text_default; ?>)</option>
                 <option value="colorbox">Colorbox</option>
                 <option value="fancybox">FancyBox</option>
-                <option value="swipebox">SwipeBox</option>
+                <option value="glightbox">GLightbox</option>
               <?php } ?>
             </select></td>
           </tr>

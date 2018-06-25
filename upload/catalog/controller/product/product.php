@@ -348,7 +348,7 @@ class ControllerProductProduct extends Controller {
 				if ($product_info['image']) {
 					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
 					$this->data['thumb_width'] = $this->config->get('config_image_thumb_width');
-					$this->data['thumb_height'] = $this->config->get('config_image_thumb_height') + 30;
+					$this->data['thumb_height'] = $this->config->get('config_image_thumb_height');
 					$this->data['label'] = $this->model_tool_image->resize($product_info['label'], round(($this->config->get('config_image_thumb_width') / 4), 0), round(($this->config->get('config_image_thumb_height') / 4), 0));
 					$this->data['label_style'] = round(($this->config->get('config_image_thumb_width') * 0.75), 0);
 					$this->data['label_height'] = round(($this->config->get('config_image_thumb_height') * 0.25), 0);
