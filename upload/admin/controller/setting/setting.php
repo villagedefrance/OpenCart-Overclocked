@@ -231,6 +231,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_lightbox'] = $this->language->get('entry_lightbox');
 		$this->data['entry_share_addthis'] = $this->language->get('entry_share_addthis');
 		$this->data['entry_price_free'] = $this->language->get('entry_price_free');
+		$this->data['entry_price_hide'] = $this->language->get('entry_price_hide');
 		$this->data['entry_captcha_font'] = $this->language->get('entry_captcha_font');
 		$this->data['entry_cookie_consent'] = $this->language->get('entry_cookie_consent');
 		$this->data['entry_cookie_theme'] = $this->language->get('entry_cookie_theme');
@@ -407,6 +408,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['help_lightbox'] = $this->language->get('help_lightbox');
 		$this->data['help_share_addthis'] = $this->language->get('help_share_addthis');
 		$this->data['help_price_free'] = $this->language->get('help_price_free');
+		$this->data['help_price_hide'] = $this->language->get('help_price_hide');
 		$this->data['help_captcha_font'] = $this->language->get('help_captcha_font');
 		$this->data['help_cookie_privacy'] = $this->language->get('help_cookie_privacy');
 		$this->data['help_cookie_age'] = $this->language->get('help_cookie_age');
@@ -1596,6 +1598,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_price_free'] = $this->request->post['config_price_free'];
 		} else {
 			$this->data['config_price_free'] = $this->config->get('config_price_free');
+		}
+
+		if (isset($this->request->post['config_price_hide'])) {
+			$this->data['config_price_hide'] = $this->request->post['config_price_hide'];
+		} else {
+			$this->data['config_price_hide'] = $this->config->get('config_price_hide');
 		}
 
 		$this->data['fontnames'] = array();

@@ -91,7 +91,7 @@
           <?php } ?>
           <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
         <?php } ?>
-        <?php if ($product['price']) { ?>
+        <?php if ($product['price'] && !$price_hide) { ?>
           <div class="price">
           <?php if ($product['price_option']) { ?>
             <span class="from"><?php echo $text_from; ?></span><br />

@@ -116,16 +116,16 @@ class ControllerProductProductWall extends Controller {
 
 			$this->data['compare'] = $this->url->link('product/compare', '', 'SSL');
 			$this->data['login_register'] = $this->url->link('account/login', '', 'SSL');
+			$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
 
 			$this->data['dob'] = $this->config->get('config_customer_dob');
 			$this->data['stock_checkout'] = $this->config->get('config_stock_checkout');
+			$this->data['price_hide'] = $this->config->get('config_price_hide') ? true : false;
 
 			$this->load->model('catalog/offer');
 			$this->load->model('account/customer');
 
 			$offers = $this->model_catalog_offer->getListProductOffers(0);
-
-			$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
 
 			foreach ($product_results as $result) {
 				if ($result['image']) {

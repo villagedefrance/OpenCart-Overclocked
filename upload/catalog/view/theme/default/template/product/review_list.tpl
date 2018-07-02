@@ -57,7 +57,7 @@
           <?php } ?>
           <div class="image"><a href="<?php echo $review['href']; ?>"><img src="<?php echo $review['thumb']; ?>" alt="<?php echo $review['name']; ?>" /></a></div>
         <?php } ?>
-      <?php if ($review['price']) { ?>
+      <?php if ($review['price'] && !$price_hide) { ?>
         <div class="price">
         <?php if ($review['price_option']) { ?>
           <span class="from"><?php echo $text_from; ?></span><br />

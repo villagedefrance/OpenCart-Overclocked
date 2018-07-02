@@ -41,6 +41,7 @@ class ControllerModuleAlsoBought extends Controller {
 		$this->data['addproduct'] = $this->config->get($this->_name . '_addproduct');
 
 		$this->data['stock_checkout'] = $this->config->get('config_stock_checkout');
+		$this->data['price_hide'] = $this->config->get('config_price_hide') ? true : false;
 
 		$this->load->model('catalog/product');
 		$this->load->model('catalog/offer');

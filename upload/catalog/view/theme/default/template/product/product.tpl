@@ -202,7 +202,7 @@
           <?php } ?>
         <?php } ?>
       </div>
-      <?php if ($price) { ?>
+      <?php if ($price && !$price_hide) { ?>
         <div class="price"><?php echo $text_price; ?>
         <?php if ($price_option) { ?>
           <span class="from"><?php echo $text_from; ?></span>&nbsp;
@@ -538,7 +538,7 @@
               <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
             <?php } ?>
             <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
-            <?php if ($product['price']) { ?>
+            <?php if ($product['price'] && !$price_hide) { ?>
               <div class="price">
                 <?php if ($product['price_option']) { ?>
                   <span class="from"><?php echo $text_from; ?></span><br />

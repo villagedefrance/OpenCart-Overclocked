@@ -540,6 +540,8 @@ class ControllerProductProduct extends Controller {
 			}
 
 			// Price
+			$this->data['price_hide'] = $this->config->get('config_price_hide') ? true : false;
+
 			$this->data['price_option'] = $this->model_catalog_product->hasOptionPriceIncrease($this->request->get['product_id']);
 
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {

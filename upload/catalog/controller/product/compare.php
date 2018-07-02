@@ -73,6 +73,7 @@ class ControllerProductCompare extends Controller {
 
 		$this->data['stock_checkout'] = $this->config->get('config_stock_checkout');
 		$this->data['review_status'] = $this->config->get('config_review_status');
+		$this->data['price_hide'] = $this->config->get('config_price_hide') ? true : false;
 
 		$this->load->model('catalog/offer');
 

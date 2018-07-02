@@ -1596,6 +1596,20 @@
               <label for="price-free-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
+          <tr>
+            <td><?php echo $entry_price_hide; ?><span class="help"><?php echo $help_price_hide; ?></span></td>
+            <td><?php if ($config_price_hide) { ?>
+              <input type="radio" name="config_price_hide" value="1" id="price-hide-on" class="radio" checked />
+              <label for="price-hide-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_price_hide" value="0" id="price-hide-off" class="radio" />
+              <label for="price-hide-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_price_hide" value="1" id="price-hide-on" class="radio" />
+              <label for="price-hide-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_price_hide" value="0" id="price-hide-off" class="radio" checked />
+              <label for="price-hide-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
         </table>
         <h2><?php echo $text_captcha; ?></h2>
         <table class="form">

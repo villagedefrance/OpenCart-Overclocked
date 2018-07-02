@@ -25,7 +25,7 @@
           <div class="brand"><?php echo $product['manufacturer']; ?></div>
         <?php } ?>
         <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
-        <?php if ($product['price']) { ?>
+        <?php if ($product['price'] && !$price_hide) { ?>
           <div class="price">
           <?php if ($product['price_option']) { ?>
             <span class="from"><?php echo $text_from; ?></span><br />
@@ -102,7 +102,7 @@
           <div class="brand"><?php echo $product['manufacturer']; ?></div>
         <?php } ?>
         <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
-        <?php if ($product['price']) { ?>
+        <?php if ($product['price'] && !$price_hide) { ?>
           <div class="price">
           <?php if ($product['price_option']) { ?>
             <span class="from"><?php echo $text_from; ?></span><br />
