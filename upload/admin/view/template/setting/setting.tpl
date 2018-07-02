@@ -1554,17 +1554,17 @@
             <td><?php echo $entry_lightbox; ?><span class="help"><?php echo $help_lightbox; ?></span></td>
             <td><select name="config_lightbox">
               <?php if (isset($config_lightbox)) { $selected = "selected"; ?>
-                <option value="magnific" <?php if ($config_lightbox == 'magnific') { echo $selected; } ?>><?php echo $text_magnific; ?> <?php echo $text_default; ?></option>
-                <option value="fancybox" <?php if ($config_lightbox == 'fancybox') { echo $selected; } ?>><?php echo $text_fancybox; ?></option>
-                <option value="colorbox" <?php if ($config_lightbox == 'colorbox') { echo $selected; } ?>><?php echo $text_colorbox; ?></option>
-                <option value="glightbox" <?php if ($config_lightbox == 'glightbox') { echo $selected; } ?>><?php echo $text_glightbox; ?></option>
-                <option value="zoomlens" <?php if ($config_lightbox == 'zoomlens') { echo $selected; } ?>><?php echo $text_zoomlens; ?></option>
+                <option value="magnific" <?php if ($config_lightbox == 'magnific') { echo $selected; } ?>>Magnific <?php echo $text_default; ?></option>
+                <option value="fancybox" <?php if ($config_lightbox == 'fancybox') { echo $selected; } ?>>Fancybox</option>
+                <option value="colorbox" <?php if ($config_lightbox == 'colorbox') { echo $selected; } ?>>Colorbox</option>
+                <option value="viewbox" <?php if ($config_lightbox == 'viewbox') { echo $selected; } ?>>Viewbox</option>
+                <option value="zoomlens" <?php if ($config_lightbox == 'zoomlens') { echo $selected; } ?>>ZoomLens</option>
               <?php } else { ?>
-                <option value="magnific"><?php echo $text_magnific; ?> <?php echo $text_default; ?></option>
-                <option value="fancybox"><?php echo $text_fancybox; ?></option>
-                <option value="colorbox"><?php echo $text_colorbox; ?></option>
-                <option value="glightbox"><?php echo $text_swipebox; ?></option>
-                <option value="zoomlens"><?php echo $text_zoomlens; ?></option>
+                <option value="magnific">Magnific <?php echo $text_default; ?></option>
+                <option value="fancybox">Fancybox</option>
+                <option value="colorbox">Colorbox</option>
+                <option value="viewbox">Viewbox</option>
+                <option value="zoomlens">ZoomLens</option>
               <?php } ?>
             </select></td>
           </tr>

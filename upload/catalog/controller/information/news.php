@@ -68,9 +68,9 @@ class ControllerInformationNews extends Controller {
 			// Image
 			$this->load->model('tool/image');
 
-			if ($news_info['lightbox'] == 'swipebox') {
-				$this->document->addStyle('catalog/view/javascript/jquery/swipebox/css/swipebox.min.css');
-				$this->document->addScript('catalog/view/javascript/jquery/swipebox/js/jquery.swipebox.min.js');
+			if ($news_info['lightbox'] == 'viewbox') {
+				$this->document->addStyle('catalog/view/javascript/jquery/viewbox/viewbox.min.css');
+				$this->document->addScript('catalog/view/javascript/jquery/viewbox/jquery.viewbox.min.js');
 
 				if ($news_info['image']) {
 					$this->data['thumb'] = $this->model_tool_image->resize($news_info['image'], $this->config->get('config_image_newsthumb_width'), $this->config->get('config_image_newsthumb_height'));
@@ -78,7 +78,7 @@ class ControllerInformationNews extends Controller {
 					$this->data['thumb'] = '';
 				}
 
-				$this->data['lightbox'] = 'swipebox';
+				$this->data['lightbox'] = 'viewbox';
 
 			} elseif ($news_info['lightbox'] == 'magnific') {
 				$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific.css');

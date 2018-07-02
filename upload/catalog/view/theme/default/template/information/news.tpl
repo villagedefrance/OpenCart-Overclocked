@@ -24,8 +24,8 @@
         <?php if ($lightbox == 'magnific') { ?>
           <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="magnific"><img src="<?php echo $thumb; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
         <?php } ?>
-        <?php if ($lightbox == 'swipebox') { ?>
-          <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="swipebox"><img src="<?php echo $thumb; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
+        <?php if ($lightbox == 'viewbox') { ?>
+          <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="viewbox"><img src="<?php echo $thumb; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
         <?php } ?>
         </div>
         <?php } ?>
@@ -188,17 +188,19 @@ $(document).ready(function() {
 //--></script>
 <?php } ?>
 
-<?php if ($lightbox == 'swipebox') { ?>
+<?php if ($lightbox == 'viewbox') { ?>
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	$('.swipebox').swipebox({
-		useCSS: true,
-		useSVG: true,
-		initialIndexOnArray: 0,
-		hideCloseButtonOnMobile: false,
-		hideBarsDelay: 0,
-		videoMaxWidth: 800,
-		loopAtEnd: true
+	$('.viewbox').viewbox({
+		setTitle: true,
+		margin: 20,
+		resizeDuration: 300,
+		openDuration: 200,
+		closeDuration: 200,
+		closeButton: true,
+		navButtons: true,
+		closeOnSideClick: true,
+		nextOnContentClick: true
 	});
 });
 //--></script>

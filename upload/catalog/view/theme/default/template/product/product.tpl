@@ -102,7 +102,7 @@
           </div>
         <?php } ?>
       <?php } ?>
-      <?php if ($lightbox == 'glightbox') { ?>
+      <?php if ($lightbox == 'viewbox') { ?>
         <?php if ($thumb) { ?>
           <?php if ($stock_label_large) { ?>
             <div class="stock-large"><img src="<?php echo $stock_label_large; ?>" alt="" /></div>
@@ -118,13 +118,13 @@
             <img src="<?php echo $label; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
-            <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="glightbox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
+            <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="viewbox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
           </div>
         <?php } ?>
         <?php if ($images) { ?>
           <div class="image-additional">
             <?php foreach ($images as $image) { ?>
-              <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="glightbox"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>
+              <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="viewbox"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>
             <?php } ?>
           </div>
         <?php } ?>
@@ -680,20 +680,19 @@ $(document).ready(function() {
 //--></script>
 <?php } ?>
 
-<?php if ($lightbox == 'glightbox') { ?>
+<?php if ($lightbox == 'viewbox') { ?>
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	var lightbox = GLightbox({
-		selector: 'glightbox',
-		width: <?php echo $thumb_width; ?>,
-		height: <?php echo $thumb_height; ?>,
-		loopAtEnd: true,
-		touchNavigation: true,
-		keyboardNavigation: true,
-		closeOnOutsideClick: true,
-		openEffect: 'zoomIn',
-		closeEffect: 'zoomOut',
-		slideEffect: 'slide'
+	$('.viewbox').viewbox({
+		setTitle: true,
+		margin: 20,
+		resizeDuration: 300,
+		openDuration: 200,
+		closeDuration: 200,
+		closeButton: true,
+		navButtons: true,
+		closeOnSideClick: true,
+		nextOnContentClick: true
 	});
 });
 //--></script>

@@ -341,27 +341,23 @@ class ControllerProductProduct extends Controller {
 
 				$this->data['lightbox'] = 'zoomlens';
 
-			} elseif ($this->config->get('config_lightbox') == 'glightbox') {
-				$this->document->addStyle('catalog/view/javascript/jquery/glightbox/css/glightbox.min.css');
-				$this->document->addScript('catalog/view/javascript/jquery/glightbox/js/glightbox.min.js');
+			} elseif ($this->config->get('config_lightbox') == 'viewbox') {
+				$this->document->addStyle('catalog/view/javascript/jquery/viewbox/viewbox.min.css');
+				$this->document->addScript('catalog/view/javascript/jquery/viewbox/jquery.viewbox.min.js');
 
 				if ($product_info['image']) {
 					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
-					$this->data['thumb_width'] = $this->config->get('config_image_thumb_width');
-					$this->data['thumb_height'] = $this->config->get('config_image_thumb_height');
 					$this->data['label'] = $this->model_tool_image->resize($product_info['label'], round(($this->config->get('config_image_thumb_width') / 4), 0), round(($this->config->get('config_image_thumb_height') / 4), 0));
 					$this->data['label_style'] = round(($this->config->get('config_image_thumb_width') * 0.75), 0);
 					$this->data['label_height'] = round(($this->config->get('config_image_thumb_height') * 0.25), 0);
 				} else {
 					$this->data['thumb'] = '';
-					$this->data['thumb_width'] = '';
-					$this->data['thumb_height'] = '';
 					$this->data['label'] = '';
 					$this->data['label_style'] = '';
 					$this->data['label_height'] = '';
 				}
 
-				$this->data['lightbox'] = 'glightbox';
+				$this->data['lightbox'] = 'viewbox';
 
 			} elseif ($this->config->get('config_lightbox') == 'magnific') {
 				$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific.min.css');
