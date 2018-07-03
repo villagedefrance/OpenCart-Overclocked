@@ -77,7 +77,11 @@ class ControllerProductSearch extends Controller {
 		if (isset($this->request->get['search'])) {
 			$this->document->setTitle($this->language->get('heading_title') . ' - ' . $this->request->get['search']);
 		} else {
-			$this->document->setTitle($this->language->get('heading_title'));
+			if (isset($this->request->get['tag'])) {
+				$this->document->setTitle($this->language->get('heading_title') . ' - ' . $this->request->get['tag']);
+			} else {
+				$this->document->setTitle($this->language->get('heading_title'));
+			}
 		}
 
 		$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
@@ -141,7 +145,11 @@ class ControllerProductSearch extends Controller {
 		if (isset($this->request->get['search'])) {
 			$this->data['heading_title'] = $this->language->get('heading_title') . ' - ' . $this->request->get['search'];
 		} else {
-			$this->data['heading_title'] = $this->language->get('heading_title');
+			if (isset($this->request->get['tag'])) {
+				$this->data['heading_title'] = $this->language->get('heading_title') . ' - ' . $this->request->get['tag'];
+			} else {
+				$this->data['heading_title'] = $this->language->get('heading_title');
+			}
 		}
 
 		$this->data['text_empty'] = $this->language->get('text_empty');
