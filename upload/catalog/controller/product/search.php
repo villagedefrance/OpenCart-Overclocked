@@ -686,8 +686,13 @@ class ControllerProductSearch extends Controller {
 							$special = false;
 						}
 
-						$product_price = ($special) ? $special : $price;
 						$product_id = (int)$values['product_id'];
+
+						if ($this->config->get('config_price_hide')) {
+							$product_price = '';
+						} else {
+							$product_price = ($special) ? $special : $price;
+						}
 
 						$data[$key] = array(
 							'name'  => html_entity_decode($values['name'] . ' ' . $product_price, ENT_QUOTES, 'UTF-8'),
