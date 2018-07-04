@@ -164,7 +164,6 @@ $('body').on('click', '#button-search', function() {
 
 	if (search) {
 		url += '&search=' + encodeURIComponent(search);
-		url += '&description=true';
 	}
 
 	var category_id = $('#content select[name=\'category_id\']').prop('value');
