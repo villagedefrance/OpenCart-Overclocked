@@ -143,16 +143,14 @@ class ModelCatalogProduct extends Model {
 			if (!empty($data['filter_name'])) {
 				$implode = array();
 
-				$words = explode(' ', trim(preg_replace('/\s+/', ' ', $data['filter_name'])));
+				$word = trim(preg_replace('/\s+/', ' ', $data['filter_name']));
 
-				foreach ($words as $word) {
-					if (strlen($word) > 3 && strpos($word, 's') !== false) {
-						$implode[] = "pd.name LIKE '%" . $this->db->escape(rtrim($word, 's')) . "%'";
-						$implode[] = "md.name LIKE '%" . $this->db->escape($word) . "%'";
-					} else {
-						$implode[] = "pd.name LIKE '%" . $this->db->escape($word) . "%'";
-						$implode[] = "md.name LIKE '%" . $this->db->escape($word) . "%'";
-					}
+				if (strlen($word) > 3 && strpos($word, 's') !== false) {
+					$implode[] = "pd.name LIKE '%" . $this->db->escape(rtrim($word, 's')) . "%'";
+					$implode[] = "md.name LIKE '%" . $this->db->escape($word) . "%'";
+				} else {
+					$implode[] = "pd.name LIKE '%" . $this->db->escape($word) . "%'";
+					$implode[] = "md.name LIKE '%" . $this->db->escape($word) . "%'";
 				}
 
 				if (!empty($implode)) {
@@ -703,16 +701,14 @@ class ModelCatalogProduct extends Model {
 			if (!empty($data['filter_name'])) {
 				$implode = array();
 
-				$words = explode(' ', trim(preg_replace('/\s+/', ' ', $data['filter_name'])));
+				$word = trim(preg_replace('/\s+/', ' ', $data['filter_name']));
 
-				foreach ($words as $word) {
-					if (strlen($word) > 3 && strpos($word, 's') !== false) {
-						$implode[] = "pd.name LIKE '%" . $this->db->escape(rtrim($word, 's')) . "%'";
-						$implode[] = "md.name LIKE '%" . $this->db->escape($word) . "%'";
-					} else {
-						$implode[] = "pd.name LIKE '%" . $this->db->escape($word) . "%'";
-						$implode[] = "md.name LIKE '%" . $this->db->escape($word) . "%'";
-					}
+				if (strlen($word) > 3 && strpos($word, 's') !== false) {
+					$implode[] = "pd.name LIKE '%" . $this->db->escape(rtrim($word, 's')) . "%'";
+					$implode[] = "md.name LIKE '%" . $this->db->escape($word) . "%'";
+				} else {
+					$implode[] = "pd.name LIKE '%" . $this->db->escape($word) . "%'";
+					$implode[] = "md.name LIKE '%" . $this->db->escape($word) . "%'";
 				}
 
 				if (!empty($implode)) {
