@@ -12,10 +12,10 @@
     <div class="heading">
       <h1><img src="view/image/module.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $library; ?>';" class="button"><i class="fa fa-video-camera"></i> &nbsp; <?php echo $button_library; ?></a>
-        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="location = '<?php echo $library; ?>';" class="button ripple"><i class="fa fa-video-camera"></i> &nbsp; <?php echo $button_library; ?></a>
+        <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save ripple"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -144,7 +144,7 @@
                   <input type="text" name="mediaplayer_module[<?php echo $module_row; ?>][sort_order]" value="<?php echo $module['sort_order']; ?>" size="3" />
                 </td>
                 <td class="center">
-                  <a onclick="$('#module-row<?php echo $module_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a>
+                  <a onclick="$('#module-row<?php echo $module_row; ?>').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a>
                 </td>
               </tr>
             </tbody>
@@ -153,7 +153,7 @@
           <tfoot>
             <tr>
               <td colspan="6" class="script">Powered by <?php echo $mediaplayer_plugin; ?> <?php echo $mediaplayer_version; ?></td>
-              <td class="center"><a onclick="addModule();" class="button"><?php echo $button_add_module; ?></a></td>
+              <td class="center"><a onclick="addModule();" class="button ripple"><?php echo $button_add_module; ?></a></td>
             </tr>
           </tfoot>
         </table>
@@ -196,7 +196,7 @@ function addModule() {
 	html += '      <option value="0"><?php echo $text_disabled; ?></option>';
 	html += '    </select></td>';
 	html += '    <td class="center"><input type="text" name="mediaplayer_module[' + module_row + '][sort_order]" value="1" size="3" /></td>';
-	html += '    <td class="center"><a onclick="$(\'#module-row' + module_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#module-row' + module_row + '\').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 
@@ -210,7 +210,7 @@ function addModule() {
 function image_upload(field, thumb) {
 	$('#dialog').remove();
 
-	$('#content').prepend('<div id="dialog" style="padding:3px 0px 0px 0px;"><iframe src="index.php?route=common/filemanager&token=<?php echo $token; ?>&field=' + encodeURIComponent(field) + '" style="padding:0; margin:0; display:block; width:100%; height:100%;" frameborder="no" scrolling="auto"></iframe></div>');
+	$('#content').prepend('<div id="dialog" style="padding:3px 0 0 0;"><iframe src="index.php?route=common/filemanager&token=<?php echo $token; ?>&field=' + encodeURIComponent(field) + '" style="padding:0; margin:0; display:block; width:100%; height:100%;" frameborder="no" scrolling="auto"></iframe></div>');
 
 	$('#dialog').dialog({
 		title: '<?php echo $text_image_manager; ?>',
@@ -226,7 +226,7 @@ function image_upload(field, thumb) {
 			}
 		},
 		bgiframe: false,
-		width: 760,
+		width: <?php echo ($this->browser->checkMobile()) ? 580 : 760; ?>,
 		height: 400,
 		resizable: false,
 		modal: false

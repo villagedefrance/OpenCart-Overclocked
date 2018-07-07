@@ -15,8 +15,8 @@
     <div class="heading">
       <h1><img src="view/image/layout.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
-        <a id="delete" class="button-delete"><?php echo $button_delete; ?></a>
+        <a href="<?php echo $insert; ?>" class="button ripple"><?php echo $button_insert; ?></a>
+        <a id="delete" class="button-delete ripple"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div class="content-body">
@@ -52,7 +52,7 @@
             <td class="left"><?php echo $layout['name']; ?></td>
             <td class="center"><?php echo $layout['routes']; ?></td>
             <td class="right"><?php foreach ($layout['action'] as $action) { ?>
-              <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
+              <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn ripple"><?php echo $action['text']; ?></a>
             <?php } ?></td>
           </tr>
           <?php } ?>

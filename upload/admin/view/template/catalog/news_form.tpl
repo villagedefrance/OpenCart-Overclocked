@@ -12,9 +12,9 @@
     <div class="heading">
       <h1><img src="view/image/review.png" alt="" /> <?php echo $news_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-        <a onclick="location='<?php echo $cancel; ?>';" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save ripple"><?php echo $button_apply; ?></a>
+        <a onclick="location='<?php echo $cancel; ?>';" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -328,19 +328,19 @@ $('#product-wise-list div').on('click', 'img', function() {
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	<?php if ($related == 'product_wise') { ?>
-		$("#product-wise").css({display: "table-row"});
-		$("#category-wise").css({display: "none"});
-		$("#manufacturer-wise").css({display: "none"});
-	<?php } elseif ($related == 'category_wise') { ?>
-		$("#product-wise").css({display: "none"});
-		$("#category-wise").css({display: "table-row"});
-		$("#manufacturer-wise").css({display: "none"});
-	<?php } elseif ($related == 'manufacturer_wise') { ?>
-		$("#product-wise").css({display: "none"});
-		$("#category-wise").css({display: "none"});
-		$("#manufacturer-wise").css({display: "table-row"});
-	<?php } ?>
+<?php if ($related == 'product_wise') { ?>
+	$("#product-wise").css({display: "table-row"});
+	$("#category-wise").css({display: "none"});
+	$("#manufacturer-wise").css({display: "none"});
+<?php } elseif ($related == 'category_wise') { ?>
+	$("#product-wise").css({display: "none"});
+	$("#category-wise").css({display: "table-row"});
+	$("#manufacturer-wise").css({display: "none"});
+<?php } elseif ($related == 'manufacturer_wise') { ?>
+	$("#product-wise").css({display: "none"});
+	$("#category-wise").css({display: "none"});
+	$("#manufacturer-wise").css({display: "table-row"});
+<?php } ?>
 });
 //--></script>
 

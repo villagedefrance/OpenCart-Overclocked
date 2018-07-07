@@ -12,10 +12,10 @@
     <div class="heading">
       <h1><img src="view/image/module.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $manager; ?>';" class="button"><i class="fa fa-photo"></i> &nbsp; <?php echo $button_manager; ?></a>
-        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="location = '<?php echo $manager; ?>';" class="button ripple"><i class="fa fa-photo"></i> &nbsp; <?php echo $button_manager; ?></a>
+        <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save ripple"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -241,7 +241,7 @@
                 <input type="text" name="slideshow_module[<?php echo $module_row; ?>][sort_order]" value="<?php echo $module['sort_order']; ?>" size="3" />
               </td>
               <td class="center">
-                <a onclick="$('#module-row<?php echo $module_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a>
+                <a onclick="$('#module-row<?php echo $module_row; ?>').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a>
               </td>
             </tr>
           </tbody>
@@ -250,7 +250,7 @@
           <tfoot>
             <tr>
               <td colspan="6" class="script">Powered by <?php echo $slideshow_plugin; ?> <?php echo $slideshow_version; ?></td>
-              <td class="center"><a onclick="addModule();" class="button"><?php echo $button_add_module; ?></a></td>
+              <td class="center"><a onclick="addModule();" class="button ripple"><?php echo $button_add_module; ?></a></td>
             </tr>
           </tfoot>
         </table>
@@ -292,7 +292,7 @@ function addModule() {
     html += '      <option value="0"><?php echo $text_disabled; ?></option>';
     html += '    </select></td>';
 	html += '    <td class="center"><input type="text" name="slideshow_module[' + module_row + '][sort_order]" value="" size="3" /></td>';
-	html += '    <td class="center"><a onclick="$(\'#module-row' + module_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#module-row' + module_row + '\').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 

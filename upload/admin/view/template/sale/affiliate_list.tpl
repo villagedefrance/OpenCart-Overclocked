@@ -15,10 +15,10 @@
     <div class="heading">
       <h1><img src="view/image/customer.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('form').attr('action','<?php echo $unlock; ?>'); $('form').submit();" class="button-repair"><?php echo $button_unlock; ?></a>
-        <a onclick="$('form').attr('action','<?php echo $approve; ?>'); $('form').submit();" class="button-save"><?php echo $button_approve; ?></a>
-        <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
-        <a id="delete" class="button-delete"><?php echo $button_delete; ?></a>
+        <a onclick="$('form').attr('action','<?php echo $unlock; ?>'); $('form').submit();" class="button-repair ripple"><?php echo $button_unlock; ?></a>
+        <a onclick="$('form').attr('action','<?php echo $approve; ?>'); $('form').submit();" class="button-save ripple"><?php echo $button_approve; ?></a>
+        <a href="<?php echo $insert; ?>" class="button ripple"><?php echo $button_insert; ?></a>
+        <a id="delete" class="button-delete ripple"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div class="content-body">
@@ -93,7 +93,7 @@
               <option value="0"><?php echo $text_disabled; ?></option>
             <?php } ?>
           </select></td>
-          <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+          <td class="right"><a onclick="filter();" class="button-filter ripple"><?php echo $button_filter; ?></a></td>
         </tr>
         <?php if ($affiliates) { ?>
           <?php foreach ($affiliates as $affiliate) { ?>
@@ -120,7 +120,7 @@
               <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
             <?php } ?>
             <td class="right"><?php foreach ($affiliate['action'] as $action) { ?>
-              <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
+              <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn ripple"><?php echo $action['text']; ?></a>
             <?php } ?></td>
           </tr>
           <?php } ?>

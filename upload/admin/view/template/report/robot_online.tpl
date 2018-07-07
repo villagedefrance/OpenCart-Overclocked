@@ -9,12 +9,12 @@
     <div class="heading">
       <h1><img src="view/image/report.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
+        <a onclick="location='<?php echo $close; ?>';" class="button-cancel ripple"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content-body">
     <?php if (!$tracking) { ?>
-      <div class="tooltip" style="margin:0 0 10px 0;"><?php echo $text_tracking; ?></div>
+      <div class="tooltip" style="margin-bottom:10px;"><?php echo $text_tracking; ?></div>
     <?php } ?>
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
@@ -35,7 +35,7 @@
             <td class="left"><input type="text" name="filter_robot" value="<?php echo $filter_robot; ?>" /></td>
             <td></td>
             <td></td>
-            <td style="text-align:right;"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+            <td style="text-align:right;"><a onclick="filter();" class="button-filter ripple"><?php echo $button_filter; ?></a></td>
           </tr>
           <?php if ($robots) { ?>
             <?php foreach ($robots as $robot) { ?>

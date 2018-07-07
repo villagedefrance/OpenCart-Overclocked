@@ -12,9 +12,9 @@
     <div class="heading">
       <h1><img src="view/image/category.png" alt="" /> <?php echo $footer_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save ripple"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -79,7 +79,7 @@
               <?php } ?>
               </select></td>
               <td class="center"><input type="text" name="footer_route[<?php echo $route_row; ?>][sort_order]" value="<?php echo $footer_route['sort_order']; ?>" size="4" /></td>
-              <td class="center"><a onclick="$('#route-row<?php echo $route_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+              <td class="center"><a onclick="$('#route-row<?php echo $route_row; ?>').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>
             </tr>
           </tbody>
           <?php $route_row++; ?>
@@ -87,7 +87,7 @@
           <tfoot>
             <tr>
               <td colspan="4"></td>
-              <td class="center"><a onclick="addRoute();" class="button"><?php echo $button_add_route; ?></a></td>
+              <td class="center"><a onclick="addRoute();" class="button ripple"><?php echo $button_add_route; ?></a></td>
             </tr>
           </tfoot>
         </table>
@@ -177,7 +177,7 @@ function addRoute() {
 	html += '      <option value="0" selected="selected"><?php echo $text_no; ?></option>';
 	html += '    </select></td>';
 	html += '    <td class="center"><input type="text" name="footer_route[' + route_row + '][sort_order]" value="" size="4" /></td>';
-	html += '    <td class="center"><a onclick="$(\'#route-row' + route_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#route-row' + route_row + '\').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 

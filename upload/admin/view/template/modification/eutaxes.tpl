@@ -12,8 +12,8 @@
     <div class="heading">
       <h1><img src="view/image/modification.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $eucountries; ?>';" class="button"><?php echo $button_eucountry; ?></a>
-        <a onclick="location = '<?php echo $cancel; ?>';" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="location = '<?php echo $eucountries; ?>';" class="button ripple"><?php echo $button_eucountry; ?></a>
+        <a onclick="location = '<?php echo $cancel; ?>';" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -48,7 +48,7 @@
             <?php } ?>
             <?php echo (in_array('EU VAT Zone', $geo_zone_name)) ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/attention.png" alt="" />'; ?>
             </td>
-            <td class="right"><a onclick="location = '<?php echo $action_geo_zone; ?>';" class="button"><?php echo $button_edit; ?></a></td>
+            <td class="right"><a onclick="location = '<?php echo $action_geo_zone; ?>';" class="button ripple"><?php echo $button_edit; ?></a></td>
           </tr>
           <tr>
             <td><?php echo $text_status_tax_rate; ?></td>
@@ -57,7 +57,7 @@
             <?php } ?>
             <?php echo (in_array('EU Members VAT', $tax_rate_name)) ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/attention.png" alt="" />'; ?>
             </td>
-            <td class="right"><a onclick="location = '<?php echo $action_tax_rate; ?>';" class="button"><?php echo $button_edit; ?></a></td>
+            <td class="right"><a onclick="location = '<?php echo $action_tax_rate; ?>';" class="button ripple"><?php echo $button_edit; ?></a></td>
           </tr>
           <tr>
             <td><?php echo $text_status_tax_class; ?></td>
@@ -66,7 +66,7 @@
             <?php } ?>
             <?php echo (in_array('EU E-medias', $tax_class_title)) ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/attention.png" alt="" />'; ?>
             </td>
-            <td class="right"><a onclick="location = '<?php echo $action_tax_class; ?>';" class="button"><?php echo $button_edit; ?></a></td>
+            <td class="right"><a onclick="location = '<?php echo $action_tax_class; ?>';" class="button ripple"><?php echo $button_edit; ?></a></td>
           </tr>
           <tr>
             <td><?php echo $text_status_tax_rule; ?></td>
@@ -75,7 +75,7 @@
             <?php } ?>
             <?php echo (isset($tax_class_tax_rule)) ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/attention.png" alt="" />'; ?>
             </td>
-            <td class="right"><a onclick="location = '<?php echo $action_tax_rule; ?>';" class="button"><?php echo $button_edit; ?></a></td>
+            <td class="right"><a onclick="location = '<?php echo $action_tax_rule; ?>';" class="button ripple"><?php echo $button_edit; ?></a></td>
           </tr>
         </tbody>
         </table>

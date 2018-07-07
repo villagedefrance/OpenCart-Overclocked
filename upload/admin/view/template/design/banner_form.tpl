@@ -12,9 +12,9 @@
     <div class="heading">
       <h1><img src="view/image/banner.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save ripple"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -87,7 +87,7 @@
               <?php } ?>
             </select></td>
             <td class="center"><input type="text" name="banner_image[<?php echo $image_row; ?>][sort_order]" value="<?php echo $banner_image['sort_order']; ?>" size="2" /></td>
-            <td class="center"><a onclick="$('#image-row<?php echo $image_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+            <td class="center"><a onclick="$('#image-row<?php echo $image_row; ?>').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
         <?php $image_row++; ?>
@@ -125,7 +125,7 @@ function addImage() {
 	html += '      <option value="0" selected="selected"><?php echo $text_no; ?></option>';
 	html += '    </select></td>';
 	html += '    <td class="center"><input type="text" name="banner_image[' + image_row + '][sort_order]" value="0" size="2" /></td>';
-	html += '    <td class="center"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 

@@ -12,8 +12,8 @@
     <div class="heading">
       <h1><img src="view/image/order.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -336,7 +336,9 @@
         <?php if ($order_products) { ?>
           <?php foreach ($order_products as $order_product) { ?>
             <tr id="product-row<?php echo $product_row; ?>">
-              <td class="center" style="width: 3px;"><img src="view/image/delete.png" alt="" title="<?php echo $button_remove; ?>" alt="<?php echo $button_remove; ?>" style="cursor:pointer;" onclick="$('#product-row<?php echo $product_row; ?>').remove(); $('#button-update').trigger('click');" /></td>
+              <td class="center" style="width:3px;">
+                <img src="view/image/delete.png" alt="" title="<?php echo $button_remove; ?>" alt="<?php echo $button_remove; ?>" style="cursor:pointer;" onclick="$('#product-row<?php echo $product_row; ?>').remove(); $('#button-update').trigger('click');" />
+              </td>
               <td class="left"><?php echo $order_product['name']; ?><br />
                 <input type="hidden" name="order_product[<?php echo $product_row; ?>][order_product_id]" value="<?php echo $order_product['order_product_id']; ?>" />
                 <input type="hidden" name="order_product[<?php echo $product_row; ?>][product_id]" value="<?php echo $order_product['product_id']; ?>" />
@@ -402,7 +404,7 @@
           <tr>
             <td class="left">&nbsp;</td>
             <td class="left"><?php if (!$abandoned) { ?>
-              <a id="button-product" class="button"><?php echo $button_add_product; ?></a>
+              <a id="button-product" class="button ripple"><?php echo $button_add_product; ?></a>
             <?php } ?></td>
           </tr>
         </tfoot>
@@ -498,7 +500,7 @@
         <tfoot>
           <tr>
             <td class="left">&nbsp;</td>
-            <td class="left"><a id="button-voucher" class="button"><?php echo $button_add_voucher; ?></a></td>
+            <td class="left"><a id="button-voucher" class="button ripple"><?php echo $button_add_voucher; ?></a></td>
           </tr>
         </tfoot>
         </table>
@@ -659,7 +661,7 @@
           <tr>
             <td class="left">&nbsp;</td>
             <td class="left"><?php if (!$abandoned) { ?>
-              <a id="button-update" class="button"><?php echo $button_update_total; ?></a>
+              <a id="button-update" class="button ripple"><?php echo $button_update_total; ?></a>
             <?php } ?></td>
           </tr>
         </tfoot>

@@ -13,10 +13,10 @@
       <h1><img src="view/image/log.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
         <?php if ($quote_log) { ?>
-          <a href="<?php echo $clear; ?>" class="button"><i class="fa fa-refresh"></i> &nbsp; <?php echo $button_clear; ?></a>
-          <a href="<?php echo $download; ?>" class="button-save"><i class="fa fa-download"></i> &nbsp; <?php echo $button_download; ?></a>
+          <a href="<?php echo $clear; ?>" class="button ripple"><i class="fa fa-refresh"></i> &nbsp; <?php echo $button_clear; ?></a>
+          <a href="<?php echo $download; ?>" class="button-save ripple"><i class="fa fa-download"></i> &nbsp; <?php echo $button_download; ?></a>
         <?php } ?>
-        <a href="<?php echo $cancel; ?>" class="button-cancel animated fadeIn"><?php echo $button_cancel; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel animated fadeIn ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content-body">

@@ -10,10 +10,10 @@
       <h1><img src="view/image/order.png" alt="" /> <?php echo $order_title; ?></h1>
       <div class="buttons">
       <?php if ($abandoned) { ?>
-        <a href="<?php echo $recover; ?>" class="button-save animated fadeIn"><i class="fa fa-recycle"></i> &nbsp; <?php echo $button_recover; ?></a>
+        <a href="<?php echo $recover; ?>" class="button-save animated fadeIn ripple"><i class="fa fa-recycle"></i> &nbsp; <?php echo $button_recover; ?></a>
       <?php } ?>
-        <a onclick="location = '<?php echo $refresh; ?>';" class="button"><i class="fa fa-refresh"></i> &nbsp; <?php echo $button_refresh; ?></a>
-        <a href="<?php echo $close; ?>" class="button-cancel"><?php echo $button_close; ?></a>
+        <a onclick="location = '<?php echo $refresh; ?>';" class="button ripple"><i class="fa fa-refresh"></i> &nbsp; <?php echo $button_refresh; ?></a>
+        <a href="<?php echo $close; ?>" class="button-cancel ripple"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content">
@@ -27,16 +27,16 @@
       <tbody>
         <tr class="filter">
           <td class="center"><?php echo $button_shipping_label; ?><br />
-            <a onclick="window.open('<?php echo $shipping_label; ?>');" class="button-preview"></a><a onclick="window.open('<?php echo $shipping_label; ?>&pdf=true');" class="button-pdf"><a href="<?php echo $shipping_label; ?>" id="print-shipping-label" class="button-print"></a>
+            <a onclick="window.open('<?php echo $shipping_label; ?>');" class="button-preview ripple"></a><a onclick="window.open('<?php echo $shipping_label; ?>&pdf=true');" class="button-pdf ripple"><a href="<?php echo $shipping_label; ?>" id="print-shipping-label" class="button-print ripple"></a>
           </td>
           <td class="center"><?php echo $button_pick_list; ?><br />
-            <a onclick="window.open('<?php echo $pick_list; ?>');" class="button-preview"></a><a onclick="window.open('<?php echo $pick_list; ?>&pdf=true');" class="button-pdf"><a href="<?php echo $pick_list; ?>" id="print-pick-list" class="button-print"></a>
+            <a onclick="window.open('<?php echo $pick_list; ?>');" class="button-preview ripple"></a><a onclick="window.open('<?php echo $pick_list; ?>&pdf=true');" class="button-pdf ripple"><a href="<?php echo $pick_list; ?>" id="print-pick-list" class="button-print ripple"></a>
           </td>
           <td class="center"><?php echo $button_delivery_note; ?><br />
-            <a onclick="window.open('<?php echo $delivery_note; ?>');" class="button-preview"></a><a onclick="window.open('<?php echo $delivery_note; ?>&pdf=true');" class="button-pdf"><a href="<?php echo $delivery_note; ?>" id="print-delivery-note" class="button-print"></a>
+            <a onclick="window.open('<?php echo $delivery_note; ?>');" class="button-preview ripple"></a><a onclick="window.open('<?php echo $delivery_note; ?>&pdf=true');" class="button-pdf ripple"><a href="<?php echo $delivery_note; ?>" id="print-delivery-note" class="button-print ripple"></a>
           </td>
           <td class="center"><?php echo $button_invoice; ?><br />
-            <a onclick="window.open('<?php echo $invoice; ?>');" class="button-preview"></a><a onclick="window.open('<?php echo $invoice; ?>&pdf=true');" class="button-pdf"></a><a href="<?php echo $invoice; ?>" id="print-invoice" class="button-print"></a>
+            <a onclick="window.open('<?php echo $invoice; ?>');" class="button-preview ripple"></a><a onclick="window.open('<?php echo $invoice; ?>&pdf=true');" class="button-pdf ripple"></a><a href="<?php echo $invoice; ?>" id="print-invoice" class="button-print ripple"></a>
           </td>
         </tr>
       </tbody>
@@ -120,9 +120,9 @@
           <td><?php echo $total; ?>
             <?php if ($credit && $customer) { ?>
               <?php if (!$credit_total) { ?>
-                <span id="credit" style="margin-left:25px;"><a id="credit-add" class="button-delete"><?php echo $text_credit_add; ?></a></span>
+                <span id="credit" style="margin-left:25px;"><a id="credit-add" class="button-delete ripple"><?php echo $text_credit_add; ?></a></span>
               <?php } else { ?>
-                <span id="credit" style="margin-left:25px;"><a id="credit-remove" class="button-repair"><?php echo $text_credit_remove; ?></a></span>
+                <span id="credit" style="margin-left:25px;"><a id="credit-remove" class="button-repair ripple"><?php echo $text_credit_remove; ?></a></span>
               <?php } ?>
             <?php } ?>
           </td>
@@ -132,9 +132,9 @@
           <td><?php echo $text_reward; ?></td>
           <td><?php echo $reward; ?>
             <?php if (!$reward_total) { ?>
-              <span id="reward" style="margin-left:25px;"><a id="reward-add" class="button"><?php echo $text_reward_add; ?></a></span>
+              <span id="reward" style="margin-left:25px;"><a id="reward-add" class="button ripple"><?php echo $text_reward_add; ?></a></span>
             <?php } else { ?>
-              <span id="reward" style="margin-left:25px;"><a id="reward-remove" class="button-repair"><?php echo $text_reward_remove; ?></a></span>
+              <span id="reward" style="margin-left:25px;"><a id="reward-remove" class="button-repair ripple"><?php echo $text_reward_remove; ?></a></span>
             <?php } ?>
           </td>
         </tr>
@@ -160,9 +160,9 @@
           <td><?php echo $text_commission; ?></td>
           <td><?php echo $commission; ?>
             <?php if (!$commission_total) { ?>
-              <span id="commission" style="margin-left:25px;"><a id="commission-add" class="button"><?php echo $text_commission_add; ?></a></span>
+              <span id="commission" style="margin-left:25px;"><a id="commission-add" class="button ripple"><?php echo $text_commission_add; ?></a></span>
             <?php } else { ?>
-              <span id="commission" style="margin-left:25px;"><a id="commission-remove" class="button-repair"><?php echo $text_commission_remove; ?></a></span>
+              <span id="commission" style="margin-left:25px;"><a id="commission-remove" class="button-repair ripple"><?php echo $text_commission_remove; ?></a></span>
             <?php } ?>
           </td>
         </tr>
@@ -491,7 +491,7 @@
         </tr>
         <tr>
           <td></td>
-          <td><div style="margin-top:10px;"><a id="button-history" class="button-save"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; <?php echo $button_add_history; ?></a></div></td>
+          <td><div style="margin-top:10px;"><a id="button-history" class="button-save ripple"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; <?php echo $button_add_history; ?></a></div></td>
         </tr>
       </table>
     </div>

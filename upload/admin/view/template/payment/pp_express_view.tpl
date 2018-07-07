@@ -19,9 +19,9 @@
     <div class="heading">
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <?php if ($back) { ?>
-          <a class="button" href="<?php echo $back; ?>"><?php echo $button_back; ?></a>
-        <?php } ?>
+      <?php if ($back) { ?>
+        <a class="button ripple" href="<?php echo $back; ?>"><?php echo $button_back; ?></a>
+      <?php } ?>
       </div>
     </div>
     <div class="content">

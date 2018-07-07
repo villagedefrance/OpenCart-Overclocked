@@ -73,26 +73,26 @@ class ControllerShippingDigital extends Controller {
 			$this->data['digital_total'] = $this->config->get('digital_total');
 		}
 
-		if (isset($this->request->post['free_geo_zone_id'])) {
-			$this->data['free_geo_zone_id'] = $this->request->post['free_geo_zone_id'];
+		if (isset($this->request->post['digital_geo_zone_id'])) {
+			$this->data['digital_geo_zone_id'] = $this->request->post['digital_geo_zone_id'];
 		} else {
-			$this->data['free_geo_zone_id'] = $this->config->get('free_geo_zone_id');
+			$this->data['digital_geo_zone_id'] = $this->config->get('digital_geo_zone_id');
 		}
 
 		$this->load->model('localisation/geo_zone');
 
 		$this->data['geo_zones'] = $this->model_localisation_geo_zone->getGeoZones();
 
-		if (isset($this->request->post['free_status'])) {
-			$this->data['free_status'] = $this->request->post['free_status'];
+		if (isset($this->request->post['digital_status'])) {
+			$this->data['digital_status'] = $this->request->post['digital_status'];
 		} else {
-			$this->data['free_status'] = $this->config->get('free_status');
+			$this->data['digital_status'] = $this->config->get('digital_status');
 		}
 
-		if (isset($this->request->post['free_sort_order'])) {
-			$this->data['free_sort_order'] = $this->request->post['free_sort_order'];
+		if (isset($this->request->post['digital_sort_order'])) {
+			$this->data['digital_sort_order'] = $this->request->post['digital_sort_order'];
 		} else {
-			$this->data['free_sort_order'] = $this->config->get('free_sort_order');
+			$this->data['digital_sort_order'] = $this->config->get('digital_sort_order');
 		}
 
 		$this->template = 'shipping/digital.tpl';

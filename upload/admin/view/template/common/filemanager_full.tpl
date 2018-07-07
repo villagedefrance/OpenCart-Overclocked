@@ -21,20 +21,20 @@
     <div class="heading">
       <h1><img src="view/image/image.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $cancel; ?>';" class="button-cancel animated fadeIn"><?php echo $button_exit; ?></a>
+        <a onclick="location = '<?php echo $cancel; ?>';" class="button-cancel animated fadeIn ripple"><?php echo $button_exit; ?></a>
       </div>
     </div>
     <div class="content-body">
       <div id="files-menu">
-        <a id="create" class="filemanager-button" style="background-image: url('view/image/filemanager/folder.png');"><?php echo $button_folder; ?></a>
-        <a id="delete" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-delete.png');"><?php echo $button_delete; ?></a>
-        <a id="move" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-cut.png');"><?php echo $button_move; ?></a>
-        <a id="copy" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-copy.png');"><?php echo $button_copy; ?></a>
-        <a id="rename" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-rename.png');"><?php echo $button_rename; ?></a>
-        <a id="upload" class="filemanager-button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_upload; ?></a>
-        <a id="uploadmulti" class="filemanager-button" style="background-image: url('view/image/filemanager/upload-plus.png');"><?php echo $button_uploads; ?>+</a>
-        <a id="refresh" class="filemanager-button" style="background-image: url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
-        <a id="information" class="filemanager-button hide-phone" style="background-image: url('view/image/filemanager/information.png');"><?php echo $button_info; ?></a>
+        <a id="create" class="filemanager-button ripple" style="background-image: url('view/image/filemanager/folder.png');"><?php echo $button_folder; ?></a>
+        <a id="delete" class="filemanager-button ripple" style="background-image: url('view/image/filemanager/edit-delete.png');"><?php echo $button_delete; ?></a>
+        <a id="move" class="filemanager-button ripple" style="background-image: url('view/image/filemanager/edit-cut.png');"><?php echo $button_move; ?></a>
+        <a id="copy" class="filemanager-button ripple" style="background-image: url('view/image/filemanager/edit-copy.png');"><?php echo $button_copy; ?></a>
+        <a id="rename" class="filemanager-button ripple" style="background-image: url('view/image/filemanager/edit-rename.png');"><?php echo $button_rename; ?></a>
+        <a id="upload" class="filemanager-button ripple" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_upload; ?></a>
+        <a id="uploadmulti" class="filemanager-button ripple" style="background-image: url('view/image/filemanager/upload-plus.png');"><?php echo $button_uploads; ?>+</a>
+        <a id="refresh" class="filemanager-button ripple" style="background-image: url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
+        <a id="information" class="filemanager-button ripple hide-phone" style="background-image: url('view/image/filemanager/information.png');"><?php echo $button_info; ?></a>
       </div>
       <div class="workspace">
         <div id="column-right"></div>

@@ -20,8 +20,8 @@ $_['column_date_added'] = 'Date Added';
 $_['column_action']     = 'Action';
 
 // Entry
-$_['entry_date_start']  = 'Date Start';
-$_['entry_date_end']    = 'Date End';
+$_['entry_date_start']  = 'Date Start:';
+$_['entry_date_end']    = 'Date End:';
 
 // Error
 $_['error_permission']  = 'Warning: You do not have permission to modify <b>Affiliate Activity Report</b> !';

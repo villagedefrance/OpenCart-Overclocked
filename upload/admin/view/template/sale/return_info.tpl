@@ -9,7 +9,7 @@
     <div class="heading">
       <h1><img src="view/image/customer.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -139,7 +139,7 @@
           <tr>
             <td><?php echo $entry_comment; ?></td>
             <td><textarea name="comment" cols="40" rows="8" style="width:98%;"></textarea>
-              <div style="margin-top:10px; text-align:right;"><a onclick="history();" id="button-history" class="button"><?php echo $button_add_history; ?></a></div>
+              <div style="margin-top:10px; text-align:right;"><a onclick="history();" id="button-history" class="button ripple"><?php echo $button_add_history; ?></a></div>
             </td>
           </tr>
         </table>

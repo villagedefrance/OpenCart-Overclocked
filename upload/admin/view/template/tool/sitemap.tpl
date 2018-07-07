@@ -12,8 +12,8 @@
     <div class="heading">
       <h1><img src="view/image/category.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location='<?php echo $refresh; ?>';" class="button"><i class="fa fa-refresh"></i> &nbsp; <?php echo $button_refresh; ?></a>
-        <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
+        <a onclick="location='<?php echo $refresh; ?>';" class="button ripple"><i class="fa fa-refresh"></i> &nbsp; <?php echo $button_refresh; ?></a>
+        <a onclick="location='<?php echo $close; ?>';" class="button-cancel ripple"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content-body">
@@ -28,7 +28,7 @@
       <?php } ?>
       <form action="<?php echo $sitemap; ?>" method="post" enctype="multipart/form-data" id="form" name="generator">
       <?php if (!$sitemaptext || !$sitemapxml) { ?>
-        <div class="tooltip" style="margin:5px 0px 0px 0px;"><?php echo $text_create; ?></div>
+        <div class="tooltip" style="margin:5px 0 0 0;"><?php echo $text_create; ?></div>
       <?php } ?>
       <h2><?php echo $text_sitemaps; ?></h2>
       <div class="toolbox">
@@ -47,16 +47,16 @@
               <td><?php echo $text_sizetext; ?></td>
               <td><?php echo $text_datetext; ?></td>
               <td>
-                <a onclick="GenText();" class="button-save"><?php echo $generate; ?></a> &nbsp; 
-                <a onclick="LoadText();" class="button-form"><?php echo $download; ?></a> &nbsp; 
-                <a onclick="window.open('<?php echo $checktext; ?>');" title="" class="button-repair"><?php echo $button_check; ?></a>
+                <a onclick="GenText();" class="button-save ripple"><?php echo $generate; ?></a> &nbsp; 
+                <a onclick="LoadText();" class="button-form ripple"><?php echo $download; ?></a> &nbsp; 
+                <a onclick="window.open('<?php echo $checktext; ?>');" title="" class="button-repair ripple"><?php echo $button_check; ?></a>
               </td>
             </tr>
           <?php } else { ?>
             <tr>
               <td><b><?php echo $text_text; ?></b></td>
               <td colspan="3"><img src="view/image/warning.png" alt="" /> &nbsp; <?php echo $text_notext; ?></td>
-              <td><a onclick="GenText();" class="button-save"><?php echo $generate; ?></a></td>
+              <td><a onclick="GenText();" class="button-save ripple"><?php echo $generate; ?></a></td>
             </tr>
           <?php } ?>
           <?php if ($sitemapxml) { ?>
@@ -66,15 +66,15 @@
               <td><?php echo $text_sizexml; ?></td>
               <td><?php echo $text_datexml; ?></td>
               <td>
-                <a onclick="GenXml();" class="button-save"><?php echo $generate; ?></a> &nbsp; 
-                <a onclick="LoadXml();" class="button-form"><?php echo $download; ?></a>
+                <a onclick="GenXml();" class="button-save ripple"><?php echo $generate; ?></a> &nbsp; 
+                <a onclick="LoadXml();" class="button-form ripple"><?php echo $download; ?></a>
               </td>
             </tr>
           <?php } else { ?>
             <tr>
               <td><b><?php echo $text_xml; ?></b></td>
               <td colspan="3"><img src="view/image/warning.png" alt="" /> &nbsp; <?php echo $text_noxml; ?></td>
-              <td><a onclick="GenXml();" class="button-save"><?php echo $generate; ?></a></td>
+              <td><a onclick="GenXml();" class="button-save ripple"><?php echo $generate; ?></a></td>
             </tr>
           <?php } ?>
           <?php if ($sitemapxml) { ?>
@@ -85,22 +85,22 @@
                 <td><?php echo $text_sizegzip; ?></td>
                 <td><?php echo $text_dategzip; ?></td>
                 <td>
-                  <a onclick="GenGzip();" class="button-save"><?php echo $generate; ?></a> &nbsp; 
-                  <a onclick="LoadGzip();" class="button-form"><?php echo $download; ?></a>
+                  <a onclick="GenGzip();" class="button-save ripple"><?php echo $generate; ?></a> &nbsp; 
+                  <a onclick="LoadGzip();" class="button-form ripple"><?php echo $download; ?></a>
                 </td>
               </tr>
             <?php } else { ?>
               <tr>
                 <td><b><?php echo $text_gzip; ?></b></td>
                 <td colspan="3"><img src="view/image/warning.png" alt="" /> &nbsp; <?php echo $text_nogzip; ?></td>
-                <td><a onclick="GenGzip();" class="button-save"><?php echo $generate; ?></a></td>
+                <td><a onclick="GenGzip();" class="button-save ripple"><?php echo $generate; ?></a></td>
               </tr>
             <?php } ?>
           <?php } else { ?>
             <tr>
               <td><b><?php echo $text_gzip; ?></b></td>
               <td colspan="3"><img src="view/image/warning.png" alt="" /> &nbsp; <?php echo $text_noxml; ?></td>
-              <td><a onclick="GenXml();" class="button-save"><?php echo $generate; ?></a></td>
+              <td><a onclick="GenXml();" class="button-save ripple"><?php echo $generate; ?></a></td>
             </tr>
           <?php } ?>
         </table>

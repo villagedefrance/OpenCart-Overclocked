@@ -17,7 +17,7 @@
     <div class="heading">
       <h1><img src="view/image/order.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a href="<?php echo $return; ?>" title="" class="button"><?php echo $text_return; ?></a>
+        <a href="<?php echo $return; ?>" title="" class="button ripple"><?php echo $text_return; ?></a>
       </div>
     </div>
     <div class="content">
@@ -81,7 +81,7 @@
         <?php if (!empty($payment_code)) { ?>
         <tr>
           <td><?php echo $entry_cancel_payment; ?></td>
-          <td><a id="cancel-profile" title="" class="button-form"><?php echo $text_cancel; ?></a></td>
+          <td><a id="cancel-profile" title="" class="button-form ripple"><?php echo $text_cancel; ?></a></td>
         </tr>
         <?php } ?>
       </table>

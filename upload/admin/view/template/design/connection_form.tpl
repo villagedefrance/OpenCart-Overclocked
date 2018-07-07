@@ -12,9 +12,9 @@
     <div class="heading">
       <h1><img src="view/image/category.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-         <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-         <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-         <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+         <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+         <a onclick="apply();" class="button-save ripple"><?php echo $button_apply; ?></a>
+         <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -83,7 +83,7 @@
           </select></td>
           <td class="left"><input type="text" name="connection_route[<?php echo $route_row; ?>][title]" value="<?php echo $connection_route['title']; ?>" size="30" /></td>
           <td class="left"><input type="text" name="connection_route[<?php echo $route_row; ?>][route]" value="<?php echo $connection_route['route']; ?>" size="50" /></td>
-          <td class="center"><a onclick="$('#route-row<?php echo $route_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+          <td class="center"><a onclick="$('#route-row<?php echo $route_row; ?>').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>
         </tr>
       </tbody>
       <?php $route_row++; ?>
@@ -91,7 +91,7 @@
       <tfoot>
         <tr>
           <td colspan="3"></td>
-          <td class="center"><a onclick="addRoute();" class="button"><?php echo $button_add_route; ?></a></td>
+          <td class="center"><a onclick="addRoute();" class="button ripple"><?php echo $button_add_route; ?></a></td>
         </tr>
       </tfoot>
       </table>
@@ -113,7 +113,7 @@ function addRoute() {
 	html += '    </select></td>';
 	html += '    <td class="left"><input type="text" name="connection_route[' + route_row + '][title]" value="" size="30" /></td>';
 	html += '    <td class="left"><input type="text" name="connection_route[' + route_row + '][route]" value="" size="50" /></td>';
-	html += '    <td class="center"><a onclick="$(\'#route-row' + route_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#route-row' + route_row + '\').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 

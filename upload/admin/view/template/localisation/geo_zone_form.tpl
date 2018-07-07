@@ -12,9 +12,9 @@
     <div class="heading">
       <h1><img src="view/image/country.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save ripple"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -63,7 +63,7 @@
             </select></td>
             <td class="left"><select name="zone_to_geo_zone[<?php echo $zone_to_geo_zone_row; ?>][zone_id]" id="zone<?php echo $zone_to_geo_zone_row; ?>">
             </select></td>
-            <td class="center"><a onclick="$('#zone-to-geo-zone-row<?php echo $zone_to_geo_zone_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+            <td class="center"><a onclick="$('#zone-to-geo-zone-row<?php echo $zone_to_geo_zone_row; ?>').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
         <?php $zone_to_geo_zone_row++; ?>
@@ -71,7 +71,7 @@
         <tfoot>
           <tr>
             <td colspan="2"></td>
-            <td class="center"><a onclick="addGeoZone();" class="button"><?php echo $button_add_geo_zone; ?></a></td>
+            <td class="center"><a onclick="addGeoZone();" class="button ripple"><?php echo $button_add_geo_zone; ?></a></td>
           </tr>
         </tfoot>
       </table>
@@ -100,11 +100,11 @@ function addGeoZone() {
 	html += '<tr>';
 	html += '<td class="left"><select name="zone_to_geo_zone[' + zone_to_geo_zone_row + '][country_id]" id="country' + zone_to_geo_zone_row + '" onchange="$(\'#zone' + zone_to_geo_zone_row + '\').load(\'index.php?route=localisation/geo_zone/zone&token=<?php echo $token; ?>&country_id=\' + this.value + \'&zone_id=0\');">';
 	<?php foreach ($countries as $country) { ?>
-	html += '<option value="<?php echo $country['country_id']; ?>"><?php echo addslashes($country['name']); ?></option>';
+	html += '  <option value="<?php echo $country['country_id']; ?>"><?php echo addslashes($country['name']); ?></option>';
 	<?php } ?>
 	html += '</select></td>';
 	html += '<td class="left"><select name="zone_to_geo_zone[' + zone_to_geo_zone_row + '][zone_id]" id="zone' + zone_to_geo_zone_row + '"></select></td>';
-	html += '<td class="center"><a onclick="$(\'#zone-to-geo-zone-row' + zone_to_geo_zone_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '<td class="center"><a onclick="$(\'#zone-to-geo-zone-row' + zone_to_geo_zone_row + '\').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>';
 	html += '</tr>';
 	html += '</tbody>';
 

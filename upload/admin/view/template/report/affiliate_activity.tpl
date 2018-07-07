@@ -15,22 +15,22 @@
     <div class="heading">
       <h1><img src="view/image/report.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
-        <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
+        <a onclick="$('form').submit();" class="button-delete ripple"><?php echo $button_delete; ?></a>
+        <a onclick="location='<?php echo $close; ?>';" class="button-cancel ripple"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content-body">
     <?php if (!$tracking) { ?>
-      <div class="tooltip" style="margin:0 0 10px 0;"><?php echo $text_tracking; ?></div>
+      <div class="tooltip" style="margin-bottom:10px;"><?php echo $text_tracking; ?></div>
     <?php } ?>
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
       <div class="report">
         <div class="left"><i class="fa fa-search" style="font-size:19px;"></i></div>
-        <div class="left"><?php echo $entry_date_start; ?> <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" id="input-date-start" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
-        <div class="left"><?php echo $entry_date_end; ?> <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="input-date-end" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
-        <div class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></div>
+        <div class="left"><em><?php echo $entry_date_start; ?></em> <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" id="input-date-start" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
+        <div class="left"><em><?php echo $entry_date_end; ?></em> <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="input-date-end" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
+        <div class="right"><a onclick="filter();" class="button-filter ripple"><?php echo $button_filter; ?></a></div>
       </div>
       <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
         <table class="list">
@@ -59,7 +59,7 @@
             <td class="left"><?php echo $activity['ip']; ?></td>
             <td class="left"><?php echo $activity['date_added']; ?></td>
             <td class="right"><?php foreach ($activity['action'] as $action) { ?>
-              <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+              <a href="<?php echo $action['href']; ?>" class="button-form ripple"><?php echo $action['text']; ?></a>
             <?php } ?></td>
           </tr>
         <?php } ?>

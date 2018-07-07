@@ -9,16 +9,14 @@
     <div class="heading">
       <h1><img src="view/image/report.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
+        <a onclick="location='<?php echo $close; ?>';" class="button-cancel ripple"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content-body">
+      <div class="tooltip" style="margin-bottom:10px;"><?php echo $text_free_products; ?></div>
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
-      <div id="show-tooltip" style="display:block;">
-        <div id="tooltip" class="tooltip" style="margin:0 0 10px 0;"><?php echo $text_free_products; ?></div>
-      </div>
       <table id="product-markup" class="list">
         <thead>
           <tr>
@@ -49,7 +47,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+            <td class="right"><a onclick="filter();" class="button-filter ripple"><?php echo $button_filter; ?></a></td>
           </tr>
           <?php if ($products) { ?>
             <?php foreach ($products as $product) { ?>

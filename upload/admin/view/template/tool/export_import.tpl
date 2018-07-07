@@ -15,8 +15,8 @@
     <div class="heading">
       <h1><img src="view/image/backup.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $refresh; ?>';" class="button"><i class="fa fa-refresh"></i> &nbsp; <?php echo $button_refresh; ?></a>
-        <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
+        <a onclick="location='<?php echo $refresh; ?>';" class="button ripple"><i class="fa fa-refresh"></i> &nbsp; <?php echo $button_refresh; ?></a>
+        <a onclick="location='<?php echo $close; ?>';" class="button-cancel ripple"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content">
@@ -123,7 +123,7 @@
               </td>
             </tr>
             <tr>
-              <td class="buttons"><a onclick="downloadData();" class="button-filter animated fadeIn"><i class="fa fa-download"></i> &nbsp;&nbsp; <?php echo $button_export; ?></a></td>
+              <td class="buttons"><a onclick="downloadData();" class="button-filter animated fadeIn ripple"><i class="fa fa-download"></i> &nbsp;&nbsp; <?php echo $button_export; ?></a></td>
             </tr>
           </table>
         </form>
@@ -156,7 +156,7 @@
               <td><input type="file" name="upload" id="upload" class="custom-input-class" /></td>
             </tr>
             <tr>
-              <td class="buttons"><a onclick="uploadData();" class="button-filter animated fadeIn"><i class="fa fa-upload"></i> &nbsp;&nbsp; <?php echo $button_import; ?></a></td>
+              <td class="buttons"><a onclick="uploadData();" class="button-filter animated fadeIn ripple"><i class="fa fa-upload"></i> &nbsp;&nbsp; <?php echo $button_import; ?></a></td>
             </tr>
           </table>
         </form>
@@ -300,7 +300,7 @@
               </td>
             </tr>
             <tr class="highlighted">
-              <td class="buttons"><a onclick="updateSettings();" class="button-filter animated fadeIn"><i class="fa fa-gears"></i> &nbsp;&nbsp; <?php echo $button_settings; ?></a></td>
+              <td class="buttons"><a onclick="updateSettings();" class="button-filter animated fadeIn ripple"><i class="fa fa-gears"></i> &nbsp;&nbsp; <?php echo $button_settings; ?></a></td>
             </tr>
           </table>
         </form>

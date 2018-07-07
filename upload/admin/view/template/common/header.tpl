@@ -71,7 +71,7 @@
             </div>
           <?php } ?>
         </div>
-        <div class="user-status"><a href="<?php echo $user_profile; ?>" title="<?php echo $username; ?>"><img src="<?php echo $avatar; ?>" alt="<?php echo $username; ?>" /></a></div>
+        <div class="user-status"><a href="<?php echo $user_profile; ?>" title="<?php echo $username; ?>" class="ripple"><img src="<?php echo $avatar; ?>" alt="<?php echo $username; ?>" /></a></div>
       <?php } ?>
     </div>
     <?php if ($logged) { ?>

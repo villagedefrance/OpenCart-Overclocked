@@ -20,8 +20,8 @@
       <span class="error"><?php echo $error_confirm; ?></span>
     <?php } ?>
       <div class="validate animated fadeIn">
-        <a onclick="$('#reset').submit();" class="button-save"><?php echo $button_save; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#reset').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </form>
     </div>

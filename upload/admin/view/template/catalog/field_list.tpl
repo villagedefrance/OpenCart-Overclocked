@@ -15,10 +15,10 @@
     <div class="heading">
       <h1><img src="view/image/product-field.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').attr('action', '<?php echo $enabled; ?>'); $('#form').submit();" class="button-save"><?php echo $button_enable; ?></a>
-        <a onclick="$('#form').attr('action', '<?php echo $disabled; ?>'); $('#form').submit();" class="button-cancel"><?php echo $button_disable; ?></a>
-        <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
-        <a id="delete" class="button-delete"><?php echo $button_delete; ?></a>
+        <a onclick="$('#form').attr('action', '<?php echo $enabled; ?>'); $('#form').submit();" class="button-save ripple"><?php echo $button_enable; ?></a>
+        <a onclick="$('#form').attr('action', '<?php echo $disabled; ?>'); $('#form').submit();" class="button-cancel ripple"><?php echo $button_disable; ?></a>
+        <a href="<?php echo $insert; ?>" class="button ripple"><?php echo $button_insert; ?></a>
+        <a id="delete" class="button-delete ripple"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div class="content-body">
@@ -71,7 +71,7 @@
                 <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
               <?php } ?>
               <td class="right"><?php foreach ($field['action'] as $action) { ?>
-                <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
+                <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn ripple"><?php echo $action['text']; ?></a>
               <?php } ?></td>
             </tr>
           <?php } ?>
@@ -92,7 +92,7 @@
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	$('.toggler').hide().before('<a id="<?php echo 'toggler'; ?>" class="button" style="margin:15px auto;"><i class="fa fa-info-circle"></i> &nbsp; <?php echo $button_info; ?></a>');
+	$('.toggler').hide().before('<a id="<?php echo 'toggler'; ?>" class="button ripple" style="margin:15px auto;"><i class="fa fa-info-circle"></i> &nbsp; <?php echo $button_info; ?></a>');
 	$('#<?php echo 'toggler'; ?>').click(function() {
 		$('.toggler').slideToggle(600);
 		return false;

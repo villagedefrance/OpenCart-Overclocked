@@ -15,18 +15,18 @@
     <div class="heading">
       <h1><img src="view/image/product.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').attr('action','<?php echo $enabled; ?>'); $('#form').submit();" class="button-save"><?php echo $button_enable; ?></a>
-        <a onclick="$('#form').attr('action','<?php echo $disabled; ?>'); $('#form').submit();" class="button-cancel"><?php echo $button_disable; ?></a>
-        <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
-        <a onclick="$('#form').attr('action','<?php echo $copy; ?>'); $('#form').submit();" class="button"><?php echo $button_copy; ?></a>
-        <a id="delete" class="button-delete"><?php echo $button_delete; ?></a>
+        <a onclick="$('#form').attr('action','<?php echo $enabled; ?>'); $('#form').submit();" class="button-save ripple"><?php echo $button_enable; ?></a>
+        <a onclick="$('#form').attr('action','<?php echo $disabled; ?>'); $('#form').submit();" class="button-cancel ripple"><?php echo $button_disable; ?></a>
+        <a href="<?php echo $insert; ?>" class="button ripple"><?php echo $button_insert; ?></a>
+        <a onclick="$('#form').attr('action','<?php echo $copy; ?>'); $('#form').submit();" class="button ripple"><?php echo $button_copy; ?></a>
+        <a id="delete" class="button-delete ripple"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div class="content-body">
       <div class="report">
         <div class="left"><img src="view/image/product-add.png" alt="" /></div>
         <div class="left"><a id="price-button" class="button-filter"><?php echo $button_update_price; ?></a></div>
-        <div class="right"><a onclick="location = '<?php echo $refresh; ?>';" class="button-filter"><?php echo $button_refresh; ?></a></div>
+        <div class="right"><a onclick="location='<?php echo $refresh; ?>';" class="button-filter"><?php echo $button_refresh; ?></a></div>
       </div>
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
@@ -113,7 +113,7 @@
                 <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
               <?php } ?>
               <td class="right"><?php foreach ($supplier_product['action'] as $action) { ?>
-                <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
+                <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn ripple"><?php echo $action['text']; ?></a>
               <?php } ?></td>
             </tr>
             <?php } ?>

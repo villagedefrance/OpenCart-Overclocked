@@ -15,11 +15,11 @@
   <div class="heading">
     <h1><img src="view/image/category.png" alt="" /> <?php echo $heading_title; ?></h1>
     <div class="buttons">
-      <a onclick="$('#form').attr('action','<?php echo $enabled; ?>'); $('#form').submit();" class="button-save"><?php echo $button_enable; ?></a>
-      <a onclick="$('#form').attr('action','<?php echo $disabled; ?>'); $('#form').submit();" class="button-cancel"><?php echo $button_disable; ?></a>
-      <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
-      <a href="<?php echo $repair; ?>" class="button-repair"><?php echo $button_repair; ?></a>
-      <a id="delete" class="button-delete"><?php echo $button_delete; ?></a>
+      <a onclick="$('#form').attr('action','<?php echo $enabled; ?>'); $('#form').submit();" class="button-save ripple"><?php echo $button_enable; ?></a>
+      <a onclick="$('#form').attr('action','<?php echo $disabled; ?>'); $('#form').submit();" class="button-cancel ripple"><?php echo $button_disable; ?></a>
+      <a href="<?php echo $insert; ?>" class="button ripple"><?php echo $button_insert; ?></a>
+      <a href="<?php echo $repair; ?>" class="button-repair ripple"><?php echo $button_repair; ?></a>
+      <a id="delete" class="button-delete ripple"><?php echo $button_delete; ?></a>
     </div>
   </div>
   <div class="content-body">
@@ -60,7 +60,7 @@
             <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" /></td>
             <td></td>
             <td></td>
-            <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+            <td class="right"><a onclick="filter();" class="button-filter ripple"><?php echo $button_filter; ?></a></td>
           </tr>
         <?php if ($categories) { ?>
           <?php foreach ($categories as $category) { ?>
@@ -82,7 +82,7 @@
               <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
             <?php } ?>
             <td class="right"><?php foreach ($category['action'] as $action) { ?>
-              <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
+              <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn ripple"><?php echo $action['text']; ?></a>
             <?php } ?></td>
           </tr>
           <?php } ?>

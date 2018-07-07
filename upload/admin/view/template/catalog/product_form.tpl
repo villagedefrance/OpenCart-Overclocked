@@ -12,9 +12,9 @@
     <div class="heading">
       <h1><img src="view/image/product.png" alt="" /> <?php echo $product_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save ripple"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -362,7 +362,7 @@
         <?php } else { ?>
           <tr>
             <td><?php echo $entry_manufacturer; ?><?php echo $text_autocomplete; ?></td>
-            <td><input type="text" name="manufacturer" value="<?php echo $manufacturer; ?>" /> &nbsp; <a href="<?php echo $configure_manufacturer; ?>" class="button-form"><i class="fa fa-gear"></i></a>
+            <td><input type="text" name="manufacturer" value="<?php echo $manufacturer; ?>" /> &nbsp; <a href="<?php echo $configure_manufacturer; ?>" class="button-form ripple"><i class="fa fa-gear"></i></a>
               <input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" />
             </td>
           </tr>
@@ -612,7 +612,7 @@
                 <?php } ?>
               <?php } ?>
             </select></td>
-            <td class="center"><a onclick="$('#color-row<?php echo $color_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+            <td class="center"><a onclick="$('#color-row<?php echo $color_row; ?>').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
         <?php $color_row++; ?>
@@ -620,7 +620,7 @@
         <tfoot>
           <tr>
             <td colspan="1"></td>
-            <td class="center"><a onclick="addColor();" class="button"><?php echo $button_add_color; ?></a></td>
+            <td class="center"><a onclick="addColor();" class="button ripple"><?php echo $button_add_color; ?></a></td>
           </tr>
         </tfoot>
         </table>
@@ -651,7 +651,7 @@
                 <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" /><br />
               <?php } ?>
             </td>
-            <td class="center"><a onclick="$('#field-row<?php echo $field_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+            <td class="center"><a onclick="$('#field-row<?php echo $field_row; ?>').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
         <?php $field_row++; ?>
@@ -659,7 +659,7 @@
         <tfoot>
           <tr>
             <td colspan="2"></td>
-            <td class="center"><a onclick="addField();" class="button"><?php echo $button_add_field; ?></a></td>
+            <td class="center"><a onclick="addField();" class="button ripple"><?php echo $button_add_field; ?></a></td>
           </tr>
         </tfoot>
         </table>
@@ -689,7 +689,7 @@
                 <textarea name="product_attribute[<?php echo $attribute_row; ?>][product_attribute_description][<?php echo $language['language_id']; ?>][text]" id="attribute<?php echo $attribute_row; ?><?php echo $language['language_id']; ?>"><?php echo isset($product_attribute['product_attribute_description'][$language['language_id']]) ? $product_attribute['product_attribute_description'][$language['language_id']]['text'] : ''; ?></textarea><br />
               <?php } ?>
             </td>
-            <td class="center"><a onclick="$('#attribute-row<?php echo $attribute_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+            <td class="center"><a onclick="$('#attribute-row<?php echo $attribute_row; ?>').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
         <?php $attribute_row++; ?>
@@ -697,7 +697,7 @@
         <tfoot>
           <tr>
             <td colspan="2"></td>
-            <td class="center"><a onclick="addAttribute();" class="button"><?php echo $button_add_attribute; ?></a></td>
+            <td class="center"><a onclick="addAttribute();" class="button ripple"><?php echo $button_add_attribute; ?></a></td>
           </tr>
         </tfoot>
         </table>
@@ -860,7 +860,7 @@
                   </select>
                   <input type="text" name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][weight]" value="<?php echo $product_option_value['weight']; ?>" size="5" />
                 </td>
-                <td class="center"><a onclick="$('#option-value-row<?php echo $option_value_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+                <td class="center"><a onclick="$('#option-value-row<?php echo $option_value_row; ?>').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>
               </tr>
             </tbody>
             <?php $option_value_row++; ?>
@@ -868,7 +868,7 @@
             <tfoot>
               <tr>
                 <td colspan="6"></td>
-                <td class="center"><a onclick="addOptionValue('<?php echo $option_row; ?>');" class="button"><?php echo $button_add_option_value; ?></a></td>
+                <td class="center"><a onclick="addOptionValue('<?php echo $option_row; ?>');" class="button ripple"><?php echo $button_add_option_value; ?></a></td>
               </tr>
             </tfoot>
             </table>
@@ -921,7 +921,7 @@
               <?php } ?>
               </select>
             </td>
-            <td class="center"><a onclick="$('#profile-row<?php echo $profile_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+            <td class="center"><a onclick="$('#profile-row<?php echo $profile_row; ?>').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
         <?php $profile_row++; ?>
@@ -929,7 +929,7 @@
         <tfoot>
           <tr>
             <td colspan="2"></td>
-            <td class="center"><a onclick="addProfile()" class="button"><?php echo $button_add_profile; ?></a></td>
+            <td class="center"><a onclick="addProfile()" class="button ripple"><?php echo $button_add_profile; ?></a></td>
           </tr>
         </tfoot>
         </table>
@@ -968,7 +968,7 @@
             <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
             <td class="left"><input type="text" name="product_discount[<?php echo $discount_row; ?>][date_end]" value="<?php echo $product_discount['date_end']; ?>" class="date" size="12" />
             <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
-            <td class="center"><a onclick="$('#discount-row<?php echo $discount_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+            <td class="center"><a onclick="$('#discount-row<?php echo $discount_row; ?>').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
         <?php $discount_row++; ?>
@@ -976,7 +976,7 @@
         <tfoot>
           <tr>
             <td colspan="6"></td>
-            <td class="center"><a onclick="addDiscount();" class="button"><?php echo $button_add_discount; ?></a></td>
+            <td class="center"><a onclick="addDiscount();" class="button ripple"><?php echo $button_add_discount; ?></a></td>
           </tr>
         </tfoot>
         </table>
@@ -1012,7 +1012,7 @@
             <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
             <td class="left"><input type="text" name="product_special[<?php echo $special_row; ?>][date_end]" value="<?php echo $product_special['date_end']; ?>" class="date" size="12" />
             <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
-            <td class="center"><a onclick="$('#special-row<?php echo $special_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+            <td class="center"><a onclick="$('#special-row<?php echo $special_row; ?>').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
         <?php $special_row++; ?>
@@ -1020,7 +1020,7 @@
         <tfoot>
           <tr>
             <td colspan="5"></td>
-            <td class="center"><a onclick="addSpecial();" class="button"><?php echo $button_add_special; ?></a></td>
+            <td class="center"><a onclick="addSpecial();" class="button ripple"><?php echo $button_add_special; ?></a></td>
           </tr>
         </tfoot>
         </table>
@@ -1088,7 +1088,7 @@
               </select></td>
               <?php } ?>
               <td class="center"><input type="text" name="product_image[<?php echo $image_row; ?>][sort_order]" value="<?php echo $product_image['sort_order']; ?>" size="2" /></td>
-              <td class="center"><a onclick="$('#image-row<?php echo $image_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+              <td class="center"><a onclick="$('#image-row<?php echo $image_row; ?>').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>
             </tr>
           </tbody>
           <?php $image_row++; ?>
@@ -1100,7 +1100,7 @@
             <?php } else { ?>
               <td colspan="2"></td>
             <?php } ?>
-              <td class="center"><a onclick="addImage();" class="button"><?php echo $button_add_image; ?></a></td>
+              <td class="center"><a onclick="addImage();" class="button ripple"><?php echo $button_add_image; ?></a></td>
             </tr>
           </tfoot>
         </table>
@@ -1518,7 +1518,7 @@ function addColor() {
 	html += '      <option value="<?php echo $color['palette_color_id']; ?>"><?php echo $color['title']; ?></option>';
 	<?php } ?>
 	html += '    </select></td>';
-	html += '    <td class="center"><a onclick="$(\'#color-row' + color_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#color-row' + color_row + '\').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 
@@ -1547,7 +1547,7 @@ function addField() {
 	html += '      <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" /><br />';
 	<?php } ?>
 	html += '    </td>';
-	html += '    <td class="center"><a onclick="$(\'#field-row' + field_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#field-row' + field_row + '\').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 
@@ -1611,7 +1611,7 @@ function addAttribute() {
 	html += '      <textarea name="product_attribute[' + attribute_row + '][product_attribute_description][<?php echo $language['language_id']; ?>][text]" id="attribute[' + attribute_row + '][<?php echo $language['language_id']; ?>]"></textarea><br />';
 	<?php } ?>
 	html += '    </td>';
-	html += '    <td class="center"><a onclick="$(\'#attribute-row' + attribute_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#attribute-row' + attribute_row + '\').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 
@@ -1783,7 +1783,7 @@ $('input[name=\'option\']').catcomplete({
 			html += '    <tfoot>';
 			html += '      <tr>';
 			html += '        <td colspan="6"></td>';
-			html += '        <td class="center"><a onclick="addOptionValue(' + option_row + ');" class="button"><?php echo $button_add_option_value; ?></a></td>';
+			html += '        <td class="center"><a onclick="addOptionValue(' + option_row + ');" class="button ripple"><?php echo $button_add_option_value; ?></a></td>';
 			html += '      </tr>';
 			html += '    </tfoot>';
 			html += '  </table>';
@@ -1857,7 +1857,7 @@ function addOptionValue(option_row) {
 	html += '      <option value="-">-</option>';
 	html += '    </select>';
 	html += '    <input type="text" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][weight]" value="" size="5" /></td>';
-	html += '    <td class="center"><a onclick="$(\'#option-value-row' + option_value_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#option-value-row' + option_value_row + '\').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 
@@ -1885,7 +1885,7 @@ function addProfile() {
 	html += '      <option value="<?php echo $customer_group['customer_group_id']; ?>"><?php echo addslashes($customer_group['name']); ?></option>';
 	<?php } ?>
 	html += '    </select></td>';
-	html += '    <td class="center"><a onclick="$(\'#profile-row' + profile_row + '\').remove()" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#profile-row' + profile_row + '\').remove()" class="button-delete ripple"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 
@@ -1914,7 +1914,7 @@ function addDiscount() {
 	html += '    <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>';
 	html += '    <td class="left"><input type="text" name="product_discount[' + discount_row + '][date_end]" value="" class="date" size="12" />';
 	html += '    <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>';
-	html += '    <td class="center"><a onclick="$(\'#discount-row' + discount_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#discount-row' + discount_row + '\').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 
@@ -1943,7 +1943,7 @@ function addSpecial() {
     html += '    <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>';
 	html += '    <td class="left"><input type="text" name="product_special[' + special_row + '][date_end]" value="" class="date" size="12" />';
     html += '    <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>';
-	html += '    <td class="center"><a onclick="$(\'#special-row' + special_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#special-row' + special_row + '\').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 
@@ -2004,7 +2004,7 @@ function addImage() {
 	html += '    </select></td>';
 	<?php } ?>
 	html += '    <td class="center"><input type="text" name="product_image[' + image_row + '][sort_order]" value="" size="2" /></td>';
-	html += '    <td class="center"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 

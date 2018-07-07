@@ -12,9 +12,9 @@
     <div class="heading">
       <h1><img src="view/image/product.png" alt="" /> <?php echo $product_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save ripple"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -33,7 +33,7 @@
               <?php } ?>
             </select>
             <?php if ($new_entry) { ?>
-              &nbsp;<a onclick="location = '<?php echo $new_supplier; ?>';" class="button-filter"><?php echo $button_new_supplier; ?></a>
+              &nbsp;<a onclick="location='<?php echo $new_supplier; ?>';" class="button-filter"><?php echo $button_new_supplier; ?></a>
             <?php } ?>
             </td>
           </tr>
@@ -61,7 +61,7 @@
             <td>
               <input type="text" name="manufacturer" value="<?php echo $manufacturer; ?>" /><input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" />
               <?php if ($new_entry) { ?>
-                &nbsp;<a onclick="location = '<?php echo $new_manufacturer; ?>';" class="button-filter"><?php echo $button_new_manufacturer; ?></a>
+                &nbsp;<a onclick="location='<?php echo $new_manufacturer; ?>';" class="button-filter"><?php echo $button_new_manufacturer; ?></a>
               <?php } ?>
             </td>
           </tr>

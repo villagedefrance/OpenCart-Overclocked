@@ -15,11 +15,11 @@
     <div class="heading">
       <h1><img src="view/image/review.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location='<?php echo $module; ?>';" class="button-cancel"><i class="fa fa-puzzle-piece"></i> &nbsp; <?php echo $button_module; ?></a>
-        <a onclick="location='<?php echo $downloads; ?>';" class="button"><i class="fa fa-paperclip"></i> &nbsp; <?php echo $button_downloads; ?></a>
-        <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
-        <a onclick="$('form').attr('action', '<?php echo $reset; ?>'); $('form').submit();" class="button-repair"><?php echo $button_reset; ?></a>
-        <a id="delete" class="button-delete"><?php echo $button_delete; ?></a>
+        <a onclick="location='<?php echo $module; ?>';" class="button-cancel ripple"><i class="fa fa-puzzle-piece"></i> &nbsp; <?php echo $button_module; ?></a>
+        <a onclick="location='<?php echo $downloads; ?>';" class="button ripple"><i class="fa fa-paperclip"></i> &nbsp; <?php echo $button_downloads; ?></a>
+        <a href="<?php echo $insert; ?>" class="button ripple"><?php echo $button_insert; ?></a>
+        <a onclick="$('form').attr('action', '<?php echo $reset; ?>'); $('form').submit();" class="button-repair ripple"><?php echo $button_reset; ?></a>
+        <a id="delete" class="button-delete ripple"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div class="content-body">
@@ -86,7 +86,7 @@
               <td class="center"><?php echo $news_story['viewed']; ?></td>
               <td class="right">
                 <?php foreach ($news_story['action'] as $action) { ?>
-                  <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
+                  <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn ripple"><?php echo $action['text']; ?></a>
                 <?php } ?>
               </td>
             </tr>

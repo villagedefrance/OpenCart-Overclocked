@@ -16,7 +16,7 @@
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
         <?php if ($cancel) { ?>
-          <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+          <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
         <?php } ?>
       </div>
     </div>
@@ -45,7 +45,7 @@
             <td><textarea name="refund_message" id="input-refund-message" cols="40" rows="5"></textarea></td>
           </tr>
         </table>
-        <a onclick="$('#form').submit();" class="button" id="button-refund" style="float:right;"><?php echo $button_refund; ?></a>
+        <a onclick="$('#form').submit();" class="button ripple" id="button-refund" style="float:right;"><?php echo $button_refund; ?></a>
       </form>
     </div>
   </div>

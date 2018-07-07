@@ -15,16 +15,16 @@
     <div class="heading">
       <h1><img src="view/image/server.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
-        <a id="delete" class="button-delete"><?php echo $button_delete; ?></a>
+        <a href="<?php echo $insert; ?>" class="button ripple"><?php echo $button_insert; ?></a>
+        <a id="delete" class="button-delete ripple"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div style="height:24px; margin-top:8px;">
-      <a href="<?php echo $seo_category; ?>" class="button-filter"><?php echo $link_seo_category; ?></a>
-      <a href="<?php echo $seo_product; ?>" class="button-filter"><?php echo $link_seo_product; ?></a>
-      <a href="<?php echo $seo_manufacturer; ?>" class="button-filter"><?php echo $link_seo_manufacturer; ?></a>
-      <a href="<?php echo $seo_information; ?>" class="button-filter"><?php echo $link_seo_information; ?></a>
-      <a href="<?php echo $seo_news; ?>" class="button-filter"><?php echo $link_seo_news; ?></a>
+      <a href="<?php echo $seo_category; ?>" class="button-filter ripple"><?php echo $link_seo_category; ?></a>
+      <a href="<?php echo $seo_product; ?>" class="button-filter ripple"><?php echo $link_seo_product; ?></a>
+      <a href="<?php echo $seo_manufacturer; ?>" class="button-filter ripple"><?php echo $link_seo_manufacturer; ?></a>
+      <a href="<?php echo $seo_information; ?>" class="button-filter ripple"><?php echo $link_seo_information; ?></a>
+      <a href="<?php echo $seo_news; ?>" class="button-filter ripple"><?php echo $link_seo_news; ?></a>
       <?php if ($seo_url_total == $keyword_total) { ?>
         <span style="background:#5DC15E; color:#FFF; padding:3px 6px; float:right;"><?php echo $seo_url_total; ?> / <?php echo $keyword_total; ?></span>
       <?php } else { ?>
@@ -80,7 +80,7 @@
                 <?php } ?>
                 <td class="left"><?php echo $seo_url['keyword']; ?></td>
                 <td class="right"><?php foreach ($seo_url['action'] as $action) { ?>
-                  <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn"><?php echo $action['text']; ?></a>
+                  <a href="<?php echo $action['href']; ?>" class="button-form animated fadeIn ripple"><?php echo $action['text']; ?></a>
                 <?php } ?></td>
               </tr>
             <?php } ?>

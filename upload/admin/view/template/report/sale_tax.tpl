@@ -9,7 +9,7 @@
     <div class="heading">
       <h1><img src="view/image/report.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
+        <a onclick="location='<?php echo $close; ?>';" class="button-cancel ripple"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content-body">
@@ -18,9 +18,9 @@
     <?php } ?>
       <div class="report">
         <div class="left"><i class="fa fa-search" style="font-size:19px;"></i></div>
-        <div class="left"><?php echo $entry_date_start; ?> <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" id="date-start" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
-        <div class="left"><?php echo $entry_date_end; ?> <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="date-end" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
-        <div class="left"><?php echo $entry_group; ?> <select name="filter_group">
+        <div class="left"><em><?php echo $entry_date_start; ?></em> <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" id="date-start" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
+        <div class="left"><em><?php echo $entry_date_end; ?></em> <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="date-end" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
+        <div class="left"><em><?php echo $entry_group; ?></em> <select name="filter_group">
           <?php foreach ($groups as $groups) { ?>
             <?php if ($groups['value'] == $filter_group) { ?>
               <option value="<?php echo $groups['value']; ?>" selected="selected"><?php echo $groups['text']; ?></option>
@@ -29,7 +29,7 @@
             <?php } ?>
           <?php } ?>
         </select></div>
-        <div class="left"><?php echo $entry_status; ?> <select name="filter_order_status_id">
+        <div class="left"><em><?php echo $entry_status; ?></em> <select name="filter_order_status_id">
           <option value="0"><?php echo $text_all_status; ?></option>
           <?php foreach ($order_statuses as $order_status) { ?>
             <?php if ($order_status['order_status_id'] == $filter_order_status_id) { ?>
@@ -39,7 +39,7 @@
             <?php } ?>
           <?php } ?>
         </select></div>
-        <div class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></div>
+        <div class="right"><a onclick="filter();" class="button-filter ripple"><?php echo $button_filter; ?></a></div>
       </div>
       <table class="list">
         <thead>

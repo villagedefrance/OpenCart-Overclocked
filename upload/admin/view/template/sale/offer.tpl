@@ -9,7 +9,7 @@
     <div class="heading">
       <h1><img src="view/image/offer.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $cancel; ?>';" class="button-cancel"><?php echo $button_exit; ?></a>
+        <a onclick="location = '<?php echo $cancel; ?>';" class="button-cancel ripple"><?php echo $button_exit; ?></a>
       </div>
     </div>
     <div class="content-body">
@@ -58,19 +58,19 @@
           <table class="list" style="margin-bottom:10px;">
             <tr>
               <td><?php echo $text_p2p; ?></td>
-              <td class="right"><a href="<?php echo $link_p2p; ?>" class="button-form"><?php echo $button_view; ?></a></td>
+              <td class="right"><a href="<?php echo $link_p2p; ?>" class="button-form ripple"><?php echo $button_view; ?></a></td>
             </tr>
             <tr>
               <td><?php echo $text_p2c; ?></td>
-              <td class="right"><a href="<?php echo $link_p2c; ?>" class="button-form"><?php echo $button_view; ?></a></td>
+              <td class="right"><a href="<?php echo $link_p2c; ?>" class="button-form ripple"><?php echo $button_view; ?></a></td>
             </tr>
             <tr>
               <td><?php echo $text_c2p; ?></td>
-              <td class="right"><a href="<?php echo $link_c2p; ?>" class="button-form"><?php echo $button_view; ?></a></td>
+              <td class="right"><a href="<?php echo $link_c2p; ?>" class="button-form ripple"><?php echo $button_view; ?></a></td>
             </tr>
             <tr>
               <td><?php echo $text_c2c; ?></td>
-              <td class="right"><a href="<?php echo $link_c2c; ?>" class="button-form"><?php echo $button_view; ?></a></td>
+              <td class="right"><a href="<?php echo $link_c2c; ?>" class="button-form ripple"><?php echo $button_view; ?></a></td>
             </tr>
           </table>
           <?php if ($error_offers) { ?>
@@ -115,7 +115,7 @@
                   <?php } else { ?>
                     <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
                   <?php } ?>
-                  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
+                  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form ripple"><?php echo $button_edit; ?></a></td>
                 </tr>
                 <?php } ?>
               <?php } ?>
@@ -134,7 +134,7 @@
                   <?php } else { ?>
                     <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
                   <?php } ?>
-                  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
+                  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form ripple"><?php echo $button_edit; ?></a></td>
                 </tr>
                 <?php } ?>
               <?php } ?>
@@ -153,7 +153,7 @@
                   <?php } else { ?>
                     <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
                   <?php } ?>
-                  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
+                  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form ripple"><?php echo $button_edit; ?></a></td>
                 </tr>
                 <?php } ?>
               <?php } ?>
@@ -172,7 +172,7 @@
                   <?php } else { ?>
                     <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
                   <?php } ?>
-                  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
+                  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form ripple"><?php echo $button_edit; ?></a></td>
                 </tr>
                 <?php } ?>
               <?php } ?>

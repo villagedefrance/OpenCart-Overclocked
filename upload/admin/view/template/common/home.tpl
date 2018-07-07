@@ -138,25 +138,25 @@
         <div class="tile">
           <div class="tile-red">
             <p><span><?php echo $total_order_today; ?></span>
-            <a href="<?php echo $view_orders; ?>" title=""><i class="fa fa-shopping-cart"></i><br /><?php echo $text_order_today; ?></a></p>
+            <a href="<?php echo $view_orders; ?>" title="" class="ripple"><i class="fa fa-shopping-cart"></i><br /><?php echo $text_order_today; ?></a></p>
           </div>
         </div>
         <div class="tile">
           <div class="tile-blue">
             <p><span><?php echo $total_customer_today; ?></span>
-            <a href="<?php echo $view_customers; ?>" title=""><i class="fa fa-users"></i><br /><?php echo $text_customer_today; ?></a></p>
+            <a href="<?php echo $view_customers; ?>" title="" class="ripple"><i class="fa fa-users"></i><br /><?php echo $text_customer_today; ?></a></p>
           </div>
         </div>
         <div class="tile">
           <div class="tile-yellow">
             <p><span><?php echo $total_sale_today; ?></span>
-            <a href="<?php echo $view_sales; ?>" title=""><i class="fa fa-line-chart"></i><br /><?php echo $text_sale_today; ?></a></p>
+            <a href="<?php echo $view_sales; ?>" title="" class="ripple"><i class="fa fa-line-chart"></i><br /><?php echo $text_sale_today; ?></a></p>
           </div>
         </div>
         <div class="tile">
           <div class="tile-green">
             <p><span><?php echo $total_online; ?></span>
-            <a href="<?php echo $view_online; ?>" title=""><i class="fa fa-feed"></i><br /><?php echo $text_online; ?></a></p>
+            <a href="<?php echo $view_online; ?>" title="" class="ripple"><i class="fa fa-feed"></i><br /><?php echo $text_online; ?></a></p>
           </div>
         </div>
       </div>
@@ -231,7 +231,7 @@
                 <td class="center"><?php echo $order['status']; ?></td>
                 <td class="right"><?php echo $order['total']; ?></td>
                 <td class="right"><?php foreach ($order['action'] as $action) { ?>
-                  <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                  <a href="<?php echo $action['href']; ?>" class="button-form ripple"><?php echo $action['text']; ?></a>
                 <?php } ?></td>
               </tr>
               <?php } ?>
@@ -295,7 +295,7 @@
                 <?php } ?>
                 </td>
                 <td class="right"><?php foreach ($customer['action'] as $action) { ?>
-                  <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                  <a href="<?php echo $action['href']; ?>" class="button-form ripple"><?php echo $action['text']; ?></a>
                 <?php } ?></td>
               </tr>
               <?php } ?>
@@ -345,7 +345,7 @@
                   <?php } ?>
                 </td>
                 <td class="right"><?php foreach ($review['action'] as $action) { ?>
-                  <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                  <a href="<?php echo $action['href']; ?>" class="button-form ripple"><?php echo $action['text']; ?></a>
                 <?php } ?></td>
               </tr>
               <?php } ?>
@@ -389,7 +389,7 @@
                 <?php } ?>
                 <td class="center"><?php echo $affiliate['date_added']; ?></td>
                 <td class="right"><?php foreach ($affiliate['action'] as $action) { ?>
-                  <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                  <a href="<?php echo $action['href']; ?>" class="button-form ripple"><?php echo $action['text']; ?></a>
                 <?php } ?></td>
               </tr>
               <?php } ?>
@@ -438,7 +438,7 @@
                 </td>
                 <td class="right">
                   <?php foreach ($return['action'] as $action) { ?>
-                    <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                    <a href="<?php echo $action['href']; ?>" class="button-form ripple"><?php echo $action['text']; ?></a>
                   <?php } ?>
                 </td>
               </tr>
@@ -473,7 +473,7 @@
                 <td class="left"><?php echo $upload['filename']; ?></td>
                 <td class="center"><?php echo $upload['date_added']; ?></td>
                 <td class="right"><?php foreach ($upload['action'] as $action) { ?>
-                  <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                  <a href="<?php echo $action['href']; ?>" class="button-form ripple"><?php echo $action['text']; ?></a>
                 <?php } ?></td>
               </tr>
               <?php } ?>

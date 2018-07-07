@@ -12,9 +12,9 @@
     <div class="heading">
       <h1><img src="view/image/product-add.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save ripple"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -127,7 +127,7 @@
             <a onclick="image_upload('image<?php echo $option_value_row; ?>', 'thumb<?php echo $option_value_row; ?>');" class="button-browse"></a><a onclick="$('#thumb<?php echo $option_value_row; ?>').attr('src', '<?php echo $no_image; ?>'); $('#image<?php echo $option_value_row; ?>').attr('value', '');" class="button-recycle"></a>
           </div></td>
           <td class="center"><input type="text" name="option_value[<?php echo $option_value_row; ?>][sort_order]" value="<?php echo $option_value['sort_order']; ?>" size="1" /></td>
-          <td class="center"><a onclick="$('#option-value-row<?php echo $option_value_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+          <td class="center"><a onclick="$('#option-value-row<?php echo $option_value_row; ?>').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>
         </tr>
         </tbody>
         <?php $option_value_row++; ?>
@@ -135,7 +135,7 @@
         <tfoot>
         <tr>
           <td colspan="3"></td>
-          <td class="center"><a onclick="addOptionValue();" class="button"><?php echo $button_add_option_value; ?></a></td>
+          <td class="center"><a onclick="addOptionValue();" class="button ripple"><?php echo $button_add_option_value; ?></a></td>
         </tr>
         </tfoot>
       </table>
@@ -171,7 +171,7 @@ function addOptionValue() {
 	html += '      <a onclick="image_upload(\'image' + option_value_row + '\', \'thumb' + option_value_row + '\');" class="button-browse"></a><a onclick="$(\'#thumb' + option_value_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + option_value_row + '\').attr(\'value\', \'\');" class="button-recycle"></a>';
 	html += '    </div></td>';
 	html += '    <td class="center"><input type="text" name="option_value[' + option_value_row + '][sort_order]" value="" size="1" /></td>';
-	html += '    <td class="center"><a onclick="$(\'#option-value-row' + option_value_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#option-value-row' + option_value_row + '\').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 

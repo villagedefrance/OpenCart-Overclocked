@@ -15,8 +15,8 @@
   <div class="heading">
     <h1><img src="view/image/modification.png" alt="<?php echo $heading_title; ?>" /><?php echo $heading_title; ?></h1>
     <div class="buttons">
-      <a onclick="location = '<?php echo $refresh; ?>';" class="button"><?php echo $button_refresh; ?></a>
-      <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
+      <a onclick="location = '<?php echo $refresh; ?>';" class="button ripple"><?php echo $button_refresh; ?></a>
+      <a onclick="location = '<?php echo $close; ?>';" class="button-cancel ripple"><?php echo $button_close; ?></a>
     </div>
   </div>
   <div class="content">
@@ -60,13 +60,13 @@
                   <td class="center"><?php echo $vqmod['status']; ?></td>
                   <td class="center"><?php foreach ($vqmod['action'] as $action) { ?>
                     <?php if ($vqmod['extension'] == 'xml_') { ?>
-                      <a href="<?php echo $action['href']; ?>" class="button-save"><?php echo $action['text']; ?></a>
+                      <a href="<?php echo $action['href']; ?>" class="button-save ripple"><?php echo $action['text']; ?></a>
                     <?php } else { ?>
-                      <a href="<?php echo $action['href']; ?>" class="button-cancel"><?php echo $action['text']; ?></a>
+                      <a href="<?php echo $action['href']; ?>" class="button-cancel ripple"><?php echo $action['text']; ?></a>
                     <?php } ?>
                   <?php } ?></td>
                   <td class="center">
-                    <a href="<?php echo $vqmod['delete']; ?>" class="button-delete"><?php echo $text_delete; ?></a>
+                    <a href="<?php echo $vqmod['delete']; ?>" class="button-delete ripple"><?php echo $text_delete; ?></a>
                   </td>
                 </tr>
               <?php } ?>
@@ -102,9 +102,9 @@
               <?php } ?>
               </select><br />
               <?php if ($ziparchive) { ?>
-                <a href="<?php echo $download_vqcache; ?>" class="button-save"><?php echo $button_vqcache_dump; ?></a>
+                <a href="<?php echo $download_vqcache; ?>" class="button-save ripple"><?php echo $button_vqcache_dump; ?></a>
               <?php } ?>
-              <a href="<?php echo $clear_vqcache; ?>" class="button-repair"><?php echo $button_clear; ?></a>
+              <a href="<?php echo $clear_vqcache; ?>" class="button-repair ripple"><?php echo $button_clear; ?></a>
             </td>
           </tr>
         </table>
@@ -113,7 +113,7 @@
           <tr>
             <td><?php echo $entry_backup; ?></td>
             <?php if ($ziparchive) { ?>
-              <td><a href="<?php echo $download_scripts; ?>" class="button"><?php echo $button_backup; ?></a></td>
+              <td><a href="<?php echo $download_scripts; ?>" class="button ripple"><?php echo $button_backup; ?></a></td>
             <?php } else { ?>
               <td><?php echo $error_ziparchive; ?></td>
             <?php } ?>
@@ -127,9 +127,9 @@
             <td><textarea rows="16" cols="160" id="error-log"><?php echo $log; ?></textarea>
               <div class="right">
               <?php if ($ziparchive) { ?>
-                <a href="<?php echo $download_log; ?>" class="button-save"><?php echo $button_download_log; ?></a>
+                <a href="<?php echo $download_log; ?>" class="button-save ripple"><?php echo $button_download_log; ?></a>
               <?php } ?>
-                <a href="<?php echo $clear_log; ?>" class="button-repair"><?php echo $button_clear; ?></a>
+                <a href="<?php echo $clear_log; ?>" class="button-repair ripple"><?php echo $button_clear; ?></a>
               </div>
             </td>
           </tr>

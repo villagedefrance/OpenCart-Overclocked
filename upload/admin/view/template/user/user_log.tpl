@@ -15,9 +15,9 @@
     <div class="heading">
       <h1><img src="view/image/log.png" alt="" /> <?php echo $heading_title; ?> <?php echo $heading_total; ?></h1>
       <div class="buttons">
-        <a id="clear-selected" class="button"><i class="fa fa-check-square-o"></i> &nbsp; <?php echo $button_clear; ?></a>
-        <a onclick="location = '<?php echo $erase; ?>';" class="button-repair"><i class="fa fa-trash"></i> &nbsp; <?php echo $button_erase; ?></a>
-        <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
+        <a id="clear-selected" class="button ripple"><i class="fa fa-check-square-o"></i> &nbsp; <?php echo $button_clear; ?></a>
+        <a onclick="location = '<?php echo $erase; ?>';" class="button-repair ripple"><i class="fa fa-trash"></i> &nbsp; <?php echo $button_erase; ?></a>
+        <a onclick="location = '<?php echo $close; ?>';" class="button-cancel ripple"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content">
@@ -174,7 +174,7 @@
               <td><input type="text" name="user_log_display" value="<?php echo $user_log_display; ?>" /></td>
             </tr>
             <tr>
-              <td class="buttons"><a onclick="updateSettings();" class="button-filter animated fadeIn"><i class="fa fa-gears"></i> &nbsp;&nbsp; <?php echo $button_settings; ?></a></td>
+              <td class="buttons"><a onclick="updateSettings();" class="button-filter animated fadeIn ripple"><i class="fa fa-gears"></i> &nbsp;&nbsp; <?php echo $button_settings; ?></a></td>
               <td></td>
             </tr>
           </table>

@@ -12,9 +12,9 @@
     <div class="heading">
       <h1><img src="view/image/shipping.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save ripple"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -29,7 +29,7 @@
             <td><select name="digital_geo_zone_id">
               <option value="0"><?php echo $text_all_zones; ?></option>
               <?php foreach ($geo_zones as $geo_zone) { ?>
-                <?php if ($geo_zone['geo_zone_id'] == $free_geo_zone_id) { ?>
+                <?php if ($geo_zone['geo_zone_id'] == $digital_geo_zone_id) { ?>
                   <option value="<?php echo $geo_zone['geo_zone_id']; ?>" selected="selected"><?php echo $geo_zone['name']; ?></option>
                 <?php } else { ?>
                   <option value="<?php echo $geo_zone['geo_zone_id']; ?>"><?php echo $geo_zone['name']; ?></option>
@@ -40,7 +40,7 @@
           <tr>
             <td><?php echo $entry_status; ?></td>
             <td><select name="digital_status">
-              <?php if ($free_status) { ?>
+              <?php if ($digital_status) { ?>
                 <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
                 <option value="0"><?php echo $text_disabled; ?></option>
               <?php } else { ?>
@@ -51,7 +51,7 @@
           </tr>
           <tr>
             <td><?php echo $entry_sort_order; ?></td>
-            <td><input type="text" name="digital_sort_order" value="<?php echo $free_sort_order; ?>" size="1" /></td>
+            <td><input type="text" name="digital_sort_order" value="<?php echo $digital_sort_order; ?>" size="1" /></td>
           </tr>
         </table>
       </form>

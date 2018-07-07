@@ -15,9 +15,9 @@
     <div class="heading">
       <h1><img src="view/image/report.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a id="button-recover" form="form" formaction="<?php echo $recover; ?>" title="<?php echo $button_recover; ?>" class="button-save"><i class="fa fa-paper-plane"></i> &nbsp; <?php echo $button_recover; ?></a>
-        <a id="button-delete" form="form" formaction="<?php echo $delete; ?>" title="<?php echo $button_delete; ?>" class="button-delete"><i class="fa fa-trash-o"></i> &nbsp; <?php echo $button_delete; ?></a>
-        <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
+        <a id="button-recover" form="form" formaction="<?php echo $recover; ?>" title="<?php echo $button_recover; ?>" class="button-save ripple"><i class="fa fa-paper-plane"></i> &nbsp; <?php echo $button_recover; ?></a>
+        <a id="button-delete" form="form" formaction="<?php echo $delete; ?>" title="<?php echo $button_delete; ?>" class="button-delete ripple"><i class="fa fa-trash-o"></i> &nbsp; <?php echo $button_delete; ?></a>
+        <a onclick="location='<?php echo $close; ?>';" class="button-cancel ripple"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content-body">
@@ -72,7 +72,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td style="text-align:right;"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+            <td style="text-align:right;"><a onclick="filter();" class="button-filter ripple"><?php echo $button_filter; ?></a></td>
           </tr>
       <?php if ($orders) { ?>
         <?php foreach ($orders as $order) { ?>

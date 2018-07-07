@@ -16,7 +16,7 @@
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
         <?php if ($cancel) { ?>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
         <?php } ?>
       </div>
     </div>
@@ -43,15 +43,16 @@
         </tr>
       </tbody>
       </table>
-      <a class="button" id="button-refund" onclick="doRefund()" style="float:right;"><?php echo $button_refund; ?></a>
+      <a class="button ripple" id="button-refund" onclick="doRefund()" style="float:right;"><?php echo $button_refund; ?></a>
     </div>
   </div>
 </div>
+
 <script type="text/javascript"><!--
 function doRefund() {
   var amt = parseFloat($('#input-refund-amount').val());
 
-	if (isNaN(amt) || amt <= 0) {
+  if (isNaN(amt) || amt <= 0) {
     alert('<?php echo addslashes($error_positive_amount); ?>');
   } else {
     $.ajax({
@@ -86,8 +87,8 @@ function doRefund() {
     .always(function() {
       $('.loading').remove();
       $('#button-refund').show();
-		});
-	}
+    });
+  }
 }
 //--></script>
 

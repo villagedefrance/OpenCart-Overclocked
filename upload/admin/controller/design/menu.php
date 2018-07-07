@@ -168,8 +168,8 @@ class ControllerDesignMenu extends Controller {
 
 				$count_menu_item = $this->model_design_menu_items->getTotalMenuItems($result['menu_id'], $data);
 
-				$menu_item_add = '<a href="' . $this->url->link('design/menu_items/insert', 'token=' . $this->session->data['token'] . '&menu_id=' . $result['menu_id'] . $url, 'SSL') . '" class="button-save">' . $this->language->get('text_menu_item_add') . '</a>';
-				$menu_item_view = $count_menu_item ? '<a href="' . $this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $result['menu_id'] . $url, 'SSL') . '" class="button">' . $this->language->get('text_menu_item_view') . '</a>' : '';
+				$menu_item_add = '<a href="' . $this->url->link('design/menu_items/insert', 'token=' . $this->session->data['token'] . '&menu_id=' . $result['menu_id'] . $url, 'SSL') . '" class="button-save ripple">' . $this->language->get('text_menu_item_add') . '</a>';
+				$menu_item_view = $count_menu_item ? '<a href="' . $this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $result['menu_id'] . $url, 'SSL') . '" class="button ripple">' . $this->language->get('text_menu_item_view') . '</a>' : '';
 
 				$this->data['menus'][] = array(
 					'menu_id'        => $result['menu_id'],

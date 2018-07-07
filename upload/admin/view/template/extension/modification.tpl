@@ -15,7 +15,7 @@
     <div class="heading">
       <h1><img src="view/image/modification.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
+        <a onclick="location = '<?php echo $close; ?>';" class="button-cancel ripple"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content-body">
@@ -33,9 +33,9 @@
             <td class="left"><?php echo $extension['name']; ?></td>
             <td class="right"><?php foreach ($extension['action'] as $action) { ?>
               <?php if ($action['type'] == 'uninstall') { ?>
-                <a class="button-form-<?php echo $action['type']; ?>" data-title="<?php echo $action['text']; ?>" href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a>
+                <a class="button-form-<?php echo $action['type']; ?> ripple" data-title="<?php echo $action['text']; ?>" href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a>
               <?php } else { ?>
-                <a href="<?php echo $action['href']; ?>" class="button-form-<?php echo $action['type']; ?>"><?php echo $action['text']; ?></a>
+                <a class="button-form-<?php echo $action['type']; ?> ripple" href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a>
               <?php } ?>
             <?php } ?></td>
           </tr>

@@ -12,9 +12,9 @@
   <div class="heading">
     <h1><img src="view/image/download.png" alt="" /> <?php echo $download_title; ?></h1>
     <div class="buttons">
-      <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-      <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-      <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+      <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+      <a onclick="apply();" class="button-save ripple"><?php echo $button_apply; ?></a>
+      <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
     </div>
   </div>
   <div class="content">

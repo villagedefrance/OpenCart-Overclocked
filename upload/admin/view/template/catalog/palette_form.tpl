@@ -12,9 +12,9 @@
     <div class="heading">
       <h1><img src="view/image/palette.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-         <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-         <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-         <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+         <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+         <a onclick="apply();" class="button-save ripple"><?php echo $button_apply; ?></a>
+         <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -69,7 +69,7 @@
             <?php } ?>
             <?php } ?>
           </select></td>
-          <td class="center"><a onclick="$('#color-row<?php echo $color_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+          <td class="center"><a onclick="$('#color-row<?php echo $color_row; ?>').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>
         </tr>
       </tbody>
       <?php $color_row++; ?>
@@ -77,7 +77,7 @@
       <tfoot>
         <tr>
           <td colspan="3"></td>
-          <td class="center"><a onclick="addColor();" class="button"><?php echo $button_add_color; ?></a></td>
+          <td class="center"><a onclick="addColor();" class="button ripple"><?php echo $button_add_color; ?></a></td>
         </tr>
       </tfoot>
       </table>
@@ -106,7 +106,7 @@ function addColor() {
 	html += '      <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>';
 	<?php } ?>
 	html += '    </select></td>';
-	html += '    <td class="center"><a onclick="$(\'#color-row' + color_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#color-row' + color_row + '\').remove();" class="button-delete ripple"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 

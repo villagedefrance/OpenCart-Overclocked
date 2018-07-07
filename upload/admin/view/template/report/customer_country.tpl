@@ -9,7 +9,7 @@
     <div class="heading">
       <h1><img src="view/image/report.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
+        <a onclick="location='<?php echo $close; ?>';" class="button-cancel ripple"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content-body">
@@ -36,7 +36,7 @@
             <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" /></td>
             <td></td>
             <td></td>
-            <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+            <td class="right"><a onclick="filter();" class="button-filter ripple"><?php echo $button_filter; ?></a></td>
           </tr>
           <?php if ($countries) { ?>
             <?php foreach ($countries as $country) { ?>

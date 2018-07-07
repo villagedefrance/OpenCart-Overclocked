@@ -9,7 +9,7 @@
     <div class="heading">
       <h1><img src="view/image/report.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
+        <a onclick="location='<?php echo $close; ?>';" class="button-cancel ripple"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content-body">
@@ -74,7 +74,7 @@
               <?php } ?>
             </select></td>
             <td class="right"><input type="text" name="filter_quantity" value="<?php echo $filter_quantity; ?>" size="10" /></td>
-            <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+            <td class="right"><a onclick="filter();" class="button-filter ripple"><?php echo $button_filter; ?></a></td>
           </tr>
         <?php if ($products) { ?>
           <?php foreach ($products as $product) { ?>
@@ -97,7 +97,7 @@
                 <span style="color:#5DC15E;"><?php echo $product['quantity']; ?></span>
               <?php } ?></td>
               <td class="right"><?php foreach ($product['action'] as $action) { ?>
-                <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                <a href="<?php echo $action['href']; ?>" class="button-form ripple"><?php echo $action['text']; ?></a>
               <?php } ?></td>
             </tr>
           <?php } ?>

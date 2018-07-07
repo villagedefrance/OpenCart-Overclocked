@@ -36,9 +36,9 @@
                 <td class="center"><?php echo $extension['status'] ?></td>
                 <td class="right"><?php foreach ($extension['action'] as $action) { ?>
                   <?php if ($action['type'] == 'uninstall') { ?>
-                    <a class="button-form-<?php echo $action['type']; ?>" data-title="<?php echo $action['text']; ?>" href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a>
+                    <a class="button-form-<?php echo $action['type']; ?> ripple" data-title="<?php echo $action['text']; ?>" href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a>
                   <?php } else { ?>
-                    <a href="<?php echo $action['href']; ?>" class="button-form-<?php echo $action['type']; ?>"><?php echo $action['text']; ?></a>
+                    <a class="button-form-<?php echo $action['type']; ?> ripple" href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a>
                   <?php } ?>
                 <?php } ?></td>
               </tr>

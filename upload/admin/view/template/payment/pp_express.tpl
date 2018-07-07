@@ -19,10 +19,10 @@
     <div class="heading">
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a href="<?php echo $search; ?>" class="button"><?php echo $button_search; ?></a>
-        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a href="<?php echo $search; ?>" class="button ripple"><?php echo $button_search; ?></a>
+        <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save ripple"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -370,8 +370,8 @@
         <div class="report">
           <div class="left"><img src="view/image/log.png" alt="" /></div>
         <?php if ($debug_log) { ?>
-          <div class="right"><a href="<?php echo $debug_clear; ?>" class="button-filter"><?php echo $button_debug_clear; ?></a></div>
-          <div class="right"><a href="<?php echo $debug_download; ?>" class="button-filter"><?php echo $button_debug_download; ?></a></div>
+          <div class="right"><a href="<?php echo $debug_clear; ?>" class="button-filter ripple"><?php echo $button_debug_clear; ?></a></div>
+          <div class="right"><a href="<?php echo $debug_download; ?>" class="button-filter ripple"><?php echo $button_debug_download; ?></a></div>
         <?php } ?>
         </div>
         <textarea wrap="off" class="log"><?php echo $debug_log; ?></textarea>

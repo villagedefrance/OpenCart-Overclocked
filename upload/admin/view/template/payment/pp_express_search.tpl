@@ -9,8 +9,8 @@
     <div class="heading">
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a id="button-edit" class="button" style="display:none;"><?php echo $button_edit_search; ?></a>
-        <a id="button-search" class="button-save"><?php echo $button_search; ?></a>
+        <a id="button-edit" class="button ripple" style="display:none;"><?php echo $button_edit_search; ?></a>
+        <a id="button-search" class="button-save ripple"><?php echo $button_search; ?></a>
       </div>
     </div>
     <div class="content">

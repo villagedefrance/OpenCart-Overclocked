@@ -15,9 +15,9 @@
     <div class="heading">
       <h1><img src="view/image/customer.png" alt="" /> <?php echo $supplier_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save ripple"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -219,7 +219,7 @@
               <td><textarea name="comment" cols="40" rows="8" style="width:99%;"></textarea></td>
             </tr>
             <tr>
-              <td colspan="2" style="text-align:right;"><a id="button-history" class="button"><?php echo $button_add_history; ?></a></td>
+              <td colspan="2" style="text-align:right;"><a id="button-history" class="button ripple"><?php echo $button_add_history; ?></a></td>
             </tr>
           </table>
         </div>

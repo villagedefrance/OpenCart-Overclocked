@@ -15,9 +15,9 @@
     <div class="heading">
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save ripple"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -26,7 +26,7 @@
         <a href="#tab-log"><?php echo $tab_log ?></a>
       </div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
-        <div id="tab-general"><a onclick="window.open(\'https://klarna.com/sell-with-klarna\');" style="float:right;"><img src="view/image/payment/klarna.png" alt="" /></a>
+      <div id="tab-general"><a onclick="window.open(\'https://klarna.com/sell-with-klarna\');" style="float:right;"><img src="view/image/payment/klarna.png" alt="" /></a>
         <div id="vtabs" class="vtabs">
           <?php foreach ($countries as $country) { ?>
             <a href="#tab-<?php echo $country['code']; ?>"><?php echo $country['name']; ?></a>
@@ -79,7 +79,7 @@
                 </select></td>
               </tr>
               <tr>
-                 <td><label for="input-accepted-status"><?php echo $entry_accepted_status; ?></label></td>
+                <td><label for="input-accepted-status"><?php echo $entry_accepted_status; ?></label></td>
                 <td><select name="klarna_account[<?php echo $country['code']; ?>][accepted_status_id]" id="input-accepted-status">
                   <?php foreach ($order_statuses as $order_status) { ?>
                     <?php if (isset($klarna_account[$country['code']]) && $order_status['order_status_id'] == $klarna_account[$country['code']]['accepted_status_id']) { ?>

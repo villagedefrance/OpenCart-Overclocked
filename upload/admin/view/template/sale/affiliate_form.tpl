@@ -15,9 +15,9 @@
     <div class="heading">
       <h1><img src="view/image/customer.png" alt="" /> <?php echo $affiliate_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save ripple"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save ripple"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
     </div>
   </div>
   <div class="content">
@@ -326,7 +326,7 @@
             <td><input type="text" name="amount" value="" /></td>
           </tr>
           <tr>
-            <td colspan="2" style="text-align:right;"><a id="button-transaction" class="button" onclick="addTransaction();"><?php echo $button_add_transaction; ?></a></td>
+            <td colspan="2" style="text-align:right;"><a id="button-transaction" class="button ripple" onclick="addTransaction();"><?php echo $button_add_transaction; ?></a></td>
           </tr>
           </tbody>
         </table>

@@ -15,8 +15,8 @@
     <div class="heading">
       <h1><img src="view/image/backup.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $refresh; ?>';" class="button"><i class="fa fa-refresh"></i> &nbsp; <?php echo $button_refresh; ?></a>
-        <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
+        <a onclick="location='<?php echo $refresh; ?>';" class="button ripple"><i class="fa fa-refresh"></i> &nbsp; <?php echo $button_refresh; ?></a>
+        <a onclick="location='<?php echo $close; ?>';" class="button-cancel ripple"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content-body">
@@ -30,7 +30,7 @@
           </tr>
           <tr>
             <td width="20%"></td>
-            <td><a onclick="$('#import-raw').submit();" class="button-filter animated fadeIn"><i class="fa fa-upload"></i> &nbsp;&nbsp; <?php echo $button_import; ?></a></td>
+            <td><a onclick="$('#import-raw').submit();" class="button-filter animated fadeIn ripple"><i class="fa fa-upload"></i> &nbsp;&nbsp; <?php echo $button_import; ?></a></td>
           </tr>
         </table>
       </form>
@@ -47,7 +47,7 @@
           </tr>
           <tr>
             <td width="20%"></td>
-            <td><a onclick="$('#export-raw').submit();" class="button-filter animated fadeIn"><i class="fa fa-download"></i> &nbsp;&nbsp; <?php echo $button_export; ?></a></td>
+            <td><a onclick="$('#export-raw').submit();" class="button-filter animated fadeIn ripple"><i class="fa fa-download"></i> &nbsp;&nbsp; <?php echo $button_export; ?></a></td>
           </tr>
         </table>
         <h2><?php echo $heading_parameter; ?></h2>

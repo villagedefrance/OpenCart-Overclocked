@@ -13,8 +13,8 @@
     <div class="heading">
       <h1><img src="view/image/user.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#forgotten').submit();" class="button-save"><?php echo $button_reset; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#forgotten').submit();" class="button-save ripple"><?php echo $button_reset; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -45,8 +45,8 @@
         <input type="text" name="email" value="<?php echo $email; ?>" size="40" />
       </div>
       <div class="validate animated fadeIn">
-        <a onclick="$('#forgotten').submit();" class="button-save"><?php echo $button_reset; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#forgotten').submit();" class="button-save ripple"><?php echo $button_reset; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel ripple"><?php echo $button_cancel; ?></a>
       </div>
     </form>
     </div>
