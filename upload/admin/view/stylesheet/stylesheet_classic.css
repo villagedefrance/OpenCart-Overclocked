@@ -1228,9 +1228,12 @@ a.button-print:hover {
 	left: 0;
 	pointer-events: none;
 	background-color: #CCC;
-    background-image: -webkit-radial-gradient(circle, #000 10%, transparent 10.01%);
-    background-image: -o-radial-gradient(circle, #000 10%, transparent 10.01%);
-    background-image: radial-gradient(circle, #000 10%, transparent 10.01%);
+	background-image: -webkit-gradient(radial, center, center, from(#000 10%), to(transparent 10.01%));
+	background-image: -webkit-radial-gradient(circle, #000 10%, transparent 10.01%);
+	background-image: -moz-radial-gradient(circle, #000 10%, transparent 10.01%);
+	background-image: -ms-radial-gradient(circle, #000 10%, transparent 10.01%);
+	background-image: -o-radial-gradient(circle, #000 10%, transparent 10.01%);
+	background-image: radial-gradient(circle, #000 10%, transparent 10.01%);
 	background-repeat: no-repeat;
 	background-position: 50%;
 	-webkit-transform: scale(8, 8);

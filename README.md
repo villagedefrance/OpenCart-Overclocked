@@ -31,6 +31,14 @@ Requirements:
 - PHP: PHP 5.4+
 
 
+COMING SOON in v1.11.1!
+- Improved Catalog Search.
+- Replaced SwipeBox with ViewBox.
+- Added Digital Download Shipping.
+- Added Ripple effect to Admin buttons.
+- Bug fixes.
+
+
 NEW in v1.11.0!
 - Upgraded to latest jQuery 3.3.1.
 - Upgraded almost all Javascript libraries.

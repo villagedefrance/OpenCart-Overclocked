@@ -83,7 +83,7 @@ $_['text_info_scripts']   = 'Scripts:';
 $_['text_info_license']   = 'License:';
 $_['text_info_files']     = 'Formats:';
 
-$_['info_version']        = 'v1.11.0';
+$_['info_version']        = 'v1.11.1';
 $_['info_author']         = 'Villagedefrance (contact@villagedefrance.net)';
 $_['info_credit']         = 'Kay Lohn (Original script), Dhaupin (Performance).';
 $_['info_scripts']        = 'jsTree v0.9.9a, AjaxUpload v1.0 and Plupload v2.3.6.';
