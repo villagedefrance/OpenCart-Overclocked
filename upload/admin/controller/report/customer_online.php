@@ -105,6 +105,7 @@ class ControllerReportCustomerOnline extends Controller {
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_tracking'] = $this->language->get('text_tracking');
+		$this->data['text_tooltip'] = $this->language->get('text_tooltip');
 
 		$this->data['column_ip'] = $this->language->get('column_ip');
 		$this->data['column_customer'] = $this->language->get('column_customer');

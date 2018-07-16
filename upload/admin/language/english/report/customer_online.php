@@ -5,6 +5,7 @@ $_['heading_title']     = 'Customers Online Report';
 // Text
 $_['text_guest']        = 'Guest';
 $_['text_tracking']     = 'You must enable "Customers Online" in your Settings to view this report.';
+$_['text_tooltip']      = 'Active Customers in the last 15 minutes.';
 
 // Column
 $_['column_ip']         = 'IP';

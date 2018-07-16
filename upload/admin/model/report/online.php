@@ -2,7 +2,7 @@
 class ModelReportOnline extends Model {
 
 	public function getCustomersOnline($data = array()) {
-		$sql = "SELECT co.ip, co.customer_id, co.url, co.referer, co.user_agent, co.date_added FROM " . DB_PREFIX . "customer_online co LEFT JOIN " . DB_PREFIX . "customer c ON (co.customer_id = c.customer_id)";
+		$sql = "SELECT co.ip, co.customer_id, co.url, co.referer, co.user_agent, co.date_added FROM " . DB_PREFIX . "customer_online co LEFT JOIN " . DB_PREFIX . "customer c ON (co.customer_id = c.customer_id) WHERE co.date_added > DATE_SUB(NOW(), INTERVAL 15 MINUTE)";
 
 		$implode = array();
 
@@ -15,7 +15,7 @@ class ModelReportOnline extends Model {
 		}
 
 		if (!empty($implode)) {
-			$sql .= " WHERE " . implode(" AND ", $implode);
+			$sql .= implode(" AND ", $implode);
 		}
 
 		if (isset($data['start']) || isset($data['limit'])) {
@@ -36,7 +36,7 @@ class ModelReportOnline extends Model {
 	}
 
 	public function getTotalCustomersOnline($data = array()) {
-		$sql = "SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "customer_online` co LEFT JOIN " . DB_PREFIX . "customer c ON (co.customer_id = c.customer_id) WHERE co.date_added > DATE_SUB(NOW(), INTERVAL 1 MINUTE)";
+		$sql = "SELECT COUNT(*) AS `total` FROM `" . DB_PREFIX . "customer_online` co LEFT JOIN " . DB_PREFIX . "customer c ON (co.customer_id = c.customer_id) WHERE co.date_added > DATE_SUB(NOW(), INTERVAL 15 MINUTE)";
 
 		$implode = array();
 
@@ -49,7 +49,7 @@ class ModelReportOnline extends Model {
 		}
 
 		if (!empty($implode)) {
-			$sql .= " WHERE " . implode(" AND ", $implode);
+			$sql .= implode(" AND ", $implode);
 		}
 
 		$query = $this->db->query($sql);
@@ -95,7 +95,7 @@ class ModelReportOnline extends Model {
 	}
 
 	public function getTotalRobotsOnline($data = array()) {
-		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "robot_online";
+		$sql = "SELECT COUNT(*) AS `total` FROM " . DB_PREFIX . "robot_online";
 
 		$implode = array();
 
