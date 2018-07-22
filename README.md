@@ -31,37 +31,12 @@ Requirements:
 - PHP: PHP 5.4+
 
 
-COMING SOON in v1.11.1!
+NEW in v1.11.1!
 - Improved Catalog Search.
 - Replaced SwipeBox with ViewBox.
 - Added Digital Download Shipping.
 - Added Ripple effect to Admin buttons.
 - Bug fixes.
-
-
-NEW in v1.11.0!
-- Upgraded to latest jQuery 3.3.1.
-- Upgraded almost all Javascript libraries.
-- Extensive code validation using Codacy.
-- Added Composer.json and Packagist repo.
-- Added Animate CSS for Admin pages.
-- Added Administration event Notifications.
-- Added Administration User Logs.
-- Added FlexSlider for Slideshow and Banner.
-- Added Banner clicks counter with report.
-- Added Palette module (Search by color).
-- Added new Banner Clicks Report.
-- Added new Abandoned Carts feature.
-- Added Customer Wishlist products report.
-- New Responsive Administration Login page.
-- Stronger Server Security through .htaccess.
-- Improved Invoicing and Sales documents.
-- Piwik changed to new Matomo Analytics.
-- Currency rates auto-update fixed.
-- PHP 7.2+ improved support.
-- GDPR compliance.
-- bug fixes.
-- ...
 
 
 Overclocked Edition main features, compared with official OpenCart v1.5.6.x:
