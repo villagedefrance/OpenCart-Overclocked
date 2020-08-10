@@ -92,7 +92,7 @@ function getOpenbayVersion() {
 	$('#openbay_version').empty().html('<div id="openbay_version_loading"><img src="view/image/loading.gif" alt="Loading" /> <?php echo $lang_checking_version; ?></div>');
 
 	setTimeout(function() {
-		var token = "<?php echo $_GET['token']; ?>";
+		var token = "<?php echo htmlspecialchars($_GET['token'], ENT_QUOTES, 'UTF-8'); ?>";
 
 		$.ajax({
 			type: 'GET',
