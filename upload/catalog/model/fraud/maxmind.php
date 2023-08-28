@@ -12,7 +12,7 @@ class ModelFraudMaxMind extends Model {
 			$risk_score = $query->row['risk_score'];
 		} else {
 			/* maxmind api
-			http://www.maxmind.com/app/ccv */
+			https://minfraud.maxmind.com/app/ccv */
 			/* paypal api
 			https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_html_IPNandPDTVariables */
 
@@ -40,7 +40,7 @@ class ModelFraudMaxMind extends Model {
 			$request .= '&order_amount=' . urlencode($this->currency->format($data['total'], $data['currency_code'], $data['currency_value'], false));
 			$request .= '&order_currency=' . urlencode($data['currency_code']);
 
-			$curl = curl_init('https://minfraud1.maxmind.com/app/ccv2r');
+			$curl = curl_init('https://minfraud.maxmind.com/app/ccv2r');
 
 			curl_setopt($curl, CURLOPT_HEADER, 0);
 			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
